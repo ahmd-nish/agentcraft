@@ -1,0 +1,36 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Obtain a large number of slime blocks and honey blocks (more than 4000 in total).\n3. Place the slime blocks and honey blocks in close proximity to each other within your view distance.\n4. Ensure that all the placed blocks are visible on the screen without moving the camera.\n5. Wait at least a few minutes while observing the game for any crashes or freezes.\n6. If the game crashes, attempt to join the world again and observe if it remains unjoinable.\n7. Note whether the game becomes unresponsive or if there is an error message upon trying to load the world.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "When a large number of slime blocks or honey blocks (more than 4000) are placed in the game, it can lead to a complete crash. Rendering these blocks triggers the crash, making it impossible for players to join the world again once the issue occurs. This bug specifically affects scenarios where the quantity of these blocks exceeds the threshold, causing the game to become unplayable and necessitating a fix from developers to ensure stability under such conditions.",
+  "Expected Behavior": "When placing more than 4000 slime blocks or honey blocks, the game should not crash and remain stable. Players should be able to render these blocks without any issues and continue to join and play in the world normally. The game should handle large quantities of these blocks smoothly without causing a complete crash.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517"
+  }
+}

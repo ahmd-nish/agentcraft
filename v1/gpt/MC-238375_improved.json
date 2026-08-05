@@ -1,0 +1,44 @@
+{
+  "key": "MC-238375",
+  "created_date": "2021-10-05T08:22:52.439-0700",
+  "updated_date": "2025-04-29T21:08:03.582-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w39a",
+    "21w40a",
+    "21w41a",
+    "21w42a",
+    "21w43a",
+    "21w44a",
+    "1.18 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 2"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "world-border"
+  ],
+  "resolution_date": "2021-11-21T11:59:36.592-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash and or data corruption upon attempting to save a world with a world border center over 30 million blocks",
+  "environment_raw": null,
+  "description": "The bug Attempting to save a world with a world border center over 30 million blocks causes the player to be unable to respawn. The game crashes (Exception generating new chunk caused by java.lang.ArrayIndexOutOfBoundsException), and or the world is corrupted (java.nio.channels.OverlappingFileLockException: null), and you become unable to open it again. \"Negative index in crash report handler (0 15)\" is spammed to the debug log. To reproduce 1. Create a new world. 2. Execute worldborder center 50000000 50000000. 3. Execute kill. 4. You are unable to respawn. 5. Attempt to go to title screen. 6. The game crashes, or the world becomes unable to be opened again.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world.\n3. Execute the command `worldborder center 50000000 50000000`.\n4. Execute the command `kill`.\n5. Attempt to respawn; observe that you are unable to do so.\n6. Attempt to go to the title screen.\n7. Observe that the game crashes, or the world becomes unable to be opened again.",
+  "Environment": "Minecraft Java Edition Versions: 21w39a, 21w40a, 21w41a, 21w42a, 21w43a, 21w44a, 1.18 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "When attempting to save a world with a world border center set beyond 30 million blocks, the game exhibits critical failures that severely impact gameplay. Specifically, players are unable to respawn after executing a kill command, leading to a crash characterized by an Exception generating new chunk caused by java.lang.ArrayIndexOutOfBoundsException. Additionally, the world may become corrupted, resulting in a java.nio.channels.OverlappingFileLockException, which prevents the world from being opened again. The debug log repeatedly displays the message \"Negative index in crash report handler (0 15),\" indicating an underlying issue with data handling. To reproduce this bug, a player should create a new world, set the world border center to coordinates 50,000,000 by 50,000,000, and then use the kill command. After this, the player will find they cannot respawn, and any attempt to return to the title screen will lead to a game crash or further corruption of the world file, rendering it inaccessible.",
+  "Expected Behavior": "When attempting to save a world with a world border center over 30 million blocks, the game should allow the player to respawn normally without crashing or corrupting the world. The player should be able to return to the title screen and access the world without encountering any errors, ensuring a smooth gameplay experience even at extreme world border coordinates. The debug log should not display any negative index errors or exceptions related to chunk generation.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-238375"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "key": "MC-248926",
+  "created_date": "2022-03-06T12:18:27.608-0800",
+  "updated_date": "2025-04-10T14:50:07.081-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "22w11a",
+    "22w12a",
+    "22w13a",
+    "1.19 Pre-release 3",
+    "1.19 Pre-release 5",
+    "1.19",
+    "1.19.1 Pre-release 4",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "22w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "chunk-loading",
+    "softlock",
+    "spectatorsGenerateChunks"
+  ],
+  "resolution_date": "2022-12-07T01:50:11.582-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Setting \"spectatorsGenerateChunks\" to false and relogging freezes the game on the Loading Terrain screen",
+  "environment_raw": null,
+  "description": "This is bad. I was trying to spectate my hardcore world after dying, but got stuck in unloaded chunks at my respawn point. Due to this gamerule being set to false when you die in hardcore, I thought to exit out of the world, turn on cheats, and force the chunks around me to load. Because I couldn t load any chunks, my hardcore world cannot load, thus freezing the game at the \"loading terrain\" screen, which softlocks the game. How to reproduce - Die in hardcore. Make sure your death point and spawnpoint are far away from each other. - If you get trapped in unloaded chunks, relog from the world. If not, open the world to LAN amd try again. - Try to open the world. - Sit in your chair for the rest of forever waiting for your world to load.",
+  "Steps to Reproduce": "1. Create or load a Hardcore world.\n2. Ensure your death point and respawn point are far away from each other.\n3. Die in the Hardcore world to trigger the \"spectatorsGenerateChunks\" gamerule set to false.\n4. Attempt to relog by exiting the world and trying to open it again.\n5. Observe that the game freezes on the \"Loading Terrain\" screen due to unloaded chunks around your respawn point.\n6. Note that you are unable to load any chunks, effectively softlocking the game at the loading screen.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 22w11a, 22w12a, 22w13a, 1.19 Pre-release 3, 1.19 Pre-release 5, 1.19, 1.19.1 Pre-release 4, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When setting the gamerule \"spectatorsGenerateChunks\" to false and attempting to relog, the game freezes on the \"Loading Terrain\" screen, effectively softlocking it. This issue arises when a player dies in hardcore mode and finds themselves stuck in unloaded chunks near their respawn point. Because this gamerule is set to false upon death in hardcore mode, any attempt to load chunks around the player fails, preventing the world from loading properly. To reproduce the bug, die in a hardcore world with your death location far from your spawnpoint. Upon relogging or opening the world to LAN, attempting to load the world will result in the game freezing at the \"Loading Terrain\" screen indefinitely.",
+  "Expected Behavior": "When \"spectatorsGenerateChunks\" is set to false and you relog after dying in a hardcore world, the game should load the necessary chunks around your respawn point without freezing on the Loading Terrain screen. You should be able to spectate freely and not get trapped in unloaded chunks, allowing you to navigate and interact with the world as intended.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-248926"
+  }
+}

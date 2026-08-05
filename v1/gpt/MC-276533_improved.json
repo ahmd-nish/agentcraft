@@ -1,0 +1,37 @@
+{
+  "key": "MC-276533",
+  "created_date": "2024-09-08T18:12:17.219-0700",
+  "updated_date": "2025-04-26T16:44:13.201-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash"
+  ],
+  "resolution_date": "2024-09-10T05:41:41.345-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when three or more skeletons are about to release their arrows",
+  "environment_raw": null,
+  "description": "If three or more entities start drawing their bows, right before they shoot the arrow to the target the game stops responding and just stays like that until you task manager it. This is really really bad because you would most likely encounter three skeletons at night plus anything that is used to bait in skeletons will crash the game.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Use the command to summon three skeletons: `summon minecraft:skeleton ~ ~ ~`.\n4. Wait until the skeletons start drawing their bows.\n5. Observe that the game stops responding when the skeletons are about to release their arrows.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "When three or more skeletons (entity ID: `minecraft:skeleton`) begin to draw their bows simultaneously, the game experiences a critical freeze just before the arrows are released. This issue manifests as a complete lack of response from the game, requiring the player to forcibly terminate the application via the task manager. \n\nThis bug is particularly problematic during nighttime gameplay, as players are likely to encounter multiple skeletons in close proximity, especially when using bait mechanisms (such as standing near mobs that attract skeletons). The freeze occurs consistently under these conditions, making it impossible to engage with the game without risking a crash.\n\nThe freeze appears to be triggered by the simultaneous animation and projectile spawning mechanics of the skeletons' bow-drawing behavior. When the bows are fully drawn and ready to release arrows, the game fails to process the rendering or physics calculations for the multiple arrows, leading to a non-responsive state. This issue has been observed across various game versions, emphasizing the need for urgent attention to ensure stable gameplay in scenarios involving multiple skeletons. \n\nDevelopers should investigate the interaction between the skeletons' bow mechanics, arrow entity spawning, and the game's rendering processes to identify the root cause and implement a fix.",
+  "Expected Behavior": "When three or more skeletons are about to release their arrows, the game should continue to run smoothly without crashing. Players should be able to see the skeletons draw their bows and fire arrows at their targets without any interruptions or freezing. This behavior should be consistent, allowing players to engage with multiple skeletons during nighttime encounters without risking game stability.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276533"
+  }
+}

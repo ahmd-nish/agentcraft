@@ -1,0 +1,36 @@
+{
+  "key": "MC-267937",
+  "created_date": "2024-01-17T23:33:37.678-0800",
+  "updated_date": "2025-04-29T11:00:02.223-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w03a",
+    "24w03b"
+  ],
+  "fix_versions": [
+    "24w04a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-01-22T04:46:05.471-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Shooting a breeze with a piercing crossbow makes the game crash",
+  "environment_raw": null,
+  "description": "If you try shooting a breeze from a distance with a crossbow enchanted with piercing IV the game will crash!!! I think it happens because of the last change that was made in 24w03a: \"Breeze is now deflecting all projectiles\". Apparently Mojang totally forgot to adjust the behavior when shooting a breeze with a piercing crossbow, so the game doesn t know what to do, so it crashes!",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Obtain a crossbow enchanted with piercing IV.\n4. Find a breeze in the world.\n5. Stand at a distance from the breeze.\n6. Shoot the breeze with the piercing crossbow.\n7. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w03a, 24w03b (includes snapshots)",
+  "Observed Behavior": "When a player attempts to shoot a breeze using a crossbow enchanted with piercing IV from a distance, the game crashes. This issue appears to be linked to a recent change in version 24w03a, where the breeze was updated to deflect all projectiles. The mechanics of the piercing enchantment, which allows arrows to continue through targets, seem to conflict with the new behavior of the breeze, resulting in the game failing to process the interaction correctly. As a consequence, this leads to a crash, indicating that the game's code does not handle the scenario of piercing arrows colliding with a deflecting breeze, which may require adjustments to ensure compatibility between these features.",
+  "Expected Behavior": "When shooting a breeze with a piercing IV crossbow, the game should handle the interaction correctly without crashing. Instead of causing a crash, the breeze should successfully deflect the projectile as intended, allowing the player to see the arrow's trajectory change and continue gameplay smoothly. This behavior should be consistent across all game versions following the implementation of the breeze mechanics in 24w03a.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-267937"
+  }
+}

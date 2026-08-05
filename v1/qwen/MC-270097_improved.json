@@ -1,0 +1,36 @@
+{
+  "key": "MC-270097",
+  "created_date": "2024-03-28T19:31:56.920-0700",
+  "updated_date": "2025-05-29T09:07:07.434-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a",
+    "1.20.5 Pre-Release 1"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-16T04:42:16.787-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when set_ominous_bottle_amplifier item modifier sets out-of-range amplifier",
+  "environment_raw": null,
+  "description": "Summary This is yet another \"item modifier setting invalid component causing crash\" bug. Here, the new set_ominous_bottle_amplifier item modifier does not clamp or validate the amplifier, causing a crash. Steps to Reproduce - Give yourself a stick. - Run the following command: item modify entity s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10} - Pause the game. Expected Result The game does not crash. Actual Result The game crashes.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Give yourself a stick using the command `/give s stick`.\n3. Run the following command: `item modify entity s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}`.\n4. Pause the game.\n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w13a, 1.20.5 Pre-Release 1 (includes snapshots)",
+  "Observed Behavior": "### Actual Result\n\nWhen attempting to set an out-of-range amplifier value using the `set_ominous_bottle_amplifier` item modifier, the game crashes immediately upon pausing. Specifically, running the command `item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}` on a stick causes an out-of-bounds error due to the amplifier value not being validated or clamped within acceptable limits. This results in the game engine failing to handle the invalid input, leading to a complete crash of the Minecraft client.",
+  "Expected Behavior": "When running the command `item modify entity s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}`, the game should handle out-of-range amplifier values gracefully without crashing. The item modifier should either clamp the amplifier to a valid range or provide an error message, ensuring that the game remains stable and functional after executing the command.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-270097"
+  }
+}

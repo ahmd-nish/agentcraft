@@ -1,0 +1,35 @@
+{
+  "key": "MC-269670",
+  "created_date": "2024-03-20T12:43:37.231-0700",
+  "updated_date": "2025-04-29T10:18:06.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-27T02:27:13.267-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when giving bundle with hide tooltip",
+  "environment_raw": null,
+  "description": "Give yourself a bundle with the hide tooltip attribute and hover over the bundle give p bundle[minecraft:hide_tooltip {}] 1",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open the chat and enter the command: `/give @p bundle[minecraft:hide_tooltip {}] 1`.\n4. Hover over the bundle in your inventory.\n5. Wait for the game to crash.\n6. Observe that the game has crashed after hovering over the bundle.",
+  "Environment": "Minecraft Java Edition Version 24w12a (snapshot)",
+  "Observed Behavior": "When a player gives themselves a bundle with the hide tooltip attribute using the command give p bundle[minecraft:hide_tooltip {}] 1 and then hovers over the bundle, the game crashes immediately. This behavior occurs consistently when the specified command is executed, leading to an abrupt termination of the game. The crash does not appear to be influenced by external factors, as it reliably happens under the described conditions. The issue is reproducible in the specified version of Minecraft, and it is crucial to gather relevant data to assist developers in diagnosing the problem. This includes obtaining screenshots of the game before and after the crash, a ZIP archive of the debug folder, and any relevant crash report files. The problem is specific to the interaction with the bundle that has the hide tooltip attribute, indicating a potential issue with how the game processes this particular item attribute when hovered over.",
+  "Expected Behavior": "When a player gives themselves a bundle with the hide tooltip attribute and hovers over it, the expected behavior is that the bundle should display a tooltip indicating its contents or properties without causing any game crashes. The player should be able to interact with the bundle normally and view its details without any interruptions, ensuring a seamless gaming experience in Java Edition 1.21.4 and 1.21.5.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-269670"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "key": "MC-162586",
+  "created_date": "2019-10-02T16:29:53.979-0700",
+  "updated_date": "2025-04-14T16:29:21.729-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-09T08:35:55.714-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Log repeatedly prints the message \"Ticking entity\", and finally crashes the game",
+  "environment_raw": null,
+  "description": "The bug I m just moving around in my jungle world while trying to record a youtube video. Windows that were open are chrome, obs, sticky notes, streamlabs obs, and the minecraft launcher, as well as the game The game will crash after moving around a little bit. Very lagging in the jungle, the log repeatedly prints the message \"Ticking entity\", and finally crashes the game. Reproduce - Create a superflat world of jungle biome, and fly freely on the world. minecraft:bedrock,63 minecraft:dirt,minecraft:grass_block;minecraft:jungle;biome_1,decoration,lake,lava_lake - Using spawn eggs to spawn very many parrots. - Use the following command tp e[type parrot] p Here is the crash report: 19w40a: [ crash-2019-10-03_23.59.03-client.txt] Description: Ticking entity java.lang.NullPointerException: Ticking entity at atd.a(SourceFile:407) at akm.ab(SourceFile:301) at akn.ab(SourceFile:228) at akd.h(SourceFile:399) at akm.h(SourceFile:2059) at akn.h(SourceFile:295) at atk.h(SourceFile:34) at dmr.a(SourceFile:165) at bjk.a(SourceFile:648) at dmr.g(SourceFile:136) at das.n(SourceFile:1389) at das.d(SourceFile:907) at das.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition.\n2. Create a new Superflat world with a jungle biome.\n3. Enter the world and enable flying.\n4. Use spawn eggs to spawn many parrots.\n5. Use the command `tp e[type=parrot] p` to teleport all parrots to your position.\n6. Move around the world for a short period of time.\n7. Wait until the game logs the message \"Ticking entity\" repeatedly.\n8. Observe that the game eventually crashes.",
+  "Environment": "Minecraft Java Edition Version 19w40a (snapshot)",
+  "Observed Behavior": "The bug manifests as the game repeatedly logging the message \"Ticking entity\" and ultimately crashing during gameplay, specifically while moving around in a jungle biome. The player was attempting to record a YouTube video and had several applications open, including Chrome, OBS, Sticky Notes, Streamlabs OBS, and the Minecraft launcher. The game exhibits significant lag when in the jungle biome, and the crash occurs shortly after the player begins to move around. To reproduce the issue, one can create a superflat world set to the jungle biome and utilize spawn eggs to generate a large number of parrots. The command used to teleport to the parrots is \"tp e[type=parrot] p.\" The crash report indicates a NullPointerException related to a ticking entity, with a specific error trace pointing to various source files, suggesting that the issue may be linked to the interaction between the numerous spawned entities and the game's processing of their states. The version of the game at the time of the crash was 19w40a, and the relevant crash report is titled \"crash-2019-10-03_23.59.03-client.txt.\"",
+  "Expected Behavior": "When following the reproduction steps, the game should allow the player to move freely in the jungle biome without experiencing any lag or crashes. The log should not display repeated messages about \"Ticking entity,\" and the game should operate smoothly, even with multiple parrots spawned. The expected behavior is for the player to record gameplay without interruptions or errors, ensuring a stable experience in version 19w40a.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-162586"
+  }
+}

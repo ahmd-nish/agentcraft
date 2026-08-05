@@ -1,0 +1,39 @@
+{
+  "key": "MC-253402",
+  "created_date": "2022-06-20T19:12:38.234-0700",
+  "updated_date": "2025-05-29T09:10:37.403-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19",
+    "22w24a",
+    "1.19.1 Pre-release 1",
+    "1.19.1 Release Candidate 1",
+    "1.19.1 Pre-release 2"
+  ],
+  "fix_versions": [
+    "1.19.1 Pre-release 6"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2022-07-19T04:52:40.131-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when you shift right click on item in your hotbar to the chest at the same time as you die",
+  "environment_raw": null,
+  "description": "The Bug A zombie killed me at the same time I shift right click on some block I was trying to put in the chest and the game went saving and it crash 2s after. My game is set to DoImmediateRespawn. Reproduce - Do gamerule doImmediateRespawn true - Get a chest - Get a zombie - Get an item - Open the chest - Right when the zombie kills you shift right click the item into the chest Observed Result The game crashed Expected Result The game wouldn t crash",
+  "Steps to Reproduce": "1. Set the gamerule `doImmediateRespawn` to true by typing `/gamerule doImmediateRespawn true`.\n2. Place a chest in your world.\n3. Obtain an item and place it in your hotbar.\n4. Spawn a zombie near you using `/summon minecraft:zombie ~ ~ ~`.\n5. Open the chest by right-clicking on it.\n6. At the moment when the zombie attacks and kills you, shift-right click to attempt to move the item from your hotbar into the chest.\n7. Observe that the game crashes approximately 2 seconds after attempting this action.",
+  "Environment": "Minecraft Java Edition Versions: 1.19, 22w24a, 1.19.1 Pre-release 1, 1.19.1 Release Candidate 1, 1.19.1 Pre-release 2 (includes snapshots)",
+  "Observed Behavior": "When attempting to shift right-click an item from the hotbar into a chest at the exact moment a zombie kills you, the game initiates a saving process but crashes approximately two seconds later. This issue occurs specifically when the `doImmediateRespawn` gamerule is set to true. To reproduce the bug, enable the `doImmediateRespawn` rule, place a chest nearby, spawn or find a zombie, and obtain an item. Open the chest and simultaneously shift right-click the item into it just as the zombie kills you. The expected behavior would be for the game to handle the immediate respawn without crashing, but instead, the game crashes entirely during this sequence of actions.",
+  "Expected Behavior": "When you shift right click on an item in your hotbar to deposit it into a chest while being killed by a zombie, the game should not crash. Instead, the game should handle the death and immediately respawn you according to the `doImmediateRespawn` rule without any interruptions or crashes, allowing you to continue interacting with the world normally.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-253402"
+  }
+}

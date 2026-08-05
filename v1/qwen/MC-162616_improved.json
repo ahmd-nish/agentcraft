@@ -1,0 +1,35 @@
+{
+  "key": "MC-162616",
+  "created_date": "2019-10-02T21:48:53.923-0700",
+  "updated_date": "2025-03-25T12:26:33.194-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-07-17T08:01:08.937-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "java.lang.NullPointerException after attacking a parrot",
+  "environment_raw": null,
+  "description": "Killing parrots crashes your game. Note: I did kill other mobs and it isn t just swinging the sword and i got the same result everytime i killed a parrot. 19w40a: [ crash-2019-10-03_20.30.29-client.txt] Description: Unexpected error java.lang.NullPointerException: Unexpected error at atd.a(SourceFile:407) at axx.f(SourceFile:1234) at dmq.a(SourceFile:363) at das.aE(SourceFile:1234) at das.aG(SourceFile:1517) at das.n(SourceFile:1367) at das.d(SourceFile:907) at das.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 19w40a.\n2. Create a new Creative world with default settings.\n3. Use `/summon minecraft:parrot ~ ~ ~` to spawn a parrot nearby.\n4. Equip any sword in your hotbar.\n5. Attack the parrot until it is killed.\n6. Observe that the game crashes after killing the parrot.\n7. Repeat steps 3-6 multiple times to ensure consistency of the crash.",
+  "Environment": "Minecraft Java Edition Version 19w40a (snapshot)",
+  "Observed Behavior": "The game crashes with a java.lang.NullPointerException whenever a parrot is killed. This issue consistently occurs every time a parrot is killed and not just due to swinging the sword. The crash does not happen when other mobs are killed under similar conditions. The error message from the crash report indicates that the problem originates at specific lines in the source code, such as SourceFile:407, SourceFile:1234, and others related to the game's handling of entities and interactions. This behavior is observed in version 19w40a, and the exact stack trace can be found in the crash report file \"crash-2019-10-03_20.30.29-client.txt\". The unexpected error points to a null reference being accessed during the process of killing a parrot, leading to a game crash.",
+  "Expected Behavior": "When a player attacks and kills a parrot with a sword, the game should not crash. The parrot should die normally without causing any unexpected errors or exceptions, allowing the player to continue playing without interruption. This behavior should be consistent across all versions of Minecraft, including 19w40a.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-162616"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "key": "MC-259240",
+  "created_date": "2023-01-19T07:01:46.240-0800",
+  "updated_date": "2025-03-20T23:17:05.730-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w03a"
+  ],
+  "fix_versions": [
+    "23w07a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-02-15T04:12:24.386-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when navigating with arrow keys after changing key binds",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when attempting to navigate up or down with the arrow keys on the keyboard after changing a key bind and leaving the last key on focus. Stack Trace: [ crash-2023-01-19_16.59.01-client.txt] Description: keyPressed event handler java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 2 at com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:77) at els a.a(SourceFile:159) at els.a(SourceFile:66) at emp.a(SourceFile:130) at eqa.a(SourceFile:150) at eqt.a(SourceFile:71) at ejs.a(SourceFile:374) at eqa.a(SourceFile:528) at ejs.a(SourceFile:370) at ejs.c(SourceFile:458) at bbp.execute(SourceFile:102) at ejs.b(SourceFile:458) at org.lwjgl.glfw.GLFWKeyCallbackI.callback(GLFWKeyCallbackI.java:44) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:215) at ejt.f(SourceFile:1229) at ejt.e(SourceFile:786) at net.minecraft.client.main.Main.a(SourceFile:244) at net.minecraft.client.main.Main.main(SourceFile:51) Steps to Reproduce: - Go to Settings Controls Key Binds - Mouse over a key bind and Left click to change it. - Select a new or the same key on the keyboard. - Without changing the focus with the mouse to a different keybind, press the Up or Down arrow Observed Behavior: Observe the game closing unexpectedly. Expected Behavior: The game navigating to the previous or next key bind and not closing unexpectedly.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Navigate to Options -> Controls -> Key Binds.\n3. Mouse over a key bind and left-click to change it.\n4. Select a new or the same key on the keyboard.\n5. Without changing the focus with the mouse to a different key bind, press the Up arrow key.\n6. Observe that the game closes unexpectedly.\n7. Repeat steps 1-6, but press the Down arrow key instead of the Up arrow key. \n8. Observe that the game closes unexpectedly again.",
+  "Environment": "Minecraft Java Edition Version 23w03a (snapshot)",
+  "Observed Behavior": "When the player attempts to navigate the key binding settings using the Up or Down arrow keys after changing a key bind, the game unexpectedly crashes. This occurs specifically when the last key bind remains in focus and the player does not click away to another key bind before pressing the arrow keys. The crash is triggered by an `ArrayIndexOutOfBoundsException`, indicating that the game is trying to access an index that does not exist within the list of key binds. Instead of moving the selection to the previous or next key bind, the game fails to handle the navigation input correctly, resulting in a sudden termination of the application. This behavior disrupts the user experience and prevents players from effectively managing their key bindings, necessitating a restart of the game to regain access to the controls.",
+  "Expected Behavior": "When changing key binds in the game, pressing the Up or Down arrow keys should allow players to navigate seamlessly to the previous or next key bind without causing the game to crash. The interface should respond correctly by highlighting the appropriate key bind, ensuring a smooth user experience. This behavior should remain consistent across all game versions, preventing unexpected closures during navigation.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-259240"
+  }
+}

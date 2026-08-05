@@ -1,0 +1,36 @@
+{
+  "key": "MC-269644",
+  "created_date": "2024-03-20T09:41:28.397-0700",
+  "updated_date": "2025-05-29T09:06:47.507-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a",
+    "24w13a"
+  ],
+  "fix_versions": [
+    "24w14a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-04T02:07:54.636-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when putting items with max stack sizes above 64 into bundles",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when putting items with max stack sizes above 64 into bundles. A crash report regarding this has been attached and can be found below. Stack Trace: [ crash-2024-03-20_16.42.33-client.txt] Description: Container click java.lang.ArithmeticException: by zero at cvk a.c(SourceFile:134) at cvk a.a(SourceFile:145) at crg.a(SourceFile:90) at csz.a(SourceFile:461) at cod.a(SourceFile:535) at cod.b(SourceFile:408) at cod.a(SourceFile:294) at fmq.a(SourceFile:370) at fmb.b(SourceFile:521) at fmq.b(SourceFile:606) at fdf.a(SourceFile:103) at fld.a(SourceFile:453) at fdf.a(SourceFile:103) at fdf.c(SourceFile:186) at boc.execute(SourceFile:108) at fdf.b(SourceFile:186) at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:43) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3509) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:236) at fde.c(SourceFile:1364) at fde.f(SourceFile:895) at net.minecraft.client.main.Main.main(SourceFile:265) Steps to Reproduce: - Obtain a bundle. - Give yourself a diamond sword with a max stack size of 65 by using the command provided below. give s minecraft:diamond_sword[minecraft:max_stack_size 65] 1 - Put the diamond sword into the bundle. Observed Behavior: The game crashes. Expected Behavior: The game would not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Obtain a bundle.\n3. Use the command `give s minecraft:diamond_sword[minecraft:max_stack_size=65] 1` to give yourself a diamond sword with a max stack size of 65.\n4. Put the diamond sword into the bundle.\n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w12a, 24w13a (includes snapshots)",
+  "Observed Behavior": "When attempting to place items with a maximum stack size greater than 64, such as a diamond sword with a max stack size of 65, into a bundle, the game crashes unexpectedly. The crash is triggered during the container interaction process, specifically when the game attempts to handle the logic for stacking items in the bundle. The error message indicates a `java.lang.ArithmeticException: by zero`, which suggests that there is a division by zero occurring in the code responsible for managing item stacking. This behavior prevents players from using bundles effectively with items that exceed the standard stack limit, leading to a frustrating experience and loss of gameplay progress due to the crash. The crash report includes a stack trace that may assist developers in pinpointing the exact line of code where the error occurs, specifically in the container click handling methods.",
+  "Expected Behavior": "When attempting to place items with a maximum stack size greater than 64 into bundles, the game should handle the action gracefully without crashing. Instead of encountering a crash, the player should receive a message indicating that the item cannot be placed in the bundle due to its stack size exceeding the limit, allowing them to continue playing without interruption. This behavior should be consistent across all versions of the game.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-269644"
+  }
+}

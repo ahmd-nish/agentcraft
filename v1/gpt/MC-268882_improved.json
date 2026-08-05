@@ -1,0 +1,41 @@
+{
+  "key": "MC-268882",
+  "created_date": "2024-02-28T16:21:42.146-0800",
+  "updated_date": "2025-03-25T13:31:21.259-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "enchantments",
+    "item",
+    "item-component"
+  ],
+  "resolution_date": "2024-03-27T06:05:45.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Same Enchantments in an item components crashes the game",
+  "environment_raw": null,
+  "description": "when you have 2 enchantments \"sharpness\" and \"minecraft:sharpness\" in the new components this will crash the game 1. give s diamond_sword[enchantments {levels:{sharpness:10,\"sharpness\":10}}] 2. give s diamond_sword[enchantments {levels:{sharpness:10,\"minecraft:sharpness\":10}}] the second one will crash the game, but the first one doesnt.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Open the chat and enter the command: `/give s diamond_sword[enchantments {levels:{sharpness:10,\"sharpness\":10}}]`.\n3. Wait for the command to execute successfully.\n4. Open the chat again and enter the command: `/give s diamond_sword[enchantments {levels:{sharpness:10,\"minecraft:sharpness\":10}}]`.\n5. Wait for the command to execute successfully.\n6. Observe that the game crashes after executing the second command.",
+  "Environment": "Minecraft Java Edition Versions: 24w09a, 24w10a (includes snapshots)",
+  "Observed Behavior": "When using the command to give a diamond sword with multiple enchantments, the game crashes if the same enchantment is specified with different identifiers. Specifically, the command `give s diamond_sword[enchantments {levels:{sharpness:10,\"minecraft:sharpness\":10}}]` executes successfully without any issues, as it uses the same enchantment identifier \"sharpness\" for both entries, resulting in a valid item.\n\nHowever, when the command `give s diamond_sword[enchantments {levels:{sharpness:10,\"minecraft:sharpness\":10}}]` is executed, which includes two distinct identifiers for the same enchantment (the standard \"sharpness\" and \"minecraft:sharpness\"), the game crashes. This indicates that the game does not handle multiple entries of the same enchantment under different identifiers correctly, leading to a conflict that causes a crash.\n\nThis bug highlights the need for the game to enforce uniqueness in enchantment identifiers within the same item component to prevent crashes and ensure stability during gameplay. The crash occurs regardless of the enchantment levels specified, indicating that the issue is solely related to the conflicting identifiers rather than the values assigned to each enchantment.",
+  "Expected Behavior": "When using item components in Minecraft, having duplicate enchantments such as \"sharpness\" and \"minecraft:sharpness\" should not cause the game to crash. Instead, the game should handle these duplicate entries gracefully by either merging the enchantment levels or prioritizing one over the other without any adverse effects on gameplay. Players should be able to use both enchantments in item components without experiencing crashes, ensuring a stable and enjoyable gaming experience.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268882"
+  }
+}

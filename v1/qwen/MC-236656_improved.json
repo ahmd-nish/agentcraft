@@ -1,0 +1,35 @@
+{
+  "key": "MC-236656",
+  "created_date": "2021-09-15T11:22:08.214-0700",
+  "updated_date": "2025-05-02T01:04:05.029-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a"
+  ],
+  "fix_versions": [
+    "21w38a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-09-23T06:35:33.668-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when changing render distance java.lang.ArrayIndexOutOfBoundsException: Index 28084 out of bounds for length 26136",
+  "environment_raw": null,
+  "description": "When changing render view distance via the option menu while standing inside a world, minecraft sometimes crashes with an ArrayIndexOutOfBoundsException. This can be best reproduced by spam-clicking the slider in random positions, although for me it crashed after only one click, the first time.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.\n2. Enter the world and navigate to Options -> Video Settings.\n3. While standing inside the world, spam-click the Render Distance slider in random positions.\n4. Observe that Minecraft sometimes crashes with an ArrayIndexOutOfBoundsException when changing the render distance.\n5. Note the exact error message: \"java.lang.ArrayIndexOutOfBoundsException: Index 28084 out of bounds for length 26136\".\n6. Document the crash by taking a screenshot or noting down the full error message.",
+  "Environment": "Minecraft Java Edition Version 21w37a (snapshot)",
+  "Observed Behavior": "When changing the render view distance via the option menu while standing inside a world, Minecraft sometimes crashes with an `ArrayIndexOutOfBoundsException`. This issue can be best reproduced by rapidly clicking the slider in random positions. However, it has also been observed that the crash can occur after just one click on the first attempt. The specific error message is \"java.lang.ArrayIndexOutOfBoundsException: Index 28084 out of bounds for length 26136,\" indicating an array index issue within the code. This bug appears consistently under these conditions and provides developers with a clear path to reproduce and investigate the problem further.",
+  "Expected Behavior": "When changing the render distance via the options menu while standing inside a world, Minecraft should not crash and should adjust the view distance smoothly without any exceptions or errors, regardless of how quickly or frequently the slider is adjusted. The game should remain stable under these conditions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-236656"
+  }
+}

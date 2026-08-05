@@ -1,0 +1,35 @@
+{
+  "key": "MC-268853",
+  "created_date": "2024-02-28T12:22:17.891-0800",
+  "updated_date": "2025-04-29T10:33:55.172-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:35.341-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Unable to load paintings for any variants",
+  "environment_raw": null,
+  "description": "[21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:earth\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:earth\"}} [21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:wind\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:wind\"}} [21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:water\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:water\"}} [21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:fire\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:fire\"}} Unable to load these paintings properly in hotbar, or world, or anywhere for that matter. I get a random variant painting instead. Even better: [21:43:29] [Server thread ERROR]: Failed to save chunk -8,9 java.lang.IllegalStateException: Missing id for entity in: {variant:\"minecraft:water\"} at ac.a(SourceFile:1050) [24w09a.jar:?] at crj.b(SourceFile:339) [24w09a.jar:?] at bnu.a(SourceFile:41) [24w09a.jar:?] at bnu.a(SourceFile:31) [24w09a.jar:?] at dmm.b(SourceFile:92) [24w09a.jar:?] at dmf.d(SourceFile:86) [24w09a.jar:?] at dmf.b(SourceFile:66) [24w09a.jar:?] at drf.a(SourceFile:390) [24w09a.jar:?] at dsb.a(SourceFile:330) [24w09a.jar:?] at apb.a(SourceFile:840) [24w09a.jar:?] at apb.d(SourceFile:804) [24w09a.jar:?] at apb.b(SourceFile:515) [24w09a.jar:?] at apb.a(SourceFile:470) [24w09a.jar:?] at apq.a(SourceFile:328) [24w09a.jar:?] at aps.a(SourceFile:348) [24w09a.jar:?] at net.minecraft.server.MinecraftServer.b(SourceFile:994) [24w09a.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:885) [24w09a.jar:?] at gpn.a(SourceFile:113) [24w09a.jar:?] at net.minecraft.server.MinecraftServer.y(SourceFile:687) [24w09a.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:272) [24w09a.jar:?] at java.base java.lang.Thread.run(Thread.java:833) [?:?] and: Loading from the operator tab works fine. loading or saving the data to NBT won t work though. data get entity SelectedItem will also not work, as long as your inventory contains a painting. with a specific variant. And while writing this ticket:",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Attempt to place a painting in the world using the item from the hotbar.\n4. Observe that the painting does not load properly and a random variant painting appears instead.\n5. Wait approximately 1 minute and attempt to save the world.\n6. Observe that an error message appears stating \"Failed to save chunk\" with details about a missing entity id.\n7. Open the operator tab and attempt to load data for an entity with a specific painting variant.\n8. Observe that loading or saving the data to NBT does not work as expected.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "The game fails to load specific painting variants, resulting in an inability to display the intended artwork in the hotbar, world, or any other interface. Instead, a random variant of the painting is shown. This issue is evidenced by multiple warnings in the log:\n\n- `[21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:earth\"}`\n- `[21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:wind\"}`\n- `[21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:water\"}`\n- `[21:11:42] [Render thread WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:fire\"}`\n\nThese warnings indicate that the game is unable to recognize the specified painting variants due to a missing entity ID. Additionally, an error occurs when attempting to save chunks that contain these paintings, as shown in the following log entry:\n\n- `[21:43:29] [Server thread ERROR]: Failed to save chunk -8,9 java.lang.IllegalStateException: Missing id for entity in: {variant:\"minecraft:water\"}`\n\nThis error suggests that the game engine encounters an exception when trying to handle the variant data associated with paintings during chunk saving operations.\n\nFurthermore, while loading from the operator tab functions correctly, any attempt to load or save the data related to these variants to NBT (Named Binary Tag) fails. Specifically, the command `data get entity SelectedItem` does not operate as intended if the player's inventory contains a painting of a specific variant. This indicates a deeper issue with how the game manages painting entities and their associated data. \n\nIn summary, the inability to load and save painting variants is a critical bug that disrupts gameplay and requires immediate attention to ensure that all painting variants function correctly within the game environment.",
+  "Expected Behavior": "When attempting to load paintings with specific variants, the game should successfully render each painting variant correctly in the hotbar, world, or any other location without displaying a random variant. Additionally, saving and loading data to NBT should function properly, allowing the selected painting variant to be retained in the player's inventory. The system should not encounter any errors related to missing entity IDs during these processes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268853"
+  }
+}

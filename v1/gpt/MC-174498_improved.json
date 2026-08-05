@@ -1,0 +1,35 @@
+{
+  "key": "MC-174498",
+  "created_date": "2020-03-11T11:29:24.879-0700",
+  "updated_date": "2025-04-14T14:02:03.272-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w11a"
+  ],
+  "fix_versions": [
+    "20w12a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-05-02T09:19:06.701-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when an adult hoglin with generic.attackDamage 1 tries to attack something",
+  "environment_raw": null,
+  "description": "The bug The game crashes when an adult hoglin with generic.attackDamage set to 1 tries to attack something. How to reproduce summon hoglin {Attributes:[{Base:0.5d,Name:\"generic.attackDamage\"}],Age:0} gamemode survival - game crashes when hoglin attacks you Crash Report 20w11a : [ crash-2020-03-11_19.25.11-server.txt] Description: Ticking entity java.lang.IllegalArgumentException: bound must be positive at java.util.Random.nextInt(Random.java:388) at bae.B(SourceFile:154) at aou.a(SourceFile:46) at aou.a(SourceFile:16) at apf.a(SourceFile:69) at anv.e(SourceFile:49) at ang.b(SourceFile:380) at ang Lambda 3251 223941269.accept(Unknown Source) at java.util.stream.ForEachOps ForEachOp OfRef.accept(ForEachOps.java:184) at java.util.stream.ReferencePipeline 2 1.accept(ReferencePipeline.java:175) at java.util.Iterator.forEachRemaining(Iterator.java:116) at java.util.Spliterators IteratorSpliterator.forEachRemaining(Spliterators.java:1801) at java.util.stream.ReferencePipeline Head.forEach(ReferencePipeline.java:580) at java.util.stream.ReferencePipeline 7 1.accept(ReferencePipeline.java:270) at java.util.stream.ReferencePipeline 3 1.accept(ReferencePipeline.java:193) at java.util.stream.ReferencePipeline 2 1.accept(ReferencePipeline.java:175) at java.util.HashMap EntrySpliterator.forEachRemaining(HashMap.java:1683) at java.util.stream.ReferencePipeline Head.forEach(ReferencePipeline.java:580) at java.util.stream.ReferencePipeline 7 1.accept(ReferencePipeline.java:270) at java.util.TreeMap ValueSpliterator.forEachRemaining(TreeMap.java:2893) at java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:512) at java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:502) at java.util.stream.ForEachOps ForEachOp.evaluateSequential(ForEachOps.java:151) at java.util.stream.ForEachOps ForEachOp OfRef.evaluateSequential(ForEachOps.java:174) at java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) at java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:418) at ang.c(SourceFile:380) at ang.a(SourceFile:342) at bae.dZ(SourceFile:207) at amr.dy(SourceFile:674) at amq.l(SourceFile:2305) at amr.l(SourceFile:498) at amf.l(SourceFile:126) at avq.l(SourceFile:49) at bae.l(SourceFile:220) at amq.h(SourceFile:2147) at amr.h(SourceFile:303) at yg.a(SourceFile:604) at yg Lambda 3226 1374895670.accept(Unknown Source) at bmy.a(SourceFile:542) at yg.a(SourceFile:400) at net.minecraft.server.MinecraftServer.b(SourceFile:860) at net.minecraft.server.MinecraftServer.a(SourceFile:799) at ejv.a(SourceFile:129) at net.minecraft.server.MinecraftServer.run(SourceFile:658) at java.lang.Thread.run(Thread.java:745)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Singleplayer world in Survival mode with default settings.\n3. Open the chat and enter the command: `/summon hoglin {Attributes:[{Base:0.5d,Name:\"generic.attackDamage\"}],Age:0}`.\n4. Wait for the hoglin to spawn.\n5. Allow the hoglin to attack you.\n6. Observe that the game crashes when the hoglin attempts to attack.",
+  "Environment": "Minecraft Java Edition Version 20w11a (snapshot)",
+  "Observed Behavior": "The game experiences a crash when an adult hoglin, which has its generic.attackDamage attribute set to 1, attempts to attack a player or another entity. This issue can be reproduced by executing the command to summon a hoglin with the specified attributes, where the hoglin's age is set to zero, and the player is in survival mode. Upon the hoglin's attack, the game crashes, resulting in a crash report that indicates a ticking entity error. The error message states java.lang.IllegalArgumentException: bound must be positive, which is triggered during the execution of random number generation within the game code. The crash occurs specifically during the attack process, highlighting a flaw in how the game handles the attack damage attribute for hoglins when it is set to a value that leads to an invalid state.",
+  "Expected Behavior": "When an adult hoglin with a generic.attackDamage value set to 1 attempts to attack, the game should function normally without crashing. The hoglin should successfully engage in combat, dealing damage to the target as intended, and the player should be able to interact with the hoglin without any issues. The game should maintain stability and not produce any error messages or crashes during this interaction.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-174498"
+  }
+}

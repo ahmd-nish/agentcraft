@@ -1,0 +1,37 @@
+{
+  "key": "MC-276533",
+  "created_date": "2024-09-08T18:12:17.219-0700",
+  "updated_date": "2025-04-26T16:44:13.201-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash"
+  ],
+  "resolution_date": "2024-09-10T05:41:41.345-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when three or more skeletons are about to release their arrows",
+  "environment_raw": null,
+  "description": "If three or more entities start drawing their bows, right before they shoot the arrow to the target the game stops responding and just stays like that until you task manager it. This is really really bad because you would most likely encounter three skeletons at night plus anything that is used to bait in skeletons will crash the game.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use `/summon minecraft:skeleton ~1 ~ ~` to spawn three skeletons close together in front of you.\n3. Wait until the skeletons start drawing their bows, but before they release the arrows.\n4. Observe that the game stops responding and freezes at this point.\n5. Note that the freeze persists until you manually terminate the game through the task manager.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "When three or more skeletons begin to draw their bows and prepare to shoot an arrow, the game freezes and becomes unresponsive until manually terminated via the task manager. This issue occurs specifically when these entities are about to release their arrows, causing a complete halt in gameplay. The problem is particularly problematic at night when players are likely to encounter groups of skeletons, and any method used to lure or bait skeletons into an area will similarly result in game crashes. This bug significantly disrupts the player experience by preventing normal interaction with these common mobs and rendering the game unusable until force-closed.",
+  "Expected Behavior": "When three or more skeletons are about to release their arrows, the game should remain stable and responsive. The skeletons should draw their bows and shoot arrows at the target without causing any crashes or freezes. Players should be able to interact with the environment and navigate through the level as usual, even when multiple skeleton archers are present.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276533"
+  }
+}

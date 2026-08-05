@@ -1,0 +1,35 @@
+{
+  "key": "MC-270004",
+  "created_date": "2024-03-27T18:14:56.603-0700",
+  "updated_date": "2025-05-29T09:06:46.695-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-04T01:11:13.371-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Giving yourself an item with a Wind Burst enchantment level higher than 3, then hitting certain entities crashes the game",
+  "environment_raw": null,
+  "description": "The bug Hitting certain entities (boats, end crystals, fireballs, players, minecarts, shulker bullets and wind charges) with an item enchanted with a Wind Burst level greater than 4 crashes the game. How to reproduce - Enter the following command in the chat: give s mace[minecraft:enchantments {levels:{ wind_burst :4}}] - Hit one of the mentioned entities with the mace (it will work with any item)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Enter the command in the chat: `give s mace[minecraft:enchantments {levels:{ wind_burst :4}}]`.\n3. Hit a boat with the mace.\n4. Observe that the game crashes.\n5. Repeat steps 2-4, hitting an end crystal instead.\n6. Repeat steps 2-4, hitting a fireball instead.\n7. Repeat steps 2-4, hitting a player instead.\n8. Repeat steps 2-4, hitting a minecart instead.\n9. Repeat steps 2-4, hitting a shulker bullet instead.\n10. Repeat steps 2-4, hitting a wind charge instead.",
+  "Environment": "Minecraft Java Edition Version 24w13a (snapshot)",
+  "Observed Behavior": "When an item with a Wind Burst enchantment level exceeding 3 is used to hit specific entities, the game crashes. The entities that trigger this crash include boats, end crystals, fireballs, players, minecarts, shulker bullets, and wind charges. To reproduce the issue, players can enter the command \"give s mace[minecraft:enchantments {levels:{ wind_burst :4}}]\" in the chat to obtain a mace with the Wind Burst enchantment set to level 4. Upon hitting any of the aforementioned entities with this mace or any other item enchanted with Wind Burst at a level higher than 3, the game will crash, indicating a critical bug that requires attention.",
+  "Expected Behavior": "When hitting certain entities (boats, end crystals, fireballs, players, minecarts, shulker bullets, and wind charges) with an item enchanted with a Wind Burst level of 3 or lower, the game should function normally without any crashes. The player should be able to interact with these entities smoothly, allowing for expected gameplay mechanics to occur without interruption or errors. This behavior should remain consistent across all versions of the game where this enchantment is present.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-270004"
+  }
+}

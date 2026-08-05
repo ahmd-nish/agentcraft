@@ -1,0 +1,35 @@
+{
+  "key": "MC-277967",
+  "created_date": "2024-10-30T14:20:41.670-0700",
+  "updated_date": "2025-04-26T17:21:00.237-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w44a"
+  ],
+  "fix_versions": [
+    "24w45a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion A",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-05T07:24:41.725-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when certain explosions occur near a creaking in its death animation",
+  "environment_raw": null,
+  "description": "The Bug The game crashes when certain explosions occur near a creaking in its death animation. See the attached crash report. The types of explosions that cause a crash are: - Creeper explosion - Wither spawn explosion - Fireball explosion - Wither skull explosion - Firework rocket with firework star TNT, beds, respawn anchors, and end crystals do not cause a crash. Steps to Reproduce - Place a creaking heart between two pale oak logs at nighttime to spawn a creaking. - Teleport the creaking next to the heart: tp n[type minecraft:creaking_transient] s - Summon a creeper next to the creaking, and ignite it with a flint and steel. - Before the creeper finishes its fuse, break the creaking heart so the creaking enters its death animation. - If done correctly, the game should crash. Observed Results The game crashes when certain explosions occur near a creaking in its death animation. Expected Results The game should not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place a creaking heart between two pale oak logs at nighttime to spawn a creaking.\n4. Teleport the creaking next to the heart using the command: `tp n[type minecraft:creaking_transient] s`.\n5. Summon a creeper next to the creaking using the command: `/summon minecraft:creeper ~ ~ ~`.\n6. Ignite the creeper with flint and steel.\n7. Wait until the creeper's fuse is nearly finished.\n8. Break the creaking heart to trigger the creaking's death animation.\n9. Observe that the game crashes during this process.",
+  "Environment": "Minecraft Java Edition Version 24w44a (snapshot)",
+  "Observed Behavior": "The game experiences a crash when certain types of explosions occur in proximity to a creaking entity that is in the process of its death animation. Specifically, the following explosions have been identified to trigger this crash:\n\n- Creeper explosion\n- Wither spawn explosion\n- Fireball explosion\n- Wither skull explosion\n- Firework rocket explosion with a firework star\n\nIn contrast, explosions from TNT, beds, respawn anchors, and end crystals do not lead to a crash under the same conditions. \n\nWhen the crash occurs, the game ceases to function, and a crash report is generated, which can provide further insights into the underlying issue. It is important to note that this behavior is consistently reproducible when following the outlined steps, demonstrating a clear correlation between the explosion types and the occurrence of the crash. \n\nFor developers investigating this issue, it is recommended to analyze the attached crash report for any relevant error messages or stack traces that may point to the root cause of the crash during the interaction between the explosion effects and the creaking's death animation.",
+  "Expected Behavior": "When a creaking is in its death animation, the game should remain stable and not crash when explosions such as those from creepers, withers, or fireballs occur nearby. Instead of crashing, the game should handle the explosion events gracefully, allowing players to continue their gameplay without interruption. This behavior should be consistent across all relevant game versions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-277967"
+  }
+}

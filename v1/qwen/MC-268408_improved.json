@@ -1,0 +1,38 @@
+{
+  "key": "MC-268408",
+  "created_date": "2024-02-08T06:08:44.749-0800",
+  "updated_date": "2025-05-29T09:08:51.907-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w06a",
+    "24w07a",
+    "24w09a",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "24w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-03-17T05:14:20.845-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when a wind charge hits an entity after disabling update_1_21 data pack",
+  "environment_raw": null,
+  "description": "The game crashes when hit by a breeze after disabling the update_1_21 data pack. Steps to reproduce - Create a new world with update_1_21 data pack enabled. - Run datapack disable update_1_21 and exit the world. - Rejoin the world, spawn a breeze and go into survival mode. - Wait for the breeze to attack you and the game will crash instantly. I filed this bug report following a discussion on the Minecraft Commands Discord server involving , using s repro steps.",
+  "Steps to Reproduce": "1. Create a new world with the update_1_21 data pack enabled.\n2. Run the command `/datapack disable update_1_21` and exit the world.\n3. Rejoin the newly created world.\n4. Go into Survival mode.\n5. Spawn a breeze using appropriate means or wait for one to naturally spawn.\n6. Wait for the breeze to attack you.\n7. Observe that the game crashes instantly when hit by the breeze.",
+  "Environment": "Minecraft Java Edition Versions: 24w06a, 24w07a, 24w09a, 24w10a (includes snapshots)",
+  "Observed Behavior": "The game crashes when hit by a breeze after disabling the update_1_21 data pack. To reproduce this issue, first create a new world with the update_1_21 data pack enabled. Next, disable the update_1_21 data pack using the command `datapack disable update_1_21` and exit the world. Rejoin the world, spawn a breeze, and switch to survival mode. Once the breeze attacks you, the game will crash instantly. This bug was identified through discussions on the Minecraft Commands Discord server.\n\nFor developers, it is essential to gather relevant information such as screenshots showing the state before and after the crash, a ZIP archive of the `debug` folder, the `latest.log` file, and any corresponding `crash-reports/*.txt` files. Additionally, if the bug is world-specific, include the entire world save in a ZIP format for further analysis.\n\nThe steps to reproduce this issue are clear and specific, ensuring developers can replicate the crash consistently. This detailed information will help pinpoint the exact cause of the game crashing when hit by a breeze after disabling the update_1_21 data pack.",
+  "Expected Behavior": "When the update_1_21 data pack is disabled and a breeze entity attacks an entity in survival mode, the game should not crash. Instead, the breeze should behave normally, applying its effects without causing any instability or crashes to the game. The player should be able to continue playing without interruptions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268408"
+  }
+}

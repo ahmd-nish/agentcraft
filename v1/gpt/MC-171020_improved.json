@@ -1,0 +1,44 @@
+{
+  "key": "MC-171020",
+  "created_date": "2020-02-05T15:48:40.517-0800",
+  "updated_date": "2025-05-03T14:07:55.673-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w06a",
+    "20w07a",
+    "20w08a",
+    "20w09a",
+    "20w10a",
+    "20w12a",
+    "20w13b",
+    "20w14a",
+    "20w15a"
+  ],
+  "fix_versions": [
+    "20w14a",
+    "20w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-05-19T03:23:24.195-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "New nether biomes don t work properly in buffet worlds",
+  "environment_raw": null,
+  "description": "The bug The new nether biomes (nether wastes, soul sand valley, crimson forest, warped forest and basalt deltas) do not work in Surface or Floating Island Buffet worlds. To reproduce - Create New World - Select More World Options - Make a buffet world - Select Soul Sand Valley - Set terrain type to Floating Islands or Surface Floating Island mode Freezes the game before it even loads terrain (Image Below) -Surface mode creates a purely ocean world (This happened the first time i tried to make one but works fine now for some reason) The following list is updated in version 20w15a: Biomes All world generators that freeze the game Nether wastes Surface Crimson forest Surface Warped forest Surface and floating islands Soul sand valley Surface Basalt deltas Surface",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world.\n3. Select \"More World Options\".\n4. Choose \"Buffet\" world type.\n5. Select \"Soul Sand Valley\" as the biome.\n6. Set the terrain type to either \"Floating Islands\" or \"Surface\".\n7. Wait for the game to load.\n8. Observe that the game freezes before loading terrain.",
+  "Environment": "Minecraft Java Edition Versions: 20w06a, 20w07a, 20w08a, 20w09a, 20w10a, 20w12a, 20w13b, 20w14a, 20w15a (includes snapshots)",
+  "Observed Behavior": "The new Nether biomes, including Nether Wastes, Soul Sand Valley, Crimson Forest, Warped Forest, and Basalt Deltas, do not function correctly in Surface or Floating Island Buffet worlds. When attempting to create a new world, selecting the Soul Sand Valley biome and setting the terrain type to either Floating Islands or Surface causes the game to freeze before the terrain loads. Initially, using the Surface mode resulted in a purely oceanic world, although this issue resolved itself during subsequent attempts. In version 20w15a, it was noted that all world generators that cause the game to freeze include Nether Wastes in Surface mode, and the Crimson Forest, Warped Forest, Soul Sand Valley, and Basalt Deltas in both Surface and Floating Island modes. This behavior indicates a significant issue with the integration of these new biomes in specific world generation settings.",
+  "Expected Behavior": "When creating a buffet world and selecting any of the new nether biomes, such as Soul Sand Valley, the game should load the terrain correctly and generate the specified biome without freezing or causing errors. Each selected biome, including Nether Wastes, Crimson Forest, Warped Forest, and Basalt Deltas, should appear as intended, with their unique features and structures, allowing players to explore and interact with them seamlessly in both Surface and Floating Island modes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-171020"
+  }
+}
