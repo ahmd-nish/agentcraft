@@ -1,0 +1,35 @@
+{
+  "key": "MC-271461",
+  "created_date": "2024-05-03T10:45:56.540-0700",
+  "updated_date": "2025-04-11T10:04:26.157-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w18a"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-05-07T07:35:23.291-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Interacting with certain villagers with the villager trade rebalance enabled causes client crash",
+  "environment_raw": null,
+  "description": "When interacting with a villager with the villager trade rebalance enabled, if that villager s career and level could generate ItemAndEmeraldsToItems type trades that sell enchanted items (e.g. plains armorer), then the game will crash. To reproduce: - Create a new world. Make sure the villager trade rebalance is enabled. - Level an armorer up to either expert (does not apply to expert level taiga villagers) or master level. - Save and quit the world. - Reopen the world. - Interact with the armorer. - The game will crash. I ve also attached both a crash report from a vanilla client and one that is deobfuscated with the official mappings.",
+  "Steps to Reproduce": "1. Create a new world.\n2. Ensure that the villager trade rebalance feature is enabled.\n3. Locate or spawn an armorer villager (not a taiga villager).\n4. Level up the armorer to either expert or master level.\n5. Save and quit the world.\n6. Reopen the world.\n7. Interact with the armored villager.\n8. Observe that the game crashes upon interaction.",
+  "Environment": "Minecraft Java Edition Version 24w18a (snapshot)",
+  "Observed Behavior": "When interacting with a villager with the villager trade rebalance enabled, if that villager's career and level could generate ItemAndEmeraldsToItems type trades that sell enchanted items (such as a plains armorer), the game will crash. To reproduce this issue, create a new world and ensure the villager trade rebalance is enabled. Level an armorer up to either expert or master level, noting that this does not apply to expert level taiga villagers. Save and quit the world, then reopen it and interact with the armorer. The game will crash upon interaction. Crash reports from both a vanilla client and a deobfuscated version using official mappings have been attached for further analysis.",
+  "Expected Behavior": "When interacting with a villager with the villager trade rebalance enabled, the game should not crash. Instead, the villager should display their trades as usual, including any ItemAndEmeraldsToItems type trades that sell enchanted items. The player can browse and make trades without encountering any stability issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-271461"
+  }
+}

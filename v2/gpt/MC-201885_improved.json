@@ -1,0 +1,36 @@
+{
+  "key": "MC-201885",
+  "created_date": "2020-10-10T16:07:17.826-0700",
+  "updated_date": "2025-03-25T12:08:54.750-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.3",
+    "1.16.4 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.16.4 Pre-release 2"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-10-23T05:10:33.248-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Divide by zero error in the Ender dragon entity class can cause a server crash and infinite velocity",
+  "environment_raw": null,
+  "description": "The bug Summoning any living entity on the wings of the ender dragon (same position as the middle of the wing) will give the entity infinite velocity and crash the server. This is due to a divide by zero case with the wings and a living entity. How to reproduce - Create a new world - Go to the end - Give yourself a command block and set it to repeat - Enter this command in the command block and power the block: /tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0 - Summon armor stands on the dragon: /execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand The server crashing after a minute or two Code analysis Using 1.16.3 yarn mappings. We will be looking at the EnderDragonEntity code today. Let s go to: public void tickMovement() Inside this function there is the launchLivingEntities function. Let s explore this. if (!this.world.isClient this.hurtTime == 0) { this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingRight.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingLeft.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); //removed code } This function takes in the entities around the dragon wing (will later be limited to Living Entities ) private void launchLivingEntities(List entities) { double d = (this.partBody.getBoundingBox().minX this.partBody.getBoundingBox().maxX) / 2.0; double e = (this.partBody.getBoundingBox().minZ this.partBody.getBoundingBox().maxZ) / 2.0; for (Entity lv : entities) { if (!(lv instanceof LivingEntity)) continue; double f = lv.getX() - d; double g = lv.getZ() - e; double h = f f g g; lv.addVelocity(f / h 4.0, 0.2f, g / h 4.0); //removed stuff below } } From this function call, it takes the wing and finds the middle of it. For the next part, let s say we have an entity at the same location as the middle of the wing and it is a living entity. As the x and z are the same, f and g will be zero. As f and g are zero, h will be zero. Now, as h is zero, the lv.addVelocity will make the x and z velocity infinite as in java a float divide by zero will make a value infinity.",
+  "Steps to Reproduce": "1. Create a new world.\n2. Go to the End dimension.\n3. Give yourself a command block and set it to repeat.\n4. Enter the command in the command block: `/tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0`.\n5. Power the command block to teleport the Ender Dragon.\n6. Use the command `/execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand` to summon armor stands on the wings of the Ender Dragon.\n7. Wait approximately 1-2 minutes.\n8. Observe that the server crashes due to the infinite velocity of the summoned entities.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.3, 1.16.4 Pre-release 1",
+  "Observed Behavior": "When a living entity, such as an armor stand, is summoned at the exact coordinates of the center of the Ender Dragon's wings, it triggers a divide by zero error within the `launchLivingEntities` method of the `EnderDragonEntity` class. This occurs because the calculations for determining the velocity of the summoned entity rely on the positions of the dragon's body and wings.\n\nSpecifically, the method calculates the middle point of the dragon's wings using the bounding box coordinates of the dragon's body. If the summoned entity's coordinates match this middle point, the calculations for `f` and `g` (which represent the difference in x and z coordinates between the entity and the dragon's body) will both evaluate to zero. Consequently, the variable `h`, which is derived from the sum of the squares of `f` and `g`, also becomes zero. \n\nIn Java, attempting to divide by zero results in an infinite value. Therefore, when the code attempts to execute `lv.addVelocity(f / h * 4.0, 0.2f, g / h * 4.0)`, it leads to the x and z velocities of the summoned entity becoming infinite. This infinite velocity causes the server to become unstable, ultimately resulting in a crash after a short duration, typically within one to two minutes of the entity being summoned. \n\nThis bug poses a significant issue, as it disrupts gameplay and can affect server performance, making it critical for developers to address the divide by zero scenario in the velocity calculation logic for the Ender Dragon's wing interactions with other entities.",
+  "Expected Behavior": "When summoning a living entity on the wings of the Ender Dragon, the entity should maintain normal behavior without experiencing any infinite velocity or causing a server crash. The summoned entity should remain stationary or move according to its typical mechanics, without any unexpected physics interactions or errors occurring. This expected behavior should be consistent across all versions of the game, ensuring stability and proper functioning of both the Ender Dragon and the summoned entities.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-201885"
+  }
+}

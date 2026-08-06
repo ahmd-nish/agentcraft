@@ -1,0 +1,45 @@
+{
+  "key": "MC-198725",
+  "created_date": "2020-08-22T14:05:13.335-0700",
+  "updated_date": "2025-05-02T10:57:47.787-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2",
+    "1.16.3 Release Candidate 1",
+    "1.16.3",
+    "1.16.4 Pre-release 1",
+    "1.16.4 Pre-release 2",
+    "1.16.4 Release Candidate 1",
+    "1.16.4"
+  ],
+  "fix_versions": [
+    "20w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "customized-world",
+    "superflat"
+  ],
+  "resolution_date": "2021-05-22T14:43:28.668-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when clicking \"Presets\" after setting the superflat preset with a non-existent biome",
+  "environment_raw": null,
+  "description": "Crash when you click \"Presets\" after replacing the \"minecraft:plains\" to a non-existent biome in the superflat customization menu I was creating a world called \"Nether\" with Superflat, I replaced \"minecraft:plains\" to \"minecraft:the_nether\" to see if the piglins won t turn to zombified piglins, I clicked \"Done\" and clicked \"Presets\" again to see if \"minecraft:the_nether\" doesn t has turn onto \"minecraft:plains\" again, and The Game Crashed What I expected to happen was: When I click presets after replacing it, it should resets to default. What happened was: It crashed after I press presets. How to reproduce: Create a new world in Superflat click on Customize, after click on Presets replace the biome from \"minecraft:plains\" to a non-existent biome in the superflat customization menu after click on Done and Presets again and see if it crash(If you press cancel it won t crash)",
+  "Steps to Reproduce": "1. Create a new world in Superflat mode.\n2. Click on \"Customize\" to access the customization menu.\n3. In the customization menu, click on \"Presets\".\n4. Replace the biome from \"minecraft:plains\" to a non-existent biome (e.g., \"minecraft:the_nether\").\n5. Click on \"Done\" to apply the changes.\n6. Click on \"Presets\" again.\n7. Observe if the game crashes after clicking \"Presets\".",
+  "Environment": "Minecraft Java Edition Versions: 1.16.2, 1.16.3 Release Candidate 1, 1.16.3, 1.16.4 Pre-release 1, 1.16.4 Pre-release 2, 1.16.4 Release Candidate 1, 1.16.4",
+  "Observed Behavior": "When attempting to click the \"Presets\" button after setting a non-existent biome in the Superflat customization menu, the game crashes. Specifically, I was creating a world called \"Nether\" with the Superflat preset and replaced \"minecraft:plains\" with \"minecraft:the_nether.\" After clicking \"Done,\" I clicked on \"Presets\" again to see if the biome would revert to \"minecraft:plains,\" but instead, the game crashed. The expected behavior was for the presets to reset to their default values when the \"Presets\" button was clicked after modifying the biome. However, what actually happened was that clicking \"Presets\" caused a crash. To reproduce this issue, create a new Superflat world and customize it by replacing the biome from \"minecraft:plains\" with any non-existent biome. Click \"Done,\" then click on \"Presets\" again to see if the game crashes. If you cancel instead of clicking \"Presets,\" the game will not crash.",
+  "Expected Behavior": "When I click on \"Presets\" after replacing the biome with a non-existent one in the Superflat customization menu, the game should not crash. Instead, it should either reset to default settings or display an error message indicating that the specified biome is invalid, allowing me to correct the input without any issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-198725"
+  }
+}

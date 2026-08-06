@@ -1,0 +1,48 @@
+{
+  "key": "MC-235964",
+  "created_date": "2021-09-04T16:26:37.562-0700",
+  "updated_date": "2025-05-29T09:10:40.468-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w37a",
+    "21w38a",
+    "21w40a",
+    "21w41a",
+    "1.18 Pre-release 1",
+    "1.18.1",
+    "22w03a",
+    "22w06a",
+    "1.18.2 Pre-release 1",
+    "1.18.2"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "crash",
+    "profiler"
+  ],
+  "resolution_date": "2022-03-16T07:39:03.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash on \"Saving world\" when F3 L profiling is active - java.lang.NullPointerException: Cannot read field \"f\" because \"this.D\" is null",
+  "environment_raw": null,
+  "description": "Steps to reproduce: 1. Start Minecraft. 2. Create a new world or join a world. 3. Press F3 L. 4. Before the 10 seconds are up, exit the world by pressing Escape then clicking \"Save and Quit to Title\". 5. Notice the resulting crash.",
+  "Steps to Reproduce": "1. Start Minecraft.\n2. Create a new world or join an existing world.\n3. Press F3 and then L to activate profiling.\n4. Wait approximately 10 seconds.\n5. Before the 10 seconds are up, exit the world by pressing Escape.\n6. Click \"Save and Quit to Title\".\n7. Observe that the game crashes with a NullPointerException.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w37a, 21w38a, 21w40a, 21w41a, 1.18 Pre-release 1, 1.18.1, 22w03a, 22w06a, 1.18.2 Pre-release 1, 1.18.2 (includes snapshots)",
+  "Observed Behavior": "The actual behavior of the bug occurs when the player attempts to save their world after activating the F3 L profiling feature. During this process, a crash is triggered due to a NullPointerException, which indicates that the game is trying to access a field that is not properly initialized, specifically stating that \"this.D\" is null. This error arises when the player exits the world before the profiling has completed its 10-second duration. As a result, the game fails to handle the transition from the profiling state back to the main menu, leading to an unexpected termination of the application. This crash prevents the player from saving their progress in the world, causing frustration and potentially loss of gameplay data.",
+  "Expected Behavior": "When pressing F3 L while in a world, the game should successfully initiate the profiling process without any errors or crashes. Players should be able to monitor performance metrics for the full duration of the profiling period, and upon exiting the world via the escape menu and selecting \"Save and Quit to Title,\" the game should save the world state smoothly, allowing for a seamless transition back to the main menu without any interruption or error messages.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-235964"
+  }
+}

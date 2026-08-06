@@ -1,0 +1,35 @@
+{
+  "key": "MC-269670",
+  "created_date": "2024-03-20T12:43:37.231-0700",
+  "updated_date": "2025-04-29T10:18:06.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-27T02:27:13.267-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when giving bundle with hide tooltip",
+  "environment_raw": null,
+  "description": "Give yourself a bundle with the hide tooltip attribute and hover over the bundle /give @p bundle[minecraft:hide_tooltip={}] 1",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open the chat and enter the command: `/give @p bundle[minecraft:hide_tooltip={}] 1`.\n4. Wait for the bundle to be added to your inventory.\n5. Hover over the bundle in your inventory.\n6. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w12a (snapshot)",
+  "Observed Behavior": "When executing the command `/give @p bundle[minecraft:hide_tooltip={}] 1` to obtain a bundle with the \"hide tooltip\" attribute, the game crashes immediately upon hovering over the bundle in the inventory. This crash occurs regardless of the player's current game state, whether in Creative or Survival mode, and leads to an abrupt termination of the game client. \n\nThe crash appears to be linked to an issue with the tooltip rendering system, as the game attempts to display information for an item that has its tooltip explicitly set to be hidden. The expected behavior would be that the bundle remains in the inventory without causing the game to crash, allowing players to interact with it normally.\n\nTo further assist in diagnosing the issue, the following details are provided:\n- The game version in which the bug occurs.\n- Steps to reproduce the crash, including the specific command used.\n- Confirmation that the crash is consistent and reproducible upon hovering over the item.\n- Relevant logs and crash reports will be attached to the bug report for analysis. \n\nThis issue potentially affects user experience significantly, as it prevents players from utilizing the bundle item effectively and could lead to data loss if not addressed.",
+  "Expected Behavior": "When giving a bundle with the hide tooltip attribute, hovering over the bundle should display the expected tooltip information without causing the game to crash. The tooltip should indicate that the bundle is present and provide any relevant details about its contents or attributes, functioning seamlessly within the game environment. This behavior should be consistent across all supported versions of Minecraft.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-269670"
+  }
+}

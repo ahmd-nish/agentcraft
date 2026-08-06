@@ -1,0 +1,35 @@
+{
+  "key": "MC-156389",
+  "created_date": "2019-07-09T14:14:33.733-0700",
+  "updated_date": "2025-04-14T16:35:53.221-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.3"
+  ],
+  "fix_versions": [
+    "1.14.4 Pre-Release 7"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-07-18T01:10:56.500-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game Crashes when Shift Command Delete 18 characters at once on Anvil",
+  "environment_raw": null,
+  "description": "How to reproduce - Launch Minecraft 1.14.3 - Launch any world from any gamemode - Place an item on an anvil, rename it with any 18 character string - attempt to delete all text with shift command delete game crashes, displaying \"saving world\" Crash report 1.14.3 : [^crash-2019-07-09_16.22.47-client.txt] Description: Rendering screen java.lang.StringIndexOutOfBoundsException: String index out of range: -1 at java.lang.String.substring(String.java:1931) at cxa.renderButton(SourceFile:413) at cws.render(SourceFile:83) at dat.render(SourceFile:132) at dko.a(SourceFile:686) at cvo.e(SourceFile:954) at cvo.b(SourceFile:411) at net.minecraft.client.main.Main.main(SourceFile:154) A detailed walkthrough of the error, its code path and all known details is as follows: --------------------------------------------------------------------------------------- -- Head -- Thread: Client thread Stacktrace: at java.lang.String.substring(String.java:1931) at cxa.renderButton(SourceFile:413) at cws.render(SourceFile:83) at dat.render(SourceFile:132) -- Screen render details -- Details: Screen name: dat Mouse location: Scaled: (243, 82). Absolute: (974.335938, 328.136719) Screen size: Scaled: (480, 270). Absolute: (1920, 1080). Scale factor of 4.000000 -- Affected level -- Details: All players: 2 total; [dkb[ evllve /402302, l= MpServer , x=-387.23, y=16.00, z=47.24], dkc[ Tyzortyler /401927, l= MpServer , x=-388.75, y=16.00, z=47.53]] Chunk stats: Client Chunk Cache: 729, 484 Level dimension: minecraft:overworld Level name: MpServer Level seed: 0 Level generator: ID 00 - default, ver 1. Features enabled: false Level generator options: {} Level spawn location: World: (256,63,-160), Chunk: (at 0,3,0 in 16,-10; contains blocks 256,0,-160 to 271,255,-145), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1) Level time: 65614048 game time, 67581148 day time Level storage version: 0x00000 - Unknown? Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false) Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false Server brand: vanilla Server type: Non-integrated multiplayer server Stacktrace: at dhr.a(SourceFile:421) at cvo.b(SourceFile:1923) at cvo.b(SourceFile:426) at net.minecraft.client.main.Main.main(SourceFile:154)",
+  "Steps to Reproduce": "1. Launch Minecraft 1.14.3.\n2. Create a new world or load an existing world from any gamemode.\n3. Place an item on an anvil.\n4. Rename the item with any string consisting of exactly 18 characters.\n5. Attempt to delete all text in the anvil's rename field using the shift command delete.\n6. Observe that the game crashes, displaying \"saving world\".",
+  "Environment": "Minecraft Java Edition Version 1.14.3",
+  "Observed Behavior": "The issue occurs in Minecraft version 1.14.3 when players attempt to delete an 18-character string from an anvil using the Shift + Delete command. Upon executing this command, the game crashes while displaying a \"saving world\" message. The crash report indicates a java.lang.StringIndexOutOfBoundsException, specifically stating that the string index is out of range. The stack trace reveals that the error arises from the substring method in the Java String class, which is called during the rendering of the anvil interface. The crash occurs on the client thread, and the error is associated with the rendering of buttons and text fields in the game's user interface. The affected world is set in the Overworld dimension, with two players present in the multiplayer environment. The game mode is set to survival, and the server is identified as a non-integrated vanilla server. The crash report provides details about the mouse location and screen size at the time of the crash, as well as information about the chunk cache and level spawn location. The issue persists across different worlds and game modes, making it a critical bug that affects gameplay when using the anvil interface.",
+  "Expected Behavior": "When the player uses the Shift + Delete command to remove an 18-character string in the anvil's text input, the game should successfully delete the text without crashing. The interface should remain responsive, allowing the player to continue editing or renaming the item as intended. This expected behavior should occur consistently in Minecraft version 1.14.3, ensuring a smooth user experience without any errors or interruptions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-156389"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-276533",
+  "created_date": "2024-09-08T18:12:17.219-0700",
+  "updated_date": "2025-04-26T16:44:13.201-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash"
+  ],
+  "resolution_date": "2024-09-10T05:41:41.345-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when three or more skeletons are about to release their arrows",
+  "environment_raw": null,
+  "description": "If three or more entities start drawing their bows, right before they shoot the arrow to the target the game stops responding and just stays like that until you task manager it. This is really really bad because you would most likely encounter three skeletons at night plus anything that is used to bait in skeletons will crash the game.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use `/summon minecraft:skeleton ~1 ~ ~` to spawn three skeletons near your location.\n3. Move close enough to the skeletons so they start drawing their bows.\n4. Wait until the skeletons are about to release their arrows.\n5. Observe that the game stops responding and freezes.\n6. Note that the game remains frozen until you use task manager to force quit the game.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "When three or more skeletons begin drawing their bows to shoot arrows at a target, the game stops responding and freezes until manually terminated via task manager. This issue occurs specifically when multiple skeletons are about to release their arrows; the game becomes unresponsive right before the arrows are fired. The problem is particularly problematic because players often encounter groups of three or more skeletons during nighttime, and any method used to bait in skeletons will likely trigger this crash. Developers should be aware that this freeze happens consistently under these conditions, making it a significant hindrance to gameplay.",
+  "Expected Behavior": "When three or more skeletons are about to release their arrows, the game should remain stable and responsive. The skeletons should draw their bows and shoot arrows as expected without causing any crashes or freezes. Players should be able to interact with the environment and mobs normally during this sequence of events.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276533"
+  }
+}

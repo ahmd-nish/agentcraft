@@ -1,0 +1,35 @@
+{
+  "key": "MC-276383",
+  "created_date": "2024-09-05T06:22:49.879-0700",
+  "updated_date": "2025-04-26T16:39:10.214-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-09-10T04:32:41.496-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Using Pick Block on boats crashes the game",
+  "environment_raw": null,
+  "description": "I know that this is duplicated with but MAY I help you tell the reason? Description 1. Place a boat, any variant. 2. Switch to creative mode. 3. Middle-click the boat, and you ll find that it crashes. Reason \"class cqh\" (Boat) has a function \"cvx cqh.dK()\" (Boat.getPickResult). That returns a new \"class cvx\"(ItemStack) of function \"cvt cqh.al_()\" (Boat.getDropItem). \"cvt cqh.al_()\" (Boat.getDropItem) returns \"cqh$b cqh.w()\" (Boat.getVariant) s \"cvt cqh$b.d()\" (Boat$Type.getBoat) . And it seemed like \"cvt cqh$b.d()\" returns null, then \"cvx. (deu, int, ku)\" (ItemStack(ItemLike, int, PatchedDataComponentMap)) crashes.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place a boat of any variant in the world.\n4. Switch to Creative mode.\n5. Middle-click the boat using the Pick Block action.\n6. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "When a player places a boat of any variant and switches to Creative mode, using the Pick Block function (middle-click) on the boat results in a game crash. This crash occurs due to an issue in the code related to the boat's item representation. Specifically, the method `cqh.dK()` (Boat.getPickResult) attempts to create an `ItemStack` instance using the `cvt cqh.al_()` (Boat.getDropItem) method. \n\nThe `getDropItem` method subsequently calls `cqh$b cqh.w()` (Boat.getVariant), which is expected to return the variant of the boat. However, it appears that the call to `cvt cqh$b.d()` (Boat$Type.getBoat) returns null instead of a valid boat type. This null return value leads to the instantiation of the `ItemStack` failing, triggering a crash when the game attempts to execute the constructor `cvx. (deu, int, ku)` (ItemStack(ItemLike, int, PatchedDataComponentMap)).\n\nThis bug is critical as it not only causes the game to crash but also affects the player's ability to interact with boats in Creative mode, disrupting gameplay. The issue needs to be addressed to ensure that the Pick Block functionality works correctly for all boat variants without causing a crash.",
+  "Expected Behavior": "When using the Pick Block feature on a boat in creative mode, the game should successfully create an ItemStack representing the selected boat variant without crashing. The expected behavior is that the player can middle-click on the boat to obtain a replica of it in their inventory, allowing for easy placement and use of the boat without any errors or interruptions in gameplay.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276383"
+  }
+}

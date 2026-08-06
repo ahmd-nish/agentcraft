@@ -1,0 +1,38 @@
+{
+  "key": "MC-154668",
+  "created_date": "2019-06-16T03:40:36.711-0700",
+  "updated_date": "2025-04-14T16:36:51.671-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.2",
+    "Minecraft 1.14.3 Pre-Release 3",
+    "Minecraft 1.14.3 Pre-Release 4",
+    "Minecraft 1.14.3"
+  ],
+  "fix_versions": [
+    "Minecraft 1.14.4 Pre-Release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-06-30T23:31:16.012-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Invalid characters crash the game in jigsaw block input upon pressing enter",
+  "environment_raw": null,
+  "description": "The bug Invalid characters crash the game in jigsaw block input upon pressing enter. How to reproduce - Execute the command: /give @s jigsaw - Open the jigsaw block (displaying the user interface) - Type in any of the text boxes, characters: or {} (invalid unicode characters blocking the \"done\" button) - Press the enter key The game crashes Crash report 1.14.3-pre3 : [^crash-2019-06-16_22.54.27-client.txt] Description: keyPressed event handler n: Non [a-z0-9/._-] character in path of location: minecraft:empty at qt. (SourceFile:38) at qt. (SourceFile:43) at dbo.d(SourceFile:44) at dbo.b(SourceFile:35) at dbo.keyPressed(SourceFile:106) at cvm.a(SourceFile:410) at cvm$$Lambda$3043/1332786777.run(Unknown Source) at czx.wrapScreenError(SourceFile:441) at cvm.a(SourceFile:408) at cvm$$Lambda$1477/601932288.invoke(Unknown Source) at org.lwjgl.glfw.GLFWKeyCallbackI.callback(GLFWKeyCallbackI.java:37) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3101) at cuh.l(SourceFile:425) at cuh.c(SourceFile:283) at cvo.b(SourceFile:1023) at cvo.e(SourceFile:976) at cvo.b(SourceFile:411) at net.minecraft.client.main.Main.main(SourceFile:154)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Execute the command: `/give @s jigsaw`.\n3. Open the jigsaw block (displaying the user interface).\n4. In any of the text boxes, type in invalid characters: `:` or `{}`.\n5. Press the enter key.\n6. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.2, 1.14.3 Pre-Release 3, 1.14.3 Pre-Release 4, 1.14.3",
+  "Observed Behavior": "When the player inputs invalid characters, specifically the characters `:` or `{}` (which are not permitted in the jigsaw block's path input), and subsequently presses the Enter key, the game crashes. This occurs because the input validation fails, leading to an unhandled exception in the keyPressed event handler. The crash report indicates that a non-alphanumeric character was detected in the path of the location, specifically noting `minecraft:empty` as the problematic path. As a result, the game becomes unresponsive and exits unexpectedly, causing potential loss of progress and requiring the player to restart the game. \n\nThis issue consistently reproduces under the specified conditions and affects the user interface of the jigsaw block, making it critical for players who utilize this block for creating complex structures or maps. The crash report generated includes a stack trace that highlights the source of the error, providing developers with necessary insights for debugging and resolution. \n\nTo assist in addressing this bug, it is recommended to implement input validation that restricts invalid characters from being entered into the jigsaw block's text fields, thus preventing the game from crashing when the Enter key is pressed.",
+  "Expected Behavior": "When entering text into the jigsaw block interface, the game should accept valid input characters without any issues. Pressing the enter key after typing should successfully close the interface and save the inputted data, allowing players to proceed without any crashes. The interface should properly handle invalid characters by preventing their entry or providing an error message, rather than causing the game to crash.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-154668"
+  }
+}

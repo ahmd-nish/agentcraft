@@ -1,0 +1,39 @@
+{
+  "key": "MC-253402",
+  "created_date": "2022-06-20T19:12:38.234-0700",
+  "updated_date": "2025-05-29T09:10:37.403-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19",
+    "22w24a",
+    "1.19.1 Pre-release 1",
+    "1.19.1 Release Candidate 1",
+    "1.19.1 Pre-release 2"
+  ],
+  "fix_versions": [
+    "1.19.1 Pre-release 6"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2022-07-19T04:52:40.131-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when you shift right click on item in your hotbar to the chest at the same time as you die",
+  "environment_raw": null,
+  "description": "The Bug A zombie killed me at the same time I shift right click on some block I was trying to put in the chest and the game went saving and it crash 2s after. My game is set to DoImmediateRespawn. Reproduce - Do /gamerule doImmediateRespawn true - Get a chest - Get a zombie - Get an item - Open the chest - Right when the zombie kills you shift right click the item into the chest Observed Result The game crashed Expected Result The game wouldn t crash",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Execute the command `/gamerule doImmediateRespawn true`.\n3. Obtain a chest.\n4. Obtain a zombie.\n5. Obtain an item to place in the chest.\n6. Open the chest interface.\n7. Wait for the zombie to kill you.\n8. Right when you die, shift right click the item into the chest.\n9. Wait approximately 2 seconds and observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 1.19, 22w24a, 1.19.1 Pre-release 1, 1.19.1 Release Candidate 1, 1.19.1 Pre-release 2 (includes snapshots)",
+  "Observed Behavior": "When the player is killed by a zombie while simultaneously attempting to shift-right-click an item from their hotbar into an open chest, the game triggers a crash shortly after the \"saving\" message appears. The crash occurs approximately two seconds after the death event, despite the player having the gamerule `/gamerule doImmediateRespawn true` enabled, which normally allows for immediate respawning without interruption. This behavior indicates a potential conflict between the game's saving process and the player\u2019s death event while interacting with a container. The crash prevents the player from respawning as intended and disrupts gameplay, necessitating a restart of the game client to regain access to the world. This issue is reproducible under the specified conditions and represents a critical bug that affects game stability during simultaneous interactions and events.",
+  "Expected Behavior": "When a player dies while attempting to shift-right-click an item from their hotbar into a chest, the game should process the death and the item placement action simultaneously without crashing. Instead of leading to a game crash, the expected behavior is that the item would successfully transfer into the chest, allowing for immediate respawn without interruption. The game should handle these concurrent actions gracefully, ensuring stability during gameplay.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-253402"
+  }
+}

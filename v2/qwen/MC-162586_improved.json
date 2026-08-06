@@ -1,0 +1,35 @@
+{
+  "key": "MC-162586",
+  "created_date": "2019-10-02T16:29:53.979-0700",
+  "updated_date": "2025-04-14T16:29:21.729-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-09T08:35:55.714-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Log repeatedly prints the message \"Ticking entity\", and finally crashes the game",
+  "environment_raw": null,
+  "description": "The bug I m just moving around in my jungle world while trying to record a youtube video. Windows that were open are chrome, obs, sticky notes, streamlabs obs, and the minecraft launcher, as well as the game The game will crash after moving around a little bit. Very lagging in the jungle, the log repeatedly prints the message \"Ticking entity\", and finally crashes the game. Reproduce - Create a superflat world of jungle biome, and fly freely on the world. minecraft:bedrock,63 minecraft:dirt,minecraft:grass_block;minecraft:jungle;biome_1,decoration,lake,lava_lake - Using spawn eggs to spawn very many parrots. - Use the following command /tp @e[type=parrot] @p Here is the crash report: 19w40a: [^crash-2019-10-03_23.59.03-client.txt] Description: Ticking entity java.lang.NullPointerException: Ticking entity at atd.a(SourceFile:407) at akm.ab(SourceFile:301) at akn.ab(SourceFile:228) at akd.h(SourceFile:399) at akm.h(SourceFile:2059) at akn.h(SourceFile:295) at atk.h(SourceFile:34) at dmr.a(SourceFile:165) at bjk.a(SourceFile:648) at dmr.g(SourceFile:136) at das.n(SourceFile:1389) at das.d(SourceFile:907) at das.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Create a superflat world with the following settings: `minecraft:bedrock,63 minecraft:dirt,minecraft:grass_block;minecraft:jungle;biome_1,decoration,lake,lava_lake`.\n2. Enter Creative mode by using the command `/gamemode creative`.\n3. Use spawn eggs to spawn a large number of parrots in the world.\n4. Execute the command `/tp @e[type=parrot] @p` to teleport all parrots to your location.\n5. Move around freely within the jungle biome while monitoring the log output.\n6. Observe that the log repeatedly prints the message \"Ticking entity\".\n7. Continue moving until the game crashes, noting the repeated log messages and eventual crash.\n\n8. Take a screenshot of the log messages before the crash occurs.\n9. Exit the game and gather the `debug` folder as well as any relevant `crash-reports/*.txt` files for documentation purposes.",
+  "Environment": "Minecraft Java Edition Version 19w40a (snapshot)",
+  "Observed Behavior": "The actual behavior of the bug involves moving around in a jungle world while trying to record a YouTube video, with multiple applications open such as Chrome, OBS, Sticky Notes, Streamlabs OBS, and the Minecraft launcher. The game becomes very laggy in the jungle biome, and the log repeatedly prints \"Ticking entity\" before finally crashing. This issue can be reproduced by creating a superflat world with a jungle biome using the command `minecraft:bedrock,63 minecraft:dirt,minecraft:grass_block;minecraft:jungle;biome_1,decoration,lake,lava_lake`, and then spawning numerous parrots using spawn eggs and teleporting them to the player's location with the command `/tp @e[type=parrot] @p`. The crash report indicates a `java.lang.NullPointerException` related to ticking an entity.",
+  "Expected Behavior": "When moving around in a superflat jungle biome world with many parrots, the game should remain stable and not crash. The log should not repeatedly print \"Ticking entity,\" and the game should handle the entities smoothly without any lag or performance issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-162586"
+  }
+}

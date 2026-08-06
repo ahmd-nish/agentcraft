@@ -1,0 +1,37 @@
+{
+  "key": "MC-271001",
+  "created_date": "2024-04-21T01:48:34.286-0700",
+  "updated_date": "2025-05-29T09:06:39.995-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Release Candidate 2",
+    "1.20.6"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-05-06T08:47:10.383-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Items in a container can be given a count above 99 (to max integer), and can crash the world",
+  "environment_raw": null,
+  "description": "Using the following give command, item stacks can be given extremely high counts up to the java max integer. /give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]] Placing and then breaking the barrel will cause the stack to split into smaller stacks, spawn at least a few hundred million item entities, and crash the world. The split stacks seem to have random counts around 10 to 30, so it s slightly less than 2 billion entities spawned at once. Using commands to get an item with max_stack_size above 99 will detect and remove the invalid component, and setting the item count to below 1 will set it back to 1. Expected behavior would be for item count to be limited to the max_stack_size (or at least a hard coded max of 99).",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Execute the command `/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]` to obtain a barrel containing an item stack with a count of 2,147,483,647.\n3. Place the barrel on the ground.\n4. Break the placed barrel.\n5. Observe that the item stack splits into smaller stacks and spawns numerous item entities around the location where the barrel was broken.\n6. Note that the world may crash due to the excessive number of spawned item entities.\n7. Document the behavior, including any error messages or observations regarding the crash.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.5 Pre-Release 1, 1.20.5 Release Candidate 2, 1.20.6",
+  "Observed Behavior": "When using the command `/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]`, items can be given extremely high counts up to the Java max integer. Placing and then breaking the barrel will cause the stack of wooden swords to split into smaller stacks, each with random counts around 10 to 30. This results in the spawning of at least a few hundred million item entities, which ultimately crashes the world due to the excessive number of entities. The system does not limit these counts to the max_stack_size or even a hard-coded maximum like 99. Instead, it allows for the creation of stacks that far exceed normal limits and can lead to significant performance issues and world instability. Using commands to set an item's count above 99 will detect and remove any invalid component, setting the item count back to a minimum of 1 if it falls below this threshold. The expected behavior should limit the item count to the max_stack_size or at least cap it at a maximum value like 99 to prevent such issues.",
+  "Expected Behavior": "When using commands to place an item stack with a count above 99 (such as 2147483647), the game should automatically limit the stack size to either the `max_stack_size` of the item or a hard-coded maximum of 99. This would prevent the creation of excessively large stacks that can crash the world when the barrel is broken and items are split into numerous entities.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-271001"
+  }
+}

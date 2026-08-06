@@ -1,0 +1,35 @@
+{
+  "key": "MC-275230",
+  "created_date": "2024-08-15T09:00:38.403-0700",
+  "updated_date": "2025-05-29T09:05:06.434-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-08-19T06:19:03.045-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when opening the inventory while in spectator mode",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when opening the inventory while in spectator mode. A crash report regarding this has been attached and can be found below. This issue also doesn t appear to happen all of the time. Stack Trace: [^crash-2024-08-15_16.59.43-client.txt] Description: Rendering screen java.lang.NullPointerException: Cannot invoke \"faz.a(boolean)\" because the return value of \"ggr.t()\" is null at ghd.h(SourceFile:578) at ghd.a(SourceFile:39) at com.google.common.collect.ImmutableList.forEach(ImmutableList.java:422) at ghe$a.b(SourceFile:1231) at ghd.a(SourceFile:39) at ghe.a(SourceFile:1016) at ggv$a.a(SourceFile:96) at ggv$a.a(SourceFile:85) at ggv$a.a(SourceFile:69) at ggv$a.b(SourceFile:75) at fjn.e(SourceFile:96) at fri.a(SourceFile:160) at fri.a(SourceFile:133) at fri.a(SourceFile:102) at fqi.b(SourceFile:176) at fpt.a(SourceFile:126) at fqi.a(SourceFile:113) at fra.a(SourceFile:33) at fri.a(SourceFile:84) at fpt.c(SourceFile:117) at ggl.a(SourceFile:892) at fib.c(SourceFile:1305) at fib.f(SourceFile:894) at net.minecraft.client.main.Main.main(SourceFile:256) Steps to Reproduce: - Open your inventory while in spectator mode. Observed Behavior: The game crashes. Expected Behavior: The game would not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Use the command `/gamemode spectator` to enter spectator mode.\n4. Attempt to open the inventory.\n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "When the player attempts to open their inventory while in spectator mode, the game encounters a critical error that leads to a crash. This crash is caused by a `NullPointerException`, specifically when the game tries to invoke the method `faz.a(boolean)` on a null reference returned by `ggr.t()`. The crash does not occur consistently; it seems to be intermittent, with no clear pattern to when it will happen. \n\nThis issue significantly disrupts gameplay, as players in spectator mode are unable to access their inventory without risking a game crash. The crash report indicates that the problem arises during the rendering process of the inventory screen, which suggests that the game is attempting to render inventory-related data that is not correctly initialized or available in spectator mode.\n\nTo aid in diagnosing the issue, the following details are provided:\n- The crash report is attached and includes a stack trace that outlines the sequence of method calls leading to the crash.\n- The issue can be reproduced by simply opening the inventory while in spectator mode, making it straightforward for developers to replicate the problem in a testing environment.\n\nDevelopers may want to investigate the handling of inventory data in spectator mode and ensure that all necessary references are properly initialized before attempting to render the inventory screen.",
+  "Expected Behavior": "When opening the inventory while in spectator mode, the game should allow players to access their inventory without crashing. This functionality should operate seamlessly, enabling players to view and manage their items or settings while in spectator mode. The expected behavior is for the inventory interface to display correctly, allowing for smooth navigation and interaction without any interruptions or crashes occurring.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275230"
+  }
+}

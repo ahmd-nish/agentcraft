@@ -1,0 +1,36 @@
+{
+  "key": "MC-201885",
+  "created_date": "2020-10-10T16:07:17.826-0700",
+  "updated_date": "2025-03-25T12:08:54.750-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.3",
+    "1.16.4 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.16.4 Pre-release 2"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-10-23T05:10:33.248-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Divide by zero error in the Ender dragon entity class can cause a server crash and infinite velocity",
+  "environment_raw": null,
+  "description": "The bug Summoning any living entity on the wings of the ender dragon (same position as the middle of the wing) will give the entity infinite velocity and crash the server. This is due to a divide by zero case with the wings and a living entity. How to reproduce - Create a new world - Go to the end - Give yourself a command block and set it to repeat - Enter this command in the command block and power the block: /tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0 - Summon armor stands on the dragon: /execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand The server crashing after a minute or two Code analysis Using 1.16.3 yarn mappings. We will be looking at the EnderDragonEntity code today. Let s go to: public void tickMovement() Inside this function there is the launchLivingEntities function. Let s explore this. if (!this.world.isClient this.hurtTime == 0) { this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingRight.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingLeft.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); //removed code } This function takes in the entities around the dragon wing (will later be limited to Living Entities ) private void launchLivingEntities(List entities) { double d = (this.partBody.getBoundingBox().minX this.partBody.getBoundingBox().maxX) / 2.0; double e = (this.partBody.getBoundingBox().minZ this.partBody.getBoundingBox().maxZ) / 2.0; for (Entity lv : entities) { if (!(lv instanceof LivingEntity)) continue; double f = lv.getX() - d; double g = lv.getZ() - e; double h = f f g g; lv.addVelocity(f / h 4.0, 0.2f, g / h 4.0); //removed stuff below } } From this function call, it takes the wing and finds the middle of it. For the next part, let s say we have an entity at the same location as the middle of the wing and it is a living entity. As the x and z are the same, f and g will be zero. As f and g are zero, h will be zero. Now, as h is zero, the lv.addVelocity will make the x and z velocity infinite as in java a float divide by zero will make a value infinity.",
+  "Steps to Reproduce": "1. Create a new world.\n2. Go to the End dimension.\n3. Give yourself a command block by using `/give @s command_block`.\n4. Place the command block and set it to Repeat mode and Always active.\n5. Enter the following command in the command block: `/tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0`.\n6. Power the command block to activate it.\n7. Execute the following command to summon armor stands on the dragon: `/execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand`.\n8. Wait approximately one minute or two and observe that the server crashes due to infinite velocity of the summoned entities.\n9. Note the coordinates where the crash occurs for further investigation.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.3, 1.16.4 Pre-release 1",
+  "Observed Behavior": "The bug involves a divide by zero error in the Ender dragon entity class that can cause a server crash and infinite velocity for entities. Specifically, summoning any living entity on the wings of the ender dragon (at the same position as the middle of the wing) will give the entity infinite velocity and eventually crash the server. This issue arises due to a divide by zero case when handling entities on the dragon's wings.\n\nTo reproduce the bug:\n1. Create a new world.\n2. Travel to the End dimension.\n3. Give yourself a command block set to repeat mode.\n4. Enter the following commands in the command block and power it: `/tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0` to teleport the ender dragon to specific coordinates, and `/execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand` to summon armor stands on the dragon.\n5. The server will crash after a minute or two.\n\nCode analysis using 1.16.3 yarn mappings reveals that within the `tickMovement()` function of the EnderDragonEntity class, there is a call to `launchLivingEntities()`. This function checks for entities around the dragon's wings and applies velocity adjustments based on their positions relative to the center of the dragon\u2019s body.\n\nThe critical part of the code involves calculating the distance from an entity to the middle point of the dragon\u2019s wing. If an entity is exactly at this midpoint, the values `f` and `g`, representing the horizontal distances in X and Z directions respectively, become zero. Consequently, the variable `h`, which is the sum of squares of these distances, also becomes zero. When the velocity adjustment uses a division by `h`, it results in an infinite value due to the divide-by-zero condition.\n\nThis causes the entity's velocity to become infinitely large (`lv.addVelocity(f / h + 4.0, 0.2f, g / h + 4.0)`), leading to instability and ultimately crashing the server.",
+  "Expected Behavior": "When summoning any living entity on the wings of the ender dragon, the server should not crash, and the summoned entities should not gain infinite velocity. Instead, the entities should either remain stationary or experience normal gravitational effects without causing any instability or crashes to the server.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-201885"
+  }
+}

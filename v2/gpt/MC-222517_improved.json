@@ -1,0 +1,36 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place more than 4000 slime blocks or honey blocks in the world.\n4. Render the blocks placed.\n5. Observe that the game crashes completely and you cannot join the world anymore.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "When a player places over 4000 slime blocks or honey blocks in a Minecraft world, rendering these blocks can cause the game to crash entirely. This crash prevents the player from rejoining the world, effectively locking them out of their saved game. The issue appears to be related to the game's handling of block entities and rendering processes when an excessive number of these specific blocks are present in a single chunk or across multiple chunks. The game struggles to process the large volume of block data, leading to a failure in the rendering engine and resulting in a complete crash. This behavior has been consistently reproducible, indicating a critical flaw in the game's ability to manage high quantities of slime or honey blocks without crashing.",
+  "Expected Behavior": "When placing a large number of slime or honey blocks (over 4000), the game should be able to handle the rendering of these blocks without crashing. Players should be able to join their worlds and interact with the blocks seamlessly, regardless of their quantity. The game should maintain stability and performance, allowing for smooth gameplay even with extensive block placements.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517"
+  }
+}

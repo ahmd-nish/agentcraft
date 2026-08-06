@@ -1,0 +1,36 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Place more than 4000 slime blocks or honey blocks in a large area.\n3. Ensure that you are close enough to render the blocks.\n4. Observe the game crashing completely and becoming unjoinable.\n5. Attempt to join the world again and note that it is no longer accessible.\n6. Take a screenshot of the crash message if one appears.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "When more than approximately 4000 slime blocks or honey blocks are placed in close proximity within a Minecraft world, rendering these blocks causes the game to crash completely. This issue is not limited to a specific game mode or dimension; it occurs across all environments where these blocks can be placed.\n\nUpon triggering this condition, players will experience an immediate and total crash of the Minecraft client when they attempt to load or render the chunk containing these blocks. As a result, any player attempting to join the world or return to that area after the initial crash will also encounter the same issue, preventing further gameplay in that region until the problematic blocks are removed.\n\nThe crash is consistent regardless of whether the affected chunks are loaded directly by walking into them or through other means such as using commands to load chunks. Once a player has encountered this crash, they may be unable to re-enter the world without addressing the root cause (i.e., removing the excess slime or honey blocks).\n\nThis behavior affects both single-player and multiplayer environments, making it difficult for players to recover their progress if they are not aware of the specific number threshold triggering the issue.",
+  "Expected Behavior": "When placing more than 4000 slime or honey blocks and rendering them, the game should not crash. Players should be able to join and interact with the world normally without any stability issues. The game should handle large numbers of these blocks without crashing or becoming unjoinable.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517"
+  }
+}

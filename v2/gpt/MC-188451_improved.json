@@ -1,0 +1,35 @@
+{
+  "key": "MC-188451",
+  "created_date": "2020-06-10T09:23:20.874-0700",
+  "updated_date": "2025-05-03T19:25:00.663-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.16 Pre-release 4"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-06-17T02:31:09.168-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when dispensing a shulker box from a dispenser - \"java.lang.NullPointerException: Exception while ticking\"",
+  "environment_raw": null,
+  "description": "(1.16 Pre-Release 3) [^crash-2020-06-10_18.21.22-server.txt] Description: Exception while ticking java.lang.NullPointerException: Exception while ticking at bil.a(SourceFile:88) at gy.a(SourceFile:23) at gu.dispense(SourceFile:15) at bxc.a(SourceFile:89) at bxc.a(SourceFile:112) at cfi$a.a(SourceFile:865) at zd.b(SourceFile:596) at zd$$Lambda$3895/290764432.accept(Unknown Source) at bqn.b(SourceFile:84) at zd.a(SourceFile:351) at net.minecraft.server.MinecraftServer.b(SourceFile:873) at net.minecraft.server.MinecraftServer.a(SourceFile:813) at eox.a(SourceFile:93) at net.minecraft.server.MinecraftServer.v(SourceFile:672) at net.minecraft.server.MinecraftServer.a(SourceFile:256) at net.minecraft.server.MinecraftServer$$Lambda$3883/2115162896.run(Unknown Source) at java.lang.Thread.run(Thread.java:745)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.16 Pre-Release 3.\n2. Create a new Creative world with default settings.\n3. Place a dispenser in the world.\n4. Place a shulker box in the dispenser.\n5. Activate the dispenser (e.g., using a redstone signal).\n6. Wait for the shulker box to be dispensed.\n7. Observe that the game crashes with the error \"java.lang.NullPointerException: Exception while ticking.\"",
+  "Environment": "Minecraft Java Edition Version 1.16 Pre-release 3",
+  "Observed Behavior": "The game experiences a crash when a shulker box is dispensed from a dispenser, resulting in a java.lang.NullPointerException with the message \"Exception while ticking.\" This issue arises specifically in version 1.16 Pre-Release 3. The error occurs during the ticking process, and the stack trace indicates that the problem originates in the bil class at line 88, followed by calls to various classes including gy, gu, and bxc, which are involved in the dispensing mechanics. The crash is triggered when the dispenser attempts to handle the shulker box, leading to a failure in processing the action and ultimately crashing the server. The detailed stack trace provides insight into the sequence of method calls leading up to the crash, highlighting the complexity of the game\u2019s mechanics and the potential for null references when interacting with certain block types. This bug is critical as it disrupts gameplay and should be addressed to ensure stability when using dispensers with shulker boxes.",
+  "Expected Behavior": "When a shulker box is dispensed from a dispenser, the game should successfully release the shulker box without any errors or crashes. The shulker box should appear in the world as intended, allowing players to interact with it and store items normally. This behavior should be consistent across all game modes in Java Edition 1.16 Pre-Release 3, ensuring a stable gameplay experience.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-188451"
+  }
+}

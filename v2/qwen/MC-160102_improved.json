@@ -1,0 +1,37 @@
+{
+  "key": "MC-160102",
+  "created_date": "2019-08-30T04:08:04.789-0700",
+  "updated_date": "2025-04-14T16:29:26.528-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w35a",
+    "19w36a",
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-08T01:45:22.176-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "IllegalArgumentException when being attacked by a weak iron golem",
+  "environment_raw": null,
+  "description": "The bug If an iron golem has high weakness level and if it hits you the game crashes. To reproduce - Spawn an iron golem - Give it weakness or strength effect lvl 2 or above - Hit it - Wait until it hits you Or spawn an iron golem using command: /summon iron_golem ~ ~ ~ {Attributes:[{Name:generic.AttackDamage,Base:0.0}]} and hit it Crash report 19w35a : [^crash-2019-08-30_16.15.51-server.txt] Description: Ticking entity java.lang.IllegalArgumentException: bound must be positive at java.base/java.util.Random.nextInt(Random.java:388) at asj.C(SourceFile:154) at aon.a(SourceFile:139) at aon.e(SourceFile:131) at apt.e(SourceFile:55) at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183) at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:177) at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133) at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1801) at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:484) at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:474) at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150) at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173) at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234) at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:497) at aof.a(SourceFile:80) at ajy.dh(SourceFile:623) at ajx.k(SourceFile:2275) at ajy.k(SourceFile:487) at asj.k(SourceFile:103) at ajx.h(SourceFile:2120) at ajy.h(SourceFile:294) at wj.a(SourceFile:596) at biv.a(SourceFile:656) at wj.a(SourceFile:399) at net.minecraft.server.MinecraftServer.b(SourceFile:836) at net.minecraft.server.MinecraftServer.a(SourceFile:775) at ebv.a(SourceFile:128) at net.minecraft.server.MinecraftServer.run(SourceFile:643) at java.base/java.lang.Thread.run(Thread.java:835)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 19w35a.\n2. Create a new Creative world with default settings.\n3. Use the command `/summon iron_golem ~ ~ ~ {Attributes:[{Name:generic.AttackDamage,Base:0.0}]}` to spawn an iron golem at your location.\n4. Hit the iron golem once.\n5. Wait until the iron golem hits you back.\n6. Observe that the game crashes when the iron golem attacks you.\n\nAlternatively:\n\n1. Launch Minecraft Java Edition 19w35a.\n2. Create a new Creative world with default settings.\n3. Summon an iron golem by placing an iron block and then placing a pumpkin on top of it.\n4. Use the command `/effect give @e[type=iron_golem,limit=1] weakness 60 2` to apply the Weakness effect level 2 to the iron golem.\n5. Hit the iron golem once.\n6. Wait until the iron golem hits you back.\n7. Observe that the game crashes when the iron golem attacks you.",
+  "Environment": "Minecraft Java Edition Versions: 19w35a, 19w36a, 19w40a (includes snapshots)",
+  "Observed Behavior": "When an iron golem with a high level of the Weakness effect (level 2 or above) hits the player, the game crashes. This issue can be reproduced by first spawning an iron golem and then applying either the Weakness or Strength effect at level 2 or higher to it. The player must then attack the iron golem, which will cause it to retaliate. When the iron golem strikes back, the game crashes with an IllegalArgumentException indicating that a bound value is not positive.\n\nAlternatively, the bug can be triggered by summoning an iron golem using the command `/summon iron_golem ~ ~ ~ {Attributes:[{Name:generic.AttackDamage,Base:0.0}]}` and then attacking it. The crash report from version 19w35a provides detailed information about the exception.\n\nThe relevant part of the crash report includes:\n```\nDescription: Ticking entity\njava.lang.IllegalArgumentException: bound must be positive\n    at java.base/java.util.Random.nextInt(Random.java:388)\n    ...\n```\n\nThis stack trace indicates that an error occurs during the iron golem's attack sequence, specifically when generating a random value within a specified range. The issue is likely related to an incorrect or negative boundary value used in this process, causing the game to crash.\n\nTo help developers understand and address this bug, it\u2019s important to note that the Weakness effect should reduce damage output, but in this scenario, it seems to interfere with the iron golem's attack mechanics, leading to a critical error. Providing screenshots of the affected area, the `latest.log` file, and the corresponding crash report would be beneficial for diagnosing the issue further.",
+  "Expected Behavior": "When an iron golem with high weakness or strength levels attacks you, the game should not crash. Instead, it should handle the attack normally, applying appropriate damage based on the golem's current attributes without causing any unexpected errors or crashes. This behavior should be consistent regardless of the effects applied to the iron golem.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-160102"
+  }
+}

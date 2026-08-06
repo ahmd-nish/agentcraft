@@ -1,0 +1,36 @@
+{
+  "key": "MC-270097",
+  "created_date": "2024-03-28T19:31:56.920-0700",
+  "updated_date": "2025-05-29T09:07:07.434-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a",
+    "1.20.5 Pre-Release 1"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-16T04:42:16.787-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when set_ominous_bottle_amplifier item modifier sets out-of-range amplifier",
+  "environment_raw": null,
+  "description": "Summary This is yet another \"item modifier setting invalid component causing crash\" bug. Here, the new set_ominous_bottle_amplifier item modifier does not clamp or validate the amplifier, causing a crash. Steps to Reproduce - Give yourself a stick. - Run the following command: /item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10} - Pause the game. Expected Result The game does not crash. Actual Result The game crashes.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Give yourself a stick using the command: `/give @s stick`.\n3. Run the following command: `/item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}`.\n4. Pause the game.\n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w13a, 1.20.5 Pre-Release 1 (includes snapshots)",
+  "Observed Behavior": "When the command `/item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}` is executed, the game attempts to apply the specified amplifier value of 10 to the ominous bottle item. However, this value exceeds the valid range for the amplifier, which is typically between 0 and 3 for potion effects in Minecraft. The absence of clamping or validation for the amplifier value leads to an invalid state, causing the game to crash immediately. The crash occurs without any error message or warning, resulting in a complete termination of the game session. This behavior highlights the need for input validation within the item modifier to prevent out-of-range values from being set.",
+  "Expected Behavior": "When using the set_ominous_bottle_amplifier item modifier, the game should validate the amplifier value before applying it. If the amplifier is out of range, the game should either default to a valid value or return an error message indicating the invalid input. This would prevent the game from crashing and ensure a smoother user experience when modifying item attributes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-270097"
+  }
+}

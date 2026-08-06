@@ -1,0 +1,35 @@
+{
+  "key": "MC-162616",
+  "created_date": "2019-10-02T21:48:53.923-0700",
+  "updated_date": "2025-03-25T12:26:33.194-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-07-17T08:01:08.937-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "java.lang.NullPointerException after attacking a parrot",
+  "environment_raw": null,
+  "description": "Killing parrots crashes your game. Note: I did kill other mobs and it isn t just swinging the sword and i got the same result everytime i killed a parrot. 19w40a: [^crash-2019-10-03_20.30.29-client.txt] Description: Unexpected error java.lang.NullPointerException: Unexpected error at atd.a(SourceFile:407) at axx.f(SourceFile:1234) at dmq.a(SourceFile:363) at das.aE(SourceFile:1234) at das.aG(SourceFile:1517) at das.n(SourceFile:1367) at das.d(SourceFile:907) at das.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use the `/summon parrot ~ ~ ~` command to summon a parrot nearby.\n3. Equip any sword in your hotbar.\n4. Attack and kill the summoned parrot by right-clicking it until its health reaches zero.\n5. Observe that the game crashes after killing the parrot.\n6. Repeat steps 2-5 multiple times to ensure consistency of the crash.\n7. Note the specific error message or behavior when the game crashes.",
+  "Environment": "Minecraft Java Edition Version 19w40a (snapshot)",
+  "Observed Behavior": "When killing parrots in Minecraft version 19w40a, the game crashes due to a `java.lang.NullPointerException`. This issue consistently occurs every time a parrot is killed, and it is not related to simply swinging the sword. The crash does not happen when other mobs are killed under similar conditions. The error message indicates an unexpected error at specific lines in the source code: `atd.a(SourceFile:407)`, `axx.f(SourceFile:1234)`, and others, pointing to a deeper issue within the game's mechanics related to parrot interactions.\n\nThe crash log can be found here: [^crash-2019-10-03_20.30.29-client.txt]. This detailed information should help developers pinpoint the exact location of the bug in the code and address it effectively.",
+  "Expected Behavior": "When attacking and killing a parrot, the game should not crash. The parrot should disappear upon receiving fatal damage, and no exceptions or errors should occur. This behavior should be consistent without causing any unexpected crashes or issues in the game.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-162616"
+  }
+}

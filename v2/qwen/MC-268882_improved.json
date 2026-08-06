@@ -1,0 +1,41 @@
+{
+  "key": "MC-268882",
+  "created_date": "2024-02-28T16:21:42.146-0800",
+  "updated_date": "2025-03-25T13:31:21.259-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "enchantments",
+    "item",
+    "item-component"
+  ],
+  "resolution_date": "2024-03-27T06:05:45.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Same Enchantments in an item components crashes the game",
+  "environment_raw": null,
+  "description": "when you have 2 enchantments \"sharpness\" and \"minecraft:sharpness\" in the new components this will crash the game 1./give @s diamond_sword[enchantments={levels:{sharpness:10,\"sharpness\":10}}] 2./give @s diamond_sword[enchantments={levels:{sharpness:10,\"minecraft:sharpness\":10}}] the second one will crash the game, but the first one doesnt.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use the command `/give @s diamond_sword[enchantments={levels:{sharpness:10,\"sharpness\":10}}]` to give yourself a diamond sword with two \"sharpness\" enchantments.\n3. Observe that the game does not crash after giving this item.\n4. Next, use the command `/give @s diamond_sword[enchantments={levels:{sharpness:10,\"minecraft:sharpness\":10}}]` to give yourself another diamond sword with \"sharpness\" and \"minecraft:sharpness\" enchantments.\n5. Observe that the game crashes after giving this item.",
+  "Environment": "Minecraft Java Edition Versions: 24w09a, 24w10a (includes snapshots)",
+  "Observed Behavior": "When an item in Minecraft contains duplicate enchantments with different namespace formats, such as \"sharpness\" and \"minecraft:sharpness,\" it can lead to a game crash under certain conditions. Specifically, if you use the command `/give @s diamond_sword[enchantments={levels:{sharpness:10,\"minecraft:sharpness\":10}}]`, the game will crash due to the presence of both enchantment formats in the item's components. However, using the command `/give @s diamond_sword[enchantments={levels:{sharpness:10,\"sharpness\":10}}]` does not cause a crash, indicating that the issue is related to the namespace formatting of the enchantments rather than their presence alone. This inconsistency in handling duplicate enchantment formats can lead to unexpected crashes and should be addressed to ensure stability in game mechanics involving item enchantments.",
+  "Expected Behavior": "When given a diamond sword with duplicate enchantment keys such as \"sharpness\" and \"minecraft:sharpness,\" the game should not crash. Instead, it should handle these duplicates gracefully by either merging them into a single enchantment level or allowing both values without causing any stability issues. The game should function normally in both cases, ensuring that no crashes occur when using commands to give items with such enchantments.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268882"
+  }
+}

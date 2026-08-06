@@ -1,0 +1,35 @@
+{
+  "key": "MC-259240",
+  "created_date": "2023-01-19T07:01:46.240-0800",
+  "updated_date": "2025-03-20T23:17:05.730-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w03a"
+  ],
+  "fix_versions": [
+    "23w07a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-02-15T04:12:24.386-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when navigating with arrow keys after changing key binds",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when attempting to navigate up or down with the arrow keys on the keyboard after changing a key bind and leaving the last key on focus. Stack Trace: [^crash-2023-01-19_16.59.01-client.txt] Description: keyPressed event handler java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 2 at com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:77) at els$a.a(SourceFile:159) at els.a(SourceFile:66) at emp.a(SourceFile:130) at eqa.a(SourceFile:150) at eqt.a(SourceFile:71) at ejs.a(SourceFile:374) at eqa.a(SourceFile:528) at ejs.a(SourceFile:370) at ejs.c(SourceFile:458) at bbp.execute(SourceFile:102) at ejs.b(SourceFile:458) at org.lwjgl.glfw.GLFWKeyCallbackI.callback(GLFWKeyCallbackI.java:44) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:215) at ejt.f(SourceFile:1229) at ejt.e(SourceFile:786) at net.minecraft.client.main.Main.a(SourceFile:244) at net.minecraft.client.main.Main.main(SourceFile:51) Steps to Reproduce: - Go to Settings Controls Key Binds - Mouse over a key bind and Left click to change it. - Select a new or the same key on the keyboard. - Without changing the focus with the mouse to a different keybind, press the Up or Down arrow Observed Behavior: Observe the game closing unexpectedly. Expected Behavior: The game navigating to the previous or next key bind and not closing unexpectedly.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Go to Options -> Controls -> Key Binds.\n3. Mouse over a key bind and left-click to change it.\n4. Select a new or the same key on the keyboard.\n5. Without changing the focus with the mouse to a different key bind, press the Up arrow key.\n6. Observe that the game closes unexpectedly.\n7. Repeat steps 1-6 using the Down arrow key instead of the Up arrow key.",
+  "Environment": "Minecraft Java Edition Version 23w03a (snapshot)",
+  "Observed Behavior": "When the player attempts to navigate through the key binds using the Up or Down arrow keys after changing a key bind, the game crashes unexpectedly. This occurs specifically when the focus remains on the last key bind that was modified. The crash is triggered by the `keyPressed` event handler, resulting in a `java.lang.ArrayIndexOutOfBoundsException`. The stack trace indicates that the game is trying to access an invalid index (-1) in an array that only has a length of 2, which suggests that the navigation logic does not properly handle the focus state after a key bind change. Consequently, instead of moving the selection to the previous or next key bind, the game closes without warning, disrupting the user experience.",
+  "Expected Behavior": "When navigating key binds after changing them, the game should allow players to use the Up or Down arrow keys to seamlessly move between key bind options without crashing. This navigation should maintain focus on the last selected key bind, enabling users to review or adjust their settings without unexpected closures. The expected behavior is for the game to operate smoothly, ensuring a user-friendly experience.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-259240"
+  }
+}

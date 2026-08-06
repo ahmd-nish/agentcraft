@@ -1,0 +1,37 @@
+{
+  "key": "MC-198514",
+  "created_date": "2020-08-20T13:11:33.813-0700",
+  "updated_date": "2025-05-29T09:16:44.953-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2",
+    "1.16.3 Release Candidate 1",
+    "1.16.3"
+  ],
+  "fix_versions": [
+    "20w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2020-11-10T07:01:47.044-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Creating a superflat world with nothing but air crashes the game",
+  "environment_raw": null,
+  "description": "The bug When creating a superflat world with nothing but air in as the present, the game will crash when you click the \"Done\" button. How to reproduce 1 minecraft:air;127;decoration Crash report 1.16.2 : [^crash-2020-08-20_16.04.11-client.txt] Description: mouseClicked event handler java.lang.IllegalStateException: Missing: ResourceKey[minecraft:worldgen/biome / minecraft:127] at gm.d(SourceFile:378) at don.b(SourceFile:276) at don$$Lambda$3396/1581005885.get(Unknown Source) at cpc.e(SourceFile:188) at cpc.c(SourceFile:131) at chi. (SourceFile:26) at dsd.a(SourceFile:105) at dsd$$Lambda$3360/914254500.accept(Unknown Source) at dns.b(SourceFile:88) at dns$$Lambda$3363/975316968.onPress(Unknown Source) at dlg.b(SourceFile:33) at dla.a(SourceFile:16) at dle.a(SourceFile:149) at dme.a(SourceFile:27) at djx.b(SourceFile:92) at djx$$Lambda$3035/1337289695.run(Unknown Source) at doq.a(SourceFile:435) at djx.a(SourceFile:92) at djx.c(SourceFile:162) at djx$$Lambda$3034/618698910.run(Unknown Source) at any.execute(SourceFile:94) at djx.b(SourceFile:162) at djx$$Lambda$2386/130839597.invoke(Unknown Source) at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3174) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:127) at djw.e(SourceFile:1046) at djw.e(SourceFile:656) at net.minecraft.client.main.Main.main(SourceFile:215) A detailed walkthrough of the error, its code path and all known details is as follows: --------------------------------------------------------------------------------------- -- Head -- Thread: Render thread Stacktrace: at gm.d(SourceFile:378) at don.b(SourceFile:276) at don$$Lambda$3396/1581005885.get(Unknown Source) at cpc.e(SourceFile:188) at cpc.c(SourceFile:131) at chi. (SourceFile:26) at dsd.a(SourceFile:105) at dsd$$Lambda$3360/914254500.accept(Unknown Source) at dns.b(SourceFile:88) at dns$$Lambda$3363/975316968.onPress(Unknown Source) at dlg.b(SourceFile:33) at dla.a(SourceFile:16) at dle.a(SourceFile:149) at dme.a(SourceFile:27) at djx.b(SourceFile:92) at djx$$Lambda$3035/1337289695.run(Unknown Source) -- Affected screen -- Details: Screen name: dns Stacktrace: at doq.a(SourceFile:435) at djx.a(SourceFile:92) at djx.c(SourceFile:162) at djx$$Lambda$3034/618698910.run(Unknown Source) at any.execute(SourceFile:94) at djx.b(SourceFile:162) at djx$$Lambda$2386/130839597.invoke(Unknown Source) at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3174) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:127) at djw.e(SourceFile:1046) at djw.e(SourceFile:656) at net.minecraft.client.main.Main.main(SourceFile:215)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Navigate to \"Singleplayer\" and select \"Create New World\".\n3. Choose \"Superflat\" as the world type.\n4. In the \"Layers\" section, add a layer with `minecraft:air;127;decoration`.\n5. Ensure no other blocks or layers are selected.\n6. Click the \"Done\" button to create the superflat world.\n7. Observe that the game crashes upon clicking \"Done\".",
+  "Environment": "Minecraft Java Edition Versions: 1.16.2, 1.16.3 Release Candidate 1, 1.16.3",
+  "Observed Behavior": "When attempting to create a superflat world with nothing but air as its content using the configuration `1 minecraft:air;127;decoration`, the game crashes when the \"Done\" button is clicked. This issue occurs specifically in Minecraft version 1.16.2, and the crash report indicates an error related to missing biome resources. The exact exception thrown is a `java.lang.IllegalStateException` with the message \"Missing: ResourceKey[minecraft:worldgen/biome / minecraft:127]\". This suggests that the game is unable to find or load a required biome resource key when attempting to generate the superflat world with only air. To reproduce this issue, start by creating a new superflat world and input the specified configuration, then click \"Done\" to trigger the crash. The crash report file can be found in the `crash-reports` directory within the Minecraft `.minecraft` folder, typically named something like `crash-2020-08-20_16.04.11-client.txt`. This detailed information should help developers understand and address the issue effectively.",
+  "Expected Behavior": "When creating a superflat world with nothing but air, the game should not crash upon clicking the \"Done\" button. Instead, it should successfully generate the world, allowing the player to enter and explore an empty flat landscape without any issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-198514"
+  }
+}

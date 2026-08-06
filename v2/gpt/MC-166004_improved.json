@@ -1,0 +1,35 @@
+{
+  "key": "MC-166004",
+  "created_date": "2019-11-21T14:09:58.837-0800",
+  "updated_date": "2025-05-29T09:21:13.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.15 Pre-Release 2"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2019-11-26T02:58:31.991-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Getting too close to an end gateway causes the game to crash",
+  "environment_raw": null,
+  "description": "The bug Going too close to the end gateway will cause the game to crash! Stack trace 1.15 Pre-release 1 : [^crash-2019-11-21_23.27.56-client.txt] Description: Rendering Block Entity java.lang.IndexOutOfBoundsException: Index 16 out of bounds for length 16 at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64) at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70) at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248) at java.base/java.util.Objects.checkIndex(Objects.java:372) at java.base/java.util.ArrayList.get(ArrayList.java:458) at dsy.a(SourceFile:41) at dsx.a(SourceFile:30) at dsx.a(SourceFile:11) at dsk.a(SourceFile:106) at dsk.b(SourceFile:95) at dsk.a(SourceFile:127) at dsk.a(SourceFile:95) at dqm.a(SourceFile:1180) at dqi.a(SourceFile:719) at dqi.a(SourceFile:549) at dbj.d(SourceFile:941) at dbj.b(SourceFile:576) at net.minecraft.client.main.Main.main(SourceFile:202)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.15 Pre-release 1.\n2. Create a new Creative world with default settings.\n3. Locate an end gateway in the world.\n4. Move your character close to the end gateway.\n5. Observe that the game crashes upon getting too close to the end gateway.",
+  "Environment": "Minecraft Java Edition Version 1.15 Pre-release 1",
+  "Observed Behavior": "When a player approaches an end gateway in Minecraft, specifically in version 1.15 Pre-release 1, the game experiences a crash. This issue manifests as an IndexOutOfBoundsException, where the game attempts to access an index that exceeds the bounds of an array, resulting in a crash during the rendering of the block entity. The specific error message indicates that the index being accessed is 16, which is out of bounds for an array of length 16. The stack trace outlines the sequence of method calls leading to the crash, starting from the rendering process and traversing through various internal methods until it reaches the main entry point of the game. This bug occurs consistently when the player is too close to the end gateway, disrupting gameplay and necessitating a fix to prevent the game from crashing under these circumstances.",
+  "Expected Behavior": "When approaching an end gateway, the game should allow the player to get close without any adverse effects, such as crashing. The end gateway should render correctly, displaying its visual elements and functionality as intended, without causing any errors or exceptions. Players should be able to interact with the gateway and navigate around it without experiencing any interruptions or crashes in gameplay, ensuring a smooth and stable gaming experience in Java Edition 1.15.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-166004"
+  }
+}

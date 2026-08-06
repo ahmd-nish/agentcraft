@@ -1,0 +1,35 @@
+{
+  "key": "MC-268879",
+  "created_date": "2024-02-28T15:44:33.012-0800",
+  "updated_date": "2025-03-07T20:05:00.590-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:34.349-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Having a high damage value breaks and crashes the game",
+  "environment_raw": null,
+  "description": "/give @p minecraft:wolf_armor[minecraft:damage=2147483647] equip it on a wolf hit the wolf shear the armor off put it in an item frame /data get entity @e[type=minecraft:item_frame,sort=nearest,limit=1] if you try to save the game by going to the pause menu the game crashes",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Use the command `/give @p minecraft:wolf_armor[minecraft:damage=2147483647]` to give yourself the armor.\n3. Equip the wolf armor on a wolf.\n4. Hit the wolf to shear the armor off.\n5. Put the sheared armor in an item frame.\n6. Use the command `/data get entity @e[type=minecraft:item_frame,sort=nearest,limit=1]` to retrieve data from the item frame.\n7. Open the pause menu.\n8. Attempt to save the game.\n9. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "When a player uses the command /give @p minecraft:wolf_armor[minecraft:damage=2147483647] to give themselves wolf armor with an extremely high damage value, equipping this armor on a wolf leads to unexpected behavior. If the player then shears the armor off the wolf and attempts to place it in an item frame, the game registers the item frame data using the command /data get entity @e[type=minecraft:item_frame,sort=nearest,limit=1]. Following this sequence of actions, if the player tries to save the game by accessing the pause menu, the game crashes. This issue appears to be linked to the handling of the high damage value associated with the wolf armor, which may be causing the game to encounter an error when processing the save operation.",
+  "Expected Behavior": "When the command `/give @p minecraft:wolf_armor[minecraft:damage=2147483647]` is executed, the wolf should be able to equip the armor without causing any game crashes. Upon shearing the armor off the wolf and placing it in an item frame, the game should allow the player to save normally without any issues. The expected behavior is that all actions related to the armor function smoothly, maintaining game stability throughout.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268879"
+  }
+}
