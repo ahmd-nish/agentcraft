@@ -1,0 +1,42 @@
+{
+  "key": "MC-161268",
+  "created_date": "2019-09-18T06:04:10.626-0700",
+  "updated_date": "2025-04-30T05:49:22.705-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w38a"
+  ],
+  "fix_versions": [
+    "19w38b"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-01-16T05:07:34.900-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "java.lang.IndexOutOfBoundsException while tesselating block model / Game crashes when breaking a block",
+  "environment_raw": null,
+  "description": "The game crashed as I break a full block of oak wood slabs causing me to crash. 19w38a : [^crash-2019-09-18_21.01.43-client.txt] Description: Tesselating block model java.lang.IndexOutOfBoundsException: Index: 1, Size: 1 at java.util.ArrayList.rangeCheck(ArrayList.java:653) at java.util.ArrayList.get(ArrayList.java:429) at cxj.b(SourceFile:91) at cxe.a(SourceFile:306) at dps.a(SourceFile:134) at dps.b(SourceFile:76) at dps.a(SourceFile:47) at dpq.a(SourceFile:48) at dpd.a(SourceFile:1300) at dpa.a(SourceFile:691) at dpa.a(SourceFile:535) at daj.e(SourceFile:931) at daj.b(SourceFile:564) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 19w38a.\n2. Create a new Creative world with default settings.\n3. Obtain a full block of oak wood slabs.\n4. Break the oak wood slabs.\n5. Observe that the game crashes with a `java.lang.IndexOutOfBoundsException` error.",
+  "Environment": "Minecraft Java Edition Version 19w38a (snapshot)",
+  "Observed Behavior": "When attempting to break a full block of oak wood slabs in Minecraft version 19w38a, the game encounters an error that leads to a crash. Specifically, the crash occurs during the tesselation process of the block model, resulting in a `java.lang.IndexOutOfBoundsException`. This exception indicates that the code is attempting to access an index in an ArrayList that is out of the valid range, with the error message stating \"Index: 1, Size: 1.\" \n\nThe stack trace shows that the issue arises in the rendering code, particularly within the methods responsible for handling block models. The crash occurs when the game tries to retrieve data from an ArrayList that is expected to contain multiple elements but only has one, leading to the out-of-bounds access. This suggests a potential bug in the way the game handles the block's model data, particularly for slabs, which may not be correctly initialized or processed when the block is broken.\n\nThis crash can disrupt gameplay and may lead to loss of progress if the player repeatedly encounters the issue while attempting to break oak wood slabs. It is crucial for developers to investigate the handling of block models and ensure that the rendering logic correctly accommodates the unique properties of slab blocks to prevent such crashes.",
+  "Expected Behavior": "When breaking a full block of oak wood slabs, the game should seamlessly remove the block and drop the appropriate item without any crashes or errors. The block should be tesselated correctly, ensuring that all graphical representations are rendered properly, allowing players to continue gameplay without interruptions. This behavior should be consistent across all versions of the game, including 19w38a.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-161268",
+    "community_posts": {
+      "bug_key": "MC-161268",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1048
+    }
+  }
+}

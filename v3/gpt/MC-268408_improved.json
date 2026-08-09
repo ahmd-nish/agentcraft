@@ -1,0 +1,45 @@
+{
+  "key": "MC-268408",
+  "created_date": "2024-02-08T06:08:44.749-0800",
+  "updated_date": "2025-05-29T09:08:51.907-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w06a",
+    "24w07a",
+    "24w09a",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "24w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-03-17T05:14:20.845-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when a wind charge hits an entity after disabling update_1_21 data pack",
+  "environment_raw": null,
+  "description": "The game crashes when hit by a breeze after disabling the update_1_21 data pack. Steps to reproduce - Create a new world with update_1_21 data pack enabled. - Run /datapack disable update_1_21 and exit the world. - Rejoin the world, spawn a breeze and go into survival mode. - Wait for the breeze to attack you and the game will crash instantly. I filed this bug report following a discussion on the Minecraft Commands Discord server involving , using s repro steps.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new world with the `update_1_21` data pack enabled.\n2. Run the command `/datapack disable update_1_21` in the game.\n3. Exit the world.\n4. Rejoin the world.\n5. Spawn a breeze.\n6. Go into survival mode.\n7. Wait for the breeze to attack you.\n8. Observe that the game crashes instantly.",
+  "Environment": "Minecraft Java Edition Versions: 24w06a, 24w07a, 24w09a, 24w10a (includes snapshots)",
+  "Observed Behavior": "When the `update_1_21` data pack is disabled in a world where it was previously enabled, the game crashes upon interaction with a breeze entity. Specifically, after following the reproduction steps, the player enters survival mode and allows the breeze to attack. The game fails to handle the interaction correctly, resulting in an immediate crash. This behavior suggests a potential issue with how the game processes the breeze entity's attack mechanics when the data pack is disabled. The crash appears to be linked to the removal of certain features or behaviors introduced by the `update_1_21` data pack, indicating that the game's code is unable to reconcile the existing world state with the absence of the data pack's modifications. \n\nTo assist in diagnosing the issue, it is recommended to include the following supporting information:\n- Screenshots of the world before and after disabling the data pack, highlighting any relevant changes or anomalies.\n- A ZIP archive of the game's `debug` folder, which contains important logs and crash reports.\n- The `latest.log` and the corresponding `crash-reports/*.txt` file generated during the crash.\n- The world save file, zipped, to allow developers to replicate the issue directly in the affected environment. \n\nThis detailed information would provide developers with the context needed to investigate the underlying cause of the crash when interacting with breeze entities in the absence of the `update_1_21` data pack.",
+  "Expected Behavior": "When the update_1_21 data pack is disabled, the game should allow players to encounter breezes without crashing. Instead of causing a crash, the breeze should harmlessly interact with the player, allowing them to experience the intended mechanics of the game. Players should be able to engage with breezes in survival mode without any adverse effects, ensuring a smooth gameplay experience in all scenarios.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268408",
+    "community_posts": {
+      "bug_key": "MC-268408",
+      "posts_available": 13,
+      "posts_included": 13,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2406
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "key": "MC-248926",
+  "created_date": "2022-03-06T12:18:27.608-0800",
+  "updated_date": "2025-04-10T14:50:07.081-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "22w11a",
+    "22w12a",
+    "22w13a",
+    "1.19 Pre-release 3",
+    "1.19 Pre-release 5",
+    "1.19",
+    "1.19.1 Pre-release 4",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "22w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "chunk-loading",
+    "softlock",
+    "spectatorsGenerateChunks"
+  ],
+  "resolution_date": "2022-12-07T01:50:11.582-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Setting \"spectatorsGenerateChunks\" to false and relogging freezes the game on the Loading Terrain screen",
+  "environment_raw": null,
+  "description": "This is bad. I was trying to spectate my hardcore world after dying, but got stuck in unloaded chunks at my respawn point. Due to this gamerule being set to false when you die in hardcore, I thought to exit out of the world, turn on cheats, and force the chunks around me to load. Because I couldn t load any chunks, my hardcore world cannot load, thus freezing the game at the \"loading terrain\" screen, which softlocks the game. How to reproduce - Die in hardcore. Make sure your death point and spawnpoint are far away from each other. - If you get trapped in unloaded chunks, relog from the world. If not, open the world to LAN amd try again. - Try to open the world. - Sit in your chair for the rest of forever waiting for your world to load.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Hardcore world.\n3. Ensure your spawn point and death point are far apart.\n4. Die in the Hardcore world.\n5. If you get stuck in unloaded chunks, relog from the world. If not, open the world to LAN.\n6. Attempt to open the world again.\n7. Wait for the world to load on the Loading Terrain screen.\n8. Observe that the game freezes on the Loading Terrain screen.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 22w11a, 22w12a, 22w13a, 1.19 Pre-release 3, 1.19 Pre-release 5, 1.19, 1.19.1 Pre-release 4, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When the gamerule \"spectatorsGenerateChunks\" is set to false and a player relogs after dying in hardcore mode, the game freezes on the Loading Terrain screen. This issue arises when a player attempts to spectate their hardcore world after death and finds themselves trapped in unloaded chunks at their respawn point. Since the gamerule prevents chunk generation upon death, the player may decide to exit the world and enable cheats to force chunk loading. However, due to the inability to load any chunks, the game becomes unresponsive when trying to reopen the hardcore world, resulting in a softlock at the Loading Terrain screen. To reproduce this bug, a player should die in hardcore mode, ensuring that their death point is far from their spawn point. If they become stuck in unloaded chunks, they should relog from the world. If the issue persists, they can attempt to open the world to LAN and try again. Ultimately, the player will be left waiting indefinitely as the world fails to load.",
+  "Expected Behavior": "When \"spectatorsGenerateChunks\" is set to false, relogging into a hardcore world should allow the player to spawn at their death point without freezing the game at the \"Loading Terrain\" screen. Instead, the game should properly load the surrounding chunks, enabling the player to interact with the world and continue spectating without being softlocked. The intended behavior is for the game to handle chunk loading smoothly, regardless of the gamerule settings.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-248926",
+    "community_posts": {
+      "bug_key": "MC-248926",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2593
+    }
+  }
+}

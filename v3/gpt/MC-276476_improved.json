@@ -1,0 +1,42 @@
+{
+  "key": "MC-276476",
+  "created_date": "2024-09-07T00:44:48.829-0700",
+  "updated_date": "2025-04-26T16:41:46.171-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-09-09T01:27:12.936-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when a boat is destroyed by a hazard",
+  "environment_raw": null,
+  "description": "What I expected to happen was...: The game functions normally after a boat is destroyed by a hazard. What actually happened was...: The server (internal/dedicated) crashes when the boat is destroyed by a hazard. Steps to Reproduce: - Ride a boat - Drive it into a hazard that destroys it",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Ride a boat.\n3. Drive the boat into a hazard that destroys it.\n4. Observe that the server crashes when the boat is destroyed by the hazard.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "What actually happened was that when the boat is destroyed by a hazard, the server experiences a crash, resulting in a complete shutdown of the game session. This crash occurs specifically in environments using internal or dedicated servers, leading to an abrupt termination of gameplay for all connected players. The issue arises consistently when a player rides a boat and intentionally drives it into a hazard that causes the boat to be destroyed, demonstrating a clear and repeatable trigger for the crash. This behavior disrupts the gaming experience significantly, as players are unable to continue their activities without restarting the server, which can lead to loss of progress and frustration.",
+  "Expected Behavior": "When a boat is destroyed by a hazard, the game should continue to operate smoothly without crashing. Players should be able to witness the boat's destruction and any resulting effects, such as particles or sound, while remaining in the game without interruptions. The server should maintain its stability, allowing all players to continue their activities without experiencing crashes or disconnections.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276476",
+    "community_posts": {
+      "bug_key": "MC-276476",
+      "posts_available": 9,
+      "posts_included": 9,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1588
+    }
+  }
+}

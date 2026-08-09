@@ -1,0 +1,47 @@
+{
+  "key": "MC-235574",
+  "created_date": "2021-08-30T02:42:43.808-0700",
+  "updated_date": "2025-03-25T12:57:12.913-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w38a",
+    "21w39a",
+    "21w40a",
+    "21w41a",
+    "1.18.1"
+  ],
+  "fix_versions": [
+    "22w03a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-01-18T04:19:25.815-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when replacing a block with a wall with blockstate up:false",
+  "environment_raw": null,
+  "description": "Give yourself a wall using give @p brick_wall{BlockStateTag:{up:\"false\"}} 1 Then, place a block with no other blocks around it, and press left and right click at the same time while looking at that block and holding the wall. Then, crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Give yourself a wall with the command: `give @p brick_wall{BlockStateTag:{up:\"false\"}} 1`.\n3. Place the wall block with no other blocks around it.\n4. Hold the wall block in your hand.\n5. Press left and right click at the same time while looking at the placed wall block.\n6. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w38a, 21w39a, 21w40a, 21w41a, 1.18.1 (includes snapshots)",
+  "Observed Behavior": "When executing the command `give @p brick_wall{BlockStateTag:{up:\"false\"}} 1`, the player receives a brick wall item with the `up` block state set to `false`. The player then places a block in an isolated area, ensuring there are no adjacent blocks. While targeting the placed block, the player simultaneously presses the left and right mouse buttons while holding the brick wall item. This action triggers a game crash, causing the client to terminate unexpectedly without any error message or crash report generated. The crash occurs specifically when the game attempts to handle the interaction of placing the wall block in conjunction with the defined block state, indicating a potential issue in the block placement logic or state management within the game\u2019s code. This crash is reproducible under the same conditions and consistently occurs each time the specified actions are performed.",
+  "Expected Behavior": "When following the reproduction steps, the game should successfully allow the player to replace a block with a wall that has the blockstate up set to false without crashing. The player should be able to place the wall correctly and interact with the block without any issues, resulting in the expected behavior of placing and replacing blocks as intended, maintaining stability in gameplay.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-235574",
+    "community_posts": {
+      "bug_key": "MC-235574",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 386
+    }
+  }
+}

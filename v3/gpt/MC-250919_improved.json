@@ -1,0 +1,43 @@
+{
+  "key": "MC-250919",
+  "created_date": "2022-04-27T02:49:16.064-0700",
+  "updated_date": "2025-03-25T13:40:15.968-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w16b",
+    "22w17a"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-05-17T02:29:54.766-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The server crashes when attempting to load chunks that contain command blocks that consist of large numbers of characters within the previous output field",
+  "environment_raw": null,
+  "description": "The Bug: The server crashes when attempting to load chunks that contain command blocks that consist of large numbers of characters within the previous output field. The full server console log and a crash report regarding this have been attached and can be found below. Stack Trace: [^crash-2022-04-27_10.42.38-server.txt] Description: Exception generating new chunk java.io.EOFException at java.base/java.io.DataInputStream.readUnsignedShort(DataInputStream.java:346) at pq.a(SourceFile:54) at pq$1.a(SourceFile:34) at oz$1.a(SourceFile:136) at pu$b.a(SourceFile:50) at pf$1.a(SourceFile:91) at oz$1.a(SourceFile:96) at pj.a(SourceFile:120) at cvr.a(SourceFile:65) at cvo.b(SourceFile:218) at cvo.a(SourceFile:231) at awt$b.run(SourceFile:59) at awr.h(SourceFile:91) at awr.a(SourceFile:146) at awr.run(SourceFile:102) at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) at java.base/java.lang.Thread.run(Thread.java:833) Steps to Reproduce: - Launch a server running 22w16b that has command blocks enabled and join it. - Unlock all recipes within the game by executing the command provided below. /recipe give @s - Summon a repeating command block nearby that will constantly get the data of your player. /setblock ~ ~ ~3 minecraft:repeating_command_block{auto:1b,Command:\"data get entity @p\"} - Leave the game, shut down the server, and reboot it. - Take note as to whether or not the server crashes when attempting to load chunks that contain command blocks that consist of large numbers of characters within the previous output field. Observed Behavior: The server crashes. Expected Behavior: The server would not crash.",
+  "Steps to Reproduce": "1. Launch a server running version 22w16b with command blocks enabled.\n2. Join the server.\n3. Execute the command `/recipe give @s` to unlock all recipes.\n4. Summon a repeating command block nearby by executing the command `/setblock ~ ~ ~3 minecraft:repeating_command_block{auto:1b,Command:\"data get entity @p\"}`.\n5. Leave the game.\n6. Shut down the server.\n7. Reboot the server.\n8. Observe whether the server crashes when attempting to load chunks that contain command blocks with large numbers of characters in the previous output field.",
+  "Environment": "Minecraft Java Edition Versions: 22w16b, 22w17a (includes snapshots)",
+  "Observed Behavior": "When the server attempts to load chunks containing command blocks with extensive command strings (specifically those that exceed a certain character limit), it encounters an `EOFException` during the chunk generation process. This results in the server crashing, preventing players from accessing any areas of the world that contain these problematic command blocks. The crash log indicates that the error occurs while reading data from the chunk file, specifically when the server tries to process the command block data. This behavior is reproducible consistently under the specified conditions, leading to server instability and an inability to load affected chunks.",
+  "Expected Behavior": "When attempting to load chunks containing command blocks with extensive character output, the server should successfully process these chunks without crashing. The command blocks should operate as intended, allowing players to access the functionality of the commands without causing any server instability. This expected behavior should occur consistently, ensuring a seamless gameplay experience without interruptions due to server crashes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-250919",
+    "community_posts": {
+      "bug_key": "MC-250919",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 552
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "key": "MC-277967",
+  "created_date": "2024-10-30T14:20:41.670-0700",
+  "updated_date": "2025-04-26T17:21:00.237-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w44a"
+  ],
+  "fix_versions": [
+    "24w45a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion A",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-05T07:24:41.725-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when certain explosions occur near a creaking in its death animation",
+  "environment_raw": null,
+  "description": "The Bug The game crashes when certain explosions occur near a creaking in its death animation. See the attached crash report. The types of explosions that cause a crash are: - Creeper explosion - Wither spawn explosion - Fireball explosion - Wither skull explosion - Firework rocket with firework star TNT, beds, respawn anchors, and end crystals do not cause a crash. Steps to Reproduce - Place a creaking heart between two pale oak logs at nighttime to spawn a creaking. - Teleport the creaking next to the heart: /tp @n[type=minecraft:creaking_transient] @s - Summon a creeper next to the creaking, and ignite it with a flint and steel. - Before the creeper finishes its fuse, break the creaking heart so the creaking enters its death animation. - If done correctly, the game should crash. Observed Results The game crashes when certain explosions occur near a creaking in its death animation. Expected Results The game should not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place a creaking heart between two pale oak logs at nighttime to spawn a creaking.\n4. Teleport the creaking next to the heart using the command: `/tp @n[type=minecraft:creaking_transient] @s`.\n5. Summon a creeper next to the creaking.\n6. Ignite the creeper with flint and steel.\n7. Wait for the creeper's fuse to almost finish.\n8. Break the creaking heart so the creaking enters its death animation.\n9. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w44a (snapshot)",
+  "Observed Behavior": "The game experiences a crash when specific types of explosions occur in proximity to a creaking during its death animation. The explosions that trigger this crash include those from creepers, wither spawn, fireballs, wither skulls, and firework rockets with firework stars. However, other explosive sources such as TNT, beds, respawn anchors, and end crystals do not lead to a crash. To reproduce the issue, one must first place a creaking heart between two pale oak logs at nighttime to spawn a creaking. Next, the player should teleport the creaking next to the heart using the command /tp @n[type=minecraft:creaking_transient] @s. Following this, a creeper should be summoned adjacent to the creaking and ignited with flint and steel. It is crucial to break the creaking heart before the creeper's fuse finishes so that the creaking enters its death animation. If executed correctly, this sequence results in a game crash. The expected behavior is that the game remains stable and does not crash when these explosions occur near a creaking in its death animation.",
+  "Expected Behavior": "When following the reproduction steps, the game should allow the creaking to enter its death animation without crashing, regardless of the explosion occurring nearby. The explosions from creepers, wither spawn, fireballs, and other specified sources should not disrupt gameplay or cause the game to terminate unexpectedly. Instead, the creaking should complete its animation, and players should be able to continue playing without any interruptions or crashes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-277967",
+    "community_posts": {
+      "bug_key": "MC-277967",
+      "posts_available": 19,
+      "posts_included": 19,
+      "posts_dropped_over_budget": 0,
+      "tokens": 3798
+    }
+  }
+}

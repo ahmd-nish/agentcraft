@@ -1,0 +1,44 @@
+{
+  "key": "MC-271001",
+  "created_date": "2024-04-21T01:48:34.286-0700",
+  "updated_date": "2025-05-29T09:06:39.995-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Release Candidate 2",
+    "1.20.6"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-05-06T08:47:10.383-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Items in a container can be given a count above 99 (to max integer), and can crash the world",
+  "environment_raw": null,
+  "description": "Using the following give command, item stacks can be given extremely high counts up to the java max integer. /give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]] Placing and then breaking the barrel will cause the stack to split into smaller stacks, spawn at least a few hundred million item entities, and crash the world. The split stacks seem to have random counts around 10 to 30, so it s slightly less than 2 billion entities spawned at once. Using commands to get an item with max_stack_size above 99 will detect and remove the invalid component, and setting the item count to below 1 will set it back to 1. Expected behavior would be for item count to be limited to the max_stack_size (or at least a hard coded max of 99).",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Use the command `/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]` to give yourself a barrel containing a wooden sword with a count of 2147483647.\n4. Place the barrel in the world.\n5. Break the barrel.\n6. Wait at least a few seconds and observe that item stacks split into smaller stacks and a large number of item entities spawn.\n7. Observe that the world crashes as a result of the excessive item entities.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.5 Pre-Release 1, 1.20.5 Release Candidate 2, 1.20.6",
+  "Observed Behavior": "When utilizing the command `/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]`, a player can create an item stack that exceeds the maximum stack size of 64 (or 99 for certain items) by assigning it a count as high as the Java maximum integer value (2,147,483,647). Upon placing the barrel containing this item stack and subsequently breaking it, the stack splits into multiple smaller stacks. This results in the generation of an excessive number of item entities, potentially spawning nearly 2 billion entities at once. The individual split stacks appear to have random counts, typically ranging from 10 to 30 items each.\n\nThis behavior leads to severe performance issues, including significant lag and ultimately crashing the game or server due to the overwhelming number of item entities. The game does not handle such a high count gracefully, as it exceeds the intended limits for item stacking.\n\nIn contrast, when commands are used to obtain items with a count exceeding the maximum stack size, the game detects the invalid count and corrects it by removing the excess. If the count is set below 1, it defaults back to 1, thereby preventing the creation of invalid item stacks. \n\nThe expected behavior is that item counts should be constrained to the maximum stack size defined for each item type, or at the very least, capped at a hard-coded limit of 99, to avoid these performance-related issues and maintain game stability.",
+  "Expected Behavior": "When using the /give command to create item stacks in a container, the item count should be limited to the maximum stack size defined for that item, which is typically 64 or 16, depending on the item type. If an attempt is made to exceed this limit, the game should automatically adjust the count to the maximum allowed value, preventing any item from exceeding the defined limits and avoiding potential crashes or excessive item entity spawns. This behavior should be consistent across all item types in the game.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-271001",
+    "community_posts": {
+      "bug_key": "MC-271001",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 480
+    }
+  }
+}

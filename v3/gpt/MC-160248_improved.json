@@ -1,0 +1,45 @@
+{
+  "key": "MC-160248",
+  "created_date": "2019-08-31T22:07:33.358-0700",
+  "updated_date": "2025-04-14T16:32:11.159-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w35a",
+    "19w36a"
+  ],
+  "fix_versions": [
+    "19w37a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash"
+  ],
+  "resolution_date": "2019-09-06T15:34:24.810-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Slime and magma cube spawners crash the game",
+  "environment_raw": null,
+  "description": "The bug When you put a slime egg into a spanner, it crashes your game, and when you try to get on the same world, it crashes the game until you break it. How to reproduce - /give @s minecraft:spawner - /give @s minecraft:slime_spawn_egg - Place down the spawner - Right click it with the spawn egg Game crashes Crash report 19w35a : [^crash-2019-09-02_03.56.07-client.txt] Description: Rendering Block Entity java.lang.IllegalArgumentException: Attribute is already registered! at akr.b(SourceFile:29) at akt.b(SourceFile:30) at awf.a(SourceFile:89) at awf.a(SourceFile:341) at bib.d(SourceFile:256) at drb.a(SourceFile:20) at drb.a(SourceFile:15) at drb.a(SourceFile:10) at dqq.a(SourceFile:139) at dqq.a(SourceFile:121) at dow.a(SourceFile:606) at dos.b(SourceFile:840) at dos.a(SourceFile:747) at dos.a(SourceFile:613) at czq.e(SourceFile:941) at czq.b(SourceFile:402) at net.minecraft.client.main.Main.main(SourceFile:194) A detailed walkthrough of the error, its code path and all known details is as follows: --------------------------------------------------------------------------------------- -- Head -- Thread: Render thread Stacktrace: at akr.b(SourceFile:29) at akt.b(SourceFile:30) at awf.a(SourceFile:89) at awf.a(SourceFile:341) at bib.d(SourceFile:256) at drb.a(SourceFile:20) at drb.a(SourceFile:15) at drb.a(SourceFile:10) -- Block Entity Details -- Details: Name: minecraft:mob_spawner // bwb Block: Block{minecraft:spawner} Block location: World: (-53,63,0), Chunk: (at 11,3,0 in -4,0; contains blocks -64,0,0 to -49,255,15), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511) Block: Block{minecraft:spawner} Block location: World: (-53,63,0), Chunk: (at 11,3,0 in -4,0; contains blocks -64,0,0 to -49,255,15), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511) Stacktrace: at dqq.a(SourceFile:139) at dqq.a(SourceFile:121) at dow.a(SourceFile:606) at dos.b(SourceFile:840) at dos.a(SourceFile:747)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Use the command `/give @s minecraft:spawner`.\n3. Use the command `/give @s minecraft:slime_spawn_egg`.\n4. Place down the spawner.\n5. Right-click the spawner with the slime spawn egg.\n6. Observe that the game crashes immediately.\n7. Attempt to load the same world again.\n8. Observe that the game crashes again until the spawner is broken.",
+  "Environment": "Minecraft Java Edition Versions: 19w35a, 19w36a (includes snapshots)",
+  "Observed Behavior": "The issue occurs when a player places a slime spawn egg into a mob spawner, resulting in a crash of the game. Specifically, upon attempting to use the slime spawn egg on the spawner, the game fails to process the action and crashes immediately. After this crash, the player is unable to re-enter the same world without experiencing another crash, which continues until the problematic spawner is destroyed. To replicate the issue, players can use commands to give themselves a mob spawner and a slime spawn egg, then proceed to place the spawner and right-click it with the spawn egg, leading to the game crash. The crash report generated during this event indicates a rendering error associated with the block entity, specifically citing an IllegalArgumentException stating that an attribute is already registered. The stack trace reveals that the error originates from several classes related to rendering and block entity management, confirming that the crash is tied to the interaction between the mob spawner and the slime spawn egg. The block entity details show that the spawner is located at specific coordinates within the game world, which may assist developers in pinpointing the source of the problem.",
+  "Expected Behavior": "When a slime spawn egg is placed into a spawner, the game should allow the player to successfully interact with the spawner without causing any crashes. The spawner should correctly register the slime spawn egg, enabling it to function as intended by generating slimes in the game world. Players should be able to enter the same world afterward without experiencing crashes, maintaining a stable gaming experience.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-160248",
+    "community_posts": {
+      "bug_key": "MC-160248",
+      "posts_available": 9,
+      "posts_included": 9,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1790
+    }
+  }
+}

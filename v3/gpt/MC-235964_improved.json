@@ -1,0 +1,55 @@
+{
+  "key": "MC-235964",
+  "created_date": "2021-09-04T16:26:37.562-0700",
+  "updated_date": "2025-05-29T09:10:40.468-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w37a",
+    "21w38a",
+    "21w40a",
+    "21w41a",
+    "1.18 Pre-release 1",
+    "1.18.1",
+    "22w03a",
+    "22w06a",
+    "1.18.2 Pre-release 1",
+    "1.18.2"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "crash",
+    "profiler"
+  ],
+  "resolution_date": "2022-03-16T07:39:03.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash on \"Saving world\" when F3 L profiling is active - java.lang.NullPointerException: Cannot read field \"f\" because \"this.D\" is null",
+  "environment_raw": null,
+  "description": "Steps to reproduce: 1. Start Minecraft. 2. Create a new world or join a world. 3. Press F3 L. 4. Before the 10 seconds are up, exit the world by pressing Escape then clicking \"Save and Quit to Title\". 5. Notice the resulting crash.",
+  "Steps to Reproduce": "1. Start Minecraft.\n2. Create a new world or join an existing world.\n3. Press F3 and L to activate profiling.\n4. Wait approximately 10 seconds.\n5. Before the 10 seconds are up, exit the world by pressing Escape and then clicking \"Save and Quit to Title\".\n6. Observe that the game crashes with a NullPointerException.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w37a, 21w38a, 21w40a, 21w41a, 1.18 Pre-release 1, 1.18.1, 22w03a, 22w06a, 1.18.2 Pre-release 1, 1.18.2 (includes snapshots)",
+  "Observed Behavior": "The actual behavior of the game when the bug occurs involves a crash that takes place during the process of saving the world while the F3 L profiling feature is active. Specifically, when the player initiates the profiling by pressing F3 L and then exits the world before the profiling duration of ten seconds elapses, the game encounters a java.lang.NullPointerException. This error arises because the game attempts to access a field that is null, indicated by the message stating that it cannot read the field \"f\" because \"this.D\" is null. As a result, the game crashes abruptly, preventing the player from successfully saving their progress in the world. This issue highlights a critical flaw in the game's handling of profiling data during the save operation, which could lead to further complications if not addressed.",
+  "Expected Behavior": "When pressing F3 L while profiling in Minecraft, the game should allow the player to exit the world without any crashes occurring. Upon selecting \"Save and Quit to Title,\" the world should save successfully, and the player should return to the main menu without encountering any errors or exceptions. This behavior should be consistent across all game modes and versions where F3 L is implemented, ensuring a smooth user experience.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-235964",
+    "community_posts": {
+      "bug_key": "MC-235964",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 427
+    }
+  }
+}
