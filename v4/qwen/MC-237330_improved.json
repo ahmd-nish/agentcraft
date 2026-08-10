@@ -1,0 +1,53 @@
+{
+  "key": "MC-237330",
+  "created_date": "2021-09-21T09:55:20.162-0700",
+  "updated_date": "2025-05-02T00:37:18.351-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a",
+    "21w38a",
+    "21w39a",
+    "21w40a"
+  ],
+  "fix_versions": [
+    "21w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-10-13T08:03:12.302-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Worlds created with seed \"REDApRES\" (0) crash when trying to load new 1.18 mountain biomes / java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null",
+  "environment_raw": null,
+  "description": "Basically the title. This doesn t affect any cave biomes. To recreate this you just have to enter \"REDApRES\" into the seed field and create a new world. After that you can locate and tp/walk to any of the new mountain biomes except Meadow and the world will crash. I tried this on a server and the error was \"java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null\" and the server closed with error code \"255\". I understand that technically seed \"0\" isn t even supposed to be entered but it have worked with all previous versions so I think this crash counts as a bug. My guess is that this new mountain generation is completely based on the raw seed so there probably won t be any fix for this bug but I am still reporting it because I often use it and I got hope. Stack trace crash-2021-09-21_15.04.25-server.txt Description: Exception generating new chunk java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null at dff.a(SourceFile:38) at dfi.a(SourceFile:24) at dff.a(SourceFile:30) at dff.a(SourceFile:13) at det.a(SourceFile:27) at bze.a(SourceFile:352) at crh.a(SourceFile:330) at cod.e(SourceFile:98) at cod$d.doWork(SourceFile:306) at cod.a(SourceFile:256) at abj.a(SourceFile:625) at com.mojang.datafixers.util.Either$Left.map(Either.java:38) at abj.a(SourceFile:619) at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1146) at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:478) at abl.b(SourceFile:58) at ask.g(SourceFile:91) at ask.a(SourceFile:146) at ask.run(SourceFile:102) at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1434) at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:295) at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1016) at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1665) at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1598) at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world with seed \"REDApRES\" (0).\n3. Use `/locatebiome snowy_slopes` to find the nearest Snowy Slopes biome coordinates.\n4. Teleport to the located Snowy Slopes biome using `/tp <coordinates>`.\n5. Observe that the game crashes when loading the new mountain biome chunk.\n\n6. Alternatively, create a Single Biome world with seed \"REDApRES\" (0) and select any of the affected biomes: grove, snowy slopes, jagged peaks, frozen peaks, or stony peaks.\n7. Walk to an area where the specified biome loads.\n8. Observe that the game crashes when loading the new mountain biome chunk.\n\n9. Note the error message \"java.lang.NullPointerException: Cannot invoke 'dfw.a(double, double, double)' because 'this.a' is null\" in the crash report.",
+  "Environment": "Minecraft Java Edition Versions: 21w37a, 21w38a, 21w39a, 21w40a (includes snapshots)",
+  "Observed Behavior": "When creating a new world with seed \"REDApRES\" (0) in Minecraft version 1.18, attempting to load any of the new mountain biomes except Meadow results in a crash. This issue does not affect cave biomes. To reproduce the bug, enter \"REDApRES\" as the seed and create a world. Then, locate and either teleport or walk to one of the affected mountain biomes such as Snowy Slopes, Jagged Peaks, Frozen Peaks, or Stony Peaks. The game will crash with the error message: `java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null`. This has been observed both on single-player and server instances, where the server also closes with an error code of 255. Although seed \"0\" technically isn't supposed to be used, it worked fine in previous versions, making this crash a significant bug. The issue appears to stem from the new mountain biome generation logic that heavily relies on the raw seed value. Despite the likelihood that no fix may be available due to the nature of the seed dependency, reporting this is important for users who frequently use this seed. Additionally, the stack trace indicates an exception during chunk generation, specifically at `dff.a(SourceFile:38)`, which points to a deeper issue in how these biomes are generated with the given seed.",
+  "Expected Behavior": "When using seed \"REDApRES\" (0) to create a new world, players should be able to explore and load all new 1.18 mountain biomes such as Snowy Slopes, Grove, Jagged Peaks, Frozen Peaks, and Stony Peaks without encountering any crashes or errors. The game should run smoothly, allowing navigation through these biomes without the server closing or the client crashing.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-237330",
+    "community_posts": {
+      "bug_key": "MC-237330",
+      "posts_available": 0,
+      "posts_included": 0,
+      "posts_dropped_over_budget": 0,
+      "tokens": 0
+    },
+    "jira_comments": {
+      "bug_key": "MC-237330",
+      "comments_total": 8,
+      "comments_included": 6,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 668
+    }
+  }
+}

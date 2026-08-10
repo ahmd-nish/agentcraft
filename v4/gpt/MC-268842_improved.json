@@ -1,0 +1,50 @@
+{
+  "key": "MC-268842",
+  "created_date": "2024-02-28T10:42:06.138-0800",
+  "updated_date": "2025-04-29T10:33:58.564-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:35.936-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when saving world with painting",
+  "environment_raw": null,
+  "description": "Have a painting item in the inventory (a creative variant with a pre-selected painting), or place down it in the world, then save the game by going to another dimension or pausing.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Obtain a painting item in the inventory (a creative variant with a pre-selected painting).\n4. Place the painting down in the world.\n5. Pause the game.\n6. Save the game by going to another dimension or using the pause menu.\n7. Observe that the game crashes upon saving.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "When attempting to save a world in Minecraft while having a painting item in the inventory, specifically a creative variant with a pre-selected painting, or after placing the painting in the world, the game crashes. This issue occurs when the player tries to save the game by either transitioning to another dimension or pausing the game. The crash appears to be linked to the handling of the painting item during the save process, potentially causing a conflict in the game's data management. Players have reported that this crash is reproducible under these specific circumstances, indicating a consistent failure in the game's code when dealing with the painting item during save operations. This problem may affect gameplay continuity and needs to be addressed to ensure a stable experience for users who utilize paintings in their worlds.",
+  "Expected Behavior": "When a player has a painting item in their inventory or has placed it in the world, saving the game should proceed without any crashes or interruptions. The game should successfully save the current state, allowing the player to transition to another dimension or pause without encountering any errors. This behavior should be consistent across all game modes and versions, ensuring a smooth experience while interacting with paintings.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268842",
+    "community_posts": {
+      "bug_key": "MC-268842",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 465
+    },
+    "jira_comments": {
+      "bug_key": "MC-268842",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 152
+    }
+  }
+}

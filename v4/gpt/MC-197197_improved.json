@@ -1,0 +1,54 @@
+{
+  "key": "MC-197197",
+  "created_date": "2020-08-05T19:42:11.430-0700",
+  "updated_date": "2025-05-05T02:10:02.696-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2 Pre-release 2",
+    "1.16.2 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.16.2 Release Candidate 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "superflat"
+  ],
+  "resolution_date": "2020-08-13T05:38:18.604-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes/freezes after creating/entering a Superflat world without presets",
+  "environment_raw": null,
+  "description": "When create a superflat world without presets, it crashes. 1.16.2-pre2 Description: Ticking player java.lang.IllegalStateException: Unregistered biome at bw.b(SourceFile:88) at java.base/java.util.Optional.orElseThrow(Optional.java:385) at bw.a(SourceFile:88) at bw.a(SourceFile:68) at bx$a.a(SourceFile:55) at bx.a(SourceFile:31) at ck.a(SourceFile:62) at bx.a(SourceFile:31) at aah.v_(SourceFile:484) at aay.b(SourceFile:207) at nd.a(SourceFile:234) at aax.c(SourceFile:173) at net.minecraft.server.MinecraftServer.b(SourceFile:881) at net.minecraft.server.MinecraftServer.a(SourceFile:810) at emy.a(SourceFile:92) at net.minecraft.server.MinecraftServer.w(SourceFile:669) at net.minecraft.server.MinecraftServer.a(SourceFile:254) at java.base/java.lang.Thread.run(Thread.java:844) 1.16.2-pre3 [18:07:58] [Render thread/WARN]: Received invalid biome id: -1",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.16.2-pre2.\n2. Select \"Singleplayer\" from the main menu.\n3. Click on \"Create New World.\"\n4. Select \"Superflat\" as the world type without choosing any presets.\n5. Click \"Create New World\" to generate the world.\n6. Wait for the world to load and observe the game crash.\n7. Record the crash report details, noting any error messages regarding unregistered biomes.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.2 Pre-release 2, 1.16.2 Pre-release 3",
+  "Observed Behavior": "When creating or entering a Superflat world without selecting any presets, the game experiences a crash due to an unregistered biome. Specifically, in version 1.16.2-pre2, the error message indicates a ticking player issue caused by a java.lang.IllegalStateException, which states that there is an unregistered biome. The crash occurs when the game attempts to reference a biome that is not recognized, leading to a failure in generating the world properly. In this version, the preset name for the default Superflat world is set to \"minecraft:bedrock,2*minecraft:dirt,minecraft:grass_block;null,\" where \"null\" is not a valid biome, resulting in the crash. In version 1.16.2-pre3, the situation worsens as it generates a warning about receiving an invalid biome ID of -1, further indicating that the game cannot handle the absence of a valid biome reference. The issue persists across these versions, causing significant disruption when players attempt to utilize Superflat worlds without properly defined presets.",
+  "Expected Behavior": "When creating a Superflat world without presets, the game should successfully generate the world using a default biome configuration, such as the plains biome, without encountering any errors or crashes. Players should be able to enter the world seamlessly and interact with the environment as intended, experiencing the expected gameplay features of a Superflat world without any interruptions or issues related to unregistered biomes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-197197",
+    "community_posts": {
+      "bug_key": "MC-197197",
+      "posts_available": 4,
+      "posts_included": 4,
+      "posts_dropped_over_budget": 0,
+      "tokens": 787
+    },
+    "jira_comments": {
+      "bug_key": "MC-197197",
+      "comments_total": 9,
+      "comments_included": 8,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 444
+    }
+  }
+}

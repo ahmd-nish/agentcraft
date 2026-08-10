@@ -1,0 +1,50 @@
+{
+  "key": "MC-260194",
+  "created_date": "2023-02-15T21:04:10.282-0800",
+  "updated_date": "2025-04-11T11:47:56.557-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w07a"
+  ],
+  "fix_versions": [
+    "1.19.4 Pre-release 1"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-03-06T04:02:46.233-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Create new world screen appears even when world is created; clicking on button causes freeze or crash",
+  "environment_raw": null,
+  "description": "The bug I just created a new world to test out the new features, but the game froze for a second after I enabled the 1.20 data pack. When I clicked on continue, nothing happened until the game unfreeze. But the create world button is in the same place as the continue button. So when the world loaded up, I was met with the create new world screen again. When I created a world again, it got stuck on preparing world for creation Steps to reproduce - Create World Tab - Experiments - Double click on Done - Now, you will get two buttons, if you click Create New World game will softlock",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Navigate to the Create World tab.\n4. Enable the 1.20 data pack.\n5. Click on Experiments and double click on Done.\n6. Observe that two buttons appear.\n7. Click on the Create New World button.\n8. Wait until the game freezes for a moment.\n9. After the freeze ends, observe that the create new world screen reappears instead of loading the new world.\n10. Attempt to create a world again and observe that the game gets stuck on preparing world for creation.",
+  "Environment": "Minecraft Java Edition Version 23w07a (snapshot)",
+  "Observed Behavior": "After enabling the 1.20 data pack and creating a new world, the game briefly freezes. Upon clicking the \"Continue\" button, there is a delay where no action occurs until the game unfreezes. The \"Create New World\" button is positioned directly above the \"Continue\" button, which leads to confusion. Once the world appears to load, the player is unexpectedly returned to the \"Create New World\" screen instead of entering the newly created world. When attempting to create a world again, the game becomes stuck on the \"Preparing World for Creation\" screen, indicating a softlock situation. This behavior disrupts the user experience and prevents players from accessing their newly generated worlds.",
+  "Expected Behavior": "When following the reproduction steps, the game should successfully create and load the new world without freezing or crashing. Upon clicking the \"Continue\" button after enabling the 1.20 data pack, the player should seamlessly enter the newly created world instead of being redirected to the \"Create New World\" screen. The world should be prepared for play without any interruptions, allowing for a smooth transition into the gameplay experience.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-260194",
+    "community_posts": {
+      "bug_key": "MC-260194",
+      "posts_available": 8,
+      "posts_included": 8,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1106
+    },
+    "jira_comments": {
+      "bug_key": "MC-260194",
+      "comments_total": 1,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

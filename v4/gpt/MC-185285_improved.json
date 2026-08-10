@@ -1,0 +1,56 @@
+{
+  "key": "MC-185285",
+  "created_date": "2020-05-23T01:50:51.794-0700",
+  "updated_date": "2025-05-03T20:03:04.032-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w21a",
+    "20w22a",
+    "1.16 Pre-release 1",
+    "1.16 Pre-release 2"
+  ],
+  "fix_versions": [
+    "1.16 Pre-release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "debug-world",
+    "nether"
+  ],
+  "resolution_date": "2020-06-09T05:55:00.206-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Entering the End or the Nether after creating and reentering a debug world crashes the game",
+  "environment_raw": null,
+  "description": "Regardless of whether you have entered the End or the Nether on your first entry on the debug world, reentering the debug world and using either the Nether or the End portal will crash the game. Nether Crash Report: End Crash Report:",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new debug world.\n2. Enter the debug world and use the End portal or Nether portal.\n3. Exit the game and re-enter the debug world.\n4. Use the End portal or Nether portal again.\n5. Observe that the game crashes upon entering either dimension.",
+  "Environment": "Minecraft Java Edition Versions: 20w21a, 20w22a, 1.16 Pre-release 1, 1.16 Pre-release 2 (includes snapshots)",
+  "Observed Behavior": "Entering the End or the Nether after creating and reentering a debug world consistently causes the game to crash. This issue occurs regardless of whether the player has previously entered the End or the Nether in that debug world. Upon reentering the debug world and using either the Nether or End portal, the game crashes, indicating a serious problem with the interaction between the debug world and dimension portals. This bug is critical to address, as it disrupts gameplay and prevents players from accessing these key dimensions. Crash reports specific to the Nether and End have been generated and should be reviewed for further analysis. Players should note that this issue arises exclusively in the debug world context and does not appear to be related to normal gameplay in standard worlds.",
+  "Expected Behavior": "When reentering a debug world, players should be able to successfully use the Nether or End portals without experiencing a crash. Upon entering either dimension, the game should load the respective environments smoothly, allowing players to explore and interact with the world as intended. This functionality should work consistently, ensuring a stable experience across all versions without unexpected terminations or errors.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-185285",
+    "community_posts": {
+      "bug_key": "MC-185285",
+      "posts_available": 81,
+      "posts_included": 81,
+      "posts_dropped_over_budget": 0,
+      "tokens": 15534
+    },
+    "jira_comments": {
+      "bug_key": "MC-185285",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 147
+    }
+  }
+}

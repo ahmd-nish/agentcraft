@@ -1,0 +1,50 @@
+{
+  "key": "MC-236656",
+  "created_date": "2021-09-15T11:22:08.214-0700",
+  "updated_date": "2025-05-02T01:04:05.029-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a"
+  ],
+  "fix_versions": [
+    "21w38a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-09-23T06:35:33.668-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when changing render distance / java.lang.ArrayIndexOutOfBoundsException: Index 28084 out of bounds for length 26136",
+  "environment_raw": null,
+  "description": "When changing render/view distance via the option menu while standing inside a world, minecraft sometimes crashes with an ArrayIndexOutOfBoundsException. This can be best reproduced by spam-clicking the slider in random positions, although for me it crashed after only one click, the first time.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open the Options menu.\n4. Navigate to Video Settings.\n5. Adjust the Render Distance slider by clicking it in random positions rapidly.\n6. Observe that Minecraft sometimes crashes with an `ArrayIndexOutOfBoundsException`.",
+  "Environment": "Minecraft Java Edition Version 21w37a (snapshot)",
+  "Observed Behavior": "When changing the render distance in Minecraft through the options menu while in an active world, the game can unexpectedly crash, resulting in an ArrayIndexOutOfBoundsException. This specific error occurs when the index exceeds the bounds of the array, as indicated by the error message stating that index 28084 is out of bounds for an array of length 26136. The crash can be consistently reproduced by rapidly adjusting the render distance slider in various positions, although in some instances, such as my experience, the game may crash after just a single click. This issue raises concerns about stability during gameplay when players attempt to modify visual settings, potentially disrupting their experience. It is crucial for developers to investigate this bug further to ensure that changing render distance does not lead to crashes and that players can enjoy a seamless gaming experience without encountering such errors.",
+  "Expected Behavior": "When changing the render/view distance via the options menu while standing inside a world, Minecraft should adjust the render distance smoothly without crashing or displaying any errors. The game should allow players to interact with the slider and select different distances without experiencing an ArrayIndexOutOfBoundsException. This functionality should work consistently, enabling users to enjoy their gameplay without unexpected interruptions or crashes.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-236656",
+    "community_posts": {
+      "bug_key": "MC-236656",
+      "posts_available": 16,
+      "posts_included": 16,
+      "posts_dropped_over_budget": 0,
+      "tokens": 3680
+    },
+    "jira_comments": {
+      "bug_key": "MC-236656",
+      "comments_total": 2,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 105
+    }
+  }
+}

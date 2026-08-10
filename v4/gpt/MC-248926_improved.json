@@ -1,0 +1,62 @@
+{
+  "key": "MC-248926",
+  "created_date": "2022-03-06T12:18:27.608-0800",
+  "updated_date": "2025-04-10T14:50:07.081-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "22w11a",
+    "22w12a",
+    "22w13a",
+    "1.19 Pre-release 3",
+    "1.19 Pre-release 5",
+    "1.19",
+    "1.19.1 Pre-release 4",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "22w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "chunk-loading",
+    "softlock",
+    "spectatorsGenerateChunks"
+  ],
+  "resolution_date": "2022-12-07T01:50:11.582-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Setting \"spectatorsGenerateChunks\" to false and relogging freezes the game on the Loading Terrain screen",
+  "environment_raw": null,
+  "description": "This is bad. I was trying to spectate my hardcore world after dying, but got stuck in unloaded chunks at my respawn point. Due to this gamerule being set to false when you die in hardcore, I thought to exit out of the world, turn on cheats, and force the chunks around me to load. Because I couldn t load any chunks, my hardcore world cannot load, thus freezing the game at the \"loading terrain\" screen, which softlocks the game. How to reproduce - Die in hardcore. Make sure your death point and spawnpoint are far away from each other. - If you get trapped in unloaded chunks, relog from the world. If not, open the world to LAN amd try again. - Try to open the world. - Sit in your chair for the rest of forever waiting for your world to load.",
+  "Steps to Reproduce": "1. Launch Minecraft and enter your hardcore world.\n2. Ensure your death point and spawn point are far away from each other.\n3. Allow your character to die in the game.\n4. Wait until you are in spectator mode, then exit the world to the main menu.\n5. Open your hardcore world again.\n6. Wait indefinitely on the \"Loading Terrain\" screen and observe that the game freezes.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 22w11a, 22w12a, 22w13a, 1.19 Pre-release 3, 1.19 Pre-release 5, 1.19, 1.19.1 Pre-release 4, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When the gamerule \"spectatorsGenerateChunks\" is set to false and a player relogs after dying in hardcore mode, the game freezes on the Loading Terrain screen. This issue occurs when a player dies and respawns in a location that is far from their death point, resulting in being trapped in unloaded chunks. As a workaround, the player attempts to exit the world and enable cheats to force the surrounding chunks to load, but this action fails because the chunks remain unloaded, leading to the game freezing at the Loading Terrain screen. This situation effectively softlocks the game, preventing the player from accessing their hardcore world. To reproduce this bug, the player should die in hardcore mode and ensure that the death point is significantly distant from the spawn point. If the player finds themselves in unloaded chunks, they should relog from the world, and if that does not work, they can try opening the world to LAN and attempting to load it again. Ultimately, the player ends up waiting indefinitely for their world to load, unable to proceed.",
+  "Expected Behavior": "When \"spectatorsGenerateChunks\" is set to false, relogging should allow the player to enter the world without freezing on the Loading Terrain screen. Instead of getting stuck in unloaded chunks, the game should either load the chunks around the player's respawn point or allow the player to respawn at a valid location, ensuring a smooth transition back into the world without any softlocks.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-248926",
+    "community_posts": {
+      "bug_key": "MC-248926",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2593
+    },
+    "jira_comments": {
+      "bug_key": "MC-248926",
+      "comments_total": 2,
+      "comments_included": 2,
+      "comments_dropped_boilerplate": 0,
+      "comments_dropped_over_budget": 0,
+      "tokens": 139
+    }
+  }
+}

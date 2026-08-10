@@ -1,0 +1,50 @@
+{
+  "key": "MC-270004",
+  "created_date": "2024-03-27T18:14:56.603-0700",
+  "updated_date": "2025-05-29T09:06:46.695-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-04T01:11:13.371-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Giving yourself an item with a Wind Burst enchantment level higher than 3, then hitting certain entities crashes the game",
+  "environment_raw": null,
+  "description": "The bug Hitting certain entities (boats, end crystals, fireballs, players, minecarts, shulker bullets and wind charges) with an item enchanted with a Wind Burst level greater than 4 crashes the game. How to reproduce - Enter the following command in the chat: /give @s mace[minecraft:enchantments={levels:{ wind_burst :4}}] - Hit one of the mentioned entities with the mace (it will work with any item)",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Enter the following command in the chat: `/give @s mace[minecraft:enchantments={levels:{wind_burst:4}}]`\n3. Find and hit one of the mentioned entities (boats, end crystals, fireballs, players, minecarts, shulker bullets, or wind charges) with the enchanted mace.\n4. Observe that the game crashes after hitting the entity.",
+  "Environment": "Minecraft Java Edition Version 24w13a (snapshot)",
+  "Observed Behavior": "When an item enchanted with a Wind Burst level greater than 4 is used to hit certain entities such as boats, end crystals, fireballs, players, minecarts, shulker bullets, and wind charges, the game crashes. To reproduce this issue, enter the following command in the chat: `/give @s mace[minecraft:enchantments={levels:{wind_burst:4}}]`. After obtaining the enchanted item, hitting any of the mentioned entities with it will cause the crash. This behavior has been confirmed specifically for entities like wind charges and players, though other listed entities may also trigger the issue.",
+  "Expected Behavior": "When an item enchanted with a Wind Burst level greater than 4 is used to hit certain entities (such as boats, end crystals, fireballs, players, minecarts, shulker bullets, and wind charges), the game should apply the intended knockback effect without crashing. The game should remain stable and continue functioning normally after the interaction.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-270004",
+    "community_posts": {
+      "bug_key": "MC-270004",
+      "posts_available": 20,
+      "posts_included": 20,
+      "posts_dropped_over_budget": 0,
+      "tokens": 4118
+    },
+    "jira_comments": {
+      "bug_key": "MC-270004",
+      "comments_total": 6,
+      "comments_included": 5,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 281
+    }
+  }
+}

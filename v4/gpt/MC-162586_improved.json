@@ -1,0 +1,50 @@
+{
+  "key": "MC-162586",
+  "created_date": "2019-10-02T16:29:53.979-0700",
+  "updated_date": "2025-04-14T16:29:21.729-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-09T08:35:55.714-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Log repeatedly prints the message \"Ticking entity\", and finally crashes the game",
+  "environment_raw": null,
+  "description": "The bug I m just moving around in my jungle world while trying to record a youtube video. Windows that were open are chrome, obs, sticky notes, streamlabs obs, and the minecraft launcher, as well as the game The game will crash after moving around a little bit. Very lagging in the jungle, the log repeatedly prints the message \"Ticking entity\", and finally crashes the game. Reproduce - Create a superflat world of jungle biome, and fly freely on the world. minecraft:bedrock,63 minecraft:dirt,minecraft:grass_block;minecraft:jungle;biome_1,decoration,lake,lava_lake - Using spawn eggs to spawn very many parrots. - Use the following command /tp @e[type=parrot] @p Here is the crash report: 19w40a: [^crash-2019-10-03_23.59.03-client.txt] Description: Ticking entity java.lang.NullPointerException: Ticking entity at atd.a(SourceFile:407) at akm.ab(SourceFile:301) at akn.ab(SourceFile:228) at akd.h(SourceFile:399) at akm.h(SourceFile:2059) at akn.h(SourceFile:295) at atk.h(SourceFile:34) at dmr.a(SourceFile:165) at bjk.a(SourceFile:648) at dmr.g(SourceFile:136) at das.n(SourceFile:1389) at das.d(SourceFile:907) at das.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft in version 19w40a.\n2. Create a new Superflat world with a jungle biome.\n3. Enter the world and enable flying mode.\n4. Use spawn eggs to spawn a large number of parrots.\n5. Use the command `/tp @e[type=parrot] @p` to teleport all parrots to your location.\n6. Move around the world for a short period of time.\n7. Wait until the game crashes.\n8. Observe that the log repeatedly prints the message \"Ticking entity\" before the crash occurs.",
+  "Environment": "Minecraft Java Edition Version 19w40a (snapshot)",
+  "Observed Behavior": "While navigating in a custom superflat jungle world, the game experiences significant lag, particularly when numerous parrots are spawned using spawn eggs. As the player moves around, the game log consistently outputs the message \"Ticking entity,\" indicating that there is an issue with entity processing. This behavior escalates, leading to a game crash after a short period of movement. The crash report indicates a `java.lang.NullPointerException`, specifically during the ticking process of an entity, which suggests that the game is attempting to access or manipulate an entity that is not properly initialized or is missing.",
+  "Expected Behavior": "When following the reproduction steps, the game should run smoothly without any lag or crashes, allowing the player to freely explore the jungle biome without encountering the \"Ticking entity\" log messages. The player should be able to spawn multiple parrots and teleport them successfully without experiencing any NullPointerExceptions or game instability. The gameplay experience should remain consistent and stable, enabling seamless recording for video content.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-162586",
+    "community_posts": {
+      "bug_key": "MC-162586",
+      "posts_available": 8,
+      "posts_included": 8,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1655
+    },
+    "jira_comments": {
+      "bug_key": "MC-162586",
+      "comments_total": 4,
+      "comments_included": 2,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 146
+    }
+  }
+}

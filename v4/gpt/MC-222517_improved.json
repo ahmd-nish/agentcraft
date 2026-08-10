@@ -1,0 +1,51 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Use the command `/fill ~-10 ~-10 ~-10 ~20 ~ ~20 minecraft:slime_block` to place a large number of slime blocks (more than 4000).\n4. Move around the area where the slime blocks were placed.\n5. Observe that the game crashes completely, preventing you from joining the world again.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "When a player places more than 4000 slime blocks or honey blocks in a Minecraft world, attempting to render these blocks can lead to a complete game crash. This issue prevents the player from joining the world again, effectively rendering it inaccessible. The crash occurs due to the game's inability to handle the large number of blocks being rendered simultaneously, which results in an IllegalArgumentException. Players have reported this behavior consistently across multiple versions, specifically in 21w13a and 21w14a, where using commands such as /fill to place a large quantity of these blocks triggers the crash. The issue highlights a significant limitation in the game's handling of block rendering and memory management when faced with excessive quantities of specific block types.",
+  "Expected Behavior": "When a player places a large number of slime or honey blocks (more than 4000), the game should handle the rendering of these blocks without crashing. Instead of resulting in a complete game crash that prevents the player from joining the world, the game should either limit the rendering of excess blocks or provide a warning message indicating that the block limit has been exceeded. This would allow players to continue their gameplay experience without interruption.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517",
+    "community_posts": {
+      "bug_key": "MC-222517",
+      "posts_available": 33,
+      "posts_included": 33,
+      "posts_dropped_over_budget": 0,
+      "tokens": 6738
+    },
+    "jira_comments": {
+      "bug_key": "MC-222517",
+      "comments_total": 5,
+      "comments_included": 4,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 323
+    }
+  }
+}

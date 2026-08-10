@@ -1,0 +1,54 @@
+{
+  "key": "MC-197197",
+  "created_date": "2020-08-05T19:42:11.430-0700",
+  "updated_date": "2025-05-05T02:10:02.696-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2 Pre-release 2",
+    "1.16.2 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.16.2 Release Candidate 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "superflat"
+  ],
+  "resolution_date": "2020-08-13T05:38:18.604-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes/freezes after creating/entering a Superflat world without presets",
+  "environment_raw": null,
+  "description": "When create a superflat world without presets, it crashes. 1.16.2-pre2 Description: Ticking player java.lang.IllegalStateException: Unregistered biome at bw.b(SourceFile:88) at java.base/java.util.Optional.orElseThrow(Optional.java:385) at bw.a(SourceFile:88) at bw.a(SourceFile:68) at bx$a.a(SourceFile:55) at bx.a(SourceFile:31) at ck.a(SourceFile:62) at bx.a(SourceFile:31) at aah.v_(SourceFile:484) at aay.b(SourceFile:207) at nd.a(SourceFile:234) at aax.c(SourceFile:173) at net.minecraft.server.MinecraftServer.b(SourceFile:881) at net.minecraft.server.MinecraftServer.a(SourceFile:810) at emy.a(SourceFile:92) at net.minecraft.server.MinecraftServer.w(SourceFile:669) at net.minecraft.server.MinecraftServer.a(SourceFile:254) at java.base/java.lang.Thread.run(Thread.java:844) 1.16.2-pre3 [18:07:58] [Render thread/WARN]: Received invalid biome id: -1",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.16.2-pre2.\n2. Create a new Superflat world without selecting any preset.\n3. Attempt to enter the newly created Superflat world.\n4. Observe that the game crashes or freezes upon entering the world.\n5. Note the crash report indicating \"Received invalid biome id: -1\".\n6. Take a screenshot of the crash screen for documentation purposes.\n\nAlternatively, if the game only freezes:\n7. Observe the game freezing and spamming \"Received invalid biome id: -1\" in the console or debug log.\n8. Record the behavior and take screenshots for documentation purposes.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.2 Pre-release 2, 1.16.2 Pre-release 3",
+  "Observed Behavior": "The game crashes or freezes when attempting to create or enter a Superflat world without selecting any presets in versions 1.16.2-pre2 and 1.16.2-pre3. The issue arises because the default biome setting for such worlds is set to \"null,\" which is not a valid biome identifier, leading to an unregistered biome error during gameplay. This results in a java.lang.IllegalStateException: Unregistered biome at bw.b(SourceFile:88), causing the game to crash. In 1.16.2-pre3, instead of crashing, the game freezes and repeatedly logs \"Received invalid biome id: -1\" in the console. A workaround is to manually select a preset from the customization options before creating the Superflat world, such as choosing 'Classic Flat' from the presets list, which avoids the issue by setting a valid biome identifier.",
+  "Expected Behavior": "When creating or entering a Superflat world without presets, the game should successfully load and allow the player to explore the flat landscape without any crashes or freezes. The biome settings should default appropriately, avoiding invalid biome IDs that cause the game to malfunction.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-197197",
+    "community_posts": {
+      "bug_key": "MC-197197",
+      "posts_available": 4,
+      "posts_included": 4,
+      "posts_dropped_over_budget": 0,
+      "tokens": 787
+    },
+    "jira_comments": {
+      "bug_key": "MC-197197",
+      "comments_total": 9,
+      "comments_included": 8,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 444
+    }
+  }
+}

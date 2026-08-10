@@ -1,0 +1,50 @@
+{
+  "key": "MC-275246",
+  "created_date": "2024-08-15T09:46:02.503-0700",
+  "updated_date": "2025-04-26T16:07:59.141-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-19T10:38:04.257-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash after attempting to move item from off-hand in Creative inventory",
+  "environment_raw": null,
+  "description": "A crash is caused when trying to offhand an item in the creative inventory after attempting to do so in the search tab Steps to reproduce: - Have an item in your off-hand in creative mode - Open inventory and go to the Search tab - Use the off-hand key to try and put the item in your off-hand into the hotbar (stopped as the search box takes priority) - Change back to the Survival Inventory tab, and then press the off-hand key again without hovering cursor over any inventory slots or: - Have an item in your off-hand in creative mode - Hover over any empty slot in a tab other than Survival Inventory - Select the Survival Inventory tab, and then press the off-hand key without hovering cursor over any inventory slots As far as I can tell (Not a programmer or anything, didn t look at code, just from my small testing) this happens because the offhand hotkey when pressed tries to put the item in your offhand into the last inventory slot that you had \"selected\" (hovered over) with your cursor. When you try to use the offhand hotkey when under the search tab, the search box takes priority and types instead of allowing you to offhand, making it the last selected inventory \"slot\" (I believe,) when you change back to your player inventory tab, there s no textbox anymore, so when you try to use the hotkey again, the game crashes as there s no \"last selected\" slot to offhand to (or maybe because it tries to offhand to the textbox? I dunno I m not a programmer) Simply hovering over an inventory slot after swapping to the player inventory before using the offhand hotkey will prevent the crash and allow the hotkey to work as normal.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Ensure you have an item in your off-hand slot.\n3. Open your inventory and navigate to the Search tab.\n4. Press the off-hand key (default: Q) while on the Search tab, which will not move the item due to the search box taking priority.\n5. Navigate back to the Survival Inventory tab without hovering over any inventory slots.\n6. Press the off-hand key again without hovering over any inventory slots.\n7. Observe that the game crashes due to no \"last selected\" slot being available for the offhand action.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "When attempting to move an item from the off-hand in Creative mode inventory after using the Search tab, a crash occurs. Here are the detailed steps to reproduce this issue: First, have an item in your off-hand while in Creative mode. Open the inventory and navigate to the Search tab. Attempt to use the off-hand key to place the item into the hotbar; however, the search box takes priority and prevents this action. Next, switch back to the Survival Inventory tab without hovering over any inventory slots, and press the off-hand key again. This should result in a crash because the game tries to place the item in the last selected slot, which was the search box when you were in the Search tab. Alternatively, if you hover over an empty slot in a different tab other than Survival Inventory, then switch back to it and use the off-hand key without hovering over any slots again, the crash still occurs under similar conditions. The game crashes because it attempts to place the item into a non-existent \"last selected\" inventory slot after leaving the Search tab where the search box had priority as the last selected element. Hovering over an inventory slot before pressing the off-hand key can prevent this crash and allow the hotkey to function normally.",
+  "Expected Behavior": "When attempting to move an item from the off-hand in the Creative inventory, the game should allow you to switch tabs or use the off-hand key without causing a crash. The item should be correctly moved to the desired slot or hotbar position regardless of whether you are in the Search tab or any other inventory tab, and no crashes should occur due to cursor positioning issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275246",
+    "community_posts": {
+      "bug_key": "MC-275246",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 960
+    },
+    "jira_comments": {
+      "bug_key": "MC-275246",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

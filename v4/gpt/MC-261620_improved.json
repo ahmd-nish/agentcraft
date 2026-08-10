@@ -1,0 +1,50 @@
+{
+  "key": "MC-261620",
+  "created_date": "2023-04-05T08:19:34.819-0700",
+  "updated_date": "2025-04-11T11:42:33.514-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w14a"
+  ],
+  "fix_versions": [
+    "23w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-04-17T13:22:39.300-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when modifying age property of a pitcher crop",
+  "environment_raw": null,
+  "description": "The game crashes if the age property of a pitcher crop s top half is set too high. This can be done with a debug stick by a creative user. Steps to reproduce 1. Place farmland 2. Place a pitcher pod on the farmland 3. Fertilize the pitcher crop with bonemeal until it is two blocks high 4. Select the age property with the debug stick 5. Increment the age until the game crashes",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place farmland.\n4. Place a pitcher pod on the farmland.\n5. Fertilize the pitcher crop with bonemeal until it is two blocks high.\n6. Select the age property with the debug stick.\n7. Increment the age until the game crashes.",
+  "Environment": "Minecraft Java Edition Version 23w14a (snapshot)",
+  "Observed Behavior": "When the age property of the top half of a pitcher crop is modified using a debug stick and set to a value higher than the maximum allowed, the game crashes unexpectedly. This issue occurs specifically after the pitcher crop has been grown to its full height of two blocks, following the steps outlined in the reproduction process. The crash appears to be linked to the internal handling of crop growth states, suggesting that the game does not properly validate the age value before applying it, leading to a failure in the game's logic. Upon crashing, the game may generate a crash report that can provide additional insights into the underlying cause of the issue, typically found in the `crash-reports` directory. \n\nThis bug highlights a critical flaw in the game's property management system for crops, particularly with the pitcher crop, which may not have robust error handling for age values beyond the intended range. Developers should investigate the maximum age limit for pitcher crops and implement appropriate checks to prevent invalid values from being set, thereby avoiding crashes during gameplay.",
+  "Expected Behavior": "When modifying the age property of a pitcher crop using a debug stick, the game should allow users to increment the age without crashing. The pitcher crop should properly handle age values, displaying the correct growth stage visually and functionally, even when the age is set beyond typical limits. This behavior should be consistent across all instances of the crop, ensuring stability and preventing crashes during gameplay.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-261620",
+    "community_posts": {
+      "bug_key": "MC-261620",
+      "posts_available": 4,
+      "posts_included": 4,
+      "posts_dropped_over_budget": 0,
+      "tokens": 880
+    },
+    "jira_comments": {
+      "bug_key": "MC-261620",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

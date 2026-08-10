@@ -1,0 +1,50 @@
+{
+  "key": "MC-277967",
+  "created_date": "2024-10-30T14:20:41.670-0700",
+  "updated_date": "2025-04-26T17:21:00.237-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w44a"
+  ],
+  "fix_versions": [
+    "24w45a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion A",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-05T07:24:41.725-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when certain explosions occur near a creaking in its death animation",
+  "environment_raw": null,
+  "description": "The Bug The game crashes when certain explosions occur near a creaking in its death animation. See the attached crash report. The types of explosions that cause a crash are: - Creeper explosion - Wither spawn explosion - Fireball explosion - Wither skull explosion - Firework rocket with firework star TNT, beds, respawn anchors, and end crystals do not cause a crash. Steps to Reproduce - Place a creaking heart between two pale oak logs at nighttime to spawn a creaking. - Teleport the creaking next to the heart: /tp @n[type=minecraft:creaking_transient] @s - Summon a creeper next to the creaking, and ignite it with a flint and steel. - Before the creeper finishes its fuse, break the creaking heart so the creaking enters its death animation. - If done correctly, the game should crash. Observed Results The game crashes when certain explosions occur near a creaking in its death animation. Expected Results The game should not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place a creaking heart between two pale oak logs at nighttime to spawn a creaking.\n4. Teleport the creaking next to the heart using the command: `/tp @n[type=minecraft:creaking_transient] @s`.\n5. Summon a creeper next to the creaking using the command: `/summon minecraft:creeper ~ ~ ~`.\n6. Ignite the creeper with flint and steel.\n7. Before the creeper finishes its fuse, break the creaking heart so the creaking enters its death animation.\n8. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w44a (snapshot)",
+  "Observed Behavior": "The game experiences a crash when specific types of explosions occur in proximity to a creaking that is undergoing its death animation. The explosions that trigger this crash include those caused by a creeper, the spawn of a wither, fireballs, wither skulls, and firework rockets with a firework star. Notably, other explosive sources such as TNT, beds, respawn anchors, and end crystals do not result in a crash. To reproduce this issue, players can follow a series of steps: first, they should place a creaking heart between two pale oak logs during nighttime to spawn a creaking. Next, they teleport the creaking next to the heart using the command /tp @n[type=minecraft:creaking_transient] @s. After that, they can summon a creeper adjacent to the creaking and ignite it with flint and steel. It is crucial to break the creaking heart before the creeper's fuse completes, prompting the creaking to enter its death animation. If executed correctly, the game will crash. The expected behavior is that the game should operate without crashing under these circumstances.",
+  "Expected Behavior": "When following the reproduction steps, the game should allow the creaking to enter its death animation without crashing, even if a creeper explosion occurs nearby. The explosion should not interfere with the game's stability or cause it to terminate unexpectedly. Instead, the creaking should complete its animation, and the player should be able to continue playing without any interruptions or errors.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-277967",
+    "community_posts": {
+      "bug_key": "MC-277967",
+      "posts_available": 19,
+      "posts_included": 19,
+      "posts_dropped_over_budget": 0,
+      "tokens": 3798
+    },
+    "jira_comments": {
+      "bug_key": "MC-277967",
+      "comments_total": 2,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 109
+    }
+  }
+}

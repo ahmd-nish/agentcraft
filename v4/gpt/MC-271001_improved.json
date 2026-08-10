@@ -1,0 +1,52 @@
+{
+  "key": "MC-271001",
+  "created_date": "2024-04-21T01:48:34.286-0700",
+  "updated_date": "2025-05-29T09:06:39.995-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Release Candidate 2",
+    "1.20.6"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-05-06T08:47:10.383-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Items in a container can be given a count above 99 (to max integer), and can crash the world",
+  "environment_raw": null,
+  "description": "Using the following give command, item stacks can be given extremely high counts up to the java max integer. /give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]] Placing and then breaking the barrel will cause the stack to split into smaller stacks, spawn at least a few hundred million item entities, and crash the world. The split stacks seem to have random counts around 10 to 30, so it s slightly less than 2 billion entities spawned at once. Using commands to get an item with max_stack_size above 99 will detect and remove the invalid component, and setting the item count to below 1 will set it back to 1. Expected behavior would be for item count to be limited to the max_stack_size (or at least a hard coded max of 99).",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition.\n2. Create a new Creative world with default settings.\n3. Open the chat and enter the command: `/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]`.\n4. Place the barrel in the world.\n5. Break the barrel.\n6. Wait approximately 5 seconds.\n7. Observe that a large number of item entities spawn, which may cause the game to crash.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.5 Pre-Release 1, 1.20.5 Release Candidate 2, 1.20.6",
+  "Observed Behavior": "When using the command `/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]`, players can create a barrel containing a wooden sword with an item count that exceeds the normal maximum stack size of 64 (or 99 for some items). This allows the item count to reach the Java maximum integer value of 2,147,483,647. Upon placing and subsequently breaking the barrel, the game attempts to split this oversized stack into smaller stacks. This results in the generation of an excessive number of item entities, potentially spawning hundreds of millions of items in the world.\n\nThe split stacks typically consist of random counts ranging from 10 to 30, leading to the creation of nearly 2 billion item entities at once. This overwhelming number of entities can cause severe performance issues, ultimately crashing the game and corrupting the world. \n\nAdditionally, when commands are used to manipulate items with counts above the maximum stack size, the game detects the invalid item count and automatically adjusts it: it removes the invalid component from the item stack, and if the count is set below 1, it resets the count to 1. \n\nThe expected behavior is that item counts should be capped at the maximum stack size defined for each item type (commonly 64 or 99), preventing the creation of stacks that exceed this limit and avoiding the subsequent performance issues and crashes associated with item entity overflows.",
+  "Expected Behavior": "When using the give command to place items in a container, item counts should be capped at the maximum stack size of 64 for most items, or 16 for specific items, preventing any counts above these limits. If an item count exceeds the allowed maximum, the game should automatically adjust the count down to the maximum stack size without causing any crashes or spawning excessive item entities. This behavior would ensure stable gameplay and better inventory management.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-271001",
+    "community_posts": {
+      "bug_key": "MC-271001",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 480
+    },
+    "jira_comments": {
+      "bug_key": "MC-271001",
+      "comments_total": 1,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 0,
+      "comments_dropped_over_budget": 0,
+      "tokens": 129
+    }
+  }
+}

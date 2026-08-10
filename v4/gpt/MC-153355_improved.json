@@ -1,0 +1,54 @@
+{
+  "key": "MC-153355",
+  "created_date": "2019-05-29T07:59:21.850-0700",
+  "updated_date": "2025-05-03T09:47:44.700-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.2"
+  ],
+  "fix_versions": [
+    "Minecraft 1.14.3 Pre-Release 1"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "villager",
+    "workstations"
+  ],
+  "resolution_date": "2019-06-05T03:07:49.983-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "java.util.NoSuchElementException ticking entity crash when a workstation is destroyed near a villager with a job",
+  "environment_raw": null,
+  "description": "NOTE: This bug is different from MC-145686, but could be related. MC-145686 was about java.util.Optional.get(Optional.java:135), this one is about it.unimi.dsi.fastutil.longs.LongLinkedOpenHashSet.removeFirstLong (LongLinkedOpenHashSet.java:470) gotten in a near-similar environment. Environment Have a villager with a job near a workstation (preferably within a 1-block radius). Attached ( ) is the world I used. At -83 / -12 is a pit with a villager. This is where I performed my testing. How to reproduce To trigger the crash, one commonly needs to quickly destroy and place the workstation. This will cause the villager to quickly switch from being a nitwit and the job belonging to the workstation. In the snapshots of 1.14, this crash seems to be fairly easy to reproduce, as the villager keeps its job for longer or even doesn t become a nitwit once its workstation is destroyed. In 1.14.2, villagers switch quickly between nitwit and having a job, thus it requires more destroying and placing (and more time to reproduce). Suggestion is, taken from the comments about this bug on MC-145686, to map the place and destroy buttons to keys near each other, for example E and F for placing and destroying, respectively. Crash logs 1.14.2 server crash log: ---- Minecraft Crash Report ---- // Don t be sad, have a hug! 3 Time: 29-5-19 16:34 Description: Exception ticking world java.util.NoSuchElementException at it.unimi.dsi.fastutil.longs.LongLinkedOpenHashSet.removeFirstLong(LongLinkedOpenHashSet.java:470) at ckn.b(SourceFile:194) at aqh$a.a(SourceFile:247) at aqh.a(SourceFile:154) at us.a(SourceFile:384) at ve.a(SourceFile:295) at vg.a(SourceFile:310) at net.minecraft.server.MinecraftServer.b(SourceFile:827) at net.minecraft.server.MinecraftServer.a(SourceFile:764) at dxk.a(SourceFile:128) at net.minecraft.server.MinecraftServer.run(SourceFile:632) at java.lang.Thread.run(Thread.java:745) 1.14.2 game log (anonimised): [16:34:45] [Server thread/ERROR]: Encountered an unexpected exception m: Exception ticking world at net.minecraft.server.MinecraftServer.b(SourceFile:831) ~[1.14.2.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:764) ~[1.14.2.jar:?] at dxk.a(SourceFile:128) ~[1.14.2.jar:?] at net.minecraft.server.MinecraftServer.run(SourceFile:632) [1.14.2.jar:?] at java.lang.Thread.run(Thread.java:745) [?:1.8.0_51] Caused by: java.util.NoSuchElementException at it.unimi.dsi.fastutil.longs.LongLinkedOpenHashSet.removeFirstLong(LongLinkedOpenHashSet.java:470) ~[fastutil-8.2.1.jar:?] at ckn.b(SourceFile:194) ~[1.14.2.jar:?] at aqh$a.a(SourceFile:247) ~[1.14.2.jar:?] at aqh.a(SourceFile:154) ~[1.14.2.jar:?] at us.a(SourceFile:384) ~[1.14.2.jar:?] at ve.a(SourceFile:295) ~[1.14.2.jar:?] at vg.a(SourceFile:310) ~[1.14.2.jar:?] at net.minecraft.server.MinecraftServer.b(SourceFile:827) ~[1.14.2.jar:?] ... 4 more Other remarks This bug has been present since at least 19w14b, but doesn t seem to be in the game in 19w14a.",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.14.2.\n2. Create a new Creative world with default settings.\n3. Spawn a villager with a job near a workstation (preferably within a 1-block radius).\n4. Get very close to the workstation.\n5. Press and hold the mouse buttons to quickly destroy and place the workstation repeatedly.\n6. Wait until the game crashes.\n7. Observe the crash report indicating a `java.util.NoSuchElementException`.",
+  "Environment": "Minecraft Java Edition Version 1.14.2",
+  "Observed Behavior": "The bug manifests as a java.util.NoSuchElementException occurring during the ticking of an entity when a workstation is destroyed near a villager with a job. This issue appears to be distinct from MC-145686, which involves a different exception related to java.util.Optional.get. The relevant environment for testing this bug includes having a villager with a job positioned within a one-block radius of a workstation. The specific testing location is at coordinates -83 / -12, where a villager is situated in a pit. To reproduce the crash, players typically need to rapidly destroy and then replace the workstation. This rapid action causes the villager to switch back and forth between being a nitwit and assuming the job associated with the workstation. In the snapshots of version 1.14, reproducing this crash is relatively straightforward, as the villager retains its job longer or may not revert to being a nitwit when the workstation is destroyed. However, in version 1.14.2, villagers transition more quickly between nitwit and job status, resulting in a more complex reproduction process that requires additional cycles of destruction and placement. A suggested workaround for players attempting to trigger the crash involves remapping the controls for placing and destroying blocks to adjacent keys, such as E for placing and F for destroying. The crash logs indicate that the error arises from the LongLinkedOpenHashSet's removeFirstLong method, which is a part of the game's handling of entity states. This bug has been present since at least version 19w14b, but it does not appear in version 19w14a.",
+  "Expected Behavior": "When a workstation is destroyed near a villager with a job, the villager should either remain in their job or transition smoothly to being a nitwit without causing any game crashes. The expected behavior is that the villager would not experience rapid job switching or any related exceptions, allowing for normal gameplay without interruptions. This stability should persist across versions, ensuring a consistent experience for players managing villagers and their workstations.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-153355",
+    "community_posts": {
+      "bug_key": "MC-153355",
+      "posts_available": 4,
+      "posts_included": 4,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1200
+    },
+    "jira_comments": {
+      "bug_key": "MC-153355",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 354
+    }
+  }
+}

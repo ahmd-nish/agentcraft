@@ -1,0 +1,54 @@
+{
+  "key": "MC-275883",
+  "created_date": "2024-08-22T10:59:12.308-0700",
+  "updated_date": "2025-04-26T16:26:05.194-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w34a",
+    "24w35a",
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "experimental_minecart"
+  ],
+  "resolution_date": "2024-09-06T01:02:23.307-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Riding a minecart cluster into a wall freezes the game",
+  "environment_raw": null,
+  "description": "Derailed Minecarts that are clustered together often keep their movement speed, which is due to another bug (). In some cases (with the Minecart Improvements experiment enabled) if such clusters of minecarts are ridden by the player and collide with blocks, the screen goes black and the game stops working. It then has to be terminated manually. Steps to reproduce (or use the link below for a more reliable method): - Place around 20 to 30 minecarts on a normal rail. - Push the minecarts. They should now start to move off the rail, keeping their velocity. - Ride one of the minecarts in the cluster. - Wait until it collides into blocks (2 blocks high is best). Water like in the attached videos isn t needed. This is not very reliable, so a few attempts may be needed. Alternatively, the attached world ( ) can be used to reproduce the bug: - Open the world. - Walk into the minecart cluster. - Ride one of the minecarts in the cluster. - Wait until it collides into the wall and locks the game.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place around 20 to 30 minecarts on a normal rail.\n4. Push the minecarts to start their movement off the rail, ensuring they maintain their velocity.\n5. Ride one of the minecarts in the cluster.\n6. Wait until the minecart collides with blocks that are at least 2 blocks high.\n7. Observe that the screen goes black and the game stops working, requiring a manual termination.",
+  "Environment": "Minecraft Java Edition Versions: 24w34a, 24w35a, 24w36a (includes snapshots)",
+  "Observed Behavior": "When a player rides a cluster of derailed minecarts that are moving at high speed and collides with a solid block (preferably a wall that is at least 2 blocks high), the game experiences a critical freeze. The screen turns black, and the game becomes unresponsive, requiring the player to manually terminate the application to regain control. This issue appears to be linked to the minecarts maintaining their velocity despite being derailed, a behavior stemming from a separate bug with minecart physics.\n\nUpon collision, the game logs show \"Invalid Rotation\" errors, indicating a potential issue with the entity's position or orientation calculations. This situation results in the minecarts and the player disappearing from the client\u2019s perspective, although they can reappear when the player moves to the location where the minecarts were previously located or upon relogging into the game. The bug is particularly prevalent when the Minecart Improvements experimental feature is enabled, exacerbating the likelihood of this crash occurring. \n\nDevelopers should investigate the interaction between the player's position, minecart velocity, and collision detection to resolve this critical issue.",
+  "Expected Behavior": "When riding a minecart cluster, the player should be able to collide with blocks without causing the game to freeze or crash. Instead of the screen going black, the player should experience a normal collision response, allowing them to either be ejected from the minecart or come to a stop safely. The game should maintain stability, ensuring that all entities, including the minecarts and the player, remain functional and visible after the collision, preventing any need for manual termination of the game.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275883",
+    "community_posts": {
+      "bug_key": "MC-275883",
+      "posts_available": 31,
+      "posts_included": 31,
+      "posts_dropped_over_budget": 0,
+      "tokens": 7744
+    },
+    "jira_comments": {
+      "bug_key": "MC-275883",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 247
+    }
+  }
+}

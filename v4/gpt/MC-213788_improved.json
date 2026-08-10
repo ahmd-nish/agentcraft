@@ -1,0 +1,50 @@
+{
+  "key": "MC-213788",
+  "created_date": "2021-02-03T10:40:52.694-0800",
+  "updated_date": "2025-05-01T21:27:49.591-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w05a"
+  ],
+  "fix_versions": [
+    "21w05b"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-02-10T08:11:42.859-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game can randomly freeze",
+  "environment_raw": null,
+  "description": "Time freezes when trying to kick a villager out of a bed then breaking it i have attatched a video of the glitch and the log for that session it still loads chunks. Here is a video with the bug The game can also randomly freeze.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world with default settings.\n3. Find a villager and ensure it is using a bed.\n4. Attempt to kick the villager out of the bed by interacting with it.\n5. Immediately break the bed.\n6. Wait at least a few minutes and observe that the game freezes, with time appearing to stop.\n7. Note that chunks continue to load during the freeze.",
+  "Environment": "Minecraft Java Edition Version 21w05a (snapshot)",
+  "Observed Behavior": "When attempting to kick a villager out of a bed and subsequently breaking the bed, the game experiences a freeze where time appears to stop. During this freeze, players are unable to interact with any game mechanics, such as breaking blocks, using items, or accessing inventories. The freeze does not affect chunk loading, as players can still see and load new chunks around them. However, all entities, including villagers, become unresponsive. Players are unable to save or exit the world, requiring them to forcibly close the game using task manager. This issue can be reproduced consistently by performing the described actions involving villagers and beds, indicating a potential problem with the interaction mechanics between players and villagers in the context of beds.",
+  "Expected Behavior": "When attempting to kick a villager out of a bed and break it, the game should smoothly transition between actions without freezing. The player should be able to interact with the villager and the bed, allowing the villager to vacate the bed and the bed to be broken without interruption. This expected behavior ensures that gameplay continues fluidly, with no stalling or inability to perform actions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-213788",
+    "community_posts": {
+      "bug_key": "MC-213788",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 757
+    },
+    "jira_comments": {
+      "bug_key": "MC-213788",
+      "comments_total": 30,
+      "comments_included": 28,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 2118
+    }
+  }
+}

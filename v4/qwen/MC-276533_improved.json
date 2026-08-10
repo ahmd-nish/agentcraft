@@ -1,0 +1,52 @@
+{
+  "key": "MC-276533",
+  "created_date": "2024-09-08T18:12:17.219-0700",
+  "updated_date": "2025-04-26T16:44:13.201-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash"
+  ],
+  "resolution_date": "2024-09-10T05:41:41.345-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when three or more skeletons are about to release their arrows",
+  "environment_raw": null,
+  "description": "If three or more entities start drawing their bows, right before they shoot the arrow to the target the game stops responding and just stays like that until you task manager it. This is really really bad because you would most likely encounter three skeletons at night plus anything that is used to bait in skeletons will crash the game.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use the `/summon` command to spawn three or more skeletons near the player's location: `/summon minecraft:skeleton ~ ~ ~`.\n3. Ensure that all skeletons are within range of the player and have drawn their bows.\n4. Wait until the skeletons are about to release their arrows.\n5. Observe that the game stops responding and freezes.\n6. Note that the freeze persists until you force close the game via task manager or similar means.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "The game crashes when three or more skeletons are about to release their arrows. Specifically, if three or more entities start drawing their bows, right before they shoot the arrow at a target, the game stops responding and remains frozen until manually terminated via the task manager. This issue is particularly problematic because encountering three skeletons at night is common, and any method used to bait in skeletons can trigger this crash. The bug appears to be caused by an infinite loop on the client-side when multiple mobs attempt to shoot arrows simultaneously. The collision between arrows seems to initiate a persistent loop that prevents the game from continuing until forcibly closed. This issue affects various types of skeleton-like entities, including strays and pillagers, making it reproducible in survival mode as well.",
+  "Expected Behavior": "When three or more skeletons are about to release their arrows at a target, the game should remain responsive. The skeletons should continue drawing their bows and shooting arrows without causing any lag or crashes. The player should be able to interact with the environment and move freely while the skeletons shoot their arrows.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276533",
+    "community_posts": {
+      "bug_key": "MC-276533",
+      "posts_available": 6,
+      "posts_included": 6,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1295
+    },
+    "jira_comments": {
+      "bug_key": "MC-276533",
+      "comments_total": 7,
+      "comments_included": 6,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 461
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "key": "MC-268842",
+  "created_date": "2024-02-28T10:42:06.138-0800",
+  "updated_date": "2025-04-29T10:33:58.564-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:35.936-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when saving world with painting",
+  "environment_raw": null,
+  "description": "Have a painting item in the inventory (a creative variant with a pre-selected painting), or place down it in the world, then save the game by going to another dimension or pausing.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use the command `/give @p minecraft:painting` to obtain a painting item in your inventory.\n3. Ensure you are holding the painting item in your hotbar or open inventory.\n4. Save the game by pausing it (press Esc menu -> Save and Quit to Title).\n5. Observe that the game crashes upon saving.\n\nAlternatively:\n\n1. Create a new Creative world with default settings.\n2. Use the command `/give @p minecraft:painting` to obtain a painting item in your inventory.\n3. Place the painting item down in the world.\n4. Save the game by going to another dimension (e.g., use `/tp ~ ~ ~ ~ 0` to teleport to the Nether).\n5. Observe that the game crashes upon saving.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "When attempting to save the game by going to another dimension or pausing, the game crashes if there is a painting item in the inventory (a creative variant with a pre-selected painting) or if a painting has been placed down in the world. This specific behavior occurs consistently and can be reliably reproduced by following these steps: launch the game in Creative mode, ensure that you have a painting item in your inventory or place one in the world, then attempt to save the game either by entering another dimension or pausing the game. The crash is not limited to any particular version but has been observed across multiple versions of Minecraft. To help diagnose and address this issue, it would be beneficial for developers to have access to a video demonstrating the steps leading up to the crash, along with the debug folder, `latest.log`, and relevant `crash-reports/*.txt` files from the game directory. Additionally, including the world save file where the issue occurs can provide further context for troubleshooting.",
+  "Expected Behavior": "When following the reproduction steps, the game should save without crashing whether a painting item is in the inventory or placed in the world. The player should be able to switch dimensions or pause the game seamlessly, with no unexpected interruptions or errors. The painting should remain intact and visible as expected, without causing any stability issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268842",
+    "community_posts": {
+      "bug_key": "MC-268842",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 465
+    },
+    "jira_comments": {
+      "bug_key": "MC-268842",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 152
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "key": "MC-275883",
+  "created_date": "2024-08-22T10:59:12.308-0700",
+  "updated_date": "2025-04-26T16:26:05.194-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w34a",
+    "24w35a",
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "experimental_minecart"
+  ],
+  "resolution_date": "2024-09-06T01:02:23.307-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Riding a minecart cluster into a wall freezes the game",
+  "environment_raw": null,
+  "description": "Derailed Minecarts that are clustered together often keep their movement speed, which is due to another bug (). In some cases (with the Minecart Improvements experiment enabled) if such clusters of minecarts are ridden by the player and collide with blocks, the screen goes black and the game stops working. It then has to be terminated manually. Steps to reproduce (or use the link below for a more reliable method): - Place around 20 to 30 minecarts on a normal rail. - Push the minecarts. They should now start to move off the rail, keeping their velocity. - Ride one of the minecarts in the cluster. - Wait until it collides into blocks (2 blocks high is best). Water like in the attached videos isn t needed. This is not very reliable, so a few attempts may be needed. Alternatively, the attached world ( ) can be used to reproduce the bug: - Open the world. - Walk into the minecart cluster. - Ride one of the minecarts in the cluster. - Wait until it collides into the wall and locks the game.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Place around 20 to 30 minecarts on a normal rail.\n3. Push the minecarts so they start moving off the rail, keeping their velocity.\n4. Ride one of the minecarts in the cluster.\n5. Wait until the minecart cluster collides into blocks (a wall that is 2 blocks high works best).\n6. Observe that the screen goes black and the game stops working.\n\nAlternatively:\n\n1. Download and open the attached world file provided.\n2. Walk into the pre-placed minecart cluster.\n3. Ride one of the minecarts in the cluster.\n4. Wait until it collides into the wall, causing the game to freeze.\n5. Observe that the screen goes black and the game stops working.",
+  "Environment": "Minecraft Java Edition Versions: 24w34a, 24w35a, 24w36a (includes snapshots)",
+  "Observed Behavior": "When a cluster of minecarts is derailed and continues moving with their original velocity, riding one of these minecarts into a wall can freeze the game. This issue occurs particularly when the Minecart Improvements experiment is enabled. Upon collision, the screen goes black, and the game stops responding, necessitating manual termination. To reproduce this bug:\n\n1. Place around 20 to 30 minecarts on a normal rail.\n2. Push the minecarts off the rail so they retain their velocity.\n3. Ride one of the minecarts in the cluster.\n4. Wait until it collides with blocks, ideally two blocks high.\n\nAlternatively, use an attached world file:\n1. Open the provided world.\n2. Walk into the minecart cluster.\n3. Ride one of the minecarts in the cluster.\n4. Wait for the collision to freeze the game.\n\nWhen F3 is open before entering the minecarts, you'll notice your position being set to NaN (Not a Number). Additionally, both clientside and serverside, the minecarts along with any passengers (including the player) are deleted upon hitting the wall. If there's an entity like a zombie in the cluster, it also disappears when the collision occurs. When the player collides with the location where these entities should be, they reappear, including if you relog.",
+  "Expected Behavior": "When a cluster of minecarts collides with blocks, the game should not freeze or crash. Instead, the minecarts and any passengers (including the player) should be properly handled by the game mechanics, such as stopping movement and remaining visible on both client and server sides without disappearing or reappearing unexpectedly. The screen should remain active and responsive, allowing the player to continue gameplay normally after the collision.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275883",
+    "community_posts": {
+      "bug_key": "MC-275883",
+      "posts_available": 31,
+      "posts_included": 31,
+      "posts_dropped_over_budget": 0,
+      "tokens": 7744
+    },
+    "jira_comments": {
+      "bug_key": "MC-275883",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 247
+    }
+  }
+}

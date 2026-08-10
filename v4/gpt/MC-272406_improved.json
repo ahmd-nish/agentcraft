@@ -1,0 +1,50 @@
+{
+  "key": "MC-272406",
+  "created_date": "2024-05-23T19:54:22.733-0700",
+  "updated_date": "2025-04-29T09:10:01.021-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w21b"
+  ],
+  "fix_versions": [
+    "1.21 Pre-Release 1"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-05-27T04:10:06.378-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when zombie tries to spawn second reinforcement",
+  "environment_raw": null,
+  "description": "Summary The game crashes when a zombie tries to spawn a zombie reinforcement for the second time. (Relates to MC-272321) Steps to Reproduce - Set Difficulty to Hard. - Either: Spawn a leader Zombie. (A zombie have 5 chance of being a leader zombie, which is capable of summoning reinforcements.) Or, spawn a zombie and run the following command to make it a leader: /attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1 - Switch gamemode to Survival. - Attack the zombie using snowballs. (Other projectiles can also be used.) - One reinforcement zombie spawns. - Continue hitting the original zombie with snowballs. Expected Result Game does not crash. Actual Result Game crashes.",
+  "Steps to Reproduce": "1. Set Difficulty to Hard.\n2. Either spawn a leader Zombie or spawn a Zombie and run the command: `/attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1`.\n3. Switch gamemode to Survival.\n4. Attack the Zombie using snowballs.\n5. Wait for one reinforcement Zombie to spawn.\n6. Continue hitting the original Zombie with snowballs.\n7. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w21b (snapshot)",
+  "Observed Behavior": "When a leader zombie attempts to summon a second reinforcement after one has already spawned, the game crashes. This crash occurs specifically during the reinforcement summoning process. The issue appears to be triggered by hitting the leader zombie with snowballs (or other projectiles) repeatedly, which causes it to attempt to summon additional reinforcement zombies. The game becomes unresponsive, and a crash report is generated, indicating a failure in the reinforcement spawning logic. This behavior is consistent across multiple attempts and can be reproduced reliably under the specified conditions. The crash does not occur when the leader zombie summons its first reinforcement, only when a subsequent attempt is made.",
+  "Expected Behavior": "When a zombie attempts to spawn a second reinforcement, the game should continue to operate smoothly without crashing. The first reinforcement zombie should spawn as expected after the original zombie is attacked, and subsequent attempts by the original zombie to summon more reinforcements should also occur without any interruption or error. Players should be able to engage with the zombies repeatedly, enjoying the gameplay mechanics without experiencing any crashes or instability in the game.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-272406",
+    "community_posts": {
+      "bug_key": "MC-272406",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 3328
+    },
+    "jira_comments": {
+      "bug_key": "MC-272406",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

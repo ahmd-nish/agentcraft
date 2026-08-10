@@ -1,0 +1,55 @@
+{
+  "key": "MC-235574",
+  "created_date": "2021-08-30T02:42:43.808-0700",
+  "updated_date": "2025-03-25T12:57:12.913-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w38a",
+    "21w39a",
+    "21w40a",
+    "21w41a",
+    "1.18.1"
+  ],
+  "fix_versions": [
+    "22w03a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-01-18T04:19:25.815-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when replacing a block with a wall with blockstate up:false",
+  "environment_raw": null,
+  "description": "Give yourself a wall using give @p brick_wall{BlockStateTag:{up:\"false\"}} 1 Then, place a block with no other blocks around it, and press left and right click at the same time while looking at that block and holding the wall. Then, crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Run the command `/give @p brick_wall{BlockStateTag:{up:\"false\"}} 1` to give yourself a brick wall with `up:false`.\n4. Place any block in an open area where there are no other blocks around it.\n5. Hold the brick wall item in your hand and stand near the placed block.\n6. Press left and right click at the same time while looking directly at the placed block.\n7. Observe that the game crashes as a result of the action.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w38a, 21w39a, 21w40a, 21w41a, 1.18.1 (includes snapshots)",
+  "Observed Behavior": "When attempting to replace a block with a brick wall that has the blockstate `up:false`, the game crashes under specific conditions. To reproduce this issue, start by giving yourself a brick wall using the command `/give @p brick_wall{BlockStateTag:{up:\"false\"}} 1`. Place the brick wall in an open area where there are no surrounding blocks. While holding the brick wall and looking directly at it, press both left and right mouse buttons simultaneously. This action will cause the game to crash. This behavior is not limited to brick walls; it occurs with any type of wall that has the `up:false` blockstate.",
+  "Expected Behavior": "When attempting to replace a block with a brick wall having the blockstate `up:false`, the game should not crash. Instead, placing the wall while holding left and right click simultaneously should simply result in the block being replaced without any unexpected behavior or crashes occurring. This should work consistently across different versions of Minecraft.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-235574",
+    "community_posts": {
+      "bug_key": "MC-235574",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 386
+    },
+    "jira_comments": {
+      "bug_key": "MC-235574",
+      "comments_total": 6,
+      "comments_included": 2,
+      "comments_dropped_boilerplate": 4,
+      "comments_dropped_over_budget": 0,
+      "tokens": 139
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "key": "MC-269670",
+  "created_date": "2024-03-20T12:43:37.231-0700",
+  "updated_date": "2025-04-29T10:18:06.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-27T02:27:13.267-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when giving bundle with hide tooltip",
+  "environment_raw": null,
+  "description": "Give yourself a bundle with the hide tooltip attribute and hover over the bundle /give @p bundle[minecraft:hide_tooltip={}] 1",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.\n2. Open the chat and enter the command: `/give @p bundle[minecraft:hide_tooltip={}] 1`.\n3. Wait for the bundle to be added to your inventory.\n4. Hover your mouse over the bundle in your inventory.\n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w12a (snapshot)",
+  "Observed Behavior": "When a player attempts to give themselves a bundle with the hide tooltip attribute using the command /give @p bundle[minecraft:hide_tooltip={}] 1, the game experiences a crash upon hovering over the bundle in the inventory. This issue occurs consistently, indicating a critical bug within the game's handling of the hide tooltip attribute. The crash seems to be triggered specifically by the interaction between the bundle item and the tooltip display mechanism, leading to an unexpected failure in the game's code. Players who encounter this bug report that the game becomes unresponsive and requires a restart to regain functionality. It is important to note that this issue does not seem to be isolated to a specific version of the game, as it has been reproduced across multiple versions. Furthermore, entering the world after the crash results in the game crashing again, suggesting that the bug has lasting effects on the world state. Developers investigating this issue may want to examine the interaction between item attributes and tooltip rendering to identify the root cause of the crash.",
+  "Expected Behavior": "When a player gives themselves a bundle with the hide tooltip attribute and hovers over it, the expected behavior is that the tooltip should not display any information about the bundle, allowing for a clean visual experience. Instead of crashing the game, the bundle should function normally, enabling the player to interact with it without any disruptions or errors. This behavior should be consistent across all relevant game versions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-269670",
+    "community_posts": {
+      "bug_key": "MC-269670",
+      "posts_available": 13,
+      "posts_included": 13,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2136
+    },
+    "jira_comments": {
+      "bug_key": "MC-269670",
+      "comments_total": 2,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 103
+    }
+  }
+}

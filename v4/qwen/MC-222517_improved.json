@@ -1,0 +1,51 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Use the command `/fill ~-10 ~-10 ~-10 ~20 ~ ~20 minecraft:slime_block` to place many slime blocks in front of you.\n3. Move around the area and observe if the game crashes.\n4. Alternatively, use the command `/fill -20 -10 -20 10 10 10 honey_block` to place many honey blocks instead.\n5. Move around the area with honey blocks and observe if the game crashes.\n6. Note whether you can no longer join the world after a crash occurs.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "When a large number of slime blocks or honey blocks\u2014more than approximately 4000\u2014are placed in a Minecraft world, rendering these blocks will cause the game to crash completely. This issue has been observed in versions including 21w13a and 21w14a. To reproduce this bug, one can use the command `/fill ~-10 ~-10 ~-10 ~20 ~ ~20 minecraft:slime_block` to place a large amount of slime blocks for testing purposes. After rendering these blocks, moving around in the area will result in a game crash, making it impossible to join or continue playing in that world.",
+  "Expected Behavior": "When placing more than 4000 slime blocks or honey blocks in a Minecraft world, the game should render these blocks without crashing. Players should be able to move around freely within the area containing these blocks without any disruptions or crashes, allowing for consistent gameplay and world interaction.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517",
+    "community_posts": {
+      "bug_key": "MC-222517",
+      "posts_available": 33,
+      "posts_included": 33,
+      "posts_dropped_over_budget": 0,
+      "tokens": 6738
+    },
+    "jira_comments": {
+      "bug_key": "MC-222517",
+      "comments_total": 5,
+      "comments_included": 4,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 323
+    }
+  }
+}

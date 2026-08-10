@@ -1,0 +1,50 @@
+{
+  "key": "MC-161882",
+  "created_date": "2019-09-27T10:26:26.301-0700",
+  "updated_date": "2025-04-14T16:30:16.186-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w39a"
+  ],
+  "fix_versions": [
+    "19w40a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-01T08:35:09.522-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when player model is rendered after the player is stung by a bee",
+  "environment_raw": null,
+  "description": "The bug When getting stung by a bee, the game crashes as soon as the player model is rendered. To reproduce There are multiple ways to reproduce this issue: Inventory - Get stung by a bee - Open your inventory Third-person camera - Enable third-person camera - Get stung by a bee Crash report 19w39a : [^crash-2019-09-27_13.19.08-client.txt] Description: Rendering entity in world java.lang.IllegalStateException: Not filled all elements of the vertex at cxk.a(SourceFile:253) at dwx.a(SourceFile:56) at dyd.a(SourceFile:48) at dyd.a(SourceFile:14) at duw.a(SourceFile:138) at dym.a(SourceFile:64) at dym.a(SourceFile:41) at dtz.a(SourceFile:268) at dtz.a(SourceFile:253) at dgt.a(SourceFile:134) at dgt.a(SourceFile:106) at dfx.render(SourceFile:82) at dgm.render(SourceFile:42) at dgt.render(SourceFile:86) at dpo.a(SourceFile:603) at dat.d(SourceFile:931) at dat.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Summon a bee using the command `/summon minecraft:bee ~ ~ ~`.\n3. Approach the bee until it stings you.\n4. Observe that the game crashes as soon as your player model is rendered.\n\nAlternative Steps:\n5. Enable third-person camera by pressing F5.\n6. Approaching the bee and get stung.\n7. Observe that the game crashes as soon as your player model is rendered.\n\nAnother Alternative Steps:\n8. Get stung by a bee summoned with `/summon minecraft:bee ~ ~ ~`.\n9. Open your inventory immediately after being stung.\n10. Observe that the game crashes as soon as your player model is rendered.",
+  "Environment": "Minecraft Java Edition Version 19w39a (snapshot)",
+  "Observed Behavior": "When a player is stung by a bee, the game crashes immediately upon rendering the player model. This issue can be reproduced in multiple ways: by getting stung while opening the inventory or by enabling the third-person camera before getting stung. The crash report from version 19w39a indicates an error related to rendering entity in world, specifically a `java.lang.IllegalStateException` with the message \"Not filled all elements of the vertex.\" This exception occurs at various points within the game's rendering code, suggesting that there is an issue with how the player model is being processed when the player has been stung by a bee. The crash report provides detailed stack trace information that can help developers pinpoint the exact location and cause of this bug.",
+  "Expected Behavior": "When a player is stung by a bee, the game should not crash. The player model should render normally whether in inventory mode or third-person camera view after being stung. The game should remain stable without any unexpected crashes or errors.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-161882",
+    "community_posts": {
+      "bug_key": "MC-161882",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1290
+    },
+    "jira_comments": {
+      "bug_key": "MC-161882",
+      "comments_total": 1,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "key": "MC-249712",
+  "created_date": "2022-03-31T09:53:37.037-0700",
+  "updated_date": "2025-04-30T08:48:54.153-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w13a"
+  ],
+  "fix_versions": [
+    "22w14a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "allay",
+    "chunk-loading",
+    "crash",
+    "deadlock",
+    "internalservererror",
+    "structure",
+    "world-saving"
+  ],
+  "resolution_date": "2022-04-05T06:05:34.875-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Server hangs and game stops responding when loading a chunk containing a structure with an allay",
+  "environment_raw": null,
+  "description": "When I teleported a few thousand blocks away all chunks stopped loading and using the F3 menu works and gamemode switcher ui and other ui s open up but do nothing. The F3 menu is stuck showing the internal server tick at 18ms and is not allowing chunks to keep loading in. Reloading chunks does not fix this. When the server hangs, commands, etc do not work. Sometimes, 2-8 chunks will load in if you are not inside of the structure that contains allays naturally generated. If you go to save your world while the chunks won t load, you will not be able to save your world and have to force crash the game (No data will be saved if you do this). Summoning an allay using \"/summon allay\" does not cause this issue. Going to a woodland mansion without any naturally generated allays will not cause this issue. Only structures with naturally generated allays can cause this issue. Code analysis Code analysis by can be found in this comment. Important parts are marked by a star ( ) How to reproduce: 1) Teleport to a far away structure such as woodland mansion, pillager outpost, or any other structure that may contain naturally generated allays 2) Look at the chunks near you, are they loading in? 3a) If they aren t loading in, reload chunks using F3 A, do they load in now? 3b) If they don t load in, you may not have teleported close enough to the woodland mansion, or outpost, try teleporting closer 4a) If they didn t load in now, you have successfully reproduced this bug 4b) If they didn t load in, you are probably on the wrong version of minecraft (Make sure your version is 22w13a, it is likely to have been patched in future snapshots) 5) To exit if this happens; DO NOT USE F3 C AS IT DOES NOT WORK!!! ALT F4 DOES NOT WORK AS WELL!!! (If in the \"Saving World\" screen) On Windows: Open task manager, and end the task called \"OpenJDK Platform binary\" On Linux: Open the terminal and kill the OpenJDK process using \"kill \", you can use the killall command in the terminal as well, xkill or System Monitor should also be capable On MacOS: In the application press and hold Command Option Shift, press Esc, Confirm force quit (may not ask for confirmation for some apps) \"a\" and \"b\" steps are specific to certain conditions and only follow that path if those conditions are met, if new conditions are discovered, comment and I will update the instructions",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Teleport to a far away structure such as a woodland mansion or pillager outpost that may contain naturally generated allays.\n3. Look at the chunks near you; are they loading in?\n4. If they aren't loading in, reload chunks using `F3 + A`. \n5. If they still don\u2019t load in, try teleporting closer to the structure.\n6. If the chunks still didn't load in, you have successfully reproduced this bug.\n7. If they still didn't load in, you may be on the wrong version of Minecraft; ensure you are using the correct version.\n8. If the game hangs and you cannot save your world, do not use `F3 + C` or `ALT + F4` to exit.\n9. On Windows, open Task Manager and end the task called \"OpenJDK Platform binary\". \n10. On Linux, open the terminal and kill the OpenJDK process using `kill <process_id>`. \n11. On MacOS, press and hold Command + Option + Shift, then press Esc, and confirm force quit. \n12. Observe that the game remains unresponsive and cannot save the world while in this state.",
+  "Environment": "Minecraft Java Edition Version 22w13a (snapshot)",
+  "Observed Behavior": "When teleporting to or approaching a structure that contains naturally generated allays, the server becomes unresponsive, and chunk loading halts entirely. The F3 debug screen remains functional but does not reflect any changes in chunk loading, consistently displaying an internal server tick rate of 18ms. Attempts to reload chunks using the F3 + A command yield no results, and while some chunks may sporadically load (typically between 2 to 8), this does not occur if the player is within the vicinity of the structure housing the allays. \n\nDuring this hang state, all commands become unresponsive, and any attempts to interact with the game, such as switching game modes or executing commands, fail to register. Notably, if the player attempts to save the world while in this state, the game will freeze on the \"Saving World...\" screen, necessitating a forced shutdown of the game process. This forced closure results in the loss of any unsaved progress, as no data is written to the world file during this hang.\n\nCrucially, this issue appears to be isolated to structures that contain naturally generated allays, as summoning an allay via the command \"/summon allay\" does not trigger the same behavior. Additionally, visiting a woodland mansion or pillager outpost that does not have any allays present does not induce this problem. The underlying cause of the hang seems to be related to the chunk generation process being interrupted or deadlocked when the player enters the vicinity of these specific structures. \n\nDevelopers should note that this issue can be reproduced consistently under the specified conditions, and it is critical to ensure that players are aware of the risks involved when encountering this bug, particularly regarding data loss during forced crashes.",
+  "Expected Behavior": "When teleporting to a faraway structure containing naturally generated allays, the game should successfully load all nearby chunks, allowing the player to explore without interruption. The F3 menu should function normally, displaying accurate server tick information and enabling chunk reloading as needed. Players should be able to save their world without issues, and commands should operate as expected. This behavior should be consistent in Java Edition 22w13a and future snapshots.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-249712",
+    "community_posts": {
+      "bug_key": "MC-249712",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 934
+    },
+    "jira_comments": {
+      "bug_key": "MC-249712",
+      "comments_total": 18,
+      "comments_included": 15,
+      "comments_dropped_boilerplate": 3,
+      "comments_dropped_over_budget": 0,
+      "tokens": 1033
+    }
+  }
+}

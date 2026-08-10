@@ -1,0 +1,53 @@
+{
+  "key": "MC-197122",
+  "created_date": "2020-08-05T09:29:03.496-0700",
+  "updated_date": "2025-05-04T17:59:05.186-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2 Pre-release 2"
+  ],
+  "fix_versions": [
+    "1.16.2 Pre-release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "world"
+  ],
+  "resolution_date": "2020-08-06T10:48:42.069-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes after creating/entering a Debug Type world",
+  "environment_raw": null,
+  "description": "The game crashed whilst ticking player 1.16.2-pre2: [^crash-2020-08-05_11.26.54-server.txt] Description: Ticking player java.lang.IllegalStateException: Unregistered biome at bw.b(SourceFile:88) at bw$$Lambda$4540/1295484091.get(Unknown Source) at java.util.Optional.orElseThrow(Optional.java:290) at bw.a(SourceFile:88) at bw.a(SourceFile:68) at bx$a.a(SourceFile:55) at bx.a(SourceFile:31) at bx$$Lambda$4537/457642732.test(Unknown Source) at ck.a(SourceFile:62) at bx.a(SourceFile:31) at aah.v_(SourceFile:484) at aay.b(SourceFile:207) at nd.a(SourceFile:234) at aax.c(SourceFile:173) at net.minecraft.server.MinecraftServer.b(SourceFile:881) at net.minecraft.server.MinecraftServer.a(SourceFile:810) at emy.a(SourceFile:92) at net.minecraft.server.MinecraftServer.w(SourceFile:669) at net.minecraft.server.MinecraftServer.a(SourceFile:254) at net.minecraft.server.MinecraftServer$$Lambda$4097/78048568.run(Unknown Source) at java.lang.Thread.run(Thread.java:745)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.16.2-pre2.\n2. Create a new world and select the \"Debug Type\" world option.\n3. Enter the newly created Debug Type world.\n4. Wait for the game to load the world and observe the game crash.\n5. Review the crash report generated, which indicates a \"java.lang.IllegalStateException: Unregistered biome\".",
+  "Environment": "Minecraft Java Edition Version 1.16.2 Pre-release 2",
+  "Observed Behavior": "The game crashes when creating or entering a Debug Type world in version 1.16.2-pre2, specifically during the player tick process, resulting in a java.lang.IllegalStateException due to an unregistered biome. The crash report indicates that the issue arises at line 88 in the source file bw.b, where it fails to retrieve a biome that has not been registered. This error propagates through several method calls, ultimately leading to the crash of the Minecraft server. The stack trace reveals multiple calls to various classes, including bx, aah, aay, and MinecraftServer, suggesting that the issue is related to biome handling during player initialization in the Debug Type world. The bug was confirmed by other users experiencing the same crash in the specified version, highlighting a need for developers to address the biome registration process in this particular world type to prevent the server from crashing.",
+  "Expected Behavior": "When creating or entering a Debug Type world, the game should function normally without crashing. Players should be able to explore the world, interact with its elements, and utilize the debug features without encountering errors. The biome should be registered correctly, allowing for seamless gameplay and rendering of the environment, ensuring that all intended debug functionalities operate as expected in version 1.16.2-pre2.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-197122",
+    "community_posts": {
+      "bug_key": "MC-197122",
+      "posts_available": 13,
+      "posts_included": 13,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2824
+    },
+    "jira_comments": {
+      "bug_key": "MC-197122",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 106
+    }
+  }
+}

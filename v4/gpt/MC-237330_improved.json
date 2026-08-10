@@ -1,0 +1,53 @@
+{
+  "key": "MC-237330",
+  "created_date": "2021-09-21T09:55:20.162-0700",
+  "updated_date": "2025-05-02T00:37:18.351-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a",
+    "21w38a",
+    "21w39a",
+    "21w40a"
+  ],
+  "fix_versions": [
+    "21w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-10-13T08:03:12.302-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Worlds created with seed \"REDApRES\" (0) crash when trying to load new 1.18 mountain biomes / java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null",
+  "environment_raw": null,
+  "description": "Basically the title. This doesn t affect any cave biomes. To recreate this you just have to enter \"REDApRES\" into the seed field and create a new world. After that you can locate and tp/walk to any of the new mountain biomes except Meadow and the world will crash. I tried this on a server and the error was \"java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null\" and the server closed with error code \"255\". I understand that technically seed \"0\" isn t even supposed to be entered but it have worked with all previous versions so I think this crash counts as a bug. My guess is that this new mountain generation is completely based on the raw seed so there probably won t be any fix for this bug but I am still reporting it because I often use it and I got hope. Stack trace crash-2021-09-21_15.04.25-server.txt Description: Exception generating new chunk java.lang.NullPointerException: Cannot invoke \"dfw.a(double, double, double)\" because \"this.a\" is null at dff.a(SourceFile:38) at dfi.a(SourceFile:24) at dff.a(SourceFile:30) at dff.a(SourceFile:13) at det.a(SourceFile:27) at bze.a(SourceFile:352) at crh.a(SourceFile:330) at cod.e(SourceFile:98) at cod$d.doWork(SourceFile:306) at cod.a(SourceFile:256) at abj.a(SourceFile:625) at com.mojang.datafixers.util.Either$Left.map(Either.java:38) at abj.a(SourceFile:619) at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(CompletableFuture.java:1146) at java.base/java.util.concurrent.CompletableFuture$Completion.run(CompletableFuture.java:478) at abl.b(SourceFile:58) at ask.g(SourceFile:91) at ask.a(SourceFile:146) at ask.run(SourceFile:102) at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.exec(ForkJoinTask.java:1434) at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:295) at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1016) at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1665) at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1598) at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:183)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world using the seed \"REDApRES\".\n3. Wait for the world to generate completely.\n4. Locate any new mountain biome except Meadow.\n5. Teleport to or walk to the new mountain biome.\n6. Observe that the game crashes with the error message \"java.lang.NullPointerException: Cannot invoke 'dfw.a(double, double, double)' because 'this.a' is null\".",
+  "Environment": "Minecraft Java Edition Versions: 21w37a, 21w38a, 21w39a, 21w40a (includes snapshots)",
+  "Observed Behavior": "Worlds created with the seed \"REDApRES\" (0) experience crashes when attempting to load new mountain biomes introduced in version 1.18, specifically resulting in a java.lang.NullPointerException that states \"Cannot invoke dfw.a(double, double, double) because this.a is null.\" This issue does not occur with any cave biomes. To replicate the problem, players need to enter \"REDApRES\" as the seed when creating a new world. After the world is generated, players can teleport or walk to any new mountain biome except for the Meadow biome, at which point the game will crash. This was tested on a server, where the same error message was displayed, and the server terminated with error code 255. Although seed \"0\" is not officially intended to be used, it has functioned in previous versions without issue, suggesting that this crash represents a bug. It is suspected that the new mountain generation relies heavily on the raw seed, making a fix unlikely, yet the issue is still reported due to frequent usage of this seed and a hope for resolution. The crash log indicates an exception during chunk generation, with the stack trace pointing to various methods involved in the chunk generation process, confirming the technical nature of the error.",
+  "Expected Behavior": "When using seed \"REDApRES\" (0) to create a new world, players should be able to explore and navigate the newly generated mountain biomes without experiencing any crashes. The game should successfully load these biomes, including Meadow, and allow players to interact with the environment seamlessly. Any biome should generate correctly, enabling players to enjoy the diverse terrain and features introduced in version 1.18 without encountering errors or interruptions.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-237330",
+    "community_posts": {
+      "bug_key": "MC-237330",
+      "posts_available": 0,
+      "posts_included": 0,
+      "posts_dropped_over_budget": 0,
+      "tokens": 0
+    },
+    "jira_comments": {
+      "bug_key": "MC-237330",
+      "comments_total": 8,
+      "comments_included": 6,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 668
+    }
+  }
+}

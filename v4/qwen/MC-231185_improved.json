@@ -1,0 +1,53 @@
+{
+  "key": "MC-231185",
+  "created_date": "2021-07-05T03:52:04.951-0700",
+  "updated_date": "2025-03-20T23:51:25.868-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1 Release Candidate 1",
+    "1.17.1",
+    "1.18",
+    "1.18.1"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-05-26T22:33:11.391-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Server crash while loading Superflat world based on Rails // java.lang.StackOverflowError: Exception while updating neighbours",
+  "environment_raw": null,
+  "description": "Steps to reproduce - Create new world - More world options - Worldtype: Superflat - Customize - Presets - Enter preset - minecraft:rail - Server will crash while loading the world Same crash occurs when using the minecraft:repeater preset, just after first player interaction with one of the repeaters. Stacktrace Encountered an unexpected exception z: Exception while updating neighbours at net.minecraft.server.MinecraftServer.b(SourceFile:886) at net.minecraft.server.MinecraftServer.a(SourceFile:822) at faq.a(SourceFile:96) at net.minecraft.server.MinecraftServer.x(SourceFile:688) at net.minecraft.server.MinecraftServer.a(SourceFile:270) at java.base/java.lang.Thread.run(Thread.java:831) Caused by: java.lang.StackOverflowError at java.base/java.lang.ClassLoader.defineClass1(Native Method) at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1010) at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:855) at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:753) at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:676) at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:634) at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:182) at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:519) at bwq.a(SourceFile:361) [...] Server crash log has been included as attachment.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world in Creative mode with default settings.\n3. Navigate to \"More World Options\" during world creation.\n4. Set the Worldtype to Superflat.\n5. Customize the preset and enter `minecraft:rail` as the preset value.\n6. Load the newly created world.\n7. Observe that the server crashes while loading the world.\n\n8. Alternatively, repeat steps 1-5 but enter `minecraft:repeater` as the preset value instead of `minecraft:rail`.\n9. Load the newly created world and interact with one of the repeaters.\n10. Observe that the server crashes after the first player interaction with a repeater.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1 Release Candidate 1, 1.17.1, 1.18, 1.18.1",
+  "Observed Behavior": "The server crashes while loading a Superflat world configured with specific presets such as `minecraft:rail` or `minecraft:repeater`. To reproduce the issue, create a new world and select \"More World Options.\" Choose \"Superflat\" as the world type, then customize it by selecting the Presets tab. Enter the preset `minecraft:rail` to observe that the server crashes during world loading. If using the `minecraft:repeater` preset instead, the crash occurs shortly after a player interacts with one of the repeaters. The stacktrace indicates an unexpected exception related to updating neighbors and results in a `java.lang.StackOverflowError`. This error originates from the method `ClassLoader.defineClass1`, leading to recursive loading issues within the JVM. A server crash log is attached for further analysis.",
+  "Expected Behavior": "When creating a new Superflat world with the preset \"minecraft:rail\" or \"minecraft:repeater,\" the server should load the world without crashing. Players should be able to interact with rails and repeaters normally without causing any exceptions or stack overflow errors, ensuring smooth gameplay and stability.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-231185",
+    "community_posts": {
+      "bug_key": "MC-231185",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 801
+    },
+    "jira_comments": {
+      "bug_key": "MC-231185",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 204
+    }
+  }
+}

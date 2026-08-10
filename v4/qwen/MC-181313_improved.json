@@ -1,0 +1,51 @@
+{
+  "key": "MC-181313",
+  "created_date": "2020-04-28T13:46:34.351-0700",
+  "updated_date": "2025-03-20T23:44:07.386-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.2",
+    "20w17a"
+  ],
+  "fix_versions": [
+    "1.16 Release Candidate 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-07-29T06:44:17.489-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Server crashes when critical arrow with very high damage value hits an entity",
+  "environment_raw": null,
+  "description": "The bug When an arrow with a very high damage value (or a really high speed) deals critical damage and hits an entity, the server can crash. [^(20w17a) crash-2020-04-28_22.27.03-server.txt] Description: Ticking entity java.lang.IllegalArgumentException: bound must be positive at java.util.Random.nextInt(Random.java:388) at bdb.a(SourceFile:351) at bdn.a(SourceFile:118) at bdb.h(SourceFile:227) at bdd.h(SourceFile:103) at yr.a(SourceFile:584) at yr$$Lambda$3446/120053388.accept(Unknown Source) at boq.a(SourceFile:577) at yr.a(SourceFile:399) at net.minecraft.server.MinecraftServer.b(SourceFile:827) at net.minecraft.server.MinecraftServer.a(SourceFile:766) at enn.a(SourceFile:89) at net.minecraft.server.MinecraftServer.run(SourceFile:625) at java.lang.Thread.run(Thread.java:745) Reproduction steps - Switch to Survival mode - /execute at @s anchored eyes run summon arrow ~ ~3 ~ {damage:1e100d,crit:1b} The game crashes once the arrow hits you Code analysis 20w17a, Mojang names The fix for MC-87655 made sure, that the damage value used for damage calculation is always = 0. However, if the result of damage speed becomes Integer.MAX_VALUE the result overflows and becomes negative (see MC-181312). If the arrow is dealing critical damage (crit:1b), this negative value is passed to java.util.Random.nextInt(int), the exception seen in the crash report is thrown. If only MC-181312 was fixed, the calculated damage would overflow after adding the critical damage bonus, which might currently not cause any crashes, but could in the future. Therefore, it would make sense to clamp the damage to a maximum (e.g. of Integer.MAX_VALUE / 2, or even smaller) since higher damage will likely never occur in vanilla gameplay anyway and would likely kill any entity instantaneously.",
+  "Steps to Reproduce": "1. Switch to Survival mode.\n2. Execute the following command: `/execute at @s anchored eyes run summon arrow ~ ~3 ~ {damage:1e100d,crit:1b}`\n3. Wait for the arrow to hit you.\n4. Observe that the server crashes once the arrow hits you.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.2, 20w17a (includes snapshots)",
+  "Observed Behavior": "When an arrow with a very high damage value or extremely high speed deals critical damage upon hitting an entity, the server can crash. This issue is triggered by the combination of a high damage value and the critical hit modifier. The crash occurs due to an overflow error where the calculated damage becomes negative after reaching `Integer.MAX_VALUE`. This negative value then gets passed to `java.util.Random.nextInt(int)`, leading to an exception with the message \"bound must be positive.\" Reproducing this issue involves switching to Survival mode and using the command `/execute at @s anchored eyes run summon arrow ~ ~3 ~ {damage:1e100d,crit:1b}`. When the arrow hits a player, it causes the server to crash.\n\nThe fix for MC-87655 ensures that the damage value used in calculations is always non-negative. However, if the result of the damage calculation becomes `Integer.MAX_VALUE`, it overflows and turns negative, which triggers the exception seen in the crash report. If only MC-181312 were fixed, the calculated damage would still overflow after adding the critical damage bonus, potentially causing crashes in future scenarios. Therefore, clamping the damage to a maximum value (e.g., `Integer.MAX_VALUE / 2` or even smaller) is recommended since higher values are unlikely to occur in vanilla gameplay and would likely kill any entity instantly.",
+  "Expected Behavior": "When an arrow with a very high damage value (or a really high speed) deals critical damage and hits an entity, the server should not crash. Instead, the game should handle the damage calculation properly without causing any exceptions or crashes. The entity hit by the arrow should take the appropriate amount of damage based on the arrow's properties, but the server should remain stable and continue running normally.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-181313",
+    "community_posts": {
+      "bug_key": "MC-181313",
+      "posts_available": 20,
+      "posts_included": 20,
+      "posts_dropped_over_budget": 0,
+      "tokens": 5373
+    },
+    "jira_comments": {
+      "bug_key": "MC-181313",
+      "comments_total": 1,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}
