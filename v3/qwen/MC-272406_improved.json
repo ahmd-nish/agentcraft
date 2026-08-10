@@ -1,0 +1,42 @@
+{
+  "key": "MC-272406",
+  "created_date": "2024-05-23T19:54:22.733-0700",
+  "updated_date": "2025-04-29T09:10:01.021-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w21b"
+  ],
+  "fix_versions": [
+    "1.21 Pre-Release 1"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-05-27T04:10:06.378-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when zombie tries to spawn second reinforcement",
+  "environment_raw": null,
+  "description": "Summary The game crashes when a zombie tries to spawn a zombie reinforcement for the second time. (Relates to MC-272321) Steps to Reproduce - Set Difficulty to Hard. - Either: Spawn a leader Zombie. (A zombie have 5 chance of being a leader zombie, which is capable of summoning reinforcements.) Or, spawn a zombie and run the following command to make it a leader: /attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1 - Switch gamemode to Survival. - Attack the zombie using snowballs. (Other projectiles can also be used.) - One reinforcement zombie spawns. - Continue hitting the original zombie with snowballs. Expected Result Game does not crash. Actual Result Game crashes.",
+  "Steps to Reproduce": "1. Set the game difficulty to Hard.\n2. Spawn a zombie or use the command `/attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1` to make an existing zombie a leader.\n3. Switch the gamemode to Survival.\n4. Attack the zombie using snowballs until one reinforcement zombie spawns.\n5. Continue hitting the original zombie with snowballs.\n6. Observe that the game crashes when attempting to spawn a second reinforcement zombie.",
+  "Environment": "Minecraft Java Edition Version 24w21b (snapshot)",
+  "Observed Behavior": "When a zombie attempts to spawn its second reinforcement, the game crashes instead of spawning another zombie. This issue occurs specifically when the difficulty is set to Hard and involves a leader zombie, which has a 5% chance of naturally spawning or can be created using the command `/attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1`. The player must switch to Survival mode and attack the leader zombie with snowballs until one reinforcement spawns. Continuing to hit the original zombie should trigger another reinforcement spawn attempt but results in a crash instead of the expected non-crashing behavior.",
+  "Expected Behavior": "When a leader zombie attempts to spawn a second reinforcement, the game should handle this action without crashing. The second reinforcement zombie should successfully spawn, allowing the player to continue attacking both zombies without any stability issues or unexpected game crashes. This behavior should be consistent across all versions of Minecraft where such mechanics are implemented.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-272406",
+    "community_posts": {
+      "bug_key": "MC-272406",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 3328
+    }
+  }
+}

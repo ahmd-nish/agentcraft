@@ -96,7 +96,8 @@ Bugs with 0 posts get an empty community block (identical user prompt to v2), so
 
 ```
 v3/
-└── gpt/    — 60 files, GPT-4o-mini output (v13 prompts + v14 OB rules + cleaner fix + community context)
+├── gpt/    — 60 files, GPT-4o-mini output (v13 prompts + v14 OB rules + cleaner fix + community context)
+└── qwen/   — 60 files, Qwen2.5-32B-Instruct (Q4_K_M) output, same prompts + same community context
 ```
 
 Each file is `MC-<jira-key>_improved.json` with sections exposed as top-level string keys:
@@ -125,20 +126,25 @@ Each file is `MC-<jira-key>_improved.json` with sections exposed as top-level st
 
 ## Run parameters
 
-| | GPT-4o-mini + community |
-|---|---|
-| Access | OpenAI API (`api.openai.com/v1`) |
-| Wall clock | 23 m 35 s |
-| Per report | ~24 s |
-| Fill rate | 60/60 all four sections |
-| Total posts injected | 648 across 51 bugs |
-| Max posts in one bug | 81 (MC-185285) |
-| Max token spend on posts | 15,534 tokens (MC-185285) |
-| Community-block token budget | 60,000 (hard cap; never triggered) |
+| | GPT-4o-mini + community | Qwen2.5-32B + community |
+|---|---|---|
+| Access | OpenAI API (`api.openai.com/v1`) | Ollama on Quadro RTX 8000 (Ashburn host) via SSH tunnel |
+| Quantization | full precision | Q4_K_M |
+| Wall clock | 23 m 35 s | 2 h 43 m 07 s (includes ~40 min of SSH-tunnel-drop retries) |
+| Per report | ~24 s | ~90 s (steady state) |
+| Fill rate | 60/60 all four sections | 60/60 (two sections empty on first pass — MC-231185 EB, MC-267937 S2R — refilled by resume-skip re-run after tunnel stabilized) |
+| Total posts injected | 648 across 51 bugs | 648 across 51 bugs (identical mapping) |
+| Max posts in one bug | 81 (MC-185285) | 81 (MC-185285) |
+| Max token spend on posts | 15,534 tokens (MC-185285) | 15,534 tokens (MC-185285) |
+| Community-block token budget | 60,000 (hard cap; never triggered) | same |
+| Model context window | 128k (gpt-4o-mini) | 32k (Qwen 2.5-32B default) |
+| Worst-case prompt occupancy | 14.7% of 128k | 57.6% of 32k (still ~13.9k headroom for response) |
 
 Preprocessed inputs were reused from `v2/preprocessed/` (cleaner fix already applied — `@ ~ / $ ^ =` preserved). Prompts are v13 + v14 OB rules unchanged from v2 — only the user prompt is augmented with the community block.
 
 ## Per-section word-count summary
+
+**GPT-4o-mini v3:**
 
 | Section | avg (words) | min | max |
 |---|---|---|---|
@@ -147,18 +153,41 @@ Preprocessed inputs were reused from `v2/preprocessed/` (cleaner fix already app
 | Expected Behavior | 67.5 | 57 | 88 |
 | Environment | 9.3 | 5 | 50 |
 
-Broadly similar to v2 lengths — the community block informs content, not length ceilings.
+**Qwen 2.5-32B v3:**
+
+| Section | avg (words) | min | max |
+|---|---|---|---|
+| Steps to Reproduce | 78.2 | 8 | 163 |
+| Observed Behavior | 136.0 | 14 | 421 |
+| Expected Behavior | 50.1 | 5 | 78 |
+| Environment | 9.2 | 2 | 50 |
+
+Both models produced broadly similar section lengths to v2 — the community block informs content, not length ceilings. Qwen tends to write longer S2R and shorter OB/EB than GPT; the S2R/EB minima are small because a couple of original bugs had empty sections that the model kept terse in the rewrite.
 
 ## Reproducing this run
 
 ```bash
 cd improveBR/replication_package
+
+# GPT run
 MODEL_NAME=gpt-4o-mini \
 OPENAI_API_KEY=<your-key> \
 python improbr_pipeline.py \
   --input-dir results_60reports_gpt_v2/preprocessed \
   --improve \
   --output-dir results_60reports_gpt_v3_community \
+  --community-posts-dir "<path>/threshold_0.70_after_bug_creation_cosine_posts" \
+  --community-token-budget 60000
+
+# Qwen run (Ollama at 127.0.0.1:11434 via SSH tunnel to a GPU host)
+MODEL_NAME=qwen2.5:32b-instruct-q4_K_M \
+OPENAI_API_KEY=sk-local \
+OPENAI_BASE_URL=http://127.0.0.1:11434/v1 \
+LOCAL_LLM=1 \
+python improbr_pipeline.py \
+  --input-dir results_60reports_gpt_v2/preprocessed \
+  --improve \
+  --output-dir results_60reports_qwen_v3_community \
   --community-posts-dir "<path>/threshold_0.70_after_bug_creation_cosine_posts" \
   --community-token-budget 60000
 ```
@@ -169,4 +198,4 @@ Community-post loader lives at `utils/community_posts.py`. The user-prompt injec
 
 - **v2 vs v3 head-to-head is the primary comparison.** Same model, same prompts, same inputs — the only variable is community-post injection. 9 bugs (empty community folders) will be cache-identical to v2 by design; a real delta will only appear on the 51 bugs with posts.
 - **v1 → v2 → v3 progression** — v1 had corrupted commands (cleaner bug); v2 fixed the cleaner and added OB rules 7-9; v3 layers community context on top of v2.
-- Qwen v3 is not run yet — the community-context wiring is model-agnostic and the same `--community-posts-dir` flag would work against a local Ollama endpoint. Skipped here because the user asked for GPT first.
+- **GPT vs Qwen** — both runs use identical prompts, identical inputs, and identical community-post mappings. GPT-4o-mini via API and Qwen 2.5-32B (Q4_K_M) via local Ollama on a Quadro RTX 8000. The comparison isolates model capability under matched conditions.

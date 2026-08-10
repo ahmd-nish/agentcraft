@@ -1,0 +1,42 @@
+{
+  "key": "MC-275230",
+  "created_date": "2024-08-15T09:00:38.403-0700",
+  "updated_date": "2025-05-29T09:05:06.434-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-08-19T06:19:03.045-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when opening the inventory while in spectator mode",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when opening the inventory while in spectator mode. A crash report regarding this has been attached and can be found below. This issue also doesn t appear to happen all of the time. Stack Trace: [^crash-2024-08-15_16.59.43-client.txt] Description: Rendering screen java.lang.NullPointerException: Cannot invoke \"faz.a(boolean)\" because the return value of \"ggr.t()\" is null at ghd.h(SourceFile:578) at ghd.a(SourceFile:39) at com.google.common.collect.ImmutableList.forEach(ImmutableList.java:422) at ghe$a.b(SourceFile:1231) at ghd.a(SourceFile:39) at ghe.a(SourceFile:1016) at ggv$a.a(SourceFile:96) at ggv$a.a(SourceFile:85) at ggv$a.a(SourceFile:69) at ggv$a.b(SourceFile:75) at fjn.e(SourceFile:96) at fri.a(SourceFile:160) at fri.a(SourceFile:133) at fri.a(SourceFile:102) at fqi.b(SourceFile:176) at fpt.a(SourceFile:126) at fqi.a(SourceFile:113) at fra.a(SourceFile:33) at fri.a(SourceFile:84) at fpt.c(SourceFile:117) at ggl.a(SourceFile:892) at fib.c(SourceFile:1305) at fib.f(SourceFile:894) at net.minecraft.client.main.Main.main(SourceFile:256) Steps to Reproduce: - Open your inventory while in spectator mode. Observed Behavior: The game crashes. Expected Behavior: The game would not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world or load an existing one.\n3. Use the command `/gamemode spectator` to switch to Spectator mode.\n4. Open your inventory by pressing E (default key binding).\n5. Observe that the game crashes when you open the inventory while in Spectator mode.\n\nNote: This issue does not occur consistently, so you may need to repeat steps 3-5 multiple times to reproduce the crash.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "The game crashes when opening the inventory while in spectator mode. A crash report has been attached and can be found below. This issue does not occur consistently every time the inventory is opened. The stack trace provided indicates a `java.lang.NullPointerException` related to rendering the screen, specifically at `ghd.h(SourceFile:578)`. To reproduce this bug, launch the game in spectator mode and attempt to open your inventory. Upon doing so, the game crashes instead of displaying the expected inventory interface. The crash report and steps to reproduce are detailed to help developers diagnose and resolve this issue.",
+  "Expected Behavior": "When in spectator mode and opening the inventory, the game should function normally without crashing. The inventory screen should display as expected, allowing the player to interact with items or close the inventory without any issues.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275230",
+    "community_posts": {
+      "bug_key": "MC-275230",
+      "posts_available": 0,
+      "posts_included": 0,
+      "posts_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

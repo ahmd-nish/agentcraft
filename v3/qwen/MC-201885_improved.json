@@ -1,0 +1,43 @@
+{
+  "key": "MC-201885",
+  "created_date": "2020-10-10T16:07:17.826-0700",
+  "updated_date": "2025-03-25T12:08:54.750-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.3",
+    "1.16.4 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.16.4 Pre-release 2"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-10-23T05:10:33.248-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Divide by zero error in the Ender dragon entity class can cause a server crash and infinite velocity",
+  "environment_raw": null,
+  "description": "The bug Summoning any living entity on the wings of the ender dragon (same position as the middle of the wing) will give the entity infinite velocity and crash the server. This is due to a divide by zero case with the wings and a living entity. How to reproduce - Create a new world - Go to the end - Give yourself a command block and set it to repeat - Enter this command in the command block and power the block: /tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0 - Summon armor stands on the dragon: /execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand The server crashing after a minute or two Code analysis Using 1.16.3 yarn mappings. We will be looking at the EnderDragonEntity code today. Let s go to: public void tickMovement() Inside this function there is the launchLivingEntities function. Let s explore this. if (!this.world.isClient this.hurtTime == 0) { this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingRight.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingLeft.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); //removed code } This function takes in the entities around the dragon wing (will later be limited to Living Entities ) private void launchLivingEntities(List entities) { double d = (this.partBody.getBoundingBox().minX this.partBody.getBoundingBox().maxX) / 2.0; double e = (this.partBody.getBoundingBox().minZ this.partBody.getBoundingBox().maxZ) / 2.0; for (Entity lv : entities) { if (!(lv instanceof LivingEntity)) continue; double f = lv.getX() - d; double g = lv.getZ() - e; double h = f f g g; lv.addVelocity(f / h 4.0, 0.2f, g / h 4.0); //removed stuff below } } From this function call, it takes the wing and finds the middle of it. For the next part, let s say we have an entity at the same location as the middle of the wing and it is a living entity. As the x and z are the same, f and g will be zero. As f and g are zero, h will be zero. Now, as h is zero, the lv.addVelocity will make the x and z velocity infinite as in java a float divide by zero will make a value infinity.",
+  "Steps to Reproduce": "1. Create a new world.\n2. Travel to the End dimension.\n3. Give yourself a command block and set it to repeat mode.\n4. Enter the following command into the command block: `/tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0`.\n5. Power the command block to execute the teleportation command repeatedly.\n6. Use the following command to summon armor stands on the dragon: `/execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand`.\n7. Wait approximately one or two minutes and observe that the server crashes due to a divide by zero error.\n8. Note the infinite velocity imparted to the summoned entities.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.3, 1.16.4 Pre-release 1",
+  "Observed Behavior": "The divide by zero error in the Ender dragon entity class can cause a server crash and infinite velocity. Specifically, summoning any living entity on the wings of the ender dragon (at the same position as the middle of the wing) will give that entity infinite velocity and eventually crash the server. This issue arises due to a divide by zero case involving the wings and a living entity.\n\nTo reproduce this bug, create a new world and proceed to the end dimension. Equip yourself with a command block set to repeat mode and use the following commands: first, teleport the Ender dragon to coordinates 0.0, 70.0, 0.0 using `/tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0`. Next, summon armor stands on the dragon with `/execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand`. The server will crash after a minute or two.\n\nAnalyzing the code using 1.16.3 yarn mappings reveals that the issue is in the `tickMovement` function of the EnderDragonEntity class, which calls the `launchLivingEntities` function. This function calculates the middle point of the dragon's body and then processes entities around the wings. If a living entity is exactly at the center of either wing, variables `f` and `g`, representing differences in x and z coordinates from the center, become zero. Consequently, variable `h`, which is the sum of squares of `f` and `g`, also becomes zero. When the velocity is calculated as `f / h + 4.0` and `g / h + 4.0`, a divide by zero occurs, leading to infinite values for x and z velocities in Java.\n\nThis results in the entity being given infinite velocity and subsequently crashing the server due to the undefined behavior caused by these infinite values.",
+  "Expected Behavior": "When a living entity is summoned on the wings of the Ender dragon, it should not gain infinite velocity or cause the server to crash. Instead, the entity should remain stable and interact normally with the environment without any abnormal movement or server instability issues. This behavior should be consistent across all game versions where this scenario can occur.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-201885",
+    "community_posts": {
+      "bug_key": "MC-201885",
+      "posts_available": 6,
+      "posts_included": 6,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1439
+    }
+  }
+}

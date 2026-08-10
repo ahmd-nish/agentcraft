@@ -1,0 +1,44 @@
+{
+  "key": "MC-164038",
+  "created_date": "2019-10-17T23:14:07.049-0700",
+  "updated_date": "2025-04-14T16:26:18.546-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w42a"
+  ],
+  "fix_versions": [
+    "19w44a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "component"
+  ],
+  "resolution_date": "2019-10-30T02:11:46.008-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Serializer for storage nbt component is missing",
+  "environment_raw": null,
+  "description": "Steps to reproduce scoreboard objectives add _ dummy {\"nbt\": \"\", \"storage\": \"\"} save-all An unexpected error occurred trying to execute that command - Wait until autosave The server crashes Encountered an unexpected exception java.lang.IllegalArgumentException: Don t know how to serialize StorageNbtComponent{id= minecraft: path= , siblings=[], style=Style{hasParent=false, color=null, bold=null, italic=null, underlined=null, obfuscated=null, clickEvent=null, hoverEvent=null, insertion=null}} as a Component at lc$a.a(SourceFile:377) ~[server.jar:?] at lc$a.serialize(SourceFile:175) ~[server.jar:?] at com.google.gson.internal.bind.TreeTypeAdapter.write(TreeTypeAdapter.java:81) ~[server.jar:?] at com.google.gson.Gson.toJson(Gson.java:669) ~[server.jar:?] at com.google.gson.Gson.toJson(Gson.java:648) ~[server.jar:?] at com.google.gson.Gson.toJson(Gson.java:603) ~[server.jar:?] at com.google.gson.Gson.toJson(Gson.java:583) ~[server.jar:?] at lc$a.a(SourceFile:387) ~[server.jar:?] at cwa.e(SourceFile:224) ~[server.jar:?] at cwa.b(SourceFile:151) ~[server.jar:?] at cqp.a(SourceFile:48) ~[server.jar:?] at cqz.a(SourceFile:121) ~[server.jar:?] at xa.m_(SourceFile:758) ~[server.jar:?] at xa.a(SourceFile:747) ~[server.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:547) ~[server.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:801) ~[server.jar:?] at net.minecraft.server.MinecraftServer.run(SourceFile:650) [server.jar:?] at java.lang.Thread.run(Thread.java:830) [?:?]",
+  "Steps to Reproduce": "1. Create or open an existing world in Minecraft.\n2. Ensure you have server access with command execution privileges.\n3. Execute the following command: `/scoreboard objectives add _ dummy {\"nbt\": \"\", \"storage\": \"\"}`\n4. Wait until the next autosave cycle occurs.\n5. Observe that the server crashes and generates a crash report indicating an unexpected exception related to serializing StorageNbtComponent as a Component.\n6. Note any error messages or relevant details from the crash report for further analysis.",
+  "Environment": "Minecraft Java Edition Version 19w42a (snapshot)",
+  "Observed Behavior": "The actual behavior encountered involves an issue with the serializer for the storage NBT component, which is missing. When attempting to execute the command `/scoreboard objectives add _ dummy {\"nbt\": \"\", \"storage\": \"\"}`, an unexpected error occurs, and subsequently, when the server attempts to autosave, it crashes due to an exception related to serialization. Specifically, the error message indicates a `java.lang.IllegalArgumentException` with the message \"Don't know how to serialize StorageNbtComponent\" as part of the stack trace. The full stack trace points to issues within the Gson library and Minecraft's internal classes, indicating that there is no defined method for serializing this specific component type. This results in an unexpected exception being thrown when attempting to process the NBT storage data, leading to a complete server crash during autosave operations.",
+  "Expected Behavior": "When executing `scoreboard objectives add _ dummy {\"nbt\": \"\", \"storage\": \"\"}` followed by `save-all`, the command should successfully create a scoreboard objective without any errors or crashes. The server should remain stable and continue running normally, with no unexpected exceptions related to serialization of StorageNbtComponent.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-164038",
+    "community_posts": {
+      "bug_key": "MC-164038",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1531
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "key": "MC-213788",
+  "created_date": "2021-02-03T10:40:52.694-0800",
+  "updated_date": "2025-05-01T21:27:49.591-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w05a"
+  ],
+  "fix_versions": [
+    "21w05b"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-02-10T08:11:42.859-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game can randomly freeze",
+  "environment_raw": null,
+  "description": "Time freezes when trying to kick a villager out of a bed then breaking it i have attatched a video of the glitch and the log for that session it still loads chunks. Here is a video with the bug The game can also randomly freeze.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Place a bed in an open area.\n3. Summon a villager near the bed using `/summon villager ~ ~ ~`.\n4. Interact with the villager to kick it out of the bed.\n5. Immediately break the bed after kicking the villager out.\n6. Observe if the game freezes.\n7. If the game does not freeze, repeat steps 4-6 multiple times until the freezing bug occurs.\n8. Note any specific conditions under which the game freezes.",
+  "Environment": "Minecraft Java Edition Version 21w05a (snapshot)",
+  "Observed Behavior": "When a villager is sleeping in a bed, attempting to kick the villager out by interacting with it, then immediately breaking the bed causes the game to freeze. Specifically:\n- The player can interact with the villager to wake it up from the bed.\n- After waking the villager, if the player quickly breaks the bed before the villager reclaims it (approximately 101 in-game ticks or 5.05 seconds), the game freezes entirely.\n- During the freeze, time appears to stop, but chunk loading continues as normal.\n- The game remains frozen until force-closed or restarted.",
+  "Expected Behavior": "When attempting to kick a villager out of a bed and then breaking the bed, the game should not freeze. Time should continue normally, and the player should be able to interact with the environment without any lag or stutters. The villager should be kicked out of the bed upon interaction, and the bed should break as expected when destroyed.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-213788",
+    "community_posts": {
+      "bug_key": "MC-213788",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 757
+    }
+  }
+}

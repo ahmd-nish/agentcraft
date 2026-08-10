@@ -1,0 +1,42 @@
+{
+  "key": "MC-259240",
+  "created_date": "2023-01-19T07:01:46.240-0800",
+  "updated_date": "2025-03-20T23:17:05.730-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w03a"
+  ],
+  "fix_versions": [
+    "23w07a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-02-15T04:12:24.386-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when navigating with arrow keys after changing key binds",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when attempting to navigate up or down with the arrow keys on the keyboard after changing a key bind and leaving the last key on focus. Stack Trace: [^crash-2023-01-19_16.59.01-client.txt] Description: keyPressed event handler java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 2 at com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:77) at els$a.a(SourceFile:159) at els.a(SourceFile:66) at emp.a(SourceFile:130) at eqa.a(SourceFile:150) at eqt.a(SourceFile:71) at ejs.a(SourceFile:374) at eqa.a(SourceFile:528) at ejs.a(SourceFile:370) at ejs.c(SourceFile:458) at bbp.execute(SourceFile:102) at ejs.b(SourceFile:458) at org.lwjgl.glfw.GLFWKeyCallbackI.callback(GLFWKeyCallbackI.java:44) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:215) at ejt.f(SourceFile:1229) at ejt.e(SourceFile:786) at net.minecraft.client.main.Main.a(SourceFile:244) at net.minecraft.client.main.Main.main(SourceFile:51) Steps to Reproduce: - Go to Settings Controls Key Binds - Mouse over a key bind and Left click to change it. - Select a new or the same key on the keyboard. - Without changing the focus with the mouse to a different keybind, press the Up or Down arrow Observed Behavior: Observe the game closing unexpectedly. Expected Behavior: The game navigating to the previous or next key bind and not closing unexpectedly.",
+  "Steps to Reproduce": "1. Open Minecraft.\n2. Navigate to Options -> Controls -> Key Binds.\n3. Mouse over any key bind and left-click to change it.\n4. Select a new or the same key on the keyboard.\n5. Without changing focus with the mouse, press the Up arrow key.\n6. Observe if the game crashes unexpectedly.\n7. If the game does not crash, repeat step 5 using the Down arrow key.\n8. Observe if the game crashes unexpectedly after pressing the Down arrow key.",
+  "Environment": "Minecraft Java Edition Version 23w03a (snapshot)",
+  "Observed Behavior": "The game crashes when attempting to navigate up or down with the arrow keys on the keyboard after changing a key bind and leaving the last key on focus. This issue occurs specifically during the keyPressed event handler where an ArrayIndexOutOfBoundsException is thrown, indicating that an attempt was made to access index -1 in a list of length 2. The stack trace points to a sequence of method calls starting from com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:77) and progressing through various Minecraft source files, ultimately leading to the game's unexpected closure when the up or down arrow keys are pressed after changing key binds without shifting focus with the mouse. The expected behavior is for the game to navigate to the previous or next key bind smoothly, but instead, it crashes unexpectedly under these conditions.",
+  "Expected Behavior": "When attempting to navigate up or down using the arrow keys after changing a key bind without altering focus with the mouse, the game should move to the previous or next key bind smoothly. The game should not crash and continue functioning normally without any unexpected closures.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-259240",
+    "community_posts": {
+      "bug_key": "MC-259240",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 132
+    }
+  }
+}

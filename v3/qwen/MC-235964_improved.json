@@ -1,0 +1,55 @@
+{
+  "key": "MC-235964",
+  "created_date": "2021-09-04T16:26:37.562-0700",
+  "updated_date": "2025-05-29T09:10:40.468-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w37a",
+    "21w38a",
+    "21w40a",
+    "21w41a",
+    "1.18 Pre-release 1",
+    "1.18.1",
+    "22w03a",
+    "22w06a",
+    "1.18.2 Pre-release 1",
+    "1.18.2"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "crash",
+    "profiler"
+  ],
+  "resolution_date": "2022-03-16T07:39:03.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash on \"Saving world\" when F3 L profiling is active - java.lang.NullPointerException: Cannot read field \"f\" because \"this.D\" is null",
+  "environment_raw": null,
+  "description": "Steps to reproduce: 1. Start Minecraft. 2. Create a new world or join a world. 3. Press F3 L. 4. Before the 10 seconds are up, exit the world by pressing Escape then clicking \"Save and Quit to Title\". 5. Notice the resulting crash.",
+  "Steps to Reproduce": "1. Start Minecraft.\n2. Create a new world or join an existing world.\n3. Press F3 L to activate profiling.\n4. Before the 10 seconds are up, press Escape to open the main menu.\n5. Click \"Save and Quit to Title\" in the main menu.\n6. Notice the resulting crash.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w37a, 21w38a, 21w40a, 21w41a, 1.18 Pre-release 1, 1.18.1, 22w03a, 22w06a, 1.18.2 Pre-release 1, 1.18.2 (includes snapshots)",
+  "Observed Behavior": "When attempting to save a world while F3 L profiling is active in Minecraft, the game crashes due to a `java.lang.NullPointerException`. This occurs because the field \"f\" cannot be read as \"this.D\" is null. To reproduce this issue, start Minecraft and create or join any world. Press F3 L to activate the profiler. Before the 10 seconds of profiling are complete, exit the world by pressing Escape and selecting \"Save and Quit to Title.\" This action triggers a crash, halting the game. Developers should be aware that this bug involves a specific interaction between the profiling feature and the process of saving the world state, leading to an unexpected null reference error. To assist in debugging, it is advisable to gather the `latest.log` file and any relevant entries from the `crash-reports` folder for further analysis.",
+  "Expected Behavior": "When F3 L profiling is active, exiting the world by pressing Escape and clicking \"Save and Quit to Title\" should save the world without crashing. The game should return to the main menu smoothly, allowing further gameplay sessions without any interruptions or errors.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-235964",
+    "community_posts": {
+      "bug_key": "MC-235964",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 427
+    }
+  }
+}

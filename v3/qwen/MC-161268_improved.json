@@ -1,0 +1,42 @@
+{
+  "key": "MC-161268",
+  "created_date": "2019-09-18T06:04:10.626-0700",
+  "updated_date": "2025-04-30T05:49:22.705-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w38a"
+  ],
+  "fix_versions": [
+    "19w38b"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-01-16T05:07:34.900-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "java.lang.IndexOutOfBoundsException while tesselating block model / Game crashes when breaking a block",
+  "environment_raw": null,
+  "description": "The game crashed as I break a full block of oak wood slabs causing me to crash. 19w38a : [^crash-2019-09-18_21.01.43-client.txt] Description: Tesselating block model java.lang.IndexOutOfBoundsException: Index: 1, Size: 1 at java.util.ArrayList.rangeCheck(ArrayList.java:653) at java.util.ArrayList.get(ArrayList.java:429) at cxj.b(SourceFile:91) at cxe.a(SourceFile:306) at dps.a(SourceFile:134) at dps.b(SourceFile:76) at dps.a(SourceFile:47) at dpq.a(SourceFile:48) at dpd.a(SourceFile:1300) at dpa.a(SourceFile:691) at dpa.a(SourceFile:535) at daj.e(SourceFile:931) at daj.b(SourceFile:564) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 19w38a.\n2. Create or load a Creative world with default settings.\n3. Place an oak wood slab block in the world.\n4. Break the full block of oak wood slabs using any tool.\n5. Observe that the game crashes when breaking the block.",
+  "Environment": "Minecraft Java Edition Version 19w38a (snapshot)",
+  "Observed Behavior": "The game crashes when breaking a full block of oak wood slabs, specifically in version 19w38a. The crash occurs with the error message `java.lang.IndexOutOfBoundsException: Index: 1, Size: 1`, which is related to tesselating the block model during the process of breaking the slab. This issue can be observed when attempting to break an oak wood slab, leading to a complete game crash and requiring a restart. The stack trace indicates that the problem arises in the `ArrayList` class within the Minecraft client codebase, specifically at line 91 of `SourceFile`. Additional relevant files include `cxj`, `cxe`, `dps`, `dpq`, `dpd`, `dpa`, and `daj`, which are part of the block rendering and breaking logic. This crash is reproducible consistently when attempting to break a full oak wood slab, but does not occur with other types of slabs or blocks.",
+  "Expected Behavior": "When breaking a full block of oak wood slabs, the game should not crash. The block should be successfully broken without any exceptions or errors, and the player should be able to continue playing as normal. There should be no unexpected crashes or interruptions in gameplay.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-161268",
+    "community_posts": {
+      "bug_key": "MC-161268",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1048
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Create a new Creative world with default settings.\n2. Obtain a large number of Slime Blocks or Honey Blocks (more than 4000).\n3. Place these blocks in a concentrated area within the world.\n4. Move around the area to render all placed blocks.\n5. Observe that the game crashes completely and you cannot join the world anymore.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "When a large number of slime blocks or honey blocks\u2014more than 4000\u2014are placed in a Minecraft world, rendering these blocks can cause the game to crash completely. Once this occurs, players are unable to join the world again until the issue is resolved. This bug highlights a significant performance limitation when dealing with an excessive amount of these specific block types, leading to a complete failure of the game's rendering system and preventing further access to the affected world.",
+  "Expected Behavior": "When placing more than 4000 slime or honey blocks and rendering them, the game should not crash. Players should be able to join and interact with the world without any issues, ensuring that large quantities of these blocks do not cause stability problems.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517",
+    "community_posts": {
+      "bug_key": "MC-222517",
+      "posts_available": 33,
+      "posts_included": 33,
+      "posts_dropped_over_budget": 0,
+      "tokens": 6738
+    }
+  }
+}

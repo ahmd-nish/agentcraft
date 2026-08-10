@@ -1,0 +1,43 @@
+{
+  "key": "MC-270097",
+  "created_date": "2024-03-28T19:31:56.920-0700",
+  "updated_date": "2025-05-29T09:07:07.434-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a",
+    "1.20.5 Pre-Release 1"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-16T04:42:16.787-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when set_ominous_bottle_amplifier item modifier sets out-of-range amplifier",
+  "environment_raw": null,
+  "description": "Summary This is yet another \"item modifier setting invalid component causing crash\" bug. Here, the new set_ominous_bottle_amplifier item modifier does not clamp or validate the amplifier, causing a crash. Steps to Reproduce - Give yourself a stick. - Run the following command: /item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10} - Pause the game. Expected Result The game does not crash. Actual Result The game crashes.",
+  "Steps to Reproduce": "1. Give yourself a stick.\n2. Run the following command: `/item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}`\n3. Pause the game.\n4. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w13a, 1.20.5 Pre-Release 1 (includes snapshots)",
+  "Observed Behavior": "In the actual behavior section, when the set_ominous_bottle_amplifier item modifier is used with an amplifier value of 10, which is out of the expected range, the game crashes upon pausing. This occurs because the item modifier does not validate or clamp the amplifier value to a permissible range, leading to an unexpected crash instead of handling the invalid input gracefully. The game should ideally handle such out-of-range values without crashing, but in this case, it fails to do so, resulting in an immediate termination of gameplay when attempting to pause.",
+  "Expected Behavior": "When the command `/item modify entity @s hotbar.0 {function:\"set_ominous_bottle_amplifier\",amplifier:10}` is executed, the game should handle the out-of-range amplifier value gracefully without crashing. Instead of terminating, it should either clamp the amplifier to a valid range or ignore the invalid input, allowing the game to continue functioning normally upon pausing.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-270097",
+    "community_posts": {
+      "bug_key": "MC-270097",
+      "posts_available": 0,
+      "posts_included": 0,
+      "posts_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

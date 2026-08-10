@@ -1,0 +1,54 @@
+{
+  "key": "MC-248926",
+  "created_date": "2022-03-06T12:18:27.608-0800",
+  "updated_date": "2025-04-10T14:50:07.081-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "22w11a",
+    "22w12a",
+    "22w13a",
+    "1.19 Pre-release 3",
+    "1.19 Pre-release 5",
+    "1.19",
+    "1.19.1 Pre-release 4",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "22w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "chunk-loading",
+    "softlock",
+    "spectatorsGenerateChunks"
+  ],
+  "resolution_date": "2022-12-07T01:50:11.582-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Setting \"spectatorsGenerateChunks\" to false and relogging freezes the game on the Loading Terrain screen",
+  "environment_raw": null,
+  "description": "This is bad. I was trying to spectate my hardcore world after dying, but got stuck in unloaded chunks at my respawn point. Due to this gamerule being set to false when you die in hardcore, I thought to exit out of the world, turn on cheats, and force the chunks around me to load. Because I couldn t load any chunks, my hardcore world cannot load, thus freezing the game at the \"loading terrain\" screen, which softlocks the game. How to reproduce - Die in hardcore. Make sure your death point and spawnpoint are far away from each other. - If you get trapped in unloaded chunks, relog from the world. If not, open the world to LAN amd try again. - Try to open the world. - Sit in your chair for the rest of forever waiting for your world to load.",
+  "Steps to Reproduce": "1. Create a new Hardcore world with default settings.\n2. Ensure the death location and respawn point are far apart from each other.\n3. Die in the Hardcore world.\n4. Observe that upon dying, you switch to Spectator mode.\n5. Exit out of the world via \"Esc menu -> Save and Quit to Title\".\n6. Relog into the world.\n7. Attempt to load the world again.\n8. Wait for an extended period (potentially indefinitely) while observing if the game progresses past the \"Loading Terrain\" screen.\n9. Note that the game remains frozen at the \"Loading Terrain\" screen, effectively softlocking the world.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 22w11a, 22w12a, 22w13a, 1.19 Pre-release 3, 1.19 Pre-release 5, 1.19, 1.19.1 Pre-release 4, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When the gamerule \"spectatorsGenerateChunks\" is set to false and a player relogs after dying in hardcore mode, the game freezes on the \"Loading Terrain\" screen. This issue occurs because setting this gamerule to false prevents chunk generation for spectators, which traps players in unloaded chunks at their respawn point. Players who attempt to exit the world, enable cheats, and load chunks around them find that no chunks can be loaded, causing the hardcore world to remain frozen at the \"loading terrain\" screen. This behavior effectively softlocks the game, making it impossible to progress or interact with the world further.\n\nTo reproduce this issue:\n1. Die in a hardcore world.\n2. Ensure your death point and respawn point are far apart.\n3. If trapped in unloaded chunks, relog from the world or open it to LAN and try again.\n4. Attempt to load the world; the game will freeze at the \"Loading Terrain\" screen indefinitely.\n\nThis bug specifically impacts players who die in hardcore mode and find themselves unable to load necessary chunks due to the gamerule settings, leading to an unplayable state where the game remains stuck on the loading screen.",
+  "Expected Behavior": "When \"spectatorsGenerateChunks\" is set to false and the player relogs after dying in hardcore mode, the game should load the necessary chunks around the respawn point without freezing at the \"loading terrain\" screen. The player should be able to spectate the world normally without being trapped in unloaded chunks, allowing them to view their world without softlocking.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-248926",
+    "community_posts": {
+      "bug_key": "MC-248926",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2593
+    }
+  }
+}

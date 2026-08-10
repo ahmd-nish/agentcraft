@@ -1,0 +1,42 @@
+{
+  "key": "MC-268842",
+  "created_date": "2024-02-28T10:42:06.138-0800",
+  "updated_date": "2025-04-29T10:33:58.564-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:35.936-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when saving world with painting",
+  "environment_raw": null,
+  "description": "Have a painting item in the inventory (a creative variant with a pre-selected painting), or place down it in the world, then save the game by going to another dimension or pausing.",
+  "Steps to Reproduce": "1. Launch Minecraft in Creative mode with default settings.\n2. Use the command `/give @p minecraft:painting 1` to obtain a painting item.\n3. Place the painting item somewhere in your inventory or place it down in the world.\n4. Save the game by either:\n   - Going to another dimension (e.g., using `/tp ~ ~100 ~` to teleport above the build limit and then back).\n   - Pausing the game via the main menu (Esc -> Pause Game).\n5. Observe if the game crashes upon saving.\n6. If a crash occurs, gather the `debug` folder from `.minecraft/debug` and any relevant log files (`latest.log`, `crash-reports/*.txt`) for further analysis.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "When a player has a painting item in their inventory, specifically a creative variant with a pre-selected painting, or places a painting down in the world, attempting to save the game by going to another dimension or pausing results in a crash. This issue occurs regardless of whether the painting is held in the inventory or placed as an entity in the world. The crash can be consistently reproduced by following these steps: first, ensure you have a creative variant of a painting item either in your inventory or placed in the world. Next, attempt to save the game by switching dimensions or pausing the game. This action triggers the crash, preventing the player from saving their progress without losing any changes made since the last successful save. To help diagnose and resolve this issue, it is recommended that developers gather screenshots of the affected area before and after attempting to save, a ZIP archive of the `debug` folder, the `latest.log` file, and the corresponding crash report from the `crash-reports/*.txt` directory. Additionally, including a zipped version of the world save can provide further context for troubleshooting.",
+  "Expected Behavior": "When a painting item is in the inventory or placed in the world, saving the game by going to another dimension or pausing should not cause a crash. The game should save normally without any issues, allowing players to continue their gameplay seamlessly across dimensions or resume from the pause menu.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268842",
+    "community_posts": {
+      "bug_key": "MC-268842",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 465
+    }
+  }
+}
