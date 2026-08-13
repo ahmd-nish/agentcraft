@@ -1,0 +1,50 @@
+{
+  "key": "MC-213788",
+  "created_date": "2021-02-03T10:40:52.694-0800",
+  "updated_date": "2025-05-01T21:27:49.591-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w05a"
+  ],
+  "fix_versions": [
+    "21w05b"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-02-10T08:11:42.859-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game can randomly freeze",
+  "environment_raw": null,
+  "description": "Time freezes when trying to kick a villager out of a bed then breaking it i have attatched a video of the glitch and the log for that session it still loads chunks. Here is a video with the bug The game can also randomly freeze.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Singleplayer world with default settings.  \n2. Place a bed on the ground in an open area.  \n3. Use the command ``/summon minecraft:villager ~ ~ ~`` to spawn a villager near the bed.  \n4. Wait until the villager lies down in the bed (the villager appears sleeping).  \n5. Attempt to kick the villager out by right\u2011clicking (using) the bed while the villager is inside it.  \n6. Immediately break the bed block.  \n7. Wait a few seconds.  \n8. Observe that the in\u2011game time stops advancing (the day/night cycle freezes) while the world continues loading chunks.",
+  "Environment": "Minecraft Java Edition Version 21w05a (snapshot)",
+  "Observed Behavior": "When a player tries to sleep in a bed that is occupied by a villager the game normally kicks the villager out, but in the reported case the player then breaks the bed and the world instantly stops advancing the day\u2011night cycle, the clock remains frozen and all entities become unresponsive while chunk loading continues in the background; the attached video shows the screen freezing at the moment the bed block is destroyed and the attached log records normal chunk\u2011load messages without errors. After the freeze the player cannot interact with any blocks, items do not drop when broken, mobs do not move or respond to damage, commands such as /time set have no effect, and attempting to save or exit the world hangs on the saving screen, forcing the use of the operating system task manager to terminate the process. The issue occurs sporadically, is not limited to a specific dimension, and persists even though the game continues to load new chunks in the background.",
+  "Expected Behavior": "When a player attempts to remove a villager from a bed and then breaks the bed, the game should continue running normally: time advances, chunks keep loading, and all entities and blocks remain responsive. Breaking the bed should succeed without causing the world to hang, and the player should be able to save, exit, and interact with other objects without the game freezing.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-213788",
+    "community_posts": {
+      "bug_key": "MC-213788",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 757
+    },
+    "jira_comments": {
+      "bug_key": "MC-213788",
+      "comments_total": 30,
+      "comments_included": 28,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 2118
+    }
+  }
+}

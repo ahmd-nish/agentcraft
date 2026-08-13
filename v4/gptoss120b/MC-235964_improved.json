@@ -1,0 +1,63 @@
+{
+  "key": "MC-235964",
+  "created_date": "2021-09-04T16:26:37.562-0700",
+  "updated_date": "2025-05-29T09:10:40.468-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w37a",
+    "21w38a",
+    "21w40a",
+    "21w41a",
+    "1.18 Pre-release 1",
+    "1.18.1",
+    "22w03a",
+    "22w06a",
+    "1.18.2 Pre-release 1",
+    "1.18.2"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "crash",
+    "profiler"
+  ],
+  "resolution_date": "2022-03-16T07:39:03.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash on \"Saving world\" when F3 L profiling is active - java.lang.NullPointerException: Cannot read field \"f\" because \"this.D\" is null",
+  "environment_raw": null,
+  "description": "Steps to reproduce: 1. Start Minecraft. 2. Create a new world or join a world. 3. Press F3 L. 4. Before the 10 seconds are up, exit the world by pressing Escape then clicking \"Save and Quit to Title\". 5. Notice the resulting crash.",
+  "Steps to Reproduce": "1. Launch Minecraft.  \n2. Create a new world or join an existing world.  \n3. Press **F3** and then **L** to start profiling.  \n4. Wait approximately 5 seconds while profiling is active.  \n5. Press **Escape** to open the pause menu and click **Save and Quit to Title**.  \n6. Observe that the game crashes with a `java.lang.NullPointerException`.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w37a, 21w38a, 21w40a, 21w41a, 1.18 Pre-release 1, 1.18.1, 22w03a, 22w06a, 1.18.2 Pre-release 1, 1.18.2 (includes snapshots)",
+  "Observed Behavior": "When the player starts Minecraft, creates or joins a world, activates the profiling overlay with F3\u202fL and then quits the world before the ten\u2011second profiling interval has elapsed, the game attempts to write the world data while the profiler is still active and immediately throws a NullPointerException because the internal field f of the profiling object D is null; this exception aborts the save process, displays the standard crash screen with a stack trace that references java.lang.NullPointerException and the missing field, writes a crash\u2011report text file in the crash\u2011reports folder, and forces the client to close without returning to the title screen, leaving the world unsaved.",
+  "Expected Behavior": "When the player activates the F3\u202fL profiling screen and then exits the world before the ten\u2011second profiling period ends, the game should gracefully stop profiling, complete the save process, and return to the title screen without throwing an exception or crashing. The world data should be written correctly and the player should be able to re\u2011enter the world later without issue.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-235964",
+    "community_posts": {
+      "bug_key": "MC-235964",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 427
+    },
+    "jira_comments": {
+      "bug_key": "MC-235964",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 101
+    }
+  }
+}

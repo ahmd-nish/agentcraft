@@ -70,8 +70,9 @@ JIRA Comment Thread (NEW in v4)
 
 ```
 v4/
-├── gpt/    — 60 files, GPT-4o-mini (v13 prompts + v14 OB rules + cleaner fix + community + JIRA)
-└── qwen/   — 60 files, Qwen 2.5-32B (Q4_K_M), same prompts + same context sources
+├── gpt/        — 60 files, GPT-4o-mini (v13 prompts + v14 OB rules + cleaner fix + community + JIRA)
+├── qwen/       — 60 files, Qwen 2.5-32B (Q4_K_M), same prompts + same context sources
+└── gptoss120b/ — 60 files, openai/gpt-oss-120b (reasoning model, via Groq + OpenRouter)
 ```
 
 Each file preserves both context-source stats in `improvement_metadata`:
@@ -88,14 +89,24 @@ Each file preserves both context-source stats in `improvement_metadata`:
 
 ## Run parameters
 
-| | GPT-4o-mini v4 | Qwen 2.5-32B v4 |
-|---|---|---|
-| Access | OpenAI API | Ollama on Quadro RTX 8000 (Ashburn) via SSH tunnel |
-| Wall clock | 20 m 39 s | 1 h 32 m 20 s |
-| Per report | ~21 s | ~92 s |
-| Fill rate | 60/60 all four sections | 60/60 all four sections |
+| | GPT-4o-mini v4 | Qwen 2.5-32B v4 | openai/gpt-oss-120b v4 |
+|---|---|---|---|
+| Access | OpenAI API | Ollama on Quadro RTX 8000 (Ashburn) via SSH tunnel | Groq (partial) → OpenRouter (resume) |
+| Wall clock | 20 m 39 s | 1 h 32 m 20 s | ~1 h 42 m (both providers combined) |
+| Per report | ~21 s | ~92 s | ~102 s (average) |
+| Fill rate | 60/60 all four sections | 60/60 all four sections | 60/60 all four sections |
+| Reasoning tokens | n/a | n/a | included in output (medium effort) |
 
-GPT and Qwen were run **in parallel** — GPT via OpenAI API while Qwen ran on the vast.ai GPU.
+GPT and Qwen were run **in parallel** — GPT via OpenAI API while Qwen ran on the vast.ai GPU. gpt-oss-120b was added later against the same input dir and community/JIRA context.
+
+### gpt-oss-120b provider note (Groq → OpenRouter)
+
+The Groq free-tier ceiling for `openai/gpt-oss-120b` is 8K TPM / 30 RPM / 200K TPD. The run hit the 200K daily-token wall after 44 partial bugs (17 fully clean, 27 with empty/short sections from post-TPD fallbacks). Rather than wait 24 h for the daily bucket to roll, the 43 outstanding bugs (27 degraded removed + 16 never-started) were resumed against the same model on OpenRouter (`https://openrouter.ai/api/v1`, model id `openai/gpt-oss-120b`). No prompts, no seed changes, no code changes — only `OPENAI_BASE_URL` and `OPENAI_API_KEY` swapped.
+
+- Groq portion: 44 partial bugs, 30 min, 200K tokens consumed
+- OpenRouter portion: 43 clean re-runs + 17 skipped, ~72 min, ~1 rate-limit event out of 211 requests
+- Final result: 60/60 all four sections filled, same shape as GPT and Qwen outputs
+- Estimated OpenRouter cost (from `usage.cost` field): well under $1 total for the 43 bugs (per-call probes averaged ~$0.00003)
 
 ## v3 → v4 result (GPT, manually reviewed on the 43 JIRA bugs)
 
@@ -112,7 +123,7 @@ For contrast, v2→v3 (community posts alone) was 25 v3-wins / 19 v2-wins / 109 
 
 Wins are content-driven, not stylistic — you can point to specific comment sentences that appear as facts in v4's output. Full analysis and top-10 win/loss examples in [`EVAL_v3_vs_v4_gpt.md`](./EVAL_v3_vs_v4_gpt.md).
 
-**Qwen v3→v4 comparison is pending.**
+**Qwen v3→v4 comparison is pending.** **gpt-oss-120b v3→v4 comparison is also pending** (v3 was not run for this model — comparison would need to be against GPT/Qwen v4 or against a new v3-equivalent run without JIRA-comment injection).
 
 ## Reproducing this run
 
@@ -138,6 +149,17 @@ python improbr_pipeline.py \
   --input-dir results_60reports_gpt_v2/preprocessed \
   --improve \
   --output-dir results_60reports_qwen_v4 \
+  --community-posts-dir "<path>/threshold_0.70_after_bug_creation_cosine_posts" \
+  --jira-comments-dir "<path>/selected_60_bug_reports_full_json"
+
+# gpt-oss-120b via OpenRouter (same command against Groq's endpoint if TPD allows)
+MODEL_NAME=openai/gpt-oss-120b \
+OPENAI_API_KEY=$OPENROUTER_API_KEY \
+OPENAI_BASE_URL=https://openrouter.ai/api/v1 \
+python improbr_pipeline.py \
+  --input-dir results_60reports_gpt_v2/preprocessed \
+  --improve \
+  --output-dir results_60reports_gptoss120b_v4 \
   --community-posts-dir "<path>/threshold_0.70_after_bug_creation_cosine_posts" \
   --jira-comments-dir "<path>/selected_60_bug_reports_full_json"
 ```

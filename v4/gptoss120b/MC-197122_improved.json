@@ -1,0 +1,53 @@
+{
+  "key": "MC-197122",
+  "created_date": "2020-08-05T09:29:03.496-0700",
+  "updated_date": "2025-05-04T17:59:05.186-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2 Pre-release 2"
+  ],
+  "fix_versions": [
+    "1.16.2 Pre-release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "world"
+  ],
+  "resolution_date": "2020-08-06T10:48:42.069-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes after creating/entering a Debug Type world",
+  "environment_raw": null,
+  "description": "The game crashed whilst ticking player 1.16.2-pre2: [^crash-2020-08-05_11.26.54-server.txt] Description: Ticking player java.lang.IllegalStateException: Unregistered biome at bw.b(SourceFile:88) at bw$$Lambda$4540/1295484091.get(Unknown Source) at java.util.Optional.orElseThrow(Optional.java:290) at bw.a(SourceFile:88) at bw.a(SourceFile:68) at bx$a.a(SourceFile:55) at bx.a(SourceFile:31) at bx$$Lambda$4537/457642732.test(Unknown Source) at ck.a(SourceFile:62) at bx.a(SourceFile:31) at aah.v_(SourceFile:484) at aay.b(SourceFile:207) at nd.a(SourceFile:234) at aax.c(SourceFile:173) at net.minecraft.server.MinecraftServer.b(SourceFile:881) at net.minecraft.server.MinecraftServer.a(SourceFile:810) at emy.a(SourceFile:92) at net.minecraft.server.MinecraftServer.w(SourceFile:669) at net.minecraft.server.MinecraftServer.a(SourceFile:254) at net.minecraft.server.MinecraftServer$$Lambda$4097/78048568.run(Unknown Source) at java.lang.Thread.run(Thread.java:745)",
+  "Steps to Reproduce": "1. Launch Minecraft version\u202f1.16.2\u2011pre2.  \n2. From the main menu select **Singleplayer** \u2192 **Create New World**.  \n3. Click **More World Options**, set **World Type** to **Debug**, and confirm the selection.  \n4. Click **Create New World** to generate and load the Debug world.  \n5. Wait a few seconds for the world to finish loading.  \n6. Observe that the game crashes while ticking the player.",
+  "Environment": "Minecraft Java Edition Version 1.16.2 Pre-release 2",
+  "Observed Behavior": "- In Minecraft **Java Edition\u202f1.16.2\u2011pre2**, selecting the **Debug** world type (the \u201clook\u2011but\u2011don\u2019t\u2011touch\u201d world) and either **creating a new world** with that type or **loading an existing Debug world** causes the server to crash **while the first player is being ticked**.  \n- The crash is triggered during the player\u2011tick phase and results in an **`java.lang.IllegalStateException: Unregistered biome`**. The relevant stack trace (excerpt from the generated `crash\u2011reports/*.txt`) is:\n\n```\njava.lang.IllegalStateException: Unregistered biome\n    at bw.b(SourceFile:88)\n    at bw$$Lambda$4540/1295484091.get(Unknown Source)\n    at java.util.Optional.orElseThrow(Optional.java:290)\n    at bw.a(SourceFile:88)\n    at bw.a(SourceFile:68)\n    at bx$a.a(SourceFile:55)\n    at bx.a(SourceFile:31)\n    \u2026\n    at net.minecraft.server.MinecraftServer.b(SourceFile:881)\n    at net.minecraft.server.MinecraftServer.a(SourceFile:810)\n    at emy.a(SourceFile:92)\n    at net.minecraft.server.MinecraftServer.w(SourceFile:669)\n    at net.minecraft.server.MinecraftServer.a(SourceFile:254)\n    at net.minecraft.server.MinecraftServer$$Lambda$4097/78048568.run(Unknown Source)\n    at java.lang.Thread.run(Thread.java:745)\n```\n\n- The exception originates from the biome\u2011lookup code (`bw.*` classes) which attempts to resolve a biome that is **not registered** in the Debug world\u2019s biome registry. Because the Debug world is intended to be a read\u2011only \u201cspectator\u2011only\u201d environment with a fixed biome (Plains), the missing registration should never be consulted; however, the player\u2011tick logic still queries the biome for the player\u2019s current position, causing the illegal state.  \n\n- As a result, the **entire server process terminates**:\n\n  * The server console prints the full stack trace and \u201c**Crash report saved to** \u2026/crash\u2011reports/crash\u20112020\u201108\u201105_11.26.54-server.txt\u201d.  \n  * All connected players are disconnected with no further world interaction possible.  \n  * No world data is corrupted, but the crash prevents any further play in Debug worlds until the bug is fixed.  \n\n- This behaviour is **reproducible** on every launch of a Debug world in the specified version, regardless of the player\u2019s gamemode, location, or whether the world is newly generated or loaded from disk",
+  "Expected Behavior": "When a Debug Type world is created and entered, the server should load the world without error, register all default biomes (including the Plains biome), and continue ticking the player normally. The player\u2019s position, inventory and game state should update each tick without triggering an exception, allowing normal gameplay and observation of the debug world\u2019s block\u2011state visualization.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-197122",
+    "community_posts": {
+      "bug_key": "MC-197122",
+      "posts_available": 13,
+      "posts_included": 13,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2824
+    },
+    "jira_comments": {
+      "bug_key": "MC-197122",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 106
+    }
+  }
+}

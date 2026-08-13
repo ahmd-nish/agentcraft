@@ -1,0 +1,51 @@
+{
+  "key": "MC-222517",
+  "created_date": "2021-04-07T07:22:36.049-0700",
+  "updated_date": "2025-05-02T11:40:14.096-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w13a",
+    "21w14a"
+  ],
+  "fix_versions": [
+    "21w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-04-20T07:29:21.106-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "A large amount of slime or honey blocks will crash the game",
+  "environment_raw": null,
+  "description": "If you place many slime blocks or honey blocks (more than 4000). If you render them it will crash the game completely and you can t join the world anymore.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.  \n2. Open the chat console.  \n3. Run the command ``/fill ~-10 ~-10 ~-10 ~20 ~ ~20 minecraft:slime_block`` to place a large volume of slime blocks (over 4000 blocks).  \n4. Close the chat and move the player a short distance to trigger rendering of the placed blocks.  \n5. Wait a few seconds and observe that the game crashes, preventing you from continuing or re\u2011joining the world.",
+  "Environment": "Minecraft Java Edition Versions: 21w13a, 21w14a (includes snapshots)",
+  "Observed Behavior": "actual_behavior**\n\n- When a player places **a large quantity of slime blocks or honey blocks** (approximately\u202f4\u202f000\u202f+ blocks of either type) in a world, the client crashes as soon as those blocks need to be rendered.  \n- The crash occurs on both **Java\u202fEdition** and **Bedrock\u202fEdition** (tested on the Java snapshots\u202f21w13a\u202fand\u202f21w14a).  \n- The crash report contains an **`IllegalArgumentException`** (often \u201c`java.lang.IllegalArgumentException: Invalid block state`\u201d or a similar message) that originates from the block\u2011rendering pipeline while processing the massive slab of slime/honey blocks.  \n- After the crash, the affected world **cannot be loaded again**: the client immediately aborts with the same exception before any chunk is displayed, effectively locking the player out of the world.  \n- The issue is reproducible with a single command, e.g.:\n\n```\n/fill -20 -10 -20 10 10 10 minecraft:slime_block\n```\n\n  (or the same command with `minecraft:honey_block`).  \n  This command creates roughly 8\u202f000 blocks; the crash happens even with as few as ~4\u202f000 blocks placed manually or via commands.  \n\n- The problem is not limited to a specific biome, dimension, or player\u2011position; any chunk that contains the large contiguous volume of slime/honey blocks triggers the crash when the client attempts to render it.  \n\n- The crash prevents any further interaction with the world (including opening the world in the launcher, joining multiplayer, or loading the world in a different instance), forcing the player to delete or restore the world from backup.  \n\nIn short, rendering a high concentration of slime or honey blocks causes an `IllegalArgumentException` in the rendering code, leading to an immediate game crash and making the world permanently un\u2011loadable until the offending blocks are removed.",
+  "Expected Behavior": "When a player places and renders a large quantity of slime blocks or honey blocks\u2014 even well beyond four thousand\u2014 the game should continue running normally. The world should load without error, the blocks should be visible, and the player should be able to move, interact, and save the world without experiencing a crash or being prevented from re\u2011joining.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-222517",
+    "community_posts": {
+      "bug_key": "MC-222517",
+      "posts_available": 33,
+      "posts_included": 33,
+      "posts_dropped_over_budget": 0,
+      "tokens": 6738
+    },
+    "jira_comments": {
+      "bug_key": "MC-222517",
+      "comments_total": 5,
+      "comments_included": 4,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 323
+    }
+  }
+}

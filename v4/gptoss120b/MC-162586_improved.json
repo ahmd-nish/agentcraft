@@ -1,0 +1,50 @@
+{
+  "key": "MC-162586",
+  "created_date": "2019-10-02T16:29:53.979-0700",
+  "updated_date": "2025-04-14T16:29:21.729-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w40a"
+  ],
+  "fix_versions": [
+    "19w41a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-09T08:35:55.714-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Log repeatedly prints the message \"Ticking entity\", and finally crashes the game",
+  "environment_raw": null,
+  "description": "The bug I m just moving around in my jungle world while trying to record a youtube video. Windows that were open are chrome, obs, sticky notes, streamlabs obs, and the minecraft launcher, as well as the game The game will crash after moving around a little bit. Very lagging in the jungle, the log repeatedly prints the message \"Ticking entity\", and finally crashes the game. Reproduce - Create a superflat world of jungle biome, and fly freely on the world. minecraft:bedrock,63 minecraft:dirt,minecraft:grass_block;minecraft:jungle;biome_1,decoration,lake,lava_lake - Using spawn eggs to spawn very many parrots. - Use the following command /tp @e[type=parrot] @p Here is the crash report: 19w40a: [^crash-2019-10-03_23.59.03-client.txt] Description: Ticking entity java.lang.NullPointerException: Ticking entity at atd.a(SourceFile:407) at akm.ab(SourceFile:301) at akn.ab(SourceFile:228) at akd.h(SourceFile:399) at akm.h(SourceFile:2059) at akn.h(SourceFile:295) at atk.h(SourceFile:34) at dmr.a(SourceFile:165) at bjk.a(SourceFile:648) at dmr.g(SourceFile:136) at das.n(SourceFile:1389) at das.d(SourceFile:907) at das.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Singleplayer world using a superflat preset with the jungle biome.  \n2. Enter the world in Creative mode and enable flying.  \n3. Use many parrot spawn eggs to spawn a large number of parrots.  \n4. Execute the command ``/tp @e[type=parrot] @p`` to teleport all parrots to you.  \n5. Fly around the world for approximately 10 seconds.  \n6. Wait and observe that the game becomes very laggy and the log repeatedly prints \u201cTicking entity\u201d.  \n7. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 19w40a (snapshot)",
+  "Observed Behavior": "The client crashes after a short period of moving around in a superflat jungle world while the game is very laggy and the log repeatedly records the phrase \u201cTicking entity\u201d before terminating with a NullPointerException; the crash occurs in version 19w40a and the stack trace shows the error originating in atd.a and propagating through several internal methods, ultimately reaching the main entry point, and the problem can be reproduced by creating a superflat world composed of bedrock, dirt and grass block layers set to the jungle biome, adding typical jungle decorations such as lakes and lava lakes, spawning a large number of parrots with spawn eggs, and then using the command /tp @e[type=parrot] @p while flying or moving freely, which leads to extreme lag, repeated \u201cTicking entity\u201d entries in the latest.log, and finally the client crash.",
+  "Expected Behavior": "When the player creates a superflat jungle world, spawns many parrots and uses\u202f/tp\u202f@e[type=parrot]\u202f@p while flying, the game should continue running normally: all parrots should be successfully teleported, entity ticking should proceed without errors, the log should not repeatedly output \u201cTicking entity,\u201d and no crash or null\u2011pointer exception should occur.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-162586",
+    "community_posts": {
+      "bug_key": "MC-162586",
+      "posts_available": 8,
+      "posts_included": 8,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1655
+    },
+    "jira_comments": {
+      "bug_key": "MC-162586",
+      "comments_total": 4,
+      "comments_included": 2,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 146
+    }
+  }
+}

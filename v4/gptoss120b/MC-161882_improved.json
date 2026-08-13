@@ -1,0 +1,50 @@
+{
+  "key": "MC-161882",
+  "created_date": "2019-09-27T10:26:26.301-0700",
+  "updated_date": "2025-04-14T16:30:16.186-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w39a"
+  ],
+  "fix_versions": [
+    "19w40a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2019-10-01T08:35:09.522-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when player model is rendered after the player is stung by a bee",
+  "environment_raw": null,
+  "description": "The bug When getting stung by a bee, the game crashes as soon as the player model is rendered. To reproduce There are multiple ways to reproduce this issue: Inventory - Get stung by a bee - Open your inventory Third-person camera - Enable third-person camera - Get stung by a bee Crash report 19w39a : [^crash-2019-09-27_13.19.08-client.txt] Description: Rendering entity in world java.lang.IllegalStateException: Not filled all elements of the vertex at cxk.a(SourceFile:253) at dwx.a(SourceFile:56) at dyd.a(SourceFile:48) at dyd.a(SourceFile:14) at duw.a(SourceFile:138) at dym.a(SourceFile:64) at dym.a(SourceFile:41) at dtz.a(SourceFile:268) at dtz.a(SourceFile:253) at dgt.a(SourceFile:134) at dgt.a(SourceFile:106) at dfx.render(SourceFile:82) at dgm.render(SourceFile:42) at dgt.render(SourceFile:86) at dpo.a(SourceFile:603) at dat.d(SourceFile:931) at dat.b(SourceFile:569) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.  \n2. Open the chat and enter the command ``/summon minecraft:bee ~ ~ ~`` to spawn a bee next to you.  \n3. Move close to the bee until it stings you.  \n4. Press **E** to open your inventory.  \n5. Observe that the game crashes immediately after the inventory opens.",
+  "Environment": "Minecraft Java Edition Version 19w39a (snapshot)",
+  "Observed Behavior": "The bug causes the client to crash as soon as the player model is rendered after the player receives a bee sting, and it can be reproduced by either opening the inventory or switching to third\u2011person view immediately after the sting; in both cases the game terminates with an IllegalStateException reporting that not all elements of the vertex were filled, and the stack trace from snapshot 19w39a shows the error originating in the rendering code with calls to cxk.a at line 253, dwx.a, dyd.a, duw.a, dym.a, dtz.a, dgt.a, dfx.render, dgm.render, dgt.render, dpo.a, dat.d, dat.b and finally net.minecraft.client.main.Main.main, indicating that the vertex buffer for the player entity is incomplete during the rendering pass following a bee sting.",
+  "Expected Behavior": "When a bee stings the player, the game should continue running normally and render the player model without error. Opening the inventory or switching to third\u2011person view after being stung should display the usual stinger particles and allow the player to move and interact as usual, with no crash or interruption of gameplay.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-161882",
+    "community_posts": {
+      "bug_key": "MC-161882",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1290
+    },
+    "jira_comments": {
+      "bug_key": "MC-161882",
+      "comments_total": 1,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

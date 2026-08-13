@@ -1,0 +1,51 @@
+{
+  "key": "MC-269644",
+  "created_date": "2024-03-20T09:41:28.397-0700",
+  "updated_date": "2025-05-29T09:06:47.507-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a",
+    "24w13a"
+  ],
+  "fix_versions": [
+    "24w14a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-04T02:07:54.636-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when putting items with max stack sizes above 64 into bundles",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when putting items with max stack sizes above 64 into bundles. A crash report regarding this has been attached and can be found below. Stack Trace: [^crash-2024-03-20_16.42.33-client.txt] Description: Container click java.lang.ArithmeticException: / by zero at cvk$a.c(SourceFile:134) at cvk$a.a(SourceFile:145) at crg.a(SourceFile:90) at csz.a(SourceFile:461) at cod.a(SourceFile:535) at cod.b(SourceFile:408) at cod.a(SourceFile:294) at fmq.a(SourceFile:370) at fmb.b(SourceFile:521) at fmq.b(SourceFile:606) at fdf.a(SourceFile:103) at fld.a(SourceFile:453) at fdf.a(SourceFile:103) at fdf.c(SourceFile:186) at boc.execute(SourceFile:108) at fdf.b(SourceFile:186) at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:43) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3509) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:236) at fde.c(SourceFile:1364) at fde.f(SourceFile:895) at net.minecraft.client.main.Main.main(SourceFile:265) Steps to Reproduce: - Obtain a bundle. - Give yourself a diamond sword with a max stack size of 65 by using the command provided below. /give @s minecraft:diamond_sword[minecraft:max_stack_size=65] 1 - Put the diamond sword into the bundle. Observed Behavior: The game crashes. Expected Behavior: The game would not crash.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.  \n2. Open your inventory and take a bundle from the Creative inventory.  \n3. Execute the command ``/give @s minecraft:diamond_sword[minecraft:max_stack_size=65] 1``.  \n4. Open the bundle and place the newly given diamond sword into it.  \n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w12a, 24w13a (includes snapshots)",
+  "Observed Behavior": "When a player creates a bundle, uses the command\u202f/give @s minecraft:diamond_sword[minecraft:max_stack_size=65]\u202fto obtain a diamond sword whose maximum stack size is set to 65, and then attempts to place that sword into the bundle, the client crashes instantly. The crash report generated at the moment of the failure records a java.lang.ArithmeticException caused by division by zero during a container click operation. The stack trace shows the error originating in cvk$a.c, propagating through cvk$a.a, crg.a, csz.a, cod.a, cod.b, cod.a, fmq.a, fmb.b, fmq.b, fdf.a, fld.a, fdf.c, boc.execute, fdf.b, and finally reaching the GLFW mouse button callback and the main entry point in net.minecraft.client.main.Main.main. The observed result is an abrupt termination of the game with the attached crash report, whereas the expected result is that the item would be stored in the bundle without causing a crash.",
+  "Expected Behavior": "When the player obtains a bundle and then receives a diamond sword whose max stack size has been set to\u202f65 via the command, placing that sword into the bundle should succeed without any error. The game should simply add the sword to the bundle\u2019s inventory (or reject it if the bundle\u2019s capacity is exceeded) and continue running normally, with no crash or exception.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-269644",
+    "community_posts": {
+      "bug_key": "MC-269644",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 253
+    },
+    "jira_comments": {
+      "bug_key": "MC-269644",
+      "comments_total": 1,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

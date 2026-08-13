@@ -1,0 +1,50 @@
+{
+  "key": "MC-275566",
+  "created_date": "2024-08-17T20:18:40.285-0700",
+  "updated_date": "2025-04-26T16:17:53.611-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-19T06:19:03.548-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when trying to open various GUIs with Fabulous graphics",
+  "environment_raw": null,
+  "description": "The game crashes when you try to open various GUIs with the Fabulous! graphics setting selected. Affected GUIs: - Survival inventory with hitboxes enabled - Smithing table GUI with hitboxes enabled - probably more Steps to Reproduce (survival inventory with hitboxes enabled): - Set graphics setting to Fabulous! - Open your survival inventory - Opens as normal - Enable hitboxes with F3 B - Open your inventory again - Observed: Game crashes - Expected: Game does not crash and opens inventory as normal Stack trace (deobfuscated): [^deobf_crash-2024-08-17_22.14.46-client.txt] Description: Rendering screen java.lang.NullPointerException: Cannot invoke \"faz.a(boolean)\" because the return value of \"ggr.t()\" is null at net.minecraft.client.renderer.RenderStateShard.void lambda$static$46()(RenderStateShard.java:578) at net.minecraft.client.renderer.RenderStateShard.void setupRenderState()(RenderStateShard.java:39) at com.google.common.collect.ImmutableList.null forEach(null)(ImmutableList.java:422) at net.minecraft.client.renderer.RenderType$CompositeRenderType.void lambda$new$1(net.minecraft.client.renderer.RenderType$CompositeState)(RenderType.java:1231) at net.minecraft.client.renderer.RenderStateShard.void setupRenderState()(RenderStateShard.java:39) at net.minecraft.client.renderer.RenderType.void draw(com.mojang.blaze3d.vertex.MeshData)(RenderType.java:1016) at net.minecraft.client.renderer.MultiBufferSource$BufferSource.void endBatch(net.minecraft.client.renderer.RenderType,com.mojang.blaze3d.vertex.BufferBuilder)(MultiBufferSource.java:96) at net.minecraft.client.renderer.MultiBufferSource$BufferSource.void endBatch(net.minecraft.client.renderer.RenderType)(MultiBufferSource.java:85) at net.minecraft.client.renderer.MultiBufferSource$BufferSource.void endLastBatch()(MultiBufferSource.java:69) at net.minecraft.client.renderer.MultiBufferSource$BufferSource.void endBatch()(MultiBufferSource.java:75) at net.minecraft.client.gui.GuiGraphics.void flush()(GuiGraphics.java:96) at net.minecraft.client.gui.screens.inventory.InventoryScreen.void renderEntityInInventory(net.minecraft.client.gui.GuiGraphics,float,float,float,org.joml.Vector3f,org.joml.Quaternionf,org.joml.Quaternionf,net.minecraft.world.entity.LivingEntity)(InventoryScreen.java:160) at net.minecraft.client.gui.screens.inventory.InventoryScreen.void renderEntityInInventoryFollowsMouse(net.minecraft.client.gui.GuiGraphics,int,int,int,int,int,float,float,float,net.minecraft.world.entity.LivingEntity)(InventoryScreen.java:133) at net.minecraft.client.gui.screens.inventory.InventoryScreen.void renderBg(net.minecraft.client.gui.GuiGraphics,float,int,int)(InventoryScreen.java:102) at net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.void renderBackground(net.minecraft.client.gui.GuiGraphics,int,int,float)(AbstractContainerScreen.java:176) at net.minecraft.client.gui.screens.Screen.void render(net.minecraft.client.gui.GuiGraphics,int,int,float)(Screen.java:126) at net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.void render(net.minecraft.client.gui.GuiGraphics,int,int,float)(AbstractContainerScreen.java:113) at net.minecraft.client.gui.screens.inventory.AbstractContainerScreen.void renderBg(net.minecraft.client.gui.GuiGraphics,float,int,int)(AbstractContainerScreen.java:113) at net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen.void render(net.minecraft.client.gui.GuiGraphics,int,int,float)(EffectRenderingInventoryScreen.java:33) at net.minecraft.client.gui.screens.inventory.InventoryScreen.void render(net.minecraft.client.gui.GuiGraphics,int,int,float)(InventoryScreen.java:84) at net.minecraft.client.gui.screens.Screen.void renderWithTooltip(net.minecraft.client.gui.GuiGraphics,int,int,float)(Screen.java:117) at net.minecraft.client.renderer.GameRenderer.void render(net.minecraft.client.DeltaTracker,boolean)(GameRenderer.java:892) at net.minecraft.client.Minecraft.void runTick(boolean)(Minecraft.java:1305) at net.minecraft.client.Minecraft.void run()(Minecraft.java:894) at net.minecraft.client.main.Main.void main(java.lang.String[])(Main.java:256)",
+  "Steps to Reproduce": "1. Launch Minecraft.  \n2. Create a new Singleplayer world with default settings and enter it.  \n3. Open Options \u2192 Video Settings and set **Graphics** to **Fabulous!**.  \n4. Press **E** to open the survival inventory (it opens normally).  \n5. Press **F3\u202f+\u202fB** to enable hitboxes.  \n6. Press **E** to open the inventory again.  \n7. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "When the graphics setting is set to Fabulous and hitboxes are enabled via F3\u202fB, opening any GUI that renders player models or item slots\u2014such as the survival inventory or the smithing table\u2014causes the client to terminate abruptly. The crash occurs during the rendering of the screen, specifically when the RenderStateShard attempts to invoke a method on a null object returned by ggr.t(), resulting in a java.lang.NullPointerException. The stack trace shows the failure originating in RenderStateShard.lambda$static$46 at line\u202f578, followed by subsequent calls to setupRenderState, ImmutableList.forEach, and the composite render type construction, ultimately propagating through the draw call of RenderType, the buffer flushing in MultiBufferSource, and the GuiGraphics flush before the inventory screen attempts to render the player entity. The game does not display any error message in\u2011game; instead, it closes and writes a crash report containing the deobfuscated stack trace. The expected behavior is that the inventory, smithing table, and any other GUI should open normally without terminating the client, even with hitboxes enabled and the Fabulous graphics preset active.",
+  "Expected Behavior": "When the graphics setting is set to Fabulous! and hitboxes are toggled on, opening any GUI such as the survival inventory, smithing table, or other container screens should load and render normally without causing a crash. The interface should display the player\u2019s items and the hitbox overlays correctly, allowing normal interaction.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275566",
+    "community_posts": {
+      "bug_key": "MC-275566",
+      "posts_available": 0,
+      "posts_included": 0,
+      "posts_dropped_over_budget": 0,
+      "tokens": 0
+    },
+    "jira_comments": {
+      "bug_key": "MC-275566",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 112
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "key": "MC-261620",
+  "created_date": "2023-04-05T08:19:34.819-0700",
+  "updated_date": "2025-04-11T11:42:33.514-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w14a"
+  ],
+  "fix_versions": [
+    "23w16a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-04-17T13:22:39.300-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when modifying age property of a pitcher crop",
+  "environment_raw": null,
+  "description": "The game crashes if the age property of a pitcher crop s top half is set too high. This can be done with a debug stick by a creative user. Steps to reproduce 1. Place farmland 2. Place a pitcher pod on the farmland 3. Fertilize the pitcher crop with bonemeal until it is two blocks high 4. Select the age property with the debug stick 5. Increment the age until the game crashes",
+  "Steps to Reproduce": "1. Enter a Creative world.  \n2. Place a farmland block.  \n3. Place a pitcher pod on the farmland.  \n4. Use bonemeal on the pitcher crop repeatedly until it grows to two blocks high.  \n5. Hold the debug stick and right\u2011click the top half of the pitcher crop to select its \u201cage\u201d property.  \n6. Right\u2011click the selected block repeatedly to increase the age value.  \n7. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 23w14a (snapshot)",
+  "Observed Behavior": "When the pitcher's top half has been grown to two blocks high using bonemeal and the player, in creative mode, selects the age property of the crop with a debug stick, each increment of the age value beyond the internal limit causes the client to terminate abruptly, displaying the standard crash screen and writing a crash\u2011report file to the crash\u2011reports folder; this behavior is reproducible on every attempt, occurs immediately after the age value is increased past the allowed range, and prevents any further interaction with the world until the game is restarted.",
+  "Expected Behavior": "When a player uses a debug stick to increase the age property of the top half of a pitcher crop, the game should safely handle values beyond the normal growth limit. The age value should be clamped to the crop\u2019s maximum stage or ignored, the plant should remain stable, and no crash or error should occur, allowing normal gameplay to continue.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-261620",
+    "community_posts": {
+      "bug_key": "MC-261620",
+      "posts_available": 4,
+      "posts_included": 4,
+      "posts_dropped_over_budget": 0,
+      "tokens": 880
+    },
+    "jira_comments": {
+      "bug_key": "MC-261620",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

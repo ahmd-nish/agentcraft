@@ -1,0 +1,53 @@
+{
+  "key": "MC-268408",
+  "created_date": "2024-02-08T06:08:44.749-0800",
+  "updated_date": "2025-05-29T09:08:51.907-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w06a",
+    "24w07a",
+    "24w09a",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "24w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-03-17T05:14:20.845-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when a wind charge hits an entity after disabling update_1_21 data pack",
+  "environment_raw": null,
+  "description": "The game crashes when hit by a breeze after disabling the update_1_21 data pack. Steps to reproduce - Create a new world with update_1_21 data pack enabled. - Run /datapack disable update_1_21 and exit the world. - Rejoin the world, spawn a breeze and go into survival mode. - Wait for the breeze to attack you and the game will crash instantly. I filed this bug report following a discussion on the Minecraft Commands Discord server involving , using s repro steps.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new world with the `update_1_21` data pack enabled.  \n2. In the world, run the command ``/datapack disable update_1_21``.  \n3. Exit to the title screen.  \n4. Re\u2011enter the same world.  \n5. Run the command ``/gamemode creative``.  \n6. Run the command ``/summon minecraft:breeze ~ ~ ~`` to spawn a breeze.  \n7. Run the command ``/gamemode survival``.  \n8. Wait until the breeze attacks you.  \n9. Observe that the game crashes instantly.",
+  "Environment": "Minecraft Java Edition Versions: 24w06a, 24w07a, 24w09a, 24w10a (includes snapshots)",
+  "Observed Behavior": "When the update_1_21 datapack is disabled in a newly created world and the player re\u2011enters the world, spawns a breeze, and switches to survival mode, the game crashes the moment the breeze\u2019s wind charge projectile makes contact with the player; the crash occurs instantly without any warning, the client shuts down, and a crash\u2011report file is generated in the crash\u2011reports folder along with a corresponding entry in the latest.log, indicating a fatal error triggered by the wind\u2011charge hit after the datapack has been turned off.",
+  "Expected Behavior": "After disabling the update_1_21 datapack and re\u2011entering the world, spawning a breeze in survival mode should allow the breeze to attack the player normally, applying its usual damage or wind\u2011charged effect without causing the client to crash. The game should continue running smoothly, letting the player survive the encounter or die only from standard in\u2011game damage.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268408",
+    "community_posts": {
+      "bug_key": "MC-268408",
+      "posts_available": 13,
+      "posts_included": 13,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2406
+    },
+    "jira_comments": {
+      "bug_key": "MC-268408",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

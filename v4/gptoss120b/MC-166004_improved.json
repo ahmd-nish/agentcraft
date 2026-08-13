@@ -1,0 +1,50 @@
+{
+  "key": "MC-166004",
+  "created_date": "2019-11-21T14:09:58.837-0800",
+  "updated_date": "2025-05-29T09:21:13.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.15 Pre-Release 2"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2019-11-26T02:58:31.991-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Getting too close to an end gateway causes the game to crash",
+  "environment_raw": null,
+  "description": "The bug Going too close to the end gateway will cause the game to crash! Stack trace 1.15 Pre-release 1 : [^crash-2019-11-21_23.27.56-client.txt] Description: Rendering Block Entity java.lang.IndexOutOfBoundsException: Index 16 out of bounds for length 16 at java.base/jdk.internal.util.Preconditions.outOfBounds(Preconditions.java:64) at java.base/jdk.internal.util.Preconditions.outOfBoundsCheckIndex(Preconditions.java:70) at java.base/jdk.internal.util.Preconditions.checkIndex(Preconditions.java:248) at java.base/java.util.Objects.checkIndex(Objects.java:372) at java.base/java.util.ArrayList.get(ArrayList.java:458) at dsy.a(SourceFile:41) at dsx.a(SourceFile:30) at dsx.a(SourceFile:11) at dsk.a(SourceFile:106) at dsk.b(SourceFile:95) at dsk.a(SourceFile:127) at dsk.a(SourceFile:95) at dqm.a(SourceFile:1180) at dqi.a(SourceFile:719) at dqi.a(SourceFile:549) at dbj.d(SourceFile:941) at dbj.b(SourceFile:576) at net.minecraft.client.main.Main.main(SourceFile:202)",
+  "Steps to Reproduce": "1. Launch Minecraft version\u202f1.15\u202fPre\u2011release\u202f1.  \n2. Create a new Singleplayer world with default settings and switch to Creative mode.  \n3. Find an activated End Portal, enter it, and travel to the End dimension.  \n4. Move to a position directly beneath an End Gateway, placing yourself within about one block of the gateway block.  \n5. Look straight up at the End Gateway so that it occupies most of the screen.  \n6. Observe that the game crashes, showing a stack trace with an `IndexOutOfBoundsException` while rendering the block entity.",
+  "Environment": "Minecraft Java Edition Version 1.15 Pre-release 1",
+  "Observed Behavior": "When a player approaches an End gateway in the 1.15 pre\u2011release (snapshot 19w46b) and moves within the block\u2011entity rendering distance, the client attempts to render the gateway\u2019s tile entity and throws a java.lang.IndexOutOfBoundsException because the internal array that stores rendering data is accessed with an index equal to the array length; the stack trace shows the error originating in dsy.a, dsx.a and subsequent rendering classes before the crash propagates to net.minecraft.client.main.Main.main. The crash occurs most reliably when the player stands directly beneath the gateway and looks upward, causing the game to save the world state and then abort on the next launch, often preventing any further entry into the world until a backup is restored. This behavior has been reproduced on both single\u2011player and server worlds, persists across multiple attempts to re\u2011enter the End after killing the dragon, and has been confirmed by several users who reported that the crash happens instantly after the player reaches the critical proximity, with the client closing and the crash report being generated in the crash\u2011reports folder.",
+  "Expected Behavior": "When a player approaches an End Gateway, the game should render the gateway\u2019s block entity normally and allow the player to stand or look at it from any distance without causing a crash. The rendering code should handle the gateway\u2019s data safely, so no IndexOutOfBoundsException is thrown, and gameplay continues uninterrupted in Java Edition 1.15 pre\u2011release.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-166004",
+    "community_posts": {
+      "bug_key": "MC-166004",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 963
+    },
+    "jira_comments": {
+      "bug_key": "MC-166004",
+      "comments_total": 13,
+      "comments_included": 12,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 755
+    }
+  }
+}

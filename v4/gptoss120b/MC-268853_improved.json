@@ -1,0 +1,50 @@
+{
+  "key": "MC-268853",
+  "created_date": "2024-02-28T12:22:17.891-0800",
+  "updated_date": "2025-04-29T10:33:55.172-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:35.341-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Unable to load paintings for any variants",
+  "environment_raw": null,
+  "description": "[21:11:42] [Render thread/WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:earth\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:earth\"}} [21:11:42] [Render thread/WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:wind\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:wind\"}} [21:11:42] [Render thread/WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:water\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:water\"}} [21:11:42] [Render thread/WARN]: Could not parse hotbar item: Missing id for entity in: {variant:\"minecraft:fire\"} missed input: {\"minecraft:entity_data\":{variant:\"minecraft:fire\"}} Unable to load these paintings properly in hotbar, or world, or anywhere for that matter. I get a random variant painting instead. Even better: [21:43:29] [Server thread/ERROR]: Failed to save chunk -8,9 java.lang.IllegalStateException: Missing id for entity in: {variant:\"minecraft:water\"} at ac.a(SourceFile:1050) ~[24w09a.jar:?] at crj.b(SourceFile:339) ~[24w09a.jar:?] at bnu.a(SourceFile:41) ~[24w09a.jar:?] at bnu.a(SourceFile:31) ~[24w09a.jar:?] at dmm.b(SourceFile:92) ~[24w09a.jar:?] at dmf.d(SourceFile:86) ~[24w09a.jar:?] at dmf.b(SourceFile:66) ~[24w09a.jar:?] at drf.a(SourceFile:390) ~[24w09a.jar:?] at dsb.a(SourceFile:330) ~[24w09a.jar:?] at apb.a(SourceFile:840) ~[24w09a.jar:?] at apb.d(SourceFile:804) ~[24w09a.jar:?] at apb.b(SourceFile:515) ~[24w09a.jar:?] at apb.a(SourceFile:470) ~[24w09a.jar:?] at apq.a(SourceFile:328) ~[24w09a.jar:?] at aps.a(SourceFile:348) ~[24w09a.jar:?] at net.minecraft.server.MinecraftServer.b(SourceFile:994) ~[24w09a.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:885) ~[24w09a.jar:?] at gpn.a(SourceFile:113) ~[24w09a.jar:?] at net.minecraft.server.MinecraftServer.y(SourceFile:687) ~[24w09a.jar:?] at net.minecraft.server.MinecraftServer.a(SourceFile:272) ~[24w09a.jar:?] at java.base/java.lang.Thread.run(Thread.java:833) [?:?] and: Loading from the operator tab works fine. loading or saving the data to NBT won t work though. /data get entity SelectedItem will also not work, as long as your inventory contains a painting. with a specific variant. And while writing this ticket:",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.  \n2. Open the inventory and select a painting variant (e.g., the \u201cWater\u201d painting) from the creative items list (non\u2011operator tab).  \n3. Place the selected painting on a wall.  \n4. Observe that the placed painting displays a random variant instead of the chosen one and that the console shows warnings such as \u201cCould not parse hotbar item: Missing id for entity in: {variant:\"minecraft:water\"}\u201d.  \n5. Exit the world (or wait for the server to autosave) and observe a server error similar to \u201cFailed to save chunk \u2026 IllegalStateException: Missing id for entity in: {variant:\"minecraft:water\"}\u201d.  \n6. While the painting remains in the hotbar, execute ``/data get entity @p SelectedItem`` and note that the command fails to return data for the painting.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "The game logs warnings on the render thread indicating that the hotbar item could not be parsed because the entity data is missing an id for the variant field such as minecraft:earth, minecraft:wind, minecraft:water and minecraft:fire. As a result the painting does not load with the intended variant in the hotbar, in the world, or in any inventory slot and a random variant is displayed instead. When the chunk containing such a painting is saved the server thread throws an IllegalStateException with the same missing id message, causing the chunk save to fail. The operator creative inventory tab can still load the painting correctly, but any attempt to write the entity data to NBT or to retrieve it with /data get entity SelectedItem fails whenever the player\u2019s inventory holds a painting with a specific variant. This issue therefore prevents proper loading, saving and data manipulation of variant paintings across all contexts except the operator tab.",
+  "Expected Behavior": "When a painting with a specific variant (e.g., earth, wind, water, fire) is placed or held in the hotbar, the game should correctly recognize the entity ID, render the exact chosen artwork, and log no parsing warnings. The painting\u2019s NBT data should save and load without errors, chunks should save normally, and commands such as\u202f/data get entity\u202fshould return the correct variant information.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268853",
+    "community_posts": {
+      "bug_key": "MC-268853",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 465
+    },
+    "jira_comments": {
+      "bug_key": "MC-268853",
+      "comments_total": 2,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 110
+    }
+  }
+}

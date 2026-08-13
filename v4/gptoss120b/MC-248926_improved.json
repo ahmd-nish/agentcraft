@@ -1,0 +1,62 @@
+{
+  "key": "MC-248926",
+  "created_date": "2022-03-06T12:18:27.608-0800",
+  "updated_date": "2025-04-10T14:50:07.081-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "22w11a",
+    "22w12a",
+    "22w13a",
+    "1.19 Pre-release 3",
+    "1.19 Pre-release 5",
+    "1.19",
+    "1.19.1 Pre-release 4",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "22w46a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "chunk-loading",
+    "softlock",
+    "spectatorsGenerateChunks"
+  ],
+  "resolution_date": "2022-12-07T01:50:11.582-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Setting \"spectatorsGenerateChunks\" to false and relogging freezes the game on the Loading Terrain screen",
+  "environment_raw": null,
+  "description": "This is bad. I was trying to spectate my hardcore world after dying, but got stuck in unloaded chunks at my respawn point. Due to this gamerule being set to false when you die in hardcore, I thought to exit out of the world, turn on cheats, and force the chunks around me to load. Because I couldn t load any chunks, my hardcore world cannot load, thus freezing the game at the \"loading terrain\" screen, which softlocks the game. How to reproduce - Die in hardcore. Make sure your death point and spawnpoint are far away from each other. - If you get trapped in unloaded chunks, relog from the world. If not, open the world to LAN amd try again. - Try to open the world. - Sit in your chair for the rest of forever waiting for your world to load.",
+  "Steps to Reproduce": "1. Launch the game and enter a Hardcore world.\n2. Die in the world, making sure the death location is far from the world\u2019s spawn point.\n3. After death, you will be in spectator mode with the gamerule `spectatorsGenerateChunks` set to false, leaving you in unloaded chunks.\n4. Open the Esc menu and select **Save and Quit to Title** to exit the world.\n5. From the main menu, choose **Singleplayer \u2192 [your world] \u2192 Play** to load the world again.\n6. Wait at least a few minutes while the **Loading Terrain** screen is displayed.\n7. Observe that the game remains stuck on the **Loading Terrain** screen, indicating a freeze.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 22w11a, 22w12a, 22w13a, 1.19 Pre-release 3, 1.19 Pre-release 5, 1.19, 1.19.1 Pre-release 4, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When a player dies in a Hardcore world the game automatically switches the player to spectator mode and the gamerule\u202fspectatorsGenerateChunks is set to false, which prevents new chunks from being generated while spectating. If the death location and the world spawn are far enough apart the player can become trapped in an area of unloaded chunks at the respawn point. Attempting to leave the world, enable cheats, or open the world to LAN does not cause the surrounding chunks to load because the gamerule still blocks chunk generation. Upon logging back into the world the client remains on the loading\u2011terrain screen indefinitely; no terrain is rendered, the progress bar never advances and the game becomes unresponsive, effectively soft\u2011locking the world. This freeze occurs regardless of whether the player tries to relog directly after death or first opens the world to LAN, and it persists until the game is terminated.",
+  "Expected Behavior": "After dying in a Hardcore world, the player should be placed in spectator mode and, even if the gamerule\u202f`spectatorsGenerateChunks`\u202fis set to false, re\u2011logging should load the surrounding terrain normally rather than hanging on the \u201cLoading Terrain\u201d screen. The world should finish loading, positioning the spectator at the spawn or death location and permitting further actions such as enabling cheats.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-248926",
+    "community_posts": {
+      "bug_key": "MC-248926",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2593
+    },
+    "jira_comments": {
+      "bug_key": "MC-248926",
+      "comments_total": 2,
+      "comments_included": 2,
+      "comments_dropped_boilerplate": 0,
+      "comments_dropped_over_budget": 0,
+      "tokens": 139
+    }
+  }
+}

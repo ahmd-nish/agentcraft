@@ -1,0 +1,50 @@
+{
+  "key": "MC-268842",
+  "created_date": "2024-02-28T10:42:06.138-0800",
+  "updated_date": "2025-04-29T10:33:58.564-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:35.936-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when saving world with painting",
+  "environment_raw": null,
+  "description": "Have a painting item in the inventory (a creative variant with a pre-selected painting), or place down it in the world, then save the game by going to another dimension or pausing.",
+  "Steps to Reproduce": "1. Launch Minecraft.  \n2. Create a new Creative world with default settings.  \n3. Obtain a painting item (the creative variant with a pre\u2011selected painting) and keep it in the inventory, or place the painting block in the world.  \n4. Go to another dimension, or press **Esc** to open the pause menu, thereby triggering a world save.  \n5. Wait a few seconds.  \n6. Observe that the game crashes (the client exits or a crash screen appears).",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "When a player has a painting item in the inventory, specifically the creative\u2011mode variant that comes pre\u2011selected with a painting, or when a painting entity is placed on a wall, attempting to save the world by opening the pause menu or by traveling to another dimension such as the Nether or the End causes the game to crash; the client closes abruptly and a crash\u2011report file is written to the crash\u2011reports folder, with the latest.log typically showing a NullPointerException or similar error that references the painting entity\u2019s NBT data being written during the world\u2011save process, the issue occurs consistently in the current Java Edition release and can be reproduced by opening a creative world, obtaining the painting item via the creative inventory or the /give command, keeping it in the hotbar or placing it, then pausing or changing dimensions, while worlds that contain no painting items or no placed paintings save without incident, preventing players from safely saving worlds that include paintings or from using the painting item in creative mode.",
+  "Expected Behavior": "When a player holds a painting item in their inventory\u2014or has a painting placed in the world\u2014and then saves the game by switching dimensions or pausing, the game should successfully write the world data and continue running without any crash. The painting should remain in the inventory or remain placed after the save, and the world should load normally on return.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268842",
+    "community_posts": {
+      "bug_key": "MC-268842",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 465
+    },
+    "jira_comments": {
+      "bug_key": "MC-268842",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 152
+    }
+  }
+}

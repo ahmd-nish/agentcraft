@@ -1,0 +1,56 @@
+{
+  "key": "MC-185285",
+  "created_date": "2020-05-23T01:50:51.794-0700",
+  "updated_date": "2025-05-03T20:03:04.032-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w21a",
+    "20w22a",
+    "1.16 Pre-release 1",
+    "1.16 Pre-release 2"
+  ],
+  "fix_versions": [
+    "1.16 Pre-release 3"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "debug-world",
+    "nether"
+  ],
+  "resolution_date": "2020-06-09T05:55:00.206-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Entering the End or the Nether after creating and reentering a debug world crashes the game",
+  "environment_raw": null,
+  "description": "Regardless of whether you have entered the End or the Nether on your first entry on the debug world, reentering the debug world and using either the Nether or the End portal will crash the game. Nether Crash Report: End Crash Report:",
+  "Steps to Reproduce": "1. Launch Minecraft.  \n2. Create a new Singleplayer world with world type **Debug** via *Create New World \u2192 More World Options \u2192 World Type \u2192 Debug* and keep all other settings default.  \n3. Enter the world and run the command ``/gamemode creative`` to enable Creative mode.  \n4. Build a Nether portal (or an End portal frame), activate it, and step through to the Nether (or End); then return to the Overworld through the same portal.  \n5. Open the *Esc* menu and choose **Save and Quit to Title**.  \n6. From the Singleplayer list, select the same debug world and click **Play** to re\u2011enter it.  \n7. Use the existing portal (or build a new one) to travel to the Nether (or End) again.  \n8. Observe that the game crashes and a crash\u2011report file is created.",
+  "Environment": "Minecraft Java Edition Versions: 20w21a, 20w22a, 1.16 Pre-release 1, 1.16 Pre-release 2 (includes snapshots)",
+  "Observed Behavior": "When a player creates a world using the Debug world type, leaves that world, and then loads the same debug world again, attempting to travel through either a Nether portal or an End portal causes the game to terminate unexpectedly and produce a crash\u2011report file for the respective dimension; this occurs even if the player never entered the End or the Nether during the first session in the debug world, and the crash happens during the dimension\u2011transfer sequence after the loading screen has finished, before the player is rendered in the target dimension, indicating that the debug world type does not correctly handle portal activation after a reload and that the underlying code responsible for loading the target dimension crashes, generating a full crash report for both the Nether and the End.",
+  "Expected Behavior": "When a debug world is created or re\u2011entered, using an End portal or a Nether portal should function exactly as in any normal world: the portal\u2011loading screen appears, the player is teleported to the target dimension, the appropriate background animation plays, and gameplay continues without interruption. No crash reports or game termination should occur, and the world remains stable after returning to the Over",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-185285",
+    "community_posts": {
+      "bug_key": "MC-185285",
+      "posts_available": 81,
+      "posts_included": 81,
+      "posts_dropped_over_budget": 0,
+      "tokens": 15534
+    },
+    "jira_comments": {
+      "bug_key": "MC-185285",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 147
+    }
+  }
+}

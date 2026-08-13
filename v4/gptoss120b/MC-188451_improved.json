@@ -1,0 +1,50 @@
+{
+  "key": "MC-188451",
+  "created_date": "2020-06-10T09:23:20.874-0700",
+  "updated_date": "2025-05-03T19:25:00.663-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.16 Pre-release 4"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-06-17T02:31:09.168-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when dispensing a shulker box from a dispenser - \"java.lang.NullPointerException: Exception while ticking\"",
+  "environment_raw": null,
+  "description": "(1.16 Pre-Release 3) [^crash-2020-06-10_18.21.22-server.txt] Description: Exception while ticking java.lang.NullPointerException: Exception while ticking at bil.a(SourceFile:88) at gy.a(SourceFile:23) at gu.dispense(SourceFile:15) at bxc.a(SourceFile:89) at bxc.a(SourceFile:112) at cfi$a.a(SourceFile:865) at zd.b(SourceFile:596) at zd$$Lambda$3895/290764432.accept(Unknown Source) at bqn.b(SourceFile:84) at zd.a(SourceFile:351) at net.minecraft.server.MinecraftServer.b(SourceFile:873) at net.minecraft.server.MinecraftServer.a(SourceFile:813) at eox.a(SourceFile:93) at net.minecraft.server.MinecraftServer.v(SourceFile:672) at net.minecraft.server.MinecraftServer.a(SourceFile:256) at net.minecraft.server.MinecraftServer$$Lambda$3883/2115162896.run(Unknown Source) at java.lang.Thread.run(Thread.java:745)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition\u202f1.16\u202fPre\u2011Release\u202f3.  \n2. Create a new Creative world with default settings.  \n3. Place a dispenser block on the ground.  \n4. Open the dispenser\u2019s inventory and insert a shulker box item.  \n5. Power the dispenser (e.g., place a redstone block or lever adjacent to it).  \n6. Observe that the game crashes and a \u201cjava.lang.NullPointerException: Exception while ticking\u201d error is reported.",
+  "Environment": "Minecraft Java Edition Version 1.16 Pre-release 3",
+  "Observed Behavior": "When a dispenser attempts to dispense a shulker box in 1.16\u202fPre\u2011Release\u202f3 the server crashes instantly with a `java.lang.NullPointerException` that originates in the tick loop, as shown in the stack trace (`bil.a`, `gy.a`, `gu.dispense`, etc.). The crash occurs regardless of the surrounding redstone configuration or the player\u2019s proximity; as soon as the dispenser activates, the game freezes and the server process terminates. After re\u2011joining the world the dispenser remains powered but the shulker\u2011box item is still present inside its inventory, and in some cases the box is duplicated, appearing both as a placed block in the world and again inside the dispenser. The error is triggered by the dispenser calling `BlockItem#place` with a null player reference, which leads to the null\u2011pointer when the method checks for creative\u2011mode inventory handling. This behaviour has been reproduced by multiple reporters who confirm that the crash happens immediately upon activation and that the world state is partially preserved, leaving the dispenser powered and the shulker box item unchanged.",
+  "Expected Behavior": "When a dispenser is activated while containing a shulker box, the dispenser should safely handle the item\u2014either placing the shulker box block at the target location or dropping it as an item\u2014without triggering any exception. The server should remain running, the dispenser should stay powered, and the shulker box should not be duplicated or lost. No crash occurs.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-188451",
+    "community_posts": {
+      "bug_key": "MC-188451",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1172
+    },
+    "jira_comments": {
+      "bug_key": "MC-188451",
+      "comments_total": 13,
+      "comments_included": 11,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 708
+    }
+  }
+}

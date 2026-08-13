@@ -1,0 +1,50 @@
+{
+  "key": "MC-272406",
+  "created_date": "2024-05-23T19:54:22.733-0700",
+  "updated_date": "2025-04-29T09:10:01.021-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w21b"
+  ],
+  "fix_versions": [
+    "1.21 Pre-Release 1"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-05-27T04:10:06.378-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when zombie tries to spawn second reinforcement",
+  "environment_raw": null,
+  "description": "Summary The game crashes when a zombie tries to spawn a zombie reinforcement for the second time. (Relates to MC-272321) Steps to Reproduce - Set Difficulty to Hard. - Either: Spawn a leader Zombie. (A zombie have 5 chance of being a leader zombie, which is capable of summoning reinforcements.) Or, spawn a zombie and run the following command to make it a leader: /attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1 - Switch gamemode to Survival. - Attack the zombie using snowballs. (Other projectiles can also be used.) - One reinforcement zombie spawns. - Continue hitting the original zombie with snowballs. Expected Result Game does not crash. Actual Result Game crashes.",
+  "Steps to Reproduce": "1. Set the difficulty to Hard using the command `/difficulty hard`.  \n2. Spawn a zombie with `/summon minecraft:zombie ~ ~ ~` and then run ``/attribute @e[type=zombie,limit=1] minecraft:zombie.spawn_reinforcements base set 1`` to make it a leader.  \n3. Switch your game mode to Survival with `/gamemode survival`.  \n4. Throw a snowball at the zombie.  \n5. Observe that one reinforcement zombie spawns.  \n6. Continue throwing snowballs at the original zombie and observe the game crash when it attempts to spawn a second reinforcement.",
+  "Environment": "Minecraft Java Edition Version 24w21b (snapshot)",
+  "Observed Behavior": "The observed behavior is that after setting the world to hard difficulty and converting a zombie into a leader either by natural chance or by using the attribute command, the zombie summons a reinforcement when struck with a snowball; when the player continues to hit the original zombie with additional snowballs the game attempts to spawn a second reinforcement and immediately crashes, the client closes and returns to the launcher and a crash\u2011report file is created in the crash\u2011reports directory, no other abnormal effects are seen before the crash, the world state does not change and the original zombie remains alive until the crash, and the issue is reproducibly triggered in survival mode on the latest Java Edition version while it does not occur if the zombie is killed before a second reinforcement is triggered.",
+  "Expected Behavior": "When a leader zombie is attacked with snowballs on Hard difficulty, it should be able to summon its first reinforcement, and upon further hits it should be able to summon additional reinforcements as intended, without causing the client or server to terminate. The game should remain stable, and the player should be able to see the newly spawned zombies and interact normally.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-272406",
+    "community_posts": {
+      "bug_key": "MC-272406",
+      "posts_available": 17,
+      "posts_included": 17,
+      "posts_dropped_over_budget": 0,
+      "tokens": 3328
+    },
+    "jira_comments": {
+      "bug_key": "MC-272406",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

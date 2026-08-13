@@ -1,0 +1,50 @@
+{
+  "key": "MC-259240",
+  "created_date": "2023-01-19T07:01:46.240-0800",
+  "updated_date": "2025-03-20T23:17:05.730-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w03a"
+  ],
+  "fix_versions": [
+    "23w07a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-02-15T04:12:24.386-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "The game crashes when navigating with arrow keys after changing key binds",
+  "environment_raw": null,
+  "description": "The Bug: The game crashes when attempting to navigate up or down with the arrow keys on the keyboard after changing a key bind and leaving the last key on focus. Stack Trace: [^crash-2023-01-19_16.59.01-client.txt] Description: keyPressed event handler java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 2 at com.google.common.collect.RegularImmutableList.get(RegularImmutableList.java:77) at els$a.a(SourceFile:159) at els.a(SourceFile:66) at emp.a(SourceFile:130) at eqa.a(SourceFile:150) at eqt.a(SourceFile:71) at ejs.a(SourceFile:374) at eqa.a(SourceFile:528) at ejs.a(SourceFile:370) at ejs.c(SourceFile:458) at bbp.execute(SourceFile:102) at ejs.b(SourceFile:458) at org.lwjgl.glfw.GLFWKeyCallbackI.callback(GLFWKeyCallbackI.java:44) at org.lwjgl.system.JNI.invokeV(Native Method) at org.lwjgl.glfw.GLFW.glfwWaitEventsTimeout(GLFW.java:3474) at com.mojang.blaze3d.systems.RenderSystem.limitDisplayFPS(SourceFile:215) at ejt.f(SourceFile:1229) at ejt.e(SourceFile:786) at net.minecraft.client.main.Main.a(SourceFile:244) at net.minecraft.client.main.Main.main(SourceFile:51) Steps to Reproduce: - Go to Settings Controls Key Binds - Mouse over a key bind and Left click to change it. - Select a new or the same key on the keyboard. - Without changing the focus with the mouse to a different keybind, press the Up or Down arrow Observed Behavior: Observe the game closing unexpectedly. Expected Behavior: The game navigating to the previous or next key bind and not closing unexpectedly.",
+  "Steps to Reproduce": "- Go to Settings Controls Key Binds - Mouse over a key bind and Left click to change it. - Select a new or the same key on the keyboard. - Without changing the focus with the mouse to a different keybind, press the Up or Down arrow",
+  "Environment": "Minecraft Java Edition Version 23w03a (snapshot)",
+  "Observed Behavior": "The actual behavior is that after a key bind has been edited and the focus remains on that entry, pressing the up or down arrow key causes the client to terminate abruptly. Instead of moving the selection to the previous or next binding, the game closes unexpectedly and a crash report is generated. The crash log shows a keyPressed event handler throwing an ArrayIndexOutOfBoundsException with index -1 out of bounds for length 2, originating from com.google.common.collect.RegularImmutableList.get and propagating through several internal classes before reaching the GLFW key callback. No navigation occurs and the player is forced out of the controls screen without warning.",
+  "Expected Behavior": "After reassigning a key bind and leaving the focus on that entry, pressing the Up or Down arrow keys should simply move the selection to the previous or next key bind in the list, allowing the player to continue editing controls without any interruption. The interface should handle the navigation smoothly and the game must remain running.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-259240",
+    "community_posts": {
+      "bug_key": "MC-259240",
+      "posts_available": 1,
+      "posts_included": 1,
+      "posts_dropped_over_budget": 0,
+      "tokens": 132
+    },
+    "jira_comments": {
+      "bug_key": "MC-259240",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

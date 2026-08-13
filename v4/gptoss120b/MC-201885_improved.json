@@ -1,0 +1,51 @@
+{
+  "key": "MC-201885",
+  "created_date": "2020-10-10T16:07:17.826-0700",
+  "updated_date": "2025-03-25T12:08:54.750-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.3",
+    "1.16.4 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.16.4 Pre-release 2"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-10-23T05:10:33.248-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Divide by zero error in the Ender dragon entity class can cause a server crash and infinite velocity",
+  "environment_raw": null,
+  "description": "The bug Summoning any living entity on the wings of the ender dragon (same position as the middle of the wing) will give the entity infinite velocity and crash the server. This is due to a divide by zero case with the wings and a living entity. How to reproduce - Create a new world - Go to the end - Give yourself a command block and set it to repeat - Enter this command in the command block and power the block: /tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0 - Summon armor stands on the dragon: /execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand The server crashing after a minute or two Code analysis Using 1.16.3 yarn mappings. We will be looking at the EnderDragonEntity code today. Let s go to: public void tickMovement() Inside this function there is the launchLivingEntities function. Let s explore this. if (!this.world.isClient this.hurtTime == 0) { this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingRight.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); this.launchLivingEntities(this.world.getOtherEntities(this, this.partWingLeft.getBoundingBox().expand(4.0, 2.0, 4.0).offset(0.0, -2.0, 0.0), EntityPredicates.EXCEPT_CREATIVE_OR_SPECTATOR)); //removed code } This function takes in the entities around the dragon wing (will later be limited to Living Entities ) private void launchLivingEntities(List entities) { double d = (this.partBody.getBoundingBox().minX this.partBody.getBoundingBox().maxX) / 2.0; double e = (this.partBody.getBoundingBox().minZ this.partBody.getBoundingBox().maxZ) / 2.0; for (Entity lv : entities) { if (!(lv instanceof LivingEntity)) continue; double f = lv.getX() - d; double g = lv.getZ() - e; double h = f f g g; lv.addVelocity(f / h 4.0, 0.2f, g / h 4.0); //removed stuff below } } From this function call, it takes the wing and finds the middle of it. For the next part, let s say we have an entity at the same location as the middle of the wing and it is a living entity. As the x and z are the same, f and g will be zero. As f and g are zero, h will be zero. Now, as h is zero, the lv.addVelocity will make the x and z velocity infinite as in java a float divide by zero will make a value infinity.",
+  "Steps to Reproduce": "1. Create a new world.  \n2. Travel to the End dimension.  \n3. Give yourself a command block, place it, and set its block type to \u201cRepeat\u201d.  \n4. Open the command block, enter the command ``/tp @e[type=minecraft:ender_dragon] 0.0 70.0 0.0`` and power the block with redstone.  \n5. Execute the command ``/execute at @e[type=minecraft:ender_dragon] run summon minecraft:armor_stand`` to summon an armor stand on the dragon\u2019s wing.  \n6. Wait approximately 1\u20132 minutes.  \n7. Observe that the server crashes (or becomes unresponsive) due to the summoned entity receiving infinite velocity.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.3, 1.16.4 Pre-release 1",
+  "Observed Behavior": "The server crashing after a minute or two.",
+  "Expected Behavior": "When the command block repeatedly teleports the Ender Dragon to the specified coordinates and an armor stand is summoned at the exact centre of one of its wings, the armor stand should be placed normally without receiving extreme motion, and the dragon\u2019s wing logic should handle the zero\u2011distance case safely. No infinite velocity is applied and the server remains stable.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-201885",
+    "community_posts": {
+      "bug_key": "MC-201885",
+      "posts_available": 6,
+      "posts_included": 6,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1439
+    },
+    "jira_comments": {
+      "bug_key": "MC-201885",
+      "comments_total": 4,
+      "comments_included": 4,
+      "comments_dropped_boilerplate": 0,
+      "comments_dropped_over_budget": 0,
+      "tokens": 362
+    }
+  }
+}

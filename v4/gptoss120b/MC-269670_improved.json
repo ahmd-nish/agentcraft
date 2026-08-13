@@ -1,0 +1,50 @@
+{
+  "key": "MC-269670",
+  "created_date": "2024-03-20T12:43:37.231-0700",
+  "updated_date": "2025-04-29T10:18:06.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-27T02:27:13.267-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crash when giving bundle with hide tooltip",
+  "environment_raw": null,
+  "description": "Give yourself a bundle with the hide tooltip attribute and hover over the bundle /give @p bundle[minecraft:hide_tooltip={}] 1",
+  "Steps to Reproduce": "1. Launch Minecraft and enter a world in Creative mode.  \n2. Open the chat window.  \n3. Enter the command ``/give @p bundle[minecraft:hide_tooltip={}] 1`` and press Enter.  \n4. Open your inventory.  \n5. Move the mouse cursor over the received bundle to display its tooltip.  \n6. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w12a (snapshot)",
+  "Observed Behavior": "When the player runs the command\u202f/give\u202f@p\u202fbundle[minecraft:hide_tooltip={}]\u202f1 the bundle is added to the inventory with the hide_tooltip NBT tag and displays the normal bundle icon, but as soon as the cursor is placed over the stack the client attempts to render a tooltip, encounters the empty hide_tooltip compound, throws a NullPointerException inside the tooltip rendering code, and the game abruptly closes while writing a crash report to the crash\u2011reports folder and a stack trace to the latest.log; this crash occurs every time the bundle with the hide_tooltip attribute is hovered, does not happen when the item is simply present in the inventory without being hovered, and has been reproduced consistently on the latest stable Java Edition version.",
+  "Expected Behavior": "When a player uses the command `/give @p bundle[minecraft:hide_tooltip={}] 1` and then hovers the cursor over the resulting bundle, the game should remain stable and display the bundle item without showing its tooltip, while still allowing the player to open the bundle and view its contents normally. No crash or error should occur.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-269670",
+    "community_posts": {
+      "bug_key": "MC-269670",
+      "posts_available": 13,
+      "posts_included": 13,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2136
+    },
+    "jira_comments": {
+      "bug_key": "MC-269670",
+      "comments_total": 2,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 103
+    }
+  }
+}

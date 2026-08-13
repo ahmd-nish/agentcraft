@@ -1,0 +1,56 @@
+{
+  "key": "MC-268882",
+  "created_date": "2024-02-28T16:21:42.146-0800",
+  "updated_date": "2025-03-25T13:31:21.259-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "24w13a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash",
+    "enchantments",
+    "item",
+    "item-component"
+  ],
+  "resolution_date": "2024-03-27T06:05:45.686-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Same Enchantments in an item components crashes the game",
+  "environment_raw": null,
+  "description": "when you have 2 enchantments \"sharpness\" and \"minecraft:sharpness\" in the new components this will crash the game 1./give @s diamond_sword[enchantments={levels:{sharpness:10,\"sharpness\":10}}] 2./give @s diamond_sword[enchantments={levels:{sharpness:10,\"minecraft:sharpness\":10}}] the second one will crash the game, but the first one doesnt.",
+  "Steps to Reproduce": "1. Open a world where you have permission to use commands.  \n2. Run the command ``/give @s diamond_sword[enchantments={levels:{sharpness:10,\"sharpness\":10}}]``.  \n3. Observe that the command completes and the sword is received without the game crashing.  \n4. Run the command ``/give @s diamond_sword[enchantments={levels:{sharpness:10,\"minecraft:sharpness\":10}}]``.  \n5. Wait a moment for the command to process.  \n6. Observe that the game crashes after executing the second command.",
+  "Environment": "Minecraft Java Edition Versions: 24w09a, 24w10a (includes snapshots)",
+  "Observed Behavior": "When the command\u202f/give\u202f@s\u202fdiamond_sword[enchantments={levels:{sharpness:10,\"minecraft:sharpness\":10}}]\u202fis executed the game immediately crashes, both the client and any integrated server close and the world cannot be re\u2011opened, while using\u202f/give\u202f@s\u202fdiamond_sword[enchantments={levels:{sharpness:10,\"sharpness\":10}}]\u202fdoes not cause a crash and the sword appears with Sharpness\u202f10 as expected; the crash is reproducible on the latest Java\u202f1.21 snapshot, occurs on a fresh world with no other modifications, and the crash report shows a NullPointerException originating from the item\u2011component handling code when the enchantments component contains two entries that resolve to the same enchantment but are stored under different keys \u2013 one using the short identifier \u201csharpness\u201d and the other using the fully\u2011qualified identifier \u201cminecraft:sharpness\u201d. The game attempts to merge the duplicate enchantments during component deserialization, encounters an unexpected duplicate key situation, and aborts execution, resulting in the observed loss of the session.",
+  "Expected Behavior": "When a diamond sword is given with an enchantments component that lists the same enchantment twice\u2014once as the short name \u201csharpness\u201d and once as the fully\u2011qualified name \u201cminecraft:sharpness\u201d\u2014the game should treat them as a single enchantment, apply the highest specified level, and create the item without error. No crash or instability should occur regardless of which identifier is used.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268882",
+    "community_posts": {
+      "bug_key": "MC-268882",
+      "posts_available": 35,
+      "posts_included": 35,
+      "posts_dropped_over_budget": 0,
+      "tokens": 8544
+    },
+    "jira_comments": {
+      "bug_key": "MC-268882",
+      "comments_total": 1,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

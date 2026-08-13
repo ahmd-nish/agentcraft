@@ -1,0 +1,54 @@
+{
+  "key": "MC-180257",
+  "created_date": "2020-04-23T11:28:45.975-0700",
+  "updated_date": "2025-05-03T13:56:51.511-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w17a",
+    "20w18a",
+    "20w19a",
+    "20w20a",
+    "20w20b"
+  ],
+  "fix_versions": [
+    "20w21a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-05-21T07:27:48.374-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash when setting LodestonePos of compass to something other than NBT compound",
+  "environment_raw": null,
+  "description": "The bug The game crashes when changing or creating a compass item with a LodestonePos having a value other than an NBT compound tag. [^(20w17a) crash-2020-04-23_21.44.55-server.txt] Description: Ticking player java.lang.ClassCastException: lp cannot be cast to la at bhr.a(SourceFile:144) at bje.a(SourceFile:454) at bcw.j(SourceFile:290) at bcx.l(SourceFile:575) at anz.h(SourceFile:2217) at bcx.h(SourceFile:274) at ys.i(SourceFile:411) at zj.b(SourceFile:199) at ma.a(SourceFile:234) at zi.c(SourceFile:171) at net.minecraft.server.MinecraftServer.b(SourceFile:839) at net.minecraft.server.MinecraftServer.a(SourceFile:766) at enn.a(SourceFile:89) at net.minecraft.server.MinecraftServer.run(SourceFile:625) at java.lang.Thread.run(Thread.java:745) How to reproduce Do this in a test world /give @s compass{LodestoneDimension:\"minecraft:overworld\",LodestonePos:\"This is not an NBT compound\"} The game freezes and you will see in the log file that it has crashed",
+  "Steps to Reproduce": "1. Launch Minecraft.  \n2. Create a new test world with default settings and enter it.  \n3. Open the chat console.  \n4. Run the command ``/give @s compass{LodestoneDimension:\"minecraft:overworld\",LodestonePos:\"This is not an NBT compound\"}``.  \n5. Wait approximately 5 seconds.  \n6. Observe that the game freezes and crashes, as indicated by a crash report in the log file.",
+  "Environment": "Minecraft Java Edition Versions: 20w17a, 20w18a, 20w19a, 20w20a, 20w20b (includes snapshots)",
+  "Observed Behavior": "When a compass item is created or modified so that the LodestonePos tag contains a value that is not an NBT compound\u2014such as using the command\u202f/give @s compass{LodestoneDimension:\"minecraft:overworld\",LodestonePos:\"This is not an NBT compound\"}\u2014the server freezes during the player tick and subsequently crashes, producing a log entry that shows a java.lang.ClassCastException with the message that an object of type lp cannot be cast to la and a stack trace that includes calls to bhr.a, bje.a, bcw.j, bcx.l, anz.h, bcx.h, ys.i, zj.b, ma.a, zi.c, net.minecraft.server.MinecraftServer.b, net.minecraft.server.MinecraftServer.a, enn.a, net.minecraft.server.MinecraftServer.run and java.lang.Thread.run. This behavior occurs in snapshot 20w17a and results in an immediate server shutdown rather than allowing the player to continue playing.",
+  "Expected Behavior": "When the command\u202f`/give @s compass{LodestoneDimension:\"minecraft:overworld\",LodestonePos:\"This is not an NBT compound\"}`\u202fis run, the player should simply receive a compass item. The invalid\u202fLodestonePos\u202fvalue should be ignored or treated as an empty compound, so the compass behaves like a normal (or default\u2011lodestone) compass, and the game continues running without throwing a crash or freezing.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-180257",
+    "community_posts": {
+      "bug_key": "MC-180257",
+      "posts_available": 4,
+      "posts_included": 4,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1020
+    },
+    "jira_comments": {
+      "bug_key": "MC-180257",
+      "comments_total": 7,
+      "comments_included": 5,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 294
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "key": "MC-267937",
+  "created_date": "2024-01-17T23:33:37.678-0800",
+  "updated_date": "2025-04-29T11:00:02.223-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w03a",
+    "24w03b"
+  ],
+  "fix_versions": [
+    "24w04a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Expansion B",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-01-22T04:46:05.471-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Shooting a breeze with a piercing crossbow makes the game crash",
+  "environment_raw": null,
+  "description": "If you try shooting a breeze from a distance with a crossbow enchanted with piercing IV the game will crash!!! I think it happens because of the last change that was made in 24w03a: \"Breeze is now deflecting all projectiles\". Apparently Mojang totally forgot to adjust the behavior when shooting a breeze with a piercing crossbow, so the game doesn t know what to do, so it crashes!",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.  \n2. Open the chat and execute ``/give @p minecraft:crossbow{Enchantments:[{id:\"minecraft:piercing\",lvl:4s}]}`` to receive a crossbow enchanted with Piercing\u202fIV.  \n3. Execute ``/give @p minecraft:arrow`` to receive arrows for loading the crossbow.  \n4. Execute ``/summon minecraft:breeze ~10 ~ ~`` to spawn a Breeze at least ten blocks in front of you.  \n5. Select the crossbow in your hot\u2011bar, right\u2011click to load it with an arrow.  \n6. Aim at the summoned Breeze and right\u2011click to fire the loaded crossbow.  \n7. Observe that the game crashes (or freezes) immediately after the shot.",
+  "Environment": "Minecraft Java Edition Versions: 24w03a, 24w03b (includes snapshots)",
+  "Observed Behavior": "When a player fires a crossbow that has the Piercing enchantment at level\u202fIV (or higher) at a Breeze from any distance, the client or server hangs and eventually crashes, typically presenting a freeze rather than a clean shutdown. The problem was introduced in snapshot\u202f24w03a, which added the rule that Breezes deflect all incoming projectiles. In the current code a piercing projectile keeps a set of entities it has already pierced and, on each tick, checks for additional collisions to apply the piercing effect. When a Breeze deflects the projectile, the deflection logic runs before the code that updates the pierced\u2011entity set, so the set is never populated. As a result the projectile repeatedly attempts to collide with the same entity, triggering an infinite loop inside the collision handler. This loop consumes all processing time, causing the game to freeze and ultimately trigger the crash handler. The bug can be reproduced reliably in snapshot\u202f24w03b by loading a world with a Breeze, equipping a crossbow with Piercing\u202fIV, and shooting the Breeze from any range; the game will freeze and then display the usual crash screen.",
+  "Expected Behavior": "When a player fires a crossbow enchanted with Piercing\u202fIV at a Breeze from any distance, the projectile should interact normally with the Breeze\u2019s deflection mechanic\u2014being deflected or bounced away\u2014while still respecting the piercing logic for any entities it may encounter. The arrow should resolve its collision without entering an infinite loop, and the game should continue running without freezing or crashing.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-267937",
+    "community_posts": {
+      "bug_key": "MC-267937",
+      "posts_available": 38,
+      "posts_included": 38,
+      "posts_dropped_over_budget": 0,
+      "tokens": 10695
+    },
+    "jira_comments": {
+      "bug_key": "MC-267937",
+      "comments_total": 3,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 389
+    }
+  }
+}

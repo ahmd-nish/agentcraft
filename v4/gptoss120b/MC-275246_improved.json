@@ -1,0 +1,50 @@
+{
+  "key": "MC-275246",
+  "created_date": "2024-08-15T09:46:02.503-0700",
+  "updated_date": "2025-04-26T16:07:59.141-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-19T10:38:04.257-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Crash after attempting to move item from off-hand in Creative inventory",
+  "environment_raw": null,
+  "description": "A crash is caused when trying to offhand an item in the creative inventory after attempting to do so in the search tab Steps to reproduce: - Have an item in your off-hand in creative mode - Open inventory and go to the Search tab - Use the off-hand key to try and put the item in your off-hand into the hotbar (stopped as the search box takes priority) - Change back to the Survival Inventory tab, and then press the off-hand key again without hovering cursor over any inventory slots or: - Have an item in your off-hand in creative mode - Hover over any empty slot in a tab other than Survival Inventory - Select the Survival Inventory tab, and then press the off-hand key without hovering cursor over any inventory slots As far as I can tell (Not a programmer or anything, didn t look at code, just from my small testing) this happens because the offhand hotkey when pressed tries to put the item in your offhand into the last inventory slot that you had \"selected\" (hovered over) with your cursor. When you try to use the offhand hotkey when under the search tab, the search box takes priority and types instead of allowing you to offhand, making it the last selected inventory \"slot\" (I believe,) when you change back to your player inventory tab, there s no textbox anymore, so when you try to use the hotkey again, the game crashes as there s no \"last selected\" slot to offhand to (or maybe because it tries to offhand to the textbox? I dunno I m not a programmer) Simply hovering over an inventory slot after swapping to the player inventory before using the offhand hotkey will prevent the crash and allow the hotkey to work as normal.",
+  "Steps to Reproduce": "- Have an item in your off-hand in creative mode - Open inventory and go to the Search tab - Use the off-hand key to try and put the item in your off-hand into the hotbar (stopped as the search box takes priority) - Change back to the Survival Inventory tab, and then press the off-hand key again without hovering cursor over any inventory slots or: - Have an item in your off-hand in creative mode - Hover over any empty slot in a tab other than Survival Inventory - Select the Survival Inventory tab, and then press the off-hand key without hovering cursor over any inventory slots",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "When a player in Creative mode has an item equipped in the off\u2011hand and opens the inventory, selects the Search tab, and then presses the off\u2011hand hotkey, the key press is intercepted by the search text box so the item is not moved to the hotbar and the search box becomes the last GUI element that received input; if the player then switches back to the Survival tab and presses the off\u2011hand hotkey again without first moving the cursor over any inventory slot, the game attempts to transfer the off\u2011hand item to the previously \u201cselected\u201d slot, which no longer exists, and the client crashes, producing a crash\u2011report file. The same failure occurs when the player hovers over an empty slot in any tab other than Survival, changes to the Survival tab, and activates the off\u2011hand hotkey while the cursor is not over a slot, because the last selected element is still the empty slot from the other tab. Placing the cursor over a valid inventory slot after returning to the player inventory resets the last\u2011selected slot and prevents the crash, allowing the off\u2011hand hotkey to function normally. The crash is immediate, closes the game, and generates the standard crash\u2011report output.",
+  "Expected Behavior": "When the player presses the off\u2011hand hotkey while the Creative inventory is open, the game should treat the action as a normal off\u2011hand swap regardless of which inventory tab is active. Switching back to the Survival tab and pressing the hotkey again should either move the off\u2011hand item to the last hovered slot or simply do nothing if no slot is selected, without causing a crash.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-275246",
+    "community_posts": {
+      "bug_key": "MC-275246",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 960
+    },
+    "jira_comments": {
+      "bug_key": "MC-275246",
+      "comments_total": 2,
+      "comments_included": 0,
+      "comments_dropped_boilerplate": 2,
+      "comments_dropped_over_budget": 0,
+      "tokens": 0
+    }
+  }
+}

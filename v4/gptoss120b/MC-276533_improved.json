@@ -1,0 +1,52 @@
+{
+  "key": "MC-276533",
+  "created_date": "2024-09-08T18:12:17.219-0700",
+  "updated_date": "2025-04-26T16:44:13.201-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "crash"
+  ],
+  "resolution_date": "2024-09-10T05:41:41.345-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Game crashes when three or more skeletons are about to release their arrows",
+  "environment_raw": null,
+  "description": "If three or more entities start drawing their bows, right before they shoot the arrow to the target the game stops responding and just stays like that until you task manager it. This is really really bad because you would most likely encounter three skeletons at night plus anything that is used to bait in skeletons will crash the game.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Singleplayer world with default settings in Creative mode.  \n2. Open the chat and run the command `/summon minecraft:skeleton ~2 ~ ~`.  \n3. Run the command `/summon minecraft:skeleton ~4 ~ ~`.  \n4. Run the command `/summon minecraft:skeleton ~6 ~ ~` to have three skeletons near the player.  \n5. Wait approximately 3 seconds and observe the three skeletons turn toward the player and begin drawing their bows.  \n6. Wait until just before the arrows are released (about 1 second) and observe that the game stops responding and remains frozen.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "When three or more bow\u2011wielding mobs such as skeletons, strays, pillagers, illusioners or piglins begin drawing their bows and are about to fire at a single target the client freezes and becomes completely unresponsive, requiring the player to terminate the game through the task manager; the freeze occurs because the client enters an infinite loop while processing projectile collisions, specifically in the PersistentProjectileEntity applyCollision method, where arrows repeatedly collide with each other and bounce between two positions without ever completing the collision handling, and because vanilla clients lack a watchdog this situation produces no error messages or crash logs, only a hanging screen; the problem can be reproduced in survival by spawning a large group of skeletons or other ranged mobs around the player or an iron golem and watching them all draw and release arrows at the same time, at which point the game immediately locks up and must be forced closed.",
+  "Expected Behavior": "When three or more skeletons (or other bow\u2011using mobs) begin drawing their bows at a target, each mob should complete the draw animation and fire its arrow normally. The arrows should travel toward the target, collide with entities or blocks as usual, and the client should remain responsive, allowing gameplay to continue without freezing or crashing.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-276533",
+    "community_posts": {
+      "bug_key": "MC-276533",
+      "posts_available": 6,
+      "posts_included": 6,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1295
+    },
+    "jira_comments": {
+      "bug_key": "MC-276533",
+      "comments_total": 7,
+      "comments_included": 6,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 461
+    }
+  }
+}

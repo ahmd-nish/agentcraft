@@ -1,0 +1,52 @@
+{
+  "key": "MC-271001",
+  "created_date": "2024-04-21T01:48:34.286-0700",
+  "updated_date": "2025-05-29T09:06:39.995-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Release Candidate 2",
+    "1.20.6"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-05-06T08:47:10.383-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Items in a container can be given a count above 99 (to max integer), and can crash the world",
+  "environment_raw": null,
+  "description": "Using the following give command, item stacks can be given extremely high counts up to the java max integer. /give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]] Placing and then breaking the barrel will cause the stack to split into smaller stacks, spawn at least a few hundred million item entities, and crash the world. The split stacks seem to have random counts around 10 to 30, so it s slightly less than 2 billion entities spawned at once. Using commands to get an item with max_stack_size above 99 will detect and remove the invalid component, and setting the item count to below 1 will set it back to 1. Expected behavior would be for item count to be limited to the max_stack_size (or at least a hard coded max of 99).",
+  "Steps to Reproduce": "1. Load a world where you have permission to use commands.  \n2. Switch to Creative mode with the command `/gamemode creative`.  \n3. Execute the command ``/give @s barrel[container=[{slot:0,item:{id:wooden_sword,count:2147483647}}]]``.  \n4. Place the barrel you just received on the ground.  \n5. Break the placed barrel.  \n6. Wait a few seconds.  \n7. Observe that the game spawns an enormous number of item entities and the world crashes or freezes.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.5 Pre-Release 1, 1.20.5 Release Candidate 2, 1.20.6",
+  "Observed Behavior": "Placing and then breaking the barrel will cause the stack to split into smaller stacks, spawn at least a few hundred million item entities, and crash the world.",
+  "Expected Behavior": "When a barrel is given via command with an item stack whose count exceeds the item\u2019s maximum stack size, the game should automatically clamp the count to the allowed maximum (e.g., 99 or the item\u2019s defined max_stack_size). Placing the barrel and breaking it should then drop a normal\u2011sized stack within those limits, producing only a few item entities and never causing the world to crash.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-271001",
+    "community_posts": {
+      "bug_key": "MC-271001",
+      "posts_available": 2,
+      "posts_included": 2,
+      "posts_dropped_over_budget": 0,
+      "tokens": 480
+    },
+    "jira_comments": {
+      "bug_key": "MC-271001",
+      "comments_total": 1,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 0,
+      "comments_dropped_over_budget": 0,
+      "tokens": 129
+    }
+  }
+}

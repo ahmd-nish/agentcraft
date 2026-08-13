@@ -1,0 +1,53 @@
+{
+  "key": "MC-231185",
+  "created_date": "2021-07-05T03:52:04.951-0700",
+  "updated_date": "2025-03-20T23:51:25.868-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1 Release Candidate 1",
+    "1.17.1",
+    "1.18",
+    "1.18.1"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-05-26T22:33:11.391-0700",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Server crash while loading Superflat world based on Rails // java.lang.StackOverflowError: Exception while updating neighbours",
+  "environment_raw": null,
+  "description": "Steps to reproduce - Create new world - More world options - Worldtype: Superflat - Customize - Presets - Enter preset - minecraft:rail - Server will crash while loading the world Same crash occurs when using the minecraft:repeater preset, just after first player interaction with one of the repeaters. Stacktrace Encountered an unexpected exception z: Exception while updating neighbours at net.minecraft.server.MinecraftServer.b(SourceFile:886) at net.minecraft.server.MinecraftServer.a(SourceFile:822) at faq.a(SourceFile:96) at net.minecraft.server.MinecraftServer.x(SourceFile:688) at net.minecraft.server.MinecraftServer.a(SourceFile:270) at java.base/java.lang.Thread.run(Thread.java:831) Caused by: java.lang.StackOverflowError at java.base/java.lang.ClassLoader.defineClass1(Native Method) at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1010) at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:150) at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:855) at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:753) at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:676) at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:634) at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:182) at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:519) at bwq.a(SourceFile:361) [...] Server crash log has been included as attachment.",
+  "Steps to Reproduce": "1. Launch Minecraft.  \n2. From the main menu select **Singleplayer** \u2192 **Create New World**.  \n3. Click **More World Options**, set **World Type** to **Superflat**, and then click **Customize**.  \n4. In the Customize screen click **Presets**, enter the preset `minecraft:rail` into the text field, and confirm the preset.  \n5. Click **Done** to return to the world creation screen, then click **Create New World** to load the world.  \n6. Observe that the server crashes while the world is loading (StackOverflowError).  \n7. Repeat steps 3\u20115 using the preset `minecraft:repeater`; after the world loads, interact with a repeater and observe the server crash.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1 Release Candidate 1, 1.17.1, 1.18, 1.18.1",
+  "Observed Behavior": "When a server is started with a newly created Superflat world that uses the rail preset, the server crashes immediately during the world\u2011loading phase. The crash also occurs with the repeater preset, but in that case it happens after the first player interacts with a repeater block. The crash log shows an unexpected exception described as \u201cException while updating neighbours\u201d followed by a java.lang.StackOverflowError. The stack trace originates from MinecraftServer methods that handle neighbour updates and then propagates through the class loader while defining classes, ultimately exhausting the call stack. As a result the server process terminates before any players can join the world, and no world data is saved beyond the initial creation step. This behavior prevents the use of rail\u2011based or repeater\u2011based Superflat presets on servers.",
+  "Expected Behavior": "When a Superflat world is created using the \u201cminecraft:rail\u201d (or \u201cminecraft:repeater\u201d) preset, the server should generate the terrain and place the rail or repeater blocks normally, load the chunk data, and allow players to join and interact with those blocks without any exception. No stack overflow or server shutdown should occur during world initialization or first interaction.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-231185",
+    "community_posts": {
+      "bug_key": "MC-231185",
+      "posts_available": 3,
+      "posts_included": 3,
+      "posts_dropped_over_budget": 0,
+      "tokens": 801
+    },
+    "jira_comments": {
+      "bug_key": "MC-231185",
+      "comments_total": 4,
+      "comments_included": 3,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 204
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "key": "MC-268879",
+  "created_date": "2024-02-28T15:44:33.012-0800",
+  "updated_date": "2025-03-07T20:05:00.590-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Platform",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:34.349-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "Having a high damage value breaks and crashes the game",
+  "environment_raw": null,
+  "description": "/give @p minecraft:wolf_armor[minecraft:damage=2147483647] equip it on a wolf hit the wolf shear the armor off put it in an item frame /data get entity @e[type=minecraft:item_frame,sort=nearest,limit=1] if you try to save the game by going to the pause menu the game crashes",
+  "Steps to Reproduce": "1. Open a Creative world (default settings).  \n2. Run ``/give @p minecraft:wolf_armor[minecraft:damage=2147483647]``.  \n3. Run ``/summon minecraft:wolf ~ ~ ~`` to create a wolf.  \n4. Equip the given wolf armor onto the summoned wolf.  \n5. Hit the wolf with any weapon, then use shears to shear the armor off.  \n6. Place an item frame near the wolf and insert the sheared armor into the frame.  \n7. Run ``/data get entity @e[type=minecraft:item_frame,sort=nearest,limit=1]``.  \n8. Open the pause menu (press **Esc**) and attempt to save the game; observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "When a player runs the command /give @p minecraft:wolf_armor[minecraft:damage=2147483647] the resulting item receives a damage tag set to the maximum 32\u2011bit signed integer value. This armor can be equipped on a tamed wolf, and the wolf can then be sheared, causing the armor to drop as an item entity. If the dropped armor is placed into an item frame and the command /data get entity @e[type=minecraft:item_frame,sort=nearest,limit=1] is executed, the returned NBT data shows the extreme damage value. Attempting to open the pause menu or otherwise save the world while that item frame containing the corrupted armor is present triggers a client crash, typically producing a stack trace that references NBT parsing or integer overflow. The crash happens consistently after these steps and prevents the player from saving or continuing the session.",
+  "Expected Behavior": "When a player gives a wolf armor item with a damage tag set to the maximum 32\u2011bit integer, the armor should be treated like any other item: the wolf can equip it, the armor can be removed by shearing, placed in an item frame, and the item\u2011frame entity\u2019s NBT can be queried without error. Opening the pause menu and saving the world should complete normally without causing a crash.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-268879",
+    "community_posts": {
+      "bug_key": "MC-268879",
+      "posts_available": 12,
+      "posts_included": 12,
+      "posts_dropped_over_budget": 0,
+      "tokens": 2038
+    },
+    "jira_comments": {
+      "bug_key": "MC-268879",
+      "comments_total": 2,
+      "comments_included": 1,
+      "comments_dropped_boilerplate": 1,
+      "comments_dropped_over_budget": 0,
+      "tokens": 98
+    }
+  }
+}

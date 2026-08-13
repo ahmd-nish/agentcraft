@@ -1,0 +1,50 @@
+{
+  "key": "MC-161268",
+  "created_date": "2019-09-18T06:04:10.626-0700",
+  "updated_date": "2025-04-30T05:49:22.705-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "19w38a"
+  ],
+  "fix_versions": [
+    "19w38b"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-01-16T05:07:34.900-0800",
+  "reporter": {},
+  "assignee": {},
+  "votes": null,
+  "priority": "",
+  "components": [],
+  "summary": "java.lang.IndexOutOfBoundsException while tesselating block model / Game crashes when breaking a block",
+  "environment_raw": null,
+  "description": "The game crashed as I break a full block of oak wood slabs causing me to crash. 19w38a : [^crash-2019-09-18_21.01.43-client.txt] Description: Tesselating block model java.lang.IndexOutOfBoundsException: Index: 1, Size: 1 at java.util.ArrayList.rangeCheck(ArrayList.java:653) at java.util.ArrayList.get(ArrayList.java:429) at cxj.b(SourceFile:91) at cxe.a(SourceFile:306) at dps.a(SourceFile:134) at dps.b(SourceFile:76) at dps.a(SourceFile:47) at dpq.a(SourceFile:48) at dpd.a(SourceFile:1300) at dpa.a(SourceFile:691) at dpa.a(SourceFile:535) at daj.e(SourceFile:931) at daj.b(SourceFile:564) at net.minecraft.client.main.Main.main(SourceFile:199)",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 19w38a.  \n2. Create a new Creative world with default settings.  \n3. Place a double oak wood slab (full block of oak wood slabs) at a convenient spot, e.g., by selecting the slab in the hot\u2011bar or using the command `/setblock ~ ~1 ~ oak_wood_slab[half=double]`.  \n4. Select any tool or use an empty hand.  \n5. Break the placed double oak wood slab block.  \n6. Observe that the game crashes, producing a `java.lang.IndexOutOfBoundsException` stack trace.",
+  "Environment": "Minecraft Java Edition Version 19w38a (snapshot)",
+  "Observed Behavior": "- The client crashes **immediately** when the player finishes breaking a *full block* of **oak wood slabs** (or any other block that does not break instantly).  \n- The crash is triggered during the **tessellation of the block\u2011breaking model** and results in the following exception:\n\n```\njava.lang.IndexOutOfBoundsException: Index: 1, Size: 1\n    at java.util.ArrayList.rangeCheck(ArrayList.java:653)\n    at java.util.ArrayList.get(ArrayList.java:429)\n    at cxj.b(SourceFile:91)\n    at cxe.a(SourceFile:306)\n    at dps.a(SourceFile:134)\n    at dps.b(SourceFile:76)\n    at dps.a(SourceFile:47)\n    at dpq.a(SourceFile:48)\n    at dpd.a(SourceFile:1300)\n    at dpa.a(SourceFile:691)\n    at dpa.a(SourceFile:535)\n    at daj.e(SourceFile:931)\n    at daj.b(SourceFile:564)\n    at net.minecraft.client.main.Main.main(SourceFile:199)\n```\n\n- The crash occurs **after the block\u2011breaking \u201ccrack\u201d texture is rendered**; blocks that break instantly (e.g., torches, scaffolding, water\u2011logged scaffolding, shulker boxes placed before the snapshot) do **not** trigger the crash.  \n- The issue is reproducible with any tool or even an empty hand; the only factor that prevents the crash is using a tool that makes the block break instantly (e.g., a diamond pickaxe with Efficiency\u202fIV on quartz).  \n- It has been observed on **snapshot 19w38a** (Java Edition) on a default installation (no mods, default resource pack).  \n- The crash terminates the client process; no world data is saved after the crash point.  \n\n*Note:* The same crash was reported for other block types (stone, dirt, redstone ore, etc.) and was confirmed to be fixed in the following snapshot **19w38b**.",
+  "Expected Behavior": "When a player breaks a full oak wood slab block, the block should break normally without causing a crash. The breaking animation and crack texture should render correctly, the slab should drop as an item, and the game client should continue running smoothly, with the world state updating accordingly. No IndexOutOfBoundsException should be thrown during model tessellation.",
+  "comments": [],
+  "improvement_metadata": {
+    "original_key": "MC-161268",
+    "community_posts": {
+      "bug_key": "MC-161268",
+      "posts_available": 5,
+      "posts_included": 5,
+      "posts_dropped_over_budget": 0,
+      "tokens": 1048
+    },
+    "jira_comments": {
+      "bug_key": "MC-161268",
+      "comments_total": 11,
+      "comments_included": 8,
+      "comments_dropped_boilerplate": 3,
+      "comments_dropped_over_budget": 0,
+      "tokens": 630
+    }
+  }
+}
