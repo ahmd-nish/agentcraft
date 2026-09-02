@@ -1,0 +1,42 @@
+{
+  "key": "MC-270201",
+  "created_date": "2024-03-31T11:34:02.777-0700",
+  "updated_date": "2025-04-29T10:06:40.259-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a",
+    "24w14a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "attribute",
+    "fishing-line",
+    "scale"
+  ],
+  "resolution_date": "2024-04-09T00:58:39.358-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Fishing rod line does not account for the scale attribute in third-person",
+  "environment_raw": "",
+  "description": "When a player has a non-standard scale attribute and casts a fishing rod, the line will will appear detatched from the held fishing rod item.\nSteps to Reproduce:\n- Modify the player's scale\n\n```\n/attribute @p minecraft:generic.scale base set 10\n```\n\n- Get a fishing rod\n\n- Cast it\n&rarr;  The line is placed unrelated to the fishing rod item.\n\nScreenshots/Videos:\n\nNotes:\nRelated to",
+  "Steps to Reproduce": "1. Enter a Minecraft world where commands can be used.\n2. Open chat and run `/attribute @p minecraft:generic.scale base set 10`.\n3. Obtain a fishing rod.\n4. Switch to third-person view.\n5. Cast the fishing rod.\n6. Observe the fishing line in relation to the held fishing rod item.\n7. Confirm that the line appears detached from or unrelated to the fishing rod item.",
+  "Environment": "Minecraft Java Edition Versions: 24w13a, 24w14a (includes snapshots)",
+  "Observed Behavior": "In third-person view, setting the player\u2019s `minecraft:generic.scale` attribute to a non-default value causes the fishing line to be rendered from an incorrect position. After casting a fishing rod, the line does not connect to the fishing rod held by the scaled player; instead, its endpoint is visibly offset and appears detached from the rod.",
+  "Expected Behavior": "When a player with a non-standard scale attribute casts a fishing rod in third-person view, the fishing line should originate from and remain visually connected to the fishing rod in the player\u2019s hand. Its position should be adjusted appropriately for the player\u2019s scale so that the line stays aligned with the held rod rather than appearing detached or unrelated.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-270201",
+  "improvement_metadata": {
+    "original_key": "MC-270201"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "key": "MC-296362",
+  "created_date": "2025-04-08T07:42:56.812-0700",
+  "updated_date": "2025-04-17T04:02:30.562-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w15a"
+  ],
+  "fix_versions": [],
+  "confirmation_status": "Community Consensus",
+  "category": "Commands; Entities",
+  "os_version": "",
+  "watch_count": 0,
+  "labels": [],
+  "resolution_date": "2025-04-17T04:02:30.518-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Able to control and ride Happy Ghast if harness is replaced with a different item",
+  "environment_raw": "",
+  "description": "If you set the Happy Ghast equipment to something other than a harness, you are still able to ride and control it.\nFor example, this command\n\n```\n/data modify entity @n[type=minecraft:happy_ghast] equipment set value {body:{count:1,id:\"wooden_sword\"}}\n```\nsets it to a wooden sword, but you\u2019re still able to ride the Ghast. The harness texture isn\u2019t applied.",
+  "Steps to Reproduce": "1. Create or enter a Creative world containing a Happy Ghast with a harness equipped.\n2. Open the chat and run `/data modify entity @n[type=minecraft:happy_ghast] equipment set value {body:{count:1,id:\"wooden_sword\"}}`.\n3. Attempt to ride the Happy Ghast.\n4. Use the controls to control the Happy Ghast while riding it.\n5. Observe that the Happy Ghast can still be ridden and controlled even though its equipment is a wooden sword and the harness texture is not applied.",
+  "Environment": "Minecraft Java Edition Version 25w15a (snapshot)",
+  "Observed Behavior": "After replacing a Happy Ghast\u2019s `body` equipment with an item that is not a harness, the Happy Ghast remains mountable and controllable. For example:\n\n```mcfunction\n/data modify entity @n[type=minecraft:happy_ghast] equipment set value {body:{count:1,id:\"minecraft:wooden_sword\"}}\n```\n\nThe Happy Ghast\u2019s body equipment is changed to a wooden sword, but a player can still mount the Happy Ghast and control its movement as if it were equipped with a harness. The harness texture is not displayed after the replacement.",
+  "Expected Behavior": "When the Happy Ghast\u2019s body equipment is replaced with an item other than a harness, the Ghast should no longer be rideable or controllable. The harness texture should only appear when a valid harness is equipped, and equipping an unrelated item such as a wooden sword should not allow the player to mount or control the Happy Ghast.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-296362",
+  "improvement_metadata": {
+    "original_key": "MC-296362"
+  }
+}

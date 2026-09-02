@@ -1,0 +1,40 @@
+{
+  "key": "MC-307281",
+  "created_date": "2026-04-07T07:31:08.410-0700",
+  "updated_date": "2026-05-05T02:58:56.750-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.2 Snapshot 1",
+    "26.2 Snapshot 3",
+    "26.2 Snapshot 4",
+    "26.2 Snapshot 5"
+  ],
+  "fix_versions": [
+    "26.2 Snapshot 6"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2026-05-05T02:58:56.677-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Normal",
+  "components": [],
+  "summary": "`/item replace` cannot place items in sulfur cubes' body slot",
+  "environment_raw": "",
+  "description": "If try to replace or put the armor.body item to a Sulfur Cube with the item command not works.\nSteps to reproduce the issue\n- Spawn a Sulfur Cube\n\n- Run /item replace entity @n[type=sulfur_cube] armor.body from entity @s weapon.mainhand\n\nExpected result\nThe item being replaced\nActual result\nOnly accept air or show No targets accepted item [Sand] into slot 105",
+  "Steps to Reproduce": "1. Launch Minecraft and create a Creative world with default settings.\n2. Hold a Sand item in the main hand.\n3. Spawn a Sulfur Cube.\n4. Run `/item replace entity @n[type=sulfur_cube] armor.body from entity @s weapon.mainhand`.\n5. Observe that the Sulfur Cube's body slot is not replaced with the Sand item, and that the command either accepts only air or displays `No targets accepted item [Sand] into slot 105`.",
+  "Environment": "Minecraft Java Edition Versions: 26.2 Snapshot 1, 26.2 Snapshot 3, 26.2 Snapshot 4, 26.2 Snapshot 5 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe Sulfur Cube does not accept a non-air item in its `armor.body` slot. When the command is executed with Sand in the source entity\u2019s `weapon.mainhand`, the item is not transferred and the slot remains empty. The command reports:\n\n> No targets accepted item [Sand] into slot 105.\n\nOnly air can be placed in the slot successfully.",
+  "Expected Behavior": "When the `/item replace` command targets a Sulfur Cube\u2019s `armor.body` slot, it should successfully transfer the specified item from the source entity\u2019s main hand into that slot. A valid item such as Sand should replace the existing contents, or be placed if the slot is empty, rather than being rejected as an invalid target or accepting only air.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-307281",
+  "improvement_metadata": {
+    "original_key": "MC-307281"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-239714",
+  "created_date": "2021-10-24T10:24:55.619-0700",
+  "updated_date": "2025-03-25T12:30:53.340-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w42a"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-11-11T07:00:44.890-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Important",
+  "components": [],
+  "summary": "Doing /locate desert_pryamid in a desert superflat world freezes the world",
+  "environment_raw": "",
+  "description": "The Bug\nWhen doing /locate desert_pryamid on a desert superflat world the game will freeze. You can still move around and break blocks but chunks will stop to load and entities won't move\nReproduce\n- Make a superflat desert world type\n\n- Do /locate desert_pryamid\n\nObserved Result\nThe world froze\nExpected Result\nThe world wouldn't freeze\nNote\nThis didn't happen in 1.17.1",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new world with the superflat world type configured as desert.\n3. Enter the desert superflat world.\n4. Run the command `/locate desert_pryamid`.\n5. Wait at least a few minutes.\n6. Observe that the world freezes: chunks stop loading and entities stop moving, although you can still move around and break blocks.",
+  "Environment": "Minecraft Java Edition Version 21w42a (snapshot)",
+  "Observed Behavior": "After running `/locate desert_pryamid` in a desert superflat world, the game becomes partially unresponsive. The player can still move and break blocks in already-loaded chunks, but no additional chunks load and entities stop moving. The world does not continue normal simulation until the issue is cleared or the game is restarted. This behavior was not observed in version 1.17.1.",
+  "Expected Behavior": "After running `/locate desert_pryamid` in a desert superflat world, the command should complete without freezing or otherwise making the world unresponsive. Chunks should continue loading normally, entities should keep moving, and the player should retain normal interaction with the world, including movement and block breaking.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-239714",
+  "improvement_metadata": {
+    "original_key": "MC-239714"
+  }
+}

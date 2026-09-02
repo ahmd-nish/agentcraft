@@ -1,0 +1,43 @@
+{
+  "key": "MC-279543",
+  "created_date": "2025-01-15T15:23:05.714-0800",
+  "updated_date": "2025-04-10T15:04:43.203-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w03a",
+    "25w04a"
+  ],
+  "fix_versions": [
+    "25w05a"
+  ],
+  "confirmation_status": "Plausible",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "NBT",
+    "command",
+    "command-bug",
+    "neutral-mob"
+  ],
+  "resolution_date": "2025-01-27T02:32:05.926-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Neutral Mobs don't attack the player back when attacked under certain conditions",
+  "environment_raw": "",
+  "description": "Relates to MC-279556.\nWhen you attack a neutral mob, it's supposed to fight back. However, under certain, strange, cases, they won't. It seems to happen whenever a command with a target selector containing nbt={any-nbt-data-here} is run on the same tick as a neutral mob being attacked.\nSteps to reproduce:\n- Place a repeating command block and add any command that contains a target selector with the 'nbt=' field in it, and power it.\n\n- Spawn any neutral mob.\n\n- Make sure you aren't in peaceful difficulty.\n\n- In survival, attack the neutral mob.\n\n- Observe that it doesn't attack back.\n\n- Unpower the command block\n\n- Attack the mob again.\n\n- Observe that it attacks you back as intended again.\n\nNotes:\n- If you attack a neutral mob that will cause other mobs of the same species to attack you as well, while having a method to produce the bug active, the other nearby mobs of the same species do attack you (although they don't change to their attacking pose and/or texture), but the attacked mob doesn't attack.\n\n- Other methods of angering neutral mobs without attacking them, such as looking an enderman in the eyes or going near a spider in a dark area, still work as intended.\n\nVideo: 2025-01-15 18-15-40.mkv You'll need to download it because onedrive won't play mkv videos for some reason\nFound this bug while using datapacks, as functions can also produce the bug.\nBug started in 25w02a.",
+  "Steps to Reproduce": "1. Launch Minecraft in version 25w02a or later and create a world with difficulty set to anything other than Peaceful.\n2. Place a repeating command block and enter `execute if entity @e[nbt={Air:300s}]` into it.\n3. Power the repeating command block.\n4. Spawn any neutral mob.\n5. Enter Survival mode.\n6. Attack the neutral mob.\n7. Observe that the attacked mob does not attack you back.\n8. Unpower the repeating command block.\n9. Attack the same mob again.\n10. Observe that the mob attacks you back as intended.",
+  "Environment": "Minecraft Java Edition Versions: 25w03a, 25w04a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen a neutral mob is attacked on the same game tick that a command containing an entity selector with an `nbt=` argument is executed, the directly attacked mob does not retaliate as expected. It remains non-aggressive toward the player instead of selecting the player as an attack target.\n\nThis occurs with commands run from repeating command blocks as well as commands executed through datapack functions. The specific NBT predicate and command appear not to matter; the issue is reproducible with any valid selector containing `nbt={...}`.\n\nIf the command is disabled, the same neutral mob correctly attacks the player when attacked again. For neutral mobs that normally anger nearby members of their species, nearby mobs may still become hostile toward the player, although they may not display their usual angry attack pose or texture; the mob that was directly hit is the one that fails to retaliate.\n\nOther forms of angering neutral mobs that do not involve directly attacking them, such as looking at an enderman or approaching a spider in darkness, continue to function normally. The behavior was first observed in Java Edition snapshot 25w02a.",
+  "Expected Behavior": "When a neutral mob is attacked by the player outside Peaceful difficulty, it should reliably become angered and retaliate, even when a command block or datapack function using an `nbt=` target selector runs on the same tick. The directly attacked mob should enter its attacking state and target the player, while any applicable nearby mobs should respond normally as well.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-279543",
+  "improvement_metadata": {
+    "original_key": "MC-279543"
+  }
+}

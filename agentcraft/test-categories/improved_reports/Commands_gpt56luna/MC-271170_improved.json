@@ -1,0 +1,39 @@
+{
+  "key": "MC-271170",
+  "created_date": "2024-04-26T12:28:59.238-0700",
+  "updated_date": "2025-03-07T10:54:04.232-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w10a",
+    "1.20.6 Release Candidate 1",
+    "1.20.6"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "Plausible",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-05-06T06:38:53.275-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Normal",
+  "components": [],
+  "summary": "Unexpected error when modifying skull's custom name to an invalid value",
+  "environment_raw": "",
+  "description": "The following command, when referencing a skull block entity, causes an error message to be produced:\n\n```\n/data modify block <x> <y> <z> custom_name set value \"0\"\n```\nThe error is \"An unexpected error occurred trying to execute that command\", with the tooltip being \"Not a JSON object: 0; Not a json array: 0; Not a string: 0\".\nI would expect no error message to be thrown, and the modification simply to fail, as with what happens with other block entities that can have custom names.\nThis issue seems to be caused by the method introduced in 1.20.6-rc1 not being used to parse skulls' custom names (developer ran a search on CustomName and not custom_name, perhaps?)",
+  "Steps to Reproduce": "1. Launch Minecraft 1.20.6-rc1.\n2. Create a new Creative world with default settings.\n3. Place a skull block and note its coordinates.\n4. Execute `/data modify block <x> <y> <z> custom_name set value \"0\"`, replacing `<x> <y> <z>` with the skull block's coordinates.\n5. Observe that the command produces the error message \"An unexpected error occurred trying to execute that command\", with the tooltip \"Not a JSON object: 0; Not a json array: 0; Not a string: 0\".",
+  "Environment": "Minecraft Java Edition Versions: 24w10a, 1.20.6 Release Candidate 1, 1.20.6 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen `/data modify block <x> <y> <z> custom_name set value \"0\"` is executed on a skull block entity, the command fails with the generic message:\n\n> An unexpected error occurred trying to execute that command\n\nThe error tooltip reports:\n\n> Not a JSON object: 0; Not a json array: 0; Not a string: 0\n\nThe skull\u2019s `custom_name` is not modified. Instead of rejecting the invalid value as a normal command failure, the command produces an unexpected-error message.",
+  "Expected Behavior": "When an invalid value is assigned to a skull\u2019s custom name, the command should fail gracefully without producing an unexpected error. The skull\u2019s existing custom name and other block entity data should remain unchanged, matching the behavior of other block entities that reject invalid custom-name values.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-271170",
+  "improvement_metadata": {
+    "original_key": "MC-271170"
+  }
+}

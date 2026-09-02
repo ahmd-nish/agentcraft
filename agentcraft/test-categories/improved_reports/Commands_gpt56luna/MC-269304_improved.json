@@ -1,0 +1,40 @@
+{
+  "key": "MC-269304",
+  "created_date": "2024-03-12T07:54:31.751-0700",
+  "updated_date": "2025-04-29T10:03:19.578-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w10a",
+    "24w11a",
+    "24w12a",
+    "24w13a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 2"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Textures and models",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-04-12T00:44:49.539-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Horse armor renders incorrectly when worn by wolves",
+  "environment_raw": "",
+  "description": "When summoning an entity minecraft:wolf with {CanPickUpLoot:1b}, the wolf is able to pick up any horse armor and have it render on the wolf. The horse armor is also indestructible. Putting any wolf armor on any other entity has no function.\nCan be replicated by the commands:\n/summon minecraft:wolf ~ ~ ~ {CanPickUpLoot:1b}, then give the wolf horse armor.\nor\n/item replace entity [desired minecraft:wolf] armor.body with [minecraft:diamond_horse_armor, golden_horse_armor, iron_horse_armor, leather_horse_armor]\nLink to video: Wolf Bug",
+  "Steps to Reproduce": "1. Create or enter a Minecraft world.\n2. Run `/summon minecraft:wolf ~ ~ ~ {CanPickUpLoot:1b}`.\n3. Run `/item replace entity @e[type=minecraft:wolf,limit=1] armor.body with minecraft:diamond_horse_armor`.\n4. Run `/item replace entity @e[type=minecraft:wolf,limit=1] armor.body with minecraft:golden_horse_armor`.\n5. Run `/item replace entity @e[type=minecraft:wolf,limit=1] armor.body with minecraft:iron_horse_armor`.\n6. Run `/item replace entity @e[type=minecraft:wolf,limit=1] armor.body with minecraft:leather_horse_armor`.\n7. Observe that the horse armor renders on the wolf and is indestructible.",
+  "Environment": "Minecraft Java Edition Versions: 24w10a, 24w11a, 24w12a, 24w13a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nA `minecraft:wolf` summoned with `CanPickUpLoot:1b` can pick up horse armor items, including leather, iron, golden, and diamond horse armor. Once picked up, the horse armor is equipped in the wolf\u2019s body slot and is visibly rendered on the wolf, despite horse armor not being intended for wolves.\n\nThe same result occurs when horse armor is directly placed in the wolf\u2019s body slot using `/item replace`. The equipped horse armor cannot be damaged or degraded while worn by the wolf, making it effectively indestructible in this state.\n\nFor comparison, placing wolf armor on an entity other than a wolf does not produce any armor-related effect or functionality.",
+  "Expected Behavior": "Wolves should not be able to pick up or equip horse armor, and horse armor placed in a wolf\u2019s body slot should not render on the wolf or provide any effect. Horse armor should remain intended for horses, while wolf armor should only function on wolves and should not visually or functionally affect other entities.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-269304",
+  "improvement_metadata": {
+    "original_key": "MC-269304"
+  }
+}

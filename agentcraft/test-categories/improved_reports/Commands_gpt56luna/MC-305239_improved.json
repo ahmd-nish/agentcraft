@@ -1,0 +1,37 @@
+{
+  "key": "MC-305239",
+  "created_date": "2025-12-21T13:24:06.793-0800",
+  "updated_date": "2026-04-30T03:18:30.310-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.11"
+  ],
+  "fix_versions": [
+    "26.2 Snapshot 6"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2026-04-30T03:18:30.257-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Important",
+  "components": [],
+  "summary": "Growing world borders reset to their starting size upon reopening the world",
+  "environment_raw": "",
+  "description": "I have been playing with a slow growing worldborder for a long time, but noticed some strange setbacks on my border for some time now.\nHere is the most simple test case I could find:\n- Create a new world with commands allowed\n\n- /worldborder set 15\n\n- /worldborder add 60000 5000d\n\n- Wait a somewhat long time, until the border reaches size 20 will show the problem well enough\n\n- Take note of where the border is\n\n- Save and quit to title\n\n- Load the game again : the border is around size 18\n\nI have tried a lot of different growth speed and numbers with /worldborder add, but it seems that the main factor is the time spent in game. If I quit and load after a short time playing, the border seems to stay where it was. But the more I spend time playing, the bigger the setback when I quit and load again.",
+  "Steps to Reproduce": "1. Create a new world with commands allowed.\n2. Execute `/worldborder set 15`.\n3. Execute `/worldborder add 60000 5000d`.\n4. Wait until the world border reaches approximately size 20.\n5. Observe the world border at approximately size 20.\n6. Take note of the border's location.\n7. Open the Esc menu and select \"Save and Quit to Title\".\n8. Load the same world again.\n9. Observe that the world border has moved back and is around size 18.",
+  "Environment": "Minecraft Java Edition Version 1.21.11",
+  "Observed Behavior": "### Actual behavior\n\nAfter saving and quitting to the title screen, then reopening the world, the growing world border is loaded at a smaller size than it had reached before quitting. For example, after starting with `/worldborder set 15` and adding 60,000 blocks of growth over 5,000 days using `/worldborder add 60000 5000d`, the border may reach approximately 20 blocks in diameter during gameplay but be approximately 18 blocks in diameter after reloading the world.\n\nThe border does not always appear to revert by the same amount. Quitting after a short play session may produce little or no visible change, while longer sessions can result in a larger setback. This occurs while the border is still growing and appears related to the amount of time spent in the world before saving and quitting.",
+  "Expected Behavior": "After saving and reopening the world, the world border should remain at the same size and position it had reached before quitting, without reverting toward its initial size. Its configured gradual expansion should continue from that current state, preserving the intended growth progress and rate regardless of how long the world has been played before being closed.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-305239",
+  "improvement_metadata": {
+    "original_key": "MC-305239"
+  }
+}

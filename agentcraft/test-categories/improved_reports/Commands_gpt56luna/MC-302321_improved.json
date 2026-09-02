@@ -1,0 +1,38 @@
+{
+  "key": "MC-302321",
+  "created_date": "2025-09-26T03:12:10.103-0700",
+  "updated_date": "2026-03-11T03:56:28.494-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.9 Release Candidate 1",
+    "1.21.9"
+  ],
+  "fix_versions": [
+    "1.21.10 Release Candidate 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Chunk loading; Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-10-02T02:59:28.449-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Important",
+  "components": [],
+  "summary": "Chunks don't load while the player is being teleported",
+  "environment_raw": "",
+  "description": "While the player is being teleported using, for example, a repeating command block, chunks don\u2019t load.\n\nSteps to reproduce:\n- Set up a repeating command block with the following command. Note that adding the \u201cp\u201d tag isn\u2019t strictly necessary to recreate the bug, I\u2019ve added it so it\u2019s easy to enable and disable the command.\n\n```\nexecute as @p[tag=p] at @s run tp @s ~ ~ ~1\n```\n\n- Give yourself the \u201cp\u201d tag:\n\n```\n/tag @s add p\n```\n\n- You\u2019ll now get teleported. Observe that chunks don\u2019t load.\n\n- Once finished, remove the \u201cp\u201d tag to stop getting teleported:\n\n```\n/tag @s remove p\n```\n\n- Observe that the chunks load again when the teleporting stops.\n\nWhat I expected:\nI expected the chunks to load. They used to in 1.21.8\nWhat actually happened:\nThe chunks didn\u2019t load",
+  "Steps to Reproduce": "1. Create a Creative world.\n2. Place a repeating command block.\n3. Configure the repeating command block with `execute as @p[tag=p] at @s run tp @s ~ ~ ~1`.\n4. Run `/tag @s add p`.\n5. Observe that the player is repeatedly teleported.\n6. Observe that chunks do not load while the player is being teleported.\n7. Run `/tag @s remove p` to stop the teleportation.\n8. Observe that chunks load again after the teleportation stops.\n9. Run `/tag @s add p` to start the repeated teleportation again.\n10. Observe that chunks do not load while the player is being teleported.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.9 Release Candidate 1, 1.21.9",
+  "Observed Behavior": "### Actual behavior\n\nWhile the command block repeatedly teleports the tagged player by one block per execution, newly entered chunks do not load as the player moves into them. This remains the case even when the player crosses chunk boundaries. After removing the `p` tag and stopping the repeated teleportation, chunk loading resumes and the surrounding terrain loads normally.",
+  "Expected Behavior": "While the player is being continuously teleported, the chunks around the player\u2019s changing position should load and render normally as the player moves into them. Chunk loading should continue without requiring the teleporting to stop, allowing the surrounding terrain to remain available and visible throughout the process, as it did in Minecraft 1.21.8.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-302321",
+  "improvement_metadata": {
+    "original_key": "MC-302321"
+  }
+}

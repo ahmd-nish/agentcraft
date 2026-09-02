@@ -1,0 +1,37 @@
+{
+  "key": "MC-273361",
+  "created_date": "2024-06-14T04:26:44.846-0700",
+  "updated_date": "2025-04-26T15:49:31.453-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Commands; Networking; Player",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-16T04:56:41.853-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Very Important",
+  "components": [],
+  "summary": "Entities teleported to the player from a force loaded chunk are not rendered",
+  "environment_raw": "",
+  "description": "Entities teleported to the player from chunks loaded with /forceload are not rendered. They still produce sounds but their hitbox and model do not exist. Relogging or leaving the area and returning causes the entity to render correctly. If leaving the chunk, you have to walk/fly away and return. Teleporting away and teleporting back does not cause the entity to render.\nWhat I expected to happen was...:\nThe entity teleported to the player should be rendered normally.\nWhat actually happened was...:\nThe entity is not rendered to the player, however the entity still produces sounds. The entity is also able to move around, and the AI functions normally. It is just invisible to the player, and the hitbox is not present.\nSteps to Reproduce:\n- Forceload a chunk with an entity in it.\n\n- Tag the entity.\n\n- Move about 500 blocks away from the forceloaded chunk.\n\n- Teleport the tagged entity to you using \"/execute as @e[tag=<tag>] run tp @s ~ ~ ~\"\n\n- The entity is teleported, but is not rendered.",
+  "Steps to Reproduce": "1. Locate an entity and the chunk containing it.\n\n2. While in that chunk, run `/forceload add ~ ~` to force load the chunk.\n\n3. Tag the entity with a tag named `test`.\n\n4. Move approximately 500 blocks away from the force-loaded chunk.\n\n5. Run `/execute as @e[tag=test] run tp @s ~ ~ ~`.\n\n6. Observe that the entity is teleported to the player but is not rendered; it can still produce sounds and move, while its model and hitbox are absent.",
+  "Environment": "Minecraft Java Edition Version 1.21",
+  "Observed Behavior": "The entity is successfully teleported to the player\u2019s position and continues to exist and function on the server: it can move, its AI operates normally, and it produces sounds. However, the client does not render the entity\u2019s model, and no visible or interactable hitbox is present.\n\nThe entity remains invisible after teleporting away and teleporting back. Relogging, or physically moving far enough away from the entity and then returning, causes it to render normally.",
+  "Expected Behavior": "After the tagged entity is teleported to the player from the force-loaded chunk, it should be rendered normally, with its model visible and its hitbox present at the destination. The entity should remain fully functional, including producing sounds and behaving normally through its AI, without requiring the player to relog or leave and re-enter the area.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-273361",
+  "improvement_metadata": {
+    "original_key": "MC-273361"
+  }
+}

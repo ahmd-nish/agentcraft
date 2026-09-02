@@ -1,0 +1,41 @@
+{
+  "key": "MC-255244",
+  "created_date": "2022-08-15T14:55:27.224-0700",
+  "updated_date": "2025-04-29T11:42:36.178-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19.2",
+    "23w06a"
+  ],
+  "fix_versions": [
+    "23w45a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Networking",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "block",
+    "command"
+  ],
+  "resolution_date": "2023-11-07T04:26:15.144-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Important",
+  "components": [],
+  "summary": "NBT link/reference when using /fill",
+  "environment_raw": "",
+  "description": "Hi,\nI've expirenced simmilar issues that  and [MC-163953] describe.\nHoewer, this issue is not present in 1.17.x. Perhaps the spawner syntax change broke something.\nHow to reproduce:\n1. Launch minecraft in versions 1.18 and above\n2. Run\n/fill ~1 ~ ~ ~1 ~1 ~ minecraft:spawner{SpawnData:{entity:{id:\"minecraft:armor_stand\"}},RequiredPlayerRange:0s,MaxNearbyEntities:0s}\n3. Run\n/data modify block ~1 ~ ~ SpawnData.entity.id set value \"minecraft:bat\"\n4. Observe how the mob inside the bottom spawner changes to a bat, and the top spawner is still an armorstand\n5. Run\n/data get block ~1 ~1 ~ SpawnData.entity.id\nIt returns \"minecraft:bat\"! Notice that client is still displaying an armor stand.\n\nOnce again, it works only in 1.18 and above",
+  "Steps to Reproduce": "1. Launch Minecraft version 1.18 or later.\n2. Create a Creative world with default settings.\n3. Run `/fill ~1 ~ ~ ~1 ~1 ~ minecraft:spawner{SpawnData:{entity:{id:\"minecraft:armor_stand\"}},RequiredPlayerRange:0s,MaxNearbyEntities:0s}`.\n4. Run `/data modify block ~1 ~ ~ SpawnData.entity.id set value \"minecraft:bat\"`.\n5. Observe that the lower spawner displays a bat while the upper spawner still displays an armor stand.\n6. Run `/data get block ~1 ~1 ~ SpawnData.entity.id`.\n7. Observe that the command returns `\"minecraft:bat\"` while the client still displays an armor stand in the upper spawner.",
+  "Environment": "Minecraft Java Edition Versions: 1.19.2, 23w06a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nIn Minecraft Java Edition 1.18 and later, `/fill` appears to reuse the same NBT compound for the block entities it creates when an NBT payload is specified.\n\nAfter placing the two spawners with the command above, modifying `SpawnData.entity.id` in the lower spawner also changes the value returned for the upper spawner:\n\n```mcfunction\n/data get block ~1 ~1 ~ SpawnData.entity.id\n```\n\nreturns:\n\n```text\n\"minecraft:bat\"\n```\n\nHowever, the client does not update the upper spawner\u2019s displayed mob. The lower spawner displays a bat, while the upper spawner continues to display an armor stand. Thus, the two spawners share the modified `SpawnData` NBT on the server, but their client-side visual states are inconsistent.\n\nThis behavior occurs in 1.18 and later and does not occur in 1.17.x.",
+  "Expected Behavior": "When the NBT of the lower spawner is modified to change its spawn entity to a bat, only that spawner should be affected. The upper spawner should retain its armor stand data, and `/data get block ~1 ~1 ~ SpawnData.entity.id` should return `minecraft:armor_stand`, matching the armor stand displayed in the upper spawner.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-255244",
+  "improvement_metadata": {
+    "original_key": "MC-255244"
+  }
+}

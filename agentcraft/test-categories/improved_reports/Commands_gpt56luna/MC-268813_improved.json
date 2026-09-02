@@ -1,0 +1,37 @@
+{
+  "key": "MC-268813",
+  "created_date": "2024-02-28T08:59:24.674-0800",
+  "updated_date": "2025-04-11T10:22:02.109-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w09a"
+  ],
+  "fix_versions": [
+    "24w10a"
+  ],
+  "confirmation_status": "Plausible",
+  "category": "Commands; Crash",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-03-05T04:19:38.888-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Very Important",
+  "components": [],
+  "summary": "Crash when spawning item with can_break/can_place_on component containing unknown/invalid tag",
+  "environment_raw": "",
+  "description": "Loading an item with a minecraft:can_break or minecraft:can_place_on component containing a tag which does not exist in the current world crashes the game with the error \"java.lang.IllegalStateException: Missing tag TagKey[minecraft:block / <invalid tag name>]\", where \"<invalid tag name>\" is the name of the nonexistent tag in question.\nThis can be fairly troublesome if, say, one has custom items containing datapack-specific tags in their saved hotbars and tries to open that tab in a world without the pack installed. Or just if your finger slips while typing in a command. And, of course, once the item is spawned, the world becomes inaccessible as it will crash every time it attempts to load the item in question. In some cases it seems even trying to paste the command into chat will force-quit the game; I'm not currently able to diagnose this any further on account of, you know, the constant crashing.\nLikely a reprisal of MC-129254.\nSteps to reproduce:\n- Run\n\n```\n/give @s stone[can_place_on={blocks:'#minecraft:stone'}]\n```\n\n- Crash.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.\n2. Open the chat.\n3. Enter `/give @s stone[can_place_on={blocks:'#minecraft:stone'}]`.\n4. Submit the command.\n5. Observe that the game crashes with `java.lang.IllegalStateException: Missing tag TagKey[minecraft:block / minecraft:stone]`.",
+  "Environment": "Minecraft Java Edition Version 24w09a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nWhen an item with a `minecraft:can_place_on` or `minecraft:can_break` component references a block tag that is not registered in the current world, the game throws an exception while processing or loading the item:\n\n```text\njava.lang.IllegalStateException: Missing tag TagKey[minecraft:block / minecraft:stone]\n```\n\nFor example, the command\n\n```mcfunction\n/give @s stone[can_place_on={blocks:\"#minecraft:stone\"}]\n```\n\nreferences the nonexistent block tag `minecraft:stone`. Instead of treating the unknown tag as invalid or ignoring the component, the game crashes. If the item is saved in the player inventory, hotbar, or another container, the crash can recur whenever the item is loaded, potentially preventing the world from being opened.",
+  "Expected Behavior": "The game should handle an unknown or invalid tag in a `minecraft:can_break` or `minecraft:can_place_on` component without crashing. The command should be rejected safely or the item should remain usable without granting permissions for the missing tag, and the player should be able to continue playing, reopen inventories, and load the world normally.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-268813",
+  "improvement_metadata": {
+    "original_key": "MC-268813"
+  }
+}

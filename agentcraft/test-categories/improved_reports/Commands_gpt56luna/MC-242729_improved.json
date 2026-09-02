@@ -1,0 +1,38 @@
+{
+  "key": "MC-242729",
+  "created_date": "2021-11-24T11:28:56.507-0800",
+  "updated_date": "2025-04-29T20:49:41.686-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18 Pre-release 8",
+    "1.18 Release Candidate 3"
+  ],
+  "fix_versions": [
+    "1.18.1 Pre-release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-12-03T20:58:37.547-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Normal",
+  "components": [],
+  "summary": "Observer activating without any updates nearby, caused by /clone",
+  "environment_raw": "",
+  "description": "Strange observer activating as if it's sensing a far off big dripleaf. Bug in action in video: https://youtu.be/UTUgY9wXgLo?t=57",
+  "Steps to Reproduce": "1. Launch Minecraft and create a Creative world with default settings.\n2. Recreate the observer and big dripleaf arrangement shown in the linked video at 0:57.\n3. Perform the `/clone` operation shown in the video.\n4. Observe that the observer activates even though there are no updates nearby, as if it were sensing a far-off big dripleaf.",
+  "Environment": "Minecraft Java Edition Versions: 1.18 Pre-release 8, 1.18 Release Candidate 3",
+  "Observed Behavior": "### Actual behavior\n\nAfter a `/clone` command is executed, the observer activates and emits a redstone pulse even though no block update occurs within its observation range. The activation appears to be caused by a big dripleaf located far away from the observer, as if the observer were detecting a state change from that distant block. This unexpected activation can occur solely as a result of the cloning operation.\n\nThe behavior is demonstrated at [0:57 in the video](https://youtu.be/UTUgY9wXgLo?t=57).",
+  "Expected Behavior": "After using `/clone`, the observer should remain inactive if no block update occurs within its detection range. It should not emit a redstone pulse or behave as though it detected a distant big dripleaf. The observer should activate only when a valid update occurs on the block face it is observing, with unrelated distant changes having no effect.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-242729",
+  "improvement_metadata": {
+    "original_key": "MC-242729"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "key": "MC-268347",
+  "created_date": "2024-02-07T08:44:39.617-0800",
+  "updated_date": "2025-04-29T09:43:31.513-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w06a",
+    "24w12a",
+    "24w13a",
+    "24w14a",
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Pre-Release 3"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 2",
+    "24w18a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "attribute",
+    "gravity"
+  ],
+  "resolution_date": "2024-04-30T11:45:22.507-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Normal",
+  "components": [],
+  "summary": "Setting gravity higher than 0.84 allows you to jump up a block",
+  "environment_raw": "",
+  "description": "Setting the minecraft:generic.gravity attribute higher than 0.1 stops you from being able to jump up a block. However, setting it higher than 0.84 makes it so you can jump up one block again.\nSteps to reproduce:\n- Set gravity to 0.84\n\n```\n/attribute @s minecraft:generic.gravity base set 0.84\n```\n- Notice you can't jump up a block\n\n- Set gravity to 0.85\n\n```\n/attribute @s minecraft:generic.gravity base set 0.85\n```\nExpected behaviour:\nYou shouldn't be able to jump up a block, since gravity is higher\nActual behaviour:\nSetting gravity value higher than 0.85 allows you to jump up a block again",
+  "Steps to Reproduce": "1. Launch Minecraft and enter a world where commands can be used.\n2. Set the gravity attribute to 0.84 with `/attribute @s minecraft:generic.gravity base set 0.84`.\n3. Attempt to jump up a block.\n4. Observe that you cannot jump up a block.\n5. Set the gravity attribute to 0.85 with `/attribute @s minecraft:generic.gravity base set 0.85`.\n6. Attempt to jump up a block again.\n7. Observe that setting gravity higher than 0.84 allows you to jump up a block again.",
+  "Environment": "Minecraft Java Edition Versions: 24w06a, 24w12a, 24w13a, 24w14a, 1.20.5 Pre-Release 1, 1.20.5 Pre-Release 3 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWith `minecraft:generic.gravity` set to `0.84`, the player cannot jump onto a block one block higher. However, increasing the value to `0.85` or above causes the player to be able to jump onto a one-block-high ledge again. Thus, the jump-height behavior is non-monotonic: increasing gravity from `0.84` to `0.85` unexpectedly restores the ability to jump up one block.",
+  "Expected Behavior": "Increasing the `minecraft:generic.gravity` attribute above 0.1 should continue to prevent the player from jumping up a one-block elevation. In particular, raising the value beyond 0.84 should not restore the ability to jump up a block; the player should remain unable to do so as gravity becomes higher.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-268347",
+  "improvement_metadata": {
+    "original_key": "MC-268347"
+  }
+}

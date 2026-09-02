@@ -1,0 +1,38 @@
+{
+  "key": "MC-300457",
+  "created_date": "2025-07-31T08:54:45.938-0700",
+  "updated_date": "2026-03-11T03:48:10.101-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.8",
+    "25w31a"
+  ],
+  "fix_versions": [
+    "25w33a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 0,
+  "labels": [],
+  "resolution_date": "2025-08-08T01:53:04.066-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Dialog is unescapable when action or exit_action is set to run_command with a command that would produce a signed chat message",
+  "environment_raw": "",
+  "description": "If you use run_commandaction type and run a command with all of following condition match in dialog action, the dialog is unescapable even set the option can_close_with_escape to true.\n1. Commands that needs to signed with the Secure Chat system.\n2. Commands that is formmated correctly.\nHow to reproduce:\n1. create a world with command permmision is on.\n2. type the following command and press Enter to execute:\n\n```\n/dialog show @s {type:notice,title:\"Force AFK 3000\",action:{label:\"you can click me but still lol\",action:{type:\"run_command\",command:\"say hi\"}}}\n```\n3. Press Esc and try to escape.\nYou can only escape by clicking the dialog hint button and leave the game.",
+  "Steps to Reproduce": "1. Create a world with command permissions enabled.\n2. Open chat and enter `/dialog show @s {type:notice,title:\"Force AFK 3000\",action:{label:\"you can click me but still lol\",action:{type:\"run_command\",command:\"say hi\"}}}`.\n3. Press Enter to execute the command and display the dialog.\n4. Press Esc.\n5. Try to escape from the dialog.\n6. Observe that the dialog cannot be closed with Esc; it can only be escaped by clicking the dialog hint button and leaving the game.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.8, 25w31a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the dialog contains a `run_command` action or `exit_action` whose command produces a correctly formatted, Secure Chat-signed chat message\u2014such as `say hi`\u2014pressing **Esc** does not close the dialog, even when `can_close_with_escape` is set to `true`.\n\nThe dialog remains open and prevents the player from returning to normal gameplay through the Escape key. In the reproduction above, the player can only leave the dialog by interacting with its hint button and then leaving the game.",
+  "Expected Behavior": "When a dialog has `can_close_with_escape` enabled, pressing Esc should close it normally, even when its `action` or `exit_action` uses `run_command` with a correctly formatted command that produces a signed chat message. The command should not prevent the dialog from responding to the Escape key, and the player should be able to leave the dialog without needing to activate its hint button or exit the game.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-300457",
+  "improvement_metadata": {
+    "original_key": "MC-300457"
+  }
+}

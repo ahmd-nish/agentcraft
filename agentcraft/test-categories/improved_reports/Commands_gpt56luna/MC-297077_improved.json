@@ -1,0 +1,36 @@
+{
+  "key": "MC-297077",
+  "created_date": "2025-04-21T05:11:10.733-0700",
+  "updated_date": "2025-05-07T03:11:06.339-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w16a",
+    "25w17a"
+  ],
+  "fix_versions": [],
+  "confirmation_status": "Community Consensus",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2025-05-07T03:11:06.295-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Happy Ghasts with NoAI do not update or save ropes texture",
+  "environment_raw": "",
+  "description": "Happy Ghasts with NoAI do not update or save ropes texture.\nSteps to Reproduce:\n- Summon a happy ghast with NoAI equipped with a harness\n/summon minecraft:happy_ghast ~ ~ ~ {NoAI:1b,equipment:{body:{id:lime_harness,count:1}}}\n\n- Spawn a mob that leases to a happy ghast with quad lead connections such as a sniffer or camel, or a boat\n\n- Leash the mob/boat to the happy ghast\n-  Observed: texture does not update\n\n-  Expected: texture would update\n\n- Modify happy ghast\u2019s data to NoAI false\n/data modify entity @n[type=minecraft:happy_ghast] NoAI set value 0b\n- Observed: texture updates immediately\n\n- Set NoAI on happy ghast texture back to true\n/data modify entity @n[type=minecraft:happy_ghast] NoAI set value 1b\n\n- Leave world and reopen it\n-  Observed: ropes texture is lost\n\n-  Expected: ropes texture would persist",
+  "Steps to Reproduce": "1. Summon a happy ghast with NoAI and a lime harness by executing `/summon minecraft:happy_ghast ~ ~ ~ {NoAI:1b,equipment:{body:{id:lime_harness,count:1}}}`.\n2. Spawn a sniffer, camel, or boat that can lease to the happy ghast.\n3. Leash the sniffer, camel, or boat to the happy ghast.\n4. Observe that the ropes texture does not update.\n5. Set the happy ghast's NoAI value to false by executing `/data modify entity @n[type=minecraft:happy_ghast] NoAI set value 0b`.\n6. Observe that the ropes texture updates immediately.\n7. Set the happy ghast's NoAI value back to true by executing `/data modify entity @n[type=minecraft:happy_ghast] NoAI set value 1b`.\n8. Open the Esc menu and select \"Save and Quit to Title\".\n9. Reopen the world.\n10. Observe that the ropes texture has been lost.",
+  "Environment": "Minecraft Java Edition Versions: 25w16a, 25w17a (includes snapshots)",
+  "Observed Behavior": "A happy ghast with `NoAI:1b` does not refresh its lead connections when a mob or boat is leashed to it. Consequently, the ropes connecting the happy ghast to the leashed entity are not rendered immediately.\n\nIf `NoAI` is changed to `0b`, the happy ghast refreshes its state and the rope texture appears immediately. Changing `NoAI` back to `1b` does not restore the expected update behavior. After leaving the world and reopening it, the rope texture is no longer present, indicating that the lead-connection rendering state is not correctly retained for a `NoAI` happy ghast.\n\nA happy ghast with `NoAI:1b` should update its visible lead connections when entities are leashed to it, and those rope connections should remain visible after the world is reloaded.",
+  "Expected Behavior": "When a happy ghast with NoAI enabled is equipped with a harness and connected to a leashed mob or boat, its ropes texture should update immediately to reflect the active lead connections. The displayed ropes should remain visible while NoAI stays enabled and persist after leaving and reopening the world, without requiring NoAI to be disabled first.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-297077",
+  "improvement_metadata": {
+    "original_key": "MC-297077"
+  }
+}

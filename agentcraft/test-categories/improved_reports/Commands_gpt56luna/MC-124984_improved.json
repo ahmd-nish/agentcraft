@@ -1,0 +1,53 @@
+{
+  "key": "MC-124984",
+  "created_date": "2018-02-09T14:24:10.214-0800",
+  "updated_date": "2025-04-30T05:46:35.549-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 18w06a",
+    "Minecraft 18w16a",
+    "Minecraft 1.13.1",
+    "Minecraft 1.13.2",
+    "Minecraft 19w08b",
+    "Minecraft 19w09a",
+    "20w51a",
+    "1.16.5",
+    "21w06a",
+    "21w08b",
+    "21w17a",
+    "1.17",
+    "1.17.1",
+    "1.18.1"
+  ],
+  "fix_versions": [
+    "22w11a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "command-syntax-help",
+    "datapack-tag"
+  ],
+  "resolution_date": "2023-01-23T06:24:00.090-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Command syntax help does not recognize invalid tags",
+  "environment_raw": "",
+  "description": "The bug\nThe command syntax help does not recognize invalid tags.\nHow to reproduce\nType or copy the following\n\n```\n/clear @s #invalid\n```\n\u2192  #invalid is not displayed red",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create or enter a Creative world.\n3. Open the chat command input.\n4. Type or paste `/clear @s #invalid`.\n5. Observe that `#invalid` is not displayed in red.",
+  "Environment": "Minecraft Java Edition Versions: 18w06a, 18w16a, 1.13.1, 1.13.2, 19w08b, 19w09a, 20w51a, 1.16.5, 21w06a, 21w08b, 21w17a, 1.17, 1.17.1, 1.18.1 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nIn the command syntax help for:\n\n```mcfunction\n/clear @s #invalid\n```\n\nthe nonexistent item tag `#invalid` is not marked as invalid; it remains displayed in the normal text color instead of being highlighted red as an invalid argument. The command interface therefore does not provide visual feedback that the tag does not exist.",
+  "Expected Behavior": "When entering `/clear @s #invalid`, the command syntax help should recognize `#invalid` as an invalid tag and display it in red, indicating that the tag is not valid for the command argument. Invalid tags should therefore receive the same visual error feedback as other unrecognized command inputs rather than appearing normally in the command syntax help.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-124984",
+  "improvement_metadata": {
+    "original_key": "MC-124984"
+  }
+}

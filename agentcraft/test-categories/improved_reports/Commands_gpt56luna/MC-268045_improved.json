@@ -1,0 +1,47 @@
+{
+  "key": "MC-268045",
+  "created_date": "2024-01-22T13:05:11.454-0800",
+  "updated_date": "2025-04-26T15:17:34.986-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.4",
+    "24w03b",
+    "24w04a"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Text",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "command",
+    "command-feedback",
+    "experience",
+    "grammar",
+    "grammar-issue",
+    "pluralization",
+    "xp"
+  ],
+  "resolution_date": "2024-08-02T04:52:46.501-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "The name of Entity Argument is plural in Query literal node of Experience command",
+  "environment_raw": "",
+  "description": "Description of issue\nThe command with issue is (experience|xp) query <targets> (levels|points) and it affects since 17w45a, includes April Fools' Joke snapshots and many experimental versions.\nSteps to reproduce\nWhen executing the command, if you forward any multiple player to the Entity Argument (a.k.a. Target Selector) named \"targets\", then you can see the message \"Only one player is allowed, but the provided selector allows more than one\", which keyed \"argument.player.toomany\". A single player is required, but the argument name is plural, such as target{+}s{+}.\nExpected result\nIt's make sense to rename targets to singular, like target or player because it affects only a player.\nAttachments\nAttachment 1\nInternal Minecraft source code which have the issue in Yarn mapping, 1.20.4.\nYou can see that \"targets\" was used with EntityArgumentType.player(), not players(). You can also ignore the red underline.\nAttachment 2\nIn-game screenshot in 17w45a which the issue starts.",
+  "Steps to Reproduce": "1. Launch Minecraft 17w45a.\n2. Enter a world with multiple players present.\n3. Execute the command `/experience query @a levels`, using `@a` as the multiple-player Entity Argument.\n4. Observe the message \u201cOnly one player is allowed, but the provided selector allows more than one\u201d with the key `argument.player.toomany`.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.4, 24w03b, 24w04a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe `experience query` command exposes its player argument with the plural name `<targets>`:\n\n```text\n/experience query <targets> (levels|points)\n/xp query <targets> (levels|points)\n```\n\nHowever, this argument is configured as a single-player entity argument (`EntityArgumentType.player()`), so it accepts only one player. If `<targets>` is supplied with a selector that can match multiple players, such as `@a`, command execution fails with:\n\n```text\nOnly one player is allowed, but the provided selector allows more than one\n```\n\nThis message corresponds to the `argument.player.toomany` translation key. Therefore, the plural argument name implies that multiple players are valid even though the command requires exactly one player. This behavior has been present since snapshot 17w45a, including the relevant April Fools\u2019 and experimental snapshots.",
+  "Expected Behavior": "The Experience command\u2019s query syntax should identify its player-only entity argument with a singular name, such as `<target>` or `<player>`, rather than `<targets>`. Because the argument accepts only one player, the command documentation, suggestions, and error context should consistently communicate that singular requirement, while selectors matching multiple players should continue to be rejected appropriately.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-268045",
+  "improvement_metadata": {
+    "original_key": "MC-268045"
+  }
+}

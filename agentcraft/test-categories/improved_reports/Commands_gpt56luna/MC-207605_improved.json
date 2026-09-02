@@ -1,0 +1,45 @@
+{
+  "key": "MC-207605",
+  "created_date": "2020-12-04T11:21:34.423-0800",
+  "updated_date": "2025-04-26T12:04:01.165-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.4",
+    "20w51a",
+    "21w03a",
+    "1.16.5",
+    "21w05b",
+    "21w07a",
+    "1.20.2",
+    "1.21.1",
+    "24w37a"
+  ],
+  "fix_versions": [
+    "1.21.4 Pre-Release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-01-02T15:10:50.648-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "/data remove entity [tamed wolf] Owner does not remove ownership of the wolf",
+  "environment_raw": "",
+  "description": "If you summon a dog on a Multiplayer server, tame it and then do\n\n```\n/data remove entity [wolf UUID] Owner\n```\nthen the dog should become untamed. it doesn't and i assume this is a bug in the /data remove command (unless I've completely misunderstood how the command works)",
+  "Steps to Reproduce": "1. Launch Minecraft and connect to a multiplayer server through \"Multiplayer\".\n2. Summon a wolf by executing `/summon minecraft:wolf`.\n3. Tame the summoned wolf.\n4. Execute `/data remove entity [wolf UUID] Owner`, replacing `[wolf UUID]` with the summoned wolf's UUID.\n5. Observe that the wolf remains tamed instead of becoming untamed.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.4, 20w51a, 21w03a, 1.16.5, 21w05b, 21w07a, 1.20.2, 1.21.1, 24w37a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nAfter the tamed wolf\u2019s `Owner` NBT tag is removed with:\n\n```mcfunction\n/data remove entity <wolf UUID> Owner\n```\n\nthe command executes, but the wolf remains tamed instead of becoming untamed. Removing the `Owner` tag does not reset the wolf\u2019s tame state or otherwise change its tamed behavior.",
+  "Expected Behavior": "After executing `/data remove entity [wolf UUID] Owner` on a tamed wolf, the command should remove the wolf\u2019s ownership data and cause it to become untamed. The wolf should no longer be associated with its former owner and should behave as an untamed wolf, consistently on a multiplayer server.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-207605",
+  "improvement_metadata": {
+    "original_key": "MC-207605"
+  }
+}

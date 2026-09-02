@@ -1,0 +1,37 @@
+{
+  "key": "MC-251762",
+  "created_date": "2022-05-15T10:55:37.379-0700",
+  "updated_date": "2025-03-08T11:52:47.644-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w19a"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-05-17T07:08:48.466-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Normal",
+  "components": [],
+  "summary": "You can run commands with double slash prefix",
+  "environment_raw": "",
+  "description": "Commands can be run with double slash prefix, e.g. //summon pig.\nSteps to Reproduce:\n1. Type //summon pig in chat\n2. Press Enter\nObserved Results:\nPig gets summoned\nExpected Results:\nCommand errors\nCode Analysis\n22w19a split the methods used to send the command and the chat message. Client sends the unslashed command:\nChatScreen.java\n\n```\npublic void method_44056(String string, boolean bl) {\n    /* omitted */\n    if (string.startsWith(\"/\")) {\n      this.client.player.method_44098(string.substring(1), lv);\n    } else {\n      this.client.player.method_44096(string, lv);\n    }\n  }\n```\nHowever the server also removes the slash prefix:\nCommandManager.java\n\n```\npublic int execute(ServerCommandSource commandSource, String command) {\n    StringReader stringReader = new StringReader(command);\n    if (stringReader.canRead() && stringReader.peek() == '/')\n      stringReader.skip();\n    /* omitted */\n  }\n```\ntherefore making the double-slashed command valid.",
+  "Steps to Reproduce": "1. Launch Minecraft 22w19a.\n2. Create a new Creative world with default settings.\n3. Type `//summon pig` in chat.\n4. Press Enter and observe that a pig is summoned instead of the command producing an error.",
+  "Environment": "Minecraft Java Edition Version 22w19a (snapshot)",
+  "Observed Behavior": "When the player sends `//summon pig`, the client treats the message as a command because it begins with `/`, removes the first slash, and sends `\"/summon pig\"` to the server. The server\u2019s command parser then removes the remaining leading slash before parsing the command. As a result, the input is interpreted as the valid command `summon pig`, and a pig is summoned instead of the command being rejected.",
+  "Expected Behavior": "Entering a command with a double-slash prefix, such as `//summon pig`, should produce a command error and should not execute. The extra leading slash should not be removed or ignored, so the pig should not be summoned. Commands should require the standard single-slash prefix to run successfully.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-251762",
+  "improvement_metadata": {
+    "original_key": "MC-251762"
+  }
+}

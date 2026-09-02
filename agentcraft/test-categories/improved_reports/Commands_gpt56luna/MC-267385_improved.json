@@ -1,0 +1,37 @@
+{
+  "key": "MC-267385",
+  "created_date": "2023-12-18T08:46:12.287-0800",
+  "updated_date": "2025-04-11T10:31:06.628-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w51b"
+  ],
+  "fix_versions": [
+    "24w03a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-01-06T14:46:39.567-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Important",
+  "components": [],
+  "summary": "Attribute entity_interaction_range is capped by block_interaction_range",
+  "environment_raw": "",
+  "description": "How to reproduce\n- Increase the player's entity interaction range\n\n```\n/attribute @p generic.entity_interaction_range base set 64\n```\n\n-  Try to hit a mob from far away and notice that it doesn't work\n\n- Increase the player's block interaction range\n\n```\n/attribute @p generic.block_interaction_range base set 64\n```\n\n- Now you can hit mobs from far away",
+  "Steps to Reproduce": "1. Launch Minecraft and create a Creative world.\n2. Locate a mob in the world.\n3. Run `/attribute @p generic.entity_interaction_range base set 64`.\n4. Attempt to hit the mob from far away.\n5. Observe that the hit does not work.\n6. Run `/attribute @p generic.block_interaction_range base set 64`.\n7. Attempt to hit the mob from far away again and observe that the hit now works.",
+  "Environment": "Minecraft Java Edition Version 23w51b (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\n`generic.entity_interaction_range` does not independently determine the maximum distance at which the player can attack or interact with an entity. Its effective range is limited by `generic.block_interaction_range`.\n\nAfter setting only the entity interaction range to `64`:\n\n```mcfunction\n/attribute @p generic.entity_interaction_range base set 64\n```\n\na mob located beyond the player\u2019s current block interaction range cannot be hit, even though the entity interaction range attribute is `64`.\n\nAfter also setting the block interaction range to `64`:\n\n```mcfunction\n/attribute @p generic.block_interaction_range base set 64\n```\n\nthe player can hit mobs at the increased distance. Thus, the effective entity interaction range is capped by the value of `generic.block_interaction_range`.",
+  "Expected Behavior": "Setting the player\u2019s `generic.entity_interaction_range` to 64 should allow the player to hit or interact with mobs from that distance, regardless of the value of `generic.block_interaction_range`. Entity interaction range should function independently, so increasing block interaction range should not be required to make the extended entity range effective.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-267385",
+  "improvement_metadata": {
+    "original_key": "MC-267385"
+  }
+}

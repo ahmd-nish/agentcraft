@@ -1,0 +1,42 @@
+{
+  "key": "MC-267428",
+  "created_date": "2023-12-18T14:28:11.646-0800",
+  "updated_date": "2025-04-11T10:09:09.734-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w51b"
+  ],
+  "fix_versions": [
+    "24w03a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Particles",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "attribute",
+    "particle",
+    "phantom",
+    "scale"
+  ],
+  "resolution_date": "2024-04-20T01:10:16.027-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Phantom wing particles do not account for scale attribute",
+  "environment_raw": "",
+  "description": "The particles on the ends of the phantom's wings do not change their position relative to the phantom's scale attribute changing.\nSteps to Reproduce:\n- Summon a phantom\n\n- Either set time to night, or give it fire resistence (for observation)\n\n```\n/time set night\n```\n\n```\n/effect give @e[type=phantom,limit=1] minecraft:fire_resistance infinite 1 true\n```\n\n- Modify the phantom's scale\n\n```\n/attribute @e[type=phantom,limit=1] minecraft:generic.scale base set 0.25\n```\n\nObserved & Expected Results:\n - The particles will be seperated from the phantom's wings, appearing off on their own.\n - The particles would render in the correct position at the end of the phantom's wings when it's attribute scale is normal (1).\nScreenshots/Videos:\n\nNotes:\nRelations\n  MC-267427",
+  "Steps to Reproduce": "1. Enter a Minecraft world and summon a phantom with `/summon minecraft:phantom`.\n2. Set the time to night with `/time set night`.\n3. Set the phantom's scale attribute to 0.25 with `/attribute @e[type=phantom,limit=1] minecraft:generic.scale base set 0.25`.\n4. Observe the particles at the ends of the phantom's wings.\n5. Observe that the particles are separated from the phantom's wings and appear on their own instead of remaining at the ends of the scaled wings.",
+  "Environment": "Minecraft Java Edition Version 23w51b (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the phantom\u2019s `generic.scale` attribute is changed to `0.25`, the particles emitted from the ends of its wings remain at positions based on the phantom\u2019s default scale. As a result, the wing-end particles appear detached from the scaled phantom rather than following the ends of its wings.",
+  "Expected Behavior": "The particles emitted at the ends of a phantom\u2019s wings should remain attached to the correct wing tips as the phantom\u2019s `generic.scale` attribute changes. Their positions should adjust proportionally with the phantom\u2019s size, so they do not appear separated from the model when the phantom is reduced to a smaller scale or set to another valid scale value.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-267428",
+  "improvement_metadata": {
+    "original_key": "MC-267428"
+  }
+}

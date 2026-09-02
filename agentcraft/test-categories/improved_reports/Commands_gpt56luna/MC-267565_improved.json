@@ -1,0 +1,37 @@
+{
+  "key": "MC-267565",
+  "created_date": "2023-12-24T05:55:54.028-0800",
+  "updated_date": "2025-04-10T12:31:57.790-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w51b"
+  ],
+  "fix_versions": [
+    "24w03a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-01-16T08:04:43.343-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Low scale attribute lets you breathe underwater",
+  "environment_raw": "",
+  "description": "What's supposed to happen:\nEven with a low scale attribute (0.064), swimming at the very bottom underwater is supposed to make you lose air.\nWhat happens instead:\nYou don't lose air if you closely hug the block below you while swimming.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a Creative world with default settings.\n3. Set the player\u2019s scale attribute to `0.064`.\n4. Enter the water and swim to the very bottom.\n5. Move closely against the block below the player while continuing to swim.\n6. Wait at least a few minutes.\n7. Observe that the player does not lose air.",
+  "Environment": "Minecraft Java Edition Version 23w51b (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the player's `generic.scale` attribute is set to `0.064`, they can avoid losing air while swimming underwater if they remain pressed closely against the block directly below them. Although the player is fully submerged and swimming at the bottom, their air supply does not decrease, allowing them to breathe indefinitely in this position.",
+  "Expected Behavior": "With the scale attribute set to 0.064, the player should still lose air while swimming underwater at the very bottom. Closely hugging or remaining directly against the block beneath them should not prevent the normal loss of breath. The player\u2019s reduced scale should not allow them to breathe indefinitely in this underwater position.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-267565",
+  "improvement_metadata": {
+    "original_key": "MC-267565"
+  }
+}

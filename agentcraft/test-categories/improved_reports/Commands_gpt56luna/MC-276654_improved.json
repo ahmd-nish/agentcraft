@@ -1,0 +1,37 @@
+{
+  "key": "MC-276654",
+  "created_date": "2024-09-12T19:28:52.519-0700",
+  "updated_date": "2025-04-10T14:55:50.389-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w37a"
+  ],
+  "fix_versions": [
+    "24w45a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Items; Textures and models",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-04T07:17:05.178-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "item_model item component breaks on trident",
+  "environment_raw": "",
+  "description": "typing /give @s trident[item_model=bow] will give a trident whose model is offset from where the player holds it instead of a trident that looks like a bow. I believe this to be an issue with the way Minecraft deals with 3d models like that of the trident, because I was able to do this with /give @s tnt[item_model=bow] with no issues.\nIt seems to be different depending on which item you tell the game to use, but the results are inconsistent.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Enter and execute `/give @s trident[item_model=bow]`.\n4. Hold the resulting trident.\n5. Observe that the trident model is offset from where the player holds it instead of appearing as a bow.",
+  "Environment": "Minecraft Java Edition Version 24w37a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nUsing:\n\n```mcfunction\n/give @s trident[item_model=bow]\n```\n\ngives a trident item that uses the bow item model, but the model is rendered with an incorrect positional offset relative to the player\u2019s hand. As a result, the displayed model does not appear to be held at the correct location.\n\nThe issue is specific to replacing the trident\u2019s model through the `item_model` component. For comparison:\n\n```mcfunction\n/give @s tnt[item_model=bow]\n```\n\nrenders the bow model without the same apparent offset. This indicates that the rendering behavior depends on the base item receiving the `item_model` component: the trident\u2019s item-specific rendering or transform handling is still affecting the replacement model instead of rendering it with the expected bow positioning.",
+  "Expected Behavior": "When a trident is given with `item_model=bow`, it should display the bow model correctly in the player\u2019s hand, aligned with the hand rather than offset from it. The trident\u2019s original model and rendering behavior should not interfere with the selected item model, and item model overrides should produce consistent results across items such as tridents and TNT.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-276654",
+  "improvement_metadata": {
+    "original_key": "MC-276654"
+  }
+}

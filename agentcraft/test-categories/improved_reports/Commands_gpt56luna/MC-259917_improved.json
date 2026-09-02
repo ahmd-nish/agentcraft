@@ -1,0 +1,38 @@
+{
+  "key": "MC-259917",
+  "created_date": "2023-02-10T23:42:26.312-0800",
+  "updated_date": "2025-04-30T05:18:14.842-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w06a",
+    "23w07a"
+  ],
+  "fix_versions": [
+    "1.19.4 Pre-release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-03-08T10:04:04.428-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Entities immune to fall damage are damaged when using minecraft:fall damage type in /damage",
+  "environment_raw": "",
+  "description": "The bug\nWhen using /damage, it is possible to damage entities that are immune to fall damage by using the minecraft:fall damage type.\nFor instance, the Iron Golem is immune to fall damage, and yet when running command\n\n```\n/damage @e[type=minecraft:iron_golem,limit=1,sort=nearest] 10 minecraft:fall\n```\nthe golem is still damaged.\nI don't believe this is intended behavior, as similar behavior exists and the entity is not damaged. When running a command like\n\n```\n/damage @e[type=blaze,limit=1] 10 minecraft:in_fire\n```\nthe Blaze is not damaged, and the error\n\n```\nTarget is invulnerable to the given damage type\n```\nis given.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Run `/summon minecraft:iron_golem ~ ~ ~`.\n4. Run `/damage @e[type=minecraft:iron_golem,limit=1,sort=nearest] 10 minecraft:fall`.\n5. Observe that the iron golem is damaged despite being immune to fall damage.",
+  "Environment": "Minecraft Java Edition Versions: 23w06a, 23w07a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe `/damage` command applies `minecraft:fall` damage to entities that are normally immune to fall damage. For example, targeting an iron golem with:\n\n```mcfunction\n/damage @e[type=minecraft:iron_golem,limit=1,sort=nearest] 10 minecraft:fall\n```\n\nreduces the golem\u2019s health by 10 damage points instead of rejecting the damage. No `Target is invulnerable to the given damage type` error is displayed.\n\nBy comparison, using a damage type to which an entity is immune, such as applying `minecraft:in_fire` damage to a blaze:\n\n```mcfunction\n/damage @e[type=blaze,limit=1] 10 minecraft:in_fire\n```\n\ndoes not damage the blaze and displays:\n\n```text\nTarget is invulnerable to the given damage type\n```\n\nThus, `/damage` recognizes the entity\u2019s immunity for `minecraft:in_fire` but not for `minecraft:fall`.",
+  "Expected Behavior": "Entities that are immune to fall damage should not take damage when targeted with the `minecraft:fall` damage type through `/damage`. The command should treat them as invulnerable to this damage type, leaving their health unchanged and returning the message \u201cTarget is invulnerable to the given damage type,\u201d consistent with how other damage immunities are handled.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-259917",
+  "improvement_metadata": {
+    "original_key": "MC-259917"
+  }
+}

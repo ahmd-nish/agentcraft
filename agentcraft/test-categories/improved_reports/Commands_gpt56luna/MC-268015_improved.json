@@ -1,0 +1,38 @@
+{
+  "key": "MC-268015",
+  "created_date": "2024-01-20T10:44:05.877-0800",
+  "updated_date": "2025-04-11T10:15:28.690-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w03b",
+    "24w10a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 2"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-04-12T02:13:24.439-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Shulker bullets shot from shulkers don't account for the scale attribute",
+  "environment_raw": "",
+  "description": "The Bug:\nShulker bullets shot from shulkers don't account for the scale attribute.\nSteps to Reproduce:\n- Switch to survival mode and summon a shulker with a large scale by using the command provided below.\n\n```\n/summon minecraft:shulker ~ ~ ~ {Attributes:[{Name:\"minecraft:generic.scale\",Base:5}]}\n```\n\n- Wait for the shulker to notice you and begin shulker bullets at you.\n\n- Look closely at the position of where the shulker bullets are created.\n\nObserved Behavior:\nShulker bullets shot from shulkers don't account for the scale attribute.\nExpected Behavior:\nShulker bullets shot from shulkers would account for the scale attribute.",
+  "Steps to Reproduce": "1. Switch to Survival mode.\n2. Summon a shulker with a large scale attribute using `/summon minecraft:shulker ~ ~ ~ {Attributes:[{Name:\"minecraft:generic.scale\",Base:5}]}`\n3. Wait until the shulker notices you and begins firing shulker bullets.\n4. Look closely at where the shulker bullets are created and observe that their position does not account for the shulker's scale attribute.",
+  "Environment": "Minecraft Java Edition Versions: 24w03b, 24w10a (includes snapshots)",
+  "Observed Behavior": "The shulker bullet is spawned at the shulker\u2019s normal, unscaled firing position. Increasing the shulker\u2019s `minecraft:generic.scale` attribute does not move the bullet\u2019s spawn point outward to match the shulker\u2019s enlarged dimensions, so the bullet appears to originate from inside or near the center of the enlarged shulker rather than from its corresponding outer face.",
+  "Expected Behavior": "Shulker bullets fired by a shulker should be created from a position that accounts for the shulker\u2019s scale attribute. When the shulker is enlarged, the bullets should originate from the appropriately scaled location on or near its body rather than from the default-size position. This behavior should remain consistent for shulkers of different scales.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-268015",
+  "improvement_metadata": {
+    "original_key": "MC-268015"
+  }
+}

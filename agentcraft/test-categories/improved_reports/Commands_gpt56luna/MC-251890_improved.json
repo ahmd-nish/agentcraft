@@ -1,0 +1,37 @@
+{
+  "key": "MC-251890",
+  "created_date": "2022-05-18T20:40:52.679-0700",
+  "updated_date": "2025-05-29T09:10:26.196-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 2"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2022-06-05T07:49:03.320-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "run_command click events send value as command instead of chat message",
+  "environment_raw": "",
+  "description": "When clicking on a text component that has a run_command click event, the value is treated as a command instead of a message. For text in books and in chat specifically, this means that the preceding slash must now not be included for the command to run. Commands on signs still work with the preceding slash.\nSteps to reproduce:\nRun the command /tellraw @s {\"text\":\"click me\",\"clickEvent\":\n{\"action\":\"run_command\",\"value\":\"/say hi\"}\nClick the message\nWhat I expected to happen:\nThe /say hi command would run\nWhat actually happened:\nI received an error:\nUnknown or incomplete command, see below for error\n/say hi<--[HERE]",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create or open a Creative world with default settings.\n3. Run `/tellraw @s {\"text\":\"click me\",\"clickEvent\":{\"action\":\"run_command\",\"value\":\"/say hi\"}}`.\n4. Click the resulting \u201cclick me\u201d message in chat.\n5. Observe the error \u201cUnknown or incomplete command, see below for error\u201d with `/say hi<--[HERE]` instead of the `/say hi` command running.",
+  "Environment": "Minecraft Java Edition Version 1.19 Pre-release 1",
+  "Observed Behavior": "### Actual behavior\n\nClicking the **\u201cclick me\u201d** text does not execute `/say hi`. The `run_command` click event passes the value, including its leading `/`, directly to the command parser as the command text. As a result, the game rejects it and displays:\n\n```text\nUnknown or incomplete command, see below for error\n/say hi<--[HERE]\n```\n\nFor text components displayed in chat or books, the `run_command` value must therefore omit the leading slash (for example, `say hi`) for the command to execute. The same value with a leading slash continues to work when used on signs.",
+  "Expected Behavior": "Clicking the \u201cclick me\u201d text should execute the configured `/say hi` command successfully, including the leading slash, and display the command\u2019s normal result in chat. The click event should treat the value as a command rather than as ordinary chat input, without reporting an \u201cUnknown or incomplete command\u201d error.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-251890",
+  "improvement_metadata": {
+    "original_key": "MC-251890"
+  }
+}

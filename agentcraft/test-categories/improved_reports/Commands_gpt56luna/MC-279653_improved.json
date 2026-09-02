@@ -1,0 +1,38 @@
+{
+  "key": "MC-279653",
+  "created_date": "2025-01-20T01:27:48.680-0800",
+  "updated_date": "2025-02-11T07:30:52.353-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.4",
+    "25w03a"
+  ],
+  "fix_versions": [
+    "25w04a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Networking",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-01-22T03:00:40.899-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Normal",
+  "components": [],
+  "summary": "Block Entity Data desynchronizes after subsequent setblock commands",
+  "environment_raw": "",
+  "description": "Doing two or more subsequent setblock commands on the same position when that position contains a block entity desynchronizes that block entity, if the end result is a new block entity of the same type.\nRepro steps:\n- Place a command block facing east with the command: setblock ~ ~1 ~ air\n\n- Place a chain command block following it with the command: setblock ~-1 ~1 ~ player_head\n\n- Stand on top of the command block and run: /setblock ~ ~ ~ player_head{profile:slicedlime}\n\n- Activate the command block\n\n- Observe the player head\n\nResults:\n- The player head remains the same profile\n\n- Relogging re-synchronizes the state\n\nExpected results:\n- The player head switches to the default profile without needing to relog",
+  "Steps to Reproduce": "1. Create a Creative world.\n2. Place a command block facing east.\n3. Set the command block's command to `setblock ~ ~1 ~ air`.\n4. Place a chain command block following the command block.\n5. Set the chain command block's command to `setblock ~-1 ~1 ~ player_head`.\n6. Stand on top of the command block.\n7. Run `/setblock ~ ~ ~ player_head{profile:slicedlime}`.\n8. Activate the command block.\n9. Observe that the player head remains the same profile.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.4, 25w03a (includes snapshots)",
+  "Observed Behavior": "After executing the command block chain, the original player head is removed and replaced at the same position by another player head, but the client does not receive the updated block entity data because the replacement has the same block entity type. As a result, the newly placed player head continues to display the original `slicedlime` profile instead of the default profile associated with the replacement head. The server state is corrected when the player relogs, which causes the block entity data to be synchronized again.",
+  "Expected Behavior": "After the command block is activated, the player head should immediately update to the default profile, reflecting the result of the subsequent `setblock` commands without requiring the player to relog. Replacing a block entity with another block entity of the same type at the same position should keep its displayed data synchronized between the game world and the player.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-279653",
+  "improvement_metadata": {
+    "original_key": "MC-279653"
+  }
+}

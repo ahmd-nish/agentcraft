@@ -1,0 +1,37 @@
+{
+  "key": "MC-273311",
+  "created_date": "2024-06-13T10:33:33.979-0700",
+  "updated_date": "2025-04-29T08:35:15.641-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-06-24T01:44:40.351-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Taking near Float.MAX_VALUE damage from mob attack through commands on hard causes NaN Absorption and Health",
+  "environment_raw": "",
+  "description": "Steps to reproduce:\n- Create a new world with commands enabled and in Hard difficulty.\n\n- Go into survival mode.\n\n- Give yourself and equip a Totem of Undying.\n\n- Run this command: /damage @s 300000000000000000000000000000000000000 minecraft:mob_attack by @e[type=minecraft:zombie,limit=1,sort=nearest]\nIf the command fails, find or summon a zombie then try again.\n\n- Run this command: /data get entity @s AbsorptionAmount\n [Player] has the following entity data: NaNf\n\n- Take damage again.\n\n- Your screen will appear to constantly shake and your health bar will show as if you had 0 HP, but you still remain alive. You can still move around, break blocks, and punch entities, but you can't pick up items.\n\n- Run this command: /data get entity @s Health\n [Player] has the following entity data: NaNf\n\nOnce the bug occurs for a player, it can only be fixed by setting their Health and AbsorptionAmount to a valid number using external tools or mods; the /kill command, which normally instantly kills selected entities, won't work on such players.",
+  "Steps to Reproduce": "1. Create a new world with commands enabled and set the difficulty to Hard.\n2. Switch to Survival mode.\n3. Summon a zombie with `/summon minecraft:zombie`.\n4. Give yourself a Totem of Undying with `/give @s minecraft:totem_of_undying`, then equip it.\n5. Run `/damage @s 300000000000000000000000000000000000000 minecraft:mob_attack by @e[type=minecraft:zombie,limit=1,sort=nearest]`.\n6. Run `/data get entity @s AbsorptionAmount` and observe that the output is `NaNf`.\n7. Take damage again and observe that the screen constantly shakes, the health bar appears to show 0 HP, the player remains alive and can move, break blocks, and punch entities, but cannot pick up items.\n8. Run `/data get entity @s Health` and observe that the output is `NaNf`.",
+  "Environment": "Minecraft Java Edition Version 1.21",
+  "Observed Behavior": "### Actual behavior\n\nThe `/damage` command accepts the extremely large damage value and applies it to the player through the `minecraft:mob_attack` damage type. After the damage is processed, the player\u2019s `AbsorptionAmount` becomes the non-finite floating-point value `NaNf`, as shown by:\n\n```text\n/data get entity @s AbsorptionAmount\n[Player] has the following entity data: NaNf\n```\n\nAfter the player takes damage again, their `Health` value also becomes `NaNf`:\n\n```text\n/data get entity @s Health\n[Player] has the following entity data: NaNf\n```\n\nThe player remains alive despite having an invalid health value. Their screen continuously shakes and the health bar appears empty, but they can still move, break blocks, and attack entities. They cannot pick up dropped items. The invalid values persist, and the `/kill` command does not remove the affected player. Recovery requires externally setting both `Health` and `AbsorptionAmount` to valid numeric values, such as through an editor or a mod.",
+  "Expected Behavior": "The damage should be handled without producing invalid health or absorption values. The equipped Totem of Undying should activate when the damage would be lethal, leaving the player alive with valid health and absorption values; otherwise, the player should die normally. The player should not experience continuous screen shaking, an incorrect zero-health display, inability to pick up items, or become immune to subsequent commands such as `/kill`.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-273311",
+  "improvement_metadata": {
+    "original_key": "MC-273311"
+  }
+}

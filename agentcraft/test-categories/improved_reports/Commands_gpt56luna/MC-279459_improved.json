@@ -1,0 +1,37 @@
+{
+  "key": "MC-279459",
+  "created_date": "2025-01-14T07:27:35.250-0800",
+  "updated_date": "2025-04-26T18:02:42.636-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w02a"
+  ],
+  "fix_versions": [
+    "25w03a"
+  ],
+  "confirmation_status": "Community Consensus",
+  "category": "Block states; Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-01-15T02:04:34.095-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Important",
+  "components": [],
+  "summary": "/setblock and other fills don't properly update block entities",
+  "environment_raw": "",
+  "description": "Pot repro:\n/setblock ~ ~ ~1 minecraft:decorated_pot\n/setblock ~ ~ ~1 minecraft:decorated_pot{sherds:[angler_pottery_sherd,angler_pottery_sherd,angler_pottery_sherd,angler_pottery_sherd]}\nPot is still blank\n/data get block ~ ~ ~1\nShows the data\nRelog -> data now gone\n\nHead repro:\n/setblock ~ ~ ~1 minecraft:player_head\n/setblock ~ ~ ~1 minecraft:player_head{profile:slicedlime}\nHead still default texture\n/data get block ~ ~ ~1\nShows the data\nRelog -> head now correct (possibly because the async data get dirty marks the block entity properly?)",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create and enter a Creative world with default settings.\n3. Run `/setblock ~ ~ ~1 minecraft:decorated_pot`.\n4. Run `/setblock ~ ~ ~1 minecraft:decorated_pot{sherds:[angler_pottery_sherd,angler_pottery_sherd,angler_pottery_sherd,angler_pottery_sherd]}` and observe that the pot is still blank.\n5. Run `/data get block ~ ~ ~1` and observe that the sherd data is shown.\n6. Relog and observe that the decorated pot's data is gone.\n7. Run `/setblock ~ ~ ~1 minecraft:player_head`.\n8. Run `/setblock ~ ~ ~1 minecraft:player_head{profile:slicedlime}` and observe that the head still has the default texture.\n9. Run `/data get block ~ ~ ~1` and observe that the profile data is shown.\n10. Relog and observe that the player head now has the `slicedlime` texture.",
+  "Environment": "Minecraft Java Edition Version 25w02a (snapshot)",
+  "Observed Behavior": "The block entity data supplied through `/setblock` is stored but is not immediately applied to the block\u2019s rendered state. For the decorated pot, run `/setblock ~ ~ ~1 minecraft:decorated_pot`, then run `/setblock ~ ~ ~1 minecraft:decorated_pot{sherds:[angler_pottery_sherd,angler_pottery_sherd,angler_pottery_sherd,angler_pottery_sherd]}`. The pot remains blank even though `/data get block ~ ~ ~1` reports the specified sherd data, and after relogging the data is gone. The same issue occurs with a player head when running `/setblock ~ ~ ~1 minecraft:player_head`, followed by `/setblock ~ ~ ~1 minecraft:player_head{profile:slicedlime}`. The head continues to display the default texture even though `/data get block ~ ~ ~1` reports the `profile` data. After relogging, the head displays the `slicedlime` texture, indicating that the block entity data is eventually applied or refreshed during the intervening operation.",
+  "Expected Behavior": "Block entities placed or replaced with `/setblock` or fill commands should immediately apply their supplied data and display the corresponding result. A decorated pot should show its specified sherds, and a player head should use the specified profile texture without requiring `/data get` or a relog. The block entity data should remain intact and continue to display correctly after saving and rejoining the world.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-279459",
+  "improvement_metadata": {
+    "original_key": "MC-279459"
+  }
+}

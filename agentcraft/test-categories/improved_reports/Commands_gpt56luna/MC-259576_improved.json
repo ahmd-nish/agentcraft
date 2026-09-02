@@ -1,0 +1,40 @@
+{
+  "key": "MC-259576",
+  "created_date": "2023-01-30T14:11:20.832-0800",
+  "updated_date": "2025-04-30T05:26:57.626-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w04a",
+    "23w05a",
+    "23w06a",
+    "23w07a"
+  ],
+  "fix_versions": [
+    "1.19.4 Pre-release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-02-22T09:19:00.368-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Passenger's riding position is too high on a phantom",
+  "environment_raw": "",
+  "description": "Using the new /ride command I was able to ride a Phantom, unfortunately, the player levitates way too above the phantom. This gap gets even bigger with the increasing size of the phantom.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open the chat and run `/summon minecraft:phantom ~ ~ ~`.\n4. Run `/ride @p mount @e[type=minecraft:phantom,limit=1]`.\n5. Look at the player riding the phantom.\n6. Observe that the player is positioned far above the phantom, leaving an unusually large gap between the passenger and the phantom.",
+  "Environment": "Minecraft Java Edition Versions: 23w04a, 23w05a, 23w06a, 23w07a (includes snapshots)",
+  "Observed Behavior": "When a player is made to ride a phantom using the `/ride` command, the player is positioned noticeably above the phantom instead of being aligned with its body. The resulting vertical gap increases as the phantom\u2019s size increases, causing the player to appear to float well above larger phantoms.",
+  "Expected Behavior": "When the player rides a phantom using the `/ride` command, the player should be positioned appropriately on the phantom rather than levitating far above it. The distance between the player and phantom should remain reasonable and consistent, regardless of the phantom\u2019s size, so larger phantoms do not cause an increasingly large gap between the passenger and the mount.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-259576",
+  "improvement_metadata": {
+    "original_key": "MC-259576"
+  }
+}

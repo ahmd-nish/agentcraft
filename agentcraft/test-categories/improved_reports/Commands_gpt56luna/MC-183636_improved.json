@@ -1,0 +1,42 @@
+{
+  "key": "MC-183636",
+  "created_date": "2020-05-12T09:42:59.810-0700",
+  "updated_date": "2025-04-26T10:02:22.565-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w19a",
+    "1.16.4",
+    "20w51a",
+    "1.20.5"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Data Packs; Mob behaviour",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "mojang_internal_1"
+  ],
+  "resolution_date": "2024-08-14T02:56:50.674-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "follow_range attribute not working for piglins",
+  "environment_raw": "",
+  "description": "Piglins are not affected by the /attribute command when modifying the follow_range attribute. The command is effective on piglins when using other attributes such as movement_speed. I compared two piglins with different follow_ranges in the attached screenshots. The red blocks indicate at which point they would begin to shoot at me, the green block indicates when they would lock on to me with their crossbows, and the blue block indicates when they would lose focus on me. The pillager is used for reference to show that the follow_range attribute was working on other mobs. The commands I used to modify the piglin was\n\n```\n/attribute @e[type=minecraft:piglin,limit=1,sort=nearest] minecraft:generic.follow_range base set 2\n```",
+  "Steps to Reproduce": "1. Create a Creative world with default settings.\n2. Place two piglins in the world.\n3. Run `/attribute @e[type=minecraft:piglin,limit=1,sort=nearest] minecraft:generic.follow_range base set 2` while the piglin to modify is the nearest piglin.\n4. Move away from the two piglins and compare the distance at which each begins to shoot at you.\n5. Compare the distance at which each piglin locks on to you with its crossbow.\n6. Move farther away and compare the distance at which each piglin loses focus on you.\n7. Observe that changing the nearest piglin's `follow_range` with the command does not change its behavior compared with the other piglin.",
+  "Environment": "Minecraft Java Edition Versions: 20w19a, 1.16.4, 20w51a, 1.20.5 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nPiglins do not respond to changes made to their `minecraft:generic.follow_range` attribute through the `/attribute` command. For example:\n\n```mcfunction\n/attribute @e[type=minecraft:piglin,limit=1,sort=nearest] minecraft:generic.follow_range base set 2\n```\n\nAlthough the command executes, the modified piglin continues to detect, target, and lose focus of the player at the same apparent distances as an unmodified piglin. Changing other attributes on the same piglin, such as `minecraft:generic.movement_speed`, takes effect normally.\n\nIn the comparison, piglins assigned different `follow_range` values showed no corresponding change in their crossbow behavior: the distances at which they began shooting, locked onto the player, and lost focus remained unchanged. A pillager used under the same comparison demonstrates that `minecraft:generic.follow_range` changes can affect another mob as expected.",
+  "Expected Behavior": "Piglins should respond to changes made to their `generic.follow_range` attribute through the `/attribute` command. Setting a lower value, such as 2, should reduce the distance at which they detect, target, and maintain focus on the player, while higher values should increase these distances, producing behavior consistent with other mobs such as pillagers.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-183636",
+  "improvement_metadata": {
+    "original_key": "MC-183636"
+  }
+}

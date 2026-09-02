@@ -1,0 +1,39 @@
+{
+  "key": "MC-269680",
+  "created_date": "2024-03-20T16:17:01.139-0700",
+  "updated_date": "2025-03-25T13:51:56.396-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w12a",
+    "24w13a",
+    "24w14a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Items",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-04-08T00:59:23.911-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Very Important",
+  "components": [],
+  "summary": "Game crashes when trying to save after modifying item stack to have a max_stack_size below its current stack size",
+  "environment_raw": "",
+  "description": "When modifying an item stack to have a maximum stack size below its current stack size the game crashes the next time it tries to save.\nHow to reproduce:\n1. Give yourself a stack of stone (/give @s minecraft:stone 64) and select it in your hotbar.\n2. Modify the max_stack_size component to 32:\n/item modify entity @s weapon {function:set_components, components: {\"minecraft:max_stack_size\":32}}\n3.  Notice the chat message: \"Can't deliver chat message, check server logs: Replaced a slot on <playername> with [Stone]\". The game logs are attached\n4. Pause the game to cause it to save.\n5.  The game crashes. The crash log is attached.\n\nNote that when you split up the stack between steps 3 and 4 to be below the new max_stack_size, the crash does not happen and the stacks do have the new max_stack_size.",
+  "Steps to Reproduce": "1. Execute `/give @s minecraft:stone 64`, then select the stone stack in your hotbar.\n2. Execute `/item modify entity @s weapon {function:set_components, components: {\"minecraft:max_stack_size\":32}}`.\n3. Observe the chat message: \u201cCan't deliver chat message, check server logs: Replaced a slot on <playername> with [Stone]\u201d.\n4. Pause the game to cause it to save.\n5. Observe that the game crashes.",
+  "Environment": "Minecraft Java Edition Versions: 24w12a, 24w13a, 24w14a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nAfter the `minecraft:max_stack_size` component is changed from 64 to 32, the selected stone stack remains at a count of 64, exceeding its new maximum stack size. The command reports a slot replacement warning in chat:\n\n> Can't deliver chat message, check server logs: Replaced a slot on `<playername>` with [Stone]\n\nThe game continues running until it attempts to save the world, such as when the game is paused. During the save, the game crashes. The attached crash log contains the resulting exception.\n\nIf the stack is split so that each resulting stack contains 32 items or fewer before the save occurs, the crash does not happen, and those stacks retain the `minecraft:max_stack_size` value of 32.",
+  "Expected Behavior": "After an item stack\u2019s `max_stack_size` is reduced below its current count, the game should handle the oversized stack safely and continue running. Saving or pausing the game should complete successfully without a crash, and the modified stack should retain its new maximum stack size. The player should not need to manually split the stack before the change can be saved.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-269680",
+  "improvement_metadata": {
+    "original_key": "MC-269680"
+  }
+}

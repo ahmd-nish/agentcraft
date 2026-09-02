@@ -1,0 +1,52 @@
+{
+  "key": "MC-275374",
+  "created_date": "2024-08-15T20:33:45.981-0700",
+  "updated_date": "2025-04-26T16:12:14.699-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a",
+    "24w34a",
+    "24w35a",
+    "24w36a",
+    "24w37a",
+    "24w38a",
+    "24w39a",
+    "24w40a",
+    "1.21.3",
+    "24w45a",
+    "24w46a",
+    "1.21.4 Pre-Release 2",
+    "1.21.4 Pre-Release 3",
+    "1.21.4 Release Candidate 2",
+    "1.21.4 Release Candidate 3",
+    "1.21.4"
+  ],
+  "fix_versions": [
+    "25w15a"
+  ],
+  "confirmation_status": "Confirmed",
+  "category": "Commands; Mob behaviour",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-03-25T09:51:03.925-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "Low",
+  "components": [],
+  "summary": "Drowneds with CanBreakDoors:1b don't break doors",
+  "environment_raw": "",
+  "description": "Drowneds now have a chance to break doors since  was fixed, like other zombie variants, however their ability doesn't work, they still don't tries to break doors, I attached some videos to shown this behavior.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Summon a drowned with the `CanBreakDoors:1b` tag by running `/summon minecraft:drowned ~ ~ ~ {CanBreakDoors:1b}`.\n4. Place and close a door between the drowned and the player.\n5. Wait at least a few minutes while the drowned approaches the door.\n6. Observe that the drowned does not try to break the door.",
+  "Environment": "Minecraft Java Edition Versions: 24w33a, 24w34a, 24w35a, 24w36a, 24w37a, 24w38a, 24w39a, 24w40a, 1.21.3, 24w45a, 24w46a, 1.21.4 Pre-Release 2, 1.21.4 Pre-Release 3, 1.21.4 Release Candidate 2, 1.21.4 Release Candidate 3, 1.21.4 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nA Drowned with the `CanBreakDoors:1b` NBT tag does not attempt to break a closed wooden door. It does not enter the door-breaking behavior or make progress toward destroying the door, and the door remains intact. The tag has no observable effect on Drowned, even though door breaking is available to other zombie variants.",
+  "Expected Behavior": "Drowned entities with `CanBreakDoors:1b` should be able to attempt to break wooden doors and successfully destroy them when the door-breaking behavior is triggered, with a chance comparable to other zombie variants. Their enabled door-breaking ability should function consistently rather than leaving them unable to interact with or break doors.",
+  "comments": [],
+  "_source": "test-categories/eligible_reports/Commands",
+  "_url": "https://bugs.mojang.com/browse/MC-275374",
+  "improvement_metadata": {
+    "original_key": "MC-275374"
+  }
+}
