@@ -1,0 +1,55 @@
+{
+  "key": "MC-230678",
+  "created_date": "2021-06-29T14:53:40.425-0700",
+  "updated_date": "2026-08-27T02:40:37.193-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17",
+    "1.17.1 Pre-release 2",
+    "1.17.1",
+    "21w37a",
+    "1.18 Pre-release 6",
+    "1.18 Pre-release 7",
+    "1.18.1",
+    "22w11a",
+    "22w14a",
+    "22w18a",
+    "1.19",
+    "1.19.1 Pre-release 4",
+    "1.19.1 Pre-release 5",
+    "1.19.1",
+    "1.19.2",
+    "22w42a",
+    "1.19.3 Pre-release 2",
+    "1.19.3"
+  ],
+  "fix_versions": [
+    "23w03a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "frozen_ocean"
+  ],
+  "resolution_date": "2022-12-15T02:29:51.552-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Cauldron fills with powder snow in frozen ocean biome while it's visually raining",
+  "environment_raw": "",
+  "description": "## The bug\n\nCauldrons are supposed to be filled with water while it's raining, and powder snow while it is snowing. Frozen oceans have a unique temperature gradient that makes it snow in certain places and rain in others. However, whenever a cauldron is placed in this biome, it is filled with powder snow regardless of which local region it is in, even if it is visually raining. Ice and snow are formed as normal (i.e. following the boundaries of the local temperature values).\n\n## How to reproduce\n\n - Find a frozen ocean, or create a superflat world with just frozen ocean\n\n - Use /fill command to create a large layer of cauldrons under open sky\n\n - Change weather to raining/snowing\n\n - Observe that some cauldrons are filled with powder snow even if it is raining\n\n - Replace the platform with solid blocks, and see how snow layers are formed normally\n\nThis bug does not exist for the deep frozen ocean biome.\n\n## Code analysis\n\nCode analysis can be found in this comment.",
+  "Steps to Reproduce": "1. Launch Minecraft and enter a Creative world.\n2. Find a frozen ocean biome with open sky above the area.\n3. Use `/fill ~-10 ~ ~-10 ~10 ~ ~10 minecraft:cauldron` to create a large layer of cauldrons.\n4. Set the weather to rain with `/weather rain`.\n5. Wait at least a few minutes for the cauldrons to be affected by the weather.\n6. Observe that some cauldrons contain powder snow even in a local region where rain is visibly falling.",
+  "Environment": "Minecraft Java Edition Versions: 1.17, 1.17.1 Pre-release 2, 1.17.1, 21w37a, 1.18 Pre-release 6, 1.18 Pre-release 7, 1.18.1, 22w11a, 22w14a, 22w18a, 1.19, 1.19.1 Pre-release 4, 1.19.1 Pre-release 5, 1.19.1, 1.19.2, 22w42a, 1.19.3 Pre-release 2, 1.19.3 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nIn a **frozen ocean** biome, exposed cauldrons are filled with **powder snow** even in areas where the weather is rendered as rain. The cauldron\u2019s contents therefore do not match the precipitation displayed at its position.\n\nThis occurs across the biome\u2019s local temperature gradient: ice formation and snow layers respect the local temperature values, but cauldrons consistently collect powder snow instead of collecting water in the regions where rain is visually falling.\n\nThe issue is not reproducible in **deep frozen ocean** biomes.",
+  "Expected Behavior": "In a frozen ocean, cauldrons exposed to the sky should fill according to the local weather precipitation: water where the area is visually raining and powder snow where it is snowing. Their contents should follow the same local temperature boundaries that determine ice and snow formation, rather than filling with powder snow throughout the biome.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Particles/MC-230678",
+  "improvement_metadata": {
+    "original_key": "MC-230678"
+  }
+}
