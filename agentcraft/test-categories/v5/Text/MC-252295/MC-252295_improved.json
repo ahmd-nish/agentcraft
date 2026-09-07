@@ -1,0 +1,50 @@
+{
+  "key": "MC-252295",
+  "created_date": "2022-05-28T09:46:40.889-0700",
+  "updated_date": "2025-04-30T03:33:41.766-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "1.19 Pre-release 3",
+    "1.19 Release Candidate 2",
+    "1.19",
+    "1.19.1 Pre-release 1",
+    "1.19.1 Pre-release 2",
+    "1.19.1 Pre-release 5",
+    "1.19.1 Release Candidate 2",
+    "1.19.1",
+    "1.19.2",
+    "22w45a",
+    "1.19.3",
+    "1.19.4",
+    "1.20 Pre-release 1",
+    "1.20.1"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-09-04T08:50:39.573-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The word \"whilst\" within several death messages isn't spelled in American English",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nThe word \"whilst\" within several death messages isn't spelled in American English.\n\nMinecraft's source language, (which is English, United States), always spells words in American English, however, the word \"whilst\" within most death messages isn't spelled in American English. It should be \"while\" instead of \"whilst\". Additionally, the word \"while\" is often used to describe time, whereas the word \"whilst\" is often used to describe contrast, and since no contrast is being defined within any of these strings, the death messages are grammatically incorrect.\n\nIt's important to note that both \"whilst\" and \"while\" are acceptable spellings, however, \"while\" is most popular and is typically used in American English. On the other hand, \"whilst\" is the most common form in other parts of the world, such as British English, etc...\n\nBelow is a table I've constructed that lists all death messages in the game that contain the words \"whilst\" or \"while\" to show the issue that's present here.\n\n## Affected Strings:\n\nBefore reading the table, please note the following:\n\n - Words colored in GREEN\u00a0are correct.\n\n - Words colored in ORANGE are correct but are different issues therefore are being tracked in other tickets.\n\n - Words colored in\u00a0RED\u00a0are incorrect.\n\n\u00a0\n\nTranslation Key\n\nCurrent String\n\nExpected String\n\nNotes\n\ndeath.attack.lightningBolt.player\n\n%1$s was struck by lightning whilst fighting %2$s\n\n%1$s was struck by lightning while fighting %2$s\n\n\u00a0\n\ndeath.attack.inFire.player\n\n%1$s walked into fire whilst fighting %2$s\n\n%1$s walked into fire while fighting %2$s\n\n\u00a0\n\ndeath.attack.onFire.player\n\n%1$s was burnt to a crisp whilst fighting %2$s\n\n%1$s was burned to a crisp while fighting %2$s\n\nThe word \"burnt\" within this string also isn't spelled in American English. That issue is currently being tracked at \n \n \n \n MC-252316\n \n Resolved\n \n.\n\ndeath.attack.inWall.player\n\n%1$s suffocated in a wall whilst fighting %2$s\n\n%1$s suffocated in a wall while fighting %2$s\n\n\u00a0\n\ndeath.attack.drown.player\n\n%1$s drowned whilst trying to escape %2$s\n\n%1$s drowned while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.dryout.player\n\n%1$s died from dehydration whilst trying to escape %2$s\n\n%1$s died from dehydration while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.starve.player\n\n%1$s starved to death whilst fighting %2$s\n\n%1$s starved to death while fighting %2$s\n\n\u00a0\n\ndeath.attack.cactus.player\n\n%1$s walked into a cactus whilst trying to escape %2$s\n\n%1$s walked into a cactus while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.magic.player\n\n%1$s was killed by magic whilst trying to escape %2$s\n\n%1$s was killed by magic while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.wither.player\n\n%1$s withered away whilst fighting %2$s\n\n%1$s withered away while fighting %2$s\n\n\u00a0\n\ndeath.attack.anvil.player\n\n%1$s was squashed by a falling anvil whilst fighting %2$s\n\n%1$s was squashed by a falling anvil while fighting %2$s\n\n\u00a0\n\ndeath.attack.fallingBlock.player\n\n%1$s was squashed by a falling block whilst fighting %2$s\n\n%1$s was squashed by a falling block while fighting %2$s\n\n\u00a0\n\ndeath.attack.stalagmite.player\n\n%1$s was impaled on a stalagmite whilst fighting %2$s\n\n%1$s was impaled on a stalagmite while fighting %2$s\n\n\u00a0\n\ndeath.attack.fallingStalactite.player\n\n%1$s was skewered by a falling stalactite whilst fighting %2$s\n\n%1$s was skewered by a falling stalactite while fighting %2$s\n\n\u00a0\n\ndeath.attack.fall.player\n\n%1$s hit the ground too hard whilst trying to escape %2$s\n\n%1$s hit the ground too hard while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.flyIntoWall.player\n\n%1$s experienced kinetic energy whilst trying to escape %2$s\n\n%1$s experienced kinetic energy while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.fireworks.player\n\n%1$s went off with a bang whilst fighting %2$s\n\n%1$s went off with a bang while fighting %2$s\n\n\u00a0\n\ndeath.attack.sweetBerryBush.player\n\n%1$s was poked to death by a sweet berry bush whilst trying to escape %2$s\n\n%1$s was poked to death by a sweet berry bush while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.onFire.item\n\n%1$s was burnt to a crisp whilst fighting %2$s wielding %3$s\n\n%1$s was burned to a crisp while fighting %2$s wielding %3$s\n\nThe word \"burnt\" within this string also isn't spelled in American English. That issue is currently being tracked at \n \n \n \n MC-252316\n \n Resolved\n \n.\n\ndeath.attack.sonic_boom.item\n\n%1$s was obliterated by a sonically-charged shriek whilst trying to escape %2$s wielding %3$s\n\n%1$s was obliterated by a sonically-charged shriek while trying to escape %2$s wielding %3$s\n\n\u00a0\n\ndeath.attack.sonic_boom.player\n\n%1$s was obliterated by a sonically-charged shriek whilst trying to escape %2$s\n\n%1$s was obliterated by a sonically-charged shriek while trying to escape %2$s\n\n\u00a0\n\ndeath.attack.outsideBorder.player\n\n%1$s left the confines of this world whilst fighting %2$s\n\n%1$s left the confines of this world while fighting %2$s\n\n\u00a0\n\ndeath.attack.genericKill.player\n\n%1$s was killed whilst fighting %2$s\n\n%1$s was killed while fighting %2$s\n\n\u00a0\n\ndeath.fell.accident.other_climbable\n\n%1$s fell while climbing\n\n%1$s fell while climbing\n\n\u00a0\n\n## Steps to Reproduce:\n\n - Locate any of the affected strings as listed above.\n\n - Take note as to whether or not the word \"whilst\" within several death messages isn't spelled in American English.\n\n## Observed Behavior:\n\nMost instances of this word aren't spelled in American English.\n\n## Expected Behavior:\n\nAll instances of this word would be spelled in American English to comply with Minecraft's source language. (It should be \"while\" instead of \"whilst\").",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create or open a world.\n3. Have two players fight until one player is killed by the other.\n4. Observe the displayed death message and note that it uses \u201cwhilst\u201d in \u201cwas killed whilst fighting\u201d instead of \u201cwhile.\u201d",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 1.19 Pre-release 3, 1.19 Release Candidate 2, 1.19, 1.19.1 Pre-release 1, 1.19.1 Pre-release 2, 1.19.1 Pre-release 5, 1.19.1 Release Candidate 2, 1.19.1, 1.19.2, 22w45a, 1.19.3, 1.19.4, 1.20 Pre-release 1, 1.20.1 (includes snapshots)",
+  "Observed Behavior": "In the `en_us` language strings, several death-message variants use **\u201cwhilst\u201d** in phrases such as \u201cwhilst fighting\u201d and \u201cwhilst trying to escape.\u201d For example:\n\n- `%1$s was struck by lightning whilst fighting %2$s`\n- `%1$s drowned whilst trying to escape %2$s`\n- `%1$s was killed whilst fighting %2$s`\n\nThese messages are displayed with **\u201cwhilst\u201d** instead of **\u201cwhile\u201d**. Other related death messages already use \u201cwhile,\u201d such as `death.fell.accident.other_climbable`, resulting in inconsistent wording within the source-language messages.",
+  "Expected Behavior": "All affected death messages should use the American English wording \u201cwhile\u201d instead of \u201cwhilst\u201d when describing an action occurring during another event, such as fighting or attempting to escape. The messages should remain grammatically correct and consistent with Minecraft\u2019s English (United States) source language, while preserving the existing death-message meaning and formatting.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Text/MC-252295",
+  "improvement_metadata": {
+    "original_key": "MC-252295"
+  }
+}

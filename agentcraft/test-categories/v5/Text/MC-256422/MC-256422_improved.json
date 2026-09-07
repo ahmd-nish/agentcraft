@@ -1,0 +1,55 @@
+{
+  "key": "MC-256422",
+  "created_date": "2022-10-16T07:53:08.698-0700",
+  "updated_date": "2025-04-26T14:39:06.694-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19.2",
+    "22w42a",
+    "22w43a",
+    "22w45a",
+    "22w46a",
+    "1.19.3",
+    "23w06a",
+    "1.19.4 Pre-release 2",
+    "1.19.4",
+    "23w12a",
+    "1.20",
+    "1.20.1",
+    "23w33a",
+    "24w10a",
+    "1.20.6",
+    "24w19b",
+    "24w21b",
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "apostrophe"
+  ],
+  "resolution_date": "2024-08-02T04:52:49.871-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Some words within some strings use right single quotation marks instead of apostrophes",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nSome words within some strings use right single quotation marks (\u2019) instead of apostrophes (').\n\nThroughout all Minecraft strings, the apostrophe character is used 252 times, and the right single quotation mark is only used 4 times, therefore introducing an inconsistency. The use of two different characters for the same purpose is redundant and rather confusing. Furthermore, they both render differently in Minecraft's font which may convey the idea that they serve different purposes from one another, thus potentially creating additional perplexity. See MC-256422 - Character Render Comparison.png\n\nBelow is a table with some information regarding these two characters for a bit of context.\n\n\u00a0\n\nCode\n\nGlyph\n\nDescription\n\nU+0027\n\n'\n\nApostrophe\n\nU+2019\n\n\u2019\n\nRight single quotation mark\n\n## Affected Strings:\n\nBefore reading the table, please note the following:\n\n - Characters colored in GREEN\u00a0are correct.\n\n - Characters colored in RED\u00a0are incorrect.\n\n\u00a0\n\nTranslation Key\n\nCurrent String\n\nExpected String\n\nString URL on Crowdin\n\ngui.chatReport.report_sent_msg\n\nWe\u2019ve successfully received your report. Thank you!\n\nOur team will review it as soon as possible.\n\nWe've successfully received your report. Thank you!\n\nOur team will review it as soon as possible.\n\nhttps://crowdin.com/translate/minecraft/10038/enus-engb#5331656\n\ngui.abuseReport.report_sent_msg\n\nWe\u2019ve successfully received your report. Thank you!\n\nOur team will review it as soon as possible.\n\nWe've successfully received your report. Thank you!\n\nOur team will review it as soon as possible.\n\nhttps://crowdin.com/translate/minecraft/10038/enus-engb#5346637\n\ngui.banned.description.temporary\n\n%s Until then, you can\u2019t play online or join Realms.\n\n%s Until then, you can't play online or join Realms.\n\nhttps://crowdin.com/translate/minecraft/10038/enus-engb#5331756\n\ngui.banned.description.permanent\n\nYour account is permanently banned, which means you can\u2019t play online or join Realms.\n\nYour account is permanently banned, which means you can't play online or join Realms.\n\nhttps://crowdin.com/translate/minecraft/10038/enus-engb#5331758\n\ntelemetry.event.world_load_times.description\n\nIt\u2019s important for us to understand how long it takes to join a world, and how that changes over time. For example, when we add new features or do larger technical changes, we need to see what impact that had on load times.\n\nIt's important for us to understand how long it takes to join a world, and how that changes over time. For example, when we add new features or do larger technical changes, we need to see what impact that had on load times.\n\nhttps://crowdin.com/translate/minecraft/10038/enus-engb#5343237\n\nmco.account.privacy.information\n\nMojang implements certain procedures to help protect children and their privacy including complying with the Children\u2019s Online Privacy Protection Act (COPPA) and General Data Protection Regulation (GDPR).\n\n\u00a0\n\nYou may need to obtain parental consent before accessing your Realms account.\n\nMojang implements certain procedures to help protect children and their privacy including complying with the Children's Online Privacy Protection Act (COPPA) and General Data Protection Regulation (GDPR).\n\n\u00a0\n\nYou may need to obtain parental consent before accessing your Realms account.\n\nhttps://crowdin.com/editor/minecraft/10038/enus-engb#5362174\n\nmco.account.privacyinfo\n\nMojang implements certain procedures to help protect children and their privacy including complying with the Children\u2019s Online Privacy Protection Act (COPPA) and General Data Protection Regulation (GDPR).\n\n\u00a0\n\nYou may need to obtain parental consent before accessing your Realms account.\n\n\u00a0\n\nIf you have an older Minecraft account (you log in with your username), you need to migrate the account to a Mojang account in order to access Realms.\n\nMojang implements certain procedures to help protect children and their privacy including complying with the Children's Online Privacy Protection Act (COPPA) and General Data Protection Regulation (GDPR).\n\n\u00a0\n\nYou may need to obtain parental consent before accessing your Realms account.\n\n\u00a0\n\nIf you have an older Minecraft account (you log in with your username), you need to migrate the account to a Mojang account in order to access Realms.\n\nhttps://crowdin.com/editor/minecraft/10038/enus-engb#5342762\n\n## Steps to Reproduce:\n\n - Display any of the affected strings as listed above by using the command provided below and replacing \"XYZ\" with the string's translation key.\n\n/tellraw @s {\"translate\":\"XYZ\"}\n\n - Type an apostrophe in chat and compare it with the affected characters within the given string.\n\n - Take note as to whether or not some words within some strings use right single quotation marks instead of apostrophes.\n\n## Observed Behavior:\n\nSome words within some strings use right single quotation marks instead of apostrophes.\n\n## Expected Behavior:\n\nAll words within all strings would use apostrophes.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Enter the world.\n4. Run `/tellraw @s {\"translate\":\"XYZ\"}`, replacing `XYZ` with one of the affected translation keys listed in the report, such as `gui.chatReport.report_sent_msg`.\n5. Type an apostrophe (`'`) in chat and send the message.\n6. Compare the apostrophe in the chat message with the quotation-mark characters in the displayed translated string.\n7. Observe that some words in the translated string use a right single quotation mark (`\u2019`) instead of an apostrophe (`'`).",
+  "Environment": "Minecraft Java Edition Versions: 1.19.2, 22w42a, 22w43a, 22w45a, 22w46a, 1.19.3, 23w06a, 1.19.4 Pre-release 2, 1.19.4, 23w12a, 1.20, 1.20.1, 23w33a, 24w10a, 1.20.6, 24w19b, 24w21b, 1.21 (includes snapshots)",
+  "Observed Behavior": "When the affected translation keys are displayed, some contractions and possessives contain the Unicode right single quotation mark (`U+2019`, `\u2019`) instead of the ASCII apostrophe (`U+0027`, `'`) used elsewhere in the game\u2019s strings.\n\nFor example:\n\n- `gui.chatReport.report_sent_msg` displays `We\u2019ve` instead of `We've`.\n- `gui.banned.description.temporary` displays `can\u2019t` instead of `can't`.\n- `telemetry.event.world_load_times.description` displays `It\u2019s` instead of `It's`.\n- `mco.account.privacy.information` and `mco.account.privacyinfo` display `Children\u2019s` instead of `Children's`.\n\nBoth characters are rendered differently by Minecraft\u2019s font, so the affected strings are visually inconsistent with other strings that use `U+0027`.",
+  "Expected Behavior": "All affected Minecraft strings should use the standard apostrophe character (') consistently wherever an apostrophe is intended, rather than the right single quotation mark (\u2019). The displayed text should therefore match the apostrophes typed in chat and maintain consistent character usage and rendering across all affected translation strings.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Text/MC-256422",
+  "improvement_metadata": {
+    "original_key": "MC-256422"
+  }
+}
