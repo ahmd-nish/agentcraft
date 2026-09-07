@@ -1,0 +1,42 @@
+{
+  "key": "MC-254506",
+  "created_date": "2022-07-23T08:22:05.429-0700",
+  "updated_date": "2026-08-10T02:29:02.230-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19",
+    "1.19.1 Release Candidate 2",
+    "1.19.2",
+    "1.19.3"
+  ],
+  "fix_versions": [
+    "23w17a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "font",
+    "texture"
+  ],
+  "resolution_date": "2023-04-25T08:51:25.203-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Font file of some Korean completed font area is wrong",
+  "environment_raw": "",
+  "description": "https://youtu.be/tHu7Ht6NJac :: One korean youtuber says the font of \uc70c[wi:l] and \uc6d4[weol] is identical\n\nThis is actually a dupe of \n \n \n \n MC-34573\n \n Resolved\n \n, but some are not fixed then.\n\nGonna add the examples soon. (I should unpack the minecraft file to check out where is wrong but I'm writing on mobile lol)\n\n\u00a0\n\n:: Locations ::\n\nunicode_page_b2.png, 1.12.2:\n\n\ub258\ub259\ub25a\ub25b\ub25c\ub25d\ub25e\ub25f\ub228\ub229\ub22a\ub22b\ub22c\ub22d\ub22e\ub22f\ub268\ub269\ub26a\ub26b\ub26c\ub26d\ub26e\ub237\ub270\ub239\ub272\ub23b\ub274\n\n\u00a0should be\n\n\ub258\ub259\ub25a\ub25b\ub25c\ub25d\ub25e\ub25f\ub260\ub261\ub262\ub263\ub264\ub265\ub266\ub267\ub268\ub269\ub26a\ub26b\ub26c\ub26d\ub26e\ub26f\ub270\ub271\ub272\ub273\ub274\n\nunicode_page_b4.png, 1.12.2:\n\n\ub4a4\ub4a5\ub4a6\ub4a8\ub4a9\ub4aa\ub4ab\ub474\ub475\ub476\ub477\ub478\ub479\ub47a\ub47b\ub4b4\ub4b5\ub4b6\ub4b7\ub4b8\ub4b9\ub4ba\ub483\ub4bc\ub485\ub4be\ub487\ub4c0\n\n\u00a0should be\n\n\ub4a4\ub4a5\ub4a6\ub4a8\ub4a9\ub4aa\ub4ab\ub4ac\ub4ad\ub4ae\ub4af\ub4b0\ub4b1\ub4b2\ub4b3\ub4b4\ub4b5\ub4b6\ub4b7\ub4b8\ub4b9\ub4ba\ub4bb\ub4bc\ub4bd\ub4be\ub4bf\ub4c0\n\nunicode_page_b6.png & unicode_page_b7.png, 1.12.2:\n\n\ub6f0\ub6f1\ub6f2\ub6f3\ub6f4\ub6f5\ub6f6\ub6f7\ub6c0\ub6c1\ub6c2\ub6c3\ub6c4\ub6c5\ub6c6\ub6c7\ub700\ub701\ub702\ub703\ub704\ub705\ub706\ub6cf\ub708\ub6d1\ub70a\ub6d3\ub70c\n\n\u00a0should be\n\n\ub6f0\ub6f1\ub6f2\ub6f3\ub6f4\ub6f5\ub6f6\ub6f7\ub6f8\ub6f9\ub6fa\ub6fb\ub6fc\ub6fd\ub6fe\ub6ff\ub700\ub701\ub702\ub703\ub704\ub705\ub706\ub707\ub708\ub6f8\ub70a\ub70b\ub70c\n\nunicode_page_bb.png, 1.12.2:\n\n\ubb88\ubb89\ubb8a\ubb8b\ubb8c\ubb8d\ubb8e\ubb8f\ubb58\ubb59\ubb5a\ubb5b\ubb5c\ubb5d\ubb5e\ubb5f\ubb98\ubb99\ubb9a\ubb9b\ubb9c\ubb9d\ubb9e\ubb67\ubba0\ubb69\ubba2\ubb6b\ubba4\n\n\u00a0should be\n\n\ubb88\ubb89\ubb8a\ubb8b\ubb8c\ubb8d\ubb8e\ubb8f\ubb90\ubb91\ubb92\ubb93\ubb94\ubb95\ubb96\ubb97\ubb98\ubb99\ubb9a\ubb9b\ubb9c\ubb9d\ubb9e\ubb9f\ubba0\ubb90\ubba2\ubba3\ubba4\n\nunicode_page_bd.png, 1.12.2:\n\n\ubdd4\ubdd5\ubdd6\ubdd7\ubdd8\ubdd9\ubdda\ubddb\ubda4\ubda5\ubda6\ubda7\ubda8\ubda9\ubdaa\ubb5f\ubde4\ubde5\ubde6\ubde7\ubde8\ubde9\ubdea\ubdb3\ubdec\ubdb5\ubdee\ubdb7\ubdf0\n\n\u00a0should be\n\n\ubdd4\ubdd5\ubdd6\ubdd7\ubdd8\ubdd9\ubdda\ubddb\ubddc\ubddd\ubdde\ubddf\ubde0\ubde1\ubde2\ubde3\ubde4\ubde5\ubde6\ubde7\ubde8\ubde9\ubdea\ubdeb\ubdec\ubded\ubdee\ubdef\ubdf0\n\nunicode_page_c0.png, 1.12.2:\n\n\uc020\uc021\uc022\uc023\uc024\uc025\uc026\uc027\ubff0\ubff1\ubff2\ubff3\ubff4\ubff5\ubff6\ubff7\uc030\uc031\uc032\uc033\uc034\uc035\uc036\ubfff\uc038\uc001\uc03a\uc003\uc03c\n\n\u00a0should be\n\n\uc020\uc021\uc022\uc023\uc024\uc025\uc026\uc027\uc028\uc029\uc02a\uc02b\uc02c\uc02d\uc02e\uc02f\uc030\uc031\uc032\uc033\uc034\uc035\uc036\uc037\uc038\uc039\uc03b\uc03b\uc03c\n\n\u00a0\n\nunicode_page_c2.png, 1.12.2:\n\n\uc26c\uc26d\uc26e\uc26f\uc270\uc271\uc272\uc273\uc274\uc23d\uc23e\uc23f\uc240\uc241\uc242\uc243\uc27c\uc27d\uc27e\uc27f\uc280\uc281\uc282\uc24b\uc284\uc24d\uc286\uc287\uc288\n\n\u00a0should be\n\n\uc26c\uc26d\uc26e\uc26f\uc270\uc271\uc272\uc273\uc274\uc275\uc27c\uc277\uc278\uc279\uc27a\uc27b\uc27c\uc27d\uc27e\uc27f\uc280\uc281\uc282\uc283\uc284\uc285\uc286\uc287\uc288\n\n\u00a0\n\nunicode_page_c4.png, 1.12.2:\n\n\uc4b8\uc4b9\uc4ba\uc4bc\uc4bf\uc488\uc489\uc48a\uc48b\uc48c\uc48d\uc48e\uc48f\uc4c8\uc4c9\uc4ca\uc4cb\uc4cc\uc4cd\uc4ce\uc497\uc4d0\uc499\uc4d2\uc49b\uc4d4\n\n\u00a0should be\n\n\uc4b8\uc4b9\uc4ba\uc4bc\uc4bf\uc4c0\uc4c1\uc4c2\uc4c3\uc4c4\uc4c5\uc4c6\uc4c7\uc4c8\uc4c9\uc4ca\uc4cb\uc4cc\uc4cd\uc4ce\uc4cf\uc4d0\uc4d1\uc4d2\uc4d3\uc4d4\n\n\u00a0\n\nunicode_page_c7.png, 1.12.2:\n\n\uc704\uc705\uc706\uc707\uc708\uc709\uc70a\uc70b\uc6d4\uc6d5\uc6d6\uc6d7\uc6d8\uc6d9\uc6da\uc6db\uc714\uc715\uc716\uc717\uc718\uc719\uc71a\uc6e3\uc71c\uc6e5\uc71e\uc6e7\uc720\n\n\u00a0should be\n\n\uc704\uc705\uc706\uc707\uc708\uc709\uc70a\uc70b\uc70c\uc70d\uc70e\uc70f\uc710\uc711\uc712\uc713\uc714\uc715\uc716\uc717\uc718\uc719\uc71a\uc71b\uc71c\uc71d\uc71e\uc71f\uc720\n\n\u00a0\n\nLike this, unicode_page_c9.png (\uc950~\uc96b), unicode_page_cb.png (\ucb9c~\ucbb7), unicode_page_cd.png & unicode_page_ce.png (\ucde8~\uce03), unicode_page_d4.png (\ud4cc~\ud4e7) are misdotted as the pattern of those up.\n\n\u00a0\n\nNote: the affected version could not be fixed to 1.12+, but could include the entire ones since unicode font is introduced.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.12.2.\n2. Create a new Creative world with default settings.\n3. Open the in-game chat.\n4. Enter the Korean characters `\uc70c \uc6d4`.\n5. Enter representative characters from the affected Unicode pages, including the sequences listed for `unicode_page_b2.png`, `unicode_page_b4.png`, `unicode_page_b6.png`, `unicode_page_b7.png`, `unicode_page_bb.png`, `unicode_page_bd.png`, `unicode_page_c0.png`, `unicode_page_c2.png`, `unicode_page_c4.png`, and `unicode_page_c7.png`.\n6. Observe that `\uc70c` and `\uc6d4` are rendered with identical or incorrect font glyphs, and that the affected Korean characters do not match the expected sequences.",
+  "Environment": "Minecraft Java Edition Versions: 1.19, 1.19.1 Release Candidate 2, 1.19.2, 1.19.3",
+  "Observed Behavior": "The Korean glyphs in the Unicode font textures are incorrectly arranged or duplicated. As a result, some Hangul syllables render using the glyph for a different syllable; for example, `\uc70c` and `\uc6d4` appear identical instead of using distinct glyphs.\n\nIn Minecraft Java Edition 1.12.2, the issue can be observed in the following font texture files:\n\n- `unicode_page_b2.png`\n- `unicode_page_b4.png`\n- `unicode_page_b6.png` and `unicode_page_b7.png`\n- `unicode_page_bb.png`\n- `unicode_page_bd.png`\n- `unicode_page_c0.png`\n- `unicode_page_c2.png`\n- `unicode_page_c4.png`\n- `unicode_page_c7.png`\n\nThe same pattern also affects `unicode_page_c9.png`, `unicode_page_cb.png`, `unicode_page_cd.png`, `unicode_page_ce.png`, and `unicode_page_d4.png`. These files contain incorrect glyph mappings in portions of the Korean Hangul syllable ranges, causing multiple characters to display as the wrong glyph or as duplicates of another character.",
+  "Expected Behavior": "In Minecraft Java Edition 1.12.2, Korean characters in the affected completed-syllable ranges should render as their correct, distinct glyphs, with each Unicode code point displaying the corresponding syllable. Characters such as \uc70c and \uc6d4 must not share an identical appearance, and the affected Unicode pages should follow the proper Korean syllable sequence without substituted, duplicated, or misplaced glyphs.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Internationalisation/MC-254506",
+  "improvement_metadata": {
+    "original_key": "MC-254506"
+  }
+}

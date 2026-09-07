@@ -1,0 +1,49 @@
+{
+  "key": "MC-248833",
+  "created_date": "2022-02-27T03:34:13.545-0800",
+  "updated_date": "2025-05-29T09:10:03.664-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.1",
+    "1.18.2 Release Candidate 1",
+    "1.18.2",
+    "1.19 Pre-release 1",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "22w43a",
+    "22w45a",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "translatability"
+  ],
+  "resolution_date": "2023-09-01T04:26:36.581-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The parentheses used before and after the warning label within the language menu are untranslatable",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nThe \"(\" and \")\" symbols used before and after the warning label within the language menu are untranslatable and are missing translation keys.\n\nThis is a problem because every other string throughout the game that contains parentheses is translatable, therefore introducing an inconsistency. Below, I've constructed a table to visually demonstrate how and why this is a valid internationalization issue and to show the inconsistency.\n\nTranslation Key\n\nString\n\nContext\n\nAre parentheses translatable?\n\nselectServer.hiddenAddress\n\n(Hidden)\n\nThis string is used to show when a server address is hidden.\n\nYes\n\nmenu.modded\n\n(Modded)\n\nThis string is used within the title screen to show when your instance of Minecraft is modded.\n\nYes\n\noptions.biomeBlendRadius.3\n\n3x3 (Fast)\n\nThis string is used within the video settings menu to show the value of the biome blend radius option.\n\nYes\n\nmultiplayer.status.no_connection\n\n(no connection)\n\nThis string is used within the multiplayer menu to show when you have no connection to a server.\n\nYes\n\npack.folderInfo\n\n(Place pack files here)\n\nThis string is used within pack menus to show where to place packs.\n\nYes\n\npack.incompatible.new\n\n(Made for a newer version of Minecraft)\n\nThis string is used within pack menus to show that the desired pack is made for a newer version of Minecraft.\n\nYes\n\npack.incompatible.old\n\n(Made for an older version of Minecraft)\n\nThis string is used within pack menus to show that the desired pack is made for an older version of Minecraft.\n\nYes\n\nN/A\n\n(Language translations may not be 100%% accurate)\n\nThis string is used within the language menu to warn players that language translations may not be fully accurate.\n\nNo\n\n## Steps to Reproduce:\n\n - Attempt to search for the existence of the string \"(\" by using this search filter, and the existence of the string \")\" using this search filter, on the official Minecraft crowdin project.\n\n - Take note as to whether or not the parentheses used before and after the warning label within the language menu are untranslatable.\n\n## Observed Behavior:\n\nThe parentheses used before and after the warning label within the language menu are untranslatable.\n\n## Expected Behavior:\n\nThe parentheses used before and after the warning label within the language menu would be translatable. To maintain consistency with other similar strings, the parentheses should be included within the \"options.languageWarning\" translatable text component.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.18.1 using MCP-Reborn.\n\nnet.minecraft.client.gui.screens.LanguageSelectScreen.java\n\npublic class LanguageSelectScreen extends OptionsSubScreen {\n \u00a0 private static final Component WARNING_LABEL = (new TextComponent(\"(\")).append(new TranslatableComponent(\"options.languageWarning\")).append(\")\").withStyle(ChatFormatting.GRAY);\n ...\n\nIf we look at the above class, we can see that the parentheses used before and after the warning label within the language menu are hardcoded, and as a result, are untranslatable. This is evident through the following piece of code:\n\n(new TextComponent(\"(\")) ... append(\")\")",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Open Options from the main menu.\n3. Open the language menu.\n4. Locate the warning label stating that language translations may not be fully accurate.\n5. Open the official Minecraft Crowdin project and search for the string `(`.\n6. Search the same project for the string `)`.\n7. Observe that the warning label\u2019s opening and closing parentheses have no translation keys and remain untranslatable.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.1, 1.18.2 Release Candidate 1, 1.18.2, 1.19 Pre-release 1, 1.19, 1.19.1, 1.19.2, 22w43a, 22w45a, 1.19.3, 1.19.4, 1.20.1 (includes snapshots)",
+  "Observed Behavior": "In the language selection menu, the warning is displayed with hardcoded parentheses around the translated `options.languageWarning` text. The opening `(` and closing `)` are created as separate literal text components and do not have translation keys, so translators cannot localize or modify them through the language files.\n\nThis behavior is implemented in `LanguageSelectScreen` by constructing the warning as:\n\n```java\nnew TextComponent(\"(\")\n    .append(new TranslatableComponent(\"options.languageWarning\"))\n    .append(\")\")\n```\n\nConsequently, only the warning text is translatable, while the surrounding parentheses remain fixed.",
+  "Expected Behavior": "The language menu\u2019s warning label should include the opening and closing parentheses in its translatable text, allowing translators to localize the complete \u201c(Language translations may not be 100% accurate)\u201d message. The parentheses should not be hardcoded or omitted from translation resources, ensuring this warning behaves consistently with other parenthesized strings throughout the game.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Internationalisation/MC-248833",
+  "improvement_metadata": {
+    "original_key": "MC-248833"
+  }
+}

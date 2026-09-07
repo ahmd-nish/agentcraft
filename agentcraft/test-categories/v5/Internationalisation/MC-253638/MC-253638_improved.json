@@ -1,0 +1,50 @@
+{
+  "key": "MC-253638",
+  "created_date": "2022-06-27T02:26:41.265-0700",
+  "updated_date": "2025-03-25T13:39:27.386-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19",
+    "1.19.1 Release Candidate 1",
+    "1.19.1 Pre-release 2",
+    "1.19.1 Pre-release 5",
+    "1.19.1 Release Candidate 2",
+    "1.19.1",
+    "1.19.2",
+    "22w43a",
+    "22w45a",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "shulker_box",
+    "translatability"
+  ],
+  "resolution_date": "2023-09-01T04:26:37.071-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The symbols used within shulker box tooltips to show random loot table contents are untranslatable",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nThe \"???????\" symbols that are used within shulker box tooltips to show random loot table contents are missing a translation key. Every other string throughout the game that contains the \"?\" symbol allows it to be correctly translatable, therefore introducing an inconsistency.\n\nIf you wish to display this string of text in-game, you can run the following command provided below and observe the tooltip of the shulker box.\n\n/give @s minecraft:shulker_box{BlockEntityTag:{LootTable:\"minecraft:chests/simple_dungeon\"}}\n\n## Steps to Reproduce:\n\n - Attempt to search for the existence of this string by using this search filter on the official Minecraft crowdin project.\n\n - Take note as to whether or not the symbols used within shulker box tooltips to show random loot table contents are untranslatable.\n\n## Observed Behavior:\n\nThe symbols used within shulker box tooltips to show random loot table contents are untranslatable.\n\n## Expected Behavior:\n\nThe symbols used within shulker box tooltips to show random loot table contents would be translatable.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.19.1 Release Candidate 1 using Mojang mappings.\n\nnet.minecraft.world.level.block.ShulkerBoxBlock.java\n\npublic class ShulkerBoxBlock extends BaseEntityBlock {\n ...\n \u00a0 @Override\n public void appendHoverText(ItemStack itemStack, @Nullable BlockGetter blockGetter, List<Component> list, TooltipFlag tooltipFlag) {\n super.appendHoverText(itemStack, blockGetter, list, tooltipFlag);\n CompoundTag compoundTag = BlockItem.getBlockEntityData(itemStack);\n if (compoundTag != null) {\n if (compoundTag.contains(\"LootTable\", 8)) {\n list.add(Component.literal(\"???????\"));\n }\n ...\n\nIf we look at the above class, we can see that the symbols used within shulker box tooltips to show random loot table contents are hardcoded, and as a result, are untranslatable. This is evident through the following line of code:\n\nlist.add(Component.literal(\"???????\"));",
+  "Steps to Reproduce": "1. Launch Minecraft 1.19.1 Release Candidate 1.\n2. Create and enter a Creative world with default settings.\n3. Execute `/give @s minecraft:shulker_box{BlockEntityTag:{LootTable:\"minecraft:chests/simple_dungeon\"}}`.\n4. Move the pointer over the shulker box in the inventory to display its tooltip.\n5. Search the official Minecraft Crowdin project for `???????`.\n6. Observe that no translation key exists for the `???????` symbols.\n7. Observe that the shulker box tooltip displays `???????` as untranslatable text.",
+  "Environment": "Minecraft Java Edition Versions: 1.19, 1.19.1 Release Candidate 1, 1.19.1 Pre-release 2, 1.19.1 Pre-release 5, 1.19.1 Release Candidate 2, 1.19.1, 1.19.2, 22w43a, 22w45a, 1.19.3, 1.19.4, 1.20.1 (includes snapshots)",
+  "Observed Behavior": "When a shulker box item contains a `LootTable` block entity tag, its tooltip displays the literal text `???????` to indicate that the box contains randomly generated loot. This text is hardcoded as a literal component rather than being created from a translation key, so it remains unchanged in every language and cannot be translated through the Minecraft language files or the official Crowdin project.",
+  "Expected Behavior": "The \u201c???????\u201d symbols displayed in a shulker box tooltip for a random loot table should have a translation key and be translatable through the official localization system. Translators should be able to provide a localized equivalent of this text, consistent with other in-game strings containing question-mark symbols, so the tooltip does not remain fixed and untranslated in every language.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Internationalisation/MC-253638",
+  "improvement_metadata": {
+    "original_key": "MC-253638"
+  }
+}

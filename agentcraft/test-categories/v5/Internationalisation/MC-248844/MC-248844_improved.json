@@ -1,0 +1,49 @@
+{
+  "key": "MC-248844",
+  "created_date": "2022-02-28T00:51:07.838-0800",
+  "updated_date": "2025-03-25T13:08:19.987-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.1",
+    "1.18.2 Release Candidate 1",
+    "1.18.2",
+    "1.19 Pre-release 1",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "22w43a",
+    "22w45a",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "translatability"
+  ],
+  "resolution_date": "2023-09-01T04:26:33.347-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The page indicator symbol within the recipe book GUI is untranslatable",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nThe \"/\" symbol that exists between the value of the current and total pages within the recipe book GUI is untranslatable and is missing a translation key.\n\nThis is a problem because every other string throughout the game that contains the \"/\" symbol is translatable, therefore introducing an inconsistency. Below, I've constructed a table to visually demonstrate how and why this is a valid internationalization issue and to show the inconsistency.\n\nTranslation Key\n\nString\n\nContext\n\nIs the \"/\" symbol translatable?\n\nitem.minecraft.bundle.fullness\n\n%s/%s\n\nThis string is used within bundle tooltips to show the fullness of a bundle.\n\nYes\n\nfilled_map.level\n\n(Level %s/%s)\n\nThis string is used within filled map tooltips to show the level of a filled map.\n\nYes\n\nitem.durability\n\nDurability: %s / %s\n\nThis string is used within item tooltips to show the durability of an item.\n\nYes\n\nsleep.players_sleeping\n\n%s/%s players sleeping\n\nThis string is displayed within the action bar to show how many players are currently sleeping.\n\nYes\n\nN/A\n\n%s/%s\n\nThis string is used within the recipe book GUI to show what page of the recipe book the player is on.\n\nNo\n\n## Steps to Reproduce:\n\n - Attempt to search for the existence of this string by using this search filter on the official Minecraft crowdin project.\n\n - Take note as to whether or not the page indicator symbol within the recipe book GUI is untranslatable.\n\n## Observed Behavior:\n\nThe page indicator symbol within the recipe book GUI is untranslatable.\n\n## Expected Behavior:\n\nThe page indicator symbol within the recipe book GUI would be translatable.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.18.1 using MCP-Reborn.\n\nnet.minecraft.client.gui.screens.recipebook.RecipeBookPage.java\n\npublic class RecipeBookPage {\n ...\n \u00a0 public void render(PoseStack $ps, int $i0, int $i1, int $i2, int $i3, float $f) {\n if (this.totalPages > 1) {\n String s = this.currentPage + 1 + \"/\" + this.totalPages;\n int i = this.minecraft.font.width(s);\n this.minecraft.font.draw($ps, s, (float)($i0 - i / 2 + 73), (float)($i1 + 141), -1);\n }\n ...\n\nIf we look at the above class, we can see that the page indicator symbol within the recipe book GUI is hardcoded, and as a result, is untranslatable. This is evident through the following line of code:\n\nString s = this.currentPage + 1 + \"/\" + this.totalPages;",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.18.1.\n2. Create a new Creative world with default settings.\n3. Open the inventory.\n4. Open the recipe book GUI.\n5. Navigate to a recipe book page where the page indicator is displayed.\n6. Observe that the indicator shows the current and total page values separated by the `/` symbol.\n7. Search for the page indicator string `%s/%s` in the official Minecraft Crowdin project.\n8. Observe that the `/` symbol used in the recipe book page indicator has no translation key and is untranslatable.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.1, 1.18.2 Release Candidate 1, 1.18.2, 1.19 Pre-release 1, 1.19, 1.19.1, 1.19.2, 22w43a, 22w45a, 1.19.3, 1.19.4, 1.20.1 (includes snapshots)",
+  "Observed Behavior": "When the recipe book contains more than one page, the page indicator is rendered using a hardcoded slash between the current page and total page count, for example `1/3`. The `/` character is not associated with a translation key, so it cannot be translated or otherwise localized through the language files or the official Crowdin project.",
+  "Expected Behavior": "The recipe book GUI\u2019s page indicator should use a translation key for the separator between the current and total page numbers, allowing the \u201c/\u201d symbol and surrounding page-count format to be translated consistently with other strings in the game. Players should be able to locate and provide a translation for this page indicator through the official localization project.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Internationalisation/MC-248844",
+  "improvement_metadata": {
+    "original_key": "MC-248844"
+  }
+}

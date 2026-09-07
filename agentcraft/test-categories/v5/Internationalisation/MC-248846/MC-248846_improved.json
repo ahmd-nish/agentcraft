@@ -1,0 +1,49 @@
+{
+  "key": "MC-248846",
+  "created_date": "2022-02-28T02:14:23.229-0800",
+  "updated_date": "2025-04-30T03:36:38.357-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.1",
+    "1.18.2 Release Candidate 1",
+    "1.18.2",
+    "1.19 Pre-release 1",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "22w43a",
+    "22w45a",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "translatability"
+  ],
+  "resolution_date": "2023-09-01T04:26:35.216-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The colon used within the death screen to show the player's score is untranslatable",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nThe \":\" symbol that exists after the word \"Score\" within the death screen is untranslatable and is missing a translation key.\n\nEvery language has its own rules that it follows. This ranges from spelling words differently, to using different punctuation under certain circumstances. Throughout the game, different languages can have symbols translated differently, therefore leading me to believe that this is a valid internationalization problem. For example, take the \"options.controls\" translatable text component which reads \"Controls...\" in English (US), and \"\u6309\u9375\u8a2d\u5b9a\u22ef\u22ef\" in Chinese Traditional, Hong Kong. As you can see the periods/full stops used within the Chinese Traditional, Hong Kong translation are completely different from the ones used in the English (US) translation. With this piece of knowledge in mind, some languages may interpret the use of the \":\" symbol differently.\n\n## Steps to Reproduce:\n\n - Attempt to search for the existence of this string by using this search filter on the official Minecraft crowdin project.\n\n - Take note as to whether or not the colon used within the death screen to show the player's score is untranslatable.\n\n## Observed Behavior:\n\nThe colon used within the death screen to show the player's score is untranslatable.\n\n## Expected Behavior:\n\nThe colon used within the death screen to show the player's score would be translatable.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.18.1 using MCP-Reborn.\n\nnet.minecraft.client.gui.screens.DeathScreen.java\n\npublic class DeathScreen extends Screen {\n ...\n \u00a0 protected void init() {\n ...\n \u00a0 \u00a0 \u00a0this.deathScore = (new TranslatableComponent(\"deathScreen.score\")).append(\": \").append((new TextComponent(Integer.toString(this.minecraft.player.getScore()))).withStyle(ChatFormatting.YELLOW));\n ...\n\nIf we look at the above class, we can see that the colon used within the death screen to show the player's score is hardcoded, and as a result, is untranslatable. This is evident through the following piece of code:\n\nappend(\": \")",
+  "Steps to Reproduce": "1. Launch Minecraft 1.18.1.\n2. Create a new Survival world with default settings.\n3. Cause the player character to die and open the death screen.\n4. Locate the score text on the death screen and note the colon displayed after \u201cScore\u201d.\n5. Open the official Minecraft Crowdin project and search for the death-screen score text and its colon using the search filter.\n6. Observe that the colon used after \u201cScore\u201d has no translation key and cannot be translated.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.1, 1.18.2 Release Candidate 1, 1.18.2, 1.19 Pre-release 1, 1.19, 1.19.1, 1.19.2, 22w43a, 22w45a, 1.19.3, 1.19.4, 1.20.1 (includes snapshots)",
+  "Observed Behavior": "On the Java Edition death screen, the score label is rendered using the translatable component `deathScreen.score`, but the punctuation following it is appended as a hardcoded string:\n\n```java\nnew TranslatableComponent(\"deathScreen.score\")\n    .append(\": \")\n    .append(new TextComponent(Integer.toString(this.minecraft.player.getScore())))\n```\n\nAs a result, the colon and following space cannot be localized independently and are displayed identically in every language. No translation key for this punctuation is available in the Minecraft Crowdin project, so languages that require different punctuation or spacing cannot use their customary format for the score label.",
+  "Expected Behavior": "The death screen should display the separator following the localized \u201cScore\u201d label using a translatable string, allowing each supported language to provide the punctuation or formatting appropriate to its conventions. The score display should remain clear and correctly formatted while ensuring that the separator is available for translation rather than being fixed to a hardcoded colon.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Internationalisation/MC-248846",
+  "improvement_metadata": {
+    "original_key": "MC-248846"
+  }
+}
