@@ -1,0 +1,42 @@
+{
+  "key": "MC-250918",
+  "created_date": "2022-04-27T02:39:28.134-0700",
+  "updated_date": "2026-08-27T03:02:14.452-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "22w16b",
+    "22w17a",
+    "22w19a",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 4"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-07-05T04:14:53.828-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Players are disconnected from servers when opening command blocks that consist of large numbers of characters within the previous output field",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nPlayers are disconnected from servers when opening command blocks that consist of large numbers of characters within the previous output field.\n\nIt's important to note that this issue doesn't occur in singleplayer.\n\nThe full server console log regarding this has been attached and can be found below.\n\n## Stack Trace:\n\nlatest.log\n\n[10:32:06] [Netty Server IO #2/ERROR]: Error receiving packet 7\nio.netty.handler.codec.EncoderException: java.io.UTFDataFormatException: encoded string ({\"extra\"...2:06] \"}) too long: 331525 bytes\n\u00a0 \u00a0 at qn.a(SourceFile:443) ~[server-22w16b.jar:?]\n\u00a0 \u00a0 at sh.a(SourceFile:44) ~[server-22w16b.jar:?]\n\u00a0 \u00a0 at qp.a(SourceFile:45) ~[server-22w16b.jar:?]\n\u00a0 \u00a0 at qp.encode(SourceFile:14) ~[server-22w16b.jar:?]\n\u00a0 \u00a0 at io.netty.handler.codec.MessageToByteEncoder.write(MessageToByteEncoder.java:107) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.AbstractChannelHandlerContext.invokeWrite0(AbstractChannelHandlerContext.java:717) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.AbstractChannelHandlerContext.invokeWriteAndFlush(AbstractChannelHandlerContext.java:764) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.AbstractChannelHandlerContext.write(AbstractChannelHandlerContext.java:790) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.AbstractChannelHandlerContext.writeAndFlush(AbstractChannelHandlerContext.java:758) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.AbstractChannelHandlerContext.writeAndFlush(AbstractChannelHandlerContext.java:808) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.DefaultChannelPipeline.writeAndFlush(DefaultChannelPipeline.java:1025) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.AbstractChannel.writeAndFlush(AbstractChannel.java:306) ~[netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at ql.a(SourceFile:213) ~[server-22w16b.jar:?]\n\u00a0 \u00a0 at ql.b(SourceFile:205) ~[server-22w16b.jar:?]\n\u00a0 \u00a0 at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164) [netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:469) [netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500) [netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:986) [netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74) [netty-all-4.1.68.Final.jar:4.1.68.Final]\n\u00a0 \u00a0 at java.lang.Thread.run(Thread.java:833) [?:?]\n\n## Steps to Reproduce:\n\n - Launch a server running 22w16b that has command blocks enabled and join it.\n\n - Unlock all recipes within the game by executing the command provided below.\n\n - \n\n/recipe give @s *\n\n - Summon a repeating command block nearby that will constantly get the data of your player.\n\n - \n\n/setblock ~ ~ ~3 minecraft:repeating_command_block{auto:1b,Command:\"data get entity @p\"}\n\n - Open the command block and take note as to whether or not you are disconnected from the server.\n\n## Observed Behavior:\n\nPlayers are disconnected from servers.\n\n## Expected Behavior:\n\nPlayers would not be disconnected from servers.",
+  "Steps to Reproduce": "1. Launch a multiplayer server running 22w16b with command blocks enabled.\n2. Join the server.\n3. Execute `/recipe give @s *`.\n4. Execute `/setblock ~ ~ ~3 minecraft:repeating_command_block{auto:1b,Command:\"data get entity @p\"}` to place a repeating command block that continuously gets the nearest player's data.\n5. Wait at least a few minutes for the repeating command block to generate a large amount of previous output.\n6. Open the repeating command block.\n7. Observe that you are disconnected from the server.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 22w16b, 22w17a, 22w19a, 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19 Pre-release 3 (includes snapshots)",
+  "Observed Behavior": "On a dedicated server, opening a command block whose **Previous Output** contains a sufficiently large amount of text disconnects the player from the server. In this case, the repeating command block\u2019s `/data get entity @p` command produces a large output, which is included when the command-block interface is opened.\n\nThe server fails while encoding the outgoing packet containing the command block data. The console reports an `EncoderException` caused by a `UTFDataFormatException`, indicating that the encoded string is too long (`331525 bytes`). The player is then disconnected. This issue does not occur when the same setup is used in singleplayer.",
+  "Expected Behavior": "When a player opens a command block containing a very large amount of text in its previous output field on a multiplayer server, the command block interface should open normally without disconnecting the player. The player should remain connected to the server and be able to continue interacting with the command block and the world, as expected when opening command blocks with large previous outputs.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Networking/MC-250918",
+  "improvement_metadata": {
+    "original_key": "MC-250918"
+  }
+}
