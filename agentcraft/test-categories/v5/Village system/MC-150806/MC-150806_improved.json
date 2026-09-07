@@ -1,0 +1,51 @@
+{
+  "key": "MC-150806",
+  "created_date": "2019-05-04T12:55:35.772-0700",
+  "updated_date": "2026-08-27T01:39:13.629-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14",
+    "Minecraft 1.14.2",
+    "Minecraft 1.14.3 Pre-Release 2",
+    "Minecraft 1.14.3 Pre-Release 3",
+    "1.14.4",
+    "1.15 Pre-release 6",
+    "1.15",
+    "1.15.1",
+    "1.15.2",
+    "20w06a",
+    "20w13b",
+    "20w15a",
+    "20w16a",
+    "20w17a",
+    "20w18a",
+    "20w19a"
+  ],
+  "fix_versions": [
+    "20w22a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-05-26T11:08:30.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Multiple villagers are attached to the same profession block",
+  "environment_raw": "",
+  "description": "## The bug\n\nI am trying to build a trading hall on my world and I notice that jobless villagers entering the area are automatically taking certain jobs when there aren't associated work blocks for them to attach to. When I run the /data get entity\u00a0 [ID] Brain command, the newly entering villagers are attaching to blocks that are already claimed by other villagers. Breaking that block and rechecking doesn't change the associated block.\n\n## How to reproduce\n\nFrom Gintoki in this comment\n\n - Have an enclosure with a couple of villagers in\n\n - Place one jobsite block of any type\n\n - Trade with the villager who aquired the job to lock it in outside working house (2000-9000 tick) quickly break the jobsite block and replace it with the same type and observe a new villager have aquired a profession and both the locked in and new villager will show they have claimed the same jobsite.\n\n\u2192 When the time of the day reaches 2000, both will begin to work at the same jobsite. Logging out and back in to the game wont change this.",
+  "Steps to Reproduce": "1. Create an enclosure containing a couple of villagers.\n2. Place one jobsite block of any type inside the enclosure.\n3. Trade with the villager that acquires the profession to lock in its profession.\n4. Quickly break the jobsite block.\n5. Immediately replace it with another jobsite block of the same type.\n6. Wait until a new villager acquires the same profession.\n7. Check each villager's Brain data with `/data get entity [ID] Brain` and observe that both villagers show the same jobsite block as claimed.\n8. Wait until the time of day reaches 2000 ticks.\n9. Observe that both villagers begin working at the same jobsite.",
+  "Environment": "Minecraft Java Edition Versions: 1.14, 1.14.2, 1.14.3 Pre-Release 2, 1.14.3 Pre-Release 3, 1.14.4, 1.15 Pre-release 6, 1.15, 1.15.1, 1.15.2, 20w06a, 20w13b, 20w15a, 20w16a, 20w17a, 20w18a, 20w19a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nA villager that has already been traded with retains its claimed job-site block even after that block is broken. If a block of the same job-site type is placed again, a second villager can acquire the profession and claim the same coordinates, despite the first villager still being associated with them.\n\nThe villagers\u2019 `Brain` data shows the same job-site position for both villagers. The newly arrived villager can therefore take the profession even though no separate, unclaimed job-site block is available. Breaking and replacing the block, checking the villagers\u2019 data again, or leaving and re-entering the world does not remove the duplicate association.\n\nWhen the work period begins at tick 2000, both villagers attempt to work at the same job-site block.",
+  "Expected Behavior": "Each profession block should be claimed by only one villager at a time. After the original jobsite is broken and replaced, the traded villager and the newly assigned villager should not both retain or acquire the same jobsite. Only one villager should work at the replacement block, while any other villager remains jobless or seeks a genuinely unclaimed profession block.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Village system/MC-150806",
+  "improvement_metadata": {
+    "original_key": "MC-150806"
+  }
+}

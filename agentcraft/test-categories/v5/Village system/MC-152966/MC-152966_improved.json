@@ -1,0 +1,38 @@
+{
+  "key": "MC-152966",
+  "created_date": "2019-05-25T19:59:18.202-0700",
+  "updated_date": "2025-03-21T00:33:28.195-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.1",
+    "Minecraft 1.14.2 Pre-Release 4",
+    "1.16.1"
+  ],
+  "fix_versions": [
+    "21w40a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-10-07T16:45:44.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Increase villages generate in versions after 1.10",
+  "environment_raw": "",
+  "description": "Villages spawn rate since 1.11 to 1.14 is like an infestation.\n\nhere are some examples\u00a0\n\nSeed : -7273534702661314127\n\n1.14 : 82 Villages\n\n1.10 : 32 Villages\n\n\u00a0\n\nSeed : 5324560665388954678\n\n1.14 : 92 Villages!\n\n1.10 : 31 Villages\n\n\u00a0\n\n\u00a0\n\n( small note : i noticed that villages density in deserts especially have top of the roof spawn rate :\n\n\u00a0\n\nto get this glitch load a world in 1.10 and use the same seed in 1.11 to 1.14 and you will notice the difference in villages. Admist is a great program to see the difference easily.\n\nhopefully i have provided enough information for this bug to be fixed once and for all, and thanks for the support CubeTheThird\u00a0\u2665\n\n\u00a0\n\n( pics down )",
+  "Steps to Reproduce": "1. Launch Minecraft 1.10.\n2. Create and load a world using the seed `-7273534702661314127`.\n3. Open the generated world in Amidst and count the villages shown for the seed.\n4. Record that approximately 32 villages are present.\n5. Launch Minecraft 1.14 and create a new world using the same seed, `-7273534702661314127`.\n6. Open the 1.14 world in Amidst and count the villages shown for the seed.\n7. Record that approximately 82 villages are present.\n8. Observe that the same seed generates substantially more villages in 1.14 than in 1.10.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.1, 1.14.2 Pre-Release 4, 1.16.1",
+  "Observed Behavior": "In Java Edition, worlds generated with the same seed contain substantially more villages in versions 1.11 through 1.14 than in 1.10. For seed -7273534702661314127, the reported comparison shows 82 villages in 1.14 compared with 32 in 1.10, while seed 5324560665388954678 produces 92 villages in 1.14 compared with 31 in 1.10. The increased village density is especially noticeable in desert biomes, where villages appear to generate unusually frequently. This difference can be observed by generating the same seeds in 1.10 and in a later version from 1.11 through 1.14 and comparing the resulting maps with a tool such as Amidst.",
+  "Expected Behavior": "Villages should generate at a similar frequency and overall density in versions 1.11 through 1.14 as they do in version 1.10 when using the same seed. The number of villages should not increase dramatically, and desert regions should not become disproportionately crowded with villages. Comparable seeds should produce broadly consistent village counts and distribution across these versions.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Village system/MC-152966",
+  "improvement_metadata": {
+    "original_key": "MC-152966"
+  }
+}

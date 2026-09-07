@@ -1,0 +1,53 @@
+{
+  "key": "MC-156663",
+  "created_date": "2019-07-13T06:23:24.627-0700",
+  "updated_date": "2026-08-27T01:42:26.725-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.4 Pre-Release 5",
+    "1.15.2",
+    "20w15a",
+    "20w16a",
+    "20w17a",
+    "20w18a",
+    "20w19a",
+    "20w20a",
+    "20w22a",
+    "1.16.1",
+    "1.16.4",
+    "20w49a",
+    "1.17.1",
+    "22w12a"
+  ],
+  "fix_versions": [
+    "1.19.3 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "mob",
+    "pathfinding",
+    "water"
+  ],
+  "resolution_date": "2022-11-22T04:19:55.951-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Villager pathfinding broken in water",
+  "environment_raw": "",
+  "description": "## The bug \n\nI have already seen the \"fixed\" bug report \n \n \n \n MC-151333\n \n Resolved\n \n but the villagers still get stuck in the water. I have been trying to make a swamp village in a part of swampland that has no exposed land anywhere but the villagers keep jumping in the water and once they do they just swim in it.\n\nI have found that the pathfinding is broken in where they still swim in the water but they can't seem to detect a bed where they need to swim out of the water and then onto land to get to it. As soon as I push the villager onto land he goes to the bed.\n\nIn the picture below a villager is in the water right beside a bed at night but isn't going into it.\n\n## How to reproduce\n\nSee @Gintoki in this comment and this video.",
+  "Steps to Reproduce": "1. Launch Minecraft and create or load a swamp village in a part of swampland with no exposed land.\n2. Arrange a bed on land directly beside the water so that a villager in the water must swim out and onto land to reach it.\n3. Allow a villager to enter the water.\n4. Wait until night.\n5. Observe that the villager remains in the water beside the bed and continues swimming instead of pathfinding to the bed.\n6. Push the villager onto land.\n7. Observe that the villager immediately pathfinds to the bed once it is on land.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.4 Pre-Release 5, 1.15.2, 20w15a, 20w16a, 20w17a, 20w18a, 20w19a, 20w20a, 20w22a, 1.16.1, 1.16.4, 20w49a, 1.17.1, 22w12a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a villager enters a water-covered area, it may continue swimming instead of finding a route back to land. At night, a villager that is in the water immediately beside a bed does not pathfind to or enter that bed, even though the bed is otherwise reachable by first leaving the water.\n\nThe villager remains in the water and does not navigate around the water or swim to land. If the villager is manually pushed onto nearby land, it immediately recognizes and walks to the bed.",
+  "Expected Behavior": "When a villager is in water near a bed at night, it should recognize the bed as a valid destination and pathfind out of the water onto land to reach it. The villager should not remain swimming or become stuck beside the bed, and should enter the bed normally once it has navigated to the accessible land route.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Village system/MC-156663",
+  "improvement_metadata": {
+    "original_key": "MC-156663"
+  }
+}
