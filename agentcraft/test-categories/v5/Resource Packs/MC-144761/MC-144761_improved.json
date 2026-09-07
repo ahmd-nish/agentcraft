@@ -1,0 +1,51 @@
+{
+  "key": "MC-144761",
+  "created_date": "2019-02-22T18:26:11.321-0800",
+  "updated_date": "2026-08-20T03:34:41.732-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.13.2",
+    "Minecraft 19w07a",
+    "Minecraft 19w08b",
+    "1.16.3",
+    "1.16.4 Release Candidate 1",
+    "1.16.4",
+    "1.16.5",
+    "21w11a",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "1.20.2"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "animation",
+    "resource-pack-support"
+  ],
+  "resolution_date": "2024-07-29T06:54:10.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Animated texture interpolation ignores alpha channel during transition from/to transparent pixels",
+  "environment_raw": "",
+  "description": "## The bug\n\nIf an animated texture that uses texture interpolation ({\"interpolate\": true}\u00a0in the .mcmeta file) contains transparent pixels, the following behaviors can be observed:\n\n - When fading TO transparent pixels, i.e. having a pixel that starts opaque and becomes transparent in the next frame, during the interpolation they will fade to whatever the RGB values for the pixels are, ignoring the alpha channel (the game just behaves as if the pixel was fully opaque). Once the transition is over, those pixels instantly change from that color to transparent, which creates a very jarring effect.\n\n - When fading FROM transparent pixels, i.e. having a pixel that\u00a0starts transparent and becomes opaque in the next frame, they'll appear completely transparent until the transition is over. Once it is over, the correct color will, again, appear all of a sudden.\n\n\u00a0 \n\nAlthough this bug has no effect on the vanilla game, since no textures use interpolation and transparent pixels simultaneously, resource packs using both these features on the same texture should not encounter this issue.\n\n## Explanation\n\nThe example resource pack provided below (and shown above) is one I created to make a comparison between the old and new vanilla textures, which takes advantage of texture animations to cycle the textures every few seconds. Since many items have had their shape changed in the updated textures, many pixels that were transparent in an old texture are now \"present\" in the new texture, and vice-versa.\u00a0As such, the effect described here became very apparent, which was what led me to uncover that bug in the first place.\n\nThe program I used to generate these textures happens to make every transparent pixel black (which is what most image editing software does), which at first made me think that the game would always use black as the color it transitioned towards before becoming transparent. After a few more tests, this has shown not to be the case.\n\nRather, any \"color\" that's stored in the RGB channels of transparent pixels will be used during the transition. For example, let's say I have a solid red pixel (255, 0, 0, 255) that fades to a transparent green pixel (0, 255, 0, 0). Notice how the alpha channel of the latter is 0; that means the game shouldn't care that there's green in there, as the pixel is simply transparent.\n\nInstead of going from red straight to transparent, it will go slowly from red to GREEN, then become transparent all of a sudden. When returning from transparency to solid red, since it doesn't take into account the alpha channel of the next frame, it will just remain transparent all the way through the transition, then, again, become red immediately.\n\n\u00a0 \n\n(The exact behavior described here can be seen on the apple texture on the provided resource pack.)\n\nThe reason for the game seeing \"colors\" when the pixels are actually transparent is that,\u00a0when using straight alpha (as opposed to premultiplied alpha), as do PNG files, pixels with an alpha value of 0 can still hold other values in their RGB channels. This means that, despite looking the same to the user, \"transparent black\" is actually stored differently from \"transparent white\", which is stored differently from \"transparent red\" etc.\n\nAnd the reason for the game not taking the alpha channel into account? Well, my first thought was that some blocks simply don't support partial opacity, as is the case of most solid blocks except ice, stained glass and a few other exceptions. For those blocks, any pixel with an alpha value above a certain threshold will be fully solid; everything else will be fully transparent. I thought that could be the case with interpolation too \u2013 since during the transition some pixels technically acquire partial opacity, the game could simply not be rendering that transparency because the block doesn't allow it. It could just be behaving the same way it would if you simply put a static texture with partial opacity, i.e. the problem is not in the interpolation itself, but in certain blocks not allowing partial transparency. That hypothesis was quickly discarded: after I set the same glass texture shown above to stained glass, one of the few blocks that support partial opacity, the black pixels appeared in the exact same way. This possibly points to a problem in the rendering engine, more specifically in the piece of code that calculates the intermediate values used for transitioning between frames, rather than a problem with the blocks themselves.\n\n## Steps to reproduce\n\n - Download and install the attached test resource pack:\u00a0Interpolation test.zip.\n\n - Get access to some glass or any of the items affected by this \u2013 those are easily noticeable in the Creative inventory. Alternatively, get an apple, which contains the example texture used in the above explanation.\n\n - Notice, for a few seconds, how:\n\n \u2192 solid pixels that become transparent on the next frame, fade to some color instead of transparency until the transition is over, then finally acquire the proper transparency all of a sudden;\n\n \u2192 transparent pixels that become solid on the next frame aren't shown at all until the transition is over, then finally show the proper color all of a sudden.\n\n## Code analysis\n\nSee this comment",
+  "Steps to Reproduce": "1. Download and enable the attached `Interpolation test.zip` resource pack.\n2. Create or enter a Creative world with default settings.\n3. Open the Creative inventory and obtain an apple, or obtain a glass item affected by the resource pack.\n4. Display the apple or glass texture so its animation is visible.\n5. Wait a few seconds for the texture animation to transition between frames.\n6. Observe that opaque pixels fading to transparent transition toward the transparent pixels\u2019 RGB color before becoming transparent abruptly, while transparent pixels fading to opaque remain invisible until the transition ends and then appear suddenly.",
+  "Environment": "Minecraft Java Edition Versions: 1.13.2, 19w07a, 19w08b, 1.16.3, 1.16.4 Release Candidate 1, 1.16.4, 1.16.5, 21w11a, 1.17.1, 1.18, 1.18.1, 1.18.2, 1.20.2 (includes snapshots)",
+  "Observed Behavior": "When an animated texture uses `\"interpolate\": true` and a pixel changes between opaque and transparent frames, interpolation does not correctly account for the alpha channel. When an opaque pixel transitions to a transparent pixel, the pixel is rendered using the transparent frame\u2019s RGB values while retaining visible opacity during the transition, then becomes fully transparent abruptly when the transition finishes. Consequently, a transparent pixel with RGB values of red, green, black, or any other color can produce that color during the fade even though its alpha value is zero. When a transparent pixel transitions to an opaque pixel, it remains invisible for the entire interpolation period and then suddenly appears with its final color when the next frame becomes active. This behavior occurs on both ordinary glass and stained glass, indicating that it is caused by the texture-frame interpolation process rather than by the affected block\u2019s support for partial transparency.",
+  "Expected Behavior": "When interpolating animated textures, transparent pixels should be treated as transparent throughout the transition, regardless of their stored color values. Pixels fading to transparency should smoothly decrease in opacity without displaying unintended colors before becoming fully transparent, while pixels fading from transparency should gradually appear with their correct colors and opacity rather than remaining invisible until the transition completes.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Resource Packs/MC-144761",
+  "improvement_metadata": {
+    "original_key": "MC-144761"
+  }
+}

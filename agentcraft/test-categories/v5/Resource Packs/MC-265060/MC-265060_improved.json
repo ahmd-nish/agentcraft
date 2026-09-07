@@ -1,0 +1,36 @@
+{
+  "key": "MC-265060",
+  "created_date": "2023-08-26T12:03:04.430-0700",
+  "updated_date": "2025-03-25T13:23:05.625-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w33a"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-09-05T02:34:51.363-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Missing sprite for error in Loom GUI (loom.png)",
+  "environment_raw": "",
+  "description": "## The bug\n\nWhen you try to add more than 6 patterns to a banner in a loom you don't get any error or message.\n\nHowever, the Minecraft code can show an icon in the loom GUI when you add a banner with 6 or more patterns (for example, the Ominous banner).\n\nThe problem is that the gui/container/loom.png file does not have the appropiate sprite to show this error.\n\nThis bug exists also in the new 1.20.2 snapshots, because there is not an error sprite in gui/sprites/container/loom directory.\n\n## How to reproduce\n\nOpen the Loom GUI and put the Ominous banner in the first slot (or any banner with 6 patterns).\n\n## Actual behavior\n\nThe GUI does not show any error, but you cannot add more patterns to that banner. See picture \"1 without pack error not visible.png\"\n\n## Expected behavior\n\nYou should see something like a red X because you cannot add more patterns to than banner. See picture \"3 with pack error \u00a0visible (red X).png\"\n\n## Corrected file\n\nI have attached a very simple resource pack with only a modified gui/container/loom.png file with an added sprite (Loom Error Demo.zip). I have also attached the file here directly.\n\nWhen you use this resource pack and repeat the steps, then you get a red X in the final slot if the banner already has 6 or more patterns.\n\nRegretly, this correction does not work in the 1.20.2 snapshots.\n\n## Disclaimer\n\nI think this is a bug and not a change request because the code for using this sprite is already in Minecraft 1.20.1 (and earlier). It is just that the sprite is missing in the texture file.\n\nI don't know if the code has changed for 1.20.2.\n\nSorry, I am not an English speaker. So, please rewrite this description if you think it is necessary for better understanding.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.20.1.\n2. Select Singleplayer and create a Creative world with default settings.\n3. Open the Loom GUI.\n4. Place an Ominous banner, or another banner with 6 patterns, in the first slot.\n5. Attempt to add another pattern to the banner and observe that the Loom does not display an error icon or message, even though no additional pattern can be added.",
+  "Environment": "Minecraft Java Edition Version 23w33a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nWhen a banner that already contains six patterns\u2014such as an Ominous banner\u2014is placed in the loom, the loom correctly prevents any additional pattern from being applied. However, the GUI does not display the error indicator that the loom code is intended to use.\n\nThe location where the error icon should appear remains empty, so the player receives no visual explanation for why the banner cannot accept another pattern. This occurs because the required error sprite is missing from the loom GUI texture (`gui/container/loom.png`; in newer versions, the corresponding `gui/sprites/container/loom` resources).",
+  "Expected Behavior": "When a banner already has six patterns, the Loom GUI should clearly indicate that no additional pattern can be applied by displaying an error icon, such as a red X, in the pattern result slot. The banner should remain unchanged, and the visual error indicator should appear consistently for any banner that has reached the six-pattern limit.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Resource Packs/MC-265060",
+  "improvement_metadata": {
+    "original_key": "MC-265060"
+  }
+}

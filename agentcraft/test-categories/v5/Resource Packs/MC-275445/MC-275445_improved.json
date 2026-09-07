@@ -1,0 +1,37 @@
+{
+  "key": "MC-275445",
+  "created_date": "2024-08-16T11:12:48.106-0700",
+  "updated_date": "2026-08-10T02:44:28.307-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a",
+    "24w34a"
+  ],
+  "fix_versions": [
+    "24w36a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-09-02T01:16:55.886-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Specifying the size of a target in post effect shaders fails",
+  "environment_raw": "",
+  "description": "As of 24w33a, the \"targets\" field of post shaders is an object, instead of an array of objects/strings. It works correctly\u00a0when the name of the target is mapped to an empty object. However having the object contain fields \"width\" and \"height\" fails to load the shader file.\n\nSteps to Reproduce:\n\n - Create a resource pack in version 24w34a (pack format 36)\n\n - Copy the vanilla file assets/minecraft/post_effect/transparency.json\n\n - In the \"targets\" field, write\n\n{\n\u00a0 \u00a0 \u00a0 \u00a0 \"final\": {},\n\u00a0 \u00a0 \u00a0 \u00a0 \"potato\": {\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \"width\": 16, \"height\": 16\n\u00a0 \u00a0 \u00a0 \u00a0 }\n}\n\n - Load the resource pack with fabulous graphics\n\nObserved Results:\n\nThe resource pack fails loading, and the game logs raise this error:\n\ndeobf_latest.log\n\nFailed to parse post chain at minecraft:post_effect/transparency.json\ncom.google.gson.JsonSyntaxException: Both alternatives read successfully, can not pick the correct one; first: (Left[b[]], {\"width\":16,\"height\":16}) second: (Right[a[width=16, height=16]], {\"width\":16,\"height\":16}) missed input: {\"potato\":{\"width\":16,\"height\":16}}\n at com.mojang.serialization.DataResult$Error.getOrThrow(DataResult.java:287)\n at ghx.b(SourceFile:145)\n at ghx.a(SourceFile:80)\n at ghx.b(SourceFile:36)\n at auz.a(SourceFile:11)\n at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1768)\n at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.exec(CompletableFuture.java:1760)\n at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:387)\n at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1312)\n at java.base/java.util.concurrent.ForkJoinPool.scan(ForkJoinPool.java:1843)\n at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:1808)\n at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:188)\n\nExpected Results:\n\nSince this is the vanilla file, in which we specified an unused target (the same as the example from the article, the game should not output an error.\n\nNotes:\n\nFrom what I understood reading the output logs, it seems the json interpreter struggles with the new syntax...\n\nAttachment\n\nThe joined zip file is a resource packs, for 24w34a.It modifies the \n\nassets/minecraft/post_effect/transparency.json\n\n, specifically adding a target in the post effect shader. I made sure to use the same syntax as in the snapshot article to demonstrate the bug.",
+  "Steps to Reproduce": "1. Launch Minecraft 24w34a.\n2. Create a resource pack using pack format 36.\n3. Copy `assets/minecraft/post_effect/transparency.json` from the vanilla files into the resource pack.\n4. Replace the file\u2019s `targets` field with:\n   ```json\n   {\n     \"final\": {},\n     \"potato\": {\n       \"width\": 16,\n       \"height\": 16\n     }\n   }\n   ```\n5. Enable the resource pack.\n6. Set Graphics to Fabulous through Options -> Video Settings.\n7. Observe that the resource pack fails to load and the log reports `Failed to parse post chain at minecraft:post_effect/transparency.json` with a `JsonSyntaxException`.",
+  "Environment": "Minecraft Java Edition Versions: 24w33a, 24w34a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the `targets` object contains a target mapped to an object with `width` and `height`, the post-effect JSON fails to parse. For example:\n\n```json\n\"targets\": {\n    \"final\": {},\n    \"potato\": {\n        \"width\": 16,\n        \"height\": 16\n    }\n}\n```\n\nLoading the resource pack with Fabulous graphics reports that `minecraft:post_effect/transparency.json` failed to parse, and the post-effect shader is not loaded. The log contains:\n\n```text\nFailed to parse post chain at minecraft:post_effect/transparency.json\ncom.google.gson.JsonSyntaxException: Both alternatives read successfully, can not pick the correct one; ...\nmissed input: {\"potato\":{\"width\":16,\"height\":16}}\n```\n\nA target mapped to an empty object, such as `\"final\": {}`, is accepted. The failure occurs specifically when the target definition includes the `width` and `height` fields, even when the target is otherwise unused.",
+  "Expected Behavior": "When the post-effect shader defines a target with explicit width and height, the resource pack should load successfully with Fabulous graphics enabled. The targets object should accept the specified dimensions for the unused \u201cpotato\u201d target without producing a post-chain parsing error or preventing the transparency shader from loading, while the existing \u201cfinal\u201d target continues to work normally.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Resource Packs/MC-275445",
+  "improvement_metadata": {
+    "original_key": "MC-275445"
+  }
+}
