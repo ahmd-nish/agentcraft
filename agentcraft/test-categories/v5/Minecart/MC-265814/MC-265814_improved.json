@@ -1,0 +1,37 @@
+{
+  "key": "MC-265814",
+  "created_date": "2023-10-13T15:52:37.549-0700",
+  "updated_date": "2026-08-20T04:32:24.579-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.2",
+    "23w40a"
+  ],
+  "fix_versions": [
+    "23w41a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-10-15T04:28:13.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Minecart with TNT explodes or just dies depending on the type of explosion that hits it",
+  "environment_raw": "",
+  "description": "When an explosion hits a minecart with TNT, there are three possible situations :\n\n - The explosion is a creeper explosion, a TNT explosion ignited by redstone, a TNT explosion ignited with flint and steel by a player in survival mode or an end crystal explosion triggered by a player in survival mode. In these cases, the minecart is ignited by the explosion and explodes too (everthing is fine here I guess).\n\n - The explosion is a TNT explosion ignited with flint and steel by a player in creative mode or an end crystal explosion triggered by a player in creative mode. In these cases, the minecart just dies, apparently like a normal entity. It isn't ignited, doesn't explode and drops nothing.\n\n - An explosion happens and triggers a chain of multiple explosions. The final explosion of the chain hits a minecart. The minecart dies or explodes depending on the nature of the first explosion of the chain. If the first explosion is a TNT explosion ignited with flint and steel by a player in creative mode, so the minecart dies. In all other cases, it explodes. The minecart explodes even if the first explosion of the chain is an end crystal explosion triggered by a player in creative mode (and all the following explosions are TNT explosions) which seems surprising and in contradiction with the case 2, but I can confirm I verified this several times.\n\nRemark : In the cases listed above, the player's gamemode to take in account is the gamemode at the moment of the explosion which hits the minecart, not the one at the moment you ignite the TNT block, creeper, or etc. If you ignite a TNT block with flint and steel in survival mode and immediately change your gamemode to creative, so the minecart will die and not explode.\n\nYou can see the screenshots I took. Here is the initial situation : player in creative mode, TNT and minecart with TNT separated by four blocks. The obsidian is here to remember the places of the objects after the explosion.\n\nFirst scenario : the TNT is ignited by placing a redstone torch next to it.\n\nYou can see two distinct explosion holes around each obsidian block.\n\nSame initial situation as the first picture, but second scenario : the TNT is ignited with flint and steel.\n\nYou can see only one hole around the TNT location and none around the minecart location. The minecart just died dropping nothing.\n\nI did a video showing the bug. Available at https://www.dropbox.com/scl/fo/mucpeu2wchlqblrdnr6lh/h?rlkey=m473odb5qgt6z09zbsu1fm3ts&dl=0\n\nObviously, I have reproduced all the situations I mentionned previously (with creeper, end crystal,... etc) but didn't take screenshots as they would be very similar to these ones.",
+  "Steps to Reproduce": "1. Create a Creative world.\n2. Place a TNT block and a minecart with TNT four blocks apart, and place obsidian at their locations as markers.\n3. Place a redstone torch next to the TNT block.\n4. Wait for the TNT to explode.\n5. Observe that the TNT minecart is ignited and explodes, leaving distinct explosion holes around both obsidian markers.\n6. Recreate the initial arrangement with the TNT block and TNT minecart four blocks apart.\n7. Ignite the TNT block with flint and steel while remaining in Creative mode.\n8. Wait for the TNT to explode.\n9. Observe that the TNT minecart disappears without igniting or exploding, drops nothing, and leaves no explosion hole around its obsidian marker.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.2, 23w40a (includes snapshots)",
+  "Observed Behavior": "When an explosion directly hits a minecart with TNT, the result depends on the explosion source and the player's game mode at the moment the explosion reaches the minecart. Creeper explosions, TNT explosions initiated by redstone, TNT explosions ignited with flint and steel while the player is in Survival mode, and end crystal explosions triggered while the player is in Survival mode ignite the minecart with TNT, causing it to explode. In contrast, a TNT explosion caused by flint and steel while the player is in Creative mode, or an end crystal explosion triggered while the player is in Creative mode, destroys the minecart without igniting it, causing no secondary explosion and dropping no item. The game mode used for this behavior is the player's mode when the explosion hits the minecart, so igniting TNT in Survival mode and switching to Creative before the explosion reaches the minecart causes the minecart to be destroyed without exploding. In an explosion chain, the result for a minecart hit by a later explosion is determined by the first explosion in the chain. If the chain begins with a TNT explosion ignited with flint and steel by a player in Creative mode, the minecart is destroyed without exploding. If the chain begins with any of the other tested explosion types, including an end crystal explosion triggered by a player in Creative mode followed by TNT explosions, the minecart explodes when reached by the later explosion. In the reproduction setup, a TNT block and a minecart with TNT were separated by four blocks, with obsidian marking their original positions. Activating the TNT with a redstone torch produced two explosion craters, while igniting it with flint and steel as a Creative-mode player produced only a crater at the TNT's original position because the minecart disappeared without dropping anything. The behavior was also reproduced with creepers, end crystals, and chained explosions, and is demonstrated in the linked video at https://www.dropbox.com/scl/fo/mucpeu2wchlqblrdnr6lh/h?rlkey=m473odb5qgt6z09zbsu1fm3ts&dl=0.",
+  "Expected Behavior": "A TNT minecart hit by an explosion should be ignited and explode consistently, regardless of whether the explosion comes from redstone- or flint-and-steel-ignited TNT, a creeper, an end crystal, or a chain reaction, and regardless of the player's gamemode when the impact occurs. It should not simply disappear as a normal entity or leave no drops when affected by a creative-mode explosion.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Minecart/MC-265814",
+  "improvement_metadata": {
+    "original_key": "MC-265814"
+  }
+}

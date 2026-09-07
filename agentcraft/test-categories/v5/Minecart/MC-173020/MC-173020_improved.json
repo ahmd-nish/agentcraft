@@ -1,0 +1,51 @@
+{
+  "key": "MC-173020",
+  "created_date": "2020-02-23T14:25:24.573-0800",
+  "updated_date": "2025-04-26T09:25:14.761-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15.2",
+    "20w08a",
+    "1.16 Release Candidate 1",
+    "1.16",
+    "1.16.1",
+    "1.16.4",
+    "20w45a",
+    "20w49a",
+    "1.16.5",
+    "21w05a",
+    "21w15a",
+    "21w16a",
+    "1.17 Pre-release 1",
+    "1.17.1",
+    "21w37a",
+    "22w13a"
+  ],
+  "fix_versions": [
+    "22w16a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-18T09:40:04.665-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Minecarts can't pickup entities at some heights",
+  "environment_raw": "",
+  "description": "While testing on how to pickup ghasts with minecarts, I found that some heights are \"cursed\" as a minecart cannot pickup a ghast where it will at others heights. That happen on versions 1.12.2, 1.15.2 and 1.16.1.\n\n## The bug\n\nIf a minecart is more than 2 blocks up from a vertical sub-chunk border, it will never pick entities located in the vertical sub-chunk below the border.\n\n## How to reproduce\n\n - Place a soul sand block at Y=15\n\n - At Y=18, make a 3 by 3 blocks square rail line floating around the soul sand\n\n - Spawn a wither-skeleton on the soul sand\n\n - Launch a empty minecart on the rail circle\n\n\u2192 The minecart will not pickup the wither-skeleton, but it will if the setup is make one block offset vertically\n\n## Code analysis\n\nFrom analysis on Minecraft java 1.15.1:\n\nThe bug comes from the getEntities functions in net.minecraft.world.level.chunk.LevelChunk. These functions will look at sub-chunks only 2 blocks down and up from a given collision box; so it can miss entities taller than 2 blocks.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.15.2.\n2. Create a world.\n3. Place a soul sand block at Y=15.\n4. At Y=18, build a 3 by 3 square rail line floating around the soul sand.\n5. Spawn a wither skeleton on the soul sand.\n6. Place an empty minecart on the rail line.\n7. Launch the minecart around the rail line.\n8. Observe that the minecart does not pick up the wither skeleton.",
+  "Environment": "Minecraft Java Edition Versions: 1.15.2, 20w08a, 1.16 Release Candidate 1, 1.16, 1.16.1, 1.16.4, 20w45a, 20w49a, 1.16.5, 21w05a, 21w15a, 21w16a, 1.17 Pre-release 1, 1.17.1, 21w37a, 22w13a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nThe minecart fails to detect and pick up entities whose collision boxes are in the vertical chunk section immediately below the minecart when the minecart is more than two blocks above the section boundary. The failure depends on the entities\u2019 and minecart\u2019s Y-coordinates rather than their horizontal distance.\n\nIn the reproduction above, the rail is at Y=18 and the wither skeleton is standing on the block at Y=15, across the vertical chunk-section boundary at Y=16. Although the minecart passes directly beside the skeleton and their collision boxes would otherwise overlap, the skeleton is not picked up. Moving the entire setup one block vertically changes the result, and the minecart successfully picks up the skeleton.\n\nThis behavior was observed in Java Edition 1.12.2, 1.15.2, and 1.16.1.",
+  "Expected Behavior": "An empty minecart should pick up an eligible entity when it passes within the appropriate distance, regardless of the minecart\u2019s height relative to a vertical sub-chunk border. In the described setup, the minecart should consistently collect the wither skeleton, and shifting the rail line vertically by one block should not change this behavior. This should work consistently across the affected heights and versions.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Minecart/MC-173020",
+  "improvement_metadata": {
+    "original_key": "MC-173020"
+  }
+}

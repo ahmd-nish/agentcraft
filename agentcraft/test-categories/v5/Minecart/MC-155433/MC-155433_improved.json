@@ -1,0 +1,40 @@
+{
+  "key": "MC-155433",
+  "created_date": "2019-06-27T03:59:23.377-0700",
+  "updated_date": "2026-08-20T03:37:56.433-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14.3",
+    "1.17.1 Release Candidate 1",
+    "1.17.1",
+    "1.19.3 Pre-release 2",
+    "1.19.3 Pre-release 3"
+  ],
+  "fix_versions": [
+    "23w03a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-12-08T03:17:11.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Minecart with hopper not picking matching items from a mixed pile",
+  "environment_raw": "",
+  "description": "Minecarts with hopper with items in all slots but enough room to stack more of that kind of item, eventually fail to pick up matching items from the ground when other (not matching) items are present together with the matching ones.\n\n\u00a0\n\nReproducing:\n\n - Create a powered rail track. Create a pile of items: about 20 stacks of stone and about 8 other \"junk\" items (in screenshot: cauldron, water bucket, comparator, repeater, redstone dust, observer, red terracotta) within a single block on the rail track - attached screenshot 2019-06-27_12.36.26\n\n - Summon a minecart containing 5 blocks of stone in its 5 slots onto the track ( /summon hopper_minecart 61 57 95 {Items:[ \n{Slot:0,id:\"minecraft:stone\",Count:1b}\n\n,{Slot:1,id:\"minecraft:stone\",Count:1b},{Slot:2,id:\"minecraft:stone\",Count:1b},{Slot:3,id:\"minecraft:stone\",Count:1b},{Slot:4,id:\"minecraft:stone\",Count:1b}]} ) , screenshot\u00a02019-06-27_12.34.59 and let it drive through the pile\n\n - Repeat step 2. about 5 times.\n\nSince the minecarts have room for 5*63 items, all the stone should be sucked up. Instead, first 2-4 minecarts behave as expected (filling up with stone) but after that and with all consecutive minecarts we have the situation from screenshot 2019-06-27_12.37.42 - the minecart drove through the pile without changing contents, the stone is still present on the rail.\u00a0 You can even stop a minecart right on top of the pile of items and it will still fail to suck anything in.\n\nThis is not 100% repeatable - may be a matter of performance. The more of the 'base item' is there the more likely it happens; with 12 stacks happened never, but with 40 always; 20 stacks is about 80% cases.",
+  "Steps to Reproduce": "1. Create a powered-rail track.\n2. Place a pile within a single block on the track containing about 20 stacks of stone and about 8 other item types, such as a cauldron, water bucket, comparator, repeater, redstone dust, observer, and red terracotta.\n3. Summon a hopper minecart containing one stone block in each of its five slots onto the track using `/summon hopper_minecart 61 57 95 {Items:[{Slot:0,id:\"minecraft:stone\",Count:1b},{Slot:1,id:\"minecraft:stone\",Count:1b},{Slot:2,id:\"minecraft:stone\",Count:1b},{Slot:3,id:\"minecraft:stone\",Count:1b},{Slot:4,id:\"minecraft:stone\",Count:1b}]}`\n4. Let the hopper minecart drive through the mixed item pile.\n5. Repeat the summon-and-drive process about 5 times.\n6. Observe that after the first 2\u20134 minecarts, one or more subsequent hopper minecarts can drive through the pile without changing their contents, while the stone remains on the track despite the minecarts having room for more stone.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.3, 1.17.1 Release Candidate 1, 1.17.1, 1.19.3 Pre-release 2, 1.19.3 Pre-release 3",
+  "Observed Behavior": "### Actual behavior\n\nAfter several hopper minecarts successfully collect stone, subsequent hopper minecarts may pass through the mixed item pile without collecting any stone. This occurs even though:\n\n- All five hopper-minecart slots already contain stone, but each stack has substantial remaining capacity.\n- The pile still contains stone item entities that match the contents of the minecart.\n- The pile also contains other item types, such as cauldrons, water buckets, comparators, repeaters, redstone dust, observers, and red terracotta.\n- The minecart is moving over the pile, or is stopped directly above it.\n\nThe affected minecart remains unchanged, and the matching stone items remain on the rail instead of being transferred into the available space in its existing stone stacks. The first two to four minecarts generally collect stone normally, after which consecutive minecarts may fail to collect any matching items.\n\nThe failure is intermittent and appears more likely when the pile contains more stone items: it was not observed with approximately 12 stacks, occurred in roughly 80% of tests with approximately 20 stacks, and occurred consistently with approximately 40 stacks.",
+  "Expected Behavior": "A hopper minecart with available space for more stone should consistently pick up the nearby stone items as it passes over or stops on the mixed pile, adding them to existing stone stacks in its inventory. The presence of other, nonmatching items should not prevent collection of the matching stone, and successive minecarts should continue collecting it until their available capacity is filled.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Minecart/MC-155433",
+  "improvement_metadata": {
+    "original_key": "MC-155433"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-275276",
+  "created_date": "2024-08-15T11:16:26.207-0700",
+  "updated_date": "2025-04-26T16:08:58.838-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.1",
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-21T13:01:02.918-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Minecarts can phase through blocks at the bottom of a slant",
+  "environment_raw": "",
+  "description": "Steps to reproduce:\n\n - Build the following setup:\n\n - Push the minecart down the slope\n\nObserved result:\n\nExpected result:\n\nThe minecart would not phase through the block at the bottom of the slope.\n\nIt occurs with all types of rails, and the faster it goes, the more likely it is to go onto the rails to the left.",
+  "Steps to Reproduce": "1. Create or load a Minecraft world.\n2. Build the reported setup with a sloped rail section, a block at the bottom of the slope, and rails to the left of the bottom section.\n3. Place a minecart at the top of the slope.\n4. Push the minecart down the slope.\n5. Observe that the minecart can phase through the block at the bottom of the slope and may move onto the rails to the left; repeat with the other rail types to reproduce the issue with each type.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.1, 24w33a (includes snapshots)",
+  "Observed Behavior": "The minecart can pass through the solid block at the bottom of the sloped rail section instead of being stopped or remaining on the intended track. At higher speeds, it is more likely to emerge onto the rails on the left side of the setup. This behavior occurs regardless of the rail type used.",
+  "Expected Behavior": "The minecart should travel down the sloped rails and remain properly aligned with the track as it reaches the bottom. It should collide with and stop at the block rather than phasing through it, regardless of the rail type or its speed. Increasing the minecart\u2019s velocity should not make it more likely to leave the intended track or move onto the rails to the left.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Minecart/MC-275276",
+  "improvement_metadata": {
+    "original_key": "MC-275276"
+  }
+}
