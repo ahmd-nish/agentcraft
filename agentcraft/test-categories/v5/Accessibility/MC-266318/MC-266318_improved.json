@@ -1,0 +1,48 @@
+{
+  "key": "MC-266318",
+  "created_date": "2023-11-02T09:43:05.043-0700",
+  "updated_date": "2025-05-29T09:08:44.348-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w44a",
+    "1.20.3 Pre-Release 1",
+    "24w03b",
+    "24w10a",
+    "24w19b",
+    "1.21",
+    "1.21.1",
+    "24w35a",
+    "1.21.3",
+    "1.21.4"
+  ],
+  "fix_versions": [
+    "25w15a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "door",
+    "trapdoor"
+  ],
+  "resolution_date": "2025-03-25T09:51:07.285-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Trapdoors and doors have inconsistent subtitles for being opened and closed",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nTrapdoors and doors have inconsistent subtitles for being opened and closed.\n\n## Affected Subtitles:\n\nBefore reading the tables, please note the following:\n\n - Characters colored in GREEN are correct and show consistent behavior.\n\n - Characters colored in RED are incorrect and show inconsistent behavior.\n\n\u00a0\n\nTrapdoor Type\n\nOpen Sound\n\nOpen Subtitle\n\nClose Sound\n\nClose Subtitle\n\nOak\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nSpruce\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nBirch\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nJungle\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nAcacia\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nDark Oak\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nMangrove\n\nminecraft:block.wooden_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.wooden_trapdoor.close\n\nTrapdoor creaks\n\nCherry\n\nminecraft:block.cherry_wood_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.cherry_wood_trapdoor.close\n\nTrapdoor creaks\n\nBamboo\n\nminecraft:block.bamboo_wood_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.bamboo_wood_trapdoor.close\n\nTrapdoor creaks\n\nCrimson\n\nminecraft:block.nether_wood_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.nether_wood_trapdoor.close\n\nTrapdoor creaks\n\nWarped\n\nminecraft:block.nether_wood_trapdoor.open\n\nTrapdoor creaks\n\nminecraft:block.nether_wood_trapdoor.close\n\nTrapdoor creaks\n\nIron\n\nminecraft:block.iron_trapdoor.open\n\nTrapdoor opens\n\nminecraft:block.iron_trapdoor.close\n\nTrapdoor closes\n\nCopper\n\nminecraft:block.copper_trapdoor.open\n\nTrapdoor opens\n\nminecraft:block.copper_trapdoor.close\n\nTrapdoor closes\n\n\u00a0\n\nDoor Type\n\nOpen Sound\n\nOpen Subtitle\n\nClose Sound\n\nClose Subtitle\n\nOak\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nSpruce\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nBirch\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nJungle\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nAcacia\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nDark Oak\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nMangrove\n\nminecraft:block.wooden_door.open\n\nDoor creaks\n\nminecraft:block.wooden_door.close\n\nDoor creaks\n\nCherry\n\nminecraft:block.cherry_wood_door.open\n\nDoor creaks\n\nminecraft:block.cherry_wood_door.close\n\nDoor creaks\n\nBamboo\n\nminecraft:block.bamboo_wood_door.open\n\nDoor creaks\n\nminecraft:block.bamboo_wood_door.close\n\nDoor creaks\n\nCrimson\n\nminecraft:block.nether_wood_door.open\n\nDoor creaks\n\nminecraft:block.nether_wood_door.close\n\nDoor creaks\n\nWarped\n\nminecraft:block.nether_wood_door.open\n\nDoor creaks\n\nminecraft:block.nether_wood_door.close\n\nDoor creaks\n\nIron\n\nminecraft:block.iron_door.open\n\nDoor creaks\n\nminecraft:block.iron_door.close\n\nDoor creaks\n\nCopper\n\nminecraft:block.copper_door.open\n\nDoor creaks\n\nminecraft:block.copper_door.close\n\nDoor creaks\n\n## Steps to Reproduce:\n\n - Ensure that you have subtitles enabled.\n\n - Place down a copper door and a copper trapdoor.\n\n - Open and close them both and pay attention to the subtitles that are displayed.\n\n## Observed Behavior:\n\nIron and copper trapdoors have unique subtitles for being opened and closed, which is inconsistent.\n\n## Expected Behavior:\n\nIron and copper trapdoors would display the \"Trapdoor creaks\" subtitle upon being opened and closed, therefore maintaining consistency.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open Options -> Music & Sounds and enable subtitles.\n4. Return to the world and place a copper door and a copper trapdoor.\n5. Open and close the copper door.\n6. Open and close the copper trapdoor.\n7. Observe that the copper door displays \u201cDoor creaks,\u201d while the copper trapdoor displays \u201cTrapdoor opens\u201d when opened and \u201cTrapdoor closes\u201d when closed instead of \u201cTrapdoor creaks.\u201d",
+  "Environment": "Minecraft Java Edition Versions: 23w44a, 1.20.3 Pre-Release 1, 24w03b, 24w10a, 24w19b, 1.21, 1.21.1, 24w35a, 1.21.3, 1.21.4 (includes snapshots)",
+  "Observed Behavior": "When subtitles are enabled, iron and copper trapdoors use action-specific subtitles instead of the consistent **\u201cTrapdoor creaks\u201d** subtitle used by the other trapdoor types:\n\n- Opening an iron or copper trapdoor plays the corresponding open sound and displays **\u201cTrapdoor opens\u201d**.\n- Closing an iron or copper trapdoor plays the corresponding close sound and displays **\u201cTrapdoor closes\u201d**.\n\nBy comparison, wooden, bamboo, and Nether wood trapdoors display **\u201cTrapdoor creaks\u201d** for both opening and closing. Doors also use a consistent **\u201cDoor creaks\u201d** subtitle for both actions.",
+  "Expected Behavior": "When subtitles are enabled, opening or closing iron and copper trapdoors should display the \u201cTrapdoor creaks\u201d subtitle, matching the behavior of all other trapdoors. Their subtitles should not change to \u201cTrapdoor opens\u201d or \u201cTrapdoor closes.\u201d Doors should continue displaying \u201cDoor creaks\u201d for both actions, ensuring consistent subtitles across corresponding block types.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Accessibility/MC-266318",
+  "improvement_metadata": {
+    "original_key": "MC-266318"
+  }
+}

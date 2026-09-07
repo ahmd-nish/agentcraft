@@ -1,0 +1,60 @@
+{
+  "key": "MC-203401",
+  "created_date": "2020-11-02T16:51:55.502-0800",
+  "updated_date": "2026-08-27T02:24:42.513-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15.2",
+    "1.16.2",
+    "1.16.4",
+    "20w46a",
+    "20w49a",
+    "20w51a",
+    "21w03a",
+    "1.16.5",
+    "21w05b",
+    "21w06a",
+    "21w18a",
+    "21w20a",
+    "1.17 Pre-release 1",
+    "1.19",
+    "22w42a",
+    "22w43a",
+    "23w05a",
+    "1.19.4 Pre-release 2",
+    "1.19.4",
+    "23w14a",
+    "1.20.1",
+    "1.20.4",
+    "1.21.7"
+  ],
+  "fix_versions": [
+    "25w31a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [
+    "controls-not-configurable"
+  ],
+  "resolution_date": "2025-07-25T06:18:09.214-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Double-tapping forward button to sprint cannot be disabled/reconfigured",
+  "environment_raw": "",
+  "description": "## The bug\n\nSprinting via double-tapping the \"forward\" button cannot be bound separately from the \"forward\" button itself. This means there is no way (outside of hunger) to not sprint when tapping the \"forward\" button in quick succession, which may be required for precise positioning.\n\nThis may be considered a feature request but for a control to be absent from configuration does not seem right.\n\n## How to reproduce\n\n - Double-tap your usual forward button while grounded and the hunger bar is full if applicable\n\n - Note that this causes sprinting\n\n - Change the forward keybind to an unused key such as G\n\n - Double-tap this new key and note that you still start sprinting, demonstrating that it follows the \"forward\" key\n\n## Expected behaviour\n\nThe double-tap-to-sprint behaviour would not follow the forward movement button.\n\n## Actual behaviour\n\nThis functionality is hardcoded to always be stuck with the move forward button. There exists no option to disable it, nor is it a different rebindable control that happens to share the move forward key's place by default.\n\n## How to fix\n\nThere are several ways in which this issue could be fixed:\n\n - Preferable solution: There would be two different keybinds for sprint: one which defaults to LCONTROL, and a second that defaults to W. W is also the default forward key, so pressing W once would trigger normal walking whereas pressing it twice would activate sprinting and cause the player to move forward. If the sprint key and forward key do not share a keybind, the \"new\" sprint keybind would work identically to the normal sprint keybind. The \"Random Patches\" mod for 1.16.5 uses this behaviour.\n\n - The \"Controls\" menu could contain a toggle which would determine whether pressing the forward key twice should activate sprinting, or not.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Survival world with default settings.\n3. While grounded and with a full hunger bar, double-tap the default forward button.\n4. Observe that the player starts sprinting.\n5. Open Options -> Controls -> Key Binds.\n6. Change the forward movement binding to an unused key such as G.\n7. Return to the world and, while grounded, double-tap G.\n8. Observe that the player still starts sprinting, with no separate control available to disable or reconfigure the double-tap sprint behavior.",
+  "Environment": "Minecraft Java Edition Versions: 1.15.2, 1.16.2, 1.16.4, 20w46a, 20w49a, 20w51a, 21w03a, 1.16.5, 21w05b, 21w06a, 21w18a, 21w20a, 1.17 Pre-release 1, 1.19, 22w42a, 22w43a, 23w05a, 1.19.4 Pre-release 2, 1.19.4, 23w14a, 1.20.1, 1.20.4, 1.21.7 (includes snapshots)",
+  "Observed Behavior": "## Actual behaviour\n\nThe game treats a rapid second press of the configured **Forward** movement key as a request to sprint. This double-tap action is coupled directly to the Forward keybind rather than being represented by a separate keybind or option.\n\nConsequently:\n\n- Rebinding **Forward** also changes the key used to activate double-tap sprinting.\n- The double-tap sprint action cannot be disabled independently of movement controls.\n- There is no separate keybind in the **Controls** menu for the double-tap sprint action.\n- Players cannot prevent accidental sprinting caused by quickly pressing their movement key, except by making sprinting unavailable through gameplay conditions such as insufficient hunger.",
+  "Expected Behavior": "The double-tap-to-sprint action should be independently configurable in the Controls menu, either through its own rebindable key or a setting that enables or disables activation by double-tapping forward. Changing the forward movement key should not force the sprint behavior to follow it, allowing players to walk forward normally and maintain precise movement when desired.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Accessibility/MC-203401",
+  "improvement_metadata": {
+    "original_key": "MC-203401"
+  }
+}
