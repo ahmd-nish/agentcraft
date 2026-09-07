@@ -1,0 +1,39 @@
+{
+  "key": "MC-269996",
+  "created_date": "2024-03-27T15:28:33.169-0700",
+  "updated_date": "2026-08-20T04:34:27.270-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.4",
+    "24w13a",
+    "1.20.6",
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-07-24T02:49:16.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Custom names of Interaction entities render at wrong location",
+  "environment_raw": "",
+  "description": "Since 1.20.3, Interaction entities have been able to display custom names given the resolution of \n \n \n \n MC-236501\n \n Resolved\n \n This is a great convenience when it comes to custom content creation for artificial mobs. It can allow with one entity, a hitbox and a naturally positioned and functional nametag (i.e. visible when looked-at or always respecting \"CustomNameVisible\"). However, currently to take full advantage of this functionality a modified server is required to force the game client understand the height (and width) of the desired Interaction entity dimensions.\n\nAs is, summoning an Interaction entity with a custom name shows the nameplate rendered as if the height of the entity was zero, instead of above what should be the real height of the entity. This is because the internally the cached Entity#dimensions field of the entity is not recomputed (as would by Entity#refreshDimensions()) when the width or height of Interaction entity changes, leading to Entity#getBbHeight() and Entity#getBbWidth() always being zero. This inconsistency also impacts the server, however those effects are less observable.\n\nA modified server can workaround this oversight by forcing a dimension refresh by syncing an arbitrary Entity#DATA_POSE change when updating width and height, though being mindful to order the Pose last in the synched entries.\n\nFor data pack makers however, nothing can be done to fix the erroneous nameplate rendering, limiting the possibilities of the custom named Interaction entity usage.\n\nSteps to reproduce:\n\n - In Minecraft 1.20.3 or later, summon an Interaction entity with a custom name and width/height matching an Armor Stand using the command:\n\n/summon interaction ~ ~ ~ {CustomName:'\"Test\"',CustomNameVisible:1,width:0.5,height:1.975}\n\n - Summon a regular Armor Stand with custom name using the command:\n\n/summon armor_stand ~ ~ ~ {CustomName:'\"Test\"',CustomNameVisible:1}\n\n - Summon a marker Armor Stand with custom name using the command:\n\n/summon armor_stand ~ ~ ~ {CustomName:'\"Test\"',CustomNameVisible:1,Marker:1}\n\nExpected results:\n\n - The Interaction entity's nameplate should render above the entity at a height corresponding to the specified height value (1.975 in this case, same as the summoned regular Armor Stand).\n\nObserved results:\n\n - The Interaction entity's nameplate renders as if the entity had zero height, similar to the summoned marker Armor Stand. I have attached three screenshots demonstrating each summoned entity for reference.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.20.3 or later.\n2. Create a new Creative world with default settings.\n3. Open the chat and execute `/summon interaction ~ ~ ~ {CustomName:'\"Test\"',CustomNameVisible:1,width:0.5,height:1.975}`.\n4. Execute `/summon armor_stand ~ ~ ~ {CustomName:'\"Test\"',CustomNameVisible:1}`.\n5. Execute `/summon armor_stand ~ ~ ~ {CustomName:'\"Test\"',CustomNameVisible:1,Marker:1}`.\n6. Look at the summoned entities so their custom nameplates are visible.\n7. Observe that the Interaction entity's nameplate renders as if the entity has zero height, similarly to the marker Armor Stand, instead of rendering above it at the specified height of 1.975 like the regular Armor Stand.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.4, 24w13a, 1.20.6, 1.21 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe Interaction entity\u2019s custom nameplate is rendered at the entity\u2019s base, as though the entity\u2019s height were `0`, regardless of the `height` value specified in its NBT data. For example, an Interaction entity summoned with `height:1.975` displays its name at the same vertical position as a marker Armor Stand rather than above the top of its configured dimensions.\n\nThe Interaction entity\u2019s configured width and height are therefore not reflected in the dimensions used to calculate the custom nameplate\u2019s position. Its hitbox may have the specified dimensions, but the client continues to use zero for the entity\u2019s cached height when rendering the nameplate.",
+  "Expected Behavior": "The Interaction entity\u2019s custom name should render above the entity at a vertical position determined by its specified height. With a height of 1.975, the nameplate should appear at approximately the same height as the nameplate of a regular Armor Stand, rather than at the entity\u2019s base as though it had zero height. Its custom-name visibility behavior should otherwise remain unchanged.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Data Packs/MC-269996",
+  "improvement_metadata": {
+    "original_key": "MC-269996"
+  }
+}

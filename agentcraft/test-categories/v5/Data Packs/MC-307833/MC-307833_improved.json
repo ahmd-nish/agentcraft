@@ -1,0 +1,36 @@
+{
+  "key": "MC-307833",
+  "created_date": "2026-04-29T16:52:16.393-0700",
+  "updated_date": "2026-05-18T07:13:37.644-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.1.2"
+  ],
+  "fix_versions": [
+    "26.2 Snapshot 8"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2026-05-18T07:13:37.592-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The world freezes when villagers with specific trade sets level up",
+  "environment_raw": "",
+  "description": "When a villager levels up, this may causes the server side of the game to freeze indefinitely. This happens only if the villager has a trade set which:\n\n - Allows duplicate trades\n\n - Contains only trades that will fail to generate offers (e.g: map trades in worlds with no structures)\n\nAFAIK those conditions do not exist with the vanilla trades, but can be created with a simple datapack, containing this single file: (See attachments for the zipped pack.)\n\ndata/minecraft/trade_set/cartographer/level_2.json\n\n{\n \"amount\": 2.0,\n \"random_sequence\": \"minecraft:trade_set/cartographer/level_2\",\n \"//\": \"Same as vanilla, but with duplicates enabled, and keeping only the map trades.\",\n \"allow_duplicates\": true,\n \"trades\": [\n \"minecraft:cartographer/2/emerald_and_compass_village_taiga_map\",\n \"minecraft:cartographer/2/emerald_and_compass_explorer_swamp_map\",\n \"minecraft:cartographer/2/emerald_and_compass_village_snowy_map\",\n \"minecraft:cartographer/2/emerald_and_compass_village_savanna_map\",\n \"minecraft:cartographer/2/emerald_and_compass_village_plains_map\",\n \"minecraft:cartographer/2/emerald_and_compass_explorer_jungle_map\",\n \"minecraft:cartographer/2/emerald_and_compass_village_desert_map\"\n ]\n}\n\n## Reproduction steps:\n\n - Make a new creative world using the attached datapack. Make sure to set \u201cGenerate Structures\u201d to OFF.\n\n - Spawn a villager, and make it a cartographer.\n\n - Trade with the cartographer until it reaches the next level. Close the trade interface and wait for the level up to occur.\n\nExpected result: Anything, so long as the game keeps playing.\n\nActual result: The world freezes. The freeze is only server-side, as it\u2019s still possible to move around, but you can\u2019t interact with anything anymore.\n\n## Code review:\n\nThis is caused by an endless while loop in AbstractVillager::addOffersFromItemListings. The game tries to roll new trades until either it has created sufficiently many offers, or until the pool of potential trades is empty. However the given set will never generate any offer at all, and potential trades are never removed from the pool. Thus the game will endlessly attempt to recreate the same trades over and over.\n\nThis could be fixed by making the function closer to its WithoutDuplicates counterpart, but whith trades being removed from the pool only if they fail to generate an offer:\n\nprivate static void addOffersFromItemListings(LootContext lootContext, MerchantOffers merchantOffers, HolderSet<VillagerTrade> potentialOffers, int numberOfOffers) {\n ArrayList<Holder<VillagerTrade>> leftoverOffers = Lists.newArrayList(potentialOffers);\n int offersFound = 0;\n while (offersFound < numberOfOffers && !leftoverOffers.isEmpty()) {\n int roll = lootContext.getRandom().nextInt(leftoverOffers.size());\n Holder<VillagerTrade> villagerTrade = leftoverOffers.get(roll);\n MerchantOffer offer = villagerTrade.value().getOffer(lootContext);\n\n if (offer == null){\n // This is the important bit !!\n leftoverOffers.remove(roll);\n continue;\n }\n\n merchantOffers.add(offer);\n ++offersFound;\n }\n}\n\n(Based on CFR-decompiled code. Take this snippet with a grain of salt.)",
+  "Steps to Reproduce": "1. Create a new Creative world with the attached datapack enabled.\n2. Set \u201cGenerate Structures\u201d to OFF before creating the world.\n3. Spawn a villager in the world.\n4. Make the villager a cartographer.\n5. Trade with the cartographer until it reaches the next level.\n6. Close the trade interface.\n7. Wait until the villager levels up.\n8. Observe that the world\u2019s server-side processing freezes indefinitely: movement remains possible, but interactions no longer work.",
+  "Environment": "Minecraft Java Edition Version 26.1.2",
+  "Observed Behavior": "## Actual behavior\n\nWhen the cartographer reaches the next level, the server attempts to generate the offers for the new trade set. Because every trade in the set fails to produce an offer and duplicate trades are allowed, the offer-generation loop repeatedly selects the same trade entries without exhausting the pool of potential trades.\n\nThis results in an infinite loop in `AbstractVillager.addOffersFromItemListings`, causing the server thread to stop processing normally. The client remains connected and can still render the world and accept movement input, but server-side interactions no longer work, including trading and interacting with blocks or entities. The world remains in this state indefinitely until the server is stopped.",
+  "Expected Behavior": "When the villager levels up, the game should complete the level-up process without freezing, even when its trade set allows duplicate trades and none of the possible trades can generate offers. The world should continue running normally, with the server remaining responsive so players can interact with the villager and other entities.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Data Packs/MC-307833",
+  "improvement_metadata": {
+    "original_key": "MC-307833"
+  }
+}
