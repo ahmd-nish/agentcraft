@@ -1,0 +1,52 @@
+{
+  "key": "MC-212420",
+  "created_date": "2021-01-22T03:14:09.272-0800",
+  "updated_date": "2026-08-27T01:52:55.091-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w03a",
+    "21w07a",
+    "21w14a",
+    "21w15a",
+    "21w16a",
+    "1.17",
+    "1.17.1",
+    "21w42a",
+    "1.18.1",
+    "1.18.2",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "23w04a"
+  ],
+  "fix_versions": [
+    "23w12a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "hand-animation"
+  ],
+  "resolution_date": "2024-06-10T15:08:34.920-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Sign dyeing sound and hand animation plays even when not consuming a dye",
+  "environment_raw": "",
+  "description": "## The Bug\n\nWhen you try to dye a sign that is already painted with that color, the dye in your hand does not consume, but the \"Dye stains\" sound still plays and the hand animation still occurs. Eg. in the attached picture, I click on a white text sign with a white dye and no item is consumed. Howewer, it can be seen from the subtitles that a sound plays.\n\n## Steps to Reproduce\n\n - Summon a sign that has some text and a magenta dye already applied to it.\n\n/setblock ~ ~ ~ minecraft:dark_oak_sign{Color:\"magenta\",Text1:'{\"text\":\"MC-212420\"}'}\n\n - Obtain a magenta dye, switch into survival mode, and attempt to apply it to the sign you just summoned.\n\n - Take note as to whether or not the hand animation and sign dying sounds play even when not consuming dyes.\n\n## Observed Behavior\n\nThe hand animation and sign dying sounds play even when not consuming dyes.\n\n## Expected Behavior\n\nThe hand animation and sign dying sounds would not play when not consuming dyes.",
+  "Steps to Reproduce": "1. Enter a Minecraft world.\n2. Execute `/setblock ~ ~ ~ minecraft:dark_oak_sign{Color:\"magenta\",Text1:'{\"text\":\"MC-212420\"}'}` to place a sign with magenta text.\n3. Obtain a magenta dye.\n4. Switch to Survival mode with `/gamemode survival`.\n5. Attempt to apply the magenta dye to the sign.\n6. Observe that the magenta dye is not consumed, while the hand animation occurs and the \u201cDye stains\u201d sound plays.",
+  "Environment": "Minecraft Java Edition Versions: 21w03a, 21w07a, 21w14a, 21w15a, 21w16a, 1.17, 1.17.1, 21w42a, 1.18.1, 1.18.2, 1.19, 1.19.1, 1.19.2, 1.19.3, 23w04a (includes snapshots)",
+  "Observed Behavior": "When a player uses a dye on a sign that is already dyed the same color:\n\n- The dye item is not consumed, and the sign\u2019s appearance remains unchanged.\n- The player\u2019s hand-use animation still plays.\n- The sign-dyeing sound (`Dye stains`, shown in subtitles) still plays.\n\nThe interaction therefore produces the audiovisual effects of dyeing even though no change is made to the sign and no item is used.",
+  "Expected Behavior": "When a player attempts to apply a dye to a sign that already has that same color, the sign should remain unchanged and the dye should not be consumed. Because no dyeing action occurs, the hand-use animation and \u201cDye stains\u201d sound should not play, and no corresponding subtitle should appear.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Player Animation/MC-212420",
+  "improvement_metadata": {
+    "original_key": "MC-212420"
+  }
+}
