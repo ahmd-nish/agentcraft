@@ -1,0 +1,36 @@
+{
+  "key": "MC-179858",
+  "created_date": "2020-04-22T08:47:50.793-0700",
+  "updated_date": "2026-08-27T04:41:18.514-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w17a"
+  ],
+  "fix_versions": [
+    "20w18a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-04-23T02:42:51.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Maps show stone-like pattern despite it not being there",
+  "environment_raw": "",
+  "description": "Moderator note\n\nFor anyone who opened their world in 20w17a and is still experiencing this issue in versions after 20w17a:\n\nTry optimizing the world:\n\nImportant: Depending on the world size this may take a while.\n\n - Client:\n \n\n \nSelect the world on the world selection screen\n\n - Press the \"Edit\" button\n\n - Select \"Optimize World\"\n\n - Check \"Erase cached data\"\n\n - Press \"Create backup and load\"\n\n - Revisit the area located on the map to update it\n\n \n\n \n\n - Server:\n \n\n \nCreate a backup by copying the world folder\n\n - Start with --forceUpgrade --eraseCache\n\n \n\n \n\nIf you are still experiencing this issue after trying the steps above, please comment and attach the world (in the version before you opened it in the latest version of the game) as zip file.\n\nI started up the new version and when I looked at my maps it showed them as seen in the screenshot",
+  "Steps to Reproduce": "1. Launch Minecraft in version 20w17a.\n2. Open an existing world containing maps.\n3. Exit the world and launch the game in a version after 20w17a.\n4. Open the same world and look at the maps.\n5. Observe that the maps display a stone-like pattern even though that pattern is not present in the mapped area.",
+  "Environment": "Minecraft Java Edition Version 20w17a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nAfter opening the world in snapshot **20w17a** and viewing existing maps, the maps display a gray, stone-like pattern over areas where no stone is present in the world. The pattern appears in the map rendering rather than representing the actual blocks in the mapped terrain, which remains unchanged.",
+  "Expected Behavior": "Maps should accurately represent the terrain in the mapped area when opened in the new version. Areas without stone or other corresponding terrain should not display a stone-like pattern; the map should instead show the correct underlying landscape and remain consistent with the world after the area is revisited or the world is updated.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Maps/MC-179858",
+  "improvement_metadata": {
+    "original_key": "MC-179858"
+  }
+}

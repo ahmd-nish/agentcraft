@@ -1,0 +1,36 @@
+{
+  "key": "MC-249171",
+  "created_date": "2022-03-16T17:47:08.940-0700",
+  "updated_date": "2026-08-27T02:56:39.394-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w11a"
+  ],
+  "fix_versions": [
+    "22w12a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-03-22T01:49:29.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Map color for mangrove log is incorrect",
+  "environment_raw": "",
+  "description": "## The bug\n\nThe map color for mangrove logs is incorrect. Unlike the stripped mangrove log, which appears red on a map, the mangrove log matches the color of acacia logs on a map, which is orange.\n\n## How to reproduce\n\n - Obtain and fill a map\n\n - Place upward-facing acacia logs\n\n The logs appear orange on the map\n\n - Place upward-facing stripped mangrove logs\n\n The logs appear red on the map\n\n - Place upward-facing mangrove logs\n\n The logs appear orange on the map\n\n## Expected behavior\n\nThe mangrove log color would be red, like the map color of stripped mangrove logs.\n\n## Actual behavior\n\nThe mangrove log color is orange, like the map color of acacia logs.",
+  "Steps to Reproduce": "1. Create a Creative world with default settings.\n2. Obtain and fill a map.\n3. Place upward-facing acacia logs.\n4. Observe the acacia logs on the map and confirm that they appear orange.\n5. Place upward-facing stripped mangrove logs.\n6. Observe the stripped mangrove logs on the map and confirm that they appear red.\n7. Place upward-facing mangrove logs.\n8. Observe the mangrove logs on the map and confirm that they appear orange instead of red.",
+  "Environment": "Minecraft Java Edition Version 22w11a (snapshot)",
+  "Observed Behavior": "## Actual behavior\n\nWhen viewed on a filled map, an upward-facing mangrove log is rendered with an orange map color, matching an acacia log. This differs from an upward-facing stripped mangrove log, which is rendered red. The mangrove log therefore does not use the expected red map color associated with mangrove wood.",
+  "Expected Behavior": "When viewed on a filled map, mangrove logs should appear red, matching the map color of stripped mangrove logs. Their map color should be distinct from acacia logs, which correctly appear orange. This red coloration should consistently apply to upward-facing mangrove logs placed alongside acacia and stripped mangrove logs.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Maps/MC-249171",
+  "improvement_metadata": {
+    "original_key": "MC-249171"
+  }
+}
