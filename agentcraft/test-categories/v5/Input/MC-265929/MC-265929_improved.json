@@ -1,0 +1,41 @@
+{
+  "key": "MC-265929",
+  "created_date": "2023-10-19T01:37:21.968-0700",
+  "updated_date": "2026-08-20T04:32:27.628-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.2",
+    "23w42a",
+    "23w44a"
+  ],
+  "fix_versions": [
+    "1.20.3 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "gui",
+    "gui-textbox"
+  ],
+  "resolution_date": "2023-11-17T05:32:41.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Ctrl+Backspacing a word with non-BMP characters in an edit box deletes additional characters",
+  "environment_raw": "",
+  "description": "Using Ctrl+Backspace to delete a word in an edit box results in additional characters being deleted if that word contains non-BMP characters.\n\n## Reproduction\n\n - Open the screen to add a server\n\n - Paste the string \ud801\udc50 \ud801\udc51\ud801\udc51 \ud801\udc52\ud801\udc52\ud801\udc52 \ud801\udc53\ud801\udc53\ud801\udc53\ud801\udc53 \ud801\udc54\ud801\udc54\ud801\udc54\ud801\udc54\ud801\udc54 \ud801\udc55\ud801\udc55\ud801\udc55\ud801\udc55\ud801\udc55\ud801\udc55 \ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56 (consisting of Shavian characters) into the \u2018Server Address\u2019 box\n\n - Make sure the cursor is at the end of the string\n\n - Press Ctrl+Backspace repeatedly\n\nIntended behavior: only one word is deleted at a time\n\nActual behavior: the preceding word is deleted as well\n\n## Code analysis\n\n(Based on the 1.20.2 code, using Yarn version 1.20.2+build.1. Decompiled with Fabric\u2019s fork of CFR, with some editing from me.)\n\nTextFieldWidget#keyPressed calls TextFieldWidget#erase when it detects a Backspace or Delete press. erase, in turn, calls eraseWords or eraseCharacters depending on whether Ctrl is pressed.\n\neraseWords is implemented as follows:\n\n public void eraseWords(int wordOffset) {\n if (this.text.isEmpty()) {\n return;\n }\n if (this.selectionEnd != this.selectionStart) {\n this.write(\"\");\n return;\n }\n // The argument passed in is in code units, not code points!\n this.eraseCharacters(this.getWordSkipPosition(wordOffset) - this.selectionStart);\n }\n\n public void eraseCharacters(int characterOffset) {\n if (this.text.isEmpty()) {\n return;\n }\n if (this.selectionEnd != this.selectionStart) {\n this.write(\"\");\n return;\n }\n int pos = this.getCursorPosWithOffset(characterOffset);\n int from = Math.min(pos, this.selectionStart);\n int to = Math.max(pos, this.selectionStart);\n if (from == to) {\n return;\n }\n String newText = new StringBuilder(this.text).delete(from, to).toString();\n if (!this.textPredicate.test(newText)) {\n return;\n }\n this.text = newText;\n this.setCursor(from, false);\n }\n\n private int getCursorPosWithOffset(int offset) {\n // Util.moveCursor traverses the string in code points, not code units!\n return Util.moveCursor(this.text, this.selectionStart, offset);\n }\n\n public int getWordSkipPosition(int wordOffset) {\n return this.getWordSkipPosition(wordOffset, this.getCursor());\n }\n\n private int getWordSkipPosition(int wordOffset, int cursorPosition) {\n return this.getWordSkipPosition(wordOffset, cursorPosition, true);\n }\n\n private int getWordSkipPosition(int wordOffset, int cursorPosition, boolean skipOverSpaces) {\n int pos = cursorPosition;\n boolean reverse = wordOffset < 0;\n int absOffset = Math.abs(wordOffset);\n for (int i = 0; i < absOffset; ++i) {\n if (reverse) {\n while (skipOverSpaces && pos > 0 && this.text.charAt(pos - 1) == ' ') {\n --pos;\n }\n while (pos > 0 && this.text.charAt(pos - 1) != ' ') {\n --pos;\n }\n } else {\n int len = this.text.length();\n if ((pos = this.text.indexOf(' ', pos)) == -1) {\n pos = len;\n continue;\n }\n while (skipOverSpaces && pos < len && this.text.charAt(pos) == ' ') {\n ++pos;\n }\n }\n }\n return pos;\n }\n\nThat is:\n\n - eraseWords calls getWordSkipPosition, which returns an index into the text in UTF-16 code units, then subtracts this by the current cursor position. This difference is the number of code units to be deleted, combined with the direction to delete the text in.\n\n - This difference is passed to eraseCharacters, which computes the position to which the text should be erased using getCursorPosWithOffset, which uses Util.moveCursor internally.\n\n - However, Util.moveCursor moves across a code point on iteration, so the offset it takes should be in code points.\n\nThis bug could be fixed by having eraseWords delete the part of the text in the range from this.selectionStart to this.getWordSkipPosition(wordOffset) (or vice versa) directly instead of calling eraseCharacters.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.20.2.\n2. From the main menu, open Multiplayer.\n3. Select Add Server.\n4. Paste `\ud801\udc50 \ud801\udc51\ud801\udc51 \ud801\udc52\ud801\udc52\ud801\udc52 \ud801\udc53\ud801\udc53\ud801\udc53\ud801\udc53 \ud801\udc54\ud801\udc54\ud801\udc54\ud801\udc54\ud801\udc54 \ud801\udc55\ud801\udc55\ud801\udc55\ud801\udc55\ud801\udc55\ud801\udc55 \ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56\ud801\udc56` into the Server Address box.\n5. Move the cursor to the end of the pasted string.\n6. Press Ctrl+Backspace repeatedly.\n7. Observe that deleting a word also deletes the preceding word instead of deleting only one word at a time.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.2, 23w42a, 23w44a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the string contains non-BMP characters such as the Shavian characters in the reproduction, **Ctrl+Backspace deletes more text than the immediately preceding word**. The first press removes the word at the cursor and also removes part or all of the preceding word. Repeated presses therefore skip over multiple words instead of deleting exactly one word per press.\n\nThis occurs because the word boundary is calculated as a UTF-16 code-unit index, while the deletion offset is applied as a code-point offset. Each non-BMP character occupies two UTF-16 code units but is traversed as one code point, causing the deletion range to extend too far toward the beginning of the text.",
+  "Expected Behavior": "When Ctrl+Backspace is used in an edit box containing non-BMP characters, it should delete only the single preceding word, including its associated spaces, and place the cursor at the resulting word boundary. Repeated presses should remove one preceding word per press without deleting any additional preceding words or characters, preserving the remaining text exactly.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Input/MC-265929",
+  "improvement_metadata": {
+    "original_key": "MC-265929"
+  }
+}

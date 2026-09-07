@@ -1,0 +1,61 @@
+{
+  "key": "MC-191669",
+  "created_date": "2020-06-24T12:46:13.922-0700",
+  "updated_date": "2026-08-27T02:17:03.683-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.1",
+    "20w28a",
+    "20w29a",
+    "20w30a",
+    "1.16.2 Pre-release 1",
+    "1.16.2 Pre-release 2",
+    "1.16.2 Pre-release 3",
+    "1.16.2 Release Candidate 2",
+    "1.16.2",
+    "1.16.3 Release Candidate 1",
+    "1.16.3",
+    "1.16.4",
+    "20w46a",
+    "21w03a",
+    "21w05b",
+    "21w06a",
+    "21w11a",
+    "1.17",
+    "1.18.1",
+    "1.20.4",
+    "24w09a",
+    "1.20.5"
+  ],
+  "fix_versions": [
+    "25w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "game-mode-switch",
+    "spectator",
+    "sprinting"
+  ],
+  "resolution_date": "2025-08-07T04:30:14.717-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Sprinting is disabled when switching your gamemode to spectator while sprinting into a block or general obstruction",
+  "environment_raw": "",
+  "description": "If change your gamemode to spectator while running into an obstruction, your sprint will be disabled.\n\n## Steps to Reproduce:\n\n - Run towards a wall in Creative or Survival mode (continue doing this)\n\n - Press F3 + N to change gamemode\n\n## Observed & Expected Results\n\n - You will not be sprinting when entering spectator mode, and will not be able to sprint at all until changing your gamemode again.\n\n - Your sprint would continue when changing gamemodes, and not be disabled.\n\n## Video\n\n(Since my key presses are not shown, I am sprinting into the wall, switching game modes, then sprinting again in spectator)\n\n SpectatorSprint.mp4 \n\n## Notes\n\n - Related to other sprinting issues:\n\n \n \n \n MC-133414\n \n Resolved\n \n \n \n \n \n MC-68453\n \n Resolved\n \n \n \n \n \n MC-190768\n \n Open\n \n \n \n \n \n MC-4098\n \n Reopened\n \n\n - The player can fix this themselves by changing their gamemode off spectator, and then changing back.\n\n - This only works for changing gamemode with F3 + N, not by using the gamemode switcher with F3 + F4.",
+  "Steps to Reproduce": "1. Launch Minecraft and create or open a Creative world.\n2. Face a wall or other obstruction.\n3. Start sprinting toward the obstruction and continue holding the movement control as you run into it.\n4. While still sprinting into the obstruction, press F3 + N to switch to Spectator mode.\n5. Observe that sprinting is no longer active after entering Spectator mode.\n6. Attempt to sprint again while in Spectator mode.\n7. Observe that sprinting remains disabled until switching to another gamemode and then back to Spectator mode.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.1, 20w28a, 20w29a, 20w30a, 1.16.2 Pre-release 1, 1.16.2 Pre-release 2, 1.16.2 Pre-release 3, 1.16.2 Release Candidate 2, 1.16.2, 1.16.3 Release Candidate 1, 1.16.3, 1.16.4, 20w46a, 21w03a, 21w05b, 21w06a, 21w11a, 1.17, 1.18.1, 1.20.4, 24w09a, 1.20.5 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the player is holding the sprint key and continuously moving against a wall or other solid obstruction in Survival or Creative mode, switching to Spectator mode with **F3 + N** immediately cancels sprinting. After the switch, the player cannot start sprinting while remaining in Spectator mode. Switching to another game mode and then back to Spectator restores the ability to sprint.\n\nThis behavior does not occur when switching modes using the **F3 + F4** game mode switcher.",
+  "Expected Behavior": "The player\u2019s sprinting state should remain active when switching to Spectator mode while moving against a block or other obstruction. After the game mode changes, the player should still be able to sprint normally without needing to switch to another game mode and back.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Input/MC-191669",
+  "improvement_metadata": {
+    "original_key": "MC-191669"
+  }
+}

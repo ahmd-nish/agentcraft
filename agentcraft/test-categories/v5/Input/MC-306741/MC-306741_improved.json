@@ -1,0 +1,37 @@
+{
+  "key": "MC-306741",
+  "created_date": "2026-03-05T21:22:30.640-0800",
+  "updated_date": "2026-03-13T17:25:48.974-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.1 Snapshot 11",
+    "26.1 Pre-Release 1"
+  ],
+  "fix_versions": [
+    "26.1 Pre-Release 2"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [],
+  "resolution_date": "2026-03-13T05:35:38.346-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Opening the chat forces a CJK input method when one is enabled in the system",
+  "environment_raw": "",
+  "description": "The bug\n\nIf you want to type in English, you have to press the keyboard button to switch between English and Japanese every time you open the chat.\n\nTo reproduce\n\n - Open the chat or press \"/\" to start a command.\n\n - Start typing.\n\nThe functionality should be updated to work as follows\n\n - The default input language when starting Minecraft should be English.\n\n - The system must remember the last used input language.\n\n - It should be possible to switch between English and Japanese even when not typing, just like in older versions.\n\nRegarding \"remembering the last used language,\" the expected behavior is as follows\n\n - Open chat \u2192 Switch from English to Japanese (keyboard operation) \u2192 Type in Japanese \u2192 Send chat \u2192 Open a new chat \u2192 Resume with Japanese input.\n\n - Open chat \u2192 Switch from Japanese to English (keyboard operation) \u2192 Type in English \u2192 Send chat \u2192 Open a new chat \u2192 Resume with English input.\n\nThis issue affects all text input fields, including\n\n - Chat\n\n - \"/\" Command\n\n - Command block\n\n - Writable book\n\n - Anvil\n\n - Sign\n\n - Creative inventory search\n\n - Resource pack search\n\n - Select world\n\n - etc...\n\nThe impact on commands is particularly severe. Every time a single command is executed, the player must manually switch the input mode from Japanese back to English via keyboard operation.\n\nThis issue was introduced by the fix for the following bug\n\n \n \n \n MC-91132\n \n Resolved\n \n\nhttps://bugs.mojang.com/browse/MC/issues/MC-91132\n\nWhile the update to prevent blocking control keys (WASD) is good, the fix implemented here was poorly designed as it did not take commands into account.\n\nThe only current workaround\n\nPress the language switch key to change to English before the Japanese predictive text is confirmed. This only works with Microsoft IME.\n\nPlease refer to the third video.\n\nAdditional Context\n\nMany Japanese players are aware of this serious problem, and it has become a major topic on social media. While the priority may be marked as Low, this is a significant issue in certain regions. It is a critical problem that needs to be fixed by the next major update.",
+  "Steps to Reproduce": "1. Enable a Japanese or other CJK input method in the system.\n2. Launch Minecraft.\n3. Create a new Creative world with default settings.\n4. Open the chat.\n5. Start typing in English.\n6. Use the keyboard language-switch operation to change the input language to Japanese.\n7. Type in Japanese and send the chat message.\n8. Open the chat again.\n9. Observe that the input method is forced to the CJK language again instead of retaining the last used input language.",
+  "Environment": "Minecraft Java Edition Versions: 26.1 Snapshot 11, 26.1 Pre-Release 1 (includes snapshots)",
+  "Observed Behavior": "When a Japanese or other CJK input method is enabled in the operating system, opening a Minecraft text-input field activates the CJK input mode instead of preserving the previously selected language or starting in English. Consequently, opening chat or pressing `/` to enter a command requires the player to switch manually from Japanese to English before typing, and this must be repeated for each new chat message or command. After a player switches to Japanese, enters text, sends it, and opens another text field, the input method does not reliably resume in Japanese; likewise, switching to English does not persist for the next field. The same behavior affects chat, slash commands, command blocks, writable books, anvils, signs, the Creative inventory search, resource pack search, world selection, and other text fields. The problem is especially disruptive for commands because the player must perform an additional keyboard language switch every time a command is executed. Switching languages when the field is empty, as was possible in older versions, is also not consistently available. The behavior appears to have been introduced by the changes associated with MC-91132, which prevented control keys such as WASD from being intercepted by the input method but also affected language handling in command input. The only reported workaround is to switch to English before Japanese predictive text is confirmed, and this works only with Microsoft IME.",
+  "Expected Behavior": "When Minecraft starts, text input should default to English, and opening chat or any other text field should not force a CJK input method. Players should be able to switch between English and Japanese at any time, including while not typing, and the selected language should persist for subsequent chat, command, and other text-entry fields until changed.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Input/MC-306741",
+  "improvement_metadata": {
+    "original_key": "MC-306741"
+  }
+}

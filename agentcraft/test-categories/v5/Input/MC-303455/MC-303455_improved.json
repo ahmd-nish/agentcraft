@@ -1,0 +1,36 @@
+{
+  "key": "MC-303455",
+  "created_date": "2025-10-21T11:50:07.386-0700",
+  "updated_date": "2026-03-27T01:42:50.154-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w43a"
+  ],
+  "fix_versions": [
+    "25w44a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-10-28T02:44:06.045-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The cursor is no longer centered when opening a container or menu on Wayland",
+  "environment_raw": "",
+  "description": "As of snapshot 25w43a, Minecraft now runs on Wayland natively instead of XWayland on Linux. This comes with unfortunate side effects. One is the cursor no longer being centered when opening a container or menu.\n\nSteps to reproduce the issue\n\n1. Make sure you are using Wayland and not X11\n\n2. Launch snapshot 25w43a\n\n3. Join a world and open the inventory, any other container or press ESC to open the pause menu\n\n4. Move around the cursor and close the menu or container\n\n5. Reopen the menu or container\n\nExpected result\n\nThe cursor will always center like it did prior 25w43a.\n\nActual result\n\nThe cursor does not center.",
+  "Steps to Reproduce": "1. Use a Wayland session instead of X11.\n2. Launch Minecraft snapshot 25w43a.\n3. Join a Creative world with default settings.\n4. Open the inventory.\n5. Move the cursor around.\n6. Close the inventory.\n7. Reopen the inventory.\n8. Observe that the cursor is not centered.",
+  "Environment": "Minecraft Java Edition Version 25w43a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nOn Wayland in snapshot 25w43a, reopening the player inventory, another container screen, or the pause menu does not recenter the mouse cursor. The cursor remains at its previous position from before the screen was closed, rather than being placed at the center of the game window as it was before snapshot 25w43a. This occurs when the screen is reopened after moving the cursor while the menu or container was open.",
+  "Expected Behavior": "When opening the inventory, a container, or the pause menu on Wayland, the cursor should be positioned at the center of the screen each time. Closing the interface after moving the cursor and reopening it should still recenter the cursor, matching the behavior from before snapshot 25w43a and ensuring consistent interaction with menus and container interfaces.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Input/MC-303455",
+  "improvement_metadata": {
+    "original_key": "MC-303455"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "key": "MC-228486",
+  "created_date": "2021-06-10T21:20:15.188-0700",
+  "updated_date": "2025-04-16T13:02:24.414-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17 Pre-release 1",
+    "1.17",
+    "1.17.1 Pre-release 1"
+  ],
+  "fix_versions": [
+    "24w05b"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-02-01T13:20:35.905-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Cannot switch to other windows using Cmd+Tab on macOS",
+  "environment_raw": "",
+  "description": "I can't switch between tabs on Minecraft with command tab when using Minecraft's built-in fullscreen mode, I can usually press command and then tab to change tabs but since I got 1.17 this no longer works\n\nWhat I expected to happen was...:\n\nwhen I press command tab a little bar could appear and I should go to my desktop screen\n\nWhat actually happened was...:\n\nI get a little bar that swaps them but it doesn't swap\n\nSteps to Reproduce:\n\n 1. press command tab\n\n 2. ...\n\n 3. ...",
+  "Steps to Reproduce": "1. Launch Minecraft 1.17 on macOS.\n2. Create a new Creative world with default settings.\n3. Open Options -> Video Settings.\n4. Set Fullscreen to On.\n5. Return to the world.\n6. Press Cmd+Tab.\n7. Observe that the application-switching bar appears, but Minecraft does not switch to the other window or the desktop screen.",
+  "Environment": "Minecraft Java Edition Versions: 1.17 Pre-release 1, 1.17, 1.17.1 Pre-release 1",
+  "Observed Behavior": "What actually happened was\u2026:**\n\nWhen Minecraft: Java Edition 1.17 is running in its built-in fullscreen mode on macOS, pressing **Cmd+Tab** displays the macOS application switcher, but the selected application does not receive focus. Minecraft remains active in the foreground, so I cannot switch to another window or return to the desktop using **Cmd+Tab**.",
+  "Expected Behavior": "When using Minecraft\u2019s built-in fullscreen mode on macOS, pressing Command+Tab should display the application switcher and successfully activate the selected application, allowing the user to switch from Minecraft to another window or the desktop. The selected application should come to the foreground rather than the switcher appearing while Minecraft remains active.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Input/MC-228486",
+  "improvement_metadata": {
+    "original_key": "MC-228486"
+  }
+}
