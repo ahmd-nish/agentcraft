@@ -1,0 +1,69 @@
+---- Minecraft Crash Report ----
+// Oh - I know what I did wrong!
+
+Time: 12.10.15 22:42
+Description: Manually triggered debug crash
+
+java.lang.Throwable
+	at bab.s(SourceFile:1636)
+	at bab.as(SourceFile:931)
+	at bab.a(SourceFile:379)
+	at net.minecraft.client.main.Main.main(SourceFile:125)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at bii.a(SourceFile:362)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [bkh['Irbis'/316731, l='MpServer', x=2000,32, y=56,00, z=2014,03]]
+	Chunk stats: MultiplayerChunkCache: 41, 41
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (-1391,4,-525), Chunk: (at 1,0,3 in -87,-33; contains blocks -1392,0,-528 to -1377,255,-513), Region: (-3,-2; contains chunks -96,-64 to -65,-33, blocks -1536,0,-1024 to -1025,255,-513)
+	Level time: 8456 game time, 8456 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 1 total; [bkh['Irbis'/316731, l='MpServer', x=2000,32, y=56,00, z=2014,03]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at bii.a(SourceFile:362)
+	at bab.b(SourceFile:2389)
+	at bab.a(SourceFile:388)
+	at net.minecraft.client.main.Main.main(SourceFile:125)
+
+-- System Details --
+Details:
+	Minecraft Version: 15w41b
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_25, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 210154176 bytes (200 MB) / 395550720 bytes (377 MB) up to 2134114304 bytes (2035 MB)
+	JVM Flags: 6 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xmx2G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn128M
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: 15w41b
+	LWJGL: 2.9.4
+	OpenGL: AMD Radeon HD 6700 Series GL version 4.5.13399 Compatibility Profile Context 15.200.1062.1004, ATI Technologies Inc.
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Probably not. Jar signature remains and client brand is untouched.
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 4x Intel(R) Core(TM) i5-2500 CPU @ 3.30GHz

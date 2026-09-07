@@ -1,0 +1,61 @@
+{
+  "key": "MC-151648",
+  "created_date": "2019-05-12T11:16:59.980-0700",
+  "updated_date": "2026-08-27T01:39:54.445-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.14",
+    "Minecraft 1.14.1 Pre-Release 2",
+    "Minecraft 1.14.1",
+    "1.14.4",
+    "1.15",
+    "1.15.1",
+    "1.15.2",
+    "20w07a",
+    "20w08a",
+    "20w10a",
+    "20w13b",
+    "20w16a",
+    "20w17a",
+    "20w20a",
+    "1.16 Pre-release 7",
+    "1.16 Release Candidate 1",
+    "1.16",
+    "1.16.3 Release Candidate 1",
+    "1.16.3",
+    "21w06a",
+    "1.17.1",
+    "1.18",
+    "1.20.1",
+    "1.20.3 Pre-Release 2"
+  ],
+  "fix_versions": [
+    "24w21a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "nether_portal"
+  ],
+  "resolution_date": "2024-05-22T05:11:22.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Non-player entities cannot travel through unlinked nether portals",
+  "environment_raw": "",
+  "description": "## The bug\n\nNon player entities cannot travel through portals if it's not generated on both sides.\n\n## How to reproduce (from jeuvke)\n\n - Create a new world and create an unlit portal frame.\n \n\n \nIf in an existing world, create an unlit portal somewhere far from any existing portals in both the nether and the overworld.\n\n \n\n \n\n - Put a boat in the portal frame\n\n - Check the boat's PortalCooldown tag by typing\n\n/data get entity @e[type=minecraft:boat,limit=1] PortalCooldown\n, note the tag is at 0\n\n - Light the portal\n\n \u2192 Observe that the boat is not teleported but PortalCooldown is now at 300.\n\n## Original Description\n\nBasically my bug is that sometimes pig-men come through the nether portal, to the overworld. Issue is that I cannot seem to push them back into the nether, by physically pushing them into the portal whilst it's lit. Not sure if it's changed that the pig-men need to stay there longer (in the portal) to transport. I had one there for around 8 seconds, but didn't get transported.\n\nNote: I haven't gone to the nether, so idk if it's registered a new world for the nether, or if I'll have to go there myself to generate it to then go back and push him back in. I'll check that and update on if that resolved the issue, and then if this even is a bug.\n\nUpdate: After going to the nether, and back to try pushing him back in again, the issue is still the same. The pig-man won't be transported back through the portal.\n\nRestarting game didn't resolve it either. As can be seen on the video attatchment.\n\nIssue still remains in the newest version of Minecraft (1.14.1)\n\nHowever I've found out if the pigman goes into the portal on his own, he will be teleported, but if I try pushing him in he will not teleport.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.14.1.\n2. Create a new world.\n3. Create an unlit Nether portal frame.\n4. Place a boat in the portal frame.\n5. Run `/data get entity @e[type=minecraft:boat,limit=1] PortalCooldown` and verify that `PortalCooldown` is `0`.\n6. Light the portal.\n7. Observe that the boat remains in the portal frame instead of being teleported.\n8. Run `/data get entity @e[type=minecraft:boat,limit=1] PortalCooldown` again.\n9. Observe that `PortalCooldown` is now `300`.",
+  "Environment": "Minecraft Java Edition Versions: 1.14, 1.14.1 Pre-Release 2, 1.14.1, 1.14.4, 1.15, 1.15.1, 1.15.2, 20w07a, 20w08a, 20w10a, 20w13b, 20w16a, 20w17a, 20w20a, 1.16 Pre-release 7, 1.16 Release Candidate 1, 1.16, 1.16.3 Release Candidate 1, 1.16.3, 21w06a, 1.17.1, 1.18, 1.20.1, 1.20.3 Pre-Release 2 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a nether portal is lit without a corresponding portal existing in the destination dimension, non-player entities that enter or are placed in the portal are not transported. The entity remains in its original dimension, but its `PortalCooldown` is set to `300` ticks (as observed on a boat), preventing an immediate subsequent teleport attempt.\n\nFor example, placing a boat in an unlinked portal frame and then lighting the portal leaves the boat in place while changing its `PortalCooldown` from `0` to `300`. The same issue occurs with mobs pushed into the portal. In contrast, a mob that enters the portal on its own may be transported, indicating that the failure specifically affects non-player entities entering an otherwise unlinked portal.\u3011\u3010\u3002",
+  "Expected Behavior": "When a Nether portal is lit, non-player entities occupying or entering it should be able to travel through it even when the destination portal has not previously been generated. A boat or mob should be teleported to the corresponding location in the other dimension after remaining in the portal for the normal travel duration, rather than being left in place while its cooldown changes.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Entities/MC-151648",
+  "improvement_metadata": {
+    "original_key": "MC-151648"
+  }
+}

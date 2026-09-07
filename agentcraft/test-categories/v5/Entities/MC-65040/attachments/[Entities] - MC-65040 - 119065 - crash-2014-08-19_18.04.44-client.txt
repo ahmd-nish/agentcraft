@@ -1,0 +1,68 @@
+---- Minecraft Crash Report ----
+// I feel sad now :(
+
+Time: 2014-08-19 18:04
+Description: Manually triggered debug crash
+
+java.lang.Throwable
+	at bsr.r(SourceFile:1566)
+	at bsr.as(SourceFile:875)
+	at bsr.a(SourceFile:312)
+	at net.minecraft.client.main.Main.main(SourceFile:120)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at cei.a(SourceFile:308)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [cij['Cyoor'/2170374, l='MpServer', x=279,96, y=8,51, z=-478,11]]
+	Chunk stats: MultiplayerChunkCache: 30, 30
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: 266,00,4,00,-480,00 - World: (266,4,-480), Chunk: (at 10,0,0 in 16,-30; contains blocks 256,0,-480 to 271,255,-465), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Level time: 22385 game time, 22385 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 105 total; [abr['Cow'/2170320, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170321, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170322, l='MpServer', x=279,53, y=4,00, z=-478,56], abr['Cow'/2170323, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170324, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170325, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170326, l='MpServer', x=279,53, y=4,00, z=-477,47], abr['Cow'/2170327, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170328, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170329, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170330, l='MpServer', x=279,09, y=4,00, z=-478,16], abr['Cow'/2170331, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170332, l='MpServer', x=278,44, y=4,00, z=-477,47], abr['Cow'/2170333, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170334, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170335, l='MpServer', x=278,41, y=4,00, z=-477,88], abr['Cow'/2170305, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170304, l='MpServer', x=278,44, y=4,00, z=-477,59], abr['Cow'/2170307, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170306, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170309, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170308, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170311, l='MpServer', x=279,53, y=4,00, z=-478,00], abr['Cow'/2170310, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170313, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170312, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170315, l='MpServer', x=278,44, y=4,00, z=-478,50], abr['Cow'/2170314, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170317, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170316, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170319, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170318, l='MpServer', x=278,47, y=4,00, z=-478,56], abr['Cow'/2170354, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170355, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170352, l='MpServer', x=278,44, y=4,00, z=-478,56], abr['Cow'/2170353, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170358, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170359, l='MpServer', x=278,63, y=4,00, z=-478,56], abr['Cow'/2170356, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170357, l='MpServer', x=278,81, y=4,00, z=-478,38], abr['Cow'/2170362, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170363, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170360, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170361, l='MpServer', x=278,44, y=4,00, z=-478,56], abr['Cow'/2170366, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170367, l='MpServer', x=279,28, y=4,00, z=-477,72], abr['Cow'/2170364, l='MpServer', x=279,00, y=4,00, z=-478,09], abr['Cow'/2170365, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170339, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170338, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170337, l='MpServer', x=279,25, y=4,00, z=-477,75], abr['Cow'/2170336, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170343, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170342, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170341, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170340, l='MpServer', x=278,44, y=4,00, z=-478,53], abr['Cow'/2170347, l='MpServer', x=279,41, y=4,00, z=-477,53], abr['Cow'/2170346, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170345, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170344, l='MpServer', x=278,59, y=4,00, z=-478,56], abr['Cow'/2170351, l='MpServer', x=278,56, y=4,00, z=-478,56], abr['Cow'/2170350, l='MpServer', x=279,28, y=4,00, z=-477,72], abr['Cow'/2170349, l='MpServer', x=279,53, y=4,00, z=-477,47], abr['Cow'/2170348, l='MpServer', x=279,59, y=4,00, z=-477,50], abr['Cow'/2170270, l='MpServer', x=279,53, y=4,00, z=-477,47], abr['Cow'/2170271, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170294, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170295, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170292, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170293, l='MpServer', x=279,34, y=4,00, z=-478,56], abr['Cow'/2170290, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170291, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170288, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170289, l='MpServer', x=278,44, y=4,00, z=-478,25], abr['Cow'/2170302, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170303, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170300, l='MpServer', x=278,44, y=4,00, z=-477,63], abr['Cow'/2170301, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170298, l='MpServer', x=279,63, y=4,00, z=-478,56], abr['Cow'/2170299, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170296, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170297, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170279, l='MpServer', x=278,44, y=4,00, z=-478,56], abr['Cow'/2170278, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170277, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170276, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170275, l='MpServer', x=278,75, y=4,00, z=-478,56], abr['Cow'/2170274, l='MpServer', x=278,47, y=4,00, z=-478,53], abr['Cow'/2170273, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170272, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170287, l='MpServer', x=278,44, y=4,00, z=-478,56], abr['Cow'/2170286, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170285, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170284, l='MpServer', x=278,44, y=4,00, z=-478,56], abr['Cow'/2170283, l='MpServer', x=279,22, y=4,00, z=-477,47], abr['Cow'/2170282, l='MpServer', x=279,53, y=4,00, z=-477,81], abr['Cow'/2170281, l='MpServer', x=279,75, y=4,00, z=-478,78], abr['Cow'/2170280, l='MpServer', x=278,22, y=4,00, z=-478,78], abr['Cow'/2170370, l='MpServer', x=278,22, y=4,00, z=-477,25], abr['Cow'/2170371, l='MpServer', x=278,44, y=4,00, z=-478,56], abr['Cow'/2170368, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170369, l='MpServer', x=279,75, y=4,00, z=-478,78], cij['Cyoor'/2170374, l='MpServer', x=279,96, y=8,51, z=-478,11], abr['Cow'/2170372, l='MpServer', x=279,75, y=4,00, z=-477,25], abr['Cow'/2170373, l='MpServer', x=278,22, y=4,00, z=-477,25]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at cei.a(SourceFile:308)
+	at bsr.b(SourceFile:2255)
+	at bsr.a(SourceFile:321)
+	at net.minecraft.client.main.Main.main(SourceFile:120)
+
+-- System Details --
+Details:
+	Minecraft Version: 14w34b
+	Operating System: Windows 7 (amd64) version 6.1
+	Java Version: 1.7.0, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 1904183384 bytes (1815 MB) / 2147483648 bytes (2048 MB) up to 2147483648 bytes (2048 MB)
+	JVM Flags: 5 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xms2G -Xmx2G -XX:+UseG1GC -XX:MaxGCPauseMillis=25
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	Launched Version: 14w34b
+	LWJGL: 2.9.1
+	OpenGL: GeForce 9600M GS/PCIe/SSE2 GL version 3.3.0, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Probably not. Jar signature remains and client brand is untouched.
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)

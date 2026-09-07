@@ -1,0 +1,68 @@
+---- Minecraft Crash Report ----
+// Hey, that tickles! Hehehe!
+
+Time: 8/8/14 9:52 PM
+Description: Manually triggered debug crash
+
+java.lang.Throwable
+	at bsn.r(SourceFile:1566)
+	at bsn.as(SourceFile:875)
+	at bsn.a(SourceFile:312)
+	at net.minecraft.client.main.Main.main(SourceFile:120)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at cee.a(SourceFile:308)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [cif['edison2'/427, l='MpServer', x=61.34, y=76.00, z=80.07]]
+	Chunk stats: MultiplayerChunkCache: 169, 169
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: 52.00,64.00,228.00 - World: (52,64,228), Chunk: (at 4,4,4 in 3,14; contains blocks 48,0,224 to 63,255,239), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,0,0 to 511,255,511)
+	Level time: 2425675 game time, 1455636 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: survival (ID 0). Hardcore: false. Cheats: false
+	Forced entities: 112 total; [add['entity.ItemFrame.name'/275, l='MpServer', x=66.50, y=68.50, z=106.97], add['entity.ItemFrame.name'/274, l='MpServer', x=69.50, y=67.50, z=97.03], add['entity.ItemFrame.name'/273, l='MpServer', x=65.50, y=68.50, z=106.97], ada['Armor Stand'/272, l='MpServer', x=79.50, y=66.00, z=106.50], ada['Armor Stand'/279, l='MpServer', x=78.50, y=66.00, z=114.50], afp['Skeleton'/278, l='MpServer', x=66.31, y=121.00, z=96.28], agc['Zombie'/277, l='MpServer', x=69.13, y=118.00, z=98.63], afx['Spider'/276, l='MpServer', x=73.69, y=94.34, z=99.28], abx['Pig'/283, l='MpServer', x=68.97, y=74.00, z=152.13], ada['Armor Stand'/282, l='MpServer', x=76.50, y=66.00, z=114.50], ada['Armor Stand'/281, l='MpServer', x=79.50, y=66.00, z=114.50], ada['Armor Stand'/280, l='MpServer', x=77.50, y=66.00, z=114.50], abp['Cow'/256, l='MpServer', x=50.34, y=74.00, z=150.50], abx['Pig'/262, l='MpServer', x=64.50, y=76.00, z=70.84], abx['Pig'/263, l='MpServer', x=65.91, y=76.00, z=71.06], abx['Pig'/261, l='MpServer', x=62.44, y=76.00, z=79.72], add['entity.ItemFrame.name'/266, l='MpServer', x=69.50, y=68.50, z=97.03], add['entity.ItemFrame.name'/267, l='MpServer', x=69.50, y=66.50, z=97.03], add['entity.ItemFrame.name'/264, l='MpServer', x=72.50, y=68.50, z=97.03], ada['Armor Stand'/265, l='MpServer', x=78.50, y=66.00, z=106.50], add['entity.ItemFrame.name'/270, l='MpServer', x=67.50, y=68.50, z=106.97], add['entity.ItemFrame.name'/271, l='MpServer', x=64.50, y=68.50, z=106.97], ada['Armor Stand'/268, l='MpServer', x=76.50, y=66.00, z=106.50], ada['Armor Stand'/269, l='MpServer', x=77.50, y=66.00, z=106.50], aby['Rabbit'/311, l='MpServer', x=100.25, y=74.00, z=66.22], aby['entity.KillerBunny.name'/310, l='MpServer', x=100.06, y=73.00, z=73.97], aby['Rabbit'/292, l='MpServer', x=80.50, y=74.00, z=38.47], ada['Armor Stand'/293, l='MpServer', x=81.50, y=66.00, z=111.50], ada['Armor Stand'/294, l='MpServer', x=81.50, y=66.00, z=107.50], ada['Armor Stand'/295, l='MpServer', x=80.50, y=66.00, z=106.50], ada['Armor Stand'/296, l='MpServer', x=81.50, y=66.00, z=110.50], ada['Armor Stand'/297, l='MpServer', x=81.50, y=66.00, z=108.50], ada['Armor Stand'/298, l='MpServer', x=81.50, y=66.00, z=109.50], ada['Armor Stand'/299, l='MpServer', x=81.50, y=66.00, z=113.50], ada['Armor Stand'/300, l='MpServer', x=80.50, y=66.00, z=114.50], ada['Armor Stand'/301, l='MpServer', x=81.50, y=66.00, z=112.50], ada['Armor Stand'/302, l='MpServer', x=83.50, y=60.00, z=175.50], aby['Rabbit'/336, l='MpServer', x=135.75, y=77.00, z=129.97], aei['Creeper'/2503, l='MpServer', x=68.22, y=121.00, z=101.16], aei['Creeper'/2502, l='MpServer', x=66.38, y=121.00, z=100.78], agc['Zombie'/2261, l='MpServer', x=18.50, y=71.00, z=88.50], afp['Skeleton'/2256, l='MpServer', x=17.50, y=71.00, z=96.50], afp['Skeleton'/2498, l='MpServer', x=64.50, y=121.00, z=96.50], afp['Skeleton'/2497, l='MpServer', x=63.50, y=121.00, z=101.50], aby['Rabbit'/322, l='MpServer', x=115.00, y=78.00, z=103.50], afx['Spider'/323, l='MpServer', x=122.50, y=80.00, z=123.50], aby['Rabbit'/321, l='MpServer', x=115.47, y=72.00, z=93.44], afp['Skeleton'/332, l='MpServer', x=135.50, y=44.00, z=48.50], aby['Rabbit'/333, l='MpServer', x=128.25, y=82.00, z=109.09], afx['Spider'/2551, l='MpServer', x=115.38, y=80.97, z=32.03], aby['entity.KillerBunny.name'/440, l='MpServer', x=55.19, y=60.00, z=3.47], agc['Zombie'/443, l='MpServer', x=71.91, y=68.00, z=31.31], afp['Skeleton'/445, l='MpServer', x=107.06, y=46.00, z=20.59], aby['entity.KillerBunny.name'/446, l='MpServer', x=123.69, y=64.00, z=1.41], abx['Pig'/163, l='MpServer', x=-11.25, y=64.00, z=135.66], aby['Rabbit'/162, l='MpServer', x=-16.66, y=64.00, z=130.47], aby['Rabbit'/434, l='MpServer', x=-15.47, y=63.00, z=-2.72], aby['Rabbit'/161, l='MpServer', x=-18.09, y=64.00, z=118.09], abl['Bat'/435, l='MpServer', x=3.10, y=29.90, z=10.32], agc['Zombie'/438, l='MpServer', x=15.50, y=71.00, z=18.19], aei['Creeper'/439, l='MpServer', x=19.50, y=25.00, z=12.50], abx['Pig'/164, l='MpServer', x=-10.09, y=65.00, z=138.22], aby['Rabbit'/184, l='MpServer', x=-5.53, y=66.00, z=154.94], ade['entity.LeashKnot.name'/426, l='MpServer', x=61.50, y=74.50, z=150.50], abx['Pig'/190, l='MpServer', x=11.69, y=70.00, z=92.47], aby['Rabbit'/191, l='MpServer', x=0.28, y=66.00, z=122.44], afx['Spider'/178, l='MpServer', x=-11.50, y=76.00, z=48.50], aby['Rabbit'/179, l='MpServer', x=-17.88, y=69.00, z=107.94], aby['Rabbit'/177, l='MpServer', x=-1.03, y=77.00, z=56.56], aby['Rabbit'/182, l='MpServer', x=-14.44, y=64.00, z=114.47], aby['Rabbit'/183, l='MpServer', x=-9.97, y=65.00, z=151.41], aby['Rabbit'/180, l='MpServer', x=-7.84, y=64.00, z=97.25], aby['Rabbit'/181, l='MpServer', x=-9.53, y=72.00, z=105.47], aby['Rabbit'/205, l='MpServer', x=19.41, y=78.00, z=85.47], abx['Pig'/206, l='MpServer', x=19.03, y=69.00, z=130.00], abx['Pig'/223, l='MpServer', x=56.31, y=76.00, z=74.22], aby['entity.KillerBunny.name'/451, l='MpServer', x=135.53, y=71.00, z=29.44], cif['edison2'/427, l='MpServer', x=61.34, y=76.00, z=80.07], add['entity.ItemFrame.name'/239, l='MpServer', x=60.03, y=68.50, z=98.50], add['entity.ItemFrame.name'/238, l='MpServer', x=61.50, y=68.50, z=97.03], add['entity.ItemFrame.name'/237, l='MpServer', x=60.03, y=68.50, z=102.50], add['entity.ItemFrame.name'/236, l='MpServer', x=62.50, y=68.50, z=97.03], add['entity.ItemFrame.name'/235, l='MpServer', x=60.03, y=68.50, z=101.50], add['entity.ItemFrame.name'/234, l='MpServer', x=60.03, y=68.50, z=99.50], add['entity.ItemFrame.name'/233, l='MpServer', x=60.03, y=68.50, z=104.50], add['entity.ItemFrame.name'/232, l='MpServer', x=62.50, y=68.50, z=106.97], abx['Pig'/231, l='MpServer', x=57.16, y=76.00, z=76.59], abx['Pig'/230, l='MpServer', x=61.06, y=76.00, z=79.09], abx['Pig'/229, l='MpServer', x=55.06, y=76.00, z=71.06], abx['Pig'/228, l='MpServer', x=55.06, y=76.00, z=76.22], abx['Pig'/227, l='MpServer', x=64.03, y=76.00, z=78.88], abx['Pig'/226, l='MpServer', x=65.06, y=76.00, z=75.88], abx['Pig'/225, l='MpServer', x=58.81, y=76.00, z=73.13], abx['Pig'/224, l='MpServer', x=55.22, y=76.00, z=72.22], aby['Rabbit'/254, l='MpServer', x=48.91, y=74.00, z=147.91], abp['Cow'/255, l='MpServer', x=49.06, y=74.00, z=148.94], abp['Cow'/252, l='MpServer', x=49.06, y=74.00, z=150.50], aby['Rabbit'/253, l='MpServer', x=63.88, y=74.00, z=153.53], abp['Cow'/250, l='MpServer', x=50.25, y=74.00, z=149.22], abp['Cow'/251, l='MpServer', x=50.34, y=74.00, z=148.06], aby['Rabbit'/248, l='MpServer', x=62.41, y=74.00, z=150.66], afp['Skeleton'/2631, l='MpServer', x=94.13, y=79.00, z=134.47], abp['Cow'/249, l='MpServer', x=50.25, y=74.00, z=151.88], afp['Skeleton'/2632, l='MpServer', x=99.50, y=82.00, z=138.50], aby['Rabbit'/246, l='MpServer', x=62.53, y=74.00, z=149.72], abp['Cow'/247, l='MpServer', x=49.06, y=74.00, z=152.72], add['entity.ItemFrame.name'/244, l='MpServer', x=61.50, y=68.50, z=106.97], abp['Cow'/245, l='MpServer', x=52.59, y=74.00, z=151.66], add['entity.ItemFrame.name'/242, l='MpServer', x=63.50, y=68.50, z=106.97], add['entity.ItemFrame.name'/243, l='MpServer', x=60.03, y=68.50, z=103.50], add['entity.ItemFrame.name'/240, l='MpServer', x=60.03, y=68.50, z=105.50], add['entity.ItemFrame.name'/241, l='MpServer', x=60.03, y=68.50, z=100.50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at cee.a(SourceFile:308)
+	at bsn.b(SourceFile:2255)
+	at bsn.a(SourceFile:321)
+	at net.minecraft.client.main.Main.main(SourceFile:120)
+
+-- System Details --
+Details:
+	Minecraft Version: 14w32d
+	Operating System: Mac OS X (x86_64) version 10.9.4
+	Java Version: 1.6.0_65, Apple Inc.
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Apple Inc.
+	Memory: 228573624 bytes (217 MB) / 400035840 bytes (381 MB) up to 1060372480 bytes (1011 MB)
+	JVM Flags: 5 total; -Xmx1G -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy -Xmn128M
+	IntCache: cache: 0, tcache: 0, allocated: 13, tallocated: 95
+	Launched Version: 14w32d
+	LWJGL: 2.9.1
+	OpenGL: NVIDIA GeForce 9400M OpenGL Engine GL version 2.1 NVIDIA-8.24.15 310.90.9.05f01, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because ARB_framebuffer_object is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Probably not. Jar signature remains and client brand is untouched.
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
