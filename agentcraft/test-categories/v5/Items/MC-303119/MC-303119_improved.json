@@ -1,0 +1,38 @@
+{
+  "key": "MC-303119",
+  "created_date": "2025-10-13T17:45:39.809-0700",
+  "updated_date": "2025-12-10T00:21:33.212-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.10",
+    "25w41a",
+    "25w43a"
+  ],
+  "fix_versions": [
+    "26.1 Snapshot 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 0,
+  "labels": [],
+  "resolution_date": "2025-12-10T00:21:33.156-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Feeding a cat or wolf in Survival mode with only one item in the selected item slot does not restore as much health as it should",
+  "environment_raw": "",
+  "description": "## Steps to reproduce the issue\n\nIn Survival or Adventure, with only one item in the selected item slot, feed a tamed cat or wolf. The cat must have 8 or less health and the wolf must have 37 or less health.\n\nFor a more controlled scenario, you can use commands to summon the animals. These three commands:\n\n/summon cat ~ ~1 ~ {Tags:[BugTest],Sitting:1b,Health:1}\n/summon wolf ~ ~1 ~ {Tags:[BugTest],Sitting:1b,Health:1}\n/execute as @e[tag=BugTest] run data modify entity @s Owner set from entity @p UUID\n\nAfter the commands, place exactly one raw cod* in two hotbar slots and, in survival or adventure mode, feed each animal with a cod.\n\n## *Or any item #wolf_food for the wolf and any item #cat_food for the cat\n\n## Expected result\n\nThe animal restore health according to the nutrition of the food*. In the case of raw cod, restore four health \u200bfor the wolf and restore two health \u200b\u200bfor the cat.\n\nSo in the controlled scenario, when using the command /execute as @e[tag=BugTest] run data get entity @s Health in chat, we should have the following result:\n\nCat has the following entity data: 3.0f\n\nWolf has the following entity data: 5.0f\n\nThis expected result happens when animals are fed in creative or when feeding more than one item in the selected item slot.\n\nTo do more than one test with the same animals, the command /execute as @e[tag=BugTest] run data modify entity @s Health set value 1 can be useful to set the health back to 1.\n\n## *More specifically: restore by double the value of the food.nutrition component for the wolf and restore by the value of food.nutrition for the cat. It is considered that food.nutrition = 1 if not defined (however in these cases the actual and expected result is the same).\n\n## Actual result\n\nRegardless of the food, the cat only restore 1 health and the wolf only restore 2 health. \n\nThe controlled scenario, when using the command /execute as @e[tag=BugTest] run data get entity @s Health in chat, we have as a result: \n\nCat has the following entity data: 2.0f\n\nWolf has the following entity data: 3.0f\n\nDifferent than expected.\n\nNote: The same happens if we customize the tags #cat_food or #wolf_food or the food or use_remainder component.\n\n## Probable reason\n\nThe game only reads the item used to feed the animal after the item disappears from the slot due to being used. This way, it considers the item air that does not have the food component defined, thus considering it as if the food's nutrition were 1.\n\nIf so, to fix it, simply change the order to first read the item's component and then remove it.",
+  "Steps to Reproduce": "1. Enter a Creative world with commands enabled.\n2. Run `/summon cat ~ ~1 ~ {Tags:[BugTest],Sitting:1b,Health:1}`.\n3. Run `/summon wolf ~ ~1 ~ {Tags:[BugTest],Sitting:1b,Health:1}`.\n4. Run `/execute as @e[tag=BugTest] run data modify entity @s Owner set from entity @p UUID`.\n5. Obtain exactly two raw cod and place one in each of two hotbar slots.\n6. Run `/gamemode survival`.\n7. Select the hotbar slot containing one raw cod and feed the tamed cat.\n8. Select the other hotbar slot containing one raw cod.\n9. Feed the tamed wolf.\n10. Run `/execute as @e[tag=BugTest] run data get entity @s Health` and observe that the cat has `2.0f` health and the wolf has `3.0f` health instead of the expected `3.0f` and `5.0f`, respectively.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.10, 25w41a, 25w43a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a tamed cat or wolf is fed in Survival or Adventure mode using the only item in the selected hotbar slot, the animal is healed using the default nutrition value rather than the nutrition of the consumed item.\n\nAfter feeding:\n\n- A cat is healed by **1 health point**, regardless of the food\u2019s `food.nutrition` value.\n- A wolf is healed by **2 health points**, regardless of the food\u2019s `food.nutrition` value and the expected wolf multiplier.\n\nFor the controlled test, after resetting both animals to `Health:1` and feeding them one raw cod from a slot containing exactly one item, the results are:\n\n```text\nCat has the following entity data: 2.0f\nWolf has the following entity data: 3.0f\n```\n\nThis does not occur when the player is in Creative mode or when the selected slot contains more than one item; in those cases, the animals receive the expected healing. The issue also occurs with custom foods, customized `#cat_food` or `#wolf_food` tags, and items with a `use_remainder` component.",
+  "Expected Behavior": "When a tamed cat or wolf is fed in Survival or Adventure mode, it should restore health according to the food\u2019s nutrition, even when only one item remains in the selected slot. Raw cod should restore 2 health to a cat and 4 health to a wolf, producing 3.0 health from 1.0 in the controlled scenario, while custom food tags and components should likewise apply their defined nutrition values.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Items/MC-303119",
+  "improvement_metadata": {
+    "original_key": "MC-303119"
+  }
+}

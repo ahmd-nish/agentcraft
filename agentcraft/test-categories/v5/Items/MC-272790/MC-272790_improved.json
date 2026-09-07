@@ -1,0 +1,38 @@
+{
+  "key": "MC-272790",
+  "created_date": "2024-05-31T03:33:01.547-0700",
+  "updated_date": "2026-08-27T02:38:27.267-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.6",
+    "1.21 Pre-Release 1",
+    "1.21.3"
+  ],
+  "fix_versions": [
+    "25w03a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-01-13T07:06:07.178-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Shulker boxes and other blocks in the end exit portal when it changes state are not dropped as items",
+  "environment_raw": "",
+  "description": "## The bug\n\n1.21 pre-release 1 finally fixed \n \n \n \n MC-902\n \n Resolved\n \n by making the replaced blocks drop as items rather than outright deleted as previously. However, this behaviour does not apply to blocks placed within or around the exit end portal when the dragon is killed or resummoned.\n\nThe other kind of end portal is also affected, which is reported under \n \n \n \n MC-227097\n \n Resolved\n \n.\n\n## How to reproduce\n\n - Enter the End\n\n - Place your precious shulker boxes inside the end fountain\n\n - Kill the dragon\n\n## Expected results\n\nAs the end portal activates, the blocks replaced by the end portal would be dropped as items and would be sent through the portal.\n\n## Actual results\n\nYour items are now gone forever. Well done!\n\n## Further notes\n\nAlso happens when the portal deactivates during the summoning ritual.",
+  "Steps to Reproduce": "1. Enter the End.\n2. Place shulker boxes inside the end fountain.\n3. Kill the dragon.\n4. Observe that when the exit portal activates, the shulker boxes are not dropped as items and disappear.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.6, 1.21 Pre-Release 1, 1.21.3",
+  "Observed Behavior": "## Actual behavior\n\nWhen the End exit portal is activated after the ender dragon is defeated, blocks located within or around the exit portal are replaced without dropping their corresponding items. This includes shulker boxes and other blocks, including blocks with stored contents. No item entities are created or sent through the portal, so the blocks\u2014and any contents in them\u2014are permanently lost.\n\nThe same occurs in reverse when the exit portal is deactivated during the ender dragon summoning ritual: blocks replaced by the restored fountain structure are removed without dropping as items.",
+  "Expected Behavior": "When the End exit portal activates or deactivates, any blocks placed within or around the portal that are replaced by the portal structure should be dropped as their corresponding items rather than deleted. These item drops should remain recoverable and be sent through the portal, preserving shulker boxes and other affected blocks instead of permanently losing them.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Items/MC-272790",
+  "improvement_metadata": {
+    "original_key": "MC-272790"
+  }
+}
