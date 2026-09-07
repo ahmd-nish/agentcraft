@@ -1,0 +1,42 @@
+{
+  "key": "MC-256693",
+  "created_date": "2022-10-20T08:11:39.094-0700",
+  "updated_date": "2025-04-30T04:33:38.819-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19.2",
+    "1.19.3 Release Candidate 3",
+    "1.19.3",
+    "23w04a"
+  ],
+  "fix_versions": [
+    "22w42a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "allay",
+    "structure_block"
+  ],
+  "resolution_date": "2023-05-12T12:00:52.715-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Allays that are holding items ignore note blocks when loaded from structure blocks",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nAllays that are holding items ignore note blocks when loaded from structure blocks.\n\nSaving a structure containing an allay (using a structure block with \"Include Entities\" on) and loading it in another world causes the allay in the imported structure to ignore note blocks in the position that the structure had a note block. (Newly spawned allays work as expected) Haven't tested whether reloading the world or using a note block in a different position works.\n\n## Steps to Reproduce:\n\n - Download the provided structure block .nbt file that contains an empty structure that has an allay holding a gold block within it. mc-256693.nbt\n\n - Create a world and place the .nbt file into the generated\\minecraft\\structures folder.\n\n - Place down a structure block with the appropriate data already inputted into it by using the command provided below.\n\n/setblock ~1 ~ ~1 minecraft:structure_block{ignoreEntities:0b,mode:\"LOAD\",name:\"minecraft:mc-256693\",posX:1,posY:0,posZ:1,powered:0b,showboundingbox:1b,sizeX:5,sizeY:5,sizeZ:5}\n\n - Open the structure block and click the \"LOAD\" button to load the structure.\n\n - Obtain a note block and some gold blocks.\n\n - Place down the note block and right-click it while the allay is nearby in an attempt to make the allay like the note block.\n\n - Throw some gold blocks on the ground and wait for the allay to collect them.\n\n - Take note of how the allay ignores the note block and decides to drop the held items at your location instead.\n\n## Observed Behavior:\n\nAllays ignore note blocks.\n\n## Expected Behavior:\n\nAllays would not ignore note blocks.",
+  "Steps to Reproduce": "1. Download the provided `mc-256693.nbt` structure file.\n2. Create a world.\n3. Place `mc-256693.nbt` in the world's `generated\\minecraft\\structures` folder.\n4. In the world, execute `/setblock ~1 ~ ~1 minecraft:structure_block{ignoreEntities:0b,mode:\"LOAD\",name:\"minecraft:mc-256693\",posX:1,posY:0,posZ:1,powered:0b,showboundingbox:1b,sizeX:5,sizeY:5,sizeZ:5}`.\n5. Open the placed structure block and click the \"LOAD\" button.\n6. Obtain a note block and some gold blocks.\n7. Place the note block near the loaded allay and right-click it.\n8. Throw the gold blocks on the ground.\n9. Wait until the allay collects the gold blocks.\n10. Observe that the allay ignores the note block and drops the held items at your location.",
+  "Environment": "Minecraft Java Edition Versions: 1.19.2, 1.19.3 Release Candidate 3, 1.19.3, 23w04a (includes snapshots)",
+  "Observed Behavior": "The allay loaded as part of the structure does not detect or target the nearby note block after the note block is activated. Although it is holding an item and collects matching dropped items, it delivers those items to the player instead of delivering them to the note block.\n\nNewly spawned allays correctly respond to the activated note block under the same conditions.",
+  "Expected Behavior": "An allay holding an item and loaded from a structure block should respond to a nearby note block when it plays, just like a newly spawned allay. It should recognize the note block, deliver the collected items to it instead of returning them to the player, and remain associated with that note block while continuing to gather and return matching items.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Structures/MC-256693",
+  "improvement_metadata": {
+    "original_key": "MC-256693"
+  }
+}

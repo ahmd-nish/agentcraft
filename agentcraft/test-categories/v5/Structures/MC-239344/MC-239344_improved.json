@@ -1,0 +1,38 @@
+{
+  "key": "MC-239344",
+  "created_date": "2021-10-19T11:20:21.104-0700",
+  "updated_date": "2025-04-29T21:40:09.357-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w41a",
+    "21w42a",
+    "21w43a"
+  ],
+  "fix_versions": [
+    "21w44a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-11-02T05:04:48.394-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "All torches in mineshafts are facing the wrong way",
+  "environment_raw": "",
+  "description": "Note: This has been unreported for a long time and it's probably the real reason for \n \n \n \n MC-216561\n \n Resolved\n \n as unless there happens to be a random block behind the torch it won't generate making torches rarer. Also could possibly be the reason for \n \n \n \n MC-216432\n \n Resolved\n \n\nBug Description: This is probably a recurrence of \n \n \n \n MC-124966\n \n Resolved\n \n, all torches in mineshafts are now facing the wrong way. This apart from being a bug in of itself probably makes torches rarer as those won't generate unless they happen to have a random supporting block generate. I also do not know the first version this started to occur in.\n\nExpected Behaviour:\n\n All torches in mineshafts generate attached to the wooden support pillars\n\n \n\nObserved Behaviour:\n\n All torches generate rotated 180* in the other direction\n\n How to reproduce:\n\n Locate any mineshaft structure (it doesn't matter whether it's above or below y0) and find any torches you will find that all of them are rotated",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create or load a world.\n3. Locate any mineshaft structure, whether it is above or below Y=0.\n4. Enter the mineshaft.\n5. Find the torches generated in the mineshaft.\n6. Observe that the torches are rotated 180\u00b0 in the wrong direction instead of generating attached to the wooden support pillars.",
+  "Environment": "Minecraft Java Edition Versions: 21w41a, 21w42a, 21w43a (includes snapshots)",
+  "Observed Behavior": "Wall-mounted torches generated in mineshafts have their horizontal facing direction reversed by 180\u00b0. Instead of being attached to the sides of the mineshaft\u2019s wooden support pillars, they are oriented toward the pillars and therefore require a solid block on the opposite side to support them.\n\nAs a result, a torch is not generated when no suitable supporting block exists behind it. This can make torches appear less frequently in mineshafts. The issue occurs in mineshafts regardless of whether they generate above or below Y=0.",
+  "Expected Behavior": "All torches generated in mineshafts should be oriented correctly toward and attached to the wooden support pillars, rather than rotated 180 degrees away from them. They should generate consistently as part of the mineshaft structure wherever torches are intended, including mineshafts above or below Y=0, without requiring an additional random block behind them for support.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Structures/MC-239344",
+  "improvement_metadata": {
+    "original_key": "MC-239344"
+  }
+}

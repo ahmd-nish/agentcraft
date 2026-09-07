@@ -1,0 +1,51 @@
+{
+  "key": "MC-266441",
+  "created_date": "2023-11-08T07:56:32.941-0800",
+  "updated_date": "2026-08-27T03:20:32.704-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w45a",
+    "23w46a",
+    "1.20.3 Pre-Release 1",
+    "1.20.3 Pre-Release 2",
+    "1.20.4 Release Candidate 1",
+    "1.20.4",
+    "24w03b",
+    "24w11a",
+    "24w12a",
+    "24w13a",
+    "24w14a",
+    "1.20.5 Pre-Release 1",
+    "24w21b",
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "trial_chamber"
+  ],
+  "resolution_date": "2024-07-31T00:15:25.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Multiple trial chamber templates have missing or incorrect blocks",
+  "environment_raw": "",
+  "description": "## The bug\n\nSeveral trial chamber templates have missing or incorrect blocks.\n\n## Chambers\n\n - assembly\n \n\n \nOne of the blocks in left_staircase_2 and right_staircase_2 is tuff bricks instead of chiseled tuff bricks.\n\n \n\n \n\n - chamber_2 generates without six copper bulbs (top and bottom) on three of its pillars on one corner.\n\n - chamber_4 has one of its pillars missing a tuff bricks block.\n\n - chamber_8 has an incorrectly rotated trapdoor (\n \n \n \n MC-270614\n \n Resolved\n \n).\n\n - eruption\n \n\n \nOne of the pillars is missing two waxed copper blocks on the top.\n\n - One of the pillars is missing one waxed copper block on the top.\n\n - A block of tuff bricks is misplaced near the top of two of its pillars.\n\n - A block on the copper floor of quadrant_1 is incorrect, with waxed oxidized cut copper instead of waxed oxidized copper.\n\n \n\n \n\n - slanted has several tuff bricks instead of polished tuff on the roof between pillars near the center.\n\n## Corridors\n\n - end_1\n \n\n \nThere is a misplaced waxed copper block instead of tuff bricks.\n\n - One of the sides is missing middle and lower waxed copper bulbs, making the room asymmetrical.\n\n \n\n \n\n - end_2\n \n\n \nThere are four apparently misplaced tuff bricks on the roof.\n\n \n\n \n\n - straight_6 has inconsistent copper blocks on the corner of staircases.\n\n## Hallways\n\n - corner_staircase has a waxed copper block instead of a tuff bricks block in one corner.\n\n - left_corner is still missing several blocks.\n\n - right_corner is still missing chiseled tuff bricks, and does not replace certain blocks with air.\n\n - straight_staircase has chiseled tuff bricks instead of tuff bricks behind one of the waxed oxidized cut copper stairs.\n\n - upper_hallway_connector\n \n\n \nThere is a waxed copper block on the top floor instead of waxed oxidized copper.\n\n - The placement of the top copper bulb is offset one block compared to the bottom one, unlike other templates.\n\n \n\n \n\n## Intersections\n\n - intersection_3 has nine tuff bricks on the roof near the top of its pillars instead of polished tuff.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new Creative world with default settings.\n2. Use the in-game `/locate structure minecraft:trial_chambers` command to find a trial chamber.\n3. Travel to the located trial chamber and enter it.\n4. Explore the generated structure and identify the sections named `assembly`, `eruption`, `slanted`, `end_1`, `end_2`, `straight_6`, `corner_staircase`, `left_corner`, `right_corner`, `straight_staircase`, `upper_hallway_connector`, and `intersection_3`.\n5. Inspect the blocks, pillars, roofs, floors, stairs, bulbs, and trapdoors in those sections.\n6. Observe that the templates contain missing or incorrect blocks, including tuff bricks in place of chiseled or polished tuff, missing copper blocks or bulbs, misplaced blocks, incorrect copper block types, an incorrectly rotated trapdoor, and asymmetrical or offset sections as described in the report.",
+  "Environment": "Minecraft Java Edition Versions: 23w45a, 23w46a, 1.20.3 Pre-Release 1, 1.20.3 Pre-Release 2, 1.20.4 Release Candidate 1, 1.20.4, 24w03b, 24w11a, 24w12a, 24w13a, 24w14a, 1.20.5 Pre-Release 1, 24w21b, 1.21 (includes snapshots)",
+  "Observed Behavior": "The affected trial chamber templates generate with missing, misplaced, incorrectly oriented, or incorrect block types. In the assembly template, one block in each of left_staircase_2 and right_staircase_2 is tuff bricks instead of chiseled tuff bricks. chamber_2 generates without six copper bulbs, consisting of the top and bottom bulbs on three pillars at one corner, and chamber_4 has one tuff bricks block missing from a pillar. chamber_8 contains an incorrectly rotated trapdoor. In eruption, one pillar is missing two waxed copper blocks at the top, another pillar is missing one waxed copper block at the top, and a tuff bricks block is misplaced near the top of each of two pillars. The copper floor in quadrant_1 also contains waxed oxidized cut copper where waxed oxidized copper should be. The slanted template has several tuff bricks blocks on the roof between the pillars near the center where polished tuff should be. In corridor end_1, a waxed copper block is present where tuff bricks should be, and one side is missing its middle and lower waxed copper bulbs, making the room asymmetrical. end_2 has four apparently misplaced tuff bricks blocks on the roof, while straight_6 has inconsistent copper block placement at the corners of its staircases. In the hallways, corner_staircase has a waxed copper block in one corner where a tuff bricks block should be, left_corner is missing several blocks, and right_corner is missing several chiseled tuff bricks blocks and does not replace certain blocks with air as expected. straight_staircase has chiseled tuff bricks behind one of the waxed oxidized cut copper stairs where tuff bricks should be. In upper_hallway_connector, a waxed copper block appears on the top floor where waxed oxidized copper should be, and the top copper bulb is offset by one block relative to the bottom copper bulb unlike in the other templates. Finally, intersection_3 has nine tuff bricks blocks on the roof near the tops of its pillars where polished tuff should be.",
+  "Expected Behavior": "Trial chamber templates should generate with complete, symmetrical, and correctly oriented structures. Each staircase, pillar, roof, floor, corridor, hallway, and intersection should contain the intended block types in their proper positions, including chiseled or polished tuff, copper variants, waxed copper blocks, and copper bulbs. No blocks should be missing, misplaced, incorrectly substituted, offset, or replaced with an incorrect trapdoor orientation or absent air space.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Structures/MC-266441",
+  "improvement_metadata": {
+    "original_key": "MC-266441"
+  }
+}
