@@ -1,0 +1,39 @@
+{
+  "key": "MC-268431",
+  "created_date": "2024-02-09T08:26:05.236-0800",
+  "updated_date": "2026-08-27T02:26:54.624-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.4",
+    "24w06a",
+    "1.21",
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w38a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-12-12T15:19:27.215-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "External inventory changes except for the hotbar are not registered in a creative mode item selection screen",
+  "environment_raw": "",
+  "description": "External inventory changes (e.g. by picking up items) are not registered on the client if you are in creative mode inventory and are not in the Survival Inventory tab, causing a desync.\n\nSteps to reproduce:\n\n - Fill your hotbar with items.\n\n - Go into the creative mode inventory and go to any tab, but the inventory tab (e.g. the search tab).\n\n - While in the tab, take any other item and throw it onto the ground.\n\n - Wait until you pick it up and observe whether or not the item appears in the inventory.\n\nExpected behavior:\n\nThe item is picked up and should show up in the inventory.\n\nActual behavior:\n\nThe item does not appear in the inventory. However, if you try to remove that particular item, e.g. using /clear @s <item>, the server will report that the item indeed was in the inventory.\n\nCode analysis:\n\nnet.minecraft.client.multiplayer.ClientPacketListener\n\npublic void handleContainerSetSlot(ClientboundContainerSetSlotPacket packet) {\n // ...\n boolean conditional = false; // Line 1200\n\n if (minecraft.screen instanceof CreativeModeInventoryScreen x) { // Line 1202\n conditional = !x.isInventoryOpen(); // Line 1203\n }\n // 0 means player inventory\n if (packet.getContainerId() == 0 && InventoryMenu.isHotbarSlot(slotId)) {\n // ...\n player.inventoryMenu.setItem(slotId, packet.getStateId(), item);\n } else if (packet.getContainerId() == player.containerMenu.containerId && (packet.getContainerId() != 0 || !conditional)) {\n player.containerMenu.setItem(slotId, packet.getStateId(), item);\n }\n}\n\nThis method is responsible for all of the single slot synchronization on the client side.\n\nBecause of it, inventory changes are almost completely ignored if they occur in a non-hotbar slot (first condition) and you are in the creative mode inventory (Line 1202), but not in the \"Survival Inventory\" tab (Line 1203). (why?)\n\nPotential fix:\n\nJust remove those weird conditions. Why do they even exist in the first place?\n\npublic void handleContainerSetSlot(ClientboundContainerSetSlotPacket packet) {\n // ...\n if (packet.getContainerId() == 0) {\n // ...\n player.inventoryMenu.setItem(slotId, packet.getStateId(), item);\n } else if (packet.getContainerId() == player.containerMenu.containerId) {\n player.containerMenu.setItem(slotId, packet.getStateId(), item);\n }\n}\n\nAlso, because this is a synchronization step, the client should be able to be confident about that particular remote slot, shouldn't it? So please also consider changing this:\n\nnet.minecraft.world.inventory.AbstractContainerMenu\n\npublic void setItem(int slotId, int stateId, ItemStack item) {\n getSlot(slotId).set(item); // Line 593\n setRemoteSlot(slotId, item); // New line\n this.stateId = stateId; // Line 594\n}\n\nThat is the setItem method from above, by the way.",
+  "Steps to Reproduce": "1. Create or enter a Creative world with default settings.\n2. Fill the hotbar with items.\n3. Open the Creative inventory.\n4. Select a Creative inventory tab other than the Survival Inventory tab, such as the Search tab.\n5. While keeping the Creative inventory open on that tab, take another item and drop it onto the ground.\n6. Wait until the dropped item is picked up.\n7. Observe that the picked-up item does not appear in the inventory while the Creative inventory remains open.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.4, 24w06a, 1.21, 24w33a (includes snapshots)",
+  "Observed Behavior": "The item is picked up by the server while the Creative inventory remains open on a non-Survival tab, but the client does not apply the corresponding slot update for non-hotbar inventory slots. As a result, the item is not displayed in the player inventory, even though it is present in the server-side inventory. The hotbar continues to update normally. Executing `/clear @s <item>` confirms the desynchronization by reporting the item that the client failed to display.",
+  "Expected Behavior": "While the Creative inventory is open on any non-Survival tab, picking up a dropped item should update the client\u2019s inventory immediately. The item should appear in an available non-hotbar inventory slot and remain visible when the inventory is viewed, with the client accurately reflecting the server\u2019s inventory contents and avoiding any desynchronization.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Inventory/MC-268431",
+  "improvement_metadata": {
+    "original_key": "MC-268431"
+  }
+}
