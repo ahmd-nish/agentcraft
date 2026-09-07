@@ -1,0 +1,38 @@
+{
+  "key": "MC-260750",
+  "created_date": "2023-03-04T06:20:52.616-0800",
+  "updated_date": "2025-04-30T05:07:35.131-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19.3",
+    "1.19.4 Pre-release 3",
+    "1.19.4"
+  ],
+  "fix_versions": [
+    "23w12a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-03-22T02:49:45.195-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Magma blocks use unnecessary random ticking for an outdated feature, causing performance issues",
+  "environment_raw": "",
+  "description": "This is an optimization issue, although it is notable only on very specific cases such as the one described later.\n\n## The bug\n\nPrior to 1.13, magma blocks used to extinguish water above them by using the random ticking system. After the update, this feature was removed making the random ticking no longer necessary for magma blocks. However, this feature was not properly removed and some remaining code is still present on the game, more concretely, the random ticking. Due to this, the game still checks for magma blocks on random ticking wasting a bit of performance.\n\n## Steps to reproduce\n\nFor expected behaviour:\n\n - Create a superflat world just with the bedrock and 20 layers of stone, and with mobs disabled.\n\n - Set 'random tick speed' game rule to an high number (1000+)\n\n - On the Alt+F3 menu, notice how performance remains unaffected.\n\nFor this bug:\n\n - Create a superflat world just with the bedrock and 20 layers of magma blocks and mobs disabled.\n\n - Set 'random tick speed' game rule to an high number (1000+)\n\n - On the Alt+F3 menu, notice how the performance meter shows an increase.\n\nThis is very likely not intended, because apparently magma blocks don't do anything related to random events or game ticking (except for entity damage, but that's from a different).\n\n## Code analysis\n\nHere's a code analysis along with a potential fix regarding this issue.\n\nThe following is based on a decompiled version of Minecraft 1.19.2 using MCP-Reborn.\n\nnet.minecraft.world.level.block.MagmaBlock.java\n\npublic class MagmaBlock extends Block {\n ...\n \u00a0 public void randomTick(BlockState $bs, ServerLevel $sl, BlockPos $bp, RandomSource $rs) {\n BlockPos blockpos = $bp.above();\n if ($sl.getFluidState($bp).is(FluidTags.WATER)) {\n \u00a0 \u00a0 \u00a0 \u00a0 $sl.playSound((Player)null, $bp, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 0.5F, 2.6F + ($sl.random.nextFloat() - $sl.random.nextFloat()) * 0.8F);\n \u00a0 \u00a0 \u00a0 \u00a0 $sl.sendParticles(ParticleTypes.LARGE_SMOKE, (double)blockpos.getX() + 0.5D, (double)blockpos.getY() + 0.25D, (double)blockpos.getZ() + 0.5D, 8, 0.5D, 0.25D, 0.5D, 0.0D);\n }\n\n }\n ...\n\nIf we look at the above class, we can see that the block is checking if a water fluid is in the same block position as the magma block, which is impossible in vanilla minecraft but the game still checks this because it is used on random ticking. Before 1.13, the block used to check the block above instead, for the feature explained before (it is very likely that the old code is now commented). After the update, this was forgotten to be removed and at\u00a0net.minecraft.world.level.block.Blocks the magma block definition still defines it as a random ticking block.\n\nPotential Fix:\n\nSimply removing the .randomTicks() method within this line of code should resolve this problem, along with removing MagmaBlock.randomTick() method to remove extra unnecessary code:\n\nnet.minecraft.world.level.block.Blocks.java\n\npublic class Blocks {\n ...\n public static final Block MAGMA_BLOCK = register(\"magma_block\", new MagmaBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.NETHER).requiresCorrectToolForDrops().lightLevel((p_152684_) -> { \u00a0 \u00a0 \u00a0 return 3;\n \u00a0 \u00a0}).randomTicks().strength(0.5F).isValidSpawn((p_187421_, p_187422_, p_187423_, p_187424_) -> {\n \u00a0 \u00a0 \u00a0 return p_187424_.fireImmune(); \u00a0 \u00a0}).hasPostProcess(Blocks::always).emissiveRendering(Blocks::always)));\n ...\n}",
+  "Steps to Reproduce": "1. Create a superflat world with only bedrock and 20 layers of stone, with mobs disabled.\n2. Set the random tick speed game rule to a high value of 1000 or more.\n3. Open the Alt+F3 performance meter.\n4. Observe that the performance remains unaffected.\n5. Create a separate superflat world with only bedrock and 20 layers of magma blocks, with mobs disabled.\n6. Set the random tick speed game rule to a high value of 1000 or more.\n7. Open the Alt+F3 performance meter.\n8. Observe that the performance meter shows an increase compared with the stone world.",
+  "Environment": "Minecraft Java Edition Versions: 1.19.3, 1.19.4 Pre-release 3, 1.19.4",
+  "Observed Behavior": "## Actual behavior\n\nMagma blocks are still registered as blocks that receive random ticks. Consequently, every loaded magma block is periodically processed according to the world\u2019s `randomTickSpeed`, even though magma blocks no longer require random ticks for any current gameplay behavior.\n\nThe remaining `MagmaBlock.randomTick` implementation checks whether the fluid state at the magma block\u2019s own position is water. In vanilla gameplay, a magma block occupies that position as a solid block, so this condition cannot normally be true. The method therefore performs an unnecessary check and produces no result, while still contributing to random-tick processing.\n\nThe unnecessary work becomes measurable when many magma blocks are loaded and `randomTickSpeed` is set to a high value. This overhead does not occur for comparable blocks, such as stone, which are not marked for random ticking. The entity-damaging behavior of magma blocks is unrelated to random ticking and should remain unchanged.",
+  "Expected Behavior": "Magma blocks should not cause additional performance impact when the random tick speed is increased, even when a large area is filled with them. The performance meter should remain comparable to an equivalent area of stone, since magma blocks no longer perform any random-tick behavior. This should remain true with mobs disabled and at high random tick speed values.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Performance/MC-260750",
+  "improvement_metadata": {
+    "original_key": "MC-260750"
+  }
+}

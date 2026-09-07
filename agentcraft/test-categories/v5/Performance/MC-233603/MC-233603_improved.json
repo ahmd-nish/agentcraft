@@ -1,0 +1,63 @@
+{
+  "key": "MC-233603",
+  "created_date": "2021-08-01T22:41:01.228-0700",
+  "updated_date": "2026-08-27T02:41:09.928-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "1.18.1",
+    "22w06a",
+    "1.18.2",
+    "22w11a",
+    "22w12a",
+    "22w16b",
+    "22w19a",
+    "1.19 Pre-release 4",
+    "1.19",
+    "22w24a",
+    "1.19.2",
+    "1.19.3 Pre-release 2",
+    "1.19.3",
+    "23w04a",
+    "23w05a",
+    "23w06a",
+    "1.19.4 Pre-release 1",
+    "1.19.4",
+    "23w16a",
+    "23w18a",
+    "1.20.1",
+    "23w31a",
+    "1.20.2",
+    "23w44a",
+    "1.21.1"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "hotbar"
+  ],
+  "resolution_date": "2024-08-17T12:48:05.855-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "HUD / Hotbar rendering can heavily impact frame rate performance",
+  "environment_raw": "",
+  "description": "The game experiences a large frame rate decrease when there's a large amount of HUD/hotbar elements displayed on the screen, in this case hearts. I assume this is also the case with other elements like the hunger, armor, and oxygen icons, but only noticeable with hearts due to the use of certain effects (health boost & absorption) at high amplifiers, as well as with the use of the max_health attribute. Fairly small example:\n\n \n\nAs can be seen in the images the performance hit is somewhat high just for a few more hearts added to the screen. Apparently each element (heart/hunger/defense icon) is counted as a draw call, and this number can increment in certain survival scenarios, making rendering of a simple status bar resource intensive. Even more intensive if items are rendered on the slots (\n \n \n \n MC-233604\n \n Resolved\n \n).\n\nI considered this a different issue from \n \n \n \n MC-10755\n \n Resolved\n \n for two reasons:\n\n - There aren't any uninteded effects at high amplifiers gameplay-wise, and can be reproduced with the max_health attribute, not only effects.\n\n - This is a performance concern with something as simple as the HUD, which as i said before can be reproduced in a survival setting.\n\nWhile this issue might not be very noticeable in vanilla at first hand, some servers and datapacks make use of high health effects, making this issue very apparent. Here you can see the worst case scenario to demonstrate how it can impact frame rate times:\n\n \n\nYou can only imagine how many draw calls are being made here to end up with these frame times in a void world. You can also check the attachments for more examples. Word from some modders say that this can be mitigated by applying batching when rendering the status bar.\n\nHow to reproduce\n\n - Create a void world, and run either one or both of the next commands.\n\n - \n\n/effect give @s minecraft:absorption 100 255 true\n\n - \n\n/attribute @s minecraft:generic.max_health base set 1000\n\n - Press ALT+F3 and notice the lag on the FPS graph.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create and enter a void world.\n3. Run `/effect give @s minecraft:absorption 100 255 true`.\n4. Run `/attribute @s minecraft:generic.max_health base set 1000`.\n5. Press `ALT+F3` to display the FPS graph.\n6. Observe a substantial frame-rate decrease while the HUD displays the increased number of hearts.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 1.18.1, 22w06a, 1.18.2, 22w11a, 22w12a, 22w16b, 22w19a, 1.19 Pre-release 4, 1.19, 22w24a, 1.19.2, 1.19.3 Pre-release 2, 1.19.3, 23w04a, 23w05a, 23w06a, 1.19.4 Pre-release 1, 1.19.4, 23w16a, 23w18a, 1.20.1, 23w31a, 1.20.2, 23w44a, 1.21.1 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nRendering a large number of heart icons in the HUD causes a substantial increase in frame time and a corresponding FPS drop. This is reproducible in a void world, where other scene-rendering costs are minimal, by giving the player a high level of Absorption and/or greatly increasing the `generic.max_health` attribute.\n\nThe performance impact scales with the number of hearts displayed: configurations with only a few additional hearts can already reduce performance, while hundreds of hearts can cause severe frame-time spikes. The HUD appears to render each heart individually, resulting in a large number of rendering operations for what is otherwise a simple status bar. The effect is especially apparent when using:\n\n```text\n/effect give @s minecraft:absorption 100 255 true\n/attribute @s minecraft:generic.max_health base set 1000\n```\n\nThis is a rendering-performance issue only; the additional health and Absorption function normally and do not cause unintended gameplay effects. The same behavior may affect other repeated HUD icons, such as hunger, armor, and oxygen, although the issue is most apparent with hearts because gameplay and commands can produce much larger heart bars.",
+  "Expected Behavior": "The HUD and hotbar should remain efficient to render even when the player has a very large number of hearts or other status-bar elements. Increasing health through effects or attributes should not cause a substantial frame-rate decrease, stuttering, or abnormal frame-time spikes. Performance should remain stable and comparable to that with a normal number of HUD elements.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Performance/MC-233603",
+  "improvement_metadata": {
+    "original_key": "MC-233603"
+  }
+}

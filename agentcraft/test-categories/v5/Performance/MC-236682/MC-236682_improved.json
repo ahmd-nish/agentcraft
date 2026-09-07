@@ -1,0 +1,36 @@
+{
+  "key": "MC-236682",
+  "created_date": "2021-09-15T12:16:23.152-0700",
+  "updated_date": "2025-05-02T01:02:07.366-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a"
+  ],
+  "fix_versions": [
+    "21w38a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-09-24T09:44:20.208-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Large and continuous lag spikes sometimes occur when loading/reloading into a world in 21w37a",
+  "environment_raw": "",
+  "description": "The Bug:\n\nLarge and continuous lag spikes sometimes occur when loading/reloading into a world in 21w37a.\n\nThis issue did not occur in 1.17.1. This may be quite difficult to reproduce as this does not happen all of the time.\n\nSteps to Reproduce:\n\n - Create a new world in 21w37a.\n\n - Exit the world.\n\n - Join the world again.\n\n - \u2192\u00a0\u00a0Notice how large and continuous lag spikes sometimes occur when loading/reloading into a world in 21w37a.\n\nExpected Behavior:\n\nThe expected behavior would be that no large and continuous lag spikes would sometimes occur when loading/reloading into a world in 21w37a.",
+  "Steps to Reproduce": "1. Launch Minecraft in version 21w37a.\n2. Create a new world.\n3. Enter the new world.\n4. Exit the world.\n5. Join the same world again.\n6. Observe that large and continuous lag spikes sometimes occur while loading or reloading into the world.",
+  "Environment": "Minecraft Java Edition Version 21w37a (snapshot)",
+  "Observed Behavior": "In snapshot **21w37a**, loading or reloading an existing world can intermittently cause **large, continuous lag spikes** during the loading process and shortly afterward. This results in severe, persistent stuttering rather than normal brief loading-related pauses. The issue does not occur every time, making it inconsistent to reproduce.\n\nThe same behavior was not observed in **Java Edition 1.17.1** under the same loading and rejoining scenario.",
+  "Expected Behavior": "When loading or reloading a world in Minecraft 21w37a, the game should remain responsive without large or continuous lag spikes. World loading should complete smoothly, allowing normal gameplay immediately after joining. This behavior should occur consistently whenever a world is opened and should not regress from the stable loading experience observed in version 1.17.1.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Performance/MC-236682",
+  "improvement_metadata": {
+    "original_key": "MC-236682"
+  }
+}

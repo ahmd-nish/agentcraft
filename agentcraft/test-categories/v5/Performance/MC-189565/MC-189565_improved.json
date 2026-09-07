@@ -1,0 +1,49 @@
+{
+  "key": "MC-189565",
+  "created_date": "2020-06-13T23:47:04.987-0700",
+  "updated_date": "2026-08-27T02:16:04.709-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16 Pre-release 5",
+    "1.16 Pre-release 6",
+    "1.16 Pre-release 7",
+    "1.16 Pre-release 8",
+    "1.16 Release Candidate 1",
+    "1.16",
+    "1.16.1",
+    "20w27a",
+    "20w28a",
+    "20w30a",
+    "1.16.2 Pre-release 1",
+    "1.16.2",
+    "1.16.4",
+    "1.16.5"
+  ],
+  "fix_versions": [
+    "20w45a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2020-09-01T02:49:49.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Some entities do not render inside of spawners and producing error log spam in console, potentially causing lag",
+  "environment_raw": "",
+  "description": "Mob Spawners do not render a \"mini\" mob visual for the following entities:\n\n - Bee\n\n - Enderman\n\n - Polar Bear\n\n - Wolf\n\n - Zombified Piglin\n\n - Evoker Fangs\n\nSee attached images for expected (Elder Guardian) vs unexpected (Zombified Piglin). When the game attempts to render them but fails, it also produces an error message in the console over and over again, which can potentially cause a lot of lag in the world, especially when lots of spawners are used.\n\n[01:00:15] [Render thread/WARN]: Exception loading entity: \ns: Loading entity NBT\n at aol.f(SourceFile:1642) ~[1.16-pre5.jar:?]\n at aop.a(SourceFile:467) ~[1.16-pre5.jar:?]\n at aop$$Lambda$4201/93583133.accept(Unknown Source) ~[?:?]\n at v.a(SourceFile:401) ~[1.16-pre5.jar:?]\n at aop.a(SourceFile:466) ~[1.16-pre5.jar:?]\n at aop.b(SourceFile:529) [1.16-pre5.jar:?]\n at aop.a(SourceFile:510) [1.16-pre5.jar:?]\n at bpc.d(SourceFile:256) [1.16-pre5.jar:?]\n at eei.a(SourceFile:22) [1.16-pre5.jar:?]\n at eei.a(SourceFile:12) [1.16-pre5.jar:?]\n at edw.a(SourceFile:107) [1.16-pre5.jar:?]\n at edw.b(SourceFile:96) [1.16-pre5.jar:?]\n at edw$$Lambda$4990/1816104835.run(Unknown Source) [1.16-pre5.jar:?]\n at edw.a(SourceFile:128) [1.16-pre5.jar:?]\n at edw.a(SourceFile:96) [1.16-pre5.jar:?]\n at ebx.a(SourceFile:1236) [1.16-pre5.jar:?]\n at ebs.a(SourceFile:717) [1.16-pre5.jar:?]\n at ebs.a(SourceFile:540) [1.16-pre5.jar:?]\n at dlx.e(SourceFile:1021) [1.16-pre5.jar:?]\n at dlx.d(SourceFile:654) [1.16-pre5.jar:?]\n at net.minecraft.client.main.Main.main(SourceFile:215) [1.16-pre5.jar:?]\nCaused by: java.lang.ClassCastException: dym cannot be cast to zc\n at ayk.a(SourceFile:260) ~[1.16-pre5.jar:?]\n at aol.f(SourceFile:1633) ~[1.16-pre5.jar:?]\n ... 20 more\n\nWhat I expected to happen was...:\n\n A \"mini\" version of the mob to be rendered in the middle of the spawner cube.\n\nWhat actually happened was...:\n\n No \"mini\" version of the mob is rendered inside the cage.\n\nSteps to Reproduce:\n\n - Place down a spawner\n\n - Modify the spawner's block data to the desired mob (can be done through commands or by right-clicking on the cage with the desired mob spawn egg).\n\nNote: The spawner\u00a0does spawn the desired mob. The issue is only visual \u2013 you cannot tell what kind of spawner it is just by looking at it.\n\n## Code analysis\n\nSee this comment.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.16-pre5.\n2. Create a new Creative world with default settings.\n3. Place a mob spawner.\n4. Right-click the spawner with a spawn egg for one of these entities: Bee, Enderman, Polar Bear, Wolf, Zombified Piglin, or Evoker Fangs.\n5. Look at the center of the spawner cage and monitor the game console for repeated errors.\n6. Observe that no mini version of the selected entity is rendered inside the spawner, while repeated entity-loading error messages appear in the console.",
+  "Environment": "Minecraft Java Edition Versions: 1.16 Pre-release 5, 1.16 Pre-release 6, 1.16 Pre-release 7, 1.16 Pre-release 8, 1.16 Release Candidate 1, 1.16, 1.16.1, 20w27a, 20w28a, 20w30a, 1.16.2 Pre-release 1, 1.16.2, 1.16.4, 1.16.5 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen a mob spawner is configured to spawn a **Bee, Enderman, Polar Bear, Wolf, Zombified Piglin, or Evoker Fangs**, the client does not render the entity\u2019s miniature model inside the spawner cage. The spawner remains visually empty, unlike spawners configured with entities such as the Elder Guardian.\n\nThe spawner itself continues to function and successfully spawns the configured entity; the problem is limited to the client-side preview rendered inside the cage. As the client repeatedly attempts to load the preview entity, it logs a recurring warning on the render thread:\n\n```text\n[Render thread/WARN]: Exception loading entity:\n...\nCaused by: java.lang.ClassCastException: dym cannot be cast to zc\n```\n\nThis warning is emitted repeatedly while the affected spawner is loaded and visible. Multiple affected spawners can therefore produce substantial log spam and may contribute to client performance problems.",
+  "Expected Behavior": "When a spawner is configured for a Bee, Enderman, Polar Bear, Wolf, Zombified Piglin, or Evoker Fangs, it should display a correctly scaled miniature version of that entity inside the spawner cage, as it does for supported mobs. The preview should render reliably without repeated console errors or error-log spam, while the spawner continues producing the selected entity normally.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Performance/MC-189565",
+  "improvement_metadata": {
+    "original_key": "MC-189565"
+  }
+}
