@@ -1,0 +1,43 @@
+{
+  "key": "MC-139548",
+  "created_date": "2018-11-17T12:10:23.746-0800",
+  "updated_date": "2026-08-10T01:54:00.476-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 18w45a",
+    "Minecraft 18w46a",
+    "1.20.1",
+    "23w33a",
+    "24w14a",
+    "1.21",
+    "1.21.2 Pre-Release 3",
+    "1.21.3"
+  ],
+  "fix_versions": [
+    "24w44a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2026-04-18T22:14:56.485-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Projectiles are rendered incorrectly if their Motion tag was recently changed",
+  "environment_raw": "",
+  "description": "## The bug\n\nNOTE: This is not a duplicate of \n \n \n \n MC-124197\n \n Resolved\n \n or any bugs listed within. This is new as of the 1.14 snapshots. It didn't occur in 1.13.2.\n\nIt affects all projectile entities (e.g. arrows, fireballs, potions, enderpearls, snowballs, eggs, etc.) but not other entities such as tnt or mobs. Every ~20 ticks it updates the position to where it's supposed to be, and if the entity changes state (such as an arrow's inGround tag becoming true) it updates immediately. It also affects other entities properly even while not being rendered in the correct location. For the Power[0,1,2] data, the projectile renders with a trajectory that curves towards the negative X, Y, and Z directions but actually travels and impacts as it should.\n\nA video's worth a thousand pictures, so here's a video showing the bug in action\n\nVideo demonstration \n\nIn case you need more details, this is using a convoluted raycasting system I set up. The projectiles are being fired in the direction of an invisible armorstand summoned 0.1 blocks in front of the player by setting the Motion or Power tags equal to the difference between the coordinates of the armorstand and the player, stored as a scoreboard value, via /data merge. When I summon them regularly with a /summon command such as /summon minecraft:fireball ~ ~ ~ {direction:[0.0,0.0,0.0],power:[0.123,-0.123,0.246]} they render just fine. As far as I can tell, it only occurs with /data merge. I'm not sure if it only affects /data merge with the \"from\" argument, or all /data merge commands.\n\n## How to reproduce\n\n - Enter the following commands into active repeating command blocks:\n\n/summon snowball ~ ~1 ~ {Motion:[1.0,1.0,0.0]}\n\n/execute as @e[type=snowball,tag=!edited] run data merge entity @s {Motion:[0.0,1.0,1.0],Tags:[edited]}\n\n\u2192 The newest snowballs appear to travel the wrong direction",
+  "Steps to Reproduce": "1. Launch a 1.14 snapshot and create a Creative world.\n2. Enter `/summon snowball ~ ~1 ~ {Motion:[1.0,1.0,0.0]}` into an active repeating command block.\n3. Enter `/execute as @e[type=snowball,tag=!edited] run data merge entity @s {Motion:[0.0,1.0,1.0],Tags:[edited]}` into a second active repeating command block.\n4. Activate both repeating command blocks.\n5. Observe that the newest snowballs appear to travel in the wrong direction, even though they travel and impact according to their changed motion.",
+  "Environment": "Minecraft Java Edition Versions: 18w45a, 18w46a, 1.20.1, 23w33a, 24w14a, 1.21, 1.21.2 Pre-Release 3, 1.21.3 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a projectile\u2019s `Motion` tag is changed after the entity has been spawned\u2014such as by `/data merge`\u2014the client renders the projectile using incorrect movement data. In the reproduction, the snowball\u2019s server-side motion is changed from `[1.0, 1.0, 0.0]` to `[0.0, 1.0, 1.0]`, but newly spawned snowballs are displayed traveling in a different direction than their actual trajectory.\n\nThe projectile\u2019s server-side movement, collision detection, and impact position remain correct. Only its rendered position and trajectory are incorrect. The visual position is corrected approximately once every 20 ticks, and can also be corrected immediately when the projectile changes state\u2014for example, when an arrow becomes embedded in a block (`inGround:1b`).\n\nThis affects projectile entities including snowballs, eggs, arrows, potions, ender pearls, and fireballs. It does not occur with entities such as mobs or primed TNT. The issue occurs when the projectile\u2019s motion-related data is modified after spawning; projectiles initialized with the desired values directly in `/summon` render correctly. For fireballs, modifying the `power` values similarly causes the rendered trajectory to curve toward the negative X, Y, and Z directions while the fireball\u2019s actual movement and collisions remain correct.",
+  "Expected Behavior": "Projectiles should be rendered according to their current Motion or Power values immediately after those values are changed. In the reproduction, the snowballs should visibly travel in the updated direction rather than appearing to move along their previous or an otherwise incorrect trajectory. Their rendered position and direction should remain synchronized with their actual movement and impacts.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Projectiles/MC-139548",
+  "improvement_metadata": {
+    "original_key": "MC-139548"
+  }
+}

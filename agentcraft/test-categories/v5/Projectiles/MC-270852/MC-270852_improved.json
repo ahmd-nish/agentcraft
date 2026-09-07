@@ -1,0 +1,46 @@
+{
+  "key": "MC-270852",
+  "created_date": "2024-04-16T22:55:52.935-0700",
+  "updated_date": "2026-08-10T02:38:36.761-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 15w31a",
+    "1.20.4",
+    "1.20.5 Pre-Release 3",
+    "1.21",
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "arrow",
+    "breeze",
+    "projectile",
+    "shulker",
+    "trident"
+  ],
+  "resolution_date": "2024-11-16T13:05:38.403-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Fully charged projectiles that are thrown or fired at a nearby shulker will not deflect properly",
+  "environment_raw": "",
+  "description": "When the player shoots a projectile at a closed shulker or a breeze from a distance of 1-3 blocks away, the projectile will almost instantly be deflected at the camera's position, never getting near the entity.\n\n## Steps to Reproduce:\n\n - Summon a shulker with no AI:\n\n/summon minecraft:shulker ~ ~ ~ {NoAI:1b}\n\n - Fire an arrow at it from 1-3 blocks away\n\n \u2192 observe result\n\n - Fire an arrow at it from >=4.5 blocks away\n\n\u2192 observe result\n\n## Observed Behavior:\n\nWhen firing it from a closer distance, the arrow will almost instantly be deflected at the camera position, and the player's view will be visually cluttered from all the arrow and particles created. The arrow will also not damage the player due to \n \n \n \n MC-125936\n \n Reopened\n \n and/or \n \n \n \n MC-214546\n \n Reopened\n \n. When attempting this same issue with breezes, the behavior is less noticable comparatively (shown in the video/s)\n\n## Expected Behavior:\n\nThe arrow would get near the shulker's hitbox before being deflected properly at close distances just as it does from further away.\n\n## Screenshots/Videos:\n\nReproducing the issue from a third-person perspective:\n\n ShulkerDeflectClose1.mp4 \n\n ShulkerDeflectClose2.mp4 \n\nReproducing the issue in first person:\n\nShulkerDeflectClosePlayerView.mp4",
+  "Steps to Reproduce": "1. Create or open a Creative world where commands can be used.\n2. Execute `/summon minecraft:shulker ~ ~ ~ {NoAI:1b}`.\n3. Move to a position 1\u20133 blocks away from the shulker.\n4. Fully charge a bow.\n5. Fire an arrow at the shulker.\n6. Observe that the arrow is almost instantly deflected toward the camera's position instead of getting near the shulker, creating arrow and particle effects in the player's view.\n7. Move to a position at least 4.5 blocks away from the shulker.\n8. Fully charge the bow and fire another arrow at the shulker.\n9. Observe that the arrow gets near the shulker before being deflected.",
+  "Environment": "Minecraft Java Edition Versions: 15w31a, 1.20.4, 1.20.5 Pre-Release 3, 1.21, 24w36a (includes snapshots)",
+  "Observed Behavior": "When a fully charged arrow is fired at a closed, stationary shulker from approximately 1\u20133 blocks away, it is deflected almost immediately, before reaching the shulker\u2019s hitbox. The deflected arrow travels toward the player\u2019s camera position rather than being visibly redirected after approaching the shulker.\n\nRepeatedly firing arrows at this distance rapidly produces arrows and deflection particles around the player\u2019s viewpoint, causing significant visual clutter. The arrows do not damage the player in this situation, consistent with MC-125936 and/or MC-214546.\n\nWhen the same test is performed from approximately 4.5 blocks away or farther, the arrow first travels near the shulker before being deflected as expected. A similar issue can be reproduced with breezes, although the premature deflection is less noticeable.",
+  "Expected Behavior": "A fully charged arrow fired at a nearby closed shulker or breeze should travel toward the entity and reach near its hitbox before being properly deflected away. The deflection should behave consistently at close range as it does from farther away, without redirecting the projectile toward the player\u2019s camera or creating excessive visual clutter around the player.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Projectiles/MC-270852",
+  "improvement_metadata": {
+    "original_key": "MC-270852"
+  }
+}

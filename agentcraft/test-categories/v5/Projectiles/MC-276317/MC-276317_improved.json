@@ -1,0 +1,36 @@
+{
+  "key": "MC-276317",
+  "created_date": "2024-09-04T09:51:33.514-0700",
+  "updated_date": "2026-08-27T03:40:02.003-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-09-10T08:15:29.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Projectiles visually update slowly when their motion is changed",
+  "environment_raw": "",
+  "description": "When a projectile that also displays a direction such as an arrow or a trident has its Motion changed, it will visually continue to advance in its old trajectory in a chaotic manner.\n\nIn the attached video I am using a datapack that changes arrows Motion so that they follow already landed arrows, their behavior has not changed since 24w35a. but visually they continue to follow their old trajectory for a few seconds.\n\nVideo example: https://youtu.be/-czvnLJv1do?si=1nQcCMhHf0kDCp2w, es_reproducing.mp4 \n\n(The sky is not glitched, there's just a lot of glass)\n\nOnly projectiles that display their direction seem to be affected, so arrows, tridents and wither skulls. While snowballs, ender_pearls, or wind charges are not affected.\n\nThe delay in the visual update is not tied to any command, it instead appears to be universal, it does not matter if i use data modify, data merge, or if the arrow is hit with a wind charge in mid air, the correct motion will only be displayed after one second.\n\nTNT explosions update the arrows visual motion correctly.\n\n## Steps to reproduce\n\n - Join any world in 24w36a with cheats enabled.\n\n - Using a bow and an arrow, fire in any direction.\n\n - While the arrow is in the air, use the following command in the chat or with a command block:\n\n/data merge entity @n[type=minecraft:arrow] {Motion:[0.0d,1.0d,0.0d]}\n\nalternatively use the command:\n\n/data modify entity @n[type=minecraft:arrow] Motion set value [0.0d,1.0d,0.0d]\n\n## Observed behavior\n\nThe arrow flies its old trajectory for about a second, after which it teleports to its true location, sometimes the arrow teleports to its true location but does not display the correct Motion, so it remains out of sync with its true position for another second or more before teleporting again. If the arrow visually lands before correcting its position to its true location, it produces no sound when hitting the ground.\n\n## Expected behavior\n\n The arrow immediately follows its new trajectory, displaying its position and motion correctly.\n\nBy placing a repeating command block on the ground and activating it after inserting the following command:\n\nexecute as @e[type=minecraft:arrow] at @s run particle minecraft:electric_spark ^ ^ ^ 0 0 0 0 0 force @a\n\nIt is possible to see the true location of the arrow while the previous steps are being performed.",
+  "Steps to Reproduce": "1. Launch Minecraft 24w36a.\n2. Join a world with cheats enabled.\n3. Fire an arrow with a bow in any direction.\n4. While the arrow is in the air, run `/data merge entity @n[type=minecraft:arrow] {Motion:[0.0d,1.0d,0.0d]}` in chat or with a command block.\n5. Wait approximately one second.\n6. Observe that the arrow visually continues along its old trajectory, then teleports to its true location; it may remain out of sync with its true position for another second or more before correcting again.",
+  "Environment": "Minecraft Java Edition Version 24w36a (snapshot)",
+  "Observed Behavior": "## Actual behavior\n\nAfter an airborne arrow\u2019s `Motion` NBT is changed, the entity\u2019s simulated position and motion are updated, but its rendered position and direction do not update immediately. The arrow continues to be displayed along its previous trajectory for approximately one second, often moving erratically relative to its actual position.\n\nOnce the visual state updates, the arrow may snap to its current position. In some cases, its position updates while its displayed direction or motion remains stale for another second or longer, causing it to remain visually out of sync before correcting itself again. If the arrow appears to reach the ground before the visual correction occurs, no impact sound is played because the actual entity has not reached the ground at that time.\n\nThe entity\u2019s actual position can be observed by following it with a particle command such as:\n\n```mcfunction\nexecute as @e[type=minecraft:arrow] at @s run particle minecraft:electric_spark ^ ^ ^ 0 0 0 0 0 force @a\n```\n\nThe particles follow the updated entity position while the arrow model continues along its old trajectory. This occurs regardless of whether `Motion` is changed with `data merge`, `data modify`, or by an in-world effect such as being hit by a wind charge. TNT explosions, however, update the arrow\u2019s displayed motion correctly.\n\nThe issue affects projectiles whose models display their flight direction, including arrows, tridents, and wither skulls. Projectiles such as snowballs, ender pearls, and wind charges do not exhibit the delayed visual update.",
+  "Expected Behavior": "When an arrow, trident, wither skull, or other direction-displaying projectile has its motion changed, its visual position and direction should update immediately to match its actual Motion and follow the new trajectory. It should not continue along the previous path, teleport after a delay, or remain visually out of sync with its true location, and any resulting impact should behave and appear normally.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Projectiles/MC-276317",
+  "improvement_metadata": {
+    "original_key": "MC-276317"
+  }
+}
