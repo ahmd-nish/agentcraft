@@ -1,0 +1,36 @@
+{
+  "key": "MC-270094",
+  "created_date": "2024-03-28T19:22:12.129-0700",
+  "updated_date": "2025-05-29T09:06:47.831-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-04T05:00:25.051-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Fletcher sells new tipped arrows without experimental features enabled",
+  "environment_raw": "",
+  "description": "Summary\n\nFletcher villager's master trade includes tipped arrow for each potion (except Luck). This allows obtaining a tipped arrow of Infestation, Oozing, Weaving, or Wind Charged, without enabling the 1.21 experiments. The attached world includes a fletcher who sells weaving arrows.\n\nSteps to Reproduce\n\n - Create a world without 1.21 experiments.\n\n - Spawn a fletcher.\n\n - Trade to the master level.\n\n - Check the traded tipped arrow. Note that this trade is not guaranteed.\n\nExpected Result\n\nFletcher does not sell new tipped arrows.\n\nActual Result\n\nFletcher sells new tipped arrows.",
+  "Steps to Reproduce": "1. Create a new world with the 1.21 experiments disabled.\n2. Spawn a fletcher villager in the world.\n3. Trade with the fletcher villager until it reaches the master level.\n4. Inspect the fletcher's master-level trades for a tipped arrow.\n5. Observe that the fletcher can offer a tipped arrow of Infestation, Oozing, Weaving, or Wind Charged, although the trade is not guaranteed.",
+  "Environment": "Minecraft Java Edition Version 24w13a (snapshot)",
+  "Observed Behavior": "A master-level Fletcher can generate a tipped-arrow trade for the 1.21 effects **Infestation, Oozing, Weaving, or Wind Charged** even when the world was created with the 1.21 experimental features disabled. If the trade is generated, the Fletcher offers five of the corresponding tipped arrows for two emeralds and five regular arrows, allowing these otherwise experimental tipped arrows to be obtained through villager trading.",
+  "Expected Behavior": "In a world with the 1.21 experimental features disabled, a master-level fletcher should not offer tipped arrows for the newly introduced effects. The trade list should exclude Arrows of Infestation, Oozing, Weaving, and Wind Charged, so these arrows cannot be obtained through fletcher trading unless the relevant experimental features are enabled.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Trading/MC-270094",
+  "improvement_metadata": {
+    "original_key": "MC-270094"
+  }
+}

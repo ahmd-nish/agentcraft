@@ -1,0 +1,24 @@
+/summon minecraft:villager -66.50 64.00 202.50
+{Brain: {memories: {"minecraft:last_worked_at_poi": {value: 5264L}, "minecraft:job_site": {value: {pos: [I; -67, 64, 201], dimension: "minecraft:overworld"}}}}, HurtByTimestamp: 0,
+Attributes: [{Base: 0.5d, Name: "minecraft:generic.movement_speed"}, {Base: 48.0d, Modifiers: [{Amount: -0.015541163095908321d, Operation: 1,
+UUID: [I; -280532460, 645024988, -2126020500, -790948249], Name: "Random spawn bonus"}],
+Name: "minecraft:generic.follow_range"}], FoodLevel: 0b, Invulnerable: 0b, FallFlying: 0b, ForcedAge: 0,
+Gossips: [{Target: [I; 47688531, -868008514, -1134918367, -1068665413], Type: "trading", Value: 12}], PortalCooldown: 0, AbsorptionAmount: 0.0f, LastRestock: 4423L, FallDistance: 0.0f, DeathTime: 0s, Xp: 444, LastGossipDecay: 1173L, HandDropChances: [0.085f, 0.085f], PersistenceRequired: 0b, Age: 0, Motion: [0.0d, -0.0784000015258789d, 0.0d], Health: 20.0f, LeftHanded: 0b, Air: 300s, OnGround: 1b,
+Offers:
+{Recipes:
+[{maxUses: 12,
+buyB: {count: 1, id: "minecraft:air"},
+sell: {count: 2, id: "minecraft:redstone"},
+buy: {count: 1, id: "minecraft:emerald"},
+priceMultiplier: 0.05f, demand: -24},
+{maxUses: 16,
+buyB: {count: 1, id: "minecraft:air"},
+sell: {count: 1, id: "minecraft:emerald"},
+buy: {count: 32, id: "minecraft:rotten_flesh"},
+xp: 2, priceMultiplier: 0.05f, demand: -64},
+{maxUses: 12,
+buyB: {count: 1, id: "minecraft:air"},
+sell: {count: 1, id: "minecraft:lapis_lazuli"},
+buy: {count: 1, id: "minecraft:emerald"},
+xp: 5, priceMultiplier: 0.05f, demand: -24},
+{maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:emerald"}, buy: {count: 3, id: "minecraft:gold_ingot"}, xp: 10, priceMultiplier: 0.05f, demand: -48}, {maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:glowstone"}, buy: {count: 4, id: "minecraft:emerald"}, xp: 10, priceMultiplier: 0.05f, demand: -48}, {maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:emerald"}, buy: {count: 2, id: "minecraft:rabbit_foot"}, xp: 20, priceMultiplier: 0.05f, demand: -48}, {maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:ender_pearl"}, buy: {count: 5, id: "minecraft:emerald"}, xp: 15, priceMultiplier: 0.05f, demand: -36}, {maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:emerald"}, buy: {count: 4, id: "minecraft:turtle_scute"}, xp: 30, priceMultiplier: 0.05f, demand: -36}, {maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:emerald"}, buy: {count: 22, id: "minecraft:nether_wart"}, xp: 30, priceMultiplier: 0.05f, demand: -36}, {maxUses: 12, buyB: {count: 1, id: "minecraft:air"}, sell: {count: 1, id: "minecraft:experience_bottle"}, buy: {count: 3, id: "minecraft:emerald"}, xp: 30, priceMultiplier: 0.05f, demand: -36}]}, Rotation: [68.52902f, -5.232927f], HandItems: [{}, {}], RestocksToday: 0, ArmorDropChances: [0.085f, 0.085f, 0.085f, 0.085f], Fire: -1s, ArmorItems: [{}, {}, {}, {}], CanPickUpLoot: 1b, VillagerData: {profession: "minecraft:cleric", level: 5, type: "minecraft:snow"}, HurtTime: 0s, Inventory: []}

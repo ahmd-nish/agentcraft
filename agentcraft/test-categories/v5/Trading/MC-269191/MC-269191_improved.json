@@ -1,0 +1,40 @@
+{
+  "key": "MC-269191",
+  "created_date": "2024-03-07T19:30:13.959-0800",
+  "updated_date": "2026-08-20T04:34:02.116-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w10a",
+    "24w11a",
+    "24w12a",
+    "24w13a",
+    "24w14a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-05T10:23:50.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Old villagers can't trade",
+  "environment_raw": "",
+  "description": "I was trying to trade with my villager but it didn't work, I have all the items needed but it just doesn't show up so I gave a villager a job and it was working with it",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Find an old villager.\n4. Obtain all the items needed for a trade with the villager.\n5. Attempt to trade with the villager and observe that no trade is shown.\n6. Give the villager a job.\n7. Attempt to trade with the villager again and observe that the trade works.",
+  "Environment": "Minecraft Java Edition Versions: 24w10a, 24w11a, 24w12a, 24w13a, 24w14a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nExisting (\u201cold\u201d) villagers do not display any trade offers when interacted with, even when the player has the required items. The trading interface shows no available trades. After assigning the villager a profession, its trade offers appear and trading works normally.",
+  "Expected Behavior": "When interacting with an old villager, the trading interface should display the villager\u2019s available offers, allowing the player to complete a trade when they provide the required items. The villager should remain capable of trading without needing to be assigned a new job first, and the offers should appear consistently when the player has the necessary materials.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Trading/MC-269191",
+  "improvement_metadata": {
+    "original_key": "MC-269191"
+  }
+}
