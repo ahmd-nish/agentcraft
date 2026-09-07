@@ -1,0 +1,36 @@
+{
+  "key": "MC-274372",
+  "created_date": "2024-07-11T23:34:21.110-0700",
+  "updated_date": "2025-04-26T15:55:04.943-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-07T01:15:52.237-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "using_item advancement trigger keeps being activated even after the item stops being used, after teleporting to another dimension",
+  "environment_raw": "",
+  "description": "The using_item advancement keeps trigger even when the player isn't holding down right mouse button if the reward function has a command that let the player teleport through dimension, causing the player to be stuck at a position unless they no longer holding the item.\n\nThe advancement:\n\n{\n\u00a0 \u00a0 \"criteria\":\n\u00a0 \u00a0 {\n\u00a0 \u00a0 \u00a0 \u00a0 \"book\":\n\u00a0 \u00a0 \u00a0 \u00a0 {\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \"trigger\": \"minecraft:using_item\",\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \"conditions\":\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 {\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \"item\":\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 {\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \"items\": \"minecraft:book\"\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 }\n\u00a0 \u00a0 \u00a0 \u00a0 \u00a0 \u00a0 }\n\u00a0 \u00a0 \u00a0 \u00a0 }\n\u00a0 \u00a0 },\n\u00a0 \u00a0 \"rewards\":\n\u00a0 \u00a0 {\n\u00a0 \u00a0 \u00a0 \u00a0 \"function\": \"test:book\"\n\u00a0 \u00a0 }\n}\n\nThe function:\n\nadvancement revoke @s only test:book\nexecute in overworld run tp @s 0 -60 0 0 0\nplaysound entity.player.teleport\n\nWhat I expected to happen was:\n\nThe advancement stop trigger when release right mouse button.\n\nWhat actually happened was:\n\nThe advancement keeps trigger and execute the reward function none-stop.\n\nSteps to Reproduce:\n\n1. Put the following datapack into your world and /reload it.\n\n2. Use the following command to get an edible book.\n\n/give @s book[food={can_always_eat: true, eat_seconds: 86400, nutrition: 1, saturation: 1}]\n\n3. Go to the nether.\n\n4. In the nether, start using the book until you appear in the overworld.\n\n5. You will be teleported back to the overworld, and stuck at (0, -60, 0) until you use the book again or switch to another hotbar slot.",
+  "Steps to Reproduce": "1. Add a datapack containing the provided `minecraft:using_item` advancement and `test:book` function to the world.\n2. Run `/reload`.\n3. Run `/give @s book[food={can_always_eat: true, eat_seconds: 86400, nutrition: 1, saturation: 1}]`.\n4. Enter the Nether.\n5. Start using the edible book in the Nether.\n6. Wait until the teleportation caused by the function places you in the Overworld.\n7. Release the right mouse button and observe that the reward function continues executing, repeatedly teleporting you to `(0, -60, 0)` and leaving you stuck there.",
+  "Environment": "Minecraft Java Edition Version 1.21",
+  "Observed Behavior": "### Actual behavior\n\nAfter the player changes dimensions while using the book, the `minecraft:using_item` criterion continues to activate every tick even after the player releases the right mouse button. Because the reward function revokes the advancement and immediately teleports the player back to `(0, -60, 0)` in the Overworld, the criterion is re-granted and the function runs repeatedly.\n\nAs a result, the player is continuously teleported to that position and cannot move away. The loop stops only after the player uses the book again or switches to another hotbar slot, which ends the item's use state.",
+  "Expected Behavior": "The `minecraft:using_item` advancement should trigger only while the player is actively using the matching book and should stop triggering immediately when the right mouse button is released or use otherwise ends. Teleporting the player to another dimension through the reward function should not leave the item-use state active or repeatedly execute the function, so the player should not be teleported continuously or become stuck at the destination position.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Advancements/MC-274372",
+  "improvement_metadata": {
+    "original_key": "MC-274372"
+  }
+}
