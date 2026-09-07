@@ -1,0 +1,92 @@
+{
+  "generate_features": true,
+  "bonus_chest": false,
+  "seed": 1913978259,
+  "dimensions": {
+    "minecraft:overworld": {
+      "type": {
+        "ultrawarm": false,
+        "natural": true,
+        "piglin_safe": false,
+        "respawn_anchor_works": true,
+        "bed_works": false,
+        "has_raids": true,
+        "has_skylight": true,
+        "has_ceiling": false,
+        "coordinate_scale": 1,
+        "ambient_light": 0,
+        "logical_height": 256,
+        "infiniburn": "minecraft:infiniburn_overworld",
+        "min_y": -64,
+        "height": 384
+      },
+      "generator": {
+        "type": "minecraft:noise",
+        "seed": 1913978259,
+        "settings": "minecraft:overworld",
+        "biome_source": {
+          "type": "minecraft:multi_noise",
+          "preset": "minecraft:overworld"
+        }
+      }
+    },
+    "minecraft:the_nether": {
+      "type": {
+        "ultrawarm": true,
+        "natural": false,
+        "piglin_safe": true,
+        "respawn_anchor_works": false,
+        "bed_works": true,
+        "has_raids": false,
+        "has_skylight": false,
+        "has_ceiling": true,
+        "coordinate_scale": 8,
+        "ambient_light": 0.1,
+        "fixed_time": 18000,
+        "logical_height": 128,
+        "effects": "minecraft:the_nether",
+        "infiniburn": "minecraft:infiniburn_nether",
+        "min_y": 0,
+        "height": 256
+      },
+      "generator": {
+        "type": "minecraft:noise",
+        "seed": 1913978259,
+        "settings": "minecraft:nether",
+        "biome_source": {
+          "type": "minecraft:multi_noise",
+          "preset": "minecraft:nether"
+        }
+      }
+    },
+    "minecraft:the_end": {
+      "type": {
+        "ultrawarm": false,
+        "natural": false,
+        "piglin_safe": false,
+        "respawn_anchor_works": true,
+        "bed_works": true,
+        "has_raids": true,
+        "has_skylight": false,
+        "has_ceiling": false,
+        "coordinate_scale": 1,
+        "ambient_light": 0,
+        "fixed_time": 6000,
+        "logical_height": 256,
+        "effects": "minecraft:the_end",
+        "infiniburn": "minecraft:infiniburn_end",
+        "min_y": 0,
+        "height": 256
+      },
+      "generator": {
+        "type": "minecraft:noise",
+        "seed": 1913978259,
+        "settings": "minecraft:end",
+        "biome_source": {
+          "type": "minecraft:the_end",
+          "seed": 1913978259
+        }
+      }
+    }
+  }
+}

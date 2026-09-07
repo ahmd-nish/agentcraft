@@ -1,0 +1,54 @@
+{
+  "key": "MC-197616",
+  "created_date": "2020-08-10T06:53:28.445-0700",
+  "updated_date": "2026-08-27T02:20:17.562-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.2 Release Candidate 2",
+    "1.16.2",
+    "1.16.3",
+    "1.16.4 Pre-release 1",
+    "1.16.4",
+    "20w46a",
+    "20w49a",
+    "1.16.5",
+    "21w06a",
+    "21w08a",
+    "21w11a",
+    "21w13a",
+    "21w14a",
+    "21w15a",
+    "21w16a",
+    "21w17a"
+  ],
+  "fix_versions": [
+    "21w18a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "data-pack",
+    "performance"
+  ],
+  "resolution_date": "2021-05-05T00:41:31.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Certain custom biome settings cause game to spam \"Received invalid biome id: -1\" in the console, causing major lag or freeze",
+  "environment_raw": "",
+  "description": "## The bug\n\nWhen teleporting to a dimension with custom biomes the client sometimes freezes or experiences major lag, with warnings in the output log \"Received invalid biome id: -1\". In some cases the chunks eventually load, but then some chunks appear to have the ID \"null\" while other chunks appear to have the ID \"minecraft:ocean\". At this point crossing chunk borders will cause more chunks in the distance to generate and more warnings to be spamming in the log.\n\n## How to reproduce\n\n - Download the attached data pack MC-197616.zip and add it to a newly created world\n\n - After spawning in, fly up a bit and teleport to the mc:197616 custom dimension\n\n/execute in mc:197616 run tp @s ~ ~ ~\n\n - The chunks load correctly with the correct biome in F3\n\n - Teleport back to the overworld\n\n/execute in minecraft:overworld run tp @s ~ ~ ~\n\n - Move away a few chunks and then teleport back to the mc:197616 dimension\n\n/execute in mc:197616 run tp @s ~ ~ ~\n\n - The client freezes and lots of warnings appear in the output log (more than 1000 per second)\n\n - If this doesn't happen (the world loads correctly) repeat steps 4 and 5. This seems to be related to render distance and world generation speed.",
+  "Steps to Reproduce": "1. Download `MC-197616.zip` and add it to a newly created world.\n2. After spawning in, fly upward a bit.\n3. Run `/execute in mc:197616 run tp @s ~ ~ ~`.\n4. Wait until the chunks in the custom dimension load.\n5. Check the F3 debug screen and confirm that the chunks show the correct biome.\n6. Run `/execute in minecraft:overworld run tp @s ~ ~ ~`.\n7. Move away a few chunks in the overworld.\n8. Run `/execute in mc:197616 run tp @s ~ ~ ~`; if the issue does not occur, repeat steps 6\u20138.\n9. Wait for the client to respond or for the chunks to finish loading.\n10. Observe that the client freezes or experiences major lag and that the output log is spammed with `Received invalid biome id: -1` warnings, potentially more than 1000 per second; if the chunks load, some may show the ID `null` while others show `minecraft:ocean`.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.2 Release Candidate 2, 1.16.2, 1.16.3, 1.16.4 Pre-release 1, 1.16.4, 20w46a, 20w49a, 1.16.5, 21w06a, 21w08a, 21w11a, 21w13a, 21w14a, 21w15a, 21w16a, 21w17a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nAfter returning from the Overworld and teleporting back to `mc:197616`, the client may fail to resolve the biome data for the custom dimension\u2019s chunks. The output log then rapidly fills with repeated warnings:\n\n```text\nReceived invalid biome id: -1\n```\n\nThe warning can be printed more than 1,000 times per second, causing severe client lag or a temporary freeze. In some occurrences, the dimension eventually becomes visible, but its loaded chunks show inconsistent biome information: some chunks display `null` as their biome ID in the F3 debug screen, while others display `minecraft:ocean` instead of the custom biome.\n\nMoving across chunk borders causes additional chunks to load or generate and triggers further bursts of the same warning. The issue is intermittent; if the dimension loads without errors, repeating the return-to-Overworld and re-entry sequence can reproduce it.",
+  "Expected Behavior": "When teleporting to the custom-biome dimension, the client should load the surrounding chunks normally without freezing or significant lag. All loaded chunks should display their correct biome identifiers consistently, rather than showing null or an incorrect ocean biome. Moving across chunk borders should continue loading nearby chunks normally, without producing \u201cReceived invalid biome id: -1\u201d warnings or flooding the console.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Custom Worlds/MC-197616",
+  "improvement_metadata": {
+    "original_key": "MC-197616"
+  }
+}

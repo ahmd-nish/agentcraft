@@ -1,0 +1,99 @@
+{
+  "bonus_chest": false,
+  "dimensions": {
+    "minecraft:overworld": {
+      "generator": {
+        "biome_source": {
+          "seed": -1464245863,
+          "large_biomes": false,
+          "type": "minecraft:vanilla_layered"
+        },
+        "seed": -1464245863,
+        "settings": "minecraft:overworld",
+        "type": "minecraft:noise"
+      },
+      "type": {
+        "name": "minecraft:overworld",
+        "ultrawarm": false,
+        "natural": true,
+        "coordinate_scale": 1,
+        "piglin_safe": false,
+        "respawn_anchor_works": true,
+        "bed_works": false,
+        "has_raids": true,
+        "has_skylight": true,
+        "has_ceiling": false,
+     /* "fixed_time": N/A */
+        "ambient_light": 0.0,
+        "logical_height": 256,
+        "infiniburn": "minecraft:infiniburn_overworld",
+        "effects": "minecraft:overworld",
+        "min_y": 0,
+        "height": 256
+      }
+    },
+    "minecraft:the_nether": {
+      "generator": {
+        "biome_source": {
+          "seed": -1464245863,
+          "preset": "nether",
+          "type": "minecraft:multi_noise"
+        },
+        "seed": -1464245863,
+        "settings": "minecraft:nether",
+        "type": "minecraft:noise"
+      },
+      "type": {
+        "name": "minecraft:the_nether",
+        "ultrawarm": true,
+        "natural": false,
+        "coordinate_scale": 8,
+        "piglin_safe": true,
+        "respawn_anchor_works": false,
+        "bed_works": true,
+        "has_raids": false,
+        "has_skylight": false,
+        "has_ceiling": true,
+        "fixed_time": 18000,
+        "ambient_light": 0.1,
+        "logical_height": 128,
+        "infiniburn": "minecraft:infiniburn_nether",
+        "effects": "minecraft:the_nether",
+        "min_y": 0,
+        "height": 256
+      }
+    },
+    "minecraft:the_end": {
+      "generator": {
+        "biome_source": {
+          "seed": -1464245863,
+          "type": "minecraft:the_end"
+        },
+        "seed": -1464245863,
+        "settings": "minecraft:end",
+        "type": "minecraft:noise"
+      },
+      "type": {
+        "name": "minecraft:the_end",
+        "ultrawarm": false,
+        "natural": false,
+        "coordinate_scale": 1,
+        "piglin_safe": false,
+        "respawn_anchor_works": true,
+        "bed_works": true,
+        "has_raids": true,
+        "has_skylight": false,
+        "has_ceiling": false,
+        "fixed_time": 6000,
+        "ambient_light": 0.0,
+        "logical_height": 256,
+        "infiniburn": "minecraft:infiniburn_end",
+        "effects": "minecraft:the_end",
+        "min_y": 0,
+        "height": 256
+      }
+    }
+  },
+  "seed": -1464245863,
+  "generate_features": true
+}

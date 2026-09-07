@@ -1,0 +1,36 @@
+{
+  "key": "MC-239900",
+  "created_date": "2021-10-27T17:40:40.803-0700",
+  "updated_date": "2026-08-20T04:14:48.293-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w43a"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 6"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-11-22T07:33:38.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Upgrading custom world to 21w43a ignores min_y and height",
+  "environment_raw": "",
+  "description": "## The bug\n\nIf you open this custom world 21w42a-height4064.json in 21w43a after you generated it in 21w42a results in all terrain below -64 disappearing and any blocks being placed above 320 / max_y.\n\n## How to reproduce\n\n - Open Minecraft in 21w42a\n\n - Create a world using the custom world settings in 21w42a-height4064.json\n\n Enter spectator mode, and observe that the world bottom is lower than Y=-64 and world top is higher than Y=320 (e.g. by placing a block above it)\n\n - Open Minecraft in 21w43a\n\n - Play the world you created previously to upgrade it\n\n The terrain previously generated below Y=-64 has been removed, and the bottom of the world is now found at Y=-64. \n\n Blocks above Y=320 are removed, and the top of the world is now found at Y=320\n\n## Expected behaviour\n\n - The upgraded world would not have all terrain below Y=-64 and above Y=320 removed, the dimension's bounding boxes / min_y and height should stay unchanged.\n\n## Error\n\nCouldn't load chunk [11, -4]\njava.lang.ArrayIndexOutOfBoundsException: Index 58 out of bounds for length 24\n at cow.a(SourceFile:350)\n at cow.a(SourceFile:290)\n at cps.a(SourceFile:202)\n at abu.m(SourceFile:579)\n at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1764)\n at atg.c(SourceFile:151)\n at acf$b.c(SourceFile:534)\n at atg.y(SourceFile:125)\n at acf$b.y(SourceFile:543)\n at acf.d(SourceFile:278)\n at net.minecraft.server.MinecraftServer.be(SourceFile:763)\n at net.minecraft.server.MinecraftServer.y(SourceFile:751)\n at atg.c(SourceFile:134)\n at net.minecraft.server.MinecraftServer.x(SourceFile:736)\n at net.minecraft.server.MinecraftServer.b(SourceFile:497)\n at net.minecraft.server.MinecraftServer.f_(SourceFile:329)\n at fcg.e(SourceFile:72)\n at net.minecraft.server.MinecraftServer.w(SourceFile:655)\n at net.minecraft.server.MinecraftServer.a(SourceFile:269)\n at java.base/java.lang.Thread.run(Thread.java:831)",
+  "Steps to Reproduce": "1. Launch Minecraft in version 21w42a.\n2. Create a world using the custom world settings from `21w42a-height4064.json`.\n3. Enter spectator mode in the created world.\n4. Observe that the world extends below Y=-64 and above Y=320.\n5. Launch Minecraft in version 21w43a and play the previously created world to upgrade it.\n6. Observe that terrain below Y=-64 and blocks above Y=320 have been removed, with the world bottom now at Y=-64 and the world top at Y=320.",
+  "Environment": "Minecraft Java Edition Version 21w43a (snapshot)",
+  "Observed Behavior": "## Actual behaviour\n\nWhen the world created in **21w42a** is opened and upgraded in **21w43a**, the custom dimension height settings are not preserved. The dimension is loaded using the default build limits instead of the values defined in the world\u2019s custom settings:\n\n- The effective minimum Y is changed to **-64**, so terrain and blocks generated below Y=-64 disappear.\n- The effective maximum Y is changed to **320**, so blocks generated or placed above Y=320 disappear.\n- The dimension\u2019s original `min_y` and `height` values are therefore ignored during the upgrade.\n\nThe affected world may also fail to load individual chunks, producing an error such as:\n\n```text\nCouldn't load chunk [11, -4]\njava.lang.ArrayIndexOutOfBoundsException: Index 58 out of bounds for length 24\n    at cow.a(SourceFile:350)\n    at cow.a(SourceFile:290)\n    at cps.a(SourceFile:202)\n    at abu.m(SourceFile:579)\n    ...\n```\n\nThis results in permanent loss of terrain outside the default Y=-64 to Y=320 range after the world has been opened in 21w43a.",
+  "Expected Behavior": "After upgrading the custom world to 21w43a, all previously generated terrain below Y=-64 and blocks placed above Y=320 should remain intact. The dimension\u2019s configured min_y, height, and resulting lower and upper boundaries should be preserved, so the world should continue to support the same vertical range as in 21w42a without removing terrain, blocks, or causing chunk-loading errors.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Custom Worlds/MC-239900",
+  "improvement_metadata": {
+    "original_key": "MC-239900"
+  }
+}

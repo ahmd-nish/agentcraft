@@ -1,0 +1,39 @@
+{
+  "key": "MC-219035",
+  "created_date": "2021-03-11T05:22:05.711-0800",
+  "updated_date": "2026-08-20T03:59:04.978-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w10a",
+    "21w11a"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "world-generation"
+  ],
+  "resolution_date": "2021-11-10T06:06:43.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Fossil structures can't generate in far east and south blocks of a chunk",
+  "environment_raw": "",
+  "description": "When generating a fossil feature the structure is placed at a random position in the chunk. However this position never includes the far east and south blocks in that chunk (chunk coordinates X=15 or Z=15). This is most obvious when generating structures with size 15x15 as those are always placed at chunk coordinate 0, 0 leaving a one block gap.\n\n(Note that the placement in a grid is not a bug as the feature explicitly makes sure that the structures do not cross chunk boundaries.)\n\n## How to reproduce:\n\n - Create a world with the attached datapack\n\n - Teleport to a savanna\n\n - Go into spectator mode and fly downwards\n\n - You will see the structures as in the image above\n\n(Note that while this reproduction involves a datapack the bug also affects the vanilla fossils, although its much less obvious because of their smaller size and rarity)\n\n## Code analysis:\n\n(using the official mappings and some variable renaming)\n\nThe position to place the structure in the chunk is calculated by\n\nint x = random.nextInt(16 - size.getX());\n\n int z = random.nextInt(16 - size.getZ());\n\nHowever, as the upper bound of random.nextInt is exclusive, the maximum value of x is 16 - size.getX() - 1. The structure would then reach to x + size.get(X) - 1 = 16 - 1 - 1 = 14",
+  "Steps to Reproduce": "1. Create a world with the attached datapack.\n2. Teleport to a savanna.\n3. Switch to spectator mode.\n4. Fly downward through the generated structures.\n5. Observe that the structures do not generate in the far east or south blocks of their chunks; the 15\u00d715 structures are placed at chunk coordinates 0, 0, leaving a one-block gap.",
+  "Environment": "Minecraft Java Edition Versions: 21w10a, 21w11a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nFossil features are never placed in the easternmost or southernmost block of the chunk: local chunk coordinates `X=15` and `Z=15` are excluded from the random placement position.\n\nThe placement offsets are calculated as:\n\n```java\nint x = random.nextInt(16 - size.getX());\nint z = random.nextInt(16 - size.getZ());\n```\n\nBecause `Random.nextInt(bound)` excludes the upper bound, the largest possible offset is `15 - size`, rather than `16 - size`. Consequently, the structure\u2019s maximum occupied coordinate is:\n\n```text\n(15 - size) + size - 1 = 14\n```\n\nThis applies independently to both axes, so a structure can occupy coordinates up to `X=14` and `Z=14`, but never `X=15` or `Z=15`. For example, a `15\u00d715` structure always receives an offset of `(0, 0)` and occupies local coordinates `0\u201314`, leaving the final row and column of the chunk unused. This is an off-by-one error in the random placement bounds; the existing restriction preventing structures from crossing chunk boundaries is otherwise expected behavior.",
+  "Expected Behavior": "Fossil structures should be placed at any valid random position within their generating chunk, including positions whose structure occupies the far eastern or southern block at chunk coordinate X=15 or Z=15. Structures should still remain entirely within the chunk and not cross its boundaries. In particular, structures up to 15\u00d715 blocks should be able to generate with their placement reaching the chunk\u2019s final row or column rather than always leaving an unintended one-block gap.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Custom Worlds/MC-219035",
+  "improvement_metadata": {
+    "original_key": "MC-219035"
+  }
+}
