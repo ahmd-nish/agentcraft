@@ -1,0 +1,39 @@
+{
+  "key": "MC-236756",
+  "created_date": "2021-09-15T20:33:43.071-0700",
+  "updated_date": "2026-08-27T02:43:41.215-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a",
+    "21w38a",
+    "21w40a",
+    "1.18 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 2"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-11-16T07:33:00.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Biome-exclusive mob spawn rates are reduced",
+  "environment_raw": "",
+  "description": "Some biome exclusive mob spawn rates are seemingly reduced. I suspect this is due to the oddities that 3D biomes have introduced.\u00a0\n\n It's complicated to explain, but basically if you were to go to a Taiga for example you wouldn't see nearly as many foxes as before.\n\nHow to replicate\n\nUsing /kill for foxes in a taiga in 21w37a will range from \"no entity was found\" to \"Killed 4 entities.\" Of course this varies but in general it seems to favor lower numbers. Likewise using it in 1.17 will immediately yield numbers such as 18 or 21.\n\nThe same can be said for parrots in jungles. Numbers drop from 25 in 1.17 to 10 in 21w27a.\n\n I'm sure a large collection of tests in various seeds/locations would yield better results, and give a better idea of how MUCH this affects mob spawning. However even just exploring on foot in survival, it \"feels\" like there is less.\u00a0\n\nMobs affected\n\nCould relate to\u00a0MC-236689,\u00a0though in that bug Pandas aren't spawning at\u00a0all. Foxes and parrots and the like still do spawn, just in lower numbers.\n\nI don't know the exact extent of what biome exclusive mobs this affects if not all of them, but I also suspect ocelots, llamas, axolotls, and wolves. Completely untested for hostile mobs like Husks/Strays but could apply to them as well.\n\nIt also seems like Drowned are affected by this. Killing any naturally generated Drowned from ocean ruins, then letting them spawn back yields significantly less results than former versions.\n\n\u00a0\n\nWhat I expected to happen:\n\nBiome-specific mob spawning to act as usual and spawn a decent amount of mobs in its specific environment.",
+  "Steps to Reproduce": "1. Launch Minecraft 21w37a.\n2. Create a new world with default settings.\n3. Explore until reaching a taiga biome.\n4. Run `/kill @e[type=minecraft:fox]`.\n5. Observe the command output, which may report that no entity was found or that only a small number of foxes were killed.\n6. Launch Minecraft 1.17.\n7. Create a new world with default settings.\n8. Explore until reaching a taiga biome.\n9. Run `/kill @e[type=minecraft:fox]`.\n10. Observe that the command commonly reports a substantially higher number of killed foxes, such as 18 or 21, than in 21w37a.",
+  "Environment": "Minecraft Java Edition Versions: 21w37a, 21w38a, 21w40a, 1.18 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "In 21w37a, biome-exclusive mobs appear to spawn in substantially lower numbers than in 1.17 under otherwise comparable conditions. In a Taiga biome, using `/kill @e[type=minecraft:fox]` can return \u201cNo entity was found\u201d or kill only up to approximately four foxes, whereas the same check in 1.17 commonly returns values such as 18 or 21. Jungle parrots show a similar decrease, with approximately 25 entities observed in 1.17 compared with approximately 10 in 21w37a. Foxes, parrots, and other affected biome-specific mobs still spawn, but their population appears reduced rather than completely absent. The issue may also affect ocelots, llamas, axolotls, wolves, and possibly biome-associated hostile mobs such as husks and strays, although those cases have not been systematically tested. Naturally generated drowned from ocean ruins also appear to respawn in significantly smaller numbers after being killed. The exact scope depends on the seed, location, and random spawning conditions, but the reduction is observable both through repeated entity-count checks and during ordinary exploration.",
+  "Expected Behavior": "Biome-specific mobs should spawn at their normal rates within the biomes they are associated with, producing numbers comparable to previous versions under similar conditions. Taigas should consistently support healthy fox populations, jungles should generate comparable numbers of parrots, and other biome-exclusive mobs should likewise remain available in appropriate environments. After naturally spawned mobs are removed, subsequent spawning should replenish populations normally rather than consistently yielding unusually low counts.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Mob spawning/MC-236756",
+  "improvement_metadata": {
+    "original_key": "MC-236756"
+  }
+}

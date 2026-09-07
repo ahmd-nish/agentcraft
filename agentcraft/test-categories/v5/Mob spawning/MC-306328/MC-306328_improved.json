@@ -1,0 +1,38 @@
+{
+  "key": "MC-306328",
+  "created_date": "2026-02-11T10:05:03.677-0800",
+  "updated_date": "2026-03-13T01:41:55.496-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.1 Snapshot 7",
+    "26.1 Snapshot 9",
+    "26.1 Snapshot 10"
+  ],
+  "fix_versions": [
+    "26.1 Pre-Release 2"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2026-03-13T01:41:55.432-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Using golden dandelions to unlock aging forcibly removes persistence of baby animals",
+  "environment_raw": "",
+  "description": "Using a Golden Dandelion on a baby animal that is age locked in order to remove the age lock will also remove its persistence, even if the animal should remain persistent due to other factors. (most notably, having a name tag applied to it)\n\nThis is caused by the method setAgeLocked in the AgeableMob class calling mob.setPersistenceRequired while only taking into account the age locking itself, and not other factors that should result in persistence.\n\nSteps to reproduce:\n\n - Spawn, summon, or encounter a baby animal\n\n - Use the /data get entity command to verify that its AgeLocked value is 0b, and its PersistenceRequired value is also 0b\n\n - Use a named Name Tag item to apply a name to the mob\n\n - Use the /data get entity command to verify that its PersistenceRequired value has now become 1b, as expected, indicating the mob will no longer despawn\n\n - Use a Golden Dandelion item to lock the baby\u2019s aging\n\n - Use the /data get entity command to verify that its AgeLocked value has now become 1b, as expected\n\n - Use a second Golden Dandelion item to unlock the baby\u2019s aging\n\nExpected Result:\n\n - Using the /data get entity command, you\u2019ll see its AgeLocked value has returned to 0b as expected, and its PersistenceRequired value has remained 1b due to the baby having a name tag applied, preventing it from despawning\n\nActual Result:\n\n - Using the /data get entity command, you\u2019ll see its AgeLocked value has returned to 0b as expected, however its PersistenceRequired value has also become 0b, meaning the baby can despawn again despite still having a name tag applied",
+  "Steps to Reproduce": "1. Spawn, summon, or encounter a baby animal.\n2. Run `/data get entity <baby animal> AgeLocked` and verify that the value is `0b`.\n3. Run `/data get entity <baby animal> PersistenceRequired` and verify that the value is `0b`.\n4. Use a named Name Tag item on the baby animal.\n5. Run `/data get entity <baby animal> PersistenceRequired` and verify that the value is `1b`.\n6. Use a Golden Dandelion item on the baby animal to lock its aging.\n7. Run `/data get entity <baby animal> AgeLocked` and verify that the value is `1b`.\n8. Use a second Golden Dandelion item on the baby animal to unlock its aging.\n9. Run `/data get entity <baby animal> AgeLocked` and `/data get entity <baby animal> PersistenceRequired`.\n10. Observe that `AgeLocked` is `0b`, but `PersistenceRequired` has incorrectly changed to `0b` even though the baby animal still has a name applied.",
+  "Environment": "Minecraft Java Edition Versions: 26.1 Snapshot 7, 26.1 Snapshot 9, 26.1 Snapshot 10 (includes snapshots)",
+  "Observed Behavior": "After the second Golden Dandelion unlocks the baby animal\u2019s growth, its `AgeLocked` value correctly changes from `1b` to `0b`. However, the interaction also changes `PersistenceRequired` from `1b` to `0b`, even though the animal still has a custom name applied with a Name Tag.\n\nAs a result, unlocking the animal\u2019s aging incorrectly removes its persistent-mob status, allowing the named baby animal to despawn under normal despawning conditions.",
+  "Expected Behavior": "After the baby animal\u2019s aging is unlocked, its AgeLocked value should return to 0b while its PersistenceRequired value remains 1b because it has a name tag. Removing the age lock should not remove persistence granted by the name tag, and the named baby animal should remain protected from despawning after the Golden Dandelion is used.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Mob spawning/MC-306328",
+  "improvement_metadata": {
+    "original_key": "MC-306328"
+  }
+}
