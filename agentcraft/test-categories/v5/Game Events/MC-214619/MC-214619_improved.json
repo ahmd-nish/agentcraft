@@ -1,0 +1,60 @@
+{
+  "key": "MC-214619",
+  "created_date": "2021-02-09T04:23:05.123-0800",
+  "updated_date": "2026-08-27T02:29:20.550-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w05b",
+    "21w06a",
+    "21w07a",
+    "21w08b",
+    "21w11a",
+    "21w14a",
+    "21w17a",
+    "1.17",
+    "1.17.1",
+    "21w37a",
+    "21w43a",
+    "1.18.1",
+    "22w03a",
+    "1.18.2",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19 Pre-release 3",
+    "1.19",
+    "22w24a",
+    "1.19.3",
+    "23w05a",
+    "23w06a",
+    "1.19.4 Pre-release 4"
+  ],
+  "fix_versions": [
+    "23w12a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "sculk_sensor"
+  ],
+  "resolution_date": "2023-08-29T07:12:10.153-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Sculk sensors cannot detect application of ink sacs to signs",
+  "environment_raw": "",
+  "description": "## The Bug\n\nWhen applying an ink sac or glow ink sac to a sign, sculk sensors nearby won't detect that.\n\n## Steps to Reproduce\n\n - Summon a sign with some text on it.\n\n/setblock ~ ~ ~ minecraft:dark_oak_sign{Color:\"magenta\",Text1:'{\"text\":\"MC-214619\"}'}\n\n - Place down a sculk sensor nearby and obtain some ink sacs and glow ink sacs.\n\n - Apply a glow ink sac to the sign.\n\n - Take note as to whether or not the sculk sensor activates.\n\n - Apply an ink sac to the sign.\n\n - Take note as to whether or not the sculk sensor activates.\n\n## Observed Behavior\n\nSculk sensors are not activated upon using ink sacs or glow ink sacs on signs.\n\n## Expected Behavior\n\nSculk sensors would be activated upon using ink sacs or glow ink sacs on signs.",
+  "Steps to Reproduce": "1. Create or enter a Creative world.\n2. Place a dark oak sign with text using `/setblock ~ ~ ~ minecraft:dark_oak_sign{Color:\"magenta\",Text1:'{\"text\":\"MC-214619\"}'}`.\n3. Place a sculk sensor near the sign.\n4. Obtain an ink sac and a glow ink sac.\n5. Apply the glow ink sac to the sign.\n6. Observe whether the nearby sculk sensor activates.\n7. Apply the ink sac to the sign.\n8. Observe whether the nearby sculk sensor activates.",
+  "Environment": "Minecraft Java Edition Versions: 21w05b, 21w06a, 21w07a, 21w08b, 21w11a, 21w14a, 21w17a, 1.17, 1.17.1, 21w37a, 21w43a, 1.18.1, 22w03a, 1.18.2, 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19 Pre-release 3, 1.19, 22w24a, 1.19.3, 23w05a, 23w06a, 1.19.4 Pre-release 4 (includes snapshots)",
+  "Observed Behavior": "Using a glow ink sac or an ink sac on a sign successfully changes the sign\u2019s text rendering, but the interaction does not activate nearby sculk sensors. The sensors remain inactive and emit no redstone signal for either type of ink sac.",
+  "Expected Behavior": "When an ink sac or glow ink sac is applied to a sign, nearby sculk sensors should detect the interaction and activate. This should occur consistently for both types of ink sacs whenever the sign is within the sensor\u2019s detection range, allowing the application to produce the expected sculk sensor response rather than being ignored.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Game Events/MC-214619",
+  "improvement_metadata": {
+    "original_key": "MC-214619"
+  }
+}

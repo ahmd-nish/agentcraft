@@ -1,0 +1,63 @@
+{
+  "key": "MC-209932",
+  "created_date": "2020-12-29T08:20:10.906-0800",
+  "updated_date": "2026-08-27T02:28:02.665-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w51a",
+    "21w03a",
+    "21w05a",
+    "21w05b",
+    "21w06a",
+    "21w07a",
+    "21w08b",
+    "21w10a",
+    "21w14a",
+    "21w15a",
+    "21w17a",
+    "21w19a",
+    "21w20a",
+    "1.17 Pre-release 1",
+    "1.17 Release Candidate 1",
+    "1.17 Release Candidate 2",
+    "1.17",
+    "1.17.1 Pre-release 1",
+    "1.17.1",
+    "1.18",
+    "1.18.1",
+    "1.18.2",
+    "22w11a",
+    "22w14a",
+    "22w17a",
+    "1.19 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "sculk_sensor"
+  ],
+  "resolution_date": "2022-05-24T06:13:23.446-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Sculk sensors only detect the last turtle egg being broken when being stepped on",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nSculk sensors only detect the last turtle egg being broken when being stepped on.\n\n## Steps to Reproduce:\n\n - Place down four turtle eggs on the same block.\n\n - Place down a sculk sensor nearby, stand on top of the turtle eggs, and wait for them to break.\n\n - Take note as to whether or not sculk sensors only detect the last turtle egg being broken when being stepped on.\n\n## Observed Behavior:\n\nSculk sensors aren't actiavted.\n\n## Expected Behavior:\n\nSculk sensors would be activated.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.18.2 using MCP-Reborn.\n\nnet.minecraft.world.level.block.TurtleEggBlock.java\n\npublic class TurtleEggBlock extends Block {\n ...\n \u00a0 private void decreaseEggs(Level $l, BlockPos $bp, BlockState $bs) {\n $l.playSound((Player)null, $bp, SoundEvents.TURTLE_EGG_BREAK, SoundSource.BLOCKS, 0.7F, 0.9F + $l.random.nextFloat() * 0.2F);\n int i = $bs.getValue(EGGS);\n if (i <= 1) {\n $l.destroyBlock($bp, false);\n } else {\n $l.setBlock($bp, $bs.setValue(EGGS, Integer.valueOf(i - 1)), 2);\n $l.levelEvent(2001, $bp, Block.getId($bs));\n }\n\n }\n ...\n\nIf we look at the above class, we can see that when the last turtle egg is broken, the destroyBlock() method is called. The destroyBlock() method then calls the gameEvent() method resulting in a vibration being produced. The problem here is that when there is more than one turtle egg occupying the same space, and one of them was to be destroyed, the gameEvent() method is never called, thus not detecting this action as a vibration.\n\n## Potential Fix:\n\nSimply calling the\u00a0gameEvent() method where appropriate within this piece of code should resolve this problem. The \"BLOCK_DESTROY\" game event tag would be expected to be used here as the turtle eggs are destroyed.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.18.2 and enter a world.\n2. Place four turtle eggs on the same block.\n3. Place a sculk sensor near the turtle eggs.\n4. Stand on top of the turtle eggs.\n5. Wait until the turtle eggs break.\n6. Observe whether the sculk sensor activates as the turtle eggs break, including when the last turtle egg is broken.",
+  "Environment": "Minecraft Java Edition Versions: 20w51a, 21w03a, 21w05a, 21w05b, 21w06a, 21w07a, 21w08b, 21w10a, 21w14a, 21w15a, 21w17a, 21w19a, 21w20a, 1.17 Pre-release 1, 1.17 Release Candidate 1, 1.17 Release Candidate 2, 1.17, 1.17.1 Pre-release 1, 1.17.1, 1.18, 1.18.1, 1.18.2, 22w11a, 22w14a, 22w17a, 1.19 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "When multiple turtle eggs occupy the same block, breaking them one at a time by stepping on them does not produce a sculk vibration for each egg. The first eggs are removed by reducing the block\u2019s `EGGS` property, but these removals do not activate a nearby sculk sensor. The sensor only detects the final egg being broken, when the turtle egg block is removed entirely.\n\nAs a result, a nearby sculk sensor receives one `BLOCK_DESTROY` vibration for the entire stack instead of detecting each individual turtle egg that is broken.",
+  "Expected Behavior": "When turtle eggs occupying the same block are broken, each egg-breaking event should produce a detectable vibration, allowing a nearby sculk sensor to activate as the eggs are destroyed. The sensor should not detect only the final egg breaking; breaking any of the stacked eggs while stepping on them should trigger the expected sculk sensor response.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Game Events/MC-209932",
+  "improvement_metadata": {
+    "original_key": "MC-209932"
+  }
+}

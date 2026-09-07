@@ -1,0 +1,51 @@
+{
+  "key": "MC-218222",
+  "created_date": "2021-03-09T03:52:36.506-0800",
+  "updated_date": "2026-08-20T03:58:50.422-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w08b",
+    "21w11a",
+    "1.17.1",
+    "21w40a",
+    "21w42a",
+    "1.18 Pre-release 5",
+    "1.18 Release Candidate 3",
+    "1.18.1",
+    "1.18.2",
+    "22w14a",
+    "22w17a",
+    "22w18a",
+    "22w19a"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "block",
+    "redstone"
+  ],
+  "resolution_date": "2022-05-18T05:12:51.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Distance value for Sculk Sensors is limited to integers",
+  "environment_raw": "",
+  "description": "## Overview\n\nWhen a sculk sensor outputs a signal, it is currently either 1, 15, or even. Odd signal strengths apart from 1 and 15 are never produced.\n\nEven though blocks on the diagonals are technically further away from the sensor than those directly on the axes, it will still output the same (even) value for both blocks. This issue makes the sculk sensor slightly inaccurate, especially in regards to triangulation.\n\nThis happens because the sculk sensor can only receive 9 different integer inputs for how far away a vibration is, and as the equation to calculate what redstone signal to output is a function, you will never be able to get more than 9 outputs out.\n\nThis results in the observed behaviour of no odd outputs being produced apart from 1 and 15.\n\n\u00a0\n\nThe following screenshot shows which distance currently outputs which signal strengths, and which signal strengths they would output if the sculk sensor could receive a range of distance values from 0-8 as opposed to a discrete set of 9 values. (Click to zoom: MC-218222.png)\n\nSculk Sensor Output Visualisation (desmos)\n\n\u00a0\n\n## Code Analysis\n\nThe game calls on the distance value which is an integer\n\nThis integer can only have 9 values because the range of the sculk sensor is 8 blocks (0-8), meaning that the function can only output a maximum of 9 values:\n\npublic static int getPower(int distance, int range) {\n\n\u00a0 \u00a0 \u00a0double d = (double)distance / (double)range;\n\n\u00a0 \u00a0 \u00a0return Math.max(1, 15 - MathHelper.floor(d * 15.0D));\n\n}\n\nThe distance value seems to come from the SculkSensorListener class which initially comes from DistancePredicate and I am unsure as to how challenging it would be to calculate the distance as a double/float as opposed to an integer from the get-go.\n\n## Fix\n\nThe initial calculations for the distance value, wherever they are done, needs to be calculated as a double/float.\n\n(The setup from this screenshot can be loaded via this structure file if you want to experiment with it yourself: mc-218222.nbt)\n\n## Video\n\nThis is a video showcasing a touchscreen display using sculk sensors, where this issue occurs in practice (two pixels cannot be distinguished from each other). The problem of the too imprecise outputs is mentioned and elaborated upon at the given timestamp.\n\nhttps://youtu.be/y8gc6B_AmZE?t=498",
+  "Steps to Reproduce": "1. Launch Minecraft and create a Creative world with default settings.\n2. Load the provided `mc-218222.nbt` structure containing the sculk sensor test setup.\n3. Trigger the sculk sensor from each marked position along the axes, one position at a time.\n4. Trigger the sculk sensor from the corresponding marked diagonal positions, one position at a time.\n5. Check the redstone signal strength produced by the sensor after each activation.\n6. Observe that the sensor produces signal strength 1, 15, or an even value only, and that a diagonal position can produce the same signal strength as a position on an axis even though it is farther away.",
+  "Environment": "Minecraft Java Edition Versions: 21w08b, 21w11a, 1.17.1, 21w40a, 21w42a, 1.18 Pre-release 5, 1.18 Release Candidate 3, 1.18.1, 1.18.2, 22w14a, 22w17a, 22w18a, 22w19a (includes snapshots)",
+  "Observed Behavior": "Sculk sensors quantize the distance to a vibration source to an integer before converting it into a redstone signal strength. Within the sensor\u2019s 8-block detection range, this provides only nine possible distance values: `0` through `8`.\n\nAs a result, the sensor can produce only the following signal strengths:\n\n```text\nDistance value: 0  1   2   3   4  5  6  7  8\nSignal strength:15 14  12  10  8  6  4  2  1\n```\n\nConsequently, no odd signal strengths other than `1` and `15` are produced.\n\nFractional distances are not preserved. For example, a vibration occurring diagonally from the sensor can be farther away than one occurring the same number of blocks along a single axis, but both distances are reduced to the same integer value and therefore produce the same redstone output. This prevents a sculk sensor from distinguishing between some nearby positions and reduces the accuracy of systems that use its signal strength to determine distance, such as triangulation or displays.",
+  "Expected Behavior": "Sculk sensors should calculate vibration distance with sufficient precision to distinguish fractional differences, including the greater distance of diagonal positions. Their redstone output should vary smoothly and accurately with the vibration\u2019s distance, producing the full range of appropriate signal strengths rather than only 1, 15, and even values. Vibration sources at different distances should therefore be distinguishable for applications such as triangulation.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Game Events/MC-218222",
+  "improvement_metadata": {
+    "original_key": "MC-218222"
+  }
+}
