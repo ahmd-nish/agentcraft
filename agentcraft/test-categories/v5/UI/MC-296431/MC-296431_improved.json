@@ -1,0 +1,37 @@
+{
+  "key": "MC-296431",
+  "created_date": "2025-04-08T14:06:05.529-0700",
+  "updated_date": "2026-03-11T03:54:06.364-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w15a",
+    "25w21a"
+  ],
+  "fix_versions": [
+    "1.21.6 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [],
+  "resolution_date": "2025-05-27T01:48:09.275-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Clipping item sprites to stay in slot makes it impossible to hide the slot for resource packs",
+  "environment_raw": "",
+  "description": "If one makes a resource pack and intends to hide the slot like below, clipping the item to a 16x16 slot is not viable. Additionally, if you were to have an item larger than the specific 16x16 space, it causes visual errors in items in your inventory (as shown below), we could have it clip to just enough (1.125x item model scale) to allow this feature and keep the clipping ability, though it would need space around each item lest you get it flowing into other items.\n\nSteps to reproduce:\n\n - Open using the recent snapshot\n\n - Download and mount the resource pack\n\n - Copy in the an item from the following code, other options for the custom model data string are: empty,right_arrow, left_arrow, cross, left_arrow_disabled, right_arrow_disabled\n\n/give @s stick[\n minecraft:item_model=\"minecraft:gui_button\",\n minecraft:item_name={\"text\":\"Back\"},\n minecraft:custom_model_data={\n strings:[\"minecraft:left_arrow\"],\n flags:[true]\n }\n]\n\n - observe the item you receive does not cover the borders as it was designed to and previously used to.\n\n - observe that some items in your inventory might just vanish.\n\nTry again on 1.21.5 and notice it works as expected.",
+  "Steps to Reproduce": "1. Launch Minecraft using the recent snapshot.\n2. Create a new Creative world with default settings.\n3. Download the resource pack.\n4. Enable the resource pack through the resource pack settings.\n5. Open the chat and run `/give @s stick[minecraft:item_model=\"minecraft:gui_button\",minecraft:item_name={\"text\":\"Back\"},minecraft:custom_model_data={strings:[\"minecraft:left_arrow\"],flags:[true]}]`.\n6. Open the inventory and observe that the received item does not cover the slot borders as designed.\n7. Observe that some items in the inventory may vanish.\n8. Repeat the reproduction in Minecraft 1.21.5 and observe that the item covers the borders and the inventory items work as expected.",
+  "Environment": "Minecraft Java Edition Versions: 25w15a, 25w21a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nIn the recent snapshot, item sprites in inventory slots are clipped to the slot\u2019s 16\u00d716-pixel bounds. As a result, the custom `minecraft:gui_button` model from the resource pack is cut off at the slot borders instead of extending over them as designed. The sprite therefore cannot conceal the underlying slot background or border.\n\nItem models that extend beyond the 16\u00d716 slot area can also render incorrectly: parts of the model are clipped, and some inventory items may appear to vanish or become visually corrupted. The same resource pack and item command render correctly in Minecraft 1.21.5, where the item sprite is not restricted in this way.",
+  "Expected Behavior": "The custom item sprite should render at its designed size, extending far enough beyond the 16\u00d716 slot to cover the slot borders and support resource packs that hide them. Items larger than the slot should remain visible without visual errors, while clipping should still prevent excessive overlap into neighboring slots. Inventory items should not disappear, matching the behavior observed in version 1.21.5.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/UI/MC-296431",
+  "improvement_metadata": {
+    "original_key": "MC-296431"
+  }
+}

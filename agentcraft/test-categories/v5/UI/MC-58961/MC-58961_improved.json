@@ -1,0 +1,52 @@
+{
+  "key": "MC-58961",
+  "created_date": "2014-06-25T09:12:10.925-0700",
+  "updated_date": "2025-04-29T11:47:58.673-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 1.7.9",
+    "Minecraft 1.11 Pre-Release 1",
+    "Minecraft 1.12.2",
+    "Minecraft 1.13.1",
+    "Minecraft 1.13.2",
+    "Minecraft 19w05a",
+    "Minecraft 19w06a",
+    "Minecraft 19w07a",
+    "1.15.1",
+    "1.15.2 Pre-release 2",
+    "1.15.2",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "Minecraft 14w32a",
+    "23w14a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "GUI",
+    "gui-button",
+    "kick"
+  ],
+  "resolution_date": "2023-10-30T10:22:45.433-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Back button and kick message can overlap",
+  "environment_raw": "",
+  "description": "## The bug\n\nIn short, this bug is simply that the 'back' button on the multiplayer kick message screen can overlap with the kick message itself, if the message is approximately 9 lines or more. (Attached is a screenshot which shows this better).\n\n## How to reproduce\n\n - Start a server.\n\n - Set your GUI Scale to 3/auto.\n\n - Go into the console and run:\n\n/kick @s 541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541fffff451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff541f451f541f451ff154f1f541ffff\n\n\u2192 Text will appear behind the \"Back\" button. (Note: In newer versions the text appears in front of the \"Back\" button, which is not much better either.)",
+  "Steps to Reproduce": "",
+  "Environment": "Minecraft Java Edition Versions: 1.7.9, 1.11 Pre-Release 1, 1.12.2, 1.13.1, 1.13.2, 19w05a, 19w06a, 19w07a, 1.15.1, 1.15.2 Pre-release 2, 1.15.2, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a player is disconnected with a sufficiently long kick message (approximately nine lines or more at GUI Scale 3/Auto), the message extends into the area occupied by the **Back** button on the multiplayer disconnection screen. As a result, the message and button overlap, making part of the message and/or the button difficult to read.\n\nIn some versions, the message is rendered behind the button; in newer versions, the message is rendered in front of it. Both rendering orders still result in the kick message and **Back** button overlapping instead of remaining in separate areas.",
+  "Expected Behavior": "When a player is shown a multiplayer kick message, the message should remain fully readable without being obscured by the \u201cBack\u201d button. For long messages spanning approximately nine or more lines, the interface should position or size the message and button so they remain clearly separated, and the \u201cBack\u201d button should remain fully visible and usable.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/UI/MC-58961",
+  "improvement_metadata": {
+    "original_key": "MC-58961"
+  }
+}
