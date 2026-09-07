@@ -1,0 +1,48 @@
+{
+  "key": "MC-211096",
+  "created_date": "2021-01-10T13:44:02.279-0800",
+  "updated_date": "2026-08-10T02:17:07.576-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.4",
+    "1.16.5",
+    "21w05b",
+    "21w13a",
+    "1.19.4",
+    "23w14a",
+    "1.21.3",
+    "24w45a"
+  ],
+  "fix_versions": [
+    "1.21.10 Release Candidate 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "cobweb",
+    "entity",
+    "piston",
+    "piston-extension"
+  ],
+  "resolution_date": "2025-10-02T04:33:52.992-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Entities in cobwebs clip though pistons",
+  "environment_raw": "",
+  "description": "## The bug:\n\nThe entity is moved up ~0.05 blocks (established using carpets mod's tick freeze) and becomes stuck in the piston head. On versions 1.2.1-1.19.4, when the piston is retracted, the entity clips into the piston body and sinks through the cobweb.\n\n## Expected Result:\n\nThe piston to push the entity up a full block and the entity to sink through the cobweb.\n\n## Steps to Reproduce:\n\n - Place piston, facing upwards\n\n - Place rail on top of piston\n\n - Place cobweb to the top and left of the piston\n\n - Place minecraft on the rail and break the rail\n\n - Nudge the minecart into the cobweb\n\n - Ensure there are no block underneath the cobweb\n\n - Power and de-power the piston (slowly)\n\nSee the video and photos for more information on how to setup this glitch.\n\n## Responses:\n\nNow tested for all spawn egg mobs (in response to Marty Mcfly):\n\n - Doesn't affect Spiders / Cave spiders, as these mobs are not slowed by cobwebs.\n\n - Doesn't affect flying mobs (Bees, Bats, Ghasts, Phantoms) or mobs summoned with\n\n/summon minecraft:creeper ~ ~ ~ {NoGravity:1b}\n\nNow tested for short duration pulses (in response to Gnamf Jojo):\n\n - Works for all pulses, down to 0-tick pulses (make sure there's no block under the cobweb)\n\n## Updates:\n\nWhen a player is pushed within the cobweb, they are put into swim mode.\n\nThis glitch also affects Minecarts that are still on rails.\n\n## Code analysis\n\nCode analysis by haykam can be found in this comment.",
+  "Steps to Reproduce": "1. Launch Minecraft in a version from 1.2.1 through 1.19.4.\n2. Create a Creative world with default settings.\n3. Place a piston facing upward.\n4. Place a rail on top of the piston.\n5. Place a cobweb above and to the left of the piston, with no block underneath the cobweb.\n6. Place a minecart on the rail and break the rail.\n7. Nudge the minecart into the cobweb.\n8. Power the piston, then slowly depower it.\n9. Observe that the minecart is moved only slightly upward, becomes stuck in the piston head, and clips into the piston body and sinks through the cobweb when the piston retracts.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.4, 1.16.5, 21w05b, 21w13a, 1.19.4, 23w14a, 1.21.3, 24w45a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen an entity is inside the cobweb above the upward-facing piston, extending the piston moves it upward by only approximately **0.05 blocks** instead of the full block. The entity then becomes partially embedded in the extended piston head.\n\nWhen the piston retracts, the entity clips into the piston body and is moved downward through the cobweb rather than remaining in the cobweb and being slowed by it. This can occur with very short redstone pulses, including 0-tick pulses, provided that there is no block beneath the cobweb.\n\nThe issue affects entities slowed by cobwebs, including minecarts. Players pushed into the cobweb may also enter swimming pose. It does not affect spiders or cave spiders, which are not slowed by cobwebs, or flying entities such as bees, bats, ghasts, and phantoms.",
+  "Expected Behavior": "When the piston is powered, it should move the entity upward by a full block without clipping it into or leaving it stuck in the piston head. When the piston retracts, the entity should remain properly positioned and sink through the cobweb as expected, rather than clipping into the piston body or passing through the cobweb incorrectly.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Collision/MC-211096",
+  "improvement_metadata": {
+    "original_key": "MC-211096"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-279016",
+  "created_date": "2024-12-27T01:35:24.750-0800",
+  "updated_date": "2026-08-27T03:41:11.613-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w45a",
+    "1.21.4"
+  ],
+  "fix_versions": [
+    "25w09a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [],
+  "resolution_date": "2025-09-19T12:07:34.128-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Moving through tripwire in Spectator mode and changing game mode after moving away activates the tripwire",
+  "environment_raw": "",
+  "description": "After going through a tripwire hook in spectator mode and changing to another gamemode, the tripwire hook will activate.\n\nWhat I expected to happen was...:\n\nThe tripwire hook to stay deactivated after changing back from spectator mode.\n\nWhat actually happened was...:\n\nThe tripwire hook had activated after passing through it in spectator mode and leaving spectator mode.\n\nSteps to Reproduce:\n\n - Create a world with cheats enabled.\n\n - Build a small tripwire hook mechanism.\n\n - Change into spectator mode.\n\n - Pass through the tripwire in spectator.\n\n - Change into Creative / Survival / Adventure mode.\n\n - Tripwire will activate, does not matter where you are.",
+  "Steps to Reproduce": "1. Create a world with cheats enabled.\n2. Build a small tripwire hook mechanism.\n3. Change to Spectator mode.\n4. Move through the tripwire.\n5. Move away from the tripwire.\n6. Change to Creative, Survival, or Adventure mode.\n7. Observe that the tripwire hook activates regardless of the player's location.",
+  "Environment": "Minecraft Java Edition Versions: 24w45a, 1.21.4 (includes snapshots)",
+  "Observed Behavior": "Actual behavior:**\n\nAfter the player passes through the tripwire while in Spectator mode and then switches to Creative, Survival, or Adventure mode, the tripwire hook becomes activated and emits its redstone signal. This occurs even if the player has already moved away from the tripwire before changing game mode.",
+  "Expected Behavior": "After the player passes through the tripwire while in Spectator mode and then switches to Creative, Survival, or Adventure mode, the tripwire hook should remain deactivated. Moving through the tripwire in Spectator mode should not trigger it, and changing game modes after leaving the tripwire should not cause it to activate regardless of the player\u2019s location.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Collision/MC-279016",
+  "improvement_metadata": {
+    "original_key": "MC-279016"
+  }
+}

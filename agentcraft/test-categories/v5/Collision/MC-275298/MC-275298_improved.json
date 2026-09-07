@@ -1,0 +1,37 @@
+{
+  "key": "MC-275298",
+  "created_date": "2024-08-15T12:39:01.861-0700",
+  "updated_date": "2026-08-27T03:39:29.530-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a",
+    "24w34a"
+  ],
+  "fix_versions": [
+    "24w36a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-28T06:43:45.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Blocks with special collision behavior have a larger detection range than previously",
+  "environment_raw": "",
+  "description": "Blocks with special collision behavior have wider ranges than before in 1.21.1 when standing up against these blocks.\n\n## Affected Blocks:\n\n(Comment for any I missed)\n\n - Honey block\n\n - Fire\n\n - Powder snow\n\n - Nether portals\n\n - Cauldrons\n\n - Bubble Columns\n\n - Cobwebs\n\n - Soul Fire\n\n - End Gateways\n\n - Sweet Berries\n\n - Big Dripleaf\n\n## Steps to Reproduce:\n\n - Recreate this simple setup:\n\n \n\n - Place down any of the affected blocks on top of the red wool\n\n - Stand half against the white concrete, and half against the affected block\n\n \n\n## Expected Result:\n\nNone of the blocks would have their respective behaviors occur and affect the player, as this did not occur in 1.21.1, and the player is not actually inside of the block.\n\n## Observed Behavior:\n\nThe blocks will output their behaviors onto the player when standing against the concrete and affected block.\n\nThis also is not directional, as using an example where the player isn't standing next to a block, but above it, the same issue occurs:\n\n 2024-08-15_14-51-54.mp4 \n\n## Screenshots/Videos:\n\n 2024-08-15_14-37-38.mp4",
+  "Steps to Reproduce": "1. Create a Creative world with default settings.\n2. Recreate the setup with red wool and white concrete as shown in the report.\n3. Place one affected block on top of the red wool.\n4. Stand with half of the player against the white concrete and half against the affected block.\n5. Observe whether the affected block applies its behavior to the player.\n6. Repeat steps 3\u20135 with the other affected blocks: honey block, fire, powder snow, Nether portal, cauldron, bubble column, cobweb, soul fire, End Gateway, sweet berries, and big dripleaf.\n7. Recreate the corresponding setup where the player is above the affected block rather than standing next to it.\n8. Observe whether the affected block applies its behavior to the player from above.",
+  "Environment": "Minecraft Java Edition Versions: 24w33a, 24w34a (includes snapshots)",
+  "Observed Behavior": "The affected blocks detect and apply their special behavior when the player is adjacent to the block, even when the player is not actually within the block\u2019s relevant area or collision shape.\n\nFor example, when the player stands with one half of their hitbox against the white concrete and the other half next to the affected block, the block still affects the player. Depending on the block, this may cause the player to burn, freeze, slow down, be pushed, become stuck, enter a portal, take damage, or trigger another block-specific behavior.\n\nThe behavior is also triggered when the player is positioned above the affected block rather than beside it, demonstrating that the increased detection range is not limited to a particular horizontal direction. This behavior was not present in 1.21.1, where the player had to actually enter the block\u2019s applicable area for its special behavior to activate.",
+  "Expected Behavior": "When the player stands against an affected block while partially occupying the adjacent space, the block\u2019s special behavior should not activate or affect the player unless the player is actually inside its detection area. This should apply consistently from every direction, including standing above the block, with detection ranges matching the behavior seen in Minecraft 1.21.1.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Collision/MC-275298",
+  "improvement_metadata": {
+    "original_key": "MC-275298"
+  }
+}
