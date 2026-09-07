@@ -1,0 +1,37 @@
+{
+  "key": "MC-257188",
+  "created_date": "2022-11-03T08:37:47.161-0700",
+  "updated_date": "2026-08-20T04:21:12.258-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w44a",
+    "22w45a"
+  ],
+  "fix_versions": [
+    "22w46a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-11-10T02:38:15.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "You aren't prompted that your draft reports will be discarded upon disconnecting from worlds by using the \"Title Screen\" button within the death screen",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nYou aren't prompted that your draft reports will be discarded upon disconnecting from worlds by using the \"Title Screen\" button within the death screen.\n\nThe\u00a022w43a changelog\u00a0states that:\n\nDraft reports are kept until the player leaves the current server or world\n\n - When leaving, the player will be prompted to either discard or finish and send the report\n\nhowever, this isn't the case if the player disconnects from worlds by using the \"Title Screen\" button on the death screen. If players were to click the \"Disconnect\" button within the game menu, they would be prompted that their draft reports will be discarded upon leaving worlds, which is the correct and expected behavior.\n\nTo get a visual understanding of this issue, I've attached two videos that show the difference in behavior depending on if you disconnect the world by using the \"Disconnect\" button within the game menu, or the \"Title Screen\" button within the death screen.\n\nMC-257188 - Behavior when disconnecting by using the Disconnect button.mp4\n\nMC-257188 - Behavior when disconnecting by using the Title Screen button.mp4\n\n## Steps to Reproduce:\n\n - Join a multiplayer world with another player online and get them to type in chat.\n\n - Begin making a chat report for any of their messages and save the report as a draft.\n\n - Hit the ESC key, click on the \"Disconnect\" button, and take note of how you're prompted that your draft report will be lost if you leave the world.\n\n - Click on the \"Continue Editing\" button, then the \"Back\" button, and finally the \"Save as Draft\" button to save your report as a draft once again.\n\n - Run the \"/kill\" command and leave the world by clicking on the \"Title Screen\" button within the death screen.\n\n - Take note of how you aren't prompted that your draft reports will be discarded upon disconnecting from worlds by using the \"Title Screen\" button within the death screen.\n\n## Observed Behavior:\n\nYou aren't prompted that your draft reports will be discarded.\n\n## Expected Behavior:\n\nYou would be prompted that your draft reports will be discarded.",
+  "Steps to Reproduce": "1. Launch Minecraft 22w43a.\n2. Join a multiplayer world with another player online.\n3. Have the other player type a message in chat.\n4. Begin making a chat report for one of the other player's messages.\n5. Save the chat report as a draft.\n6. Run `/kill`.\n7. On the death screen, click the \"Title Screen\" button.\n8. Observe that you are not prompted that the draft report will be discarded.",
+  "Environment": "Minecraft Java Edition Versions: 22w44a, 22w45a (includes snapshots)",
+  "Observed Behavior": "When a player has a saved chat report draft and selects **Title Screen** from the **death screen**, the game disconnects them from the current world without displaying the draft-report warning. The player is not given the options to discard the draft or continue editing and sending it before leaving the world.\n\nThis warning is displayed when leaving through **Esc \u2192 Disconnect**, so the **Title Screen** button on the death screen does not follow the same draft-report handling as the regular **Disconnect** button.",
+  "Expected Behavior": "When the player selects \u201cTitle Screen\u201d from the death screen while a chat report is saved as a draft, the game should recognize that the player is leaving the current world and display a prompt explaining that the draft report will be discarded. The player should be able to choose whether to discard the draft or return to finish and send the report, consistent with the behavior of the \u201cDisconnect\u201d button.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Social Interactions/MC-257188",
+  "improvement_metadata": {
+    "original_key": "MC-257188"
+  }
+}

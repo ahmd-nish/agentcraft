@@ -1,0 +1,39 @@
+{
+  "key": "MC-253223",
+  "created_date": "2022-06-17T04:01:03.301-0700",
+  "updated_date": "2025-03-20T23:46:55.858-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w24a",
+    "1.19.1 Pre-release 1",
+    "1.19.1 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.19.1 Pre-release 3",
+    "1.19.1 Pre-release 5"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-07-14T08:53:31.308-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "A preposition is incorrectly used within the \"gui.abuseReport.reason.terrorism_or_violent_extremism.description\" string",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nA preposition is incorrectly used within the \"gui.abuseReport.reason.terrorism_or_violent_extremism.description\" string.\n\nThis string is currently grammatically incorrect as the preposition within it, (that being the word \"with\"), doesn't contain a noun before it, therefore not making it clear who the given person is threatening these comments toward.\n\nBelow, I've constructed a table that states all of the necessary and relevant information regarding this issue.\n\n## Affected String:\n\nBefore reading the table, please note the following:\n\n - Words colored in\u00a0GREEN\u00a0are correct.\n\n - Words colored in\u00a0RED\u00a0are incorrect.\n\n\u00a0\n\nTranslation Key\n\nCurrent String\n\nExpected String\n\nString URL on Crowdin\n\ngui.abuseReport.reason.terrorism_or_violent_extremism.description\n\nSomeone is talking about, promoting, or threatening with acts of terrorism or violent extremism for political, religious, ideological, or other reasons.\n\nSomeone is talking about, promoting, or threatening acts of terrorism or violent extremism for political, religious, ideological, or other reasons.\n\nhttps://crowdin.com/translate/minecraft/10002/enus-engb#5297058\u00a0\n\n## Steps to Reproduce:\n\n - Display this string by executing the command provided below.\n\n - \n\n/tellraw @s {\"translate\":\"gui.abuseReport.reason.terrorism_or_violent_extremism.description\"}\n\n - Look closely at the usage of the preposition (that being the word \"with\") within this string.\n\n - Take note as to whether or not a preposition is incorrectly used within the \"gui.abuseReport.reason.terrorism_or_violent_extremism.description\" string.\n\n## Observed Behavior:\n\nA preposition is incorrectly used.\n\n## Expected Behavior:\n\nPrepositions would be correctly used within this string.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a Creative world with default settings.\n3. Open the chat and execute `/tellraw @s {\"translate\":\"gui.abuseReport.reason.terrorism_or_violent_extremism.description\"}`.\n4. Observe that the displayed string contains \u201cthreatening with acts of terrorism or violent extremism\u201d instead of \u201cthreatening acts of terrorism or violent extremism.\u201d",
+  "Environment": "Minecraft Java Edition Versions: 22w24a, 1.19.1 Pre-release 1, 1.19.1 Pre-release 3 (includes snapshots)",
+  "Observed Behavior": "When the translation key `gui.abuseReport.reason.terrorism_or_violent_extremism.description` is displayed, the text is rendered as:\n\n> Someone is talking about, promoting, or threatening **with** acts of terrorism or violent extremism for political, religious, ideological, or other reasons.\n\nThe phrase \u201cthreatening with acts\u201d is grammatically incorrect or unclear in this context because \u201cwith\u201d is unnecessary after \u201cthreatening.\u201d The string should instead render \u201cthreatening acts of terrorism or violent extremism,\u201d as shown in the expected string.",
+  "Expected Behavior": "When the translation string is displayed, it should use grammatically correct wording that clearly conveys its intended meaning. Specifically, it should read, \u201cSomeone is talking about, promoting, or threatening acts of terrorism or violent extremism for political, religious, ideological, or other reasons.\u201d The unnecessary preposition \u201cwith\u201d should be removed so that the description is clear and grammatically accurate.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Social Interactions/MC-253223",
+  "improvement_metadata": {
+    "original_key": "MC-253223"
+  }
+}

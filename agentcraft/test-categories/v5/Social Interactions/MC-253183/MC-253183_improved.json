@@ -1,0 +1,36 @@
+{
+  "key": "MC-253183",
+  "created_date": "2022-06-16T09:29:44.047-0700",
+  "updated_date": "2026-08-20T04:19:50.586-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w24a"
+  ],
+  "fix_versions": [
+    "1.19.1 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-06-21T01:52:57.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The word \"Unrelated\" within the \"gui.chatSelection.fold\" string is incorrectly capitalized",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nThe word \"Unrelated\" within the \"gui.chatSelection.fold\" string is incorrectly capitalized.\n\nThis string currently reads \"%s Unrelated messages hidden\" (where \"%s\" represents a number), so there is no need to capitalize the word \"Unrelated\" here. In English, when a number is used at the beginning of a sentence, there is no need to capitalize the word that comes after it, and doing this is often seen as grammatically incorrect.\n\nBelow, I've constructed a table that states all of the necessary and relevant information regarding this issue.\n\n## Affected String:\n\nBefore reading the table, please note the following:\n\n - Words colored in\u00a0GREEN\u00a0are correct.\n\n - Words colored in\u00a0RED\u00a0are incorrect.\n\n\u00a0\n\nTranslation Key\n\nCurrent String\n\nExpected String\n\nString URL on Crowdin\n\ngui.chatSelection.fold\n\n%s Unrelated messages hidden\n\n%s unrelated messages hidden\n\nhttps://crowdin.com/translate/minecraft/10002/enus-engb#5296050\u00a0\n\n## Steps to Reproduce:\n\n - Display this string by executing the command provided below.\n\n - \n\n/tellraw @s {\"translate\":\"gui.chatSelection.fold\"}\n\n - Look closely at the capitalization within this string.\n\n - Take note as to whether or not the word \"Unrelated\" within the \"gui.chatSelection.fold\" string is incorrectly capitalized.\n\n## Observed Behavior:\n\nThe word \"Unrelated\" is incorrectly capitalized.\n\n## Expected Behavior:\n\nThe word \"Unrelated\" would not be capitalized.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create or open a Creative world with default settings.\n3. Open the chat.\n4. Enter and execute `/tellraw @s {\"translate\":\"gui.chatSelection.fold\"}`.\n5. Observe that the displayed message reads \u201c%s Unrelated messages hidden,\u201d with \u201cUnrelated\u201d incorrectly capitalized.",
+  "Environment": "Minecraft Java Edition Version 22w24a (snapshot)",
+  "Observed Behavior": "The `gui.chatSelection.fold` translation is rendered with **\u201cUnrelated\u201d** capitalized after the numeric `%s` placeholder:\n\n```text\n%s Unrelated messages hidden\n```\n\nFor example, when `%s` is replaced with `3`, the message appears as:\n\n```text\n3 Unrelated messages hidden\n```\n\nThe word **\u201cUnrelated\u201d** should instead use lowercase capitalization in this sentence.",
+  "Expected Behavior": "When the `gui.chatSelection.fold` string is displayed, it should read \u201c%s unrelated messages hidden,\u201d with \u201cunrelated\u201d written in lowercase after the numeric placeholder. The message should retain the correct number substitution and wording while following standard English capitalization, ensuring that the displayed text does not incorrectly capitalize \u201cUnrelated.\u201d",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Social Interactions/MC-253183",
+  "improvement_metadata": {
+    "original_key": "MC-253183"
+  }
+}

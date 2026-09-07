@@ -1,0 +1,36 @@
+{
+  "key": "MC-254421",
+  "created_date": "2022-07-21T06:18:20.719-0700",
+  "updated_date": "2026-08-27T03:07:44.792-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19.1 Pre-release 6"
+  ],
+  "fix_versions": [
+    "1.19.1 Release Candidate 2"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-07-21T13:38:47.811-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Social interaction messages aren't prefixed with gray color indicators",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nSocial interaction messages aren't prefixed with gray color indicators despite being system messages.\n\nThe\u00a01.19.1 Pre-release 4\u00a0changelog states that\n\nSystem message are now displayed with a gray color indicator\n\nThis means that any messages that are displayed by the system, for example, command feedback messages, are prefixed with gray color indicators. Despite messages displayed from using the social interaction system being considered system messages, they are not prefixed with gray color indicators.\n\n## Steps to Reproduce:\n\n - Join a multiplayer environment with other players on it and display a system message in chat by adding a tag to yourself by executing the following command.\n\n - \n\n/tag @s add test\n\n - Take note of how the command feedback message is correctly prefixed with a gray color indicator as it's a system message.\n\n - Open up the social interactions menu, select any player and click the \"Hide/Show messages\" button beside their name.\n\n - Look at the message that's displayed in chat.\n\n - Take note as to whether or not social interaction messages are prefixed with gray color indicators.\n\n## Observed Behavior:\n\nSocial interaction messages aren't prefixed with gray color indicators despite being system messages.\n\n## Expected Behavior:\n\nSocial interaction messages would be prefixed with gray color indicators.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.19.1 Pre-release 4.\n2. Join a multiplayer environment with other players.\n3. Execute the command `/tag @s add test`.\n4. Take note that the command feedback message is prefixed with a gray color indicator.\n5. Open the social interactions menu.\n6. Select any player.\n7. Click the \u201cHide/Show messages\u201d button beside the selected player\u2019s name.\n8. Observe the social interaction message in chat and note that it is not prefixed with a gray color indicator.",
+  "Environment": "Minecraft Java Edition Version 1.19.1 Pre-release 6",
+  "Observed Behavior": "When the **Hide messages** or **Show messages** button is used for a player in the Social Interactions menu, the resulting notification appears in chat without the gray color indicator used for system messages. This differs from command feedback, such as the response to `/tag @s add test`, which is correctly displayed with a gray indicator.",
+  "Expected Behavior": "Social interaction messages should be displayed with the same gray color indicator used for other system messages, such as command feedback. When a player hides or shows another player\u2019s messages through the Social Interactions menu, the resulting chat notification should be clearly identified as a system message by including the gray indicator.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Social Interactions/MC-254421",
+  "improvement_metadata": {
+    "original_key": "MC-254421"
+  }
+}
