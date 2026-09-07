@@ -1,0 +1,42 @@
+{
+  "key": "MC-239880",
+  "created_date": "2021-10-27T12:46:51.564-0700",
+  "updated_date": "2026-08-20T04:14:46.987-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w43a",
+    "21w44a",
+    "1.18 Pre-release 1",
+    "1.18 Pre-release 2",
+    "1.18 Pre-release 3",
+    "1.18 Pre-release 4",
+    "1.18 Pre-release 5"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 6"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-11-22T07:05:05.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Some chunks have missing blocks below 0",
+  "environment_raw": "",
+  "description": "The bug\n\nI was exploring around with new biome blending and noticed a chunk formation underground, I went to it and it was all air below 0 and converted incorrectly. This is very rare to happen as I seen the other chunks are fine. I checked the logs are there are 3 errors that are all in the same minute, but this happened on my other world without any error in logs.\n\nUPDATE: The cause of this issue is when caves are generated below old chunks, the chunk contains no bedrock so it won't attempt to place caves below this chunk since after testing around, the chunk must contain at least 1 block of bedrock at Y=0 in the world for it to fill the bottom with caves. The fix would be detecting if the chunk contains an block at Y=0 instead of detecting only Bedrock.\n\nSteps to reproduce\n\n1. Load a world from 1.17.1 or below on 1.18 Pre-release 5 (or load Below 0 world bug.zip)\n\n2. Explore around next to the blended area (If on downloaded world do: /tp -1201 -9 -85)\n\n3. You can notice missing chunks but It is rare.\n\nObserved result\n\nEmpty chunks below 0\n\nExpected behaviour\n\nChunks to generate like the other chunks around",
+  "Steps to Reproduce": "1. Launch Minecraft 1.18 Pre-release 5.\n2. Load a world created in Minecraft 1.17.1 or earlier, or load the provided `Below 0 world bug.zip` world.\n3. If using the provided world, run `/tp -1201 -9 -85`.\n4. Explore around the blended area next to the existing chunks.\n5. Continue exploring until a rare incorrectly converted chunk formation is found underground.\n6. Observe that the affected chunk contains empty space below Y=0, while the surrounding chunks generate normally.",
+  "Environment": "Minecraft Java Edition Versions: 21w43a, 21w44a, 1.18 Pre-release 1, 1.18 Pre-release 2, 1.18 Pre-release 3, 1.18 Pre-release 4, 1.18 Pre-release 5 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nDuring blending of a world created in Minecraft 1.17.1 or earlier, some chunks at the boundary between the old and newly generated terrain are converted incorrectly. In the affected chunks, the entire section below Y=0 is replaced with air, leaving no generated terrain or bedrock there, while neighboring chunks generate normally. The issue is rare and only affects some chunks in the blended area.\n\nThis occurs when caves are generated below an old chunk that contains no bedrock at Y=0. The generation logic appears to check specifically for bedrock at Y=0 before filling the area below the old terrain, so chunks without a bedrock block are skipped and remain empty below Y=0.",
+  "Expected Behavior": "Chunks below Y=0 should generate with complete underground terrain consistent with the surrounding chunks, including the appropriate blocks and cave formations in blended areas. Converting a world from an earlier version should not leave rare sections entirely filled with air or otherwise incomplete. The affected chunks should match neighboring chunks in structure and appearance.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Datafixer/MC-239880",
+  "improvement_metadata": {
+    "original_key": "MC-239880"
+  }
+}

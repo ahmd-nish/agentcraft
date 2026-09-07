@@ -1,0 +1,39 @@
+{
+  "key": "MC-239610",
+  "created_date": "2021-10-22T12:39:59.195-0700",
+  "updated_date": "2026-08-20T04:14:37.465-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w42a",
+    "21w43a",
+    "21w44a",
+    "1.18 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-11-17T04:16:23.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Severe world corruption due to 1.18 snapshots failing to deserialize chunks that 1.17 loads fine",
+  "environment_raw": "",
+  "description": "## The bug\n\nThe core of the problem is that Minecraft 1.18 snapshots do not accept all save formats that were previously accepted. Minecraft 1.17 handled chunk sections with a mismatched palette size (e.g. 14 entries -> 4 bits per block) and data size (342 longs -> 12 blocks per long -> 5 bits per block) properly. It calculated the bits per block from the data size, and therefore was able to read the block data correctly.\n\nThe expected data size is calculated from the required bits per block which is calculated from the palette size. If the data size does not match the expected value 1.18 will throw an exception and generate a new chunk instead. Minecraft 1.17 snapshots handle this mismatch without any issue.\n\nI haven't checked whether vanilla ever created chunks with this exact format in the past. But I have to assume that the code handling the mismatched size case existed for a reason. I hope you can look up that reason in your version control system (PalettedContainer, deserialization of the NBT, at the end). The code existed since at least minecraft 1.14.4. \n\nFor example the optimization mod lithium-fabric relied on chunk sections with this format being loaded properly and created lots of chunk sections with this format. This will lead to world corruption when hundreds of thousands of users upgrade their worlds to 1.18 (snapshots).\n\nI attached a world that I created with the optimization mod lithium that includes lots of chunk sections with a size mismatch (data larger than palette requires). This world loads fine in vanilla 1.17. It breaks in the current 1.18 snapshots, cf. screenshots. As said before, it is possible that previous minecraft vanilla versions also created chunk sections with this save format, which is no longer accepted by 1.18.\n\n## How to reproduce\n\n - Download the attached world Palette_Data size mismatch dfu.zip and save two copies in the saves folder\n\n - Load one copy in 1.17.1\n\n Notice that the world looks normal, all chunks loaded fine\n\n - Load the second copy in the latest 1.18 snapshot\n\n Notice that some chunks are corrupted (have regenerated), there are errors in the log (example as attachment)\n\n## Fixes\n\nAs a fix I suggest to:\n\nadd a datafixer that fixes the size mismatch (rewrite data to match the palette's required bit resolution, similar to 1.17 loading code.\n\nor reintroduce the code that handles this case when deserializing chunk sections.\n\nRegarding the screenshots:\n\nThe corruptions do not look severe here, but it will replace player bases with new chunks!",
+  "Steps to Reproduce": "1. Download the attached `Palette_Data size mismatch dfu.zip` world and save two copies in the game's saves folder.\n2. Launch Minecraft 1.17.1.\n3. Load one copy of the attached world.\n4. Observe that the world looks normal and its chunks load correctly.\n5. Exit the world and launch the latest 1.18 snapshot.\n6. Load the second copy of the attached world.\n7. Observe that some chunks are corrupted or regenerated, replacing the previously loaded world areas.\n8. Check the game log and observe errors related to loading the affected chunks.",
+  "Environment": "Minecraft Java Edition Versions: 21w42a, 21w43a, 21w44a, 1.18 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen the attached world is opened in a 1.18 snapshot, chunk sections whose palette and block-state data array have different implied sizes fail to deserialize. For example, a section with a 14-entry palette requires 4 bits per block, while its 342-long data array contains data arranged for 5 bits per block.\n\nInstead of loading the section using the bit width implied by the serialized data, 1.18 rejects the section because the data-array length does not match the palette-derived expected length. The resulting deserialization error is recorded in `latest.log`, and the affected chunk is regenerated rather than loaded from the save.\n\nConsequently, portions of the world\u2014including existing player-built structures and bases\u2014are replaced with newly generated terrain. The corruption is limited to affected chunks, so other areas may continue to appear normal. The same world loads correctly in vanilla 1.17.1, where the mismatched data is accepted and the block states are read successfully.",
+  "Expected Behavior": "The 1.18 snapshot should load the attached world successfully, just as Minecraft 1.17.1 does, including all chunk sections with mismatched saved data. Existing terrain, player-built structures, and bases should remain intact and unchanged, with no chunks being regenerated or corrupted. Loading the world should also complete without deserialization errors in the game log.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Datafixer/MC-239610",
+  "improvement_metadata": {
+    "original_key": "MC-239610"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-177446",
+  "created_date": "2020-04-04T15:37:53.562-0700",
+  "updated_date": "2025-03-25T13:24:40.809-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w14a",
+    "1.17 Pre-release 2"
+  ],
+  "fix_versions": [
+    "23w45a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-11-07T04:26:15.654-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "\"RootVehicle\" tag in playerdata entry is not upgraded",
+  "environment_raw": "",
+  "description": "## The bug\n\nIt appears that the RootVehicle tag of playerdata entries is not upgraded. This can cause missing or malformed NBT data for the vehicle and even prevent loading the vehicle at all if its entity id changed in newer versions. Other tags might be affected as well.\n\nThis does however not affect the Player tag of the level.dat file. Therefore this can usually only be observed when upgrading worlds created by a dedicated server (server.jar), or when manually removing the Player tag from the level.dat file of a singleplayer world.\n\n## How to reproduce (singleplayer world)\n\n - Download and extract the world 1.10 world.zip and place it in the saves folder of your installation\n\n - Open the world in the latest version\n\n You fall through the ground and the following warning is logged:\n\n20w14a\n\nException loading entity: \nt: Non [a-z0-9/._-] character in path of location: minecraft:Boat\n at tr.<init>(SourceFile:38)\n at tr.<init>(SourceFile:43)\n at ang.a(SourceFile:490)\n at ang.a(SourceFile:461)\n at ang.b(SourceFile:514)\n at ang.a(SourceFile:495)\n at aav.a(SourceFile:205)\n at ze.c(SourceFile:111)\n at ze.b(SourceFile:63)\n at ly.a(SourceFile:230)\n at zb.c(SourceFile:171)\n at net.minecraft.server.MinecraftServer.b(SourceFile:864)\n at net.minecraft.server.MinecraftServer.a(SourceFile:791)\n at ell.a(SourceFile:128)\n at net.minecraft.server.MinecraftServer.run(SourceFile:650)\n at java.lang.Thread.run(Thread.java:745)\n\n## How to reproduce (server)\n\n - Download a 1.10.2 server (link can be found on the Wiki)\n\n - Join the server\n\n - To verify that upgrading of other tags works correctly:\n \n\n \nSpawn some mobs around you with spawn eggs\n\n - Put some items in your hotbar whose ids changed in newer versions, e.g. andesite\n\n \n\n \n\n - Place a boat and enter it\n\n - While sitting in the boat, leave the server\n\n - Stop the server, download a the server .jar of the latest version and start it with the same world\n\n - Join the server\n\n You are not riding a boat anymore and the following warning is logged:\n\n20w14a\n\n[00:19:25 WARN]: Exception loading entity: \nt: Non [a-z0-9/._-] character in path of location: minecraft:Boat\n at tr.<init>(SourceFile:38) ~[20w14a.jar:?]\n at tr.<init>(SourceFile:43) ~[20w14a.jar:?]\n at ang.a(SourceFile:490) ~[20w14a.jar:?]\n at ang.a(SourceFile:461) ~[20w14a.jar:?]\n at ang.b(SourceFile:514) [20w14a.jar:?]\n at ang.a(SourceFile:495) [20w14a.jar:?]\n at aav.a(SourceFile:205) [20w14a.jar:?]\n at ze.c(SourceFile:111) [20w14a.jar:?]\n at ze.b(SourceFile:63) [20w14a.jar:?]\n at ly.a(SourceFile:230) [20w14a.jar:?]\n at zb.c(SourceFile:171) [20w14a.jar:?]\n at net.minecraft.server.MinecraftServer.b(SourceFile:864) [20w14a.jar:?]\n at xk.b(SourceFile:345) [20w14a.jar:?]\n at net.minecraft.server.MinecraftServer.a(SourceFile:791) [20w14a.jar:?]\n at net.minecraft.server.MinecraftServer.run(SourceFile:650) [20w14a.jar:?]\n at java.lang.Thread.run(Thread.java:834) [?:?]",
+  "Steps to Reproduce": "1. Download the `1.10 world.zip` archive.\n2. Extract the archive and place the extracted world in the Minecraft `saves` folder.\n3. Launch Minecraft 20w14a.\n4. Select Singleplayer and open the extracted 1.10 world.\n5. Observe that the player falls through the ground.\n6. Check the game log and observe an `Exception loading entity` warning containing `Non [a-z0-9/._-] character in path of location: minecraft:Boat`.",
+  "Environment": "Minecraft Java Edition Versions: 20w14a, 1.17 Pre-release 2 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a world is upgraded, the `Player` tag in `level.dat` is processed by the data fixer, but the `RootVehicle` tag stored in the player\u2019s individual `playerdata/<UUID>.dat` file is not.\n\nAs a result, the vehicle entity inside `RootVehicle.Entity` retains its old-format NBT. In this case, the boat still has the legacy entity ID `Boat` instead of the newer resource location `minecraft:boat`. The upgraded game attempts to load this unchanged entity data, rejects the invalid ID, and logs an `Exception loading entity` warning:\n\n```text\nNon [a-z0-9/._-] character in path of location: minecraft:Boat\n```\n\nThe vehicle is not loaded or restored, and the player is no longer riding it. In the singleplayer reproduction, the player falls through the ground because the boat that should contain or support the player was not successfully loaded. Other fields in `RootVehicle` may likewise remain in their old format, resulting in missing or malformed vehicle data.\n\nThis occurs specifically for vehicle data saved in individual playerdata files, such as worlds hosted by a dedicated server. It does not occur for the corresponding `Player` tag in `level.dat`, which is upgraded correctly.",
+  "Expected Behavior": "When an older world is opened in a newer version, the player\u2019s `RootVehicle` data should be upgraded correctly so the associated vehicle loads without errors, even when its entity ID has changed. The player should remain riding the vehicle, and entering the world should not cause the player to fall through the ground or produce malformed-entity warnings.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Datafixer/MC-177446",
+  "improvement_metadata": {
+    "original_key": "MC-177446"
+  }
+}

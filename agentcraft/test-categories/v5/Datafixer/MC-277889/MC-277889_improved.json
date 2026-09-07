@@ -1,0 +1,37 @@
+{
+  "key": "MC-277889",
+  "created_date": "2024-10-27T21:09:06.938-0700",
+  "updated_date": "2026-08-20T04:36:58.520-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w44a",
+    "1.21.3"
+  ],
+  "fix_versions": [
+    "1.21.4 Release Candidate 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-29T07:52:22.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Villagers' iron golem detection range is increased for villagers upgraded from 1.21.1 or earlier",
+  "environment_raw": "",
+  "description": "According to the Minecraft Wiki, an Iron Golem is detected by a Villager when it is within 16 blocks of the villager.\n\nI have recently discovered that the Iron Golem Detection range for villager is far greater than that in 1.21.2 and 1.21.3, while it works as intended in 1.21.1. I assume it must be a bug as I have not seen any patch notes regarding the Iron Golem detection range.\n\nThe detection range in 1.21.2 and 1.21.3 is about 45 blocks instead of 16. This can easily be tested by placing three Villagers with a bed each and a Zombie to scare, and an Iron Golem more than 16 but less than about 45 blocks away from the Villagers - in every version up to 1.21.1 (including 1.21.1), the Villagers will spawn a new Iron Golem if there is any space for it. In 1.21.2 and upwards, the Villagers won't be able to spawn a new Iron Golem. Using gnembon's Carpet mod, you can also see the Villager's \"Iron Golem Seen\" counter go back to 600 ticks every 10 seconds after counting down.\n\n## How to reproduce:\n\nAttached is a world in 1.21.1 containing an iron farm, an iron golem placed 18 blocks away from the villagers, and a repeating command block to check the last time a villager detected an iron golem around.\n\n - Open the attached world (MC-277889.zip) in 1.21.1.\n\n - Periodically check the repeating command block's output until there is no number in the output, at which point the villagers will try to spawn a golem.\n\n - Wait until the villagers spawn a golem.\n\n\u2192 The villagers successfully spawn a golem.\n\n - Upgrade the world to 1.21.2 or higher.\n\n - Periodically check the repeating command block's output.\n\n\u2192 The output never reaches 0, which means the villagers now detect the iron golem that is 18 blocks away, so they will never spawn a golem.\n\n## Expected result:\n\nThe villagers' iron golem detection range would not change when upgrading to a newer version.\n\n## Observed result:\n\nThe villagers' iron golem detection range changes from [0, 16] to [16, ~45] when upgrading to a newer version.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.21.1.\n2. Open the attached `MC-277889.zip` world, which contains the iron farm, an iron golem 18 blocks from the villagers, and a repeating command block.\n3. Check the repeating command block\u2019s output periodically.\n4. Wait until the output contains no number.\n5. Wait until the villagers spawn an iron golem.\n6. Observe that the villagers successfully spawn an iron golem.\n7. Upgrade the world to Minecraft 1.21.2 or higher.\n8. Check the repeating command block\u2019s output periodically.\n9. Observe that the output never reaches 0 and the villagers do not spawn another iron golem, indicating that they detect the iron golem 18 blocks away.",
+  "Environment": "Minecraft Java Edition Versions: 24w44a, 1.21.3 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen a world containing villagers is upgraded from Minecraft 1.21.1 or earlier to 1.21.2 or later, the villagers\u2019 iron golem detection range is increased unexpectedly.\n\nIn the attached test world, an iron golem located 18 blocks from the villagers is not detected in 1.21.1, allowing the villagers to spawn another iron golem once the other spawning conditions are met. After upgrading the same world to 1.21.2 or later, the villagers detect the existing golem despite it being more than 16 blocks away and therefore do not spawn another one.\n\nThe detection range in the upgraded world is approximately 45 blocks. With Carpet\u2019s villager information enabled, the villagers\u2019 **\u201cIron Golem Seen\u201d** timer resets to 600 ticks approximately every 10 seconds while the golem remains within this range. The same behavior can be observed using the repeating command block in the attached world: its output does not reach 0 after the upgrade, indicating that the villagers continuously detect the golem 18 blocks away.",
+  "Expected Behavior": "Villagers upgraded from Minecraft 1.21.1 or earlier should retain the intended iron golem detection range of 16 blocks. An iron golem located 18 blocks away should not reset the villagers\u2019 detection timer or prevent them from spawning another golem when all other spawning conditions are met, both before and after upgrading to Minecraft 1.21.2 or later.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Datafixer/MC-277889",
+  "improvement_metadata": {
+    "original_key": "MC-277889"
+  }
+}
