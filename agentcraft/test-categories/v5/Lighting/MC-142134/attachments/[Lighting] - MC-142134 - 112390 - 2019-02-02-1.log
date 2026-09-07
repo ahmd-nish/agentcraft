@@ -1,0 +1,1532 @@
+[07:01:42] [Client thread/WARN]: Skipping bad option: maxFps:260
+[07:01:42] [Client thread/INFO]: LWJGL Version: 3.1.6 build 14
+[07:01:45] [Client thread/INFO]: Reloading ResourceManager: Default, Hogwarts Project Resource Pack
+[07:01:46] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[07:01:46] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[07:01:46] [Thread-2/INFO]: Initializing No Sound
+[07:01:46] [Thread-2/INFO]: (Silent Mode)
+[07:01:46] [Thread-2/INFO]: OpenAL initialized.
+[07:01:47] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[07:01:47] [Sound Library Loader/INFO]: Sound engine started
+[07:01:55] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[07:02:08] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[07:02:14] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:02:14] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:02:14] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:02:14] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:02:14] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:02:14] [Client thread/INFO]: Loaded 6 recipes
+[07:02:14] [Client thread/INFO]: Loaded 0 advancements
+[07:02:14] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[07:02:14] [Server thread/INFO]: Generating keypair
+[07:02:15] [Server thread/INFO]: Reloading ResourceManager: Default
+[07:02:17] [Server thread/INFO]: Loaded 6 recipes
+[07:02:22] [Server thread/INFO]: Loaded 799 advancements
+[07:02:22] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[07:02:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:25] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:25] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:26] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:26] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:27] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:27] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:28] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:28] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:29] [Client thread/INFO]: Preparing spawn area: 0%
+[07:02:29] [Client thread/INFO]: Preparing spawn area: 1%
+[07:02:30] [Client thread/INFO]: Preparing spawn area: 5%
+[07:02:30] [Client thread/INFO]: Preparing spawn area: 8%
+[07:02:31] [Client thread/INFO]: Preparing spawn area: 9%
+[07:02:31] [Client thread/INFO]: Preparing spawn area: 9%
+[07:02:32] [Client thread/INFO]: Preparing spawn area: 13%
+[07:02:32] [Client thread/INFO]: Preparing spawn area: 13%
+[07:02:34] [Client thread/INFO]: Preparing spawn area: 36%
+[07:02:34] [Client thread/INFO]: Preparing spawn area: 36%
+[07:02:34] [Client thread/INFO]: Preparing spawn area: 40%
+[07:02:34] [Client thread/INFO]: Preparing spawn area: 46%
+[07:02:35] [Client thread/INFO]: Preparing spawn area: 56%
+[07:02:35] [Client thread/INFO]: Preparing spawn area: 76%
+[07:02:36] [Client thread/INFO]: Preparing spawn area: 84%
+[07:02:36] [Client thread/INFO]: Preparing spawn area: 85%
+[07:02:37] [Client thread/INFO]: Preparing spawn area: 100%
+[07:02:38] [Client thread/INFO]: Preparing spawn area: 100%
+[07:02:38] [Client thread/INFO]: Time elapsed: 15919 ms
+[07:02:38] [Server thread/INFO]: Changing view distance to 6, from 10
+[07:02:40] [Server thread/INFO]: ChristopherC3P0[local:E:3c461fdd] logged in with entity id 19 at (216.18457533025182, 56.100755759800705, 351.8011395475913)
+[07:02:40] [Server thread/INFO]: ChristopherC3P0 joined the game
+[07:02:44] [pool-3-thread-1/WARN]: Couldn't look up profile properties for com.mojang.authlib.GameProfile@4dcf80ac[id=3ce37971-ab6e-4bc4-b5af-234dc7ffdaac,name=ChristopherC3P0,properties={},legacy=false]
+com.mojang.authlib.exceptions.AuthenticationUnavailableException: Cannot contact authentication server
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:85) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillGameProfile(YggdrasilMinecraftSessionService.java:180) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:60) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService$1.load(YggdrasilMinecraftSessionService.java:57) ~[authlib-1.5.25.jar:?]
+	at com.google.common.cache.LocalCache$LoadingValueReference.loadFuture(LocalCache.java:3716) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.loadSync(LocalCache.java:2424) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.lockedGetOrLoad(LocalCache.java:2298) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$Segment.get(LocalCache.java:2211) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.get(LocalCache.java:4154) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache.getOrLoad(LocalCache.java:4158) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.get(LocalCache.java:5147) ~[guava-21.0.jar:?]
+	at com.google.common.cache.LocalCache$LocalLoadingCache.getUnchecked(LocalCache.java:5153) ~[guava-21.0.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilMinecraftSessionService.fillProfileProperties(YggdrasilMinecraftSessionService.java:170) ~[authlib-1.5.25.jar:?]
+	at cqd.D(SourceFile:2082) ~[19w05a.jar:?]
+	at dpi.a(SourceFile:111) ~[19w05a.jar:?]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_74]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_74]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1142) [?:1.8.0_74]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:617) [?:1.8.0_74]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_74]
+Caused by: javax.net.ssl.SSLHandshakeException: java.security.cert.CertificateException: No subject alternative DNS name matching sessionserver.mojang.com found.
+	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1949) ~[?:1.8.0_74]
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:302) ~[?:1.8.0_74]
+	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:296) ~[?:1.8.0_74]
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1509) ~[?:1.8.0_74]
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:216) ~[?:1.8.0_74]
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:979) ~[?:1.8.0_74]
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:914) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1062) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1403) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1387) ~[?:1.8.0_74]
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:559) ~[?:1.8.0_74]
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:185) ~[?:1.8.0_74]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1513) ~[?:1.8.0_74]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441) ~[?:1.8.0_74]
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:254) ~[?:1.8.0_74]
+	at com.mojang.authlib.HttpAuthenticationService.performGetRequest(HttpAuthenticationService.java:130) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:66) ~[authlib-1.5.25.jar:?]
+	... 19 more
+Caused by: java.security.cert.CertificateException: No subject alternative DNS name matching sessionserver.mojang.com found.
+	at sun.security.util.HostnameChecker.matchDNS(HostnameChecker.java:204) ~[?:1.8.0_74]
+	at sun.security.util.HostnameChecker.match(HostnameChecker.java:95) ~[?:1.8.0_74]
+	at sun.security.ssl.X509TrustManagerImpl.checkIdentity(X509TrustManagerImpl.java:455) ~[?:1.8.0_74]
+	at sun.security.ssl.X509TrustManagerImpl.checkIdentity(X509TrustManagerImpl.java:436) ~[?:1.8.0_74]
+	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:200) ~[?:1.8.0_74]
+	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:124) ~[?:1.8.0_74]
+	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1491) ~[?:1.8.0_74]
+	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:216) ~[?:1.8.0_74]
+	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:979) ~[?:1.8.0_74]
+	at sun.security.ssl.Handshaker.process_record(Handshaker.java:914) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1062) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1403) ~[?:1.8.0_74]
+	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1387) ~[?:1.8.0_74]
+	at sun.net.www.protocol.https.HttpsClient.afterConnect(HttpsClient.java:559) ~[?:1.8.0_74]
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:185) ~[?:1.8.0_74]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1513) ~[?:1.8.0_74]
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441) ~[?:1.8.0_74]
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(HttpsURLConnectionImpl.java:254) ~[?:1.8.0_74]
+	at com.mojang.authlib.HttpAuthenticationService.performGetRequest(HttpAuthenticationService.java:130) ~[authlib-1.5.25.jar:?]
+	at com.mojang.authlib.yggdrasil.YggdrasilAuthenticationService.makeRequest(YggdrasilAuthenticationService.java:66) ~[authlib-1.5.25.jar:?]
+	... 19 more
+[07:02:48] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 9342ms or 186 ticks behind
+[07:02:48] [Client thread/INFO]: Loaded 436 advancements
+[07:02:52] [Server thread/INFO]: Saving and pausing game...
+[07:02:52] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:02:52] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:02:52] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:03:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:03:02] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:03:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:03:06] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3137ms or 62 ticks behind
+[07:03:08] [Server thread/WARN]: Keeping entity minecraft:donkey that already exists with UUID 1fd5a24e-fff8-4813-bbf2-ecab3ac20dcd
+[07:12:58] [Server thread/INFO]: Saving and pausing game...
+[07:12:58] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:12:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:12:58] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:12:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:12:58] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:12:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:12:59] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[07:12:59] [Server thread/INFO]: ChristopherC3P0 left the game
+[07:12:59] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[07:12:59] [Server thread/INFO]: Stopping server
+[07:13:00] [Server thread/INFO]: Saving players
+[07:13:00] [Server thread/INFO]: Saving worlds
+[07:13:00] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:13:00] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:13:00] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:13:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:13:08] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[07:13:13] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:13:13] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:13:13] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:13:13] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:13:13] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:13:13] [Client thread/INFO]: Loaded 6 recipes
+[07:13:13] [Client thread/INFO]: Loaded 0 advancements
+[07:13:13] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[07:13:13] [Server thread/INFO]: Generating keypair
+[07:13:13] [Server thread/INFO]: Reloading ResourceManager: Default
+[07:13:14] [Server thread/INFO]: Loaded 6 recipes
+[07:13:16] [Server thread/INFO]: Loaded 799 advancements
+[07:13:16] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[07:13:16] [Client thread/INFO]: Preparing spawn area: 0%
+[07:13:16] [Client thread/INFO]: Preparing spawn area: 0%
+[07:13:17] [Client thread/INFO]: Preparing spawn area: 1%
+[07:13:17] [Client thread/INFO]: Preparing spawn area: 4%
+[07:13:18] [Client thread/INFO]: Preparing spawn area: 5%
+[07:13:18] [Client thread/INFO]: Preparing spawn area: 5%
+[07:13:19] [Client thread/INFO]: Preparing spawn area: 12%
+[07:13:19] [Client thread/INFO]: Preparing spawn area: 16%
+[07:13:20] [Client thread/INFO]: Preparing spawn area: 23%
+[07:13:20] [Client thread/INFO]: Preparing spawn area: 47%
+[07:13:21] [Client thread/INFO]: Preparing spawn area: 58%
+[07:13:21] [Client thread/INFO]: Preparing spawn area: 65%
+[07:13:22] [Client thread/INFO]: Preparing spawn area: 87%
+[07:13:22] [Client thread/INFO]: Preparing spawn area: 97%
+[07:13:23] [Client thread/INFO]: Preparing spawn area: 100%
+[07:13:23] [Client thread/INFO]: Time elapsed: 7397 ms
+[07:13:23] [Server thread/INFO]: Changing view distance to 6, from 10
+[07:13:23] [Server thread/INFO]: ChristopherC3P0[local:E:39dd1416] logged in with entity id 10836 at (414.7045249188391, 81.26657058558997, -298.6947274490106)
+[07:13:23] [Server thread/INFO]: ChristopherC3P0 joined the game
+[07:13:26] [Server thread/INFO]: Saving and pausing game...
+[07:13:26] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_end
+[07:13:26] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:13:26] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:overworld
+[07:13:26] [Client thread/INFO]: Loaded 18 advancements
+[07:13:28] [Server thread/INFO]: ThreadedAnvilChunkStorage (Wizarding World of Harry Potter- maxAtlantis4867): All chunks are saved
+[07:13:28] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_nether
+[07:13:28] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:13:28] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4161ms or 83 ticks behind
+[07:13:33] [Server thread/INFO]: Saving and pausing game...
+[07:13:33] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_end
+[07:13:33] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:13:33] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:overworld
+[07:13:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (Wizarding World of Harry Potter- maxAtlantis4867): All chunks are saved
+[07:13:34] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_nether
+[07:13:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:15:11] [Server thread/INFO]: Saving and pausing game...
+[07:15:11] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_end
+[07:15:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:15:11] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:overworld
+[07:15:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (Wizarding World of Harry Potter- maxAtlantis4867): All chunks are saved
+[07:15:11] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_nether
+[07:15:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:15:11] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[07:15:11] [Server thread/INFO]: ChristopherC3P0 left the game
+[07:15:11] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[07:15:11] [Server thread/INFO]: Stopping server
+[07:15:11] [Server thread/INFO]: Saving players
+[07:15:11] [Server thread/INFO]: Saving worlds
+[07:15:11] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_end
+[07:15:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:15:11] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:overworld
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (Wizarding World of Harry Potter- maxAtlantis4867): All chunks are saved
+[07:15:12] [Server thread/INFO]: Saving chunks for level 'Wizarding World of Harry Potter'/minecraft:the_nether
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (Wizarding World of Harry Potter- maxAtlantis4867): All chunks are saved
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (Wizarding World of Harry Potter- maxAtlantis4867): All chunks are saved
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:15:12] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:15:17] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[07:15:22] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:15:22] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:15:22] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:15:22] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:15:22] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:15:22] [Client thread/INFO]: Loaded 6 recipes
+[07:15:22] [Client thread/INFO]: Loaded 0 advancements
+[07:15:22] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[07:15:22] [Server thread/INFO]: Generating keypair
+[07:15:22] [Server thread/INFO]: Reloading ResourceManager: Default
+[07:15:23] [Server thread/INFO]: Loaded 6 recipes
+[07:15:24] [Server thread/INFO]: Loaded 799 advancements
+[07:15:24] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[07:15:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:15:25] [Client thread/INFO]: Preparing spawn area: 0%
+[07:15:25] [Client thread/INFO]: Preparing spawn area: 1%
+[07:15:26] [Client thread/INFO]: Preparing spawn area: 4%
+[07:15:26] [Client thread/INFO]: Preparing spawn area: 4%
+[07:15:27] [Client thread/INFO]: Preparing spawn area: 12%
+[07:15:27] [Client thread/INFO]: Preparing spawn area: 19%
+[07:15:28] [Client thread/INFO]: Preparing spawn area: 19%
+[07:15:28] [Client thread/INFO]: Preparing spawn area: 25%
+[07:15:29] [Client thread/INFO]: Preparing spawn area: 33%
+[07:15:29] [Client thread/INFO]: Preparing spawn area: 53%
+[07:15:30] [Client thread/INFO]: Preparing spawn area: 68%
+[07:15:30] [Client thread/INFO]: Preparing spawn area: 72%
+[07:15:31] [Client thread/INFO]: Preparing spawn area: 100%
+[07:15:31] [Client thread/INFO]: Time elapsed: 7096 ms
+[07:15:31] [Server thread/INFO]: Changing view distance to 6, from 10
+[07:15:32] [Server thread/INFO]: ChristopherC3P0[local:E:733db9de] logged in with entity id 13145 at (-536.0709751622371, 95.02915027339485, -317.8373559990011)
+[07:15:32] [Server thread/INFO]: ChristopherC3P0 joined the game
+[07:15:34] [Server thread/INFO]: Saving and pausing game...
+[07:15:34] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:the_end
+[07:15:34] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:15:34] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:overworld
+[07:15:34] [Client thread/INFO]: Loaded 29 advancements
+[07:15:36] [Server thread/INFO]: ThreadedAnvilChunkStorage (HogwartsCraft-112): All chunks are saved
+[07:15:36] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:the_nether
+[07:15:36] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:15:36] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4301ms or 86 ticks behind
+[07:15:43] [Client thread/INFO]: Loaded 30 advancements
+[07:16:29] [Server thread/INFO]: ChristopherC3P0 has made the advancement [Suit Up]
+[07:16:29] [Client thread/INFO]: [CHAT] ChristopherC3P0 has made the advancement [Suit Up]
+[07:16:29] [Client thread/INFO]: Loaded 38 advancements
+[07:16:35] [Server thread/INFO]: ChristopherC3P0 has made the advancement [Cover Me With Diamonds]
+[07:16:35] [Client thread/INFO]: [CHAT] ChristopherC3P0 has made the advancement [Cover Me With Diamonds]
+[07:16:35] [Client thread/INFO]: Loaded 41 advancements
+[07:17:10] [Server thread/INFO]: Saving and pausing game...
+[07:17:10] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:the_end
+[07:17:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:17:10] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:overworld
+[07:17:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (HogwartsCraft-112): All chunks are saved
+[07:17:10] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:the_nether
+[07:17:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:17:10] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[07:17:10] [Server thread/INFO]: ChristopherC3P0 left the game
+[07:17:10] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[07:17:10] [Server thread/INFO]: Stopping server
+[07:17:10] [Server thread/INFO]: Saving players
+[07:17:10] [Server thread/INFO]: Saving worlds
+[07:17:10] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:the_end
+[07:17:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:17:10] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:overworld
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (HogwartsCraft-112): All chunks are saved
+[07:17:11] [Server thread/INFO]: Saving chunks for level 'HogwartsCraft'/minecraft:the_nether
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (HogwartsCraft-112): All chunks are saved
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (HogwartsCraft-112): All chunks are saved
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:17:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:17:15] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at com.mojang.blaze3d.platform.GLX.pollEvents(SourceFile:223) [19w05a.jar:?]
+	at cqd.d(SourceFile:910) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[07:17:22] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:17:22] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:17:22] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:17:22] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[07:17:22] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[07:17:22] [Client thread/INFO]: Loaded 6 recipes
+[07:17:22] [Client thread/INFO]: Loaded 0 advancements
+[07:17:22] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[07:17:22] [Server thread/INFO]: Generating keypair
+[07:17:22] [Server thread/INFO]: Reloading ResourceManager: Default
+[07:17:22] [Server thread/INFO]: Loaded 6 recipes
+[07:17:24] [Server thread/INFO]: Loaded 799 advancements
+[07:17:24] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[07:17:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:17:24] [Client thread/INFO]: Preparing spawn area: 0%
+[07:17:25] [Client thread/INFO]: Preparing spawn area: 0%
+[07:17:25] [Client thread/INFO]: Preparing spawn area: 0%
+[07:17:26] [Client thread/INFO]: Preparing spawn area: 0%
+[07:17:26] [Client thread/INFO]: Preparing spawn area: 0%
+[07:17:27] [Client thread/INFO]: Preparing spawn area: 3%
+[07:17:27] [Client thread/INFO]: Preparing spawn area: 6%
+[07:17:28] [Client thread/INFO]: Preparing spawn area: 6%
+[07:17:28] [Client thread/INFO]: Preparing spawn area: 6%
+[07:17:29] [Client thread/INFO]: Preparing spawn area: 12%
+[07:17:29] [Client thread/INFO]: Preparing spawn area: 18%
+[07:17:30] [Client thread/INFO]: Preparing spawn area: 24%
+[07:17:30] [Client thread/INFO]: Preparing spawn area: 33%
+[07:17:31] [Client thread/INFO]: Preparing spawn area: 51%
+[07:17:31] [Client thread/INFO]: Preparing spawn area: 70%
+[07:17:32] [Client thread/INFO]: Preparing spawn area: 95%
+[07:17:33] [Client thread/INFO]: Preparing spawn area: 100%
+[07:17:33] [Client thread/INFO]: Preparing spawn area: 100%
+[07:17:33] [Client thread/INFO]: Time elapsed: 9004 ms
+[07:17:33] [Server thread/INFO]: Changing view distance to 6, from 10
+[07:17:33] [Server thread/INFO]: ChristopherC3P0[local:E:7fc280d0] logged in with entity id 20180 at (219.46456271311231, 50.29437847358026, 355.3532961819583)
+[07:17:33] [Server thread/INFO]: ChristopherC3P0 joined the game
+[07:17:42] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 8778ms or 175 ticks behind
+[07:17:42] [Client thread/INFO]: Loaded 436 advancements
+[07:17:43] [Server thread/WARN]: Keeping entity minecraft:donkey that already exists with UUID 1fd5a24e-fff8-4813-bbf2-ecab3ac20dcd
+[07:18:14] [Server thread/INFO]: [ChristopherC3P0: Applied effect Night Vision to ChristopherC3P0]
+[07:18:14] [Client thread/INFO]: [CHAT] Applied effect Night Vision to ChristopherC3P0
+[07:18:17] [Server thread/INFO]: Saving and pausing game...
+[07:18:17] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:18:17] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:18:17] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:18:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:18:22] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:18:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:18:22] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5684ms or 113 ticks behind
+[07:22:56] [Server thread/INFO]: Saving and pausing game...
+[07:22:56] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:22:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:22:56] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:22:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:22:56] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:22:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:35:55] [Server thread/INFO]: Saving and pausing game...
+[07:35:55] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:35:55] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:35:55] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:35:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:35:56] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:35:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:45:29] [Server thread/INFO]: Saving and pausing game...
+[07:45:29] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:45:29] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:45:29] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:45:30] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:45:30] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:45:30] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:48:08] [Server thread/INFO]: Saving and pausing game...
+[07:48:08] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[07:48:08] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[07:48:08] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[07:48:08] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[07:48:08] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[07:48:08] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[07:48:12] [Client thread/INFO]: Reloading ResourceManager: Default
+[07:48:12] [Server thread/INFO]: Reloading ResourceManager: Default
+[07:48:12] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[07:48:12] [Client thread/INFO]: SoundSystem shutting down...
+[07:48:13] [Server thread/INFO]: Loaded 6 recipes
+[07:48:13] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[07:48:13] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[07:48:13] [Thread-10/INFO]: Initializing No Sound
+[07:48:13] [Thread-10/INFO]: (Silent Mode)
+[07:48:13] [Thread-10/INFO]: OpenAL initialized.
+[07:48:13] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[07:48:13] [Sound Library Loader/INFO]: Sound engine started
+[07:48:15] [Server thread/INFO]: Loaded 799 advancements
+[07:48:15] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3653ms or 73 ticks behind
+[07:48:19] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[07:48:21] [Client thread/INFO]: Loaded 436 advancements
+[07:55:04] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:04] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:09] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:09] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:11] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:11] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:13] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:13] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:14] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:14] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:15] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:15] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:35] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:55:35] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:55:59] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 7 blocks]
+[07:55:59] [Client thread/INFO]: [CHAT] Successfully filled 7 blocks
+[07:56:01] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 5 blocks]
+[07:56:01] [Client thread/INFO]: [CHAT] Successfully filled 5 blocks
+[07:56:04] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 5 blocks]
+[07:56:04] [Client thread/INFO]: [CHAT] Successfully filled 5 blocks
+[07:57:07] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:57:07] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:57:09] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:57:09] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:57:10] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:57:10] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:57:45] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:57:45] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:57:46] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:57:46] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:58:00] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 15 blocks]
+[07:58:00] [Client thread/INFO]: [CHAT] Successfully filled 15 blocks
+[07:58:03] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:58:03] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:58:09] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 16 blocks]
+[07:58:09] [Client thread/INFO]: [CHAT] Successfully filled 16 blocks
+[07:58:14] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 15 blocks]
+[07:58:14] [Client thread/INFO]: [CHAT] Successfully filled 15 blocks
+[07:59:06] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 11 blocks]
+[07:59:06] [Client thread/INFO]: [CHAT] Successfully filled 11 blocks
+[07:59:10] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 10 blocks]
+[07:59:10] [Client thread/INFO]: [CHAT] Successfully filled 10 blocks
+[07:59:11] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 10 blocks]
+[07:59:11] [Client thread/INFO]: [CHAT] Successfully filled 10 blocks
+[07:59:15] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Spectator Mode]
+[07:59:15] [Client thread/INFO]: [CHAT] Set own game mode to Spectator Mode
+[07:59:17] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Creative Mode]
+[07:59:17] [Client thread/INFO]: [CHAT] Set own game mode to Creative Mode
+[07:59:29] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Spectator Mode]
+[07:59:30] [Client thread/INFO]: [CHAT] Set own game mode to Spectator Mode
+[07:59:35] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Creative Mode]
+[07:59:35] [Client thread/INFO]: [CHAT] Set own game mode to Creative Mode
+[07:59:38] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 10 blocks]
+[07:59:38] [Client thread/INFO]: [CHAT] Successfully filled 10 blocks
+[07:59:40] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 10 blocks]
+[07:59:40] [Client thread/INFO]: [CHAT] Successfully filled 10 blocks
+[07:59:42] [Server thread/INFO]: [ChristopherC3P0: Successfully filled 9 blocks]
+[07:59:42] [Client thread/INFO]: [CHAT] Successfully filled 9 blocks
+[08:04:56] [Server thread/INFO]: Saving and pausing game...
+[08:04:56] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:04:56] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:04:56] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:04:57] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:04:57] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:04:57] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:05:00] [Server thread/INFO]: Saving and pausing game...
+[08:05:00] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:05:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:05:00] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:05:01] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:05:01] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:05:01] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:05:02] [Server thread/INFO]: Saving and pausing game...
+[08:05:02] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:05:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:05:02] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:05:03] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:05:03] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:05:03] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:05:14] [Client thread/INFO]: Reloading ResourceManager: Default, Hogwarts Project Resource Pack
+[08:05:14] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:05:15] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:05:15] [Client thread/INFO]: SoundSystem shutting down...
+[08:05:15] [Server thread/INFO]: Loaded 6 recipes
+[08:05:15] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:05:15] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:05:15] [Thread-12/INFO]: Initializing No Sound
+[08:05:15] [Thread-12/INFO]: (Silent Mode)
+[08:05:15] [Thread-12/INFO]: OpenAL initialized.
+[08:05:16] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:05:16] [Sound Library Loader/INFO]: Sound engine started
+[08:05:17] [Server thread/INFO]: Loaded 799 advancements
+[08:05:17] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3039ms or 60 ticks behind
+[08:05:20] [Client thread/INFO]: Created: 2048x2048 textures-atlas
+[08:05:23] [Client thread/INFO]: Loaded 436 advancements
+[08:05:51] [Server thread/INFO]: Saving and pausing game...
+[08:05:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:05:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:05:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:05:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:05:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:05:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:10:09] [Server thread/INFO]: Saving and pausing game...
+[08:10:09] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:10:09] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:10:09] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:10:09] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:10:09] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:10:09] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:19:44] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[08:19:44] [Server thread/INFO]: ChristopherC3P0 left the game
+[08:19:44] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[08:19:44] [Server thread/INFO]: Stopping server
+[08:19:44] [Server thread/INFO]: Saving players
+[08:19:44] [Server thread/INFO]: Saving worlds
+[08:19:44] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:19:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:19:44] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:19:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:19:44] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:19:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:19:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:19:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:19:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:19:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:19:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:19:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:19:51] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[08:19:57] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08:19:57] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:19:57] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:19:57] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08:19:57] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:19:57] [Client thread/INFO]: Loaded 6 recipes
+[08:19:57] [Client thread/INFO]: Loaded 0 advancements
+[08:19:57] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[08:19:57] [Server thread/INFO]: Generating keypair
+[08:19:58] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:19:58] [Server thread/INFO]: Loaded 6 recipes
+[08:20:00] [Server thread/INFO]: Loaded 799 advancements
+[08:20:00] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[08:20:00] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:01] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:01] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:02] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:02] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:03] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:03] [Client thread/INFO]: Preparing spawn area: 0%
+[08:20:04] [Client thread/INFO]: Preparing spawn area: 2%
+[08:20:04] [Client thread/INFO]: Preparing spawn area: 5%
+[08:20:05] [Client thread/INFO]: Preparing spawn area: 15%
+[08:20:05] [Client thread/INFO]: Preparing spawn area: 23%
+[08:20:06] [Client thread/INFO]: Preparing spawn area: 31%
+[08:20:06] [Client thread/INFO]: Preparing spawn area: 40%
+[08:20:07] [Client thread/INFO]: Preparing spawn area: 52%
+[08:20:07] [Client thread/INFO]: Preparing spawn area: 54%
+[08:20:08] [Client thread/INFO]: Preparing spawn area: 62%
+[08:20:08] [Client thread/INFO]: Preparing spawn area: 78%
+[08:20:09] [Client thread/INFO]: Preparing spawn area: 91%
+[08:20:09] [Client thread/INFO]: Preparing spawn area: 91%
+[08:20:10] [Client thread/INFO]: Preparing spawn area: 98%
+[08:20:10] [Client thread/INFO]: Preparing spawn area: 100%
+[08:20:11] [Client thread/INFO]: Preparing spawn area: 100%
+[08:20:11] [Client thread/INFO]: Time elapsed: 10508 ms
+[08:20:11] [Server thread/INFO]: Changing view distance to 6, from 10
+[08:20:11] [Server thread/INFO]: ChristopherC3P0[local:E:cedb8061] logged in with entity id 44338 at (263.5371986977764, 59.103519203788466, 333.6500511803122)
+[08:20:11] [Server thread/INFO]: ChristopherC3P0 joined the game
+[08:20:19] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 7857ms or 157 ticks behind
+[08:20:19] [Client thread/INFO]: Loaded 436 advancements
+[08:20:25] [Server thread/WARN]: Keeping entity minecraft:donkey that already exists with UUID 1fd5a24e-fff8-4813-bbf2-ecab3ac20dcd
+[08:21:03] [Server thread/INFO]: Saving and pausing game...
+[08:21:03] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:21:03] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:21:03] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:21:14] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:21:14] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:21:14] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:21:14] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 11119ms or 222 ticks behind
+[08:33:44] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Spectator Mode]
+[08:33:44] [Client thread/INFO]: [CHAT] Set own game mode to Spectator Mode
+[08:33:47] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Creative Mode]
+[08:33:47] [Client thread/INFO]: [CHAT] Set own game mode to Creative Mode
+[08:35:59] [Server thread/INFO]: [ChristopherC3P0: Removed every effect from ChristopherC3P0]
+[08:35:59] [Client thread/INFO]: [CHAT] Removed every effect from ChristopherC3P0
+[08:36:18] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Spectator Mode]
+[08:36:18] [Client thread/INFO]: [CHAT] Set own game mode to Spectator Mode
+[08:36:20] [Server thread/INFO]: [ChristopherC3P0: Set own game mode to Creative Mode]
+[08:36:20] [Client thread/INFO]: [CHAT] Set own game mode to Creative Mode
+[08:36:26] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID f33570f1-f1af-4b8b-8287-eed624e866dc
+[08:36:52] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID cdc09775-b942-434b-a406-05e0a6ba8a09
+[08:37:00] [Server thread/INFO]: [ChristopherC3P0: Set the time to 1000]
+[08:37:00] [Client thread/INFO]: [CHAT] Set the time to 1000
+[08:37:17] [Server thread/INFO]: Saving and pausing game...
+[08:37:17] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:37:17] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:37:17] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:37:17] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:37:17] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:37:17] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:37:18] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[08:37:18] [Server thread/INFO]: ChristopherC3P0 left the game
+[08:37:18] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[08:37:18] [Server thread/INFO]: Stopping server
+[08:37:18] [Server thread/INFO]: Saving players
+[08:37:18] [Server thread/INFO]: Saving worlds
+[08:37:18] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:37:18] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:37:18] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:37:19] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:37:19] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:37:31] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:37:32] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:37:32] [Client thread/INFO]: SoundSystem shutting down...
+[08:37:32] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:37:32] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:37:33] [Thread-15/INFO]: Initializing No Sound
+[08:37:33] [Thread-15/INFO]: (Silent Mode)
+[08:37:33] [Thread-15/INFO]: OpenAL initialized.
+[08:37:33] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:37:33] [Sound Library Loader/INFO]: Sound engine started
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[08:37:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[08:37:38] [Client thread/WARN]: Texture minecraft:textures/block/sea_lantern.png with size 17x17 limits mip level from 4 to 0
+[08:37:38] [Client thread/WARN]: textures: dropping miplevel from 4 to 0, because of minimum power of two: 1
+[08:37:38] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[08:37:46] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[08:37:54] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08:37:54] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:37:54] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:37:54] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08:37:54] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:37:54] [Client thread/INFO]: Loaded 6 recipes
+[08:37:54] [Client thread/INFO]: Loaded 0 advancements
+[08:37:54] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[08:37:54] [Server thread/INFO]: Generating keypair
+[08:37:54] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:37:55] [Server thread/INFO]: Loaded 6 recipes
+[08:37:57] [Server thread/INFO]: Loaded 799 advancements
+[08:37:57] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[08:37:57] [Client thread/INFO]: Preparing spawn area
+[08:37:57] [Client thread/INFO]: Preparing spawn area
+[08:37:58] [Client thread/INFO]: Preparing spawn area
+[08:37:58] [Client thread/INFO]: Preparing spawn area
+[08:37:59] [Client thread/INFO]: Preparing spawn area
+[08:37:59] [Client thread/INFO]: Preparing spawn area
+[08:38:00] [Client thread/INFO]: Preparing spawn area
+[08:38:00] [Client thread/INFO]: Preparing spawn area
+[08:38:01] [Client thread/INFO]: Preparing spawn area
+[08:38:01] [Client thread/INFO]: Preparing spawn area
+[08:38:02] [Client thread/INFO]: Preparing spawn area
+[08:38:02] [Client thread/INFO]: Preparing spawn area
+[08:38:03] [Client thread/INFO]: Preparing spawn area
+[08:38:03] [Client thread/INFO]: Preparing spawn area
+[08:38:04] [Client thread/INFO]: Preparing spawn area
+[08:38:04] [Client thread/INFO]: Preparing spawn area
+[08:38:05] [Client thread/INFO]: Preparing spawn area
+[08:38:05] [Client thread/INFO]: Preparing spawn area
+[08:38:06] [Client thread/INFO]: Preparing spawn area
+[08:38:06] [Client thread/INFO]: Preparing spawn area
+[08:38:06] [Server thread/INFO]: Changing view distance to 6, from 10
+[08:38:06] [Client thread/INFO]: Time elapsed: 9607 ms
+[08:38:07] [Server thread/INFO]: ChristopherC3P0[local:E:1e3ec0d1] logged in with entity id 52598 at (405.1219659075361, 49.0, 285.86408496240267)
+[08:38:07] [Server thread/INFO]: ChristopherC3P0 joined the game
+[08:38:15] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 8791ms or 175 ticks behind
+[08:38:15] [Client thread/INFO]: Loaded 436 advancements
+[08:38:44] [Server thread/INFO]: Saving and pausing game...
+[08:38:44] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:38:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:38:44] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:38:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:38:51] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 6596ms or 131 ticks behind
+[08:38:51] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[08:38:51] [Server thread/INFO]: ChristopherC3P0 left the game
+[08:38:51] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[08:38:51] [Server thread/INFO]: Stopping server
+[08:38:51] [Server thread/INFO]: Saving players
+[08:38:51] [Server thread/INFO]: Saving worlds
+[08:38:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_end
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:38:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:overworld
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:38:51] [Server thread/INFO]: Saving chunks for level 'world of Harry Potter (UPDATED)'/minecraft:the_nether
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (Hogwarts - MrK §6Updated§r): All chunks are saved
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:38:51] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:38:55] [Client thread/ERROR]: Exception reading ./saves/Best Hogwarts made in Minecraft 8.3 (1.12.2)/level.dat
+java.util.zip.ZipException: Not in GZIP format
+	at java.util.zip.GZIPInputStream.readHeader(GZIPInputStream.java:165) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:79) ~[?:1.8.0_74]
+	at java.util.zip.GZIPInputStream.<init>(GZIPInputStream.java:91) ~[?:1.8.0_74]
+	at ib.a(SourceFile:25) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:154) ~[19w05a.jar:?]
+	at cjf.a(SourceFile:138) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:126) ~[19w05a.jar:?]
+	at cjf.b(SourceFile:88) ~[19w05a.jar:?]
+	at cxz.a(SourceFile:43) ~[19w05a.jar:?]
+	at cxz.<init>(SourceFile:35) ~[19w05a.jar:?]
+	at cxx.c(SourceFile:64) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:312) ~[19w05a.jar:?]
+	at cqd.a(SourceFile:832) ~[19w05a.jar:?]
+	at cup$4.a(SourceFile:212) ~[19w05a.jar:?]
+	at crb.a(SourceFile:103) ~[19w05a.jar:?]
+	at crx.a(SourceFile:46) ~[19w05a.jar:?]
+	at cup.a(SourceFile:351) ~[19w05a.jar:?]
+	at cqe.b(SourceFile:84) ~[19w05a.jar:?]
+	at cuk.a(SourceFile:430) ~[19w05a.jar:?]
+	at cqe.a(SourceFile:84) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWMouseButtonCallbackI.callback(GLFWMouseButtonCallbackI.java:36) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[08:39:11] [Client thread/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08:39:11] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:39:11] [Client thread/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:39:11] [Client thread/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[08:39:11] [Client thread/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[08:39:11] [Client thread/INFO]: Loaded 6 recipes
+[08:39:11] [Client thread/INFO]: Loaded 0 advancements
+[08:39:11] [Server thread/INFO]: Starting integrated minecraft server version 19w05a
+[08:39:11] [Server thread/INFO]: Generating keypair
+[08:39:11] [Server thread/INFO]: Found new data pack vanilla, loading it automatically
+[08:39:11] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:39:12] [Server thread/INFO]: Loaded 6 recipes
+[08:39:13] [Server thread/INFO]: Loaded 799 advancements
+[08:39:13] [Server thread/WARN]: Unable to find spawn biome
+[08:39:28] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[08:39:28] [Client thread/INFO]: Preparing spawn area
+[08:39:29] [Client thread/INFO]: Preparing spawn area
+[08:39:29] [Client thread/INFO]: Preparing spawn area
+[08:39:30] [Client thread/INFO]: Preparing spawn area
+[08:39:30] [Client thread/INFO]: Preparing spawn area
+[08:39:31] [Client thread/INFO]: Preparing spawn area
+[08:39:31] [Client thread/INFO]: Preparing spawn area
+[08:39:32] [Client thread/INFO]: Preparing spawn area
+[08:39:32] [Client thread/INFO]: Preparing spawn area
+[08:39:33] [Client thread/INFO]: Preparing spawn area
+[08:39:33] [Client thread/INFO]: Preparing spawn area
+[08:39:34] [Client thread/INFO]: Preparing spawn area
+[08:39:34] [Client thread/INFO]: Preparing spawn area
+[08:39:35] [Client thread/INFO]: Preparing spawn area
+[08:39:35] [Client thread/INFO]: Preparing spawn area
+[08:39:36] [Client thread/INFO]: Preparing spawn area
+[08:39:36] [Client thread/INFO]: Preparing spawn area
+[08:39:37] [Client thread/INFO]: Preparing spawn area
+[08:39:37] [Client thread/INFO]: Preparing spawn area
+[08:39:38] [Client thread/INFO]: Preparing spawn area
+[08:39:38] [Client thread/INFO]: Preparing spawn area
+[08:39:39] [Client thread/INFO]: Preparing spawn area
+[08:39:39] [Client thread/INFO]: Preparing spawn area
+[08:39:40] [Client thread/INFO]: Preparing spawn area
+[08:39:40] [Client thread/INFO]: Preparing spawn area
+[08:39:41] [Client thread/INFO]: Time elapsed: 12300 ms
+[08:39:43] [Server thread/INFO]: Changing view distance to 6, from 10
+[08:39:43] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2211ms or 44 ticks behind
+[08:39:43] [Server thread/INFO]: ChristopherC3P0[local:E:4a70219f] logged in with entity id 55485 at (32.5, 63.0, -121.5)
+[08:39:43] [Server thread/INFO]: ChristopherC3P0 joined the game
+[08:39:44] [Client thread/INFO]: Loaded 0 advancements
+[08:39:44] [Server thread/INFO]: Saving and pausing game...
+[08:39:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:39:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:39:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:40:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:40:00] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:40:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -6, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -7, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -6, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -5, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -4, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -3, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -2, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -1, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 0, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 1, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 2, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 3, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 4, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 5, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 6, -15
+[08:40:02] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 7, -15
+[08:40:02] [Client thread/INFO]: Loaded 7 advancements
+[08:40:21] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 22748ms or 454 ticks behind
+[08:40:35] [Server thread/INFO]: ChristopherC3P0 has made the advancement [Acquire Hardware]
+[08:40:35] [Client thread/INFO]: [CHAT] ChristopherC3P0 has made the advancement [Acquire Hardware]
+[08:40:35] [Client thread/INFO]: Loaded 39 advancements
+[08:40:51] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3298ms or 65 ticks behind
+[08:41:02] [Client thread/INFO]: Loaded 43 advancements
+[08:41:41] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2600ms or 52 ticks behind
+[08:42:03] [Server thread/INFO]: [ChristopherC3P0: Set spawn point to -17, 63, -528 for ChristopherC3P0]
+[08:42:03] [Client thread/INFO]: [CHAT] Set spawn point to -17, 63, -528 for ChristopherC3P0
+[08:42:07] [Server thread/INFO]: Saving and pausing game...
+[08:42:07] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:42:07] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:42:07] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:42:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:42:10] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:42:10] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:42:10] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2806ms or 56 ticks behind
+[08:47:53] [Server thread/INFO]: Saving and pausing game...
+[08:47:53] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:47:53] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:47:53] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:47:54] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:47:54] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:47:54] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:47:56] [Client thread/INFO]: [CHAT] §9[Developer Tools]: Reloaded resource packs
+[08:47:56] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:47:56] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:47:57] [Server thread/INFO]: Loaded 6 recipes
+[08:47:57] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:47:57] [Client thread/INFO]: SoundSystem shutting down...
+[08:47:58] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:47:58] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:47:58] [Thread-19/INFO]: Initializing No Sound
+[08:47:58] [Thread-19/INFO]: (Silent Mode)
+[08:47:58] [Thread-19/INFO]: OpenAL initialized.
+[08:47:58] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:47:58] [Sound Library Loader/INFO]: Sound engine started
+[08:47:59] [Server thread/INFO]: Loaded 799 advancements
+[08:47:59] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2628ms or 52 ticks behind
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[08:48:01] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[08:48:02] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[08:48:03] [Client thread/INFO]: Loaded 43 advancements
+[08:48:09] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID dc8c66e1-250f-4816-bf01-87ad29354d9e
+[08:48:09] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID 777f1f0c-ec95-4460-854e-5d973052500f
+[08:48:09] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID dc8c66e1-250f-4816-bf01-87ad29354d9e
+[08:48:09] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID 777f1f0c-ec95-4460-854e-5d973052500f
+[08:48:10] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID dc8c66e1-250f-4816-bf01-87ad29354d9e
+[08:48:10] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID 777f1f0c-ec95-4460-854e-5d973052500f
+[08:48:10] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID dc8c66e1-250f-4816-bf01-87ad29354d9e
+[08:48:10] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID 777f1f0c-ec95-4460-854e-5d973052500f
+[08:48:12] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID dc8c66e1-250f-4816-bf01-87ad29354d9e
+[08:48:12] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID 777f1f0c-ec95-4460-854e-5d973052500f
+[08:48:42] [Server thread/INFO]: [ChristopherC3P0: Gave 1 [Firework Star] to ChristopherC3P0]
+[08:48:42] [Client thread/INFO]: [CHAT] Gave 1 [Firework Star] to ChristopherC3P0
+[08:48:52] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Survival Mode]
+[08:48:52] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Survival Mode
+[08:48:53] [Server thread/INFO]: Saving and pausing game...
+[08:48:53] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:48:53] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:48:53] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:48:54] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:48:54] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:48:54] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:48:55] [Server thread/INFO]: Changing difficulty to PEACEFUL, from NORMAL
+[08:48:58] [Client thread/INFO]: Loaded 50 advancements
+[08:49:04] [Server thread/INFO]: Saving and pausing game...
+[08:49:04] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:49:04] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:49:04] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:49:05] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:49:05] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:49:05] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:49:21] [Client thread/INFO]: [CHAT] §9[Developer Tools]: Reloaded resource packs
+[08:49:21] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:49:21] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:49:22] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:49:22] [Client thread/INFO]: SoundSystem shutting down...
+[08:49:22] [Server thread/INFO]: Loaded 6 recipes
+[08:49:22] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:49:22] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:49:23] [Thread-21/INFO]: Initializing No Sound
+[08:49:23] [Thread-21/INFO]: (Silent Mode)
+[08:49:23] [Thread-21/INFO]: OpenAL initialized.
+[08:49:23] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:49:23] [Sound Library Loader/INFO]: Sound engine started
+[08:49:24] [Server thread/INFO]: Loaded 799 advancements
+[08:49:24] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2972ms or 59 ticks behind
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[08:49:26] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[08:49:28] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[08:49:29] [Client thread/INFO]: Loaded 50 advancements
+[08:49:36] [Server thread/INFO]: Saving and pausing game...
+[08:49:36] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:49:36] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:49:36] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:49:37] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:49:37] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:49:37] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:49:45] [Client thread/INFO]: [CHAT] §9[Developer Tools]: Reloaded resource packs
+[08:49:45] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:49:45] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:49:46] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:49:46] [Client thread/INFO]: SoundSystem shutting down...
+[08:49:46] [Server thread/INFO]: Loaded 6 recipes
+[08:49:46] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:49:46] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:49:46] [Thread-23/INFO]: Initializing No Sound
+[08:49:46] [Thread-23/INFO]: (Silent Mode)
+[08:49:46] [Thread-23/INFO]: OpenAL initialized.
+[08:49:47] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:49:47] [Sound Library Loader/INFO]: Sound engine started
+[08:49:48] [Server thread/INFO]: Loaded 799 advancements
+[08:49:48] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2655ms or 53 ticks behind
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[08:49:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[08:49:51] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[08:49:51] [Client thread/INFO]: Loaded 50 advancements
+[08:49:54] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID dc8c66e1-250f-4816-bf01-87ad29354d9e
+[08:49:54] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID 777f1f0c-ec95-4460-854e-5d973052500f
+[08:49:58] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Creative Mode]
+[08:49:58] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Creative Mode
+[08:50:11] [Server thread/INFO]: Saving and pausing game...
+[08:50:11] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:50:11] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:50:11] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:50:13] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:50:13] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:50:13] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:50:39] [Server thread/INFO]: Saving and pausing game...
+[08:50:39] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:50:39] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:50:39] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:50:40] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:50:40] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:50:40] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:50:40] [Client thread/INFO]: [CHAT] §9[Developer Tools]: Reloaded resource packs
+[08:50:40] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:50:40] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:50:41] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:50:41] [Client thread/INFO]: SoundSystem shutting down...
+[08:50:41] [Server thread/INFO]: Loaded 6 recipes
+[08:50:41] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:50:41] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:50:42] [Thread-25/INFO]: Initializing No Sound
+[08:50:42] [Thread-25/INFO]: (Silent Mode)
+[08:50:42] [Thread-25/INFO]: OpenAL initialized.
+[08:50:42] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:50:42] [Sound Library Loader/INFO]: Sound engine started
+[08:50:43] [Server thread/INFO]: Loaded 799 advancements
+[08:50:43] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2366ms or 47 ticks behind
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[08:50:44] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[08:50:45] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[08:50:46] [Client thread/INFO]: Loaded 50 advancements
+[08:51:28] [Client thread/INFO]: Loaded 51 advancements
+[08:52:13] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID a3a3d639-cafa-40da-a60d-ca51c6e78400
+[08:52:13] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID a3a3d639-cafa-40da-a60d-ca51c6e78400
+[08:52:13] [Server thread/WARN]: Keeping entity minecraft:polar_bear that already exists with UUID a3a3d639-cafa-40da-a60d-ca51c6e78400
+[08:52:19] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3800ms or 76 ticks behind
+[08:52:19] [Client thread/WARN]: Ignoring chunk since it's not in the view range: 7, -46
+[08:52:30] [Server thread/INFO]: Saving and pausing game...
+[08:52:30] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:52:30] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:52:30] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:52:33] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:52:33] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:52:33] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:52:43] [Server thread/INFO]: [ChristopherC3P0: Gave 1 [TNT] to ChristopherC3P0]
+[08:52:43] [Client thread/INFO]: [CHAT] Gave 1 [TNT] to ChristopherC3P0
+[08:52:58] [Client thread/INFO]: Loaded 53 advancements
+[08:53:07] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3003ms or 60 ticks behind
+[08:53:10] [Server thread/INFO]: [ChristopherC3P0: Apparated 8 entities to ChristopherC3P0]
+[08:53:10] [Client thread/INFO]: [CHAT] Apparated 8 entities to ChristopherC3P0
+[08:53:13] [Client thread/INFO]: [CHAT] No entity was found
+[08:53:17] [Server thread/INFO]: [ChristopherC3P0: Apparated Snowball to ChristopherC3P0]
+[08:53:17] [Client thread/INFO]: [CHAT] Apparated Snowball to ChristopherC3P0
+[08:53:26] [Server thread/INFO]: [ChristopherC3P0: Apparated 6 entities to ChristopherC3P0]
+[08:53:26] [Client thread/INFO]: [CHAT] Apparated 6 entities to ChristopherC3P0
+[08:53:56] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4231ms or 84 ticks behind
+[08:54:14] [Server thread/INFO]: ChristopherC3P0 has made the advancement [Monster Hunter]
+[08:54:14] [Client thread/INFO]: [CHAT] ChristopherC3P0 has made the advancement [Monster Hunter]
+[08:54:14] [Client thread/INFO]: Loaded 68 advancements
+[08:54:20] [Client thread/INFO]: [CHAT] No entity was found
+[08:54:31] [Server thread/WARN]: Keeping entity minecraft:drowned that already exists with UUID a9ab3285-9a08-421d-bbdb-bafec6d49d99
+[08:54:31] [Server thread/WARN]: Keeping entity minecraft:drowned that already exists with UUID ff426a2d-246e-4469-9658-1c04f859e5d9
+[08:54:46] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5398ms or 107 ticks behind
+[08:54:47] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -21, -70
+[08:54:49] [Client thread/INFO]: [CHAT] Requested location: Buried_Treasure \nCoordinates: [-311, ~, -1511] \nDistance: 259 blocks away
+[08:54:51] [Server thread/INFO]: [ChristopherC3P0: Apparated ChristopherC3P0 to -310.5, 70.7001154631937, -1510.5]
+[08:54:51] [Client thread/INFO]: [CHAT] Apparated ChristopherC3P0 to -310.5, 70.7001154631937, -1510.5
+[08:54:52] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -32, -87
+[08:54:52] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -33, -87
+[08:54:58] [Client thread/INFO]: Loaded 68 advancements
+[08:55:06] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Spectator Mode]
+[08:55:06] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Spectator Mode
+[08:55:11] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Creative Mode]
+[08:55:11] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Creative Mode
+[08:55:14] [Client thread/INFO]: Loaded 83 advancements
+[08:55:15] [Client thread/INFO]: Loaded 87 advancements
+[08:55:22] [Client thread/INFO]: Loaded 87 advancements
+[08:55:30] [Client thread/INFO]: Loaded 87 advancements
+[08:55:38] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 6894ms or 137 ticks behind
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -24, -103
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -26, -103
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -27, -103
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -28, -103
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -29, -103
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -27, -104
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -28, -104
+[08:55:38] [Client thread/WARN]: Ignoring chunk since it's not in the view range: -26, -104
+[08:55:53] [Client thread/INFO]: Loaded 87 advancements
+[08:55:59] [Client thread/INFO]: Loaded 90 advancements
+[08:56:16] [Server thread/INFO]: Saving and pausing game...
+[08:56:16] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:56:16] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:56:16] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:56:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:56:22] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:56:22] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:56:22] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5991ms or 119 ticks behind
+[08:57:16] [Client thread/INFO]: [CHAT] §9[Developer Tools]: Reloaded resource packs
+[08:57:16] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:57:16] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:57:17] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:57:17] [Client thread/INFO]: SoundSystem shutting down...
+[08:57:17] [Server thread/INFO]: Loaded 6 recipes
+[08:57:17] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:57:17] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:57:17] [Client thread/INFO]: Caught error stitching, removing all assigned resourcepacks
+java.nio.file.FileSystemAlreadyExistsException: null
+	at com.sun.nio.zipfs.ZipFileSystemProvider.newFileSystem(ZipFileSystemProvider.java:113) ~[zipfs.jar:1.8.0_74]
+	at java.nio.file.FileSystems.newFileSystem(FileSystems.java:326) ~[?:1.8.0_74]
+	at java.nio.file.FileSystems.newFileSystem(FileSystems.java:276) ~[?:1.8.0_74]
+	at vx.a(SourceFile:114) ~[19w05a.jar:?]
+	at dpb.a(SourceFile:54) ~[19w05a.jar:?]
+	at wl.a(SourceFile:138) ~[19w05a.jar:?]
+	at wq.a(SourceFile:81) ~[19w05a.jar:?]
+	at csm.a(SourceFile:51) ~[19w05a.jar:?]
+	at wq.c(SourceFile:124) ~[19w05a.jar:?]
+	at wq.a(SourceFile:107) ~[19w05a.jar:?]
+	at cqd.g(SourceFile:703) ~[19w05a.jar:?]
+	at cqc.c(SourceFile:245) ~[19w05a.jar:?]
+	at cqc.a(SourceFile:442) ~[19w05a.jar:?]
+	at org.lwjgl.glfw.GLFWKeyCallbackI.callback(GLFWKeyCallbackI.java:37) [lwjgl-glfw-3.1.6.jar:build 14]
+	at org.lwjgl.system.JNI.invokeV(Native Method) ~[lwjgl-3.1.6.jar:build 14]
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:3029) [lwjgl-glfw-3.1.6.jar:build 14]
+	at cpa.l(SourceFile:422) [19w05a.jar:?]
+	at cpa.c(SourceFile:280) [19w05a.jar:?]
+	at cqd.b_(SourceFile:1002) [19w05a.jar:?]
+	at cqd.d(SourceFile:955) [19w05a.jar:?]
+	at cqd.b(SourceFile:406) [19w05a.jar:?]
+	at net.minecraft.client.main.Main.main(SourceFile:154) [19w05a.jar:?]
+[08:57:17] [Client thread/INFO]: Reloading ResourceManager: Default
+[08:57:18] [Thread-27/INFO]: Initializing No Sound
+[08:57:18] [Thread-27/INFO]: (Silent Mode)
+[08:57:18] [Thread-27/INFO]: OpenAL initialized.
+[08:57:18] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:57:18] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:57:18] [Sound Library Loader/INFO]: Sound engine started
+[08:57:18] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:57:18] [Client thread/INFO]: SoundSystem shutting down...
+[08:57:19] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:57:19] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:57:19] [Thread-29/INFO]: Initializing No Sound
+[08:57:19] [Thread-29/INFO]: (Silent Mode)
+[08:57:19] [Thread-29/INFO]: OpenAL initialized.
+[08:57:19] [Sound Library Loader/INFO]: Sound engine started
+[08:57:19] [Server thread/INFO]: Loaded 799 advancements
+[08:57:19] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3425ms or 68 ticks behind
+[08:57:23] [Client thread/INFO]: Created: 1024x512 textures-atlas
+[08:57:24] [Client thread/INFO]: Loaded 90 advancements
+[08:57:27] [Server thread/INFO]: Saving and pausing game...
+[08:57:27] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:57:27] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:57:27] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:57:28] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:57:28] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:57:28] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:57:31] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[08:57:31] [Server thread/INFO]: Reloading ResourceManager: Default
+[08:57:32] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[08:57:32] [Client thread/INFO]: SoundSystem shutting down...
+[08:57:32] [Server thread/INFO]: Loaded 6 recipes
+[08:57:32] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[08:57:32] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[08:57:32] [Thread-31/INFO]: Initializing No Sound
+[08:57:32] [Thread-31/INFO]: (Silent Mode)
+[08:57:32] [Thread-31/INFO]: OpenAL initialized.
+[08:57:33] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[08:57:33] [Sound Library Loader/INFO]: Sound engine started
+[08:57:34] [Server thread/INFO]: Loaded 799 advancements
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[08:57:36] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[08:57:37] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[08:57:39] [Client thread/INFO]: Loaded 90 advancements
+[08:58:05] [Server thread/INFO]: Saving and pausing game...
+[08:58:05] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[08:58:05] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[08:58:05] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[08:58:08] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[08:58:08] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[08:58:08] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[08:58:08] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3453ms or 69 ticks behind
+[08:58:13] [Client thread/INFO]: Loaded 93 advancements
+[08:58:15] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Spectator Mode]
+[08:58:15] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Spectator Mode
+[08:58:21] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Creative Mode]
+[08:58:21] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Creative Mode
+[08:58:30] [Client thread/INFO]: Loaded 100 advancements
+[08:59:15] [Client thread/INFO]: Loaded 102 advancements
+[08:59:40] [Server thread/INFO]: [ChristopherC3P0: Gamerule randomTickSpeed is now set to: 3]
+[08:59:40] [Client thread/INFO]: [CHAT] Gamerule randomTickSpeed is now set to: 3
+[08:59:43] [Server thread/INFO]: [ChristopherC3P0: Gamerule keepInventory is now set to: true]
+[08:59:43] [Client thread/INFO]: [CHAT] Gamerule keepInventory is now set to: true
+[09:00:02] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 8424ms or 168 ticks behind
+[09:00:02] [Client thread/INFO]: Loaded 102 advancements
+[09:00:18] [Server thread/INFO]: [ChristopherC3P0: Time is now set to 1000]
+[09:00:18] [Client thread/INFO]: [CHAT] Time is now set to 1000
+[09:00:20] [Server thread/INFO]: [ChristopherC3P0: Gamerule doDaylightCycle is now set to: false]
+[09:00:20] [Client thread/INFO]: [CHAT] Gamerule doDaylightCycle is now set to: false
+[09:00:23] [Server thread/INFO]: [ChristopherC3P0: Gamerule doWeatherCycle is now set to: false]
+[09:00:23] [Client thread/INFO]: [CHAT] Gamerule doWeatherCycle is now set to: false
+[09:00:25] [Server thread/INFO]: [ChristopherC3P0: Set the weather to rain]
+[09:00:25] [Client thread/INFO]: [CHAT] Set the weather to rain
+[09:00:28] [Server thread/WARN]: Keeping entity minecraft:cow that already exists with UUID c22a829d-f407-45b4-af10-5666c1b309dc
+[09:00:28] [Server thread/WARN]: Keeping entity minecraft:cow that already exists with UUID cbcbaa15-0638-4306-814d-de75185c082f
+[09:00:28] [Server thread/WARN]: Keeping entity minecraft:cow that already exists with UUID e2694d48-d90a-4fbc-86a6-5a9e50e82e7e
+[09:00:28] [Server thread/WARN]: Keeping entity minecraft:cow that already exists with UUID 964d91aa-50cc-4e43-a86d-3a7582de42d6
+[09:00:43] [Server thread/INFO]: Saving and pausing game...
+[09:00:43] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[09:00:43] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:00:43] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[09:00:47] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:00:47] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[09:00:47] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:00:47] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3635ms or 72 ticks behind
+[09:00:47] [Server thread/INFO]: Changing difficulty to NORMAL, from PEACEFUL
+[09:00:49] [Server thread/INFO]: [ChristopherC3P0: Summon successful. You have summoned Herobrine]
+[09:00:49] [Client thread/INFO]: [CHAT] Summon successful. You have summoned Herobrine
+[09:01:00] [Server thread/INFO]: [ChristopherC3P0: Gamerule doFireTick is now set to: false]
+[09:01:00] [Client thread/INFO]: [CHAT] Gamerule doFireTick is now set to: false
+[09:01:05] [Server thread/INFO]: [ChristopherC3P0: Set the weather to clear]
+[09:01:05] [Client thread/INFO]: [CHAT] Set the weather to clear
+[09:01:23] [Server thread/INFO]: Saving and pausing game...
+[09:01:23] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[09:01:23] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:01:23] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[09:01:25] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:01:25] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[09:01:25] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:01:25] [Server thread/INFO]: Changing difficulty to PEACEFUL, from NORMAL
+[09:01:27] [Server thread/INFO]: [ChristopherC3P0: Set the weather to rain]
+[09:01:27] [Client thread/INFO]: [CHAT] Set the weather to rain
+[09:01:41] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3332ms or 66 ticks behind
+[09:02:11] [Client thread/INFO]: [CHAT] Requested location: Village \nCoordinates: [-496, ~, -1760] \nDistance: 560 blocks away
+[09:02:14] [Server thread/INFO]: [ChristopherC3P0: Apparated ChristopherC3P0 to -495.5, 77.75623768453865, -1759.5]
+[09:02:14] [Client thread/INFO]: [CHAT] Apparated ChristopherC3P0 to -495.5, 77.75623768453865, -1759.5
+[09:02:19] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4628ms or 92 ticks behind
+[09:02:30] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID be995009-bebc-42d7-b1ed-6198ef004668
+[09:02:30] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 4ae8c20a-917e-4be5-97c4-0f23a8912d89
+[09:02:30] [Server thread/WARN]: Keeping entity minecraft:villager that already exists with UUID d58c4737-a487-414f-a030-00ec76d70b0e
+[09:02:30] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 6c169c7e-92e7-474e-ba3f-a064e3b55c71
+[09:02:30] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 7f6b8331-99d1-47e6-9048-fa3ab5fbe3bc
+[09:02:31] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID be995009-bebc-42d7-b1ed-6198ef004668
+[09:02:31] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 4ae8c20a-917e-4be5-97c4-0f23a8912d89
+[09:02:31] [Server thread/WARN]: Keeping entity minecraft:villager that already exists with UUID d58c4737-a487-414f-a030-00ec76d70b0e
+[09:02:31] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 6c169c7e-92e7-474e-ba3f-a064e3b55c71
+[09:02:31] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 7f6b8331-99d1-47e6-9048-fa3ab5fbe3bc
+[09:02:33] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID be995009-bebc-42d7-b1ed-6198ef004668
+[09:02:33] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 4ae8c20a-917e-4be5-97c4-0f23a8912d89
+[09:02:33] [Server thread/WARN]: Keeping entity minecraft:villager that already exists with UUID d58c4737-a487-414f-a030-00ec76d70b0e
+[09:02:33] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 6c169c7e-92e7-474e-ba3f-a064e3b55c71
+[09:02:33] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 7f6b8331-99d1-47e6-9048-fa3ab5fbe3bc
+[09:02:34] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID be995009-bebc-42d7-b1ed-6198ef004668
+[09:02:34] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 4ae8c20a-917e-4be5-97c4-0f23a8912d89
+[09:02:34] [Server thread/WARN]: Keeping entity minecraft:villager that already exists with UUID d58c4737-a487-414f-a030-00ec76d70b0e
+[09:02:34] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 6c169c7e-92e7-474e-ba3f-a064e3b55c71
+[09:02:34] [Server thread/WARN]: Keeping entity minecraft:chicken that already exists with UUID 7f6b8331-99d1-47e6-9048-fa3ab5fbe3bc
+[09:02:45] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 11445ms or 228 ticks behind
+[09:03:14] [Server thread/INFO]: [ChristopherC3P0: Set spawn point to -494, 65, -1690 for ChristopherC3P0]
+[09:03:14] [Client thread/INFO]: [CHAT] Set spawn point to -494, 65, -1690 for ChristopherC3P0
+[09:03:15] [Server thread/INFO]: [ChristopherC3P0: Set the world spawn point to -494, 65, -1690]
+[09:03:15] [Client thread/INFO]: [CHAT] Set the world spawn point to -494, 65, -1690
+[09:03:23] [Client thread/INFO]: Loaded 105 advancements
+[09:03:33] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5780ms or 115 ticks behind
+[09:03:37] [Server thread/INFO]: [ChristopherC3P0: Set the weather to clear]
+[09:03:37] [Client thread/INFO]: [CHAT] Set the weather to clear
+[09:04:01] [Server thread/INFO]: [ChristopherC3P0: Stopped sound 'minecraft:weather.rain' on source 'weather']
+[09:04:01] [Client thread/INFO]: [CHAT] Stopped sound 'minecraft:weather.rain' on source 'weather'
+[09:04:06] [Server thread/INFO]: [ChristopherC3P0: Stopped sound 'minecraft:weather.rain.above' on source 'weather']
+[09:04:06] [Client thread/INFO]: [CHAT] Stopped sound 'minecraft:weather.rain.above' on source 'weather'
+[09:04:21] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3083ms or 61 ticks behind
+[09:04:38] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Survival Mode]
+[09:04:38] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Survival Mode
+[09:04:47] [Server thread/INFO]: [ChristopherC3P0: Gave 1 [Herobrine Spawn Egg] to ChristopherC3P0]
+[09:04:47] [Client thread/INFO]: [CHAT] Gave 1 [Herobrine Spawn Egg] to ChristopherC3P0
+[09:04:52] [Server thread/INFO]: [ChristopherC3P0: Gave 64 [Herobrine Spawn Egg] to ChristopherC3P0]
+[09:04:52] [Client thread/INFO]: [CHAT] Gave 64 [Herobrine Spawn Egg] to ChristopherC3P0
+[09:05:08] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2096ms or 41 ticks behind
+[09:05:51] [Server thread/INFO]: [ChristopherC3P0: Gave 1 [Villager Spawn Egg] to ChristopherC3P0]
+[09:05:51] [Client thread/INFO]: [CHAT] Gave 1 [Villager Spawn Egg] to ChristopherC3P0
+[09:05:57] [Server thread/INFO]: [ChristopherC3P0: Gave 1 [Villager Spawn Egg] to ChristopherC3P0]
+[09:05:57] [Client thread/INFO]: [CHAT] Gave 1 [Villager Spawn Egg] to ChristopherC3P0
+[09:06:57] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Creative Mode]
+[09:06:57] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Creative Mode
+[09:07:03] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Survival Mode]
+[09:07:03] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Survival Mode
+[09:07:34] [Client thread/INFO]: Loaded 108 advancements
+[09:08:40] [Server thread/INFO]: [ChristopherC3P0: Gave 1 [Diamond Pickaxe] to ChristopherC3P0]
+[09:08:40] [Client thread/INFO]: [CHAT] Gave 1 [Diamond Pickaxe] to ChristopherC3P0
+[09:11:03] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Creative Mode
+[09:11:03] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Creative Mode]
+[09:11:19] [Server thread/INFO]: [ChristopherC3P0: Apparated ChristopherC3P0 to -4999.5, 89.27421526660603, -4999.5]
+[09:11:19] [Client thread/INFO]: [CHAT] Apparated ChristopherC3P0 to -4999.5, 89.27421526660603, -4999.5
+[09:11:22] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2001ms or 40 ticks behind
+[09:11:43] [Client thread/INFO]: [CHAT] Requested location: Village \nCoordinates: [-5840, ~, -5408] \nDistance: 930 blocks away
+[09:11:44] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 6325ms or 126 ticks behind
+[09:11:50] [Server thread/INFO]: [ChristopherC3P0: Apparated ChristopherC3P0 to -5839.5, 66.69058114339478, -5407.5]
+[09:11:50] [Client thread/INFO]: [CHAT] Apparated ChristopherC3P0 to -5839.5, 66.69058114339478, -5407.5
+[09:12:08] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 6384ms or 127 ticks behind
+[09:12:12] [Client thread/INFO]: Loaded 108 advancements
+[09:12:13] [Server thread/INFO]: [ChristopherC3P0: Set spawn point to -5826, 67, -5405 for ChristopherC3P0]
+[09:12:13] [Client thread/INFO]: [CHAT] Set spawn point to -5826, 67, -5405 for ChristopherC3P0
+[09:12:15] [Server thread/INFO]: [ChristopherC3P0: Set the world spawn point to -5826, 67, -5405]
+[09:12:15] [Client thread/INFO]: [CHAT] Set the world spawn point to -5826, 67, -5405
+[09:12:23] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Survival Mode]
+[09:12:23] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Survival Mode
+[09:12:35] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2234ms or 44 ticks behind
+[09:12:44] [Server thread/INFO]: Saving and pausing game...
+[09:12:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[09:12:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:12:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[09:12:55] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:12:55] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[09:12:55] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:12:55] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5218ms or 104 ticks behind
+[09:14:58] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3377ms or 67 ticks behind
+[09:15:00] [Server thread/INFO]: Saving and pausing game...
+[09:15:00] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[09:15:00] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:15:00] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[09:15:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:15:02] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[09:15:02] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:16:42] [Client thread/INFO]: [CHAT] §9[Developer Tools]: Reloaded resource packs
+[09:16:43] [Client thread/INFO]: Reloading ResourceManager: Default, DieselDorky16 Resource Pack
+[09:16:43] [Server thread/INFO]: Reloading ResourceManager: Default
+[09:16:44] [Client thread/WARN]: Missing sound for event: minecraft:ui.cartography_table.take_result
+[09:16:44] [Client thread/INFO]: SoundSystem shutting down...
+[09:16:44] [Server thread/INFO]: Loaded 6 recipes
+[09:16:44] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
+[09:16:44] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[09:16:44] [Thread-33/INFO]: Initializing No Sound
+[09:16:44] [Thread-33/INFO]: (Silent Mode)
+[09:16:44] [Thread-33/INFO]: OpenAL initialized.
+[09:16:45] [Sound Library Loader/INFO]: Preloading sound minecraft:sounds/ambient/underwater/underwater_ambience.ogg
+[09:16:45] [Sound Library Loader/INFO]: Sound engine started
+[09:16:46] [Server thread/INFO]: Loaded 799 advancements
+[09:16:47] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 4108ms or 82 ticks behind
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=ceiling': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=south,face=floor': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=ceiling': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=ceiling': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=east,face=floor': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=ceiling': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=north,face=floor': Unknown blockstate property: 'face'
+[09:16:49] [Client thread/WARN]: Exception loading blockstate definition: 'minecraft:blockstates/bell.json' in resourcepack: 'DieselDorky16 Resource Pack' for variant: 'facing=west,face=floor': Unknown blockstate property: 'face'
+[09:16:50] [Client thread/INFO]: Created: 2048x1024 textures-atlas
+[09:16:52] [Client thread/INFO]: Loaded 108 advancements
+[09:17:13] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2610ms or 52 ticks behind
+[09:17:28] [Client thread/INFO]: Loaded 108 advancements
+[09:18:01] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 3526ms or 70 ticks behind
+[09:18:03] [Client thread/INFO]: Loaded 109 advancements
+[09:18:45] [Client thread/INFO]: Loaded 125 advancements
+[09:18:48] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2111ms or 42 ticks behind
+[09:18:50] [Client thread/INFO]: Loaded 127 advancements
+[09:19:30] [Client thread/INFO]: Loaded 128 advancements
+[09:19:31] [Client thread/INFO]: Loaded 131 advancements
+[09:19:36] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2651ms or 53 ticks behind
+[09:19:51] [Client thread/INFO]: Loaded 132 advancements
+[09:20:23] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2280ms or 45 ticks behind
+[09:20:30] [Server thread/INFO]: [ChristopherC3P0: Your gamemode has been changed: Now playing in Creative Mode]
+[09:20:30] [Client thread/INFO]: [CHAT] Your gamemode has been changed: Now playing in Creative Mode
+[09:21:10] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2050ms or 41 ticks behind
+[09:21:58] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2361ms or 47 ticks behind
+[09:22:41] [Server thread/INFO]: Saving and pausing game...
+[09:22:41] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[09:22:41] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:22:41] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[09:22:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:22:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[09:22:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:22:44] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 2243ms or 44 ticks behind
+[09:22:44] [Server thread/INFO]: ChristopherC3P0 lost connection: Disconnected
+[09:22:44] [Server thread/INFO]: ChristopherC3P0 left the game
+[09:22:44] [Server thread/INFO]: Stopping singleplayer server as player logged out
+[09:22:44] [Server thread/INFO]: Stopping server
+[09:22:44] [Server thread/INFO]: Saving players
+[09:22:44] [Server thread/INFO]: Saving worlds
+[09:22:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_end
+[09:22:44] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:22:44] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:overworld
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:22:45] [Server thread/INFO]: Saving chunks for level 'dwh'/minecraft:the_nether
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (dwh): All chunks are saved
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:22:45] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:23:34] [Client thread/INFO]: Stopping!
+[09:23:36] [Client thread/INFO]: SoundSystem shutting down...
+[09:23:36] [Client thread/INFO]: SoundSystem Author: Paul Lamb, www.paulscode.com
