@@ -1,0 +1,49 @@
+{
+  "key": "MC-189111",
+  "created_date": "2020-06-12T12:34:48.692-0700",
+  "updated_date": "2026-08-27T02:15:46.959-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15.2",
+    "1.16 Pre-release 5",
+    "1.17.1",
+    "1.18.2",
+    "22w17a",
+    "22w18a",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19 Pre-release 3",
+    "1.19",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "1.19.3 Pre-release 2"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "bee",
+    "pathfinding"
+  ],
+  "resolution_date": "2022-11-23T02:19:30.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Bees get stuck on non-full blocks",
+  "environment_raw": "",
+  "description": "## The bug\n\nBees can get stuck inside non-full blocks, such as fences.\n\n## Affected blocks\n\nSlim blocks:\n\n - Bamboo\n\n - Chain\n\n - Door\n\n - End rod\n\n - Fence\n\n - Fence gate\n\n - Glass pane\n\n - Grindstone\n\n - Iron bars\n\n - Lightning rod\n\n - Pointed dripstone\n\n - Sea pickle\n\n - Slab\n\n - Stained glass pane\n\n - Wall\n\nOther blocks:\n\n - Cauldron\n\n - Composter\n\n - Scaffolding\n\n## To reproduce\n\n - Execute the following command:\n\n/fill ~20 ~-20 ~20 ~ ~ ~ minecraft:acacia_fence hollow\n\n - Summon bees inside and outside the fence cube.\n\n## Expected result\n\nThe bees should be able to pathfind around the fences.\n\n## Observed result\n\nThe bees get stuck inside the fences.\n\n## Original description\n\nI saw some reports of this issue for earlier versions, and in this report ( \n \n \n \n MC-159447\n \n Resolved\n \n) the issue was supposedly fixed. I didn't know what to do to report a bug and when trying to sign in my minecraft.net account info did not work so I made a new account to post this bug report. After seeing many snapshots talking about all these fixes I did not see any talk about fixing bees being stuck to fences. Hope I'm not the only one dealing with this. I have a couple screenshots and I put in blocks from 1.16 in it to show that was the version I was playing (1.16 pre5 specifically).\u00a0\n\nHope this issue can be resolved before 1.16 officially releases.",
+  "Steps to Reproduce": "1. Launch Minecraft 1.16 pre5.\n2. Create a Creative world with default settings.\n3. Execute `/fill ~20 ~-20 ~20 ~ ~ ~ minecraft:acacia_fence hollow`.\n4. Summon bees inside the acacia fence cube.\n5. Summon bees outside the acacia fence cube.\n6. Observe that the bees get stuck inside the fences instead of pathfinding around them.",
+  "Environment": "Minecraft Java Edition Versions: 1.15.2, 1.16 Pre-release 5, 1.17.1, 1.18.2, 22w17a, 22w18a, 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19 Pre-release 3, 1.19, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nBees can become trapped within or against non-full blocks. When bees are summoned on both sides of the acacia-fence enclosure, they may enter the fence geometry and remain stuck there instead of navigating around the fence. The same behavior occurs with the other listed slim blocks and with cauldrons, composters, and scaffolding.",
+  "Expected Behavior": "Bees inside and outside fences and other non-full blocks should be able to navigate around these blocks normally using their pathfinding. They should not become trapped, embedded, or otherwise stuck within the block geometry, and bees placed inside a fenced enclosure should be able to move freely through available paths and interact with the surrounding area as expected.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Mob behaviour/MC-189111",
+  "improvement_metadata": {
+    "original_key": "MC-189111"
+  }
+}

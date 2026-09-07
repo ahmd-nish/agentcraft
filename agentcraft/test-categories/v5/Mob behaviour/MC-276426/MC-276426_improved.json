@@ -1,0 +1,38 @@
+{
+  "key": "MC-276426",
+  "created_date": "2024-09-05T23:04:38.070-0700",
+  "updated_date": "2025-02-24T12:38:31.238-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w36a",
+    "24w37a",
+    "24w38a"
+  ],
+  "fix_versions": [
+    "24w39a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-09-20T01:34:18.572-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Slimes or magma cubes spawned by splitting synchronize inherited status effects",
+  "environment_raw": "",
+  "description": "Description\n\nSince 24w36a, entities that are converted into another entities keep their status effects (see \n \n \n \n MC-88967\n \n Resolved\n \n), including split slimes or magma cubes. For example, when a slime dies, the dead slime's StatusEffectInstance s are added to the newly spawned slimes. Because StatusEffectInstance is mutable, and multiple slimes spawn when splitting, it must be copied, otherwise the same instance is shared between multiple entities. They didn't, causing bugs.\n\nThis is observed by:\n\n - Adding an effect to a parent slime\n\n - Killing the parent slime, causing child slimes to spawn with effects\n\n - Observing that the inherited effect of child slimes expires much faster (if 2 slimes spawned when splitting, each has their effect durations effectively halved)\n\n - Observing that, when adding the same effect (with longer durations or higher potency) to only one of the slimes while the inherited effect is still active, each gets the same effect\n\nSteps to Reproduce\n\nAttached is a world used for filming the video. Glowing is added to Slimes for visibility, but this does not affect the reproduction of the bug.\n\n - Summon a slime:\n\n/summon slime ~ ~ ~ {Size:4}\n\n - Give the slime Invisibility for 60 seconds\n\n/effect give @e[type=slime,limit=1] invisibility 60\n\n - Kill the slime\n\n/kill @e[type=slime]\n\n - Give ONE slime Invisibility for 180 seconds\n\n/effect give @e[type=slime,limit=1] invisibility 180\n\n - (Optionally) tick sprint. For 2 slimes, 80s; for 3, 50s; and for 4, 35s.\n\n/tick sprint 50s\n\nExpected Behavior\n\nOne slime should become visible much later than the rest.\n\nSpecifically: after 60 seconds from the time parent slime was made invisible, all but one slime should be visible again. The one slime should be invisible for 180 seconds from the time that slime was made invisible.\n\nActual Behavior\n\nAll slimes become visible at the same time, and none of them becomes invisible for 180 seconds.\n\nSpecifically: 180 / numberOfSlime seconds after one of the child slime was given Invisibility, all slimes become visible at the same time.\n\nCode Analysis\n\n24w36a Yarn\n\nIn EntityConversionType#copyData, the following line is seen applying old entity's status effects to the newly spawned one:\n\n for (StatusEffectInstance lv : oldEntity.getStatusEffects()) {\n newEntity.addStatusEffect(lv);\n }\n\nThis code is used for both one-to-one conversion (like zombification) and slimes/magma cubes splitting. When used in the splitting context, this is called for each child, reusing the parent's StatusEffectInstance. This causes the entities to share the same StatusEffectInstance.\n\nWhen each entity ticks their status effects, this StatusEffectInstance gets ticked multiple times per tick, causing it to expire earlier. If the same effect with longer duration or higher potency is applied, the update applies to all entities that share the same effect instance.\n\nTo fix this issue, the effect should be copied:\n\n for (StatusEffectInstance lv : oldEntity.getStatusEffects()) {\n newEntity.addStatusEffect(new StatusEffectInstance(lv));\n }",
+  "Steps to Reproduce": "1. Launch Minecraft in version 24w36a.\n2. Create or open a Creative world.\n3. Summon a size 4 slime with `/summon slime ~ ~ ~ {Size:4}`.\n4. Give the slime Invisibility for 60 seconds with `/effect give @e[type=slime,limit=1] invisibility 60`.\n5. Kill the slime with `/kill @e[type=slime]`.\n6. Give one of the spawned slimes Invisibility for 180 seconds with `/effect give @e[type=slime,limit=1] invisibility 180`.\n7. Advance the game by 50 seconds with `/tick sprint 50s`.\n8. Wait until the child slimes' Invisibility effects expire.\n9. Observe that all child slimes become visible at the same time, instead of only the slimes with the inherited effect becoming visible earlier and the selected slime remaining invisible for 180 seconds.",
+  "Environment": "Minecraft Java Edition Versions: 24w36a, 24w37a, 24w38a (includes snapshots)",
+  "Observed Behavior": "All child slimes share the same mutable `StatusEffectInstance` for each effect inherited from the parent.\n\nAs a result:\n\n- The inherited effect is ticked once for every child slime each game tick. Its duration therefore decreases multiple times per tick and expires approximately `1 / numberOfSlime` as quickly as intended.\n- Updating the inherited effect on only one child\u2014such as applying Invisibility for 180 seconds\u2014also updates the effect on every other child that shares the same instance. The children consequently receive the same duration and amplifier.\n- The shared effect is then ticked by all children, so all slimes lose the effect simultaneously after approximately `180 / numberOfSlime` seconds, rather than only the targeted slime remaining invisible for 180 seconds.",
+  "Expected Behavior": "After a slime or magma cube splits, each child should inherit the parent\u2019s active status effects independently, with the full remaining duration and potency. An effect applied or updated on one child should affect only that child and must not alter the others. In this scenario, the inherited Invisibility should expire for the other children after 60 seconds, while the selected child remains invisible for 180 seconds after receiving the new effect.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Mob behaviour/MC-276426",
+  "improvement_metadata": {
+    "original_key": "MC-276426"
+  }
+}
