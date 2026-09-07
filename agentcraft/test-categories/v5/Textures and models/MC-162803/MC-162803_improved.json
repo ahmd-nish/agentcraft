@@ -1,0 +1,58 @@
+{
+  "key": "MC-162803",
+  "created_date": "2019-10-05T08:13:14.238-0700",
+  "updated_date": "2026-08-20T03:39:45.526-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.14.4",
+    "19w40a",
+    "1.16.2",
+    "1.16.5",
+    "21w11a",
+    "21w13a",
+    "21w14a",
+    "21w16a",
+    "21w17a",
+    "21w18a",
+    "21w19a",
+    "21w20a",
+    "1.17 Pre-release 1",
+    "1.17",
+    "1.17.1 Pre-release 1",
+    "1.17.1",
+    "21w39a",
+    "21w40a",
+    "21w42a",
+    "1.18 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 5"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "incorrect-uv",
+    "plane-mirroring"
+  ],
+  "resolution_date": "2021-11-18T06:12:55.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Lily Pad mirrors texture when placed",
+  "environment_raw": "",
+  "description": "When seen from the top, the texture used by Lily Pads is mirrored when placed as a block, compared to the texture image itself and all other in-game uses of it (e.g. in-GUI display, as a held item, in an item frame...).\n\n\u00a0\n\nWhat I expected to happen was...:\n\nThe left side of the texture is on the left side of the Lily Pad block.\n\n\u00a0\n\nWhat actually happened was...:\n\nThe left side of the texture is on the right side of the Lily Pad block.\n\n\u00a0\n\nSteps to Reproduce:\n\n - Create a world with the game mode set to Creative.\n\n - Open the inventory and find a Lily Pad. (It can be found in the second tab on the top, Decoration Blocks, or you can search for it in the sixth tab, Search Items.)\n\n - Take a Lily Pad into your hotbar, and close the inventory.\n\n - Find a lake, a river, an ocean, or some other place with water.\n\n - Place the Lily Pad on top of the water, and compare the placed Lily Pad to the one in the hotbar and in your hand.\n\n\u00a0\n\nSteps to Fix:\n\nIn the resource file assets/minecraft/models/block/lily_pad.json, change...\n\n\u00a0\n\n \"down\": { \"uv\": [ 16, 16, 0, 0 ], \"texture\": \"#texture\", \"tintindex\": 0 },\n \"up\": { \"uv\": [ 16, 0, 0, 16 ], \"texture\": \"#texture\", \"tintindex\": 0 }\n\n\u00a0\n\n...to...\n\n\u00a0\n\n \"down\": { \"uv\": [ 0, 16, 16, 0 ], \"texture\": \"#texture\", \"tintindex\": 0 },\n \"up\": { \"uv\": [ 0, 0, 16, 16 ], \"texture\": \"#texture\", \"tintindex\": 0 }\n\n\u00a0\n\n\u00a0\n\nScreenshots:\n\nI have attached two images of the problem, where a resource pack is in use to add a bright green line on the left of the texture. The images show the Lily Pad on the hotbar, in both the left and the right hand, in an item frame, and placed as a block on top of water. The line is on the left (correct) side of the Lily Pad in all cases except for when placed on the water, where it is on the right (incorrect) side instead. One image is in version 1.14.4 (with an irrelevant mod), and one image is in snapshot 19w40a (without any mods).",
+  "Steps to Reproduce": "1. Create a new world with the game mode set to Creative.\n2. Open the inventory.\n3. Select a Lily Pad from the Decoration Blocks tab or the Search Items tab.\n4. Move the Lily Pad into the hotbar and close the inventory.\n5. Select the Lily Pad in the hotbar so it is held in hand.\n6. Find a lake, river, ocean, or other place with water.\n7. Place the Lily Pad on top of the water.\n8. View the placed Lily Pad from above and compare it with the Lily Pad in the hotbar and in hand; observe that the texture is mirrored, with its left side appearing on the right side of the placed block.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.4, 19w40a, 1.16.2, 1.16.5, 21w11a, 21w13a, 21w14a, 21w16a, 21w17a, 21w18a, 21w19a, 21w20a, 1.17 Pre-release 1, 1.17, 1.17.1 Pre-release 1, 1.17.1, 21w39a, 21w40a, 21w42a, 1.18 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen a Lily Pad is placed on water, its block model renders the texture mirrored horizontally when viewed from above. The texture\u2019s left side appears on the right side of the placed Lily Pad, while its right side appears on the left.\n\nThe same Lily Pad texture is oriented correctly in the inventory, hotbar, in either hand, and in an item frame. This indicates that the mirroring occurs specifically in the placed block model, rather than in the texture itself.",
+  "Expected Behavior": "When a Lily Pad is placed on water and viewed from above, its texture should retain the same orientation as the original texture and its other in-game representations, including the hotbar, held item, and item frame. The texture\u2019s left side should remain on the left side of the placed Lily Pad rather than appearing mirrored.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Textures and models/MC-162803",
+  "improvement_metadata": {
+    "original_key": "MC-162803"
+  }
+}

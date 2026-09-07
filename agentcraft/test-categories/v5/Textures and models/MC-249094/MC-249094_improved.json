@@ -1,0 +1,47 @@
+{
+  "key": "MC-249094",
+  "created_date": "2022-03-16T10:34:20.305-0700",
+  "updated_date": "2026-08-27T02:56:02.015-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w11a",
+    "22w12a",
+    "22w14a",
+    "22w15a",
+    "22w16b",
+    "22w17a",
+    "22w18a",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2"
+  ],
+  "fix_versions": [
+    "22w15a",
+    "1.19 Pre-release 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "unnecessary-cullface"
+  ],
+  "resolution_date": "2022-05-24T07:01:44.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Unexpected culling of inner sculk shrieker faces",
+  "environment_raw": "",
+  "description": "The resource pack attached offers a complete fix for this issue. Mojang have my full permission to (and are encouraged to) replace the affected vanilla model files with the contents of the resource pack.\n\nDownload resource pack:\n\n - 22w18a: sculk-shrieker-fix-22w18a-v1.0.zip\n\n## The bug\n\nThe western bony structures extending from sculk shriekers have their side faces culled by blocks opposite from them.\n\n## How to reproduce\n\n - Place a sculk shrieker\n\n - Place a solid block to its east\n\n## Expected results\n\nThe tooth structures would not have any of their faces culled.\n\n## Actual results\n\nThey do.\n\n## How to fix\n\nI've attached a resource pack that fixes this issue as well as \n \n \n \n MC-249097\n \n Resolved\n \n by adding needed and removing unwanted cullface arguments where necessary from the sculk shrieker template model. This resource pack also cleans up the sculk shrieker model's code by introducing spacing and namespacing more consistent with other model files, ultimately reducing the file size considerably as well. As such, I'd recommend using this model file directly to fix these issues than attempting to fix both issues manually for quickness's sake as well as in the interests of readability.",
+  "Steps to Reproduce": "1. Launch Minecraft 22w18a.\n2. Create a Creative world with default settings.\n3. Place a sculk shrieker.\n4. Place a solid block directly east of the sculk shrieker.\n5. Observe that the side faces of the western bony tooth structures extending from the sculk shrieker are culled by the solid block.",
+  "Environment": "Minecraft Java Edition Versions: 22w11a, 22w12a, 22w14a, 22w15a, 22w16b, 22w17a, 22w18a, 1.19 Pre-release 1, 1.19 Pre-release 2 (includes snapshots)",
+  "Observed Behavior": "## Actual results\n\nPlacing a solid block immediately east of the sculk shrieker causes Minecraft to cull side faces belonging to the shrieker\u2019s western bony/tooth-like structures. These faces disappear from the rendered model even though the block does not directly occupy the structures\u2019 geometry, making the teeth appear partially hollow or missing faces.\n\nRemoving the block causes the affected faces to render again. The issue is limited to the sculk shrieker\u2019s visual model; the block itself remains intact and functional.",
+  "Expected Behavior": "When a solid block is placed to the east of a sculk shrieker, the western bony tooth structures should retain all of their side faces and remain fully visible. The presence of the opposing block should not cause any faces on these structures to be culled, so the sculk shrieker\u2019s model should appear complete and unchanged by adjacent solid blocks.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Textures and models/MC-249094",
+  "improvement_metadata": {
+    "original_key": "MC-249094"
+  }
+}

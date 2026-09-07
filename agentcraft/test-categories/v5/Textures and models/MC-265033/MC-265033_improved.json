@@ -1,0 +1,45 @@
+{
+  "key": "MC-265033",
+  "created_date": "2023-08-25T04:55:09.274-0700",
+  "updated_date": "2025-04-11T11:16:59.537-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.14.4",
+    "1.20.1",
+    "23w33a",
+    "23w35a",
+    "1.20.2 Pre-release 1",
+    "1.20.2 Pre-release 2",
+    "1.20.2",
+    "23w40a",
+    "23w41a",
+    "23w42a"
+  ],
+  "fix_versions": [
+    "24w44a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-10-23T00:13:11.096-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Slots with item outline textures behave inconsistently when items are placed inside of these slots",
+  "environment_raw": "",
+  "description": "## The bug\n\nSome block and entity inventory slots contain item outline textures overlaid on top of the slot to indicate what they accept. When an item is placed into these slots, the game does not behave consistently with respect to if the outline disappears or not.\n\nPrior to 23w31a, these cases were covered in \n \n \n \n MC-74408\n \n Resolved\n \n. However, that ticket now only covers brewing stands, even though the issue persists for other slot types.\n\n## How to reproduce\n\nA resource pack is attached to this ticket which replaces several item textures and models with small squares, allowing the outline to still be seen if it is not hidden if an item is added to a slot.\n\n## Table of slots\n\nThe following are all of these outline-using slots as well as how they behave when an item is added. The expected behaviour is that the outline would disappear when an item is placed within, which does not always happen.\n\nSlot\n\nResult\n\nNotes\n\nPlayer armor slots\n\n Outline hidden\n\nOriginal behaviour\n\nPlayer offhand slot\n\n Outline hidden\n\n\u00a0\n\nEnchanting table lapis lazuli slot\n\n Outline hidden\n\nFixed in 23w31a by MC-259401\n\nSmithing table template slot\n\n Outline hidden\n\n\u00a0\n\nSmithing table material slot\n\n Outline hidden\n\n\u00a0\n\nSmithing table input item slot\n\n Outline hidden\n\n\u00a0\n\nLoom banner slot\n\n Outline hidden\n\nsee also MC-264592\n\nLoom banner pattern slot\n\n Outline hidden\n\nsee also MC-264592\n\nLoom dye slot\n\n Outline hidden\n\nsee also MC-264592\n\nBrewing stand fuel slot\n\n Outline still present\n\nLikely caused by MC-74408\n\nBrewing stand bottle slot\n\n Outline still present\n\nLikely caused by MC-74408\n\nHorse/donkey/mule saddle slot\n\n Outline still present\n\nsee also MC-264592\n\nHorse armor slot\n\n Outline still present\n\nsee also MC-264592\n\nLlama carpet slot\n\n Outline still present\n\nsee also MC-264592\n\n## How to fix\n\nFixing \n \n \n \n MC-74408\n \n Resolved\n \n would likely fix the brewing stand case. For the horse and llama cases, the normal \"slot\" texture would need to be used, with the \"armor slot\"/\"saddle slot\" texture overlaid on top, like is the case with most other slots.\n\n## Further notes\n\nOn a tangientally related note, it may also be worth moving all of the slot outline textures from the \"items\" directory to the \"gui\" directory since they're GUI related. Loom, horse and llama slot textures are already under \"gui\", so no change is needed here. The following textures would be moved and possibly renamed:\n\n - item/empty_armor_slot_boots.png\n\n - item/empty_armor_slot_chestplate.png\n\n - item/empty_armor_slot_helmet.png\n\n - item/empty_armor_slot_leggings.png\n\n - item/empty_armor_slot_shield.png\n\n - item/empty_slot_amethyst_shard.png\n\n - item/empty_slot_axe.png\n\n - item/empty_slot_diamond.png\n\n - item/empty_slot_emerald.png\n\n - item/empty_slot_hoe.png\n\n - item/empty_slot_ingot.png\n\n - item/empty_slot_lapis_lazuli.png\n\n - item/empty_slot_pickaxe.png\n\n - item/empty_slot_quartz.png\n\n - item/empty_slot_redstone_dust.png\n\n - item/empty_slot_shovel.png\n\n - item/empty_slot_smithing_template_armor_trim.png\n\n - item/empty_slot_smithing_template_netherite_upgrade.png\n\n - item/empty_slot_sword.png",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings, selecting the attached resource pack through Create New World -> More World Options -> resource pack.\n3. Open the player inventory and place items into the armor slots and offhand slot.\n4. Observe that the item outline textures are hidden while the slots contain items.\n5. Place an enchanting table, smithing table, loom, and brewing stand, and spawn a horse, donkey, mule, or llama.\n6. Open the brewing stand interface and place items into its fuel slot and bottle slots.\n7. Open the horse, donkey, mule, or llama inventory and place an item into its saddle, armor, or carpet slot.\n8. Observe that the item outline texture remains visible in the brewing stand fuel and bottle slots and in the applicable saddle, armor, or carpet slot while those slots contain items.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.4, 1.20.1, 23w33a, 23w35a, 1.20.2 Pre-release 1, 1.20.2 Pre-release 2, 1.20.2, 23w40a, 23w41a, 23w42a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nThe visibility of the item outline texture depends on the slot implementation. In some slots, placing an item correctly hides the outline, while in others the outline remains rendered on top of the item.\n\nThe outline is hidden when an item is placed in the following slots:\n\n- Player armor slots\n- Player offhand slot\n- Enchanting table lapis lazuli slot\n- Smithing table template, material, and input slots\n- Loom banner, banner pattern, and dye slots\n\nThe outline remains visible when an item is placed in the following slots:\n\n- Brewing stand fuel slot\n- Brewing stand bottle slots\n- Horse, donkey, and mule saddle slots\n- Horse armor slots\n- Llama carpet slots\n\nThe inconsistent cases are most apparent with the attached resource pack, which replaces the relevant item textures and models with small squares. This leaves the slot outline visible around or over the item when the outline is not hidden. The expected behavior is for the outline texture to be hidden whenever its slot contains an item.",
+  "Expected Behavior": "When an item is placed in any inventory slot with an overlaid item outline texture, the outline should disappear and remain hidden while the slot is occupied. This behavior should be consistent across player, enchanting, smithing, loom, brewing stand, horse, donkey, mule, and llama slots, with the appropriate outline reappearing only after the item is removed.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Textures and models/MC-265033",
+  "improvement_metadata": {
+    "original_key": "MC-265033"
+  }
+}
