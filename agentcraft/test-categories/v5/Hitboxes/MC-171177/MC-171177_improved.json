@@ -1,0 +1,54 @@
+{
+  "key": "MC-171177",
+  "created_date": "2020-02-06T10:00:45.503-0800",
+  "updated_date": "2025-04-11T10:18:34.929-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15.2",
+    "20w06a",
+    "20w09a",
+    "1.16.4 Pre-release 2",
+    "1.16.4",
+    "20w49a",
+    "20w51a",
+    "1.17.1",
+    "1.18",
+    "1.18.2",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20",
+    "1.20.1",
+    "1.20.4"
+  ],
+  "fix_versions": [
+    "23w51a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "nether_portal"
+  ],
+  "resolution_date": "2024-03-21T06:25:25.284-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "You can enter nether portals in creative mode by running against the frame of the portal",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nYou can enter nether portals in creative mode by running against the frame of the portal.\n\nThis shouldn't be the case because you don't actually touch the nether portal blocks; you only touch the nether portal's frame, therefore you should not traverse dimensions.\n\n## Steps to Reproduce:\n\n - Build the setup as shown in the provided attachment. setup.png\n\n - Switch into creative mode and stand on top of and in the middle of the two emerald blocks.\n\n - Face the direction of the nether portal and begin running forward.\n\n - As soon as you touch the gold blocks on the floor, jump and continue running so that you land on the diamond blocks and run against the frame of the nether portal.\n\n - Take note as to whether or not you can enter nether portals in creative mode by running against the frame of the portal.\n\n## Observed Behavior:\n\nYou can enter nether portals in creative mode by running against the frame of the portal.\n\n## Expected Behavior:\n\nYou would not be able to enter nether portals in creative mode by running against the frame of the portal.",
+  "Steps to Reproduce": "1. Build the setup shown in the attached `setup.png`, including the nether portal, emerald blocks, gold blocks, diamond blocks, and portal frame.\n2. Switch to Creative mode.\n3. Stand on top of and in the middle of the two emerald blocks.\n4. Face the nether portal and begin running forward.\n5. When you touch the gold blocks on the floor, jump while continuing to run forward.\n6. Land on the diamond blocks and continue running forward against the nether portal\u2019s frame.\n7. Observe whether you enter the nether portal and traverse dimensions without touching the portal blocks.",
+  "Environment": "Minecraft Java Edition Versions: 1.15.2, 20w06a, 20w09a, 1.16.4 Pre-release 2, 1.16.4, 20w49a, 20w51a, 1.17.1, 1.18, 1.18.2, 1.19, 1.19.2, 1.19.3, 1.19.4, 1.20, 1.20.1, 1.20.4 (includes snapshots)",
+  "Observed Behavior": "While in Creative mode, the player can activate and enter the Nether portal by sprinting into the portal frame. In the reproduction setup, the player\u2019s collision is with the portal-frame blocks rather than the Nether portal blocks themselves, yet the portal effect is still triggered and the player is transported to the Nether.",
+  "Expected Behavior": "When moving against the frame of a Nether portal in Creative mode, the player should not enter the portal or be transported to another dimension. Dimension travel should occur only when the player contacts the Nether portal blocks themselves, not when merely colliding with the surrounding frame.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Hitboxes/MC-171177",
+  "improvement_metadata": {
+    "original_key": "MC-171177"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-260054",
+  "created_date": "2023-02-15T08:51:57.169-0800",
+  "updated_date": "2026-08-20T04:22:07.439-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w07a",
+    "23w13a"
+  ],
+  "fix_versions": [
+    "23w31a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-06-27T02:05:03.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Pink Petals hitbox does not adjust to contents",
+  "environment_raw": "",
+  "description": "## The bug\n\n23w07a introduces pink petals, a block which can have up to four instances of itself placed in a single block space. This puts it in a family also inhabited by turtle eggs, sea pickles and candles.\n\nTurtle eggs, sea pickles and candles start out with a small hitbox when they contain one instance, and this hitbox expands dynamically to accommodate an increased number of units within. However, for the pink petals block, this hitbox will remain constant regardless of how many are inside of it.\n\n## How to reproduce\n\n - Place one turtle egg\n\n - Place a second turtle egg in that block space\n\n - Place one sea pickle\n\n - Place a second sea pickle in that block space\n\n - Place one candle\n\n - Place a second candle in that block space\n\n - Place one pink petals\n\n - Place a second pink petals in that block space\n\n## Expected results\n\nWhen the second instance is added, each of the blocks would change their hitbox.\n\n## Actual results\n\nThis is true of the first three, but not of the fourth.",
+  "Steps to Reproduce": "1. Launch Minecraft 23w07a and create a Creative world with default settings.\n2. Place one turtle egg in a block space.\n3. Place a second turtle egg in the same block space.\n4. Place one sea pickle in a block space.\n5. Place a second sea pickle in the same block space.\n6. Place one candle in a block space.\n7. Place a second candle in the same block space.\n8. Place one pink petals block in a block space.\n9. Place a second pink petals block in the same block space.\n10. Observe that the turtle egg, sea pickle, and candle hitboxes expand after the second instance is added, while the pink petals hitbox remains unchanged.",
+  "Environment": "Minecraft Java Edition Versions: 23w07a, 23w13a (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nTurtle eggs, sea pickles, and candles expand their collision/selection shape when a second unit is added to the block space. Pink petals do not: after placing a second pink petals unit, the block\u2019s appearance and count update, but its hitbox remains the same size and shape as that of a single pink petals unit. The hitbox also remains unchanged for higher counts, up to the block\u2019s maximum of four units.",
+  "Expected Behavior": "When additional pink petals are placed in the same block space, their hitbox should dynamically expand to accommodate the increased number of petals, just as it does for turtle eggs, sea pickles, and candles. The hitbox should accurately reflect the current contents rather than remaining unchanged when a second instance is added.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Hitboxes/MC-260054",
+  "improvement_metadata": {
+    "original_key": "MC-260054"
+  }
+}
