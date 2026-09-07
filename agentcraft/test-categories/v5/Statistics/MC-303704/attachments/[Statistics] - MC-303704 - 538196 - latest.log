@@ -1,0 +1,68 @@
+[19:53:39] [ServerMain/WARN]: Missing translation key for rename: gamerule.doFireTick
+[19:53:39] [ServerMain/WARN]: Missing translation key for rename: gamerule.allowFireTicksAwayFromPlayer
+[19:53:39] [ServerMain/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[19:53:40] [ServerMain/INFO]: Loaded 1469 recipes
+[19:53:40] [ServerMain/INFO]: Loaded 1582 advancements
+[19:53:40] [Server thread/INFO]: Starting json RPC server on 0.0.0.0:9900
+[19:53:40] [Server thread/INFO]: Json-RPC Management connection listening on 0.0.0.0:9900
+[19:53:40] [Server thread/INFO]: Starting minecraft server version 25w44a
+[19:53:40] [Server thread/INFO]: Loading properties
+[19:53:40] [Server thread/INFO]: Default game type: SURVIVAL
+[19:53:40] [Server thread/INFO]: Generating keypair
+[19:53:40] [Server thread/INFO]: Starting Minecraft server on *:48249
+[19:53:41] [Server thread/INFO]: Preparing level "world"
+[19:53:41] [Server thread/INFO]: Loading 0 persistent chunks...
+[19:53:41] [Server thread/INFO]: Preparing spawn area: 100%
+[19:53:41] [Server thread/INFO]: Time elapsed: 11 ms
+[19:53:41] [Server thread/INFO]: Done (0.274s)! For help, type "help"
+[19:53:41] [Server thread/INFO]: Starting GS4 status listener
+[19:53:41] [Server thread/INFO]: Thread Query Listener started
+[19:53:41] [Query Listener #1/INFO]: Query running on 0.0.0.0:9898
+[19:53:41] [Server thread/INFO]: JMX monitoring enabled
+[19:53:41] [Management server IO #1/INFO]: RPC Connection #1: Management connection opened for /172.19.0.1:10976
+[19:54:41] [Server thread/INFO]: Server empty for 60 seconds, pausing
+[19:55:17] [User Authenticator #1/INFO]: UUID of player KurtThiemann is a0798455-f768-4abe-b2fc-da8478d04e02
+[19:55:18] [Server thread/INFO]: KurtThiemann[/87.79.239.150:42094] logged in with entity id 67 at (-36.11402553754099, 68.0, -41.81205361011167)
+[19:55:18] [Server thread/INFO]: KurtThiemann joined the game
+[19:56:17] [Server thread/INFO]: Saving the game (this may take a moment!)
+[19:56:17] [Server thread/ERROR]: Couldn't save stats to ./world/stats/a0798455-f768-4abe-b2fc-da8478d04e02.json
+java.nio.file.NoSuchFileException: ./world/stats/a0798455-f768-4abe-b2fc-da8478d04e02.json
+	at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)
+	at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)
+	at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)
+	at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:482)
+	at java.base/java.nio.file.Files.newOutputStream(Files.java:228)
+	at java.base/java.nio.file.Files.newBufferedWriter(Files.java:3001)
+	at bdg.a(SourceFile:96)
+	at bbz.a(SourceFile:310)
+	at bbz.h(SourceFile:635)
+	at net.minecraft.server.MinecraftServer.b(SourceFile:656)
+	at aqi.a(SourceFile:32)
+	at aqi.b(SourceFile:20)
+	at com.mojang.brigadier.context.ContextChain.runExecutable(ContextChain.java:73)
+	at hr.a(SourceFile:29)
+	at hr.execute(SourceFile:13)
+	at hm.a(SourceFile:8)
+	at he.a(SourceFile:8)
+	at hi.a(SourceFile:106)
+	at eg.a(SourceFile:430)
+	at eg.a(SourceFile:362)
+	at eg.a(SourceFile:348)
+	at arz.bA(SourceFile:449)
+	at arz.K(SourceFile:439)
+	at net.minecraft.server.MinecraftServer.c(SourceFile:1154)
+	at net.minecraft.server.MinecraftServer.a(SourceFile:1026)
+	at arz.a(SourceFile:318)
+	at net.minecraft.server.MinecraftServer.A(SourceFile:781)
+	at net.minecraft.server.MinecraftServer.a(SourceFile:303)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+[19:56:17] [Server thread/INFO]: Saved the game
+[20:00:10] [Server thread/INFO]: KurtThiemann lost connection: Disconnected
+[20:00:10] [Server thread/INFO]: KurtThiemann left the game
+[20:00:12] [User Authenticator #2/INFO]: UUID of player KurtThiemann is a0798455-f768-4abe-b2fc-da8478d04e02
+[20:00:12] [Server thread/INFO]: KurtThiemann[/87.79.239.150:60318] logged in with entity id 599 at (-38.761602325523064, 68.0, -34.23371663409872)
+[20:00:12] [Server thread/INFO]: KurtThiemann joined the game
+[20:00:25] [Server thread/INFO]: Saving the game (this may take a moment!)
+[20:00:25] [Server thread/INFO]: Saved the game
+[20:01:22] [Server thread/INFO]: KurtThiemann drowned while trying to escape Zombie

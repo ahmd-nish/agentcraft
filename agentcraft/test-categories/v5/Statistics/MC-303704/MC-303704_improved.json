@@ -1,0 +1,36 @@
+{
+  "key": "MC-303704",
+  "created_date": "2025-10-28T12:02:52.608-0700",
+  "updated_date": "2026-03-11T03:44:26.676-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w44a"
+  ],
+  "fix_versions": [
+    "25w45a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 0,
+  "labels": [],
+  "resolution_date": "2025-10-30T04:25:55.646-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Statistics are no longer saved if the folder they would save into doesn't exist yet",
+  "environment_raw": "",
+  "description": "Minecraft no longer saves player stats to the world folder in newly created worlds, resulting in them being reset every time the player joins the world. This affects both servers and singleplayer worlds.\n\nSteps to reproduce:\n\n - Create a new world\n\n - Break a few blocks\n\n - Check statistics, broken blocks should be listed there\n\n - Leave world and open it again\n\n - Check statistics, previous stats are now gone\n\nThe following related error is logged when running \u201c/save-all\u201d:\n\n[19:56:17] [Server thread/ERROR]: Couldn't save stats to ./world/stats/a0798455-f768-4abe-b2fc-da8478d04e02.json\njava.nio.file.NoSuchFileException: ./world/stats/a0798455-f768-4abe-b2fc-da8478d04e02.json\n at java.base/sun.nio.fs.UnixException.translateToIOException(UnixException.java:92)\n at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:106)\n at java.base/sun.nio.fs.UnixException.rethrowAsIOException(UnixException.java:111)\n at java.base/sun.nio.fs.UnixFileSystemProvider.newByteChannel(UnixFileSystemProvider.java:261)\n at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:482)\n at java.base/java.nio.file.Files.newOutputStream(Files.java:228)\n at java.base/java.nio.file.Files.newBufferedWriter(Files.java:3001)\n at bdg.a(SourceFile:96)\n at bbz.a(SourceFile:310)\n at bbz.h(SourceFile:635)\n at net.minecraft.server.MinecraftServer.b(SourceFile:656)\n at aqi.a(SourceFile:32)\n at aqi.b(SourceFile:20)\n at com.mojang.brigadier.context.ContextChain.runExecutable(ContextChain.java:73)\n at hr.a(SourceFile:29)\n at hr.execute(SourceFile:13)\n at hm.a(SourceFile:8)\n at he.a(SourceFile:8)\n at hi.a(SourceFile:106)\n at eg.a(SourceFile:430)\n at eg.a(SourceFile:362)\n at eg.a(SourceFile:348)\n at arz.bA(SourceFile:449)\n at arz.K(SourceFile:439)\n at net.minecraft.server.MinecraftServer.c(SourceFile:1154)\n at net.minecraft.server.MinecraftServer.a(SourceFile:1026)\n at arz.a(SourceFile:318)\n at net.minecraft.server.MinecraftServer.A(SourceFile:781)\n at net.minecraft.server.MinecraftServer.a(SourceFile:303)\n at java.base/java.lang.Thread.run(Thread.java:1583)\n\nThe underlying issue seems to be that Minecraft no longer creates the \u201cstats\u201c folder inside the world folder. This causes an error when trying to create a file inside the nonexistent folder.",
+  "Steps to Reproduce": "1. Launch Minecraft and select Singleplayer.\n2. Create a new world.\n3. Break a few blocks.\n4. Open the statistics screen and confirm that the broken blocks are listed.\n5. Leave the world using Esc menu -> Save and Quit to Title.\n6. Select the same world and open it again.\n7. Open the statistics screen and observe that the previously recorded statistics are gone.",
+  "Environment": "Minecraft Java Edition Version 25w44a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nIn newly created singleplayer worlds and servers, Minecraft does not create the world\u2019s `stats` directory. Statistics are displayed during the current session, but they are not persisted when the world is closed or the player leaves and rejoins. After reopening the world, statistics such as blocks broken have been reset.\n\nRunning `/save-all` produces an error because Minecraft attempts to write the player\u2019s statistics file without first creating the parent directory:\n\n```text\nCouldn't save stats to ./world/stats/<player-uuid>.json\njava.nio.file.NoSuchFileException: ./world/stats/<player-uuid>.json\n```\n\nThe statistics file cannot be created while `./world/stats/` does not exist. This affects both newly created singleplayer worlds and worlds hosted on servers.",
+  "Expected Behavior": "After breaking blocks in a newly created world, the corresponding player statistics should be saved successfully and remain available after leaving and reopening the world. Statistics should persist consistently in both singleplayer worlds and on servers, including when using `/save-all`, without being reset or producing an error because the world\u2019s statistics storage location does not yet exist.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Statistics/MC-303704",
+  "improvement_metadata": {
+    "original_key": "MC-303704"
+  }
+}

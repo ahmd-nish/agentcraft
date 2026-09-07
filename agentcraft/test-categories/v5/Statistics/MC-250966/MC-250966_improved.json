@@ -1,0 +1,40 @@
+{
+  "key": "MC-250966",
+  "created_date": "2022-04-27T11:26:06.210-0700",
+  "updated_date": "2025-03-25T12:36:51.904-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w17a",
+    "22w18a"
+  ],
+  "fix_versions": [
+    "22w19a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "warden",
+    "warden-sonic-boom"
+  ],
+  "resolution_date": "2022-05-12T02:56:55.592-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Dying to the warden's sonic boom doesn't count as the warden's kill",
+  "environment_raw": "",
+  "description": "The warden's sonic boom is not attributed to the warden. This means that advancements with the entity_killed_player trigger don't trigger, and the statistic for dying to wardens doesn't increment.\n\nHow to reproduce:\n\n - Create a new world. (optional: add the attached datapack that adds an advancement for dying to a warden)\n\n - Spawn a warden on the ground in creative mode.\n\n - Pillar up 5 blocks with blocks around you so you don't fall.\n\n - Give yourself a bow and arrow or a snowball.\n\n - Switch to survival mode.\n\n - Hit the warden with your projectile.\n\n - When the warden comes to kill you, wait until it hits you with its sonic boom.\n\n - Let it hit you with its sonic boom enough times to kill you.\n\n - Respawn and look at your statistics and advancements.\n\nWhat I expected to happen was:\n\nThe statistic for dying to a warden would increment by 1 and the advancement \"Adventure\" would be granted to me (plus the custom advancement from the datapack).\n\nWhat actually happened was:\n\nThe statistic didn't increment and no advancements were granted to me.\n\nCause:\n\nThe warden's sonic boom uses the damage source \"sonic_boom\" which is an environmental damage type, like \"cactus\" or \"hotFloor\". If it was a player/mob damage type, like \"mob\" or \"fireball\", then it would count as the warden's damage. Before 22w17a, the sonic boom used the \"mob\" damage type, so it did count as the warden's damage.",
+  "Steps to Reproduce": "1. Create a new world in Creative mode.\n2. Spawn a warden on the ground.\n3. Pillar up 5 blocks and place blocks around yourself so you cannot fall.\n4. Give yourself a bow and arrow or a snowball.\n5. Switch to Survival mode.\n6. Hit the warden with the bow and arrow or snowball.\n7. Wait until the warden comes to attack you and hits you with its sonic boom.\n8. Wait until the sonic boom kills you.\n9. Respawn and observe that the statistic for dying to wardens has not incremented and that the \u201cAdventure\u201d advancement, or the optional custom advancement from the attached datapack, has not been granted.",
+  "Environment": "Minecraft Java Edition Versions: 22w17a, 22w18a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the player is killed by repeated warden sonic boom attacks, the death is not attributed to the warden. After respawning:\n\n- The **\u201cDeaths\u201d statistic for wardens** is not incremented.\n- Advancements using the `minecraft:entity_killed_player` trigger are not granted, including **\u201cAdventure\u201d** and the custom advancement provided by the optional datapack.\n\nThis occurs even though the warden caused the player\u2019s damage and the final damage was dealt by its sonic boom.",
+  "Expected Behavior": "When a player is killed by a warden\u2019s sonic boom, the death should be attributed to that warden. The player\u2019s statistic for deaths caused by wardens should increase by one, and advancements using the `entity_killed_player` trigger\u2014including \u201cAdventure\u201d and any applicable custom advancement\u2014should be awarded after the player respawns.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Statistics/MC-250966",
+  "improvement_metadata": {
+    "original_key": "MC-250966"
+  }
+}

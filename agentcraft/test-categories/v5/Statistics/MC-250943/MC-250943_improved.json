@@ -1,0 +1,48 @@
+{
+  "key": "MC-250943",
+  "created_date": "2022-04-27T10:06:57.587-0700",
+  "updated_date": "2026-08-27T03:03:01.682-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w17a",
+    "22w18a",
+    "22w19a",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19",
+    "1.19.1 Pre-release 1",
+    "1.19.1 Pre-release 2",
+    "1.19.1 Pre-release 5",
+    "1.19.1",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "22w42a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "goat_horn"
+  ],
+  "resolution_date": "2022-10-10T00:16:05.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "minecraft.used:minecraft.goat_horn doesn't increase when using goat horns",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nminecraft.used:minecraft.goat_horn doesn't increase when using goat horns.\n\n## Steps to Reproduce:\n\n - Create a scoreboard objective for tracking the use of a goat horn and set it to display on the sidebar.\n\n - \n\n/scoreboard objectives add UseGoatHorn minecraft.used:minecraft.goat_horn\n\n - \n\n/scoreboard objectives setdisplay sidebar UseGoatHorn\n\n - Obtain a goat horn and use it.\n\n - Take note as to whether or not minecraft.used:minecraft.goat_horn increases when using goat horns.\n\n## Observed Behavior:\n\nThe scoreboard doesn't increase.\n\n## Expected Behavior:\n\nThe scoreboard would increase.\n\n## Code Analysis:\n\nCode analysis by Avoma can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.19 Pre-release 2 using Mojang mappings.\n\nnet.minecraft.world.item.InstrumentItem.java\n\npublic class InstrumentItem extends Item {\n ...\n \u00a0 @Override\n public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {\n ItemStack itemStack = player.getItemInHand(interactionHand);\n Optional<Holder<Instrument>> optional = this.getInstrument(itemStack);\n if (optional.isPresent()) {\n Instrument instrument = optional.get().value();\n player.startUsingItem(interactionHand);\n InstrumentItem.play(level, player, instrument);\n player.getCooldowns().addCooldown(this, instrument.useDuration());\n return InteractionResultHolder.consume(itemStack);\n }\n return InteractionResultHolder.fail(itemStack);\n }\n ...\n\nIf we look at the above class, we can see that the awardStat() method (the method responsible for incrementing player statistics) is never called throughout this piece of code, thus making minecraft.used:minecraft.goat_horn not increase when using goat horns.\n\n## Fix:\n\nSimply calling the awardStat() method where appropriate within this piece of code will resolve this problem. The following line of code can be used to fix this issue.\n\nplayer.awardStat(Stats.ITEM_USED.get(this));",
+  "Steps to Reproduce": "1. Create a Creative world with default settings.\n2. Run `/scoreboard objectives add UseGoatHorn minecraft.used:minecraft.goat_horn`.\n3. Run `/scoreboard objectives setdisplay sidebar UseGoatHorn`.\n4. Obtain a goat horn.\n5. Use the goat horn once.\n6. Observe that the `UseGoatHorn` scoreboard value does not increase.",
+  "Environment": "Minecraft Java Edition Versions: 22w17a, 22w18a, 22w19a, 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19, 1.19.1 Pre-release 1, 1.19.1 Pre-release 2, 1.19.1 Pre-release 5, 1.19.1, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When a goat horn is successfully used, it plays its call and enters its cooldown as expected, but the player\u2019s `minecraft.used:minecraft.goat_horn` statistic is not incremented. Consequently, a scoreboard objective using this criterion remains unchanged instead of increasing by 1 for each use.",
+  "Expected Behavior": "When a player successfully uses a goat horn, the `minecraft.used:minecraft.goat_horn` statistic should increase by one for that player. A scoreboard objective using this criterion should therefore update and display the incremented value, allowing each successful goat horn use to be tracked accurately.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Statistics/MC-250943",
+  "improvement_metadata": {
+    "original_key": "MC-250943"
+  }
+}

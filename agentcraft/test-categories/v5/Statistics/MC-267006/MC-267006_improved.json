@@ -1,0 +1,62 @@
+{
+  "key": "MC-267006",
+  "created_date": "2023-11-25T04:08:11.174-0800",
+  "updated_date": "2026-08-10T02:35:51.871-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "Minecraft 13w36a",
+    "1.20.2",
+    "1.20.3 Pre-Release 2",
+    "1.20.3 Pre-Release 4",
+    "1.20.3",
+    "1.20.4",
+    "23w51b",
+    "24w03a",
+    "24w09a",
+    "24w10a",
+    "24w13a",
+    "24w14a",
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Pre-Release 4",
+    "1.20.5",
+    "1.20.6 Release Candidate 1",
+    "1.20.6",
+    "24w18a",
+    "24w20a",
+    "24w21b",
+    "1.21 Pre-Release 1",
+    "1.21 Pre-Release 2"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "EnderDragon",
+    "Player",
+    "Server",
+    "statistics"
+  ],
+  "resolution_date": "2024-06-18T04:24:43.063-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The Distance Flown statistics rapidly increases when you are standing in Ender Dragon's hitbox",
+  "environment_raw": "",
+  "description": "When a player(survival mode) is standing in an Ender Dragon's hitbox, the Distance Flown statistic will rapidly increase.\n\nIn the attached video, The Distance Flown increased about 80km within less than a minute.\n\nThis is not a duplicate of \n \n \n \n MC-30542\n \n Reopened\n \n because in this case players actually don't move.\n\nSteps to reproduce\n\n1.run /data merge entity @e[type=ender_dragon,limit=1] {DragonPhase:3} to make the dragon land.\n\n2.When the dragon land, stand at the center of the dragon and switch to survival mode.\n\n3.Open the statistics and note down the distance flown.\n\n4.Waiting until the dragon knockback you, open the statistics and note down the distance flown again.\n\nObserved behaviour:\n\nThe distance flown increased over 50 km.\n\nExpected behaviour:\n\nThe distance flown don't increase.\n\nNotes:\n\nThis bug happened since 1.9.\n\nI think it's because the dragon always gives player a large amount of server velocity when they are in the Dragon's knockback hitbox even if the player don't actually move.",
+  "Steps to Reproduce": "1. Open a world containing an Ender Dragon.\n2. Run `/data merge entity @e[type=ender_dragon,limit=1] {DragonPhase:3}`.\n3. Wait until the Ender Dragon lands.\n4. Stand at the center of the Ender Dragon's hitbox.\n5. Switch to Survival mode.\n6. Open the Statistics screen and note the current value of Distance Flown.\n7. Wait until the Ender Dragon knocks the player back.\n8. Open the Statistics screen again.\n9. Observe that Distance Flown has rapidly increased, potentially by more than 50 km, even though the player did not actually move.",
+  "Environment": "Minecraft Java Edition Versions: 13w36a, 1.20.2, 1.20.3 Pre-Release 2, 1.20.3 Pre-Release 4, 1.20.3, 1.20.4, 23w51b, 24w03a, 24w09a, 24w10a, 24w13a, 24w14a, 1.20.5 Pre-Release 1, 1.20.5 Pre-Release 4, 1.20.5, 1.20.6 Release Candidate 1, 1.20.6, 24w18a, 24w20a, 24w21b, 1.21 Pre-Release 1, 1.21 Pre-Release 2 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen a player in Survival mode remains inside the Ender Dragon\u2019s hitbox, the **Distance Flown** statistic increases rapidly even though the player does not actually travel through the world. The dragon repeatedly applies knockback or velocity to the player while they remain in its hitbox, and these velocity updates are incorrectly counted toward the statistic.\n\nIn testing, the statistic increased by more than **50 km**, and approximately **80 km in under one minute**, despite the player remaining at essentially the same location until the dragon knocked them away.",
+  "Expected Behavior": "While a survival-mode player is standing within the Ender Dragon\u2019s hitbox, the Distance Flown statistic should remain unchanged if the player has not actually moved through the air. Being inside the hitbox or receiving the dragon\u2019s knockback effect should not cause the statistic to increase by itself; it should only record genuine distance traveled by the player.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Statistics/MC-267006",
+  "improvement_metadata": {
+    "original_key": "MC-267006"
+  }
+}
