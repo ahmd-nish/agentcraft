@@ -1,0 +1,38 @@
+{
+  "key": "MC-251027",
+  "created_date": "2022-04-28T04:15:34.878-0700",
+  "updated_date": "2026-08-27T02:55:34.176-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "fix_versions": [
+    "23w51a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-12-08T01:48:43.570-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Wearing a helmet doesn't reduce the damage of falling anvils or stalactites by 1\u20444",
+  "environment_raw": "",
+  "description": "Helmets do not reduce the damage taken from falling anvils or stalactites by 1/4. They still reduce the damage by a small amount, but not more than wearing any other armor piece, despite still taking twice the durability damage as other armor pieces.\n\n## Steps to Reproduce:\n\n - Setblock an anvil or summon a falling block above you.\n \n\n \nThis may be easier to visualize if you spawn the anvil higher to deal more damage and disable the \"natural regeneration\" gamerule.\n\n \n\n \n\n - Observe the damage taken.\n\n - Restore yourself to full health, and repeat the previous steps while wearing only a helmet.\n\n - Repeat the test again but with a different single armor piece instead of the helmet.\n\nThe helmet only provides a small damage reduction in line with what would be normally expected from armor pieces; chestplaces and leggings provide more damage reduction due to having more defense points. However, the helmet still takes increased durability damage.",
+  "Steps to Reproduce": "1. Enter a Minecraft world and position yourself beneath an anvil or stalactite that can fall onto you.\n2. Cause the anvil or stalactite to fall onto you.\n3. Observe the damage taken.\n4. Restore yourself to full health and equip only a helmet.\n5. Position an anvil or stalactite above yourself again.\n6. Cause it to fall onto you.\n7. Observe the damage taken and the helmet's durability damage.\n8. Restore yourself to full health and replace the helmet with one different single armor piece.\n9. Repeat the falling-anvil or falling-stalactite test and compare the damage with the helmet test.\n10. Observe that the helmet reduces the damage only by a small amount, no more than the expected reduction from a single armor piece, while still taking increased durability damage.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 1.20.1, 1.20.2",
+  "Observed Behavior": "### Actual behavior\n\nWearing a helmet does not reduce damage from a falling anvil or falling pointed dripstone by the expected 25%. The helmet provides only the normal armor-based damage reduction associated with its defense points, comparable to other individual armor pieces. Armor pieces with more defense points, such as chestplates and leggings, reduce the damage further.\n\nDespite not providing the additional falling-anvil or falling-stalactite damage reduction, the helmet still loses twice as much durability as other equipped armor pieces when the player is hit by this damage.",
+  "Expected Behavior": "Wearing a helmet should reduce damage from falling anvils and stalactites by one quarter compared with wearing no helmet, providing the intended additional protection beyond the normal armor-based reduction from other armor pieces. The helmet should still take twice the durability damage caused by these impacts, as this increased wear is expected to accompany its specialized protection.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Combat/MC-251027",
+  "improvement_metadata": {
+    "original_key": "MC-251027"
+  }
+}
