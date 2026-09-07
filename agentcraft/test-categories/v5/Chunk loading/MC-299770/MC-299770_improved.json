@@ -1,0 +1,39 @@
+{
+  "key": "MC-299770",
+  "created_date": "2025-07-15T20:58:55.871-0700",
+  "updated_date": "2025-07-31T02:26:40.508-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.7",
+    "1.21.8 Release Candidate 1",
+    "1.21.8",
+    "25w31a"
+  ],
+  "fix_versions": [
+    "25w32a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-07-31T02:26:40.432-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Chunks loaded by ender pearls permanently unload upon player death even when enderPearlsVanishOnDeath is set to false",
+  "environment_raw": "",
+  "description": "This bug is related to https://report.bugs.mojang.com/browse/MC-289348, as it gets the ender pearl in a bugged state where they no longer load chunks at all even when the player associated with it is online. (the pearl gets deloaded).\n\nWhat happens is the pearl is temporarily not loading chunks when the player is dead. If you don\u2019t rapidly respawn (click the respawn button within 2 seconds after death) the chunk the pearl is within will deload. And not reload when you respawn (which would be expected, as pearls should load chunks.). The only way to get the pearl to load these chunks again is to manually load them by walking to the chunk.\n\nWhen enderPearlsVanishOnDeath is set to false, pearls still vanish on death. They just reappear when you respawn. A simple fix to this bug would be to make sure pearls continue to load the chunk they are in when they are in this temporary vanished state.\n\nI have attached a simple world that allows you to see this bug in action. I made sure to set spectatorsGenerateChunks to false so you can see when your ender pearl is loading chunks.\n\nRepro steps when in example world:\n\n - Click the button that sets you to spectator mode and teleports you to your ender pearl location. Observe how the chunk your pearl is in is loaded.\n\n - Teleport back to your spawn location /execute in minecraft:overworld run tp @s -6.49 63.00 10009.60 359.33 39.47\n\n - Exit spectator mode.\n\n - Run the /kill command, make sure to wait for more than two seconds before clicking respawn. (chunks pearl is in will deload)\n\n - Click the button. You will see your pearl is not loading any chunks even though you have respawned.\n\nTo see how it should work, kill your player in step 4, but rapidly click the respawn button so you respawn in under two seconds. (preventing the chunks from deloading) You will see your pearl is still loading chunks.",
+  "Steps to Reproduce": "1. Open the attached example world, configured with `enderPearlsVanishOnDeath` set to `false` and `spectatorsGenerateChunks` set to `false`.\n2. Click the button that switches you to spectator mode and teleports you to the ender pearl.\n3. Observe that the chunk containing the ender pearl is loaded.\n4. Run `/execute in minecraft:overworld run tp @s -6.49 63.00 10009.60 359.33 39.47`.\n5. Exit spectator mode.\n6. Run `/kill`.\n7. Wait more than 2 seconds after dying.\n8. Click the respawn button.\n9. Click the button that switches you to spectator mode and teleports you to the ender pearl.\n10. Observe that the ender pearl has reappeared, but is no longer loading the chunk it is in.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.7, 1.21.8 Release Candidate 1, 1.21.8, 25w31a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the player dies, the associated ender pearl temporarily vanishes, even though `enderPearlsVanishOnDeath` is set to `false`. During this period, the pearl stops keeping its current chunk loaded.\n\nIf the player remains on the death screen for more than approximately two seconds, the pearl\u2019s chunk unloads. After the player respawns, the pearl reappears, but it does not resume loading the chunk it occupies. As a result, the pearl remains in a state where it does not load chunks while its owner is online.\n\nThe chunk only begins loading again after the player manually travels to it. If the player respawns within approximately two seconds of dying\u2014before the chunk unloads\u2014the pearl continues loading its chunk as expected.",
+  "Expected Behavior": "With `enderPearlsVanishOnDeath` set to `false`, an ender pearl should continue loading the chunk it occupies while its associated player is dead, even if the player waits before respawning. After the player respawns, the pearl should reappear and continue loading its surrounding chunks normally, without requiring the player to manually visit the area or rapidly click the respawn button.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Chunk loading/MC-299770",
+  "improvement_metadata": {
+    "original_key": "MC-299770"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "key": "MC-220067",
+  "created_date": "2021-03-18T12:18:01.343-0700",
+  "updated_date": "2026-08-27T02:34:52.482-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.5",
+    "21w11a",
+    "1.17 Release Candidate 2",
+    "1.17",
+    "1.17.1",
+    "21w38a",
+    "21w39a",
+    "21w42a",
+    "1.18.1",
+    "1.18.2",
+    "22w17a",
+    "22w18a",
+    "22w19a",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19 Pre-release 3"
+  ],
+  "fix_versions": [
+    "1.19 Pre-release 4"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-05-30T06:43:49.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Chunk corruption with command block full of certain Unicode characters",
+  "environment_raw": "",
+  "description": "## The bug\n\nWhen a command block is full of characters that take more than 1 byte to store, the chunk that command block is in gets corrupted.\n\n## How to reproduce\n\n - Place a command block down.\n\n - Copy and paste this symbol \"\u25a0\" into the command block until the command block is full.\n\n - Save and quit to title.\n\n - Get back in the world.\n\n\u2192 The chunk the command block was in is re-generated; resetting everything in it\n\n## Note\n\n\u25a0 is not the only character this works with.\n\n## Game output error message\n\nFailed to store chunk [7, 1]\njava.io.UTFDataFormatException: encoded string (\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0...\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0\u25a0) too long: 97500 bytes\n at java.base/java.io.DataOutputStream.writeUTF(DataOutputStream.java:368)\n at java.base/java.io.DataOutputStream.writeUTF(DataOutputStream.java:332)\n at nq.a(SourceFile:65)\n at na.a(SourceFile:415)\n at na.a(SourceFile:104)\n at ng.a(SourceFile:81)\n at na.a(SourceFile:415)\n at na.a(SourceFile:104)\n at na.a(SourceFile:415)\n at na.a(SourceFile:104)\n at nk.a(SourceFile:95)\n at nk.a(SourceFile:83)\n at cnq.a(SourceFile:70)\n at cnm.a(SourceFile:153)\n at cnm.a(SourceFile:143)\n at ara$b.run(SourceFile:61)\n at aqy.g(SourceFile:91)\n at aqy.a(SourceFile:146)\n at aqy.run(SourceFile:102)\n at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)\n at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:630)\n at java.base/java.lang.Thread.run(Thread.java:831)\n\n## Video\n\nhttps://youtu.be/C4t2avl0Dhw\n\n(Video by Phoenix SC)",
+  "Steps to Reproduce": "1. Launch Minecraft and enter a world.\n2. Place a command block.\n3. Open the command block interface.\n4. Copy and paste the symbol `\u25a0` into the command field until it is full.\n5. Close the command block interface.\n6. Use the in-game \"Esc menu -> Save and Quit to Title\", then re-enter the world.\n7. Observe that the chunk containing the command block has been regenerated, resetting everything in that chunk.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.5, 21w11a, 1.17 Release Candidate 2, 1.17, 1.17.1, 21w38a, 21w39a, 21w42a, 1.18.1, 1.18.2, 22w17a, 22w18a, 22w19a, 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19 Pre-release 3 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen the command block\u2019s command input is filled with enough multibyte Unicode characters, the game fails to save the chunk containing the command block. The save operation logs a `java.io.UTFDataFormatException`, indicating that the encoded command string exceeds the limit accepted by `DataOutputStream.writeUTF`:\n\n```text\nFailed to store chunk [7, 1]\njava.io.UTFDataFormatException: encoded string (...) too long: 97500 bytes\n```\n\nAfter saving and quitting to the title screen, reloading the world causes the affected chunk to be regenerated rather than loaded from its saved data. All blocks and other changes in that chunk are therefore reset or lost. The issue is reproducible with `\u25a0`; other Unicode characters whose encoded representation exceeds the string-size limit can produce the same result.",
+  "Expected Behavior": "After saving and reloading the world, the chunk containing the command block should load normally without corruption or regeneration. The command block should retain its contents, including valid multi-byte Unicode characters such as \u201c\u25a0\u201d, and all other blocks, entities, and player-built structures in the chunk should remain unchanged. Saving should complete without a chunk-storage error.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Chunk loading/MC-220067",
+  "improvement_metadata": {
+    "original_key": "MC-220067"
+  }
+}
