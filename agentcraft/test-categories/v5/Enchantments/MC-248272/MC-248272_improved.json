@@ -1,0 +1,43 @@
+{
+  "key": "MC-248272",
+  "created_date": "2022-01-26T04:44:07.603-0800",
+  "updated_date": "2026-08-27T00:05:25.233-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.1",
+    "22w03a",
+    "22w05a",
+    "1.18.2",
+    "1.19.2",
+    "1.19.4 Pre-release 3",
+    "1.20.1",
+    "1.20.2"
+  ],
+  "fix_versions": [
+    "24w18a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-04-30T01:47:53.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Enchantment::doPostHurt and Enchantment::doPostAttack are called twice for players",
+  "environment_raw": "",
+  "description": "The Enchantment::doPostHurt and Enchantment::doPostAttack functions are called twice for the player causing some bugs.\n\n - The Bane of Arthropods enchantment gives the Slowness effect twice\n\n - The Thorns enchantment deals damage to the attacker and the durability of the item with this enchantment twice.\n\nThe problem is that the EnchantmentHelper::doPostHurtEffects and EnchantmentHelper::doPostDamageEffects actually call these functions twice:\n\nVanilla code 1.18.1-1.20.1\n\npublic static void doPostHurtEffects(LivingEntity defender, Entity attacker) {\n\u00a0 \u00a0 EnchantmentVisitor consumer = (enchantment, lvl) -> enchantment.doPostHurt(defender, attacker, lvl);\n\n\u00a0 \u00a0 if (defender != null) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnInventory(consumer, defender.getAllSlots());\n\u00a0 \u00a0 }\n\u00a0 \u00a0 if (attacker instanceof Player) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnItem(consumer, defender.getMainHandItem());\n\u00a0 \u00a0 }\n} \n\npublic static void doPostDamageEffects(LivingEntity attacker, Entity target) {\n\u00a0 \u00a0 EnchantmentVisitor consumer = (enchantment, lvl) -> enchantment.doPostAttack(attacker, target, lvl);\n\n\u00a0 \u00a0 if (attacker != null) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnInventory(consumer, attacker.getAllSlots());\n\u00a0 \u00a0 }\n\u00a0 \u00a0 if (attacker instanceof Player) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnItem(consumer, attacker.getMainHandItem());\n\u00a0 \u00a0 }\n}\n\nFix suggestion\n\npublic static void doPostHurtEffects(LivingEntity defender, Entity attacker) {\n\u00a0 \u00a0 EnchantmentVisitor consumer = (enchantment, lvl) -> enchantment.doPostHurt(defender, attacker, lvl);\n\n\u00a0 \u00a0 if (defender != null) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnInventory(consumer, defender.getAllSlots());\n\u00a0 \u00a0 } else if (attacker instanceof Player) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnItem(consumer, defender.getMainHandItem());\n\u00a0 \u00a0 }\n}\n\npublic static void doPostDamageEffects(LivingEntity attacker, Entity target) {\n\u00a0 \u00a0 EnchantmentVisitor consumer = (enchantment, lvl) -> enchantment.doPostAttack(attacker, target, lvl);\n\n\u00a0 \u00a0 if (attacker != null) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnInventory(consumer, attacker.getAllSlots());\n\u00a0 \u00a0 } else if (attacker instanceof Player) {\n\u00a0 \u00a0 \u00a0 \u00a0 EnchantmentHelper.runIterationOnItem(consumer, attacker.getMainHandItem());\n\u00a0 \u00a0 }\n}",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.20.1.\n2. Create a new Creative world with default settings.\n3. Obtain a sword and apply Bane of Arthropods to it using `/enchant @p minecraft:bane_of_arthropods 1`.\n4. Attack a target for which Bane of Arthropods applies.\n5. Observe that the target receives the Slowness effect twice.\n6. Obtain armor and apply Thorns to it using `/enchant @p minecraft:thorns 1`.\n7. Have another player attack the player wearing the Thorns-enchanted armor.\n8. Observe that Thorns damages the attacker twice and reduces the armor's durability twice.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.1, 22w03a, 22w05a, 1.18.2, 1.19.2, 1.19.4 Pre-release 3, 1.20.1, 1.20.2 (includes snapshots)",
+  "Observed Behavior": "In Minecraft Java Edition 1.18.1 through 1.20.1, EnchantmentHelper.doPostHurtEffects and EnchantmentHelper.doPostDamageEffects can process the same enchantment twice when a player is involved. Each method first iterates over the entity\u2019s complete inventory through getAllSlots(), which includes the main-hand item, and then performs another iteration over the main-hand item when the relevant entity is a player. As a result, Enchantment.doPostHurt or Enchantment.doPostAttack may be invoked twice for the same enchanted item during a single interaction. This causes enchantment effects to be applied twice, such as Bane of Arthropods applying Slowness twice and Thorns damaging the attacker twice while also reducing the durability of the Thorns item twice.",
+  "Expected Behavior": "Enchantment post-hurt and post-attack callbacks should be invoked only once for a player during each relevant combat event. Bane of Arthropods should apply Slowness once, while Thorns should damage the attacker once and reduce the enchanted item\u2019s durability only once. Other enchantment effects should likewise not be duplicated because the player\u2019s inventory and equipped item are processed redundantly.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Enchantments/MC-248272",
+  "improvement_metadata": {
+    "original_key": "MC-248272"
+  }
+}

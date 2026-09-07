@@ -1,0 +1,42 @@
+{
+  "key": "MC-270046",
+  "created_date": "2024-03-28T05:09:04.877-0700",
+  "updated_date": "2025-04-29T09:58:54.754-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a",
+    "24w14a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "breach",
+    "density",
+    "mace",
+    "wind_burst"
+  ],
+  "resolution_date": "2024-04-16T07:47:37.047-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Mace's unique enchant is ineffective or no further effect if the level higher than max level, and causes error to be logged for wind burst",
+  "environment_raw": "",
+  "description": "## The bug\n\nUsing an item with a higher than default level of mace's unique enchant does not work as expected. Wind burst also causes an error to be logged.\n\n## To reproduce\n\n - Enter the following command in the chat:\n\n/give @s mace[minecraft:enchantments={levels:{'wind_burst':4}}]\n\n/give @s mace[minecraft:enchantments={levels:{'density':6}}]\n\n/give @s mace[minecraft:enchantments={levels:{'breach':5}}]\n\n - Hold the mace given by these commands in main hand.\n\n - Hit a mob or entity (except players and other entities which crash the game - see \n \n \n \n MC-270004\n \n Resolved\n \n) while falling from high enough to smash.\n\n## Observed result\n\nFor wind burst level 4, there is no Wind Burst sound, no gust particles, and you won't be launched upward.\n\nThe following is written to log:\n\n[23:06:04] [Server thread/ERROR]: Failed to handle packet agy@3b74fb31, suppressing error\njava.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3\n at czq.c(SourceFile:43) ~[24w13a.jar:?]\n at cza.a(SourceFile:150) ~[24w13a.jar:?]\n at clw.e(SourceFile:1361) ~[24w13a.jar:?]\n at aqn.e(SourceFile:1702) ~[24w13a.jar:?]\n at arm$1.a(SourceFile:1633) ~[24w13a.jar:?]\n at agy$1.a(SourceFile:174) ~[24w13a.jar:?]\n at agy.a(SourceFile:74) ~[24w13a.jar:?]\n at arm.a(SourceFile:1594) ~[24w13a.jar:?]\n at agy.a(SourceFile:61) ~[24w13a.jar:?]\n at agy.a(SourceFile:15) ~[24w13a.jar:?]\n at zh.a(SourceFile:24) ~[24w13a.jar:?]\n at alh.run(SourceFile:18) ~[24w13a.jar:?]\n at bok.d(SourceFile:162) ~[24w13a.jar:?]\n at boo.d(SourceFile:23) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.b(SourceFile:837) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.d(SourceFile:166) ~[24w13a.jar:?]\n at bok.A(SourceFile:136) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.bt(SourceFile:819) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.A(SourceFile:813) ~[24w13a.jar:?]\n at bok.bz(SourceFile:121) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.v_(SourceFile:787) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.y(SourceFile:692) ~[24w13a.jar:?]\n at net.minecraft.server.MinecraftServer.a(SourceFile:272) ~[24w13a.jar:?]\n at java.base/java.lang.Thread.run(Thread.java:833) [?:?]\n\nDensity level 6 does the same damage as a normal mace.\n\nFor breach levels above level 4, they act just like Breach Level 4.",
+  "Steps to Reproduce": "1. Enter `/give @s mace[minecraft:enchantments={levels:{'wind_burst':4}}]` in chat.\n2. Enter `/give @s mace[minecraft:enchantments={levels:{'density':6}}]` in chat.\n3. Enter `/give @s mace[minecraft:enchantments={levels:{'breach':5}}]` in chat.\n4. Hold the mace with Wind Burst level 4 in the main hand and hit a mob or entity, except players and other entities which crash the game, while falling from high enough to smash.\n5. Observe that Wind Burst produces no sound or gust particles, does not launch the player upward, and logs an error containing `java.lang.ArrayIndexOutOfBoundsException: Index 3 out of bounds for length 3`.\n6. Hold the mace with Density level 6 in the main hand and hit a mob or entity while falling from high enough to smash.\n7. Observe that Density level 6 deals the same damage as a normal mace.\n8. Hold the mace with Breach level 5 in the main hand and hit a mob or entity while falling from high enough to smash.\n9. Observe that Breach level 5 acts just like Breach level 4.",
+  "Environment": "Minecraft Java Edition Versions: 24w13a, 24w14a (includes snapshots)",
+  "Observed Behavior": "When a mace has Wind Burst IV, Density VI, or Breach V, the enchantment does not provide an effect beyond its supported maximum level. Wind Burst IV fails to activate during a successful smash attack, producing no Wind Burst sound or gust particles and not launching the attacker upward. The server also logs an ArrayIndexOutOfBoundsException with index 3 out of bounds for length 3 while handling the attack. Density VI deals the same damage as an unenchanted mace, providing no additional damage beyond the normal mace behavior. Breach V behaves the same as Breach IV, with no further increase in its effect.",
+  "Expected Behavior": "Mace enchantments should continue applying their effects at levels above their normal maximum when granted through commands. Wind Burst level 4 should produce its sound and gust particles and launch the wielder upward without logging an error, Density level 6 should deal more damage than an unenchanted mace, and Breach levels above 4 should provide a correspondingly greater effect than Breach IV.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Enchantments/MC-270046",
+  "improvement_metadata": {
+    "original_key": "MC-270046"
+  }
+}

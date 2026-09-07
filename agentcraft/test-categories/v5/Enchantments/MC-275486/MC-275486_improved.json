@@ -1,0 +1,36 @@
+{
+  "key": "MC-275486",
+  "created_date": "2024-08-16T21:30:19.540-0700",
+  "updated_date": "2026-08-27T03:39:31.860-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-20T01:01:35.940-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Enchantable data component doesn't work with items that only have enchantments through a data pack",
+  "environment_raw": "",
+  "description": "I'm not sure if this is a bug, or just an incomplete feature, but I feel it is important to make the team aware of this, just in case.\n\nThe backstory: I wanted to make custom enchantments for wolf armor show up in the enchanting table, but when giving myself enchantable wolf armor, nothing shows up. The data component works for all non-enchantable items in vanilla that can be enchanted with books in survival.\n\n## Steps to recreate:\n\n - Add the attached datapack (Enchantable test 24w33a.zip) to your world to add the archive:wolf_armor and archive:air_brake enchantments to wolf armor and elytra, respectively. They are defined by wolf_armor.json and air_brake.json\n\n - run command \n\n/give @p minecraft:elytra[enchantable={value:1}]\n\n - run command \n\n/give @p minecraft:wolf_armor[enchantable={value:1}]\n\n - attempt to enchant both items in an enchanting table\n\n## Observed result:\n\nElytra can be enchanted with both vanilla and custom enchantments. No enchantments show up for the wolf armor, despite it being added to several enchantable item tags and having a functional custom enchant.\n\n## Expected result:\n\nThe expected outcome is that enchantments show up for both items, since the changelog states: \"If present, and applicable enchantments are available, items with the component can be enchanted in an enchanting table.\"",
+  "Steps to Reproduce": "1. Launch Minecraft 24w33a.\n2. Create a new Creative world with default settings.\n3. Open `Singleplayer -> [world] -> Edit -> Open World Folder`.\n4. Add the attached `Enchantable test 24w33a.zip` datapack to the world\u2019s `datapacks` folder; it defines `archive:wolf_armor` in `wolf_armor.json` and `archive:air_brake` in `air_brake.json`.\n5. Enter the world and run `/give @p minecraft:elytra[enchantable={value:1}]`.\n6. Run `/give @p minecraft:wolf_armor[enchantable={value:1}]`.\n7. Open an enchanting table and place the elytra in it.\n8. Replace the elytra with the wolf armor and attempt to enchant it.\n9. Observe that enchantments are available for the elytra, including vanilla and custom enchantments, but no enchantments are shown for the wolf armor.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "## Actual behavior\n\nIn snapshot **24w33a**, an Elytra given the `minecraft:enchantable` component can be enchanted in an enchanting table. The table offers both applicable vanilla enchantments and the datapack-defined `archive:air_brake` enchantment.\n\nHowever, a Wolf Armor item given the same component:\n\n```mcfunction\n/give @p minecraft:wolf_armor[enchantable={value:1}]\n```\n\ndoes not display any available enchantments in the enchanting-table interface. This occurs even though:\n\n- Wolf Armor is included in the relevant enchantable item tags.\n- The datapack-defined `archive:wolf_armor` enchantment is applicable to Wolf Armor.\n- The custom enchantment functions correctly when applied by other means.\n\nThus, the `enchantable` component enables enchanting-table options for the Elytra, but has no observable effect for Wolf Armor whose applicable enchantment is supplied by the datapack.",
+  "Expected Behavior": "Items with the `enchantable` data component should display applicable enchantments in an enchanting table, including items whose enchantments are provided solely by a data pack. The elytra and wolf armor should therefore both show their available vanilla and custom enchantments and allow the player to select and apply them through the enchanting table.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Enchantments/MC-275486",
+  "improvement_metadata": {
+    "original_key": "MC-275486"
+  }
+}

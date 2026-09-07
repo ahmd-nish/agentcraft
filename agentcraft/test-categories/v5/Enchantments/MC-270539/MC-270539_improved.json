@@ -1,0 +1,37 @@
+{
+  "key": "MC-270539",
+  "created_date": "2024-04-08T11:08:23.900-0700",
+  "updated_date": "2026-08-27T03:33:55.457-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w14a",
+    "1.20.5 Pre-Release 1"
+  ],
+  "fix_versions": [
+    "24w20a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-05-14T23:54:33.188-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The blast protection enchantment, when applied to horse armor, no longer diminishes the knockback effect from explosions on horse",
+  "environment_raw": "",
+  "description": "This problem was introduced in 24w05a due to the change that horse armor is stored in body_armor_item instead of ArmorItems[2].\n\nA clone of \n \n \n \n MC-269779\n \n Resolved\n \n, previously marked as \"Cannot Reproduce\" due to invalid reproduction steps being utilized despite a comment outlining the correct reproduction process. This bug report will reiterate the correct steps for reproduction. The Blast Protection enchantment effectively reduces damage but does not mitigate knockback. At each level, the blast protection enchantment decreases knockback by 15%. Consequently, at level 7, it completely prevents knockback from explosions, simplifying the reproduction of the issue. (To obtain an item with blast protection level 7, you can execute the following command:\n\n/give @p netherite_helmet[enchantments={levels:{\"minecraft:blast_protection\":7}}] 1\n\nThis issue is related to \n \n \n \n MC-198809\n \n Resolved\n \n, \n \n \n \n MC-259573\n \n Resolved\n \n, \n \n \n \n MC-268936\n \n Resolved\n \n, \n \n \n \n MC-268934\n \n Resolved\n \n, \n \n \n \n MC-270301\n \n Resolved\n \n and \n \n \n \n MC-268935\n \n Resolved\n \n.\n\n## steps to reproduce\n\n - \n\n/summon horse ~ ~ ~ {Tame:1b,body_armor_item:{id:\"minecraft:diamond_horse_armor\",count:1,components:{\"minecraft:enchantments\":{levels:{\"minecraft:blast_protection\":7}}}},SaddleItem:{id:\"minecraft:saddle\",Count:1b}}\n\n - \n\n/summon creeper ~ ~ ~ {Fuse:0,ignited:1b}\n\nObserved: Despite being equipped with blast protection 7, the horse experienced knockback from the creeper explosion.\n\nExpected: The horse should be immune to knockback from the explosion as a result of the blast protection enchantment at level 7.\n\nIf you're hesitant to utilize blast protection beyond level 4 because of \n \n \n \n MC-10755\n \n Resolved\n \n, you can alternatively follow these steps:\n\n - \n\n/summon horse ~ ~ ~ {Tame:1b,Tags:[\"BugBlast\"],body_armor_item:{id:\"minecraft:diamond_horse_armor\",count:1},SaddleItem:{id:\"minecraft:saddle\",Count:1b}}\n\n - \n\n/summon horse ~ ~ ~ {Tame:1b,Tags:[\"BugBlast\"],body_armor_item:{id:\"minecraft:diamond_horse_armor\",count:1,components:{\"minecraft:enchantments\":{levels:{\"minecraft:blast_protection\":4}}}},SaddleItem:{id:\"minecraft:saddle\",Count:1b}}\n\n - \n\n/effect give @e[tag=BugBlast] minecraft:slowness infinite 6 true\n\n - \n\n/execute at @e[tag=BugBlast] run summon creeper ~ ~ ~ {Fuse:0,ignited:1b}\n\nObserved: Both horses experienced identical knockback from the explosion, flying to the same height.\n\nExpected: The horse equipped with blast protection 4 armor should undergo 60% less knockback from the explosion.",
+  "Steps to Reproduce": "1. Launch Minecraft 24w05a.\n2. Create and enter a Creative world.\n3. Run `/summon horse ~ ~ ~ {Tame:1b,body_armor_item:{id:\"minecraft:diamond_horse_armor\",count:1,components:{\"minecraft:enchantments\":{levels:{\"minecraft:blast_protection\":7}}}},SaddleItem:{id:\"minecraft:saddle\",Count:1b}}`.\n4. Run `/summon creeper ~ ~ ~ {Fuse:0,ignited:1b}`.\n5. Wait for the creeper fuse to detonate.\n6. Observe that the horse is knocked back by the explosion despite its Blast Protection 7 armor; it should be immune to the explosion's knockback.",
+  "Environment": "Minecraft Java Edition Versions: 24w14a, 1.20.5 Pre-Release 1 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nA horse wearing diamond horse armor with **Blast Protection VII** in its `body_armor_item` slot still receives knockback from a creeper explosion. The enchantment reduces the explosion damage as expected, but its knockback reduction is not applied to the horse.\n\nAt Blast Protection IV, an enchanted horse experiences the same explosion knockback as an otherwise identical horse wearing unenchanted horse armor; both horses are launched to the same height. This indicates that Blast Protection on horse armor is recognized for damage reduction but ignored when calculating explosion knockback.",
+  "Expected Behavior": "Blast Protection on horse armor should reduce both explosion damage and knockback as intended. Each enchantment level should reduce explosion knockback by 15%; therefore, a horse wearing Blast Protection VII armor should receive no knockback from the creeper explosion, while a horse wearing Blast Protection IV armor should experience 60% less knockback than an otherwise identical unenchanted horse.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Enchantments/MC-270539",
+  "improvement_metadata": {
+    "original_key": "MC-270539"
+  }
+}
