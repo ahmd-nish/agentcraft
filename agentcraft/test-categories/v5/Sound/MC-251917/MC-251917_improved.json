@@ -1,0 +1,41 @@
+{
+  "key": "MC-251917",
+  "created_date": "2022-05-19T07:16:16.658-0700",
+  "updated_date": "2025-05-29T09:10:20.380-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "23w04a"
+  ],
+  "fix_versions": [
+    "23w06a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2023-02-08T01:55:19.052-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "No gear equipping sound or subtitle when a shield is placed into the offhand slot",
+  "environment_raw": "",
+  "description": "## The bug\n\n \n \n \n MC-94060\n \n Resolved\n \n was fixed in the first 1.19 pre-release for most equipable items. However, shields are still completely silent when placed in the offhand slot, whether it be by dispenser, shift-clicking, mainhand/offhand switching or manually moving it to that slot. As the first two of these effectively imply that the shield is \"gear\" with a designated slot, the lack of a sound/subtitle for this is inconsistent.\n\n## How to reproduce\n\n - Obtain an armor piece\n\n - Obtain a shield\n\n - Have dispensers equip both of these to you\n\n## Expected results\n\nBoth of these would play gear equipping sounds where appropriate.\n\n## Actual results\n\nOnly the armor piece plays a sound - the shield is completely silent.\n\n## Further notes\n\nA unique sound event should be implemented for this as per \n \n \n \n MC-251919\n \n Resolved\n \n, as a generic subtitle is undesirable.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a Creative world with default settings.\n2. Obtain an armor piece, a shield, and two dispensers.\n3. Place the dispensers so they can equip the player, and put the armor piece in one dispenser and the shield in the other.\n4. Open Options -> Accessibility Settings and enable subtitles.\n5. Activate the dispenser containing the armor piece and confirm that the armor is equipped with a gear equipping sound and subtitle.\n6. Activate the dispenser containing the shield so that the shield is placed in the offhand slot.\n7. Observe that placing the shield in the offhand slot produces no gear equipping sound and no subtitle.",
+  "Environment": "Minecraft Java Edition Versions: 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19, 1.19.2, 1.19.3, 23w04a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen a shield is equipped in the player\u2019s offhand slot, no gear-equip sound is played and no subtitle is displayed. This occurs regardless of how the shield enters the slot, including:\n\n- A dispenser equipping the shield\n- Shift-clicking the shield into the offhand slot\n- Switching the shield between the mainhand and offhand\n- Moving the shield into the offhand slot manually\n\nBy comparison, an armor item equipped through a dispenser plays the appropriate gear-equip sound and displays its subtitle. The shield produces neither, despite being equipped to its designated offhand slot.",
+  "Expected Behavior": "When a shield is placed into the player\u2019s offhand slot, it should produce an appropriate gear-equipping sound and display a corresponding subtitle, just as armor does when equipped. This feedback should occur consistently whether the shield is equipped by a dispenser, shift-clicking, switching hands, or manually moving it into the offhand slot, with a distinct shield-specific sound and subtitle.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Sound/MC-251917",
+  "improvement_metadata": {
+    "original_key": "MC-251917"
+  }
+}

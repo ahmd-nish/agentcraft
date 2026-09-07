@@ -1,0 +1,42 @@
+{
+  "key": "MC-247421",
+  "created_date": "2022-01-02T02:28:23.084-0800",
+  "updated_date": "2026-08-20T04:17:17.032-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.1",
+    "1.19",
+    "1.19.2",
+    "22w44a",
+    "1.19.3",
+    "23w05a",
+    "1.20.2"
+  ],
+  "fix_versions": [
+    "23w40a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2023-11-20T08:31:43.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Console spam: \"Error starting SoundSystem. Turning off sounds & music\"",
+  "environment_raw": "",
+  "description": "I had Minecraft open for a while. After putting the computer into hibernation mode and turning it back on, the game printed out the following error message about once every 50 milliseconds.\n\nThere were so many of these errors in the launcher log, to the point where their time stamps lagged behind for several hours because the Minecraft launcher couldn't keep up. When I closed Minecraft, the logs kept going because they lagged behind that much. (The logs written to file didn't have any issue, just those displayed in the launcher log window, which means the launcher not keeping up with the logs is a launcher bug.)\n\nAudio device was lost!\n\nError starting SoundSystem. Turning off sounds & music\njava.lang.IllegalStateException: Failed to open OpenAL device\n at dqi.b(SourceFile:264)\n at dqi.a(SourceFile:151)\n at fdf.h(SourceFile:112)\n at fdf.a(SourceFile:103)\n at fdf.a(SourceFile:234)\n at fdi.a(SourceFile:253)\n at dxo.q(SourceFile:1761)\n at dxo.f(SourceFile:1086)\n at dxo.e(SourceFile:733)\n at net.minecraft.client.main.Main.main(SourceFile:238)\n\nCurrently it is unclear to me how the issue can be reproduced reliably. It might've been caused by some Windows issue where it might have thought a device was connected that actually wasn't connected.\n\nThe relevant log is 2022-01-01-1.log.gz (60 MB uncompressed).\n\nObserved: If the game fails to connect to some audio device, the game will print an error message every 50ms.\n\nExpected: The error message should show up, but either only once, or only in larger time intervals (e.g. once every 30 seconds).\n\nReproduce:\n\n - Set the in-game audio device to your headset.\n\n - Enter the following commands:\n\n/playsound minecraft:music.dragon voice @p\n\n/weather thunder\n\n - Disable all audio devices connected to Windows.\n\n - Notice that the game outputs spam to the logs at a rapid rate.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open Options -> Music & Sounds.\n4. Set the in-game audio device to the headset.\n5. Return to the world and enter `/playsound minecraft:music.dragon voice @p`.\n6. Enter `/weather thunder`.\n7. Disable all audio devices connected to Windows.\n8. Wait until the game attempts to play the requested sound.\n9. Observe the launcher log rapidly repeating \u201cAudio device was lost!\u201d and \u201cError starting SoundSystem. Turning off sounds & music\u201d approximately every 50 milliseconds.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.1, 1.19, 1.19.2, 22w44a, 1.19.3, 23w05a, 1.20.2 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen Minecraft loses access to the selected audio device, it repeatedly attempts to initialize the OpenAL sound system. Each failed attempt logs:\n\n```text\nAudio device was lost!\n\nError starting SoundSystem. Turning off sounds & music\njava.lang.IllegalStateException: Failed to open OpenAL device\n```\n\nThe message is emitted approximately every 50 milliseconds instead of being logged only once or being rate-limited. This produces a very large volume of console output and can cause the launcher\u2019s displayed log stream to fall several hours behind. The game\u2019s log file does not exhibit the same display backlog.",
+  "Expected Behavior": "When Minecraft cannot open the selected audio device, it should report the audio failure and disable sounds and music without repeatedly emitting the same error. The message should appear only once or at appropriately spaced intervals, such as every 30 seconds, so the launcher log remains responsive and usable rather than being overwhelmed by identical messages.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Sound/MC-247421",
+  "improvement_metadata": {
+    "original_key": "MC-247421"
+  }
+}

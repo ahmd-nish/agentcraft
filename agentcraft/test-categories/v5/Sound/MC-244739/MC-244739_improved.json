@@ -1,0 +1,56 @@
+{
+  "key": "MC-244739",
+  "created_date": "2021-12-05T06:23:46.095-0800",
+  "updated_date": "2026-08-10T02:25:02.094-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18",
+    "1.18.1",
+    "22w03a",
+    "22w05a",
+    "22w06a",
+    "1.18.2 Pre-release 1",
+    "1.18.2",
+    "22w15a",
+    "22w17a",
+    "22w18a",
+    "1.19",
+    "1.19.1",
+    "1.19.2",
+    "1.19.3",
+    "23w07a",
+    "1.19.4",
+    "1.20.1",
+    "1.20.2",
+    "1.21"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "goat"
+  ],
+  "resolution_date": "2024-12-10T05:45:09.926-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Goat eating sounds aren't played when feeding them the last item of wheat within a stack",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nGoat eating sounds aren't played when feeding them the last item of wheat within a stack.\n\n## Steps to Reproduce:\n\n - Obtain two pieces of what and ensure that they occupy the same hotbar slot.\n\n - Summon two goats and switch into survival mode.\n\n - Feed one of the goats a piece of wheat and take note of how goat eating sounds are played.\n\n - Feed the other goat the remaining piece of wheat and listen closely as you do this.\n\n - Take note as to whether or not goat eating sounds are played when feeding them the last item of wheat within a stack.\n\n## Observed Behavior:\n\nGoat eating sounds aren't played.\n\n## Expected Behavior:\n\nGoat eating sounds would be played.\n\n## Code Analysis:\n\nCode analysis by Apollo30 can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.20.1 using MCP-Reborn.\n\nnet.minecraft.world.entity.animal.Goat.java\n\npublic class Goat extends Animal {\n ...\n \u00a0 public InteractionResult mobInteract(Player player, InteractionHand interactionHand) {\n ItemStack itemstack = player.getItemInHand(interactionHand);\n if (itemstack.is(Items.BUCKET) && !this.isBaby()) {\n player.playSound(this.getMilkingSound(), 1.0F, 1.0F);\n ItemStack itemstack1 = ItemUtils.createFilledResult(itemstack, player, Items.MILK_BUCKET.getDefaultInstance());\n player.setItemInHand(interactionHand, itemstack1);\n return InteractionResult.sidedSuccess(this.level().isClientSide);\n } else {\n InteractionResult interactionresult = super.mobInteract(player, interactionHand);\n if (interactionresult.consumesAction() && this.isFood(itemstack)) {\n this.level().playSound((Player)null, this, this.getEatingSound(itemstack), SoundSource.NEUTRAL, 1.0F, Mth.randomBetween(this.level().random, 0.8F, 1.2F));\n }\n return interactionresult;\n }\n }\n ...\n\nIn the Goat.java class there is the Goat#mobInteract method. We see two important methods; super#mobInteract which is a method of a superclass called Animal. This method handles the decrementing of the held itemstack's amount.\u00a0\n\nThe problem with the line after Goat#mobInteract is that we check if the itemstack is food via the method this#isFood, but since the player has one of that itemstack, the method removes that last amount, and then checks if the itemstack is food. Then it would return false as the itemstack is now AIR.\u00a0Therefore the eating sound doesn't emit globally.\u00a0\n\n## Fix:\n\nTo fix this, we can temporarily store a variable called flag which saves the itemstack's value of being food or not in a true or false matter. Then we can handle the mob interaction using super#mobInteract and then use the stored variable, flag, in our \"if\" statement.\n\nCurrent \"else\" statement:\n\n} else {\n InteractionResult interactionresult = super.mobInteract(player, interactionHand);\n if (interactionresult.consumesAction() && this.isFood(itemstack)) {\n this.level().playSound((Player)null, this, this.getEatingSound(itemstack), SoundSource.NEUTRAL, 1.0F, Mth.randomBetween(this.level().random, 0.8F, 1.2F));\n }\n return interactionresult;\n}\n\nFixed \"else\" statement:\n\n} else {\n boolean flag = this.isFood(itemstack);\n InteractionResult interactionresult = super.mobInteract(p_149379_, p_149380_);\n if (interactionresult.consumesAction() && flag) {\n this.level().playSound((Player)null, this, this.getEatingSound(itemstack), SoundSource.NEUTRAL, 1.0F, Mth.randomBetween(this.level().random, 0.8F, 1.2F));\n }\n return interactionresult;\n}",
+  "Steps to Reproduce": "1. Obtain two pieces of wheat.\n2. Place both pieces of wheat in the same hotbar slot.\n3. Summon two goats.\n4. Switch to Survival mode.\n5. Feed one goat one piece of wheat.\n6. Listen for and note the goat eating sound.\n7. Feed the other goat the remaining piece of wheat.\n8. Observe that no goat eating sound is played when feeding the last piece of wheat.",
+  "Environment": "Minecraft Java Edition Versions: 1.18, 1.18.1, 22w03a, 22w05a, 22w06a, 1.18.2 Pre-release 1, 1.18.2, 22w15a, 22w17a, 22w18a, 1.19, 1.19.1, 1.19.2, 1.19.3, 23w07a, 1.19.4, 1.20.1, 1.20.2, 1.21 (includes snapshots)",
+  "Observed Behavior": "When a goat is fed wheat from a stack containing multiple items, the goat eating sound plays normally. However, when the final wheat item is fed:\n\n- The wheat is consumed and the goat is fed successfully.\n- The player\u2019s held stack becomes empty (`AIR`).\n- No goat eating sound is played for nearby players.\n\nThis occurs because the interaction decrements the wheat stack before `Goat#mobInteract` checks whether the held `ItemStack` is food. After the final item is removed, the stack no longer contains wheat, so the food check returns false and the eating sound is not emitted.",
+  "Expected Behavior": "When a goat is successfully fed wheat, it should play its eating sound regardless of whether the wheat stack contains multiple items or only one remaining item. Feeding the last piece of wheat from a stack should trigger the same eating sound as feeding earlier pieces, while the wheat is consumed normally and the interaction succeeds.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Sound/MC-244739",
+  "improvement_metadata": {
+    "original_key": "MC-244739"
+  }
+}
