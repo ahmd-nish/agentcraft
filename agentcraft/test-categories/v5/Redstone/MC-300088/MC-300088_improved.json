@@ -1,0 +1,37 @@
+{
+  "key": "MC-300088",
+  "created_date": "2025-07-29T08:05:58.634-0700",
+  "updated_date": "2025-09-01T08:30:15.898-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w31a",
+    "25w35a"
+  ],
+  "fix_versions": [
+    "25w36a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-08-29T05:16:16.164-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Items placed by a copper golem in a double chest do not update redstone comparators reading the right side of the double chest",
+  "environment_raw": "",
+  "description": "- Steps to reproduce the issue\n \n\n \nPlace a copper chest and a double chest, with a comparator on the right side of the double chest\n\n - Place 3 stacks and 54 items in the double chest\n\n - Place 1 of the same item in the copper chest\n\n - Spawn a Copper Golem and wait for it to move the item from the Copper Chest to the Double Chest\n\n \n\n \n\n - Expected result\n \n\n \nRedstone Comparator outputs a power level of 2\n\n \n\n \n\n - Actual result\n \n\n \nRedstone Comparator outputs a power level of 1",
+  "Steps to Reproduce": "1. Place a copper chest.\n2. Place a double chest with a redstone comparator on its right side.\n3. Place 3 stacks and 54 items in the double chest.\n4. Place 1 item of the same type in the copper chest.\n5. Spawn a Copper Golem.\n6. Wait until the Copper Golem moves the item from the copper chest to the double chest.\n7. Observe that the redstone comparator outputs a power level of 1 instead of the expected power level of 2.",
+  "Environment": "Minecraft Java Edition Versions: 25w31a, 25w35a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the Copper Golem transfers the item from the Copper Chest into the Double Chest, the Redstone Comparator attached to the right side of the Double Chest does not update its output. It remains at a power level of **1**, even though the Double Chest now contains the additional item and should produce a power level of **2**.",
+  "Expected Behavior": "After the Copper Golem moves the item from the Copper Chest into the double chest, the redstone comparator reading the right side should detect the updated inventory contents and output a power level of 2. The comparator should update consistently when the golem adds the item, rather than remaining at power level 1.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Redstone/MC-300088",
+  "improvement_metadata": {
+    "original_key": "MC-300088"
+  }
+}

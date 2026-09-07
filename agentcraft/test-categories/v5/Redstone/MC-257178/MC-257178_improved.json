@@ -1,0 +1,37 @@
+{
+  "key": "MC-257178",
+  "created_date": "2022-11-03T07:27:20.533-0700",
+  "updated_date": "2026-08-10T02:30:22.982-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w44a",
+    "1.19.3"
+  ],
+  "fix_versions": [
+    "23w16a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-04-18T00:47:17.256-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Chiseled Bookshelf redstone behavior is inconsistent",
+  "environment_raw": "",
+  "description": "Now that hoppers can interact with chiseled bookshelves in 22w44a, the redstone behavior no longer matches the intended behavior from the announcement.\n\n## Setup\n\n - Place a chiseled bookshelf over a hopper. Set up a comparator to visually measure the signal strength from the bookshelf.\n\n - Power the hopper.\n\n - Fill all hopper slots with plain books, so it can take in only more plain books.\n\n - Insert books into the bookshelf in the following order: Protection I enchanted book, plain book, plain book, Protection II enchanted book, Protection III enchanted book, Protection IV enchanted book.\n\n - De-power the hopper. Observe comparator output as the two plain books are removed.\n\n - Add two books-and-quills to the chiseled bookshelf, observing comparator output as this is done.\n\n - Remove the books from the bookshelf.\n\n## Actual behavior\n\nAt step 5, the books are removed from slots 2 and 3. Comparator output indicates 6 after the first removal, then 5 and then 4 after the second. Block texture is no different from when slots 5 and 6 were empty.\n\nAt step 6, the books-and-quills are inserted into slots 2 and 3. Comparator output indicates 5 then 6.\n\nAt step 7, we get back the books in the following order: Prot IV, Prot III, Prot II, book-and-quill, book-and-quill, Prot I, confirming that the two books-and-quills were inserted into slots 2 and 3.\n\n## Expected behavior\n\nThere are several ways this could work to be consistent:\n\n - The comparator output indicates slots 2 and 3 when slots 2 and 3 are the last interacted with, as it is currently defined. And ideally the block texture would visually indicate which slots are empty too.\n\n - The hopper works more like \"remove book from slot 2 then shift all books over\" so the empty slots are always at the end. In that case the comparator output should have been 5 (not 6) after the first removal (since the last action was moving the book in slot 6 to slot 5), the output after the second removal should have immediately been 4 (not 5-then-4), and the order the books are retrieved in step 7 should reflect the books-and-quills having been inserted into slots 5 and 6.\n\n - The hopper can only take from the last filled slot. Although IMO that would be much less useful behavior.\n\n - Redefine the redstone behavior to indicate fullness, like other containers, instead of \"last interacted slot\". And still maybe adjust the texture to indicate which slots are empty.",
+  "Steps to Reproduce": "1. Launch Minecraft 22w44a.\n2. Create a Creative world with default settings.\n3. Place a chiseled bookshelf over a hopper, and set up a comparator to visually measure the bookshelf\u2019s signal strength.\n4. Power the hopper.\n5. Fill all hopper slots with plain books.\n6. Insert books into the bookshelf in this order: Protection I enchanted book, plain book, plain book, Protection II enchanted book, Protection III enchanted book, and Protection IV enchanted book.\n7. De-power the hopper.\n8. Observe the comparator output as the two plain books are removed: it indicates 6 after the first removal, then 5 and 4 after the second removal; the bookshelf texture does not differ from when slots 5 and 6 are empty.\n9. Add two books-and-quills to the bookshelf, one at a time, and observe the comparator output indicate 5 and then 6.\n10. Remove all books from the bookshelf and observe that they are retrieved in this order: Protection IV enchanted book, Protection III enchanted book, Protection II enchanted book, book-and-quill, book-and-quill, and Protection I enchanted book.",
+  "Environment": "Minecraft Java Edition Versions: 22w44a, 1.19.3 (includes snapshots)",
+  "Observed Behavior": "With the hopper powered, it removes the books from the chiseled bookshelf\u2019s occupied slots 2 and 3 rather than shifting the remaining books toward the first available slots. After the first book is removed, the comparator output temporarily reads 6; while the second book is removed, it reads 5 and then settles at 4. The bookshelf\u2019s texture does not visually distinguish this state from one in which slots 5 and 6 are empty. When the hopper is powered again and two books-and-quills are added, they are inserted into the newly empty slots 2 and 3, and the comparator output increases from 4 to 5 and then 6. Removing all six books afterward returns them in the order Protection IV, Protection III, Protection II, book-and-quill, book-and-quill, and Protection I, confirming that the books-and-quills occupied slots 2 and 3 while the original books remained in their existing slots. This produces a mismatch between the bookshelf\u2019s slot-level insertion and removal behavior, its comparator output, and its unchanged visual appearance.",
+  "Expected Behavior": "The comparator should consistently report the slot most recently interacted with, rather than producing signals corresponding to unrelated or shifted slots. After the hopper removes the books from slots 2 and 3, the output should reflect those slots in sequence, and inserting books-and-quills into slots 2 and 3 should likewise produce signals for slots 2 and 3. The bookshelf\u2019s texture should also clearly show which slots are empty.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Redstone/MC-257178",
+  "improvement_metadata": {
+    "original_key": "MC-257178"
+  }
+}

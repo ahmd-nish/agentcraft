@@ -1,0 +1,48 @@
+{
+  "key": "MC-255418",
+  "created_date": "2022-08-22T01:04:42.146-0700",
+  "updated_date": "2026-08-20T04:20:37.905-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.19.2",
+    "1.20 Release Candidate 1",
+    "1.20"
+  ],
+  "fix_versions": [
+    "1.20.2 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "bug",
+    "client-side",
+    "redstone",
+    "redstone-circut",
+    "redstone-dust",
+    "redstone-wire",
+    "rendering",
+    "rendering-bug",
+    "vertical"
+  ],
+  "resolution_date": "2023-09-05T00:39:34.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Vertical redstone dust placed against dropper/dispenser/hopper doesn't visually disappear when the dust above is removed",
+  "environment_raw": "",
+  "description": "When you place redstone dust against a dropper or dispenser while that same piece of dust is being redirected and powered(as seen below),\n\n \u00a0 \u00a0 \n\nif the top piece of redstone dust is broken, the vertical piece of dust still shows.\n\nEven weirder is that if the dispenser is removed the vertical dust still displays:\n\nOnce the block has been removed another can be put in it's place creating some interesting situations:\n\nThis is entirely visual and client-side only as the dust doesn't actually power anything(like a redstone lamp).\n\nA re-log or a block update(e.g placing a target block next to the other side of the redstone) fixes this issue and returns the dust to the expected state.\n\nAs far as I have tested this only happens on dispenser, droppers and hoppers although the hopper behaves slightly differently as it isn't a solid block.\n\nWhen the layout of blocks is placed with a hopper instead of a dropper the redstone redirects into the hopper:\n\nand then when the dust is removed it remains redirected into the hopper:\n\nA strange behaviour occurs on the player's F3 screen too. After making the redstone do this to the hopper, the F3 screen displays \"enabled: false\" yet it still picks up items:\n\nAfter a look in the hopper's gui it updates and returns to correctly display that it is \"enabled: false\":\n\n\u00a0\n\nThe F3 screen for the wire also displays that it is facing up:\n\n\u00a0\n\nWeirdly this only occurs when the redstone is powered. If the same setup is built but without power the redstone dust doesn't display vertically.\n\n \n\nAlso, if the redstone power is removed after the redstone has been glitched it will return to the expected state (as this is a block update for the redstone).\n\n\u00a0\n\nSimilarly this does not occur without the redirection of the redstone:\n\n \u00a0 \n\n\u00a0\n\nHere is a short video of the setup:\n\nweirdRedstoneBehaviour.mp4\n\n\u00a0\n\n\u00a0I have only tested this in 1.19.2 but it might exist in previous versions as well.",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 1.19.2.\n2. Create a new Creative world with default settings.\n3. Place a dropper, dispenser, or hopper and arrange redstone dust against it so that the lower dust is redirected toward the block and another dust piece is directly above it.\n4. Power the redstone arrangement.\n5. Break the upper redstone dust.\n6. Observe that the lower redstone dust remains displayed vertically or remains visually redirected toward the dropper, dispenser, or hopper even though the dust above it was removed.",
+  "Environment": "Minecraft Java Edition Versions: 1.19.2, 1.20 Release Candidate 1, 1.20",
+  "Observed Behavior": "### Actual behavior\n\nIn Minecraft 1.19.2, when powered redstone dust is redirected vertically against a dispenser, dropper, or hopper, removing the upper redstone dust does not immediately update the lower dust\u2019s rendered shape. The lower dust continues to appear as a vertical connection, even though it should no longer connect upward.\n\nThe stale visual state can persist after the adjacent dispenser or dropper is broken, and it may also remain if another block is placed in its position. The dust does not actually transmit power through this residual connection; the issue is limited to the client-side rendering and block-state display.\n\nWith a hopper, the redirected dust can continue to appear connected to the hopper after the dust responsible for the connection is removed. In this state, the F3 display may show the hopper as `enabled: false` while it continues to accept items. Opening the hopper\u2019s GUI causes the hopper state to refresh, after which the F3 display correctly shows `enabled: false`. The F3 display for the affected redstone wire can also continue to show an upward-facing connection.\n\nThe issue only occurs while the redstone is powered and redirected toward the dispenser, dropper, or hopper. Unpowered redstone in the same arrangement does not exhibit the stale vertical rendering, and the issue does not occur when the redstone is not redirected toward one of these blocks.\n\nRemoving the redstone power, placing a block update near the affected wire, opening the hopper interface, or relogging forces the client to recalculate the affected states and restores the correct appearance.",
+  "Expected Behavior": "When the upper redstone dust or the adjacent dropper, dispenser, or hopper is removed, the remaining redstone dust should immediately update its visual connection and orientation to match the current block layout. It should not continue displaying a vertical or redirected connection after that support is gone, and the visible state of affected components should remain consistent with their actual behavior without requiring a relog, GUI interaction, power change, or unrelated block update.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Redstone/MC-255418",
+  "improvement_metadata": {
+    "original_key": "MC-255418"
+  }
+}

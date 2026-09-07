@@ -1,0 +1,38 @@
+{
+  "key": "MC-275774",
+  "created_date": "2024-08-21T09:10:15.600-0700",
+  "updated_date": "2026-08-20T04:36:23.294-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w34a"
+  ],
+  "fix_versions": [
+    "24w35a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "experimental_redstone"
+  ],
+  "resolution_date": "2024-08-22T04:53:11.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Observers no longer detect redstone dust powering/unpowering",
+  "environment_raw": "",
+  "description": "As the title says, in the current snapshot with experimental redstone features on, Observers do not detect a change in redstone dust when it becomes powered or unpowered. Observers still detect when dust has been placed in front of them and when the direction of the dust has been changed, but they do not detect the powered state, which is a major issue.\n\nSteps to reproduce:\n\n1. Enable the experimental Redstone Dust features\n\n2. Create any sort of redstone circuit configuration that involves an Observer facing a piece of Redstone Dust (example image)\n\n3. Attempt to make Observer send a signal when the dust has been powered or unpowered (In this example, attempt to make the Copper Bulb turn on when the Lever is activated)\n\nObserved Result\n\nThe Observer does not send a signal (in this example, Copper Bulb should be on)\n\nExpected Result\n\nThe Observer should send a signal (activating the Copper Bulb)",
+  "Steps to Reproduce": "1. Enable the experimental Redstone Dust features.\n2. Place an Observer facing a piece of Redstone Dust.\n3. Create a redstone circuit connecting the Redstone Dust to a Lever and the Observer output to a Copper Bulb.\n4. Activate the Lever to power the Redstone Dust.\n5. Observe that the Observer does not send a signal and the Copper Bulb does not turn on.\n6. Deactivate the Lever to unpower the Redstone Dust.\n7. Observe that the Observer does not send a signal when the Redstone Dust becomes unpowered.",
+  "Environment": "Minecraft Java Edition Version 24w34a (snapshot)",
+  "Observed Behavior": "With the experimental Redstone Dust features enabled, an Observer facing redstone dust does not emit an output pulse when the dust changes between powered and unpowered states. For example, activating or deactivating a lever connected to the dust does not trigger the Observer, so a Copper Bulb connected to the Observer remains unchanged.\n\nThe Observer still detects other changes to the dust, such as placing or removing the dust and changing its connection or direction. The issue is specific to transitions in the dust\u2019s powered state.",
+  "Expected Behavior": "When the redstone dust in front of the Observer changes from unpowered to powered or from powered to unpowered, the Observer should detect the change and emit a redstone signal. In the example circuit, activating the lever should cause the Observer to send a signal that turns on the Copper Bulb, with the behavior occurring consistently for either power-state transition.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Redstone/MC-275774",
+  "improvement_metadata": {
+    "original_key": "MC-275774"
+  }
+}
