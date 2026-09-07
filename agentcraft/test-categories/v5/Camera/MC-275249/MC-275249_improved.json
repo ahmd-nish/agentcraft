@@ -1,0 +1,36 @@
+{
+  "key": "MC-275249",
+  "created_date": "2024-08-15T10:07:29.958-0700",
+  "updated_date": "2025-04-26T16:08:37.692-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w34a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-19T06:19:06.983-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "\"FOV Effects\" slider incorrectly modifying zoom values on the spyglass",
+  "environment_raw": "",
+  "description": "The zoom effect is being effected by the \"FOV Effects\" slider inside Video settings, which it did not do in previous versions.\n\nSteps to reproduce:\n\n - Adjust the \"Video Settings > FOV Effects\" slider to 100% and try zoom in with the spyglass\n\n - Adjust \"Video Settings > FOV Effects\" slider to anything lower than 100%\n\n - Zoom in using the spyglass.\n\nObserved results:\n\nZoom is directly affected by the FOV Effects slider, such that setting it to 0% causes the spyglass to not zoom in at all.\n\nExpected results:\n\nSpyglass zoom should be unaffected by the FOV Effects slider (as in previous versions).\n\nEverything I have tested has been in vanilla versions of the game, no mods used.\n\nThe specific example here that I am using to compare zooms is just me creating a 4 block wide gap and zooming in from one side to the other to directly compare how the block appears. I have attached how setting FOV Effects to 0 appears in 1.21.1 and how it appears in 24w33a. One of my versions is set to windowed, as screenshotting with windows doesn't work properly in 1.21.1, but swapping to full-screen does not change the results.\n\n1.21.1:\n\n24w33a:",
+  "Steps to Reproduce": "1. Launch Minecraft 24w33a.\n2. Create a new Creative world with default settings.\n3. Create a four-block-wide gap.\n4. Select a spyglass from the Creative inventory.\n5. Open Options -> Video Settings and set FOV Effects to 100%.\n6. Use the spyglass to zoom across the gap and observe the zoom level.\n7. Set FOV Effects to 0% via Options -> Video Settings.\n8. Use the spyglass to zoom across the gap.\n9. Observe that the spyglass no longer zooms in, unlike when FOV Effects is set to 100%.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nIn Java Edition **24w33a**, the **Video Settings \u2192 FOV Effects** slider incorrectly scales the spyglass\u2019s zoom effect:\n\n- At **100%**, the spyglass provides its expected zoom level.\n- At values below **100%**, the spyglass zoom is reduced proportionally.\n- At **0%**, using the spyglass does not provide any noticeable zoom.\n\nThis behavior is reproducible in vanilla Minecraft by viewing the same four-block-wide gap through a spyglass at different **FOV Effects** values. In **1.21.1**, the spyglass retains its normal zoom regardless of the slider setting; the regression is therefore present in **24w33a**.",
+  "Expected Behavior": "When viewing through a spyglass, its zoom level should remain consistent regardless of the \u201cFOV Effects\u201d slider setting in Video Settings. Adjusting the slider from 100% to lower values, including 0%, should not reduce or remove the spyglass zoom effect. The spyglass should provide the same magnification as in previous versions, while other FOV effects continue to follow the selected setting.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Camera/MC-275249",
+  "improvement_metadata": {
+    "original_key": "MC-275249"
+  }
+}
