@@ -1,0 +1,36 @@
+{
+  "key": "MC-305693",
+  "created_date": "2026-01-13T09:37:06.470-0800",
+  "updated_date": "2026-03-11T03:44:17.686-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.1 Snapshot 3"
+  ],
+  "fix_versions": [
+    "26.1 Snapshot 5"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 0,
+  "labels": [],
+  "resolution_date": "2026-01-21T06:50:48.441-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Smelting recipes do not add the correct count of items to the output",
+  "environment_raw": "",
+  "description": "## Expected Behavior\n\nA smelting recipe with a count greater than 1 in the result field should add that many items to the output item stack when smelting finishes.\n\n## Observed Behavior\n\nWhen the output stack is empty, the correct number of items is added to the output stack. (i.e. if the count for a smelting recipe is set to 4, and the furnace output is empty, the initial item stack will have 4 items in it.\n\nAfter the first item is smelted, future smelting only adds 1 item to the output stack, regardless of the count.\n\n## Steps to Reproduce\n\n - Add the attached datapack to a world.\n\n - Place a stack of cactus in the furnace.\n\n - Place fuel in the furnace.\n\n - After the first item is smelted, there will be 4 dye in the output slot:\n\n - After the second item is smelted, there will be 5 dye int the output slot.\n\nThe attached datapack adds a single recipe that causes a single cactus to produce 4 green_dye instead of 1. The recipe\u2019s cookingtime has been decreased to make observing the bug faster:\n\ndata/minecraft/recipe/green_dye.json :\n\n{\n \"type\": \"minecraft:smelting\",\n \"category\": \"misc\",\n \"cookingtime\": 20,\n \"experience\": 1.0,\n \"ingredient\": \"minecraft:cactus\",\n \"result\": {\n \"id\": \"minecraft:green_dye\",\n \"count\": 4\n }\n}",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Add the attached datapack to the world.\n4. Open a furnace with an empty output slot.\n5. Place a stack of cactus in the furnace.\n6. Place fuel in the furnace.\n7. Wait until the first cactus is smelted.\n8. Observe that the furnace output contains 4 green dye.\n9. Wait until the second cactus is smelted.\n10. Observe that the furnace output contains 5 green dye instead of 8.",
+  "Environment": "Minecraft Java Edition Version 26.1 Snapshot 3 (snapshot)",
+  "Observed Behavior": "When the furnace output slot is empty, the first smelting operation applies the recipe\u2019s result count correctly. With the provided recipe, smelting one cactus initially produces a stack of **4 green dye**.\n\nFor subsequent smelting operations, the furnace adds only **1 green dye** to the existing output stack, instead of the recipe-defined count of 4. As a result, after smelting a second cactus, the output contains **5 green dye** rather than **8**. Each additional smelting operation continues to increase the output by only 1 item, despite the recipe specifying `\"count\": 4`.",
+  "Expected Behavior": "When a smelting recipe produces multiple items, each completed smelt should add the full result count to the furnace output stack. For a recipe that produces four green dye per cactus, the first smelt should create a stack of four dye, and each subsequent smelt should increase the stack by four more items, resulting in eight after the second smelt rather than adding only one.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Crafting/MC-305693",
+  "improvement_metadata": {
+    "original_key": "MC-305693"
+  }
+}

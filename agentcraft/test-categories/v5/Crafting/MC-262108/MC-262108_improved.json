@@ -1,0 +1,40 @@
+{
+  "key": "MC-262108",
+  "created_date": "2023-04-25T16:11:48.330-0700",
+  "updated_date": "2025-04-30T04:18:29.393-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w16a",
+    "23w17a",
+    "23w18a",
+    "1.20 Pre-release 1",
+    "1.20 Pre-release 6"
+  ],
+  "fix_versions": [
+    "23w31a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-06-08T02:32:35.220-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Smithing table GUI issue with custom recipes",
+  "environment_raw": "",
+  "description": "There is an inconsistency with the behavior of shift+click in smithing table gui when a datapack adds a recipe that uses a trim material item (eg: gold ingot, iron ingot, amethyst shard...) as the smithing template (as in a recipe that uses, f.e., a gold ingot as the smithing template, and something else in the third slot). This does not apply to other items, which behave as expected.\n\nObserved Behavior:\n\nShift+click on the item in the inventory will not put the item in the template slot, when the materials slot (third slot) is empty the item will be put in there, when the material slot is already occupied by something else shift+click on the item will not move it at all.\n\nYou can manually drag the item in the template slot with the mouse and it will work.\n\nExpected behavior:\n\nTo keep consistency with other workbenches, when shift+click is used the item should be put in the materials slot, and if it's already occupied it should be automatically transported to the template slot. The reverse would also work.\n\nHow to reproduce:\n\n - Download the attached datapack (it adds two new recipes for the netherite axe, both using a diamond axe in the second slot and netherite ingot in the third slot, but one uses a gold ingot as the smithing template and the other uses a dirt block).\n\n - Create a test world with said datapack.\n\n - Get a gold ingot, a dirt block and a netherite ingot in your inventory\n\n - Open a smithing table\n\n - Shift+click on the dirt block --> It gets placed in the template slot, as expected\n\n - Shift+click on the gold ingot --> It gets placed in the third slot, as expected\n\n - Now place the netherite ingot in the third slot\n\n - Shift+click on the gold ingot --> It will not be placed in the template slot, contrary to what happens with the dirt block (this is the issue)\n\n - Try placing the gold ingot in the template slot manually --> this works as expected\n\nAs you can see there is an inconsistency with the behavior of shift+click depending if the item is considered an armor trim material or not. This should be fixed as shift+click in any other workbench's gui will place the item in its next available slot if one of them is already occupied (eg: blaze powder in brewing stands, which can go in both the fuel and ingredient slots).",
+  "Steps to Reproduce": "1. Download the attached datapack, which adds two Netherite axe recipes using a diamond axe in the second slot and a Netherite ingot in the third slot; one recipe uses a gold ingot as the smithing template and the other uses a dirt block.\n2. Create a Creative world with default settings and apply the downloaded datapack.\n3. Add a gold ingot, a dirt block, and a Netherite ingot to your inventory.\n4. Open a smithing table.\n5. Shift-click the dirt block in your inventory and observe that it is placed in the template slot.\n6. Shift-click the gold ingot in your inventory and observe that it is placed in the third slot.\n7. Replace the item in the third slot with the Netherite ingot, returning the gold ingot to your inventory.\n8. Shift-click the gold ingot in your inventory and observe that it is not placed in the template slot.",
+  "Environment": "Minecraft Java Edition Versions: 23w16a, 23w17a, 23w18a, 1.20 Pre-release 1, 1.20 Pre-release 6 (includes snapshots)",
+  "Observed Behavior": "When a smithing table recipe added by a datapack accepts an armor trim material such as a gold ingot, iron ingot, or amethyst shard in the template slot, shift-clicking that item from the player inventory does not correctly move it between the smithing table input slots. If the third slot is empty, the item is moved there instead of the template slot. If the third slot already contains an item, shift-clicking the trim material does not move it at all, even though the template slot is empty. This behavior differs from an otherwise equivalent custom recipe that uses a non-trim-material item, such as a dirt block, as the template, for which shift-clicking places the item in the template slot when appropriate. The trim material can still be placed in the template slot by dragging it there manually with the mouse, and the recipe then functions normally.",
+  "Expected Behavior": "When a custom smithing recipe accepts an armor-trim material such as a gold ingot as its template, shift-clicking that item should place it in the next available valid slot. If the materials slot is empty, the item should go there; if it is occupied, the item should instead move to the template slot, matching the behavior of other items and workbench interfaces.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Crafting/MC-262108",
+  "improvement_metadata": {
+    "original_key": "MC-262108"
+  }
+}

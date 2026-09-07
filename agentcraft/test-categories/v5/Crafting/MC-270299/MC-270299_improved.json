@@ -1,0 +1,43 @@
+{
+  "key": "MC-270299",
+  "created_date": "2024-04-02T12:24:37.548-0700",
+  "updated_date": "2025-05-29T09:06:11.347-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a",
+    "24w14a",
+    "1.20.5 Pre-Release 1",
+    "24w21b"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "data-pack",
+    "recipes",
+    "suspicious_stew"
+  ],
+  "resolution_date": "2024-06-25T00:56:07.385-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "New data pack component crafting doesn't work with suspicious stews",
+  "environment_raw": "",
+  "description": "Expected result: Custom suspicious stew (in this case a modified azure bluet suspicious stew) recipe outputs the water breathing effect.\n\nActual result: Azure bluet suspicious stew recipe defaults to the blindness effect, however, the recipe properly shows in the crafting table, but the result defaults to the vanilla output.\n\nDescription: Suspicious stew recipes that don't override vanilla recipes work fine (see suspicious_stew_from_flowering_azalea.json). Thus, I believe that data packs recipes are not superseding the hardcoded recipes (in this case all of the \"crafting_special_suspiciousstew\" recipes).\n\nSteps to recreate:\n\n - Add the attached data pack to world (see sus_stew_example-1.zip)\n\n - Open world\n\n - Craft azure bluet suspicious stew\n\n - Craft flowering azalea suspicious stew\n\nProposed solution: Change all suspicious stew recipes to be data driven through data packs with the introduction of custom components in recipes outputs.\n\nEdit: I don't know if this will help, but I made a data pack that implements the vanilla recipes with the new components (see sus_stew_fix.zip). To fix it, I used a block filter on the vanilla recipe in the .mcmeta file.",
+  "Steps to Reproduce": "1. Create a Creative world with default settings.\n2. Add the attached `sus_stew_example-1.zip` data pack to the world.\n3. Open the world.\n4. Open a crafting table.\n5. Craft an azure bluet suspicious stew using the data pack recipe.\n6. Observe that the recipe appears in the crafting table, but the crafted stew uses the blindness effect instead of the expected water breathing effect.\n7. Craft a flowering azalea suspicious stew.\n8. Observe that the flowering azalea suspicious stew recipe works correctly.",
+  "Environment": "Minecraft Java Edition Versions: 24w13a, 24w14a, 1.20.5 Pre-Release 1, 24w21b (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe data pack recipe for an azure bluet suspicious stew is recognized and displayed in the crafting table, but its custom output component is not applied when the stew is crafted. Instead, the crafting result uses the vanilla hardcoded suspicious stew recipe and grants the default **Blindness** effect rather than the configured **Water Breathing** effect.\n\nA data pack recipe that does not replace a vanilla suspicious stew recipe works correctly. For example, `suspicious_stew_from_flowering_azalea.json` produces the expected custom output. This indicates that the issue occurs specifically when a data pack recipe conflicts with one of the hardcoded `crafting_special_suspiciousstew` recipes: the data pack recipe remains visible, but the hardcoded recipe takes precedence when determining the crafted item's components.",
+  "Expected Behavior": "When a data pack provides a custom recipe for azure bluet suspicious stew, crafting it should produce suspicious stew with the specified Water Breathing effect rather than the vanilla Blindness effect. The custom recipe should take precedence over the default suspicious stew behavior, while other recipes, such as flowering azalea suspicious stew, should continue producing their intended effects.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Crafting/MC-270299",
+  "improvement_metadata": {
+    "original_key": "MC-270299"
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "key": "MC-256708",
+  "created_date": "2022-10-20T12:54:11.651-0700",
+  "updated_date": "2025-04-30T06:27:04.959-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w42a",
+    "22w43a"
+  ],
+  "fix_versions": [
+    "22w44a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-11-02T15:35:38.836-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Bamboo mosaic recipes are inconsistent",
+  "environment_raw": "",
+  "description": "You can use bamboo mosaic slabs in recipes, but not bamboo mosaic.\n\nThis is a bug that can go two ways.\n\nSteps to Reproduce:\n\n1. place a crafting table \n\n2. grab bamboo mosaic and bamboo mosaic slabs into inventory\n\n3. try to craft a barrel or a chiseled bookshelf\n\n4. grab e.g. oak planks and try again with the oak planks and bamboo mosaic slabs\n\nObserved Results:\n\nBamboo mosaic slabs can be used for crafting and bamboo mosaic cannot\n\nExpected Results:\n\n1. it is not possible to make anything with bamboo mosaic slabs\n\nor 2. it is also possible to make something with bamboo mosaic",
+  "Steps to Reproduce": "1. Launch Minecraft and create a Creative world with default settings.\n2. Place a crafting table.\n3. Add bamboo mosaic and bamboo mosaic slabs to the inventory.\n4. Open the crafting table.\n5. Attempt to craft a barrel or a chiseled bookshelf using the bamboo mosaic.\n6. Add oak planks to the inventory.\n7. Attempt to craft the same item using the oak planks and bamboo mosaic slabs.\n8. Observe that the recipe can be crafted with bamboo mosaic slabs, but not with bamboo mosaic.",
+  "Environment": "Minecraft Java Edition Versions: 22w42a, 22w43a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nIn a crafting table, **bamboo mosaic slabs are accepted in recipes that require wooden slabs**, including the barrel and chiseled bookshelf recipes. However, **bamboo mosaic blocks are not accepted in the wooden-plank ingredient slots** of those recipes.\n\nFor comparison, the recipes work when the plank ingredients are replaced with oak planks while bamboo mosaic slabs are used in the slab slots. This indicates that bamboo mosaic slabs are included in the relevant slab ingredient group, but bamboo mosaic blocks are not included in the corresponding plank ingredient group.",
+  "Expected Behavior": "Crafting recipes should handle bamboo mosaic and bamboo mosaic slabs consistently. For recipes such as barrels or chiseled bookshelves, either both materials should be accepted as valid ingredients, or neither should be accepted. Bamboo mosaic slabs should not work while the corresponding bamboo mosaic block is rejected, as this creates inconsistent crafting behavior.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Crafting/MC-256708",
+  "improvement_metadata": {
+    "original_key": "MC-256708"
+  }
+}
