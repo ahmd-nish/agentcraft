@@ -1,0 +1,40 @@
+{
+  "key": "MC-277977",
+  "created_date": "2024-10-30T17:52:39.605-0700",
+  "updated_date": "2025-04-26T17:21:14.150-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w44a"
+  ],
+  "fix_versions": [
+    "1.21.4 Pre-Release 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "teleport",
+    "teleportation",
+    "teleporting"
+  ],
+  "resolution_date": "2024-11-25T07:53:16.972-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Teleporting large distances whilst gliding prevents the world from loading and player model glitchiness",
+  "environment_raw": "",
+  "description": "I can consistently reproduce this with the /spreadplayers command and not with /teleport, but this issue has occurred in contexts without any /spreadplayers, only /teleport. I believe this may be reproduceable if you were to teleport onto a solid block but I couldn't get it to happen locally.\n\nThe footage attached was taken on a local dedicated server on a laptop with low performance, but this has been reproduced on a public (external) server with optimal MSPT too.\n\nThis supposedly started occurring around when the crashes caused by \n \n \n \n MC-277275\n \n Resolved\n \n started happening, so it's likely related to that part of the code having been refactored.\n\n## Steps to Reproduce:\n\n - Glide in the air with an elytra (or any equipped item with the glider component)\n\n - Run\n\n/spreadplayers 0 0 0 25000 false @s\n\n - Wait to be teleported and observe the glitch\n\nThis may need to be retried a few times to get this effect to work as it doesn't seem to happen every time.\n\n## Observed Results:\n\nNo chunks appear to load around the player, your position in the F3 screen is fixed at one spot, and the player model is rapidly changing rotation (see attached video)\n\nThis can stay this way for only a few seconds, or for many minutes. Sometimes moving your head around can fix it, but often you have to relog before anything works correctly.\n\n## Expected Results:\n\nThe chunks load as normal",
+  "Steps to Reproduce": "1. Enter a world or server where you can run commands.\n2. Equip an elytra.\n3. Begin gliding through the air.\n4. Open the F3 debug screen.\n5. Run `/spreadplayers 0 0 0 25000 false @s`.\n6. Wait until you are teleported.\n7. Observe whether no chunks load around the player, the position shown on the F3 debug screen remains fixed, and the player model rapidly changes rotation.\n8. If the glitch does not occur, repeat steps 3\u20137 a few times.",
+  "Environment": "Minecraft Java Edition Version 24w44a (snapshot)",
+  "Observed Behavior": "After being teleported a large distance while gliding, the client can enter a malfunctioning state:\n\n- Chunks around the player's new location do not load or render normally.\n- The coordinates shown on the F3 debug screen remain fixed instead of updating with the player's movement.\n- The player model rapidly and continuously changes rotation, producing visible model jitter or spinning.\n- The issue may resolve after a few seconds, but it can also persist for several minutes.\n- Moving the camera sometimes restores normal behavior; otherwise, leaving and rejoining the world/server is often required.\n- The problem is intermittent and may require repeating the teleport several times.\n\nThe behavior has been reproduced using `/spreadplayers` on both a low-performance local dedicated server and a public server with normal server performance. Similar incidents have also occurred after large-distance `/teleport` commands, although `/teleport` has not been reproduced consistently.",
+  "Expected Behavior": "After being teleported a large distance while gliding, the world should load the surrounding chunks normally, and the player\u2019s position should update correctly in the F3 display. The player model should remain stable and follow the player\u2019s movement and camera rotation without rapidly changing orientation. Gameplay should remain responsive, allowing the player to move and look around normally without needing to relog.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Dedicated Server/MC-277977",
+  "improvement_metadata": {
+    "original_key": "MC-277977"
+  }
+}

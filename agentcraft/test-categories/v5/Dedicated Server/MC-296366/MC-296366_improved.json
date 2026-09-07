@@ -1,0 +1,36 @@
+{
+  "key": "MC-296366",
+  "created_date": "2025-04-08T07:54:39.261-0700",
+  "updated_date": "2025-07-26T13:34:43.272-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w15a"
+  ],
+  "fix_versions": [
+    "25w16a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [],
+  "resolution_date": "2025-04-15T00:40:18.123-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Kicked for flying while flying happy ghast",
+  "environment_raw": "",
+  "description": "Steps to Reproduce:\n\n - Join a server with allow-flight in server.properties set to false (default).\n\n - Harness a happy ghast and fly around on it (you do not have to be in Survival).\n\n - After a few seconds, you should get kicked for flying.\n\nObserved Results:\n\nThe player gets kicked for the reason \u201cFlying is not enabled on this server\u201c and the console shows \u201cPlayer was kicked for floating a vehicle too long!\u201c.\n\nExpected Results:\n\nThe player would not be kicked.",
+  "Steps to Reproduce": "1. Join a server with `allow-flight` set to `false` in `server.properties` (the default).\n2. Harness a happy ghast.\n3. Fly around on the happy ghast.\n4. Wait a few seconds.\n5. Observe that the player is kicked with the reason \u201cFlying is not enabled on this server\u201d and that the console shows \u201cPlayer was kicked for floating a vehicle too long!\u201d.",
+  "Environment": "Minecraft Java Edition Version 25w15a (snapshot)",
+  "Observed Behavior": "On a server with `allow-flight=false`, a player riding a harnessed Happy Ghast is disconnected after flying for several seconds. The client displays:\n\n> Flying is not enabled on this server\n\nThe server console logs:\n\n> Player was kicked for floating a vehicle too long!\n\nThis occurs while the player is legitimately riding and flying the Happy Ghast, including when the player is not in Survival mode.",
+  "Expected Behavior": "When a player is harnessing and flying on a happy ghast, the server should recognize the movement as valid vehicle travel and allow the player to remain connected. The player should not be kicked for flying or floating a vehicle, and the \u201cFlying is not enabled on this server\u201d message should not appear, even when allow-flight is disabled.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Dedicated Server/MC-296366",
+  "improvement_metadata": {
+    "original_key": "MC-296366"
+  }
+}

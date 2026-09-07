@@ -1,0 +1,51 @@
+{
+  "key": "MC-243458",
+  "created_date": "2021-11-30T17:33:53.977-0800",
+  "updated_date": "2026-08-27T02:52:14.531-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18",
+    "1.18.1 Release Candidate 1",
+    "1.18.1 Release Candidate 2",
+    "1.18.1",
+    "22w03a",
+    "22w05a",
+    "1.18.2 Pre-release 2",
+    "1.18.2 Release Candidate 1",
+    "1.18.2",
+    "22w18a",
+    "1.19 Pre-release 1",
+    "1.19 Pre-release 2",
+    "1.19 Release Candidate 1",
+    "1.19 Release Candidate 2",
+    "1.19",
+    "22w24a"
+  ],
+  "fix_versions": [
+    "22w42a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-09-12T23:27:17.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Worldgen data packs don't work on servers at first launch",
+  "environment_raw": "",
+  "description": "Datapacks which overwrites the default world generation do not work on servers. If you put the datapack in the world/datapacks/ folder before the server is started and the world is generated, it will not generate the specified biomes, which are specified in the datapack. After stopping the server, deleting all region files (world/region/*) and starting the server again the correct world generation is used. This can't be intedend, if this is the only way to load a worldgen-datapack on a server.\n\n\u00a0\n\nSteps to Reproduce:\n\n - Place the server.jar in an empty folder.\n\n - Create the folders\u00a0/world/datapacks/.\n\n - Place the testpack.zip inside the datapacks folder.\n\n - Accept Eula and start the server.\n\n - Join the server.\n\nObserved Results:\n\nThe server generates a normal world ignoring the worldgen settings of the datapack. After stopping the server, deleting all the regions files and starting the server again the world is generating as defined in the datapack.\n\n\u00a0\n\nExpected Results:\n\nThe server should generate the world respecting all worldgen settings from the datapack (like it works in singleplayer).\n\n\u00a0\n\nNotes:\n\nThe testpack.zip generates a world with a testbiome, which is a copy of the plains biome, but with red skylight.",
+  "Steps to Reproduce": "1. Place `server.jar` in an empty folder.\n2. Create the `world/datapacks/` folders.\n3. Place `testpack.zip` in the `world/datapacks/` folder.\n4. Accept the EULA.\n5. Start the server.\n6. Join the server.\n7. Observe that the server generates a normal world and ignores the world-generation settings from `testpack.zip`, including its `testbiome`.\n8. Stop the server.\n9. Delete all files matching `world/region/*`.\n10. Start the server again and observe that the world now generates according to `testpack.zip`, including its `testbiome`.",
+  "Environment": "Minecraft Java Edition Versions: 1.18, 1.18.1 Release Candidate 1, 1.18.1 Release Candidate 2, 1.18.1, 22w03a, 22w05a, 1.18.2 Pre-release 2, 1.18.2 Release Candidate 1, 1.18.2, 22w18a, 1.19 Pre-release 1, 1.19 Pre-release 2, 1.19 Release Candidate 1, 1.19 Release Candidate 2, 1.19, 22w24a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nOn the first server startup, the server generates the world using the default world-generation settings, despite `testpack.zip` being present in `world/datapacks/` before startup. The generated chunks contain the normal biomes; the `testbiome` defined by the datapack is not used.\n\nIf the server is stopped, all files in `world/region/` are deleted, and the server is started again, newly generated chunks use the datapack\u2019s world-generation settings and contain the defined `testbiome`. This indicates that the datapack affects generation only after the initial region files have been removed and the chunks are generated again.",
+  "Expected Behavior": "The server should generate the world using all applicable world-generation settings supplied by the datapack from the first launch, just as in singleplayer. Newly generated chunks should reflect the datapack\u2019s custom biome definitions, including the testbiome with its red skylight, without requiring the server to be stopped or existing region files to be deleted.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Dedicated Server/MC-243458",
+  "improvement_metadata": {
+    "original_key": "MC-243458"
+  }
+}

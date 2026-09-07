@@ -1,0 +1,38 @@
+{
+  "key": "MC-301735",
+  "created_date": "2025-09-01T18:34:49.493-0700",
+  "updated_date": "2026-03-11T03:44:24.038-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w35a",
+    "1.21.9 Pre-Release 1",
+    "1.21.9 Pre-Release 2"
+  ],
+  "fix_versions": [
+    "1.21.9 Pre-Release 4"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 0,
+  "labels": [],
+  "resolution_date": "2025-09-23T07:31:42.846-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Server Management Protocol Kick command parameter mis match",
+  "environment_raw": "",
+  "description": "According to the information provided by the rpc.discover command, the kick command should require an array as input. This would be consistent with other similar commands.\n\n - Steps to reproduce the issue\n\n - setup the Management protocol\n\n - Attempt to send a kick command as described by the command discovery\n\nKick parameters provided by discovery:\n\n\"params\": [\n {\n \"name\": \"kick\",\n \"schema\": {\n \"items\": {\n \"$ref\": \"#/components/schemas/kick_player\"\n },\n \"type\": \"array\"\n },\n \"required\": true\n }\n]\n\nExample payload that produces the error: \n\n{\"method\":\"minecraft:players/kick\",\"id\":0,\"params\":[[{\"players\":[{\"name\":\"jSdCool\"}],\"message\":{\"literal\":\"kick test\"}}]]}\n\n - Expected result\n\nThe target player is kicked from the server\n\n - Actual result\n\nThe following error is received due to the fact the server was expecting an object not an array\n\nInvalid params: Not a JSON object: [{\"players\":[\n\n{\"name\":\"jSdCool\"}\n\n],\"message\":{\"literal\":\"kick test\"}}]",
+  "Steps to Reproduce": "1. Set up the Server Management Protocol connection.\n2. Send an `rpc.discover` request and locate the `minecraft:players/kick` command parameters.\n3. Confirm that the discovered `kick` parameter is required and has an array schema containing `kick_player` items.\n4. Send the following payload through the Management Protocol: `{\"method\":\"minecraft:players/kick\",\"id\":0,\"params\":[[{\"players\":[{\"name\":\"jSdCool\"}],\"message\":{\"literal\":\"kick test\"}}]]}`\n5. Observe that the target player is not kicked and the server returns `Invalid params: Not a JSON object: [{\"players\":[{\"name\":\"jSdCool\"}],\"message\":{\"literal\":\"kick test\"}}]`.",
+  "Environment": "Minecraft Java Edition Versions: 25w35a, 1.21.9 Pre-Release 1, 1.21.9 Pre-Release 2 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe server rejects the request with an invalid-parameters error:\n\n```text\nInvalid params: Not a JSON object: [{\"players\":[{\"name\":\"jSdCool\"}],\"message\":{\"literal\":\"kick test\"}}].\n```\n\nAlthough `rpc.discover` describes the `kick` parameter as an array of `kick_player` objects, the server attempts to deserialize the supplied value as a single JSON object. Because the request supplies an array as indicated by the discovered schema, the kick operation is not executed and the target player remains connected.",
+  "Expected Behavior": "The `minecraft:players/kick` command should accept the array-form parameter described by `rpc.discover`, including the target player and optional message. When a valid request is submitted in that format, the server should process it successfully and disconnect the specified player with the provided message, rather than rejecting the request because it receives an array where an object was expected.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Dedicated Server/MC-301735",
+  "improvement_metadata": {
+    "original_key": "MC-301735"
+  }
+}
