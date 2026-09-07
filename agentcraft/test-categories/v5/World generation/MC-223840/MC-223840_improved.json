@@ -1,0 +1,48 @@
+{
+  "key": "MC-223840",
+  "created_date": "2021-04-21T12:36:50.248-0700",
+  "updated_date": "2026-08-27T02:36:03.121-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w16a",
+    "21w18a",
+    "21w19a",
+    "1.17",
+    "1.17.1 Pre-release 1",
+    "1.17.1",
+    "21w44a",
+    "1.18 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "block-update",
+    "lava-aquifer",
+    "liquid",
+    "world-generation"
+  ],
+  "resolution_date": "2021-11-17T01:00:02.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Lava blocks from \"Lava Aquifers\" don't get updated when a cave cuts through underneath them",
+  "environment_raw": "",
+  "description": "A lava aquifer generated with a cave directly beneath it. At some spots in the cave's ceiling, the lava aquifer and the cave connect. In those spots, the lava abruptly gets cut off and remains floating within the holes in the ceiling.\n\nSteps to reproduce:\n\n1. Generate a Lush-Cave Single-Biome world with the seed \"-453190375585913630\" in Java Edition Snapshot 21w16a with the experimental Caves&Cliffs datapack enabled\n\n 2. Go to 218/-44/277\n\n 3. Look at the ceiling towards the southern wall of the cave\n\n Expected result: Lava flowing from the aquifer into the cave\n\n Actual result: Lava remains stationary and requires manual updating\n\nEDIT: After closer inspection, the phenomenon appears to generate at an intersection of lava aquifer + noise case + cave carver.\n\nView from inside the cave:\n\n \n\n View from atop the lava aquifer",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition Snapshot 21w16a.\n2. Create a new Single-Biome world using the Lush-Cave biome, the seed `-453190375585913630`, and the experimental Caves&Cliffs datapack.\n3. Travel to coordinates 218, -44, 277.\n4. Look at the cave ceiling toward the southern wall.\n5. Observe that the lava aquifer connects to the cave at holes in the ceiling, but the lava is abruptly cut off and remains stationary and floating instead of flowing into the cave.",
+  "Environment": "Minecraft Java Edition Versions: 21w16a, 21w18a, 21w19a, 1.17, 1.17.1 Pre-release 1, 1.17.1, 21w44a, 1.18 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhere the cave intersects the underside of the lava aquifer, the generated lava is abruptly cut off at the opening instead of propagating into the cave. The affected lava blocks remain suspended in the holes in the cave ceiling and do not update or begin flowing on their own. Interacting with the blocks or otherwise causing a manual block update makes the lava flow normally into the cave.\n\nThe issue occurs at the intersection of the lava aquifer, the noise-generated terrain, and the cave-carved opening.",
+  "Expected Behavior": "When a cave intersects a lava aquifer, the exposed lava should update correctly and flow from the aquifer into the connected cave openings. The lava should not remain suspended or abruptly stop at the ceiling; its flow should be established automatically during generation or when the connection is created, without requiring the player to place or remove blocks.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/World generation/MC-223840",
+  "improvement_metadata": {
+    "original_key": "MC-223840"
+  }
+}

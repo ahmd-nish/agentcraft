@@ -1,0 +1,50 @@
+{
+  "key": "MC-248758",
+  "created_date": "2022-02-22T08:50:03.053-0800",
+  "updated_date": "2026-05-05T07:18:27.371-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.1",
+    "1.18.2 Pre-release 2",
+    "1.18.2 Pre-release 3",
+    "1.18.2 Release Candidate 1",
+    "1.18.2",
+    "22w12a",
+    "22w13a",
+    "22w15a",
+    "1.19 Release Candidate 1",
+    "1.19",
+    "1.19.1 Pre-release 5",
+    "23w03a",
+    "24w10a",
+    "1.21 Pre-Release 2",
+    "25w04a"
+  ],
+  "fix_versions": [
+    "26.2 Snapshot 6"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2026-05-05T00:24:13.013-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Logged error: `Detected setBlock in a far chunk`",
+  "environment_raw": "",
+  "description": "Create a world with this seed and you will immediately notice an error in the console.\n\n8680357063582821254\n\nPossibly related to \n \n \n \n MC-125007\n \n Reopened\n \n and \n \n \n \n MC-230004\n \n Resolved\n \n?\n\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-15, -2], pos: gi{x=-228, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-15, -2], pos: gi{x=-227, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-15, -2], pos: gi{x=-226, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-15, -2], pos: gi{x=-225, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-224, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-223, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-222, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-221, y=23, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-221, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:29] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-220, y=23, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:30] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-220, y=24, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:30] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-219, y=23, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n[19:46:30] [Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-14, -2], pos: gi{x=-218, y=23, z=-32}, status: minecraft:features, currently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Select Singleplayer and choose Create New World.\n3. Set the world seed to `8680357063582821254` and create the world.\n4. Enter the newly created world.\n5. Observe the console output immediately after entering the world for `Detected setBlock in a far chunk` errors, including messages referring to `minecraft:large_dripstone`.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.1, 1.18.2 Pre-release 2, 1.18.2 Pre-release 3, 1.18.2 Release Candidate 1, 1.18.2, 22w12a, 22w13a, 22w15a, 1.19 Release Candidate 1, 1.19, 1.19.1 Pre-release 5, 23w03a, 24w10a, 1.21 Pre-Release 2, 25w04a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nImmediately after creating and entering a world with seed `8680357063582821254`, Minecraft logs repeated errors to the console:\n\n> `Detected setBlock in a far chunk`\n\nThe messages occur while the `minecraft:features` chunk-generation stage is running the placed feature `minecraft:large_dripstone`. The logged block positions are around `x=-228` to `-218`, `y=23\u201324`, `z=-32`, spanning chunks `[-15, -2]` and `[-14, -2]`.\n\nExample:\n\n```text\n[Worker-Main-17/ERROR]: Detected setBlock in a far chunk [-15, -2],\npos: gi{x=-228, y=24, z=-32}, status: minecraft:features,\ncurrently generating: ResourceKey[minecraft:worldgen/placed_feature / minecraft:large_dripstone]\n```\n\nThis happens immediately upon world creation without any player interaction. The issue is observable as repeated `ERROR` entries in the console while the affected chunks are being generated. No crash or other in-game effect is reported; the specific problem is that large dripstone feature generation attempts to set blocks in a chunk identified as being too far from the chunk currently being generated.",
+  "Expected Behavior": "Creating a world with seed `8680357063582821254` should complete without immediately logging `Detected setBlock in a far chunk` errors to the console. Large dripstone generation should place its blocks in the appropriate chunks without attempting to modify distant chunks or producing repeated error messages during feature generation.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/World generation/MC-248758",
+  "improvement_metadata": {
+    "original_key": "MC-248758"
+  }
+}
