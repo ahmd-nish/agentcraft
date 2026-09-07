@@ -1,0 +1,36 @@
+{
+  "key": "MC-295395",
+  "created_date": "2025-03-15T13:37:50.688-0700",
+  "updated_date": "2025-04-27T13:32:33.278-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.5 Pre-release 2"
+  ],
+  "fix_versions": [
+    "25w16a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2025-04-14T00:36:06.799-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Entities interact differently with nether portals",
+  "environment_raw": "",
+  "description": "Affected versions: 25w04a, 25w05a, 25w06a, 25w07a, 25w08a, 25w09a, 25w09b, 25w10a, 1.21.5-pre1, 1.21.5-pre2\n\n Summary: All entities hitbox needs to be intersecting the nether portal blocks hitbox in order to teleport to the other dimension rather then just being in the same block space as the portal block like before. In the latest release (1.21.4) an entity's hitbox needed to be within the block space of a nether portal block to be teleported, in the latest snapshot their hitbox needs to intersect the portal blocks hitbox, this change wasn't mentioned in the changelog and can break some redstone contraptions such as the basic minecart or boat based chunk loaders. \n\nSteps to Reproduce:\n\n - Build a nether portal\n \n\n \nLoad the nether side then come back. (This removes the initial lag from loading the nether for the first time)\n\n - Place down a boat a few blocks away from the portal and get in it.\n\n - Turn on hitboxes (F3 + B).\n\n - Slowly ride the boat into the portal and keep an eye on where the edge of the hitbox is before being teleported (F5 helps).\n\n - See that it doesn't get teleported until touching the portal blocks hitbox.\n\n \n\n \n\n See attached videos below of before/after with minecart example causing the minecart to take longer to go though the portal \n\nObserved Results: Entities need to be intersecting the nether portal block to be teleported. \n\nExpected Results: Entities should only need to be within the same block space as the nether portal block to be teleported like in previous versions.\n\nFurther information 05/03/25: after further testing i have found that the issue happens from a change to either nether portal blocks or entities (as it seems to affact boats/horses/items as well) where their hitbox now needs to touch the hitbox of the nether portal block rather then just being within the same block space as the portal block",
+  "Steps to Reproduce": "1. Launch Minecraft version 25w04a.\n2. Open a world.\n3. Build a nether portal.\n4. Enter the nether portal and wait until arriving in the Nether.\n5. Return through the nether portal to the original dimension.\n6. Place a boat a few blocks away from the portal.\n7. Get in the boat.\n8. Press F3 + B to show hitboxes, then switch to the third-person view with F5.\n9. Slowly ride the boat into the nether portal.\n10. Observe that the boat is not teleported until its hitbox touches or intersects the portal blocks' hitbox.",
+  "Environment": "Minecraft Java Edition Version 1.21.5 Pre-release 2",
+  "Observed Behavior": "In the affected versions, an entity is not teleported when its hitbox merely occupies the same block space as a Nether portal block. The entity\u2019s hitbox must physically intersect the portal block\u2019s portal area before the portal detects it and initiates teleportation.\n\nAs a result, entities enter farther into the portal before teleporting than they did in 1.21.4. This can be observed with boats, minecarts, horses, and dropped items. The changed detection distance also affects mechanisms that rely on entities passing through portals, such as basic minecart- or boat-based chunk loaders, which take longer to transfer the entity through the portal.",
+  "Expected Behavior": "Entities such as boats, minecarts, horses, and dropped items should teleport through a Nether portal as soon as their hitboxes are within the same block space as the portal blocks. Their hitboxes should not need to physically intersect the portal block hitboxes, matching the behavior of previous versions and allowing portal-dependent mechanics and contraptions to function consistently.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Block states/MC-295395",
+  "improvement_metadata": {
+    "original_key": "MC-295395"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "key": "MC-223323",
+  "created_date": "2021-04-15T11:48:30.251-0700",
+  "updated_date": "2026-06-16T09:16:50.124-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16.5",
+    "21w15a",
+    "21w16a",
+    "21w18a",
+    "21w19a",
+    "21w20a",
+    "1.17",
+    "1.17.1",
+    "1.18.1",
+    "1.18.2 Pre-release 1",
+    "1.18.2",
+    "1.19",
+    "1.19.2",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.21",
+    "1.21.4",
+    "25w34b"
+  ],
+  "fix_versions": [
+    "26.3 Snapshot 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [
+    "farmland",
+    "spawn-protection"
+  ],
+  "resolution_date": "2026-06-16T09:16:50.087-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "You can trample farmland in spawn protection",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nPlayers without operator permissions cannot normally interact with or destroy blocks inside spawn protection, however, you are able to trample farmland, regardless of whether or not it's inside of spawn protection.\n\n## Steps to Reproduce:\n\n - Start a server, join it, give operator permissions to yourself, and switch into creative mode.\n\n - Set the world spawn to your current location and summon some water and farmland nearby by using the commands provided below.\n\n/setworldspawn ~ ~ ~\n\n/setblock ~1 ~-1 ~-2 minecraft:water\n\n/setblock ~ ~-1 ~-2 minecraft:farmland\n\n - Switch into survival mode, remove your operator permissions, and grant anyone else with them in order to activate spawn protection.\n\n - Attempt to trample the farmland by jumping on it.\n\n - Take note as to whether or not you can trample farmland in spawn protection.\n\n## Observed Behavior:\n\nFarmland is trampled.\n\n## Expected Behavior:\n\nFarmland would not be trampled.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.18.1 using MCP-Reborn.\n\nnet.minecraft.world.level.block.FarmBlock.java\n\npublic class FarmBlock extends Block {\n ...\n \u00a0 public void fallOn(Level $l, BlockState $bs, BlockPos $bp, Entity $e, float $f) {\n if (!$l.isClientSide && $l.random.nextFloat() < $f - 0.5F && $e instanceof LivingEntity && ($e instanceof Player || $l.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) && $e.getBbWidth() * $e.getBbWidth() * $e.getBbHeight() > 0.512F) {\n turnToDirt($bs, $l, $bp);\n }\n\n super.fallOn($l, $bs, $bp, $e, $f);\n }\n ...\n\nIf we look at the above class, we can see that no checks are carried out to see whether or not the farmland block is within spawn protection, before allowing it to be trampled. The\u00a0mayInteract() method (a method used for determining whether a block is inside of spawn protection and is within the world border) is never called within this piece of code, thus resulting in the problem of being able to trample farmland in spawn protection.\n\n## Potential Fix:\n\nSimply adding some lines of code that check if the farmland block is within spawn protection before allowing it to be trampled, should resolve this problem. This can be achieved by calling the mayInteract() method and adding it appropriately somewhere within the existing \"if\" statement. The following line of code could be used in order to fix this:\n\n$e.mayInteract($l, $bp)\n\nThe fixed and correct piece of code within its class should look something like the following:\n\nnet.minecraft.world.level.block.FarmBlock.java\n\npublic class FarmBlock extends Block {\n ...\n \u00a0 public void fallOn(Level $l, BlockState $bs, BlockPos $bp, Entity $e, float $f) {\n if (!$l.isClientSide && $l.random.nextFloat() < $f - 0.5F && $e instanceof LivingEntity && ($e instanceof Player || $l.getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) && $e.mayInteract($l, $bp) && $e.getBbWidth() * $e.getBbWidth() * $e.getBbHeight() > 0.512F) {\n turnToDirt($bs, $l, $bp);\n }\n\n super.fallOn($l, $bs, $bp, $e, $f);\n }\n ...",
+  "Steps to Reproduce": "1. Start a server.\n2. Join the server and give yourself operator permissions.\n3. Switch to Creative mode.\n4. Set the world spawn at your current location with `/setworldspawn ~ ~ ~`.\n5. Place water nearby with `/setblock ~1 ~-1 ~-2 minecraft:water`.\n6. Place farmland nearby with `/setblock ~ ~-1 ~-2 minecraft:farmland`.\n7. Switch to Survival mode and remove your operator permissions.\n8. Have another player retain or receive operator permissions to activate spawn protection.\n9. Jump on the farmland.\n10. Observe that the farmland is trampled inside spawn protection.",
+  "Environment": "Minecraft Java Edition Versions: 1.16.5, 21w15a, 21w16a, 21w18a, 21w19a, 21w20a, 1.17, 1.17.1, 1.18.1, 1.18.2 Pre-release 1, 1.18.2, 1.19, 1.19.2, 1.19.3, 1.19.4, 1.20.1, 1.21, 1.21.4, 25w34b (includes snapshots)",
+  "Observed Behavior": "A non-operator player in Survival mode can trample farmland located within the server\u2019s spawn-protection area by jumping on it. The farmland changes into dirt even though the same player cannot normally place, break, or interact with protected blocks.\n\nThis occurs because the farmland trampling logic runs when an entity lands on the block without checking whether the entity is permitted to interact with the farmland under spawn-protection rules.",
+  "Expected Behavior": "Players without operator permissions should be unable to trample or otherwise alter farmland located within spawn protection. When a non-operator jumps on protected farmland, the block should remain farmland rather than being converted to dirt, consistent with the restriction preventing them from interacting with or destroying protected blocks. Farmland outside spawn protection should retain its normal trampling behavior.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Block states/MC-223323",
+  "improvement_metadata": {
+    "original_key": "MC-223323"
+  }
+}
