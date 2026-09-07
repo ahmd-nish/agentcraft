@@ -1,0 +1,36 @@
+{
+  "key": "MC-249431",
+  "created_date": "2022-03-24T13:30:17.511-0700",
+  "updated_date": "2026-08-27T02:57:42.923-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w12a"
+  ],
+  "fix_versions": [
+    "22w13a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-04-19T10:24:47.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The server occasionally fails to save chunks",
+  "environment_raw": "",
+  "description": "The Bug:\n\nThe \"Failed to save chunk\" error is sometimes logged in the server console, thus indicating that the server occasionally fails to save chunks.\n\nThis issue was not present in 1.18.2 or 22w11a.\n\nThe following message was printed into the server console shortly after teleporting a far distance away and then running the \"/kill\" command. The full server log has also been attached which can be found below.\n\nMC-249431 - Server Console Log.log\n\n[18:22:28] [Server thread/ERROR]: Failed to save chunk -16,-11\njava.lang.NullPointerException: Cannot invoke \"java.util.UUID.getMostSignificantBits()\" because \"$$0\" is null\n\u00a0 \u00a0 at hi.a(SourceFile:27) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at hi.b(SourceFile:13) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.Encoder$1.encode(Encoder.java:25) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.Codec$2.encode(Codec.java:76) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.Encoder.encodeStart(Encoder.java:14) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.FieldEncoder.encode(FieldEncoder.java:24) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.MapCodec$1.encode(MapCodec.java:39) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.MapCodec$3.encode(MapCodec.java:181) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.RecordCodecBuilder$Instance$8.encode(RecordCodecBuilder.java:379) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.RecordCodecBuilder$2.encode(RecordCodecBuilder.java:112) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.MapCodec$MapCodecCodec.encode(MapCodec.java:96) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.Encoder.encodeStart(Encoder.java:14) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.OptionalFieldCodec.encode(OptionalFieldCodec.java:42) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.OptionalFieldCodec.encode(OptionalFieldCodec.java:17) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.RecordCodecBuilder$Instance$6.encode(RecordCodecBuilder.java:295) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.codecs.RecordCodecBuilder$2.encode(RecordCodecBuilder.java:112) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.MapCodec$MapCodecCodec.encode(MapCodec.java:96) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at com.mojang.serialization.Encoder.encodeStart(Encoder.java:14) ~[datafixerupper-4.1.27.jar:?]\n\u00a0 \u00a0 at cqe.b(SourceFile:51) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at cpf.o(SourceFile:84) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at cpf.m(SourceFile:64) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at cto.g(SourceFile:380) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at cuc.a(SourceFile:345) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at ads.a(SourceFile:828) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at ads.d(SourceFile:792) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at ads.b(SourceFile:531) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at ads.a(SourceFile:486) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at aed.a(SourceFile:326) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at aef.a(SourceFile:314) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at net.minecraft.server.MinecraftServer.b(SourceFile:903) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at adg.b(SourceFile:322) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at net.minecraft.server.MinecraftServer.a(SourceFile:847) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at net.minecraft.server.MinecraftServer.w(SourceFile:693) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at net.minecraft.server.MinecraftServer.a(SourceFile:271) ~[server-22w12a.jar:?]\n\u00a0 \u00a0 at java.lang.Thread.run(Thread.java:833) [?:?]\n\n## Steps to Reproduce:\n\n - Start a server running 22w12a.\n\n - Teleport a far distance away and then run the \"/kill\" command in order to make some chunks unload.\n\n - \n\n/tp @s ~10000 ~ ~\n\n - \n\n/kill @s \n\n - Respawn and watch the server console closely.\n\n - Take note as to whether or not the server occasionally fails to save chunks.\n\n## Observed Behavior:\n\nThe server fails to save chunks.\n\n## Expected Behavior:\n\nThe server would not fail to save chunks.",
+  "Steps to Reproduce": "1. Start a server running 22w12a.\n2. Join the server.\n3. Execute `/tp @s ~10000 ~ ~`.\n4. Execute `/kill @s`.\n5. Respawn after being killed.\n6. Repeat the teleport, kill, and respawn sequence to check for the intermittent behavior.\n7. Shortly after respawning, observe the server console for a `Failed to save chunk` error.",
+  "Environment": "Minecraft Java Edition Version 22w12a (snapshot)",
+  "Observed Behavior": "After teleporting approximately 10,000 blocks away and using `/kill`, the server intermittently logs an error while unloading or saving chunks. The error identifies a chunk such as `-16,-11` and reports:\n\n```text\n[Server thread/ERROR]: Failed to save chunk -16,-11\njava.lang.NullPointerException: Cannot invoke \"java.util.UUID.getMostSignificantBits()\" because \"$$0\" is null\n```\n\nThe exception occurs during serialization of the chunk data. As a result, the affected chunk save operation fails for that attempt. The issue is intermittent and may not occur every time the reproduction steps are performed. This behavior is reproducible in 22w12a but was not observed in 1.18.2 or 22w11a.",
+  "Expected Behavior": "After teleporting a far distance away, using `/kill`, and respawning, the server should save all unloaded chunks successfully without occasionally logging a \u201cFailed to save chunk\u201d error or an associated exception in the console. Chunk saving should remain reliable and consistent, as it was in version 1.18.2 and snapshot 22w11a.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Save Data/MC-249431",
+  "improvement_metadata": {
+    "original_key": "MC-249431"
+  }
+}

@@ -1,0 +1,96 @@
+[18:17:59] [ServerMain/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[18:18:10] [Worker-Main-11/INFO]: Loaded 7 recipes
+[18:18:11] [Worker-Main-11/INFO]: Loaded 1170 advancements
+[18:18:22] [Server thread/INFO]: Starting minecraft server version 22w12a
+[18:18:22] [Server thread/INFO]: Loading properties
+[18:18:22] [Server thread/INFO]: Default game type: CREATIVE
+[18:18:22] [Server thread/INFO]: Generating keypair
+[18:18:22] [Server console handler/ERROR]: Exception handling console input
+java.io.IOException: The handle is invalid
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:?]
+	at java.io.FileInputStream.read(FileInputStream.java:276) ~[?:?]
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:282) ~[?:?]
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:343) ~[?:?]
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:270) ~[?:?]
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:313) ~[?:?]
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:188) ~[?:?]
+	at java.io.InputStreamReader.read(InputStreamReader.java:177) ~[?:?]
+	at java.io.BufferedReader.fill(BufferedReader.java:162) ~[?:?]
+	at java.io.BufferedReader.readLine(BufferedReader.java:329) ~[?:?]
+	at java.io.BufferedReader.readLine(BufferedReader.java:396) ~[?:?]
+	at adg$1.run(SourceFile:99) [server-22w12a.jar:?]
+[18:18:22] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:18:22] [Server thread/INFO]: Using default channel type
+[18:18:24] [Server thread/INFO]: Preparing level "world"
+[18:18:24] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[18:18:26] [Worker-Main-11/INFO]: Preparing spawn area: 0%
+[18:18:26] [Worker-Main-11/INFO]: Preparing spawn area: 0%
+[18:18:26] [Worker-Main-11/INFO]: Preparing spawn area: 0%
+[18:18:26] [Worker-Main-11/INFO]: Preparing spawn area: 0%
+[18:18:26] [Worker-Main-10/INFO]: Preparing spawn area: 0%
+[18:18:27] [Worker-Main-12/INFO]: Preparing spawn area: 0%
+[18:18:27] [Worker-Main-13/INFO]: Preparing spawn area: 0%
+[18:18:28] [Worker-Main-10/INFO]: Preparing spawn area: 0%
+[18:18:28] [Worker-Main-12/INFO]: Preparing spawn area: 0%
+[18:18:29] [Worker-Main-12/INFO]: Preparing spawn area: 0%
+[18:18:29] [Worker-Main-14/INFO]: Preparing spawn area: 0%
+[18:18:30] [Worker-Main-14/INFO]: Preparing spawn area: 0%
+[18:18:30] [Worker-Main-11/INFO]: Preparing spawn area: 2%
+[18:18:31] [Worker-Main-14/INFO]: Preparing spawn area: 4%
+[18:18:31] [Worker-Main-9/INFO]: Preparing spawn area: 4%
+[18:18:32] [Worker-Main-9/INFO]: Preparing spawn area: 14%
+[18:18:32] [Worker-Main-13/INFO]: Preparing spawn area: 17%
+[18:18:33] [Worker-Main-10/INFO]: Preparing spawn area: 26%
+[18:18:33] [Worker-Main-12/INFO]: Preparing spawn area: 48%
+[18:18:34] [Worker-Main-14/INFO]: Preparing spawn area: 62%
+[18:18:34] [Worker-Main-9/INFO]: Preparing spawn area: 85%
+[18:18:35] [Server thread/INFO]: Time elapsed: 10539 ms
+[18:18:35] [Server thread/INFO]: Done (11.036s)! For help, type "help"
+[18:21:19] [User Authenticator #1/INFO]: UUID of player Avoma is 5fe443ce-3836-45a6-8ee8-a7d54b3e6250
+[18:21:19] [Server thread/INFO]: Avoma[/127.0.0.1:61121] logged in with entity id 2 at (-119.5, 65.0, -179.5)
+[18:21:19] [Server thread/INFO]: Avoma joined the game
+[18:21:37] [Server thread/INFO]: [Avoma: Teleported Avoma to 9918.227813, 71.610845, -133.494109]
+[18:21:41] [Server thread/INFO]: Avoma fell out of the world
+[18:21:41] [Server thread/INFO]: [Avoma: Killed Avoma]
+[18:22:02] [Server thread/INFO]: [Avoma: Teleported Avoma to -10019.744998, 71.657781, 65.862738]
+[18:22:08] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 5331ms or 106 ticks behind
+[18:22:12] [Server thread/INFO]: Avoma fell out of the world
+[18:22:12] [Server thread/INFO]: [Avoma: Killed Avoma]
+[18:22:28] [Server thread/ERROR]: Failed to save chunk -16,-11
+java.lang.NullPointerException: Cannot invoke "java.util.UUID.getMostSignificantBits()" because "$$0" is null
+	at hi.a(SourceFile:27) ~[server-22w12a.jar:?]
+	at hi.b(SourceFile:13) ~[server-22w12a.jar:?]
+	at com.mojang.serialization.Encoder$1.encode(Encoder.java:25) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.Codec$2.encode(Codec.java:76) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.Encoder.encodeStart(Encoder.java:14) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.FieldEncoder.encode(FieldEncoder.java:24) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.MapCodec$1.encode(MapCodec.java:39) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.MapCodec$3.encode(MapCodec.java:181) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.RecordCodecBuilder$Instance$8.encode(RecordCodecBuilder.java:379) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.RecordCodecBuilder$2.encode(RecordCodecBuilder.java:112) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.MapCodec$MapCodecCodec.encode(MapCodec.java:96) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.Encoder.encodeStart(Encoder.java:14) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.OptionalFieldCodec.encode(OptionalFieldCodec.java:42) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.OptionalFieldCodec.encode(OptionalFieldCodec.java:17) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.RecordCodecBuilder$Instance$6.encode(RecordCodecBuilder.java:295) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.codecs.RecordCodecBuilder$2.encode(RecordCodecBuilder.java:112) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.MapCodec$MapCodecCodec.encode(MapCodec.java:96) ~[datafixerupper-4.1.27.jar:?]
+	at com.mojang.serialization.Encoder.encodeStart(Encoder.java:14) ~[datafixerupper-4.1.27.jar:?]
+	at cqe.b(SourceFile:51) ~[server-22w12a.jar:?]
+	at cpf.o(SourceFile:84) ~[server-22w12a.jar:?]
+	at cpf.m(SourceFile:64) ~[server-22w12a.jar:?]
+	at cto.g(SourceFile:380) ~[server-22w12a.jar:?]
+	at cuc.a(SourceFile:345) ~[server-22w12a.jar:?]
+	at ads.a(SourceFile:828) ~[server-22w12a.jar:?]
+	at ads.d(SourceFile:792) ~[server-22w12a.jar:?]
+	at ads.b(SourceFile:531) ~[server-22w12a.jar:?]
+	at ads.a(SourceFile:486) ~[server-22w12a.jar:?]
+	at aed.a(SourceFile:326) ~[server-22w12a.jar:?]
+	at aef.a(SourceFile:314) ~[server-22w12a.jar:?]
+	at net.minecraft.server.MinecraftServer.b(SourceFile:903) ~[server-22w12a.jar:?]
+	at adg.b(SourceFile:322) ~[server-22w12a.jar:?]
+	at net.minecraft.server.MinecraftServer.a(SourceFile:847) ~[server-22w12a.jar:?]
+	at net.minecraft.server.MinecraftServer.w(SourceFile:693) ~[server-22w12a.jar:?]
+	at net.minecraft.server.MinecraftServer.a(SourceFile:271) ~[server-22w12a.jar:?]
+	at java.lang.Thread.run(Thread.java:833) [?:?]
+[18:27:53] [Server thread/INFO]: <Avoma> MC-249431

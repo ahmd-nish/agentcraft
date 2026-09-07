@@ -1,0 +1,37 @@
+{
+  "key": "MC-306190",
+  "created_date": "2026-02-03T10:35:06.647-0800",
+  "updated_date": "2026-03-11T03:56:50.347-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.1 Snapshot 6",
+    "26.1 Snapshot 7"
+  ],
+  "fix_versions": [
+    "26.1 Snapshot 11"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2026-03-03T04:06:38.968-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The game closes when upgrading a world fails",
+  "environment_raw": "",
+  "description": "The bug\n\nWhen attempting to upgrade and backup a world fails, a toast briefly appears and then the game closes. This does not appear to be a crash, but an error is logged.\n\nHow to reproduce\n\n - Take a world from 1.21.11\n\n - Add a file to the world directory that\u2019s not owned by your user (e.g. sudo touch test)\n\n - Try to upgrade and open the world in-game\n\nExpected results\n\nGraceful error message that lets you go back, like the one that appears when your world has symlinks.\n\nObserved result\n\nThe game instantly closes and logs the following error:\n\n[11:33:19] [Worker-Main-10] [ERROR] net.minecraft.util.filefix.virtualfilesystem.exception.CowFSCreationException: Cannot build copy-on-write file system, missing write access for file: /home/.../minecraft/snapshots/saves/New World (39)/test\n at net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem$1.checkAttributes(CopyOnWriteFileSystem.java:101)\n at net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem$1.visitFile(CopyOnWriteFileSystem.java:74)\n at net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem$1.visitFile(CopyOnWriteFileSystem.java:71)\n at java.base/java.nio.file.Files.walkFileTree(Files.java:2543)\n at java.base/java.nio.file.Files.walkFileTree(Files.java:2609)\n at net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem.buildFileTreeFrom(CopyOnWriteFileSystem.java:71)\n at net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem.<init>(CopyOnWriteFileSystem.java:54)\n at net.minecraft.util.filefix.virtualfilesystem.CopyOnWriteFileSystem.create(CopyOnWriteFileSystem.java:62)\n at net.minecraft.util.filefix.FileFixerUpper.fix(FileFixerUpper.java:73)\n at net.minecraft.util.filefix.FileFixerUpper.fix(FileFixerUpper.java:64)\n at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.lambda$upgradeAndOpenWorld$0(WorldOpenFlows.java:353)\n at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1750)\n at java.base/java.util.concurrent.ForkJoinTask$RunnableExecuteAction.compute(ForkJoinTask.java:1742)\n at java.base/java.util.concurrent.ForkJoinTask$InterruptibleTask.exec(ForkJoinTask.java:1659)\n at java.base/java.util.concurrent.ForkJoinTask.doExec(ForkJoinTask.java:511)\n at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(ForkJoinPool.java:1450)\n at java.base/java.util.concurrent.ForkJoinPool.runWorker(ForkJoinPool.java:2019)\n at java.base/java.util.concurrent.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:187)",
+  "Steps to Reproduce": "1. Launch Minecraft with a world saved in 1.21.11.\n2. Open \"Singleplayer -> [world] -> Edit -> Open World Folder\".\n3. Add a file to the world folder that is not owned by your user, such as by running `sudo touch test`.\n4. Launch the Minecraft version in which the world upgrade is being tested.\n5. Open the affected world from the Singleplayer menu to start upgrading and opening it.\n6. Wait until the error toast appears.\n7. Observe that the toast briefly appears and the game then closes instead of showing a graceful error message that lets you go back.",
+  "Environment": "Minecraft Java Edition Versions: 26.1 Snapshot 6, 26.1 Snapshot 7 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen the game attempts to create the backup/copy-on-write file system during world upgrading, the operation fails because the world directory contains a file that the current user cannot write to. A brief error toast appears, but it is not followed by an error screen or a way to return to the world-selection menu. Instead, the client closes immediately.\n\nNo crash report is generated, but the failure is logged on a worker thread as a `CowFSCreationException`, for example:\n\n```text\nCowFSCreationException: Cannot build copy-on-write file system, missing write access for file: .../saves/New World (39)/test\n```\n\nThe world is not opened, and the player cannot recover to the previous screen through the game UI.",
+  "Expected Behavior": "When upgrading or backing up a world fails because a file cannot be accessed, the game should remain open and display a clear error message explaining that the operation could not be completed. The message should provide an option to return to the world selection screen, allowing the player to recover gracefully without the game closing or losing access to the current session.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Save Data/MC-306190",
+  "improvement_metadata": {
+    "original_key": "MC-306190"
+  }
+}

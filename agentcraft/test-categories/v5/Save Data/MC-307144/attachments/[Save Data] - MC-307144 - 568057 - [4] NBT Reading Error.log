@@ -1,0 +1,128 @@
+[19:01:50] [Datafixer Bootstrap/INFO]: 291 Datafixer optimizations took 270 milliseconds
+[19:01:52] [Render thread/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, profilesHost=https://api.mojang.com, name=PROD]
+[19:01:52] [Render thread/INFO]: Setting user: catter1
+[19:01:52] [Render thread/INFO]: Backend library: LWJGL version 3.4.1+2
+[19:01:53] [Render thread/INFO]: Using optional rendering extensions: GL_ARB_buffer_storage, GL_KHR_debug, GL_ARB_vertex_attrib_binding, GL_ARB_direct_state_access, GL_EXT_texture_filter_anisotropic
+[19:01:53] [Render thread/INFO]: Reloading ResourceManager: vanilla
+[19:01:54] [Worker-Main-10/INFO]: Found unifont_pua-17.0.01.hex, loading
+[19:01:54] [Worker-Main-4/INFO]: Found unifont_all_no_pua-17.0.01.hex, loading
+[19:01:54] [Worker-Main-3/INFO]: Found unifont_jp_patch-17.0.01.hex, loading
+[19:01:55] [Render thread/WARN]: Missing sound for event: minecraft:entity.baby_pig.eat
+[19:01:55] [Render thread/WARN]: Missing sound for event: minecraft:entity.pig.eat
+[19:01:55] [Render thread/WARN]: Missing sound for event: minecraft:entity.pig_mini.eat
+[19:01:55] [Render thread/INFO]: OpenAL initialized on device Built-in Audio Analog Stereo
+[19:01:55] [Render thread/INFO]: Sound engine started
+[19:01:55] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/particles.png-atlas
+[19:01:55] [Render thread/INFO]: Created: 128x128x0 minecraft:textures/atlas/decorated_pot.png-atlas
+[19:01:55] [Render thread/INFO]: Created: 2048x1024x0 minecraft:textures/atlas/armor_trims.png-atlas
+[19:01:55] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/paintings.png-atlas
+[19:01:55] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/shield_patterns.png-atlas
+[19:01:55] [Render thread/INFO]: Created: 2048x2048x4 minecraft:textures/atlas/blocks.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/chest.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 256x128x0 minecraft:textures/atlas/celestials.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/banner_patterns.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/beds.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 1024x512x0 minecraft:textures/atlas/items.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 1024x1024x0 minecraft:textures/atlas/gui.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 128x64x0 minecraft:textures/atlas/map_decorations.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 512x256x0 minecraft:textures/atlas/signs.png-atlas
+[19:01:56] [Render thread/INFO]: Created: 512x512x0 minecraft:textures/atlas/shulker_boxes.png-atlas
+[19:02:24] [Worker-Main-6/INFO]: Starting upgrade for world "test"
+[19:02:24] [Worker-Main-6/INFO]: Upgrading progress: 2%
+[19:02:25] [Worker-Main-6/INFO]: File system capabilities: FileSystemCapabilities[atomicMove=true, hardLinks=true]
+[19:02:25] [Worker-Main-6/INFO]: Applying file structure changes for world "test"
+[19:02:25] [Worker-Main-6/INFO]: Moving new hardlinked world to top level
+[19:02:25] [Worker-Main-6/INFO]: Start cleanup
+[19:02:25] [Worker-Main-6/INFO]: Moving out old world folder
+[19:02:25] [Worker-Main-6/INFO]: Moving in new world folder
+[19:02:25] [Worker-Main-6/INFO]: Done applying file structure changes for world "test". Cleaning up outdated data...
+[19:02:25] [Worker-Main-6/INFO]: Upgrade done for world "test"
+[19:02:26] [Render thread/WARN]: Missing data pack file/Terralith_1.21.11_v2.6.0.zip
+[19:02:26] [Render thread/WARN]: Missing data pack file/nit-dimensions-by-kanokarob-v0.10.zip
+[19:02:26] [Render thread/INFO]: Found new data pack file/Terralith_26.1_v2.6.1.zip, loading it automatically
+[19:02:26] [Render thread/INFO]: Found new data pack file/nit-dimensions-by-kanokarob-v0.11(1).zip, loading it automatically
+[19:02:27] [Render thread/WARN]: Failed to load level data or datapacks, can't proceed with server load
+java.util.concurrent.ExecutionException: net.minecraft.nbt.NbtAccounterException: Tried to read NBT tag that was too big; tried to allocate: 2097146 + 8 bytes where max allowed: 2097152
+	at java.base/java.util.concurrent.CompletableFuture.wrapInExecutionException(Unknown Source)
+	at java.base/java.util.concurrent.CompletableFuture.reportGet(Unknown Source)
+	at java.base/java.util.concurrent.CompletableFuture.get(Unknown Source)
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.loadWorldDataBlocking(WorldOpenFlows.java:212)
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.loadWorldStem(WorldOpenFlows.java:154)
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.openWorldLoadLevelStem(WorldOpenFlows.java:424)
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.lambda$upgradeAndOpenWorld$3(WorldOpenFlows.java:369)
+	at net.minecraft.client.gui.screens.ConfirmScreen.lambda$addButtons$0(ConfirmScreen.java:70)
+	at net.minecraft.client.gui.components.Button.onPress(Button.java:109)
+	at net.minecraft.client.gui.components.AbstractButton.onClick(AbstractButton.java:53)
+	at net.minecraft.client.gui.components.AbstractWidget.mouseClicked(AbstractWidget.java:122)
+	at net.minecraft.client.gui.components.events.ContainerEventHandler.mouseClicked(ContainerEventHandler.java:47)
+	at net.minecraft.client.MouseHandler.onButton(MouseHandler.java:122)
+	at net.minecraft.client.MouseHandler.lambda$setup$3(MouseHandler.java:244)
+	at net.minecraft.util.thread.BlockableEventLoop.doRunTask(BlockableEventLoop.java:173)
+	at net.minecraft.util.thread.ReentrantBlockableEventLoop.doRunTask(ReentrantBlockableEventLoop.java:23)
+	at net.minecraft.util.thread.BlockableEventLoop.execute(BlockableEventLoop.java:114)
+	at net.minecraft.client.MouseHandler.lambda$setup$2(MouseHandler.java:244)
+	at org.lwjgl.system.JNI.invokeV(JNI.java:1664)
+	at org.lwjgl.glfw.GLFW.glfwPollEvents(GLFW.java:1600)
+	at com.mojang.blaze3d.systems.RenderSystem.pollEvents(RenderSystem.java:119)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:990)
+	at net.minecraft.client.main.Main.main(Main.java:248)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(Unknown Source)
+	at java.base/java.lang.reflect.Method.invoke(Unknown Source)
+	at com.modrinth.theseus.MinecraftLaunch.relaunch(MinecraftLaunch.java:61)
+	at com.modrinth.theseus.MinecraftLaunch.main(MinecraftLaunch.java:28)
+Caused by: net.minecraft.nbt.NbtAccounterException: Tried to read NBT tag that was too big; tried to allocate: 2097146 + 8 bytes where max allowed: 2097152
+	at net.minecraft.nbt.NbtAccounter.accountBytes(NbtAccounter.java:47)
+	at net.minecraft.nbt.NbtAccounter.accountBytes(NbtAccounter.java:38)
+	at net.minecraft.nbt.ListTag$1.loadList(ListTag.java:47)
+	at net.minecraft.nbt.ListTag$1.load(ListTag.java:34)
+	at net.minecraft.nbt.ListTag$1.load(ListTag.java:29)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.ListTag$1.loadList(ListTag.java:51)
+	at net.minecraft.nbt.ListTag$1.load(ListTag.java:34)
+	at net.minecraft.nbt.ListTag$1.load(ListTag.java:29)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.CompoundTag.readNamedTagData(CompoundTag.java:501)
+	at net.minecraft.nbt.CompoundTag$1.loadCompound(CompoundTag.java:82)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:69)
+	at net.minecraft.nbt.CompoundTag$1.load(CompoundTag.java:64)
+	at net.minecraft.nbt.NbtIo.readTagSafe(NbtIo.java:190)
+	at net.minecraft.nbt.NbtIo.readUnnamedTag(NbtIo.java:185)
+	at net.minecraft.nbt.NbtIo.read(NbtIo.java:109)
+	at net.minecraft.nbt.NbtIo.readCompressed(NbtIo.java:50)
+	at net.minecraft.nbt.NbtIo.readCompressed(NbtIo.java:36)
+	at net.minecraft.world.level.storage.LevelStorageSource.readExistingSavedData(LevelStorageSource.java:164)
+	at net.minecraft.world.level.storage.LevelStorageSource.getLevelDataAndDimensions(LevelStorageSource.java:148)
+	at net.minecraft.client.gui.screens.worldselection.WorldOpenFlows.lambda$loadWorldStem$0(WorldOpenFlows.java:157)
+	at net.minecraft.server.WorldLoader.lambda$load$2(WorldLoader.java:46)
+	at java.base/java.util.concurrent.CompletableFuture$UniCompose.tryFire(Unknown Source)
+	at java.base/java.util.concurrent.CompletableFuture$Completion.exec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinTask.doExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool$WorkQueue.topLevelExec(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinPool.runWorker(Unknown Source)
+	at java.base/java.util.concurrent.ForkJoinWorkerThread.run(Unknown Source)

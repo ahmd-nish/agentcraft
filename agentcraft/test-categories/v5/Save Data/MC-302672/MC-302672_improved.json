@@ -1,0 +1,36 @@
+{
+  "key": "MC-302672",
+  "created_date": "2025-10-09T08:02:24.722-0700",
+  "updated_date": "2025-11-03T12:42:40.567-0800",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "25w41a"
+  ],
+  "fix_versions": [
+    "25w42a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 6,
+  "labels": [],
+  "resolution_date": "2025-10-12T23:34:18.300-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "\"Invalid player data\" error when loading a world in which you have an effect applied",
+  "environment_raw": "",
+  "description": "Workaround\n\nOpen your world\u2019s level.dat in an NBT editor such as this one, delete Data > Player > active_effects, save the file, replace your old level.dat with the edited one and load the world again.\n\nAttempting to load a world in which you have a potion effect fails with an \u201cInvalid player data\u201d error message.\n\nThis can be reproduced while riding a nautilus or giving yourself the effect using /effect and saving and leaving the world, then proceeding to play the world where you gave yourself the effect.\n\nExpected result\n\nThe world loads as normal.\n\nActual result\n\nThe world fails to load, displaying a server join attempt fail message, saying \u201cConnection Lost, Invalid player data\u201c.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new world with default settings.\n2. Enter the world and ride a nautilus until a potion effect is applied.\n3. Open the Esc menu and select \u201cSave and Quit to Title.\u201d\n4. Select \u201cSingleplayer\u201d and open the world again.\n5. Observe that the world fails to load and displays \u201cConnection Lost, Invalid player data.\u201d",
+  "Environment": "Minecraft Java Edition Version 25w41a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nAfter the player has an active status effect, saving and leaving the world causes the world to fail on the next load. This can occur after applying the effect with `/effect` or while riding a nautilus. Instead of entering the world, the game fails during the singleplayer server join attempt and displays:\n\n> Connection Lost  \n> Invalid player data\n\nThe world can be loaded again only after removing `Data > Player > active_effects` from the world\u2019s `level.dat` using an NBT editor.",
+  "Expected Behavior": "When loading a world after saving and leaving it while the player has an active potion effect, the world should load normally without displaying an \u201cInvalid player data\u201d or \u201cConnection Lost\u201d message. The player should be able to join and continue playing in the world, with the applied effect handled correctly rather than preventing the world from loading.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Save Data/MC-302672",
+  "improvement_metadata": {
+    "original_key": "MC-302672"
+  }
+}
