@@ -1,0 +1,44 @@
+{
+  "key": "MC-264003",
+  "created_date": "2023-07-02T18:43:52.276-0700",
+  "updated_date": "2026-08-10T02:33:54.211-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.1",
+    "1.20.4",
+    "24w04a",
+    "1.21.8"
+  ],
+  "fix_versions": [
+    "26.3 Snapshot 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "boat",
+    "ice",
+    "piston",
+    "slime_block"
+  ],
+  "resolution_date": "2026-06-16T09:17:16.828-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Boats carrying players sometimes stop abruptly when sliding along ice",
+  "environment_raw": "",
+  "description": "## The Bug\n\nWhen a boat with a player in it is pushed by a slime and piston, the boat slides across ice. However, a significant percent (10-20+%) amount of the time, the boat won't slide smoothly and will halt an arbitrary distance along the slide. This can range from adjacent to the slime block up to 10 (or more) blocks away. This occurs on all ices (frosted, regular, packed, blue). If there isn't a player in the boat, it slides as expected. \n\n## Opinion/Hypothesis\n\nOn repeated testing, it 'feels' like there is a race condition between the player's velocity (0m/s) and the boat's pushed velocity. So if the game figures on the players speed first, the boat halts. Similarly, if a player boards a boat that is sliding, it appears to halt the boat in place instantly. However, this error does not require the player to board the boat after it is moving. Simply be in a boat that gets pushed by a slime on a piston, and sporadically the boat will insta-halt.\n\n## Steps to Reproduce\n\n1. Create ice path ~10 blocks long [1-10].\n\n2. Put two non-pushable, non-sticky blocks at either end [0 & 11].\n\n3. Put slime blocks on top of non-stick blocks [Above 0 & 11].\n\n4. Put sticky pistons facing slime and ice path. Extend and retract pistons once so slime blocks are attached. (Pistons at/above -2 & 13. Slimes now above -1 & 12) \n\n5. Add block and button beside piston so player can extend piston while standing on the ice.\n\n6. Place boat in path of slime block.\n\n7. Get in boat.\n\n8. Push button to extend piston.\n\n9. Boat will be pushed and 'bounce' off of the slime block, move down the ice, and should collide with opposite slime block.\n\n10. Player can push button on this end to return. Repeat until error is observed.\n\nSee attached screenshots for example setup.\n\n## Observed Results\n\nNo error message is provided. \n\nSometimes1 the boat will not move beyond the end of the slime block. Sometimes^1^ it slides part way and stops. And usually it will slide the length of the ice and stop at the opposing slime block. ([1] \"sometimes\" varies between every time and once in 5 minutes) \n\n## Expected Results\n\nIn the given setup, a boat on ice with a rider should be able to perpetually alternate between the extending pistons+slime blocks. More specifically, a player should be able to extend the piston, and have the boat start sliding, then come to a gradual stop on the ice, or a hard stop only if they collide with an obstruction.\n\n## References\n\nUser on reddit reported similar error.\n\n## Support Files\n\nA compressed world save demonstrating the error has been attached. Uncompress. Load. Climb in boat. Release the lever and wait. The boat will eventually halt and a seemingly random location along the ice path. Usually in <30s. Longest I've waited to reproduce: 5 minutes. Too often it happens on the first piston extension.",
+  "Steps to Reproduce": "1. Uncompress the attached world save and load it.\n2. Enter the boat positioned on the ice path.\n3. Release the lever to activate the piston and slime-block mechanism.\n4. Wait up to 5 minutes for the boat to travel along the ice.\n5. Observe that the boat with the player sometimes stops abruptly at an arbitrary location before reaching the opposite slime block.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.1, 1.20.4, 24w04a, 1.21.8 (includes snapshots)",
+  "Observed Behavior": "When a player is riding the boat, extending the piston occasionally causes the boat to stop moving prematurely while sliding across the ice. The boat may:\n\n- Stop immediately after leaving the slime block;\n- Slide only partway along the ice path and then stop at an apparently arbitrary position; or\n- Travel the full path and stop at the opposite slime block as expected.\n\nThe premature stop occurs intermittently, roughly 10\u201320% of the time during repeated tests, although the frequency varies. It can occur on frosted, regular, packed, and blue ice. The boat can remain stationary even though there is no obstruction at its stopping position.\n\nThe issue has only been observed with a player riding in the boat. An unoccupied boat completes the slide normally under the same conditions. No error message or other visible indication is produced.",
+  "Expected Behavior": "When a player is riding in the boat, extending a piston with a slime block should propel the boat smoothly across the ice path without stopping prematurely at a random location. The boat should continue sliding until it reaches the opposing slime block or another obstruction, allowing repeated piston extensions to move it back and forth consistently on all ice types.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Player/MC-264003",
+  "improvement_metadata": {
+    "original_key": "MC-264003"
+  }
+}
