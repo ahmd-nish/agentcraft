@@ -1,0 +1,36 @@
+{
+  "key": "MC-275279",
+  "created_date": "2024-08-15T11:30:42.179-0700",
+  "updated_date": "2025-04-26T16:09:10.737-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w33a"
+  ],
+  "fix_versions": [
+    "24w35a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-22T02:27:13.551-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Raiders do not spawn on small islands even though there are close enough places around the village",
+  "environment_raw": "",
+  "description": "As the 24w33a changelog says:\n\n - A triggered raid will no longer start if the raiders cannot find a place to spawn within a reasonable distance of the village they are trying to raid\n\nHowever, I noticed that raiders sometimes would not spawn even if there are close enough places around the village.\n\nSteps to reporduce:\n\n - Create a default type world with seed: 23925373020405760\n\n - Teleport to 204 65 110\n\n - Place a composter at 202 62 111 and summon a villager beside it\n\n - Drink a ominous bottle\n\n - Wait for a minute and the raid ends without any raiders spawned\n\n - Repeat steps 4 and 5",
+  "Steps to Reproduce": "1. Create a default-type world using seed `23925373020405760`.\n2. Teleport to coordinates `204 65 110`.\n3. Place a composter at coordinates `202 62 111`.\n4. Summon a villager beside the composter.\n5. Drink an ominous bottle.\n6. Wait approximately one minute.\n7. Observe that the raid ends without any raiders spawning.\n8. Drink another ominous bottle to trigger the raid again.\n9. Wait approximately one minute.\n10. Observe that the raid again ends without any raiders spawning.",
+  "Environment": "Minecraft Java Edition Version 24w33a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nThe raid is triggered at the village formed around the villager and composter, but no raiders spawn on the small island or on the nearby surrounding terrain. Although suitable-looking spawn locations are within a short distance of the village, the raid remains without any spawned raiders and ends after approximately one minute. Repeating the process produces the same result.",
+  "Expected Behavior": "After drinking the ominous bottle, the triggered raid should start at the village, and raiders should spawn at valid locations within the nearby area, including the available places around the small island. The raid should not end without spawning any raiders when suitable locations are close enough to the village, and repeating the process should produce the same expected raid behavior.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Raids/MC-275279",
+  "improvement_metadata": {
+    "original_key": "MC-275279"
+  }
+}

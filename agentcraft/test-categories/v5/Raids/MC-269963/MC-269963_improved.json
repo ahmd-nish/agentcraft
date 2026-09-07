@@ -1,0 +1,36 @@
+{
+  "key": "MC-269963",
+  "created_date": "2024-03-27T11:58:58.180-0700",
+  "updated_date": "2025-04-29T10:07:18.412-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w13a"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-04-08T02:23:22.811-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Bad Omen is not removed when experimental features are disabled",
+  "environment_raw": "",
+  "description": "In previous versions, bad omen was immediately removed when the raid began. As of 24w13a it is not removed when the 1.21 experimental features are disabled. This means that any amount of omen causes infinite raids, as it restarts as soon as the previous raid ends.",
+  "Steps to Reproduce": "1. Launch Minecraft 24w13a.\n2. Create a new Creative world with the 1.21 experimental features disabled.\n3. Obtain the Bad Omen effect.\n4. Enter a village to start a raid.\n5. Wait until the raid begins.\n6. Observe that the Bad Omen effect is not removed when the raid begins.\n7. Wait until the raid ends.\n8. Observe that another raid starts because the Bad Omen effect remains.",
+  "Environment": "Minecraft Java Edition Version 24w13a (snapshot)",
+  "Observed Behavior": "### Actual behavior\n\nIn Java Edition 24w13a, when the 1.21 experimental features are disabled, entering a village while affected by Bad Omen starts a raid, but the Bad Omen effect is not removed when the raid begins. After the raid ends, the player still has Bad Omen, so remaining in or re-entering the village immediately starts another raid. This allows the same effect to trigger repeated, effectively infinite raids.",
+  "Expected Behavior": "When a raid begins, the player\u2019s Bad Omen effect should be removed immediately, even when the 1.21 experimental features are disabled. After the raid ends, the same Bad Omen should not remain active or trigger another raid automatically. This should prevent a single omen effect from causing repeated, effectively infinite raids.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Raids/MC-269963",
+  "improvement_metadata": {
+    "original_key": "MC-269963"
+  }
+}

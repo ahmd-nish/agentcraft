@@ -1,0 +1,43 @@
+{
+  "key": "MC-158389",
+  "created_date": "2019-08-04T08:55:49.416-0700",
+  "updated_date": "2025-04-26T08:21:41.401-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.14.4",
+    "1.17.1",
+    "21w38a",
+    "21w43a",
+    "1.18 Release Candidate 3",
+    "1.18.1",
+    "22w07a",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-15T08:39:25.076-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Raid results in victory if it cannot find a valid spawn point",
+  "environment_raw": "",
+  "description": "I gave myself bad omen and went into a village I built high in the sky. The raid bar filled up as normal, but then instantly drained and was declared a victory after moments (and no other waves generated). Video:\u00a0https://youtu.be/w49tvtNXvTk",
+  "Steps to Reproduce": "1. Create a Creative world.\n2. Build a village high in the sky.\n3. Give yourself Bad Omen.\n4. Enter the village to start a raid.\n5. Wait until the raid bar fills as normal.\n6. Observe that the raid bar instantly drains after moments, the raid is declared a victory, and no other waves are generated.",
+  "Environment": "Minecraft Java Edition Versions: 1.14.4, 1.17.1, 21w38a, 21w43a, 1.18 Release Candidate 3, 1.18.1, 22w07a, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nAfter entering the sky-built village while affected by **Bad Omen**, a raid starts and the raid bar fills normally. However, no raiders spawn because the raid cannot find a valid spawn location. After a short time, the raid bar immediately drains and the game declares **\u201cRaid victory\u201d**, even though no raid waves were generated and no raiders were defeated. \n\nVideo demonstration: https://youtu.be/w49tvtNXvTk",
+  "Expected Behavior": "When a raid is triggered in the sky-built village, the raid should not be declared victorious merely because no valid spawn point is available. The raid should remain active with its progress bar displayed, and no victory should be granted or waves skipped solely due to the lack of an immediately usable spawn location.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Raids/MC-158389",
+  "improvement_metadata": {
+    "original_key": "MC-158389"
+  }
+}

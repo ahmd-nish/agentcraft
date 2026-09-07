@@ -1,0 +1,38 @@
+{
+  "key": "MC-274911",
+  "created_date": "2024-08-04T07:24:20.844-0700",
+  "updated_date": "2026-08-20T04:36:07.245-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21",
+    "1.21.1 Release Candidate 1",
+    "1.21.1"
+  ],
+  "fix_versions": [
+    "24w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [],
+  "resolution_date": "2024-08-27T01:06:24.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "If the raid begins more than 112 blocks above the ground, all illagers will be summoned and the player wins",
+  "environment_raw": "",
+  "description": "Steps to Reproduce:\n\n1) Teleport up 120 blocks using this command\n\n/tp @s ~ ~120 ~\n\n2) Place villagers in a small space and provide them with beds\n\n3) Trigger a raid by drinking a bottle of bad omen\n\n4) Watch as illagers start to spawn and fall to the ground\n\nObserved Results:\n\nYou can see all the illagers being summoned to the ground without going through the waves.\n\nExpected Results:\n\nIf there is no land within 112 blocks of the raid point, the raid must end without starting.",
+  "Steps to Reproduce": "1. Create or open a world where commands can be used.\n2. From the ground, execute `/tp @s ~ ~120 ~`.\n3. Place villagers in a small space.\n4. Provide the villagers with beds.\n5. Drink a bottle of bad omen to trigger a raid.\n6. Wait until illagers start spawning and falling to the ground.\n7. Observe that all the illagers are summoned to the ground without going through the waves and that the player wins.",
+  "Environment": "Minecraft Java Edition Versions: 1.21, 1.21.1 Release Candidate 1, 1.21.1",
+  "Observed Behavior": "When the raid is started approximately 120 blocks above the nearest ground, the raid still begins even though no suitable ground is within 112 blocks of the raid location. Illagers are spawned in the air and fall toward the ground. The raid does not progress through its waves normally; instead, all raid illagers are spawned and the player is eventually given a raid victory.",
+  "Expected Behavior": "If there is no land within 112 blocks of the raid point, the raid should end without starting. No illagers should be summoned or fall to the ground, and the player should not be declared the winner. The raid should not proceed through its waves in this elevated location.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Raids/MC-274911",
+  "improvement_metadata": {
+    "original_key": "MC-274911"
+  }
+}
