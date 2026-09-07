@@ -1,0 +1,50 @@
+{
+  "key": "MC-174630",
+  "created_date": "2020-03-12T08:18:59.646-0700",
+  "updated_date": "2026-06-10T14:09:19.265-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.15.2",
+    "20w11a",
+    "20w18a",
+    "20w20b",
+    "20w22a",
+    "20w51a",
+    "1.16.5",
+    "21w06a",
+    "21w08b",
+    "1.18",
+    "1.20.2",
+    "1.20.4",
+    "24w11a",
+    "1.20.6",
+    "1.21"
+  ],
+  "fix_versions": [
+    "26.2 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2026-05-27T00:39:30.726-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The secondary beacon effect remains when switching the primary effect",
+  "environment_raw": "",
+  "description": "## The bug\n\nWhen you have selected a primary and a secondary effect (that is not regeneration), you can keep that effect even after you switch the primary effect. This allows a beacon to provide two different primary effects. \n\n## How to reproduce\n\n - Activate a beacon with a complete pyramid.\n\n/fill ~-4 ~-1 ~-4 ~4 ~-4 ~4 minecraft:iron_block\n/setblock ~ ~ ~ minecraft:beacon\n\n - Select Speed as the primary effect and Speed 2 as the secondary effect\n\n - Change the primary effect to Resistance without changing the secondary effect\n\n - Wait for the Speed 2 effect to run out\n\n Notice that you have both Speed and Resistance. Note that the beacon interface shows that the secondary effect is deactivated.\n\n## Expected behavior\n\nEither the beacon interface should shows that Speed 1 is active as secondary effect, OR the secondary (speed) effect should be removed when setting a different primary effect.",
+  "Steps to Reproduce": "1. Create a Creative world with default settings.\n2. Run `/fill ~-4 ~-1 ~-4 ~4 ~-4 ~4 minecraft:iron_block`.\n3. Run `/setblock ~ ~ ~ minecraft:beacon`.\n4. Open the beacon interface and select Speed as the primary effect and Speed 2 as the secondary effect.\n5. Confirm the beacon effect selection.\n6. Open the beacon interface and change the primary effect to Resistance without changing the secondary effect.\n7. Wait until the Speed 2 effect runs out.\n8. Observe that Speed and Resistance are both active, while the beacon interface shows that the secondary effect is deactivated.",
+  "Environment": "Minecraft Java Edition Versions: 1.15.2, 20w11a, 20w18a, 20w20b, 20w22a, 20w51a, 1.16.5, 21w06a, 21w08b, 1.18, 1.20.2, 1.20.4, 24w11a, 1.20.6, 1.21 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nAfter changing the primary effect from **Speed I** to **Resistance I**, the beacon retains **Speed** as its secondary effect internally, even though the beacon interface shows the secondary effect as inactive. Once the previously applied **Speed II** effect expires, the beacon continues granting **Speed I** alongside **Resistance I**.\n\nAs a result, the beacon provides two different primary effects while displaying only Resistance as active in its interface.",
+  "Expected Behavior": "When the beacon\u2019s primary effect is changed from Speed to Resistance, the previous Speed II secondary effect should not remain active invisibly. The beacon interface and applied effects should stay synchronized: Speed should either be shown and applied as the active level I secondary effect, or be removed when Resistance becomes primary. The player should not receive both effects unintentionally.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Beacon/MC-174630",
+  "improvement_metadata": {
+    "original_key": "MC-174630"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "key": "MC-214885",
+  "created_date": "2021-02-10T12:10:41.148-0800",
+  "updated_date": "2026-08-20T03:57:42.463-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w06a"
+  ],
+  "fix_versions": [
+    "21w07a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2021-02-16T07:56:12.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Beacon beam only render 256 blocks from source",
+  "environment_raw": "",
+  "description": "## The bug\n\nBeacon beam can only extend 256 blocks, despite the new height of -64 to 320. To replicate this, place one beacon above Y=64, and one below Y=64, and then fly up. Once you get 256 blocks away from the lower beacon, the beam will disappear, while the other beam remains.",
+  "Steps to Reproduce": "1. Create or enter a world where you can fly.\n2. Place one beacon above Y=64.\n3. Place a second beacon below Y=64.\n4. Fly upward until you are 256 blocks away from the lower beacon.\n5. Observe that the lower beacon\u2019s beam disappears while the other beacon\u2019s beam remains visible.",
+  "Environment": "Minecraft Java Edition Version 21w06a (snapshot)",
+  "Observed Behavior": "## Actual behavior\n\nIn Java Edition, an activated beacon\u2019s beam is no longer rendered when the player is more than 256 blocks away from the beacon block. The beam does not continue to be visible throughout the expanded world height range of Y=-64 to Y=320.\n\nFor example, place activated beacons at different heights, one above Y=64 and one below Y=64, then move upward. After the player is more than 256 blocks from the lower beacon, its beam disappears, while the beam from the higher beacon remains visible because it is still within 256 blocks of the player.",
+  "Expected Behavior": "The beacon beam should remain visible for the full expanded world height, from beacons below Y=64 through the upper build limit near Y=320. When moving more than 256 blocks away from the lower beacon, its beam should continue rendering rather than disappear, just as the beam from the higher beacon does. Both beacons should therefore remain consistently visible throughout the available vertical range.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Beacon/MC-214885",
+  "improvement_metadata": {
+    "original_key": "MC-214885"
+  }
+}

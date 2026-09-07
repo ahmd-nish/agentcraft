@@ -1,0 +1,36 @@
+{
+  "key": "MC-267273",
+  "created_date": "2023-12-10T23:14:32.524-0800",
+  "updated_date": "2025-04-26T15:14:25.106-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.4"
+  ],
+  "fix_versions": [
+    "24w03a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-08-01T08:22:11.701-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Second beacon power for level 4 beacon flickers when player hovers the mouse pointer over it",
+  "environment_raw": "",
+  "description": "When the player chooses a beacon power on a full beacon and then hovers the mouse over the second level of that power, the description popup flickers rapidly. This does not happen with the other beacon powers.\n\nTo reproduce:\n\n - Create a new world in creative mode. (This can also be reproduced in survival but creative mode is easier.)\n\n - Create a full beacon (4 levels).\n\n - Choose a beacon power (left side of beacon UI).\n\n - Hover the mouse over the icon for level 2 of that power (right side of beacon UI). The description popup will flicker rapidly.\n\nThe flickering cannot be seen for the other six power icons.\n\nA screenshot is attached showing where the problem will be seen.",
+  "Steps to Reproduce": "1. Create a new world in Creative mode.\n2. Create a full beacon with four levels.\n3. Open the beacon interface.\n4. Choose a beacon power from the left side of the interface.\n5. Hover the mouse pointer over the level 2 icon for that power on the right side of the interface.\n6. Observe that the description popup flickers rapidly; the flickering is not visible when hovering over the other six power icons.",
+  "Environment": "Minecraft Java Edition Version 1.20.4",
+  "Observed Behavior": "### Actual behavior\n\nIn the Beacon GUI, after a primary power is selected on a fully powered (four-level) beacon, hovering the cursor over that power\u2019s **Level II** option in the **Secondary Power** panel causes its description tooltip to rapidly flicker between appearing and disappearing. The tooltip continues flickering while the cursor remains stationary over the icon.\n\nThe issue occurs only for this Level II option; the other six power icons do not produce the flickering tooltip.",
+  "Expected Behavior": "When the player hovers over the level 2 icon for the selected beacon power on a fully powered, four-level beacon, the description popup should appear clearly and remain stable. It should not flicker or rapidly disappear and reappear, and its behavior should be consistent with the description popups for the other beacon power icons.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Beacon/MC-267273",
+  "improvement_metadata": {
+    "original_key": "MC-267273"
+  }
+}

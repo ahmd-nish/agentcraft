@@ -1,0 +1,59 @@
+{
+  "key": "MC-219507",
+  "created_date": "2021-03-14T07:01:43.231-0700",
+  "updated_date": "2026-08-27T02:34:35.441-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w10a",
+    "21w11a",
+    "21w13a",
+    "21w14a",
+    "21w15a",
+    "21w16a",
+    "21w17a",
+    "21w18a",
+    "21w19a",
+    "21w20a",
+    "1.17 Pre-release 1",
+    "1.17 Pre-release 2",
+    "1.17 Pre-release 3",
+    "1.17",
+    "1.17.1",
+    "21w38a",
+    "1.18 Pre-release 5",
+    "1.18 Release Candidate 1",
+    "1.18 Release Candidate 3",
+    "1.18"
+  ],
+  "fix_versions": [
+    "1.18.1 Pre-release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "beacon",
+    "beacon-pyramid",
+    "chunk-border"
+  ],
+  "resolution_date": "2021-12-03T03:44:46.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Beacon's power reverts back to previous one on world reload",
+  "environment_raw": "",
+  "description": "The beacon's power will back to the previous one (or not selected) after reloading the game if its pyramid was set on chunk borders. The change of power cannot appeared.\n\nReproduce:\n\nI made a video that we can know it clearer and easier to reproduce this issue. Its size was too large, so I post it on https://www.bilibili.com/video/BV1kq4y1D7T6 .\n\n - Put 9 available golden blocks (or iron blocks, diamond blocks, netherite blocks, emerald blocks) on the chunk border, then put a beacon.\n\n - Select power Speed.\n\n - Reload the game, select power Haste.\n\n - Reload the game again, the power is still Speed.\n\nAlso you can see that the subscribe shows \"Beacon activates\" after reloading the game. \u2190 This is probably another issue, but I just put it here.\n\nI created a new world, there're still problems.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Place 9 gold blocks so the pyramid is set on a chunk border.\n4. Place a beacon on top of the gold-block pyramid.\n5. Open the beacon interface and select Speed.\n6. Use Esc menu -> Save and Quit to Title, then reopen the same world.\n7. Open the beacon interface and select Haste.\n8. Use Esc menu -> Save and Quit to Title, then reopen the same world.\n9. Observe that the beacon's power has reverted to Speed, or that no power is selected, instead of remaining set to Haste.",
+  "Environment": "Minecraft Java Edition Versions: 21w10a, 21w11a, 21w13a, 21w14a, 21w15a, 21w16a, 21w17a, 21w18a, 21w19a, 21w20a, 1.17 Pre-release 1, 1.17 Pre-release 2, 1.17 Pre-release 3, 1.17, 1.17.1, 21w38a, 1.18 Pre-release 5, 1.18 Release Candidate 1, 1.18 Release Candidate 3, 1.18 (includes snapshots)",
+  "Observed Behavior": "When the beacon\u2019s level-one pyramid, consisting of nine mineral blocks, is placed across a chunk border, changing its primary power is not preserved correctly across world reloads. After selecting Speed and reloading the world, the beacon initially retains Speed. Selecting Haste and confirming the change appears to work, but after reloading the world again, the beacon has reverted to Speed, or in some cases no power is selected, instead of retaining Haste. The issue also occurs in a newly created world. After reloading, the game may additionally display the \u201cBeacon activates\u201d notification even though the beacon was already configured before the reload; this may be a separate issue. A video demonstrating the behavior is available at https://www.bilibili.com/video/BV1kq4y1D7T6.",
+  "Expected Behavior": "The beacon should retain its newly selected power after the world is reloaded, even when its pyramid is built across chunk borders. After changing the power from Speed to Haste, Haste should remain selected and active following subsequent reloads, rather than reverting to Speed or becoming unselected. The beacon should continue functioning normally as long as its pyramid remains valid.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Beacon/MC-219507",
+  "improvement_metadata": {
+    "original_key": "MC-219507"
+  }
+}
