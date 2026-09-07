@@ -1,0 +1,60 @@
+{
+  "key": "MC-183784",
+  "created_date": "2020-05-13T09:49:41.136-0700",
+  "updated_date": "2025-08-07T04:30:11.171-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w20a",
+    "1.16.1",
+    "20w30a",
+    "1.16.4 Pre-release 2",
+    "1.16.4",
+    "20w46a",
+    "20w49a",
+    "20w51a",
+    "21w03a",
+    "1.17.1",
+    "21w42a",
+    "1.18.1",
+    "1.18.2",
+    "22w13a",
+    "1.19",
+    "1.19.2",
+    "1.19.4",
+    "23w12a",
+    "1.20.1",
+    "1.20.6",
+    "24w19b",
+    "1.21.4",
+    "1.21.5"
+  ],
+  "fix_versions": [
+    "25w33a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [
+    "game-mode-switcher"
+  ],
+  "resolution_date": "2025-08-07T04:30:11.102-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Visual bug to the Game Mode Switcher debug menu after resizing the window",
+  "environment_raw": "",
+  "description": "## The Bug\n\nWhen changing the window size while the menu is open, the icons appear glitched out\n\n## Steps to Reproduce\n\n - Bring up the gamemode switcher menu. (Hold F3 and press F4).\n\n - Whilst still having this menu open, resize your game window.\n\n - Take note as to whether or not gamemode switcher icons are duplicated after resizing your game window.\n\n## Observed Behavior\n\nGamemode switcher icons are duplicated after resizing your game window.\n\n## Expected Behavior\n\nGamemode switcher icons would not be duplicated after resizing your game window.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Select Singleplayer and create a Creative world with default settings.\n3. Enter the world.\n4. Hold F3 and press F4 to open the Game Mode Switcher debug menu.\n5. Resize the game window while the Game Mode Switcher menu remains open.\n6. Observe whether the Game Mode Switcher icons are duplicated or glitched.",
+  "Environment": "Minecraft Java Edition Versions: 20w20a, 1.16.1, 20w30a, 1.16.4 Pre-release 2, 1.16.4, 20w46a, 20w49a, 20w51a, 21w03a, 1.17.1, 21w42a, 1.18.1, 1.18.2, 22w13a, 1.19, 1.19.2, 1.19.4, 23w12a, 1.20.1, 1.20.6, 24w19b, 1.21.4, 1.21.5 (includes snapshots)",
+  "Observed Behavior": "While the Game Mode Switcher overlay is open, resizing the game window causes its game mode icons to render more than once. The duplicated icons overlap or remain visible alongside the correctly positioned icons, resulting in a visually corrupted switcher menu. The issue affects the overlay\u2019s rendering; no change to the available game modes or the player\u2019s selected game mode is observed.",
+  "Expected Behavior": "While the Game Mode Switcher debug menu is open, resizing the game window should preserve the menu\u2019s visual integrity. Each game mode icon should remain correctly rendered as a single icon in its intended position, without duplication, distortion, or other visual glitches. The menu should continue to display the available game modes normally after the window has been resized.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Debug/MC-183784",
+  "improvement_metadata": {
+    "original_key": "MC-183784"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "key": "MC-236295",
+  "created_date": "2021-09-10T15:43:25.935-0700",
+  "updated_date": "2025-04-26T13:49:35.006-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17.1",
+    "21w38a",
+    "1.19",
+    "1.19.2"
+  ],
+  "fix_versions": [
+    "24w45a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-11-06T08:35:46.622-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The game does not report absent particle texture references in models to the output log",
+  "environment_raw": "",
+  "description": "## The bug\n\nThe game does not output empty particle texture reference warnings in the console at all, even though it results in use of the missing texture.\n\n## How to reproduce\n\nAttached are four resource packs which each modify the model for minecraft:stone. These resource packs should be applied independently of each other.\n\nFor the purpose of this report, each of the four resource packs is made to be flawed in some sense, as to demonstrate specific cases of absent or invalid references to textures, and the game's reaction to each:\n\n - stone-no-block-texture does not reference a texture to use for the block itself\n\n - stone-invalid-block-texture references a nonexistent texture to use for the block\n\n - stone-no-particle-texture does not reference a texture to use for the particles produced by the block\n\n - stone-invalid-particle-texture references a nonexistent texture to use for the particles produced by the block\n\nTo reproduce this issue, firstly make sure no other resource packs are applied, and then:\n\n - Apply one of the four resource packs\n\n - Pay close attention to the game's output log to check for any errors with the resource packs, noting which errors appear with each pack\n\n - Once the resource pack is done loading, place and break stone blocks to check for missing textures, noting where they occur\n\n - Repeat this with the other three resource packs\n\n## Expected result\n\nAs the missing texture is never, under any circumstances, meant to be used or seen in-game, outside of cases where resources are misconfigured to a point where it must show up, it'd be expected that a warning be shown in the game logs regarding the use of the texture to notify resource pack developers to its presence in cases that may otherwise be overlooked.\n\n## Actual result\n\nThe game only appears to output an explicit error in cases where an invalid texture is specified.\n\n - stone-no-block-texture: \n \n\n \nUnable to resolve texture reference: #texture in minecraft:block/stone\n\n - The block uses the missing texture on all sides:\n\n - \n\n \n\n \n\n - stone-invalid-block-texture: \n \n\n \nUsing missing texture, unable to load minecraft:textures/block/nonexistent_texture.png : java.io.FileNotFoundException: minecraft:textures/block/nonexistent_texture.png\n\n - The block uses the missing texture on all sides:\n\n - \n\n \n\n \n\n - stone-no-particle-texture: \n \n\n \nAbsolutely no console output at all indicating that a missing texture is used!\n\n - The block uses the missing texture for its particles:\n\n - \n\n \n\n \n\n - stone-invalid-particle-texture: \n \n\n \nUsing missing texture, unable to load minecraft:textures/block/nonexistent_texture.png : java.io.FileNotFoundException: minecraft:textures/block/nonexistent_texture.png\n\n - The block uses the missing texture for its particles:\n\n - \n\n \n\n \n\n## Further notes\n\nNot only is this internally inconsistent among these four detailed cases, it's also inconsistent with other related resource pack errors, such as invalid models, blockstates files referencing nonexistent models, sound events pointing to nonexistent sounds, and so on.\n\nIn addition, the unresolved texture reference output for textures which do in fact see direct use within the model could be considered somewhat incomplete, as it doesn't explicitly announce that the missing texture will be used, only hinting that there may be one. I can't think of any cases where the message would show up where the missing texture wouldn't end up being used, however it might be a good idea to output the \"Using missing texture\" error after such cases as well.\n\nErrors should only be reported by models which end up being directly used in the game - template models which define no textures by themselves but are referenced by other models which apply their own textures should not report anything to the log.",
+  "Steps to Reproduce": "1. Launch Minecraft.\n2. Create a new Creative world with default settings.\n3. Open the resource pack selection screen, make sure no other resource packs are applied, and apply the attached `stone-no-particle-texture` resource pack.\n4. Wait until the resource pack finishes loading.\n5. Place a stone block.\n6. Break the stone block.\n7. Observe that the breaking particles use the missing texture, while the output log contains no warning indicating that the particle texture is missing.",
+  "Environment": "Minecraft Java Edition Versions: 1.17.1, 21w38a, 1.19, 1.19.2 (includes snapshots)",
+  "Observed Behavior": "When the model for minecraft:stone omits the block texture reference, the game logs \u201cUnable to resolve texture reference: #texture in minecraft:block/stone\u201d and renders the missing texture on all block faces. When the model specifies a nonexistent block texture, the game logs \u201cUsing missing texture, unable to load minecraft:textures/block/nonexistent_texture.png\u201d followed by a FileNotFoundException and renders the missing texture on all block faces. When the model omits the particle texture reference, the game produces no output-log warning or error, even though breaking or otherwise interacting with the block causes its particles to use the missing texture. When the model specifies a nonexistent particle texture, the game does log the same missing-texture loading error and FileNotFoundException as for an invalid block texture, and the block\u2019s particles use the missing texture. Thus, absent particle texture references are handled inconsistently with invalid particle texture references and with absent or invalid block texture references, because the missing reference is not reported despite producing a visible missing-texture result.",
+  "Expected Behavior": "When a directly used model lacks a particle texture reference, the game should report a clear warning in the output log indicating that the missing texture will be used for particles. Warnings should also remain consistent for invalid particle and block texture references, while unused template models should not produce misleading messages. This should notify resource pack developers whenever misconfigured resources result in the missing texture being displayed.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Debug/MC-236295",
+  "improvement_metadata": {
+    "original_key": "MC-236295"
+  }
+}

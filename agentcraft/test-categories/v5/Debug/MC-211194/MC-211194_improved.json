@@ -1,0 +1,52 @@
+{
+  "key": "MC-211194",
+  "created_date": "2021-01-11T17:46:40.146-0800",
+  "updated_date": "2025-04-30T05:41:31.733-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "20w51a",
+    "21w03a",
+    "21w05b",
+    "21w06a",
+    "21w07a",
+    "21w08b",
+    "21w10a",
+    "21w11a",
+    "21w16a",
+    "1.17 Pre-release 4",
+    "1.17.1",
+    "21w39a",
+    "1.18 Release Candidate 4",
+    "1.18",
+    "1.18.2",
+    "22w14a",
+    "1.19.3"
+  ],
+  "fix_versions": [
+    "23w05a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-02-01T15:31:36.583-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Debug worlds are shown as being created in the incorrect game mode",
+  "environment_raw": "",
+  "description": "## The bug\n\nWhen normally creating a debug world, the player is put in spectator mode: they can look, but can't touch. In the 1.17 snapshots, this is still the case.\n\nHowever, now, the game mode for a debug world is not shown as \"Spectator\" on the world creation screen. In previous versions, this was correctly shown as \"Spectator\".\n\nWhen generating the world, as said above, the player is put into spectator mode correctly.\n\nThis issue relates to\u00a0MC-205076, but I am reporting it separately, as spectator mode is not part of the order described in\u00a0MC-205076. Additionally, the text shown on the world creation screen is different than the actual behaviour, which is not the case in\u00a0MC-205076.\n\n## How to reproduce\n\n - Open Minecraft -> Singleplayer -> Create New World -> More World Options...\n\n - Hold down the alt key (option) while toggling the World Type button, until you reach Debug Mode\n\n - Click Done\n\n The Game Mode is shown incorrectly\n\n - Click Create New World\n\n Your Game Mode is Spectator, as intended\n\n## Additional information\n\nA screenshot demonstrating this issue has been attached, taken in snapshot 20w51a:",
+  "Steps to Reproduce": "1. Launch Minecraft snapshot 20w51a.\n2. Open Singleplayer.\n3. Select Create New World.\n4. Open More World Options.\n5. Hold the Alt key while toggling the World Type button until Debug Mode is selected.\n6. Click Done.\n7. Observe that the displayed Game Mode is not Spectator.\n8. Click Create New World.\n9. Observe that the player is placed in Spectator mode and can look around but cannot interact with the world.",
+  "Environment": "Minecraft Java Edition Versions: 20w51a, 21w03a, 21w05b, 21w06a, 21w07a, 21w08b, 21w10a, 21w11a, 21w16a, 1.17 Pre-release 4, 1.17.1, 21w39a, 1.18 Release Candidate 4, 1.18, 1.18.2, 22w14a, 1.19.3 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen **Debug Mode** is selected on the world creation screen, the **Game Mode** display does not show **Spectator**, even though debug worlds are created with the player in Spectator mode.\n\nAfter the world is created, the player is correctly placed in Spectator mode and cannot interact with or modify the world. The issue is limited to the game mode information shown in the world creation UI, which does not match the mode that will actually be used.",
+  "Expected Behavior": "When a debug world is selected on the world creation screen, the displayed game mode should be \u201cSpectator,\u201d matching the mode used after the world is created. Creating the debug world should place the player in Spectator mode, allowing them to look around without interacting with or modifying the world. The displayed setting and actual in-game behavior should be consistent.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Debug/MC-211194",
+  "improvement_metadata": {
+    "original_key": "MC-211194"
+  }
+}

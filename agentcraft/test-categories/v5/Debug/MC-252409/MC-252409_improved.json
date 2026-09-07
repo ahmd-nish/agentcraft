@@ -1,0 +1,51 @@
+{
+  "key": "MC-252409",
+  "created_date": "2022-06-02T04:01:25.785-0700",
+  "updated_date": "2025-04-11T10:31:58.108-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.18.2",
+    "1.19 Pre-release 5",
+    "1.19 Release Candidate 1",
+    "1.19 Release Candidate 2",
+    "1.19",
+    "1.19.1 Pre-release 1",
+    "1.19.1 Pre-release 2",
+    "1.19.1 Pre-release 5",
+    "1.19.1 Release Candidate 2",
+    "1.19.1",
+    "1.19.2",
+    "22w45a",
+    "1.19.3",
+    "1.19.4",
+    "1.20.1",
+    "1.20.3 Release Candidate 1"
+  ],
+  "fix_versions": [
+    "23w51a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-12-12T01:22:50.397-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Memory statistics within the debug menu contain some unnecessary spaces",
+  "environment_raw": "",
+  "description": "## The Bug:\n\nMemory statistics within the debug menu contain some unnecessary spaces.\n\nSee MC-252409 - Analysis.png for all occurrences of this issue.\n\n## Steps to Reproduce:\n\n - Enable the debug menu by hitting the \"F3\" key.\n\n - Look towards the top right of the debug menu and look closely at the memory statistics.\n\n - Take note as to whether or not memory statistics within the debug menu contain some unnecessary spaces.\n\n## Observed Behavior:\n\nUnnecessary spaces are present.\n\n## Expected Behavior:\n\nUnnecessary spaces would not be present.\n\n## Code Analysis:\n\nCode analysis by\u00a0Avoma\u00a0can be found below.\n\nThe following is based on a decompiled version of Minecraft 1.19 Release Candidate 1 using Mojang mappings.\n\nnet.minecraft.client.gui.components.DebugScreenOverlay.java\n\npublic class DebugScreenOverlay extends GuiComponent {\n ...\n \u00a0 protected List<String> getSystemInformation() {\n ...\n \u00a0 \u00a0 \u00a0ArrayList arrayList = Lists.newArrayList((Object[])new String[]{String.format(\"Java: %s %dbit\", System.getProperty(\"java.version\"), this.minecraft.is64Bit() ? 64 : 32), String.format(\"Mem: % 2d%% %03d/%03dMB\", l4 * 100L / l, DebugScreenOverlay.bytesToMegabytes(l4), DebugScreenOverlay.bytesToMegabytes(l)), String.format(\"Allocation rate: %03dMB /s\", DebugScreenOverlay.bytesToMegabytes(this.allocationRateCalculator.bytesAllocatedPerSecond(l4))), String.format(\"Allocated: % 2d%% %03dMB\", l2 * 100L / l, DebugScreenOverlay.bytesToMegabytes(l2)), \"\", String.format(\"CPU: %s\", GlUtil.getCpuInfo()), \"\", String.format(\"Display: %dx%d (%s)\", Minecraft.getInstance().getWindow().getWidth(), Minecraft.getInstance().getWindow().getHeight(), GlUtil.getVendor()), GlUtil.getRenderer(), GlUtil.getOpenGLVersion()});\n ...\n\nIf we look at the above class, we can see that memory statistics within the debug menu contain some unnecessary spaces. This is evident through the following pieces of code:\n\n... String.format(\"Mem: % 2d%% %03d/%03dMB\" ...\n\n... String.format(\"Allocation rate: %03dMB /s\" ...\n\n... String.format(\"Allocated: % 2d%% %03dMB\" ...",
+  "Steps to Reproduce": "1. Launch Minecraft 1.19 Release Candidate 1.\n2. Create a new Creative world with default settings.\n3. Enter the world.\n4. Press F3 to open the debug screen.\n5. Observe the memory statistics in the top-right area of the debug screen for unnecessary spaces.",
+  "Environment": "Minecraft Java Edition Versions: 1.18.2, 1.19 Pre-release 5, 1.19 Release Candidate 1, 1.19 Release Candidate 2, 1.19, 1.19.1 Pre-release 1, 1.19.1 Pre-release 2, 1.19.1 Pre-release 5, 1.19.1 Release Candidate 2, 1.19.1, 1.19.2, 22w45a, 1.19.3, 1.19.4, 1.20.1, 1.20.3 Release Candidate 1 (includes snapshots)",
+  "Observed Behavior": "The F3 debug screen displays extra whitespace in the memory statistics at the top right:\n\n- The `Mem` and `Allocated` lines include an additional leading space before positive percentage values because their format string uses `% 2d`. This can result in two spaces between the label\u2019s colon and the percentage value, such as `Mem:  5%`.\n- The `Allocation rate` line contains a space between the value and the unit separator, producing output such as `Allocation rate: 012MB /s`.\n\nThese spaces are formatting artifacts and are not needed for displaying the statistics.",
+  "Expected Behavior": "The debug menu\u2019s memory statistics should be displayed without unnecessary spaces. The \u201cMem\u201d and \u201cAllocated\u201d percentage values should use consistent spacing, and the \u201cAllocation rate\u201d value should not contain an extra space before \u201c/s\u201d. All memory-related entries should remain clearly readable and correctly formatted while preserving the values shown.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Debug/MC-252409",
+  "improvement_metadata": {
+    "original_key": "MC-252409"
+  }
+}
