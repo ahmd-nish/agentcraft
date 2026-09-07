@@ -1,0 +1,39 @@
+{
+  "key": "MC-229209",
+  "created_date": "2021-06-15T21:56:50.034-0700",
+  "updated_date": "2025-04-29T09:51:59.936-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.17",
+    "1.17.1",
+    "1.19.3",
+    "1.20.2"
+  ],
+  "fix_versions": [
+    "1.20.5 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-04-21T10:37:21.492-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Loot table function set_count doesn't work with unstackable items anymore",
+  "environment_raw": "",
+  "description": "Issue\n\nAfter updating to 1.17 I discovered that the set_count function for a loot table only outputs a single item to the player when it had previously given the intended amount throughout the 1.16 releases. Note this applies to all count settings including exact, range, and binomial. The error only applies to unstackable items such as saddles and minecarts, in 1.16 multiple slots would be filled with a single unstackable item but now there is only one.\n\nRecreate\n\nRecreating this issue is simple and all you have to do is create a loot table with one roll that uses a function to set the count of an item. To assist with this report I have attached raw code, screenshots showing the transition between versions, and a map in 1.16.5 that contains all of the necessary loot tables.\n\nCode 1: set_count exact (format 2)\n\n{\n \"type\": \"minecraft:entity\",\n \"pools\": [\n {\n \"rolls\": 1,\n \"entries\": [\n {\n \"type\": \"item\",\n \"weight\": 1,\n \"name\": \"minecraft:saddle\",\n \"functions\": [\n {\n \"function\": \"set_count\",\n \"count\": 2\n },\n {\n \"function\": \"set_nbt\",\n \"tag\": \"{CustomModelData:7}\"\n },\n {\n \"function\": \"set_name\",\n \"name\": [\n {\n \"text\": \"Exact Format 2\",\n \"color\": \"white\",\n \"bold\": \"true\"\n }\n ]\n }\n ]\n }\n ]\n }\n ]\n}\n\nCode 2: set_count range\n\n{\n \"type\": \"minecraft:entity\",\n \"pools\": [\n {\n \"rolls\": 1,\n \"entries\": [\n {\n \"type\": \"minecraft:item\",\n \"name\": \"minecraft:saddle\",\n \"functions\": [\n {\n \"function\": \"minecraft:set_count\",\n \"count\": {\n \"min\": 2,\n \"max\": 4\n }\n },\n {\n \"function\": \"minecraft:set_nbt\",\n \"tag\": \"{CustomModelData:7}\"\n },\n {\n \"function\": \"minecraft:set_name\",\n \"name\": [\n {\n \"text\": \"Range\",\n \"color\": \"white\",\n \"bold\": true\n }\n ]\n }\n ]\n }\n ]\n }\n ]\n}\n\n\u00a0Code 3: set_count binomial\n\n{\n \"type\": \"minecraft:entity\",\n \"pools\": [\n {\n \"rolls\": 1,\n \"entries\": [\n {\n \"type\": \"minecraft:item\",\n \"name\": \"minecraft:saddle\",\n \"functions\": [\n {\n \"function\": \"minecraft:set_count\",\n \"count\": {\n \"type\": \"minecraft:binomial\",\n \"n\": 4,\n \"p\": 1\n }\n },\n {\n \"function\": \"minecraft:set_nbt\",\n \"tag\": \"{CustomModelData:7}\"\n },\n {\n \"function\": \"minecraft:set_name\",\n \"name\": [\n {\n \"text\": \"Binomial\",\n \"color\": \"white\",\n \"bold\": true\n }\n ]\n }\n ]\n }\n ]\n }\n ]\n}\n\nNotes\n\n At first I thought it was because of the format I used to compress NBT data into one line. However, after changing the format I realized that this has no effect.\n\nCode 4: Compressed NBT (format 1)\n\n{\n \"function\": \"minecraft:set_nbt\",\"tag\": \"{display:{Name:'{\\\"text\\\":\\\"Exact Format 1\\\",\\\"color\\\":\\\"white\\\",\\\"bold\\\":true}'},CustomModelData:7}\"\n}\n\nCode 5: Simplified NBT (format 2)\n\n\"functions\": [\n {\n \"function\": \"set_count\",\n \"count\": 2\n },\n {\n \"function\": \"set_nbt\",\n \"tag\": \"{CustomModelData:7}\"\n },\n {\n \"function\": \"set_name\",\n \"name\": [\n {\n \"text\": \"Exact Format 2\",\n \"color\": \"white\",\n \"bold\": \"true\"\n }\n ]\n }",
+  "Steps to Reproduce": "1. Launch Minecraft 1.16.5 and open the attached map containing the loot tables.\n2. Use the map\u2019s existing setup to generate the loot table that contains one roll, a saddle entry, and `set_count` with an exact count of 2.\n3. Observe that the generated output contains two saddles in separate inventory slots.\n4. Launch Minecraft 1.17 and open the same map.\n5. Use the map\u2019s existing setup to generate the same exact-count loot table.\n6. Observe that the generated output contains only one saddle instead of two.\n7. Repeat the generation in Minecraft 1.17 with the range definition (`min`: 2, `max`: 4) and the binomial definition (`n`: 4, `p`: 1).\n8. Observe that each unstackable-item output contains only one saddle, rather than filling multiple inventory slots with the count produced by `set_count`.",
+  "Environment": "Minecraft Java Edition Versions: 1.17, 1.17.1, 1.19.3, 1.20.2",
+  "Observed Behavior": "### Actual behavior\n\nIn Minecraft 1.17, a loot table entry using the `set_count` function produces only one instance of an unstackable item, even when the function resolves to a count greater than 1. For example, an entry that sets a saddle\u2019s count to `2` gives the player only one saddle.\n\nThis occurs with all tested `set_count` formats:\n\n- An exact integer count, such as `\"count\": 2`\n- A range count, such as `\"min\": 2, \"max\": 4`\n- A binomial count, such as `\"n\": 4, \"p\": 1`\n\nThe issue affects unstackable items such as saddles and minecarts. In 1.16 releases, the same loot tables generated the requested number of items by placing each item in a separate inventory slot. In 1.17, only one item is generated or given to the player instead. The behavior is not caused by the formatting of the loot table JSON or by the other item functions (`set_nbt` and `set_name`).",
+  "Expected Behavior": "Loot tables using the `set_count` function should grant the full number of unstackable items specified by exact, range, or binomial count settings. Items such as saddles and minecarts should be distributed across multiple inventory slots when necessary, just as they were in 1.16, rather than being reduced to a single item. This behavior should work consistently regardless of the loot table\u2019s formatting.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Loot tables/MC-229209",
+  "improvement_metadata": {
+    "original_key": "MC-229209"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "key": "MC-270584",
+  "created_date": "2024-04-10T08:53:50.588-0700",
+  "updated_date": "2026-08-20T04:34:42.031-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.4",
+    "1.20.5 Pre-Release 1",
+    "1.20.5 Pre-Release 3",
+    "1.20.5",
+    "1.20.6",
+    "24w20a",
+    "24w21b",
+    "1.21 Pre-Release 1",
+    "1.21",
+    "1.21 Release Candidate 1"
+  ],
+  "fix_versions": [
+    "24w19a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-06-25T01:58:01.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Vault/Ominous Vault loot isn't predetermined, allowing players to create backups of their worlds to get desired rewards",
+  "environment_raw": "",
+  "description": "This only realistically affects singleplayer. When you open a vault, you get a different set of rewards each time if you've created multiple copies of a world. This means for example, if you see a heavy core in an ominous vault, it's theoretically a guaranteed chance to get it simply by making copies of your world before opening the vault, repeating the process until you eventually get it.\n\nSteps to reproduce:\n\n1. Find a trial chamber and locate a vault.\n\n2. Press F3+C to copy your coordinates.\n\n3. Exit and make a copy of that world.\n\n4. Open that vault in one of the copies of the world.\n\n5. Open that same vault in the other copy of your world.\n\nObserved results: I got a different set of rewards each time.\n\nExpected results: I should get the same set of rewards each time.\n\nVideo demonstrating the issue: https://youtu.be/MFutDmMbWj8",
+  "Steps to Reproduce": "1. Enter a singleplayer world and find a trial chamber.\n2. Locate a vault in the trial chamber.\n3. Press F3+C to copy the vault\u2019s coordinates.\n4. Use the Esc menu -> Save and Quit to Title.\n5. In Singleplayer, select the world and choose Edit -> Open World Folder.\n6. Make a copy of the world folder.\n7. Open one copy of the world and travel to the copied coordinates.\n8. Open the vault at those coordinates.\n9. Open the other copy of the world, travel to the same coordinates, and open the same vault.\n10. Observe that the two copies provide different sets of rewards from the vault.",
+  "Environment": "Minecraft Java Edition Versions: 1.20.4, 1.20.5 Pre-Release 1, 1.20.5 Pre-Release 3, 1.20.5, 1.20.6, 24w20a, 24w21b, 1.21 Pre-Release 1, 1.21, 1.21 Release Candidate 1 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nThe vault\u2019s loot is generated when it is opened rather than being fixed in the world beforehand. If the world is copied before opening the vault, opening the same vault at the same coordinates in each copy can produce different rewards, even when both copies have identical pre-opening world states. This also applies to ominous vaults; for example, repeatedly restoring a pre-opening backup can be used to reroll the rewards until a heavy core or another desired item is obtained. This primarily affects single-player worlds, where players can freely create and restore world copies.",
+  "Expected Behavior": "When the same vault or ominous vault is opened in separate copies of the same world, it should generate the identical set of rewards each time. The vault\u2019s loot should be predetermined for that vault, so restoring or duplicating the world should not allow players to reroll the rewards and repeatedly open copies until obtaining a desired item such as a heavy core.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Loot tables/MC-270584",
+  "improvement_metadata": {
+    "original_key": "MC-270584"
+  }
+}

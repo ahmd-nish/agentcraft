@@ -1,0 +1,37 @@
+{
+  "key": "MC-276433",
+  "created_date": "2024-09-06T03:09:16.090-0700",
+  "updated_date": "2025-04-26T16:40:31.616-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.1",
+    "24w36a"
+  ],
+  "fix_versions": [
+    "24w37a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2024-09-09T02:01:14.155-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "set_enchantments function removes enchantments component from books",
+  "environment_raw": "",
+  "description": "Steps to reproduce:\n\n - Create/open a world with the attached data pack applied: MC-276433.zip\n\n - Run /loot give @s loot test:test\n\n - While holding the enchanted book, run /data get entity @s SelectedItem.components.\"!minecraft:enchantments\"\n\nObserved result:\n\nThe command outputs:\n\n<username> has the following entity data: {}\n\nExpected result:\n\nThe command outputs:\n\nFound no elements matching SelectedItem.components.\"!minecraft:enchantments\"\n\nSteps to reproduce (vanilla):\n\n - Go to a trial chamber\n\n - Open ominous vaults until you get an enchanted book. Keep opening ominous vaults until you get a wind burst enchanted book.\n\n - Disenchant the book you just obtained from the ominous vault using a grindstone\n\n - Try to enchant the book you just disenchanted in an enchantment table\n\n - Try to stack the book with other normal books\n\nObserved result:\n\nThe book that was obtained and disenchanted from the trial chambers will not stack with other books and cannot be enchanted. After checking with advanced tooltips, this book only has 8 components, compared to normal book items with 9 components. After examining this glitched item in an nbt editor, the book had a minecraft:enchantments component removed. This is what was causing the book to not stack with other normal book items and not be enchantable by normal means.\n\nExpected result:\n\nThe book that was obtained and disenchanted from the trial chambers should stack with other books and should be enchanted.\n\nNotes:\n\nThis does not happen with other enchanted items, nor does it happen when name is set to minecraft:enchanted_book instead of minecraft:book.",
+  "Steps to Reproduce": "1. Create or open a world with the attached data pack `MC-276433.zip` applied.\n2. Run `/loot give @s loot test:test`.\n3. Hold the enchanted book obtained from the loot command.\n4. Run `/data get entity @s SelectedItem.components.\"!minecraft:enchantments\"`.\n5. Observe that the command outputs `<username> has the following entity data: {}` instead of reporting that no elements match the specified component.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.1, 24w36a (includes snapshots)",
+  "Observed Behavior": "The `set_enchantments` function removes the `minecraft:enchantments` component when it processes an enchanted book whose item ID is `minecraft:book`. With the attached data pack, running `/loot give @s loot test:test` and then checking `SelectedItem.components.\"!minecraft:enchantments\"` returns `{}`, indicating that the component is present instead of absent. The same issue occurs in vanilla when a Wind Burst enchanted book obtained from an ominous vault in a trial chamber is disenchanted using a grindstone. The resulting book has eight components instead of the nine components present on a normal book, cannot be enchanted in an enchanting table, and does not stack with normal books because its `minecraft:enchantments` component has been removed. This behavior does not occur with other enchanted item types or when the item ID is `minecraft:enchanted_book` rather than `minecraft:book`.",
+  "Expected Behavior": "The `set_enchantments` function should preserve the book\u2019s enchantments component, so querying for its absence should find no matching elements rather than return an empty component. After an enchanted book is disenchanted, it should remain a normal book that stacks with other books and can be enchanted again in an enchanting table, without losing compatibility because of its origin.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Loot tables/MC-276433",
+  "improvement_metadata": {
+    "original_key": "MC-276433"
+  }
+}
