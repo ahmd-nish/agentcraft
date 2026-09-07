@@ -1,0 +1,59 @@
+{
+  "key": "MC-189837",
+  "created_date": "2020-06-15T07:48:13.073-0700",
+  "updated_date": "2026-08-27T02:16:07.534-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.16 Pre-release 5",
+    "1.16 Pre-release 6",
+    "1.16.1",
+    "20w28a",
+    "20w29a",
+    "1.16.2 Pre-release 2",
+    "1.16.2",
+    "1.16.3",
+    "20w49a",
+    "1.16.5",
+    "1.17",
+    "1.17.1 Pre-release 1",
+    "1.17.1 Pre-release 3",
+    "1.17.1",
+    "21w38a",
+    "1.18 Pre-release 5",
+    "1.18.1",
+    "1.19.2",
+    "1.20.2",
+    "1.21",
+    "1.21.5",
+    "25w20a"
+  ],
+  "fix_versions": [
+    "25w45a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 3,
+  "labels": [
+    "rendering"
+  ],
+  "resolution_date": "2025-11-05T09:47:29.098-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Nether fog is dark after rejoining a world that is thunder storming in the Overworld",
+  "environment_raw": "",
+  "description": "What I expected to happen:\n\nWhen I logged on to a Minecraft world that was thunder storming in the Overworld, I went into the Nether and expected the fog to be the normal color.\n\nWhat actually happened:\n\nThe Nether fog was a lot darker than usual\n\nSteps to Reproduce:\n\n - Create a new world\n\n - Set the weather to rain and thunder (/weather thunder)\n\n - Go into the nether\n\n - Quit the world and enter it again\n\nThe nether fog appears a lot darker. This will stay like this until it stops raining in the overworld and you quit and re-enter the world again.",
+  "Steps to Reproduce": "1. Create a new world.\n2. Enter the new world in the Overworld.\n3. Set the weather to rain and thunder by entering `/weather thunder`.\n4. Enter the Nether.\n5. Open the Esc menu and select Save and Quit to Title, then enter the same world again.\n6. Observe that the Nether fog appears a lot darker than usual.",
+  "Environment": "Minecraft Java Edition Versions: 1.16 Pre-release 5, 1.16 Pre-release 6, 1.16.1, 20w28a, 20w29a, 1.16.2 Pre-release 2, 1.16.2, 1.16.3, 20w49a, 1.16.5, 1.17, 1.17.1 Pre-release 1, 1.17.1 Pre-release 3, 1.17.1, 21w38a, 1.18 Pre-release 5, 1.18.1, 1.19.2, 1.20.2, 1.21, 1.21.5, 25w20a (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nAfter rejoining the world while the Overworld is experiencing rain and thunder, the Nether\u2019s distance fog renders significantly darker than its normal appearance. The darker fog persists while the Overworld weather continues and is not corrected by traveling between dimensions. It returns to the normal Nether fog only after the Overworld weather has cleared and the world has been exited and re-entered.",
+  "Expected Behavior": "After rejoining the world while the Overworld is experiencing a thunderstorm and entering the Nether, the Nether fog should retain its normal color and brightness. The fog should not become unusually dark because of the Overworld\u2019s weather or because the world was re-entered, and it should remain visually consistent with the standard Nether fog until normal gameplay conditions change it.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Rendering/MC-189837",
+  "improvement_metadata": {
+    "original_key": "MC-189837"
+  }
+}

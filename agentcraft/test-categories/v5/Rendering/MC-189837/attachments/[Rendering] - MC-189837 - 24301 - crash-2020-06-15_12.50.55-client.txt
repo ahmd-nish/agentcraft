@@ -1,0 +1,57 @@
+---- Minecraft Crash Report ----
+// Who set us up the TNT?
+
+Time: 6/15/20 12:50 PM
+Description: Manually triggered debug crash
+
+java.lang.Throwable
+	at dlv.b(SourceFile:462)
+	at dlx.p(SourceFile:1567)
+	at dlx.e(SourceFile:994)
+	at dlx.d(SourceFile:654)
+	at net.minecraft.client.main.Main.main(SourceFile:215)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Render thread
+Stacktrace:
+	at dlv.b(SourceFile:462)
+
+-- Affected level --
+Details:
+	All players: 1 total; [ebf['gameo7'/275, l='ClientLevel', x=34.93, y=58.00, z=-27.90]]
+	Chunk stats: Client Chunk Cache: 1369, 961
+	Level dimension: minecraft:the_nether
+	Level spawn location: World: (112,67,-224), Chunk: (at 0,4,0 in 7,-14; contains blocks 112,0,-224 to 127,255,-209), Region: (0,-1; contains chunks 0,-32 to 31,-1, blocks 0,0,-512 to 511,255,-1)
+	Level time: 4203 game time, 4203 day time
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at dym.a(SourceFile:449)
+	at dlx.c(SourceFile:2176)
+	at dlx.d(SourceFile:672)
+	at net.minecraft.client.main.Main.main(SourceFile:215)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.16 Pre-release 5
+	Minecraft Version ID: 1.16-pre5
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 1.8.0_51, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 767927704 bytes (732 MB) / 2013265920 bytes (1920 MB) up to 2147483648 bytes (2048 MB)
+	CPUs: 16
+	JVM Flags: 9 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xss1M -Xmx2G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
+	Launched Version: 1.16-pre5
+	Backend library: LWJGL version 3.2.2 build 10
+	Backend API: GeForce GTX 1060 3GB/PCIe/SSE2 GL version 4.6.0 NVIDIA 441.08, NVIDIA Corporation
+	GL Caps: Using framebuffer using OpenGL 3.0
+	Using VBOs: Yes
+	Is Modded: Probably not. Jar signature remains and client brand is untouched.
+	Type: Client (map_client.txt)
+	Resource Packs: vanilla
+	Current Language: English (US)
+	CPU: 16x AMD Ryzen 7 1700 Eight-Core Processor 
