@@ -1,0 +1,5 @@
+# core.autocrlf is true on this machine, which makes Git treat unknown files as text and
+# rewrite LF to CRLF on checkout. For a PDF that is corruption: the bytes change, the xref
+# offsets recorded in the trailer no longer point at the right places, and readers reject
+# the file. Marking them binary stops any translation in either direction.
+*.pdf binary
