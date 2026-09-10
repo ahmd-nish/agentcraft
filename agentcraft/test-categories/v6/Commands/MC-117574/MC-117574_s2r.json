@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-09-10T19:39:06.892890+00:00",
+  "routing": {
+    "need_web": false,
+    "router_output": "NO_WEB",
+    "router_response_id": "resp_0ff71d63303cb1d3006aa3072bab7487d0b72ce496a8098707"
+  },
+  "generation": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "medium",
+    "web_available": false,
+    "web_actually_used": false,
+    "response_id": "resp_02c7b4cbffdbbc1f006aa3072e2f2087d0817bc76fe1a284ab"
+  },
+  "answer": "BUG_ID: MC-117574\n\nAFFECTED_VERSION: Minecraft Java Edition 1.13.2\n\nBUG_BEHAVIOR:\nRe-running `/setblock` on a dropper with the same block state but different block entity NBT reports failure, retains the old custom name, and clears the dropper inventory instead of applying the new NBT.\n\nPRECONDITIONS:\n- Launch Minecraft Java Edition 1.13.2.\n- Use a world where the player has permission to execute commands.\n- The block one block east of the player at the player’s feet level must be accessible for interaction.\n- The player must remain in the same block position throughout both `/setblock` commands because they use relative coordinates.\n- PRACTICAL_ASSUMPTION: Use Creative mode in a new flat world to simplify access to the dropper.\n\nSETUP:\n1. Stand still in an open area.\n2. Record the player’s current block position.\n3. Do not walk, jump, fly, or otherwise change position until both `/setblock` commands have been executed. Camera rotation is allowed.\n4. Confirm that the target position `~1 ~ ~` is one block in the positive X direction from the player at feet level.\n\nREPRODUCTION_STEPS:\n1. While stationary, open chat and execute exactly:\n\n```mcfunction\n/setblock ~1 ~ ~ dropper[facing=up]{CustomName:\"\\\"first\\\"\",Items:[{id:stone,Count:1b,Slot:0b}]}\n```\n\nVERIFY:\n- The command succeeds.\n- A dropper appears at `~1 ~ ~`.\n- Aim at the dropper and use the secondary-use input once to open it.\n- Verify the inventory screen title is `first`.\n- Verify the first inventory slot, slot 0, contains one stone.\n- Do not remove or move the stone.\n- Close the dropper interface.\n- Verify the player has not changed block position.\n\n2. Execute exactly:\n\n```mcfunction\n/setblock ~1 ~ ~ dropper[facing=up]{CustomName:\"\\\"updated\\\"\",Items:[{id:stone,Count:1b,Slot:0b}]}\n```\n\nVERIFY:\n- Observe that the command reports failure rather than success.\n- Aim at the same dropper and use the secondary-use input once to open it.\n- Verify the inventory screen title is still `first`, not `updated`.\n- Verify slot 0 is empty. Since slot 0 was the only populated slot, the dropper inventory should now be completely empty.\n\nEXPECTED_BEHAVIOR:\n- The second command should succeed because its block entity NBT differs.\n- The dropper’s custom name should become `updated`.\n- Slot 0 should contain one stone.\n\nOBSERVED_BUG_BEHAVIOR:\n- The second command fails because the dropper block state is unchanged.\n- The old custom name `first` remains.\n- The stone is removed, leaving the dropper inventory empty.\n\nSUCCESS_CONDITION:\nReproduction succeeds if, after the second command, all three conditions hold:\n1. The command reports failure.\n2. Opening the dropper shows the title `first`.\n3. Dropper slot 0, previously containing one stone, is empty.",
+  "bug_id": "MC-117574",
+  "category": "Commands",
+  "source_md": "[Commands] - MC-117574.md",
+  "elapsed_seconds": 48.97
+}
