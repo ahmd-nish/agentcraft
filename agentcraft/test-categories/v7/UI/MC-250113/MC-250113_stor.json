@@ -1,0 +1,126 @@
+{
+  "bug_id": "MC-250113",
+  "category": "UI",
+  "source_md": "[UI] - MC-250113.md",
+  "source_meta": {
+    "mojira categories": "UI",
+    "project": "MC",
+    "issue key": "MC-250113",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-04-11T10:24:21.408-0700",
+    "updated": "2025-04-30T06:40:07.178-0700",
+    "resolution date": "2022-10-19T07:05:03.143-0700",
+    "affects versions": "22w14a; 1.19; 1.19.1; 1.19.2",
+    "fix versions": "22w42a",
+    "labels": "creative-inventory-contents",
+    "watchers": "1",
+    "attachments": "9",
+    "attachment filenames": "2022-04-11_18.16.55.png; 2022-04-11_18.16.56.png; 2022-04-11_18.16.57.png; 2022-04-11_18.16.58.png; 2022-04-11_18.17.06.png; 2022-04-11_18.17.07.png; 2022-04-11_18.17.09.png; 2022-04-11_18.17.10_2.png; 2022-04-11_18.17.10.png",
+    "_title": "Muddy mangrove roots are not grouped with mud in the Creative inventory"
+  },
+  "stor": {
+    "bug_id": "MC-250113",
+    "recommended_version": "Minecraft Java Edition 1.19.2 (latest affected full release listed in the report; do not use 22w42a or later for this reproduction)",
+    "environment": "Vanilla Minecraft Java Edition 1.19.2 in a single-player world with the player in Creative mode. No particular seed, location, dimension, cheats setting, or multiplayer server is required because the reproduction concerns the ordering of items in the Creative inventory.",
+    "preconditions": [
+      "Install or configure a Minecraft Launcher installation for the exact Java Edition version 1.19.2.",
+      "Use an unmodified client without mods, datapacks, or resource packs that replace or reorganize the Creative inventory.",
+      "Create or load a world in which the player is in Creative mode. The simplest deterministic setup is a new single-player world created with Game Mode set to Creative.",
+      "A mouse wheel or the Creative inventory scrollbar must be available so the complete Building Blocks item list can be inspected.",
+      "Do not use the Search Items tab to locate the four items; their positions specifically within the Building Blocks tab must be preserved and inspected."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for Java Edition 1.19.2 and start the game. Confirm the version shown on the title screen before continuing.",
+        "exact_input": "Launch Minecraft Java Edition 1.19.2",
+        "success_cue": "The Minecraft Java Edition title screen is open and displays version 1.19.2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world with Game Mode set to Creative, or load an existing world where the player is already in Creative mode. A new Creative world avoids needing cheats or a game-mode command.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has entered a world and the HUD does not display Survival health and hunger bars, indicating Creative mode is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the world finishes loading before opening any menus. Continue only when nearby terrain has rendered and normal player input responds without loading pauses.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are visible and the player can move or look around normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the inventory action. With default controls, press E once.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open, showing category tabs and a grid of obtainable items.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Select the Building Blocks category tab. Move the pointer across the category tabs until the tooltip reads \"Building Blocks\", then left-click that tab. Do not switch to the Search Items tab.",
+        "exact_input": "Left-click the tab whose tooltip is \"Building Blocks\"",
+        "success_cue": "The Building Blocks tab is selected and its item grid is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Inspect the Building Blocks grid for Dirt. Scroll through this tab with the mouse wheel or drag its scrollbar as necessary. Hover over candidate blocks and use the tooltip to positively identify the item named \"Dirt\"; do not rely only on its brown texture. Record or retain its grid row, column, and approximate scrollbar position for the observation handoff.",
+        "exact_input": "Mouse wheel or inventory scrollbar; hover until tooltip reads \"Dirt\"",
+        "success_cue": "The tooltip \"Dirt\" has been displayed and the item's position within the Building Blocks list has been identified.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Without changing Creative inventory categories, locate Rooted Dirt in the same Building Blocks item grid. Continue scrolling through the category and hover over candidate blocks until the tooltip reads \"Rooted Dirt\". Record or retain its grid and scrollbar position separately from Dirt.",
+        "exact_input": "Mouse wheel or inventory scrollbar; hover until tooltip reads \"Rooted Dirt\"",
+        "success_cue": "The tooltip \"Rooted Dirt\" has been displayed and the item's position within the Building Blocks list has been identified.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Remain in the Building Blocks tab and locate Mud. Scroll through the category as needed, hover over candidate blocks, and confirm the tooltip reads \"Mud\". Record or retain its grid row, column, and approximate scrollbar position.",
+        "exact_input": "Mouse wheel or inventory scrollbar; hover until tooltip reads \"Mud\"",
+        "success_cue": "The tooltip \"Mud\" has been displayed and the item's position within the Building Blocks list has been identified.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Still within the Building Blocks tab, locate Muddy Mangrove Roots. Scroll through the same category without using inventory search, hover over candidate blocks, and confirm the tooltip reads \"Muddy Mangrove Roots\". Record or retain its grid row, column, and approximate scrollbar position.",
+        "exact_input": "Mouse wheel or inventory scrollbar; hover until tooltip reads \"Muddy Mangrove Roots\"",
+        "success_cue": "The tooltip \"Muddy Mangrove Roots\" is visible and positions have now been identified for Dirt, Rooted Dirt, Mud, and Muddy Mangrove Roots within the Building Blocks category.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The Creative inventory remains open on the Building Blocks tab immediately after Muddy Mangrove Roots has been positively identified by its tooltip. The inventory positions of Dirt, Rooted Dirt, Mud, and Muddy Mangrove Roots have all been recorded or retained; hand control to the observation subsystem to compare their placement in the category.",
+    "uncertainties": [
+      "The report lists four affected builds—22w14a, 1.19, 1.19.1, and 1.19.2—but does not require one specific affected build. This plan uses 1.19.2 because it is the latest affected full release explicitly confirmed in the report.",
+      "No world seed, coordinates, dimension, server configuration, or GUI scale is specified. These appear unnecessary because the tested state is the static Creative inventory ordering.",
+      "The report does not provide exact grid row, column, or scrollbar coordinates for the items. They must therefore be located by scanning the Building Blocks tab and confirming each item through its tooltip."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e279f688dd31809016aa5bf04e3e487d0b994abba718e473f",
+    "elapsed_seconds": 45.97,
+    "usage": {
+      "input_tokens": 8373,
+      "output_tokens": 2857,
+      "reasoning_tokens": 1552,
+      "total_tokens": 11230
+    },
+    "timestamp": "2026-09-12T21:08:02.742505+00:00"
+  }
+}

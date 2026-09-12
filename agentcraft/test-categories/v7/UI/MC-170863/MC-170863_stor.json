@@ -1,0 +1,126 @@
+{
+  "bug_id": "MC-170863",
+  "category": "UI",
+  "source_md": "[UI] - MC-170863.md",
+  "source_meta": {
+    "mojira categories": "UI",
+    "project": "MC",
+    "issue key": "MC-170863",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-02-05T10:34:48.392-0800",
+    "updated": "2025-05-29T09:18:59.597-0700",
+    "resolution date": "2024-08-15T14:53:01.705-0700",
+    "affects versions": "1.15.2; 20w06a; 20w09a; 20w11a; 1.16 Pre-release 5; 1.16 Pre-release 6; 1.16 Pre-release 7; 1.16 Pre-release 8; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Pre-release 2; 1.16.2 Pre-release 3; 1.16.2 Release Candidate 1; 1.16.2 Release Candidate 2; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w06a; 21w07a; 21w08a; 21w08b; 21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w17a; 21w18a; 21w19a; 21w20a; 1.17 Pre-release 1; 1.17 Pre-release 2; 1.17 Pre-release 4; 1.17 Pre-release 5; 1.17 Release Candidate 1; 1.17 Release Candidate 2; 1.17; 1.17.1 Pre-release 1; 1.17.1 Pre-release 2; 1.17.1; 21w37a; 21w38a; 21w39a; 21w41a; 1.18; 1.18.1; 1.19; 1.19.2; 1.19.3; 1.19.4 Pre-release 1; 1.19.4; 1.20 Pre-release 5; 1.20.1; 1.20.4; 24w07a; 1.20.6; 24w19b; 1.21",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "game mode": "Creative",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "DropItem.mp4",
+    "issue links": "Duplicate:inward:MC-273987:Items Disappearing after dropping from inventory. | Relates:inward:MC-116618:Dropping items rapidly inside the \"Survival Inventory\" tab in creative mode deletes items | Relates:outward:MC-242392:Picking up items with a full hotbar when in a creative tab other than \"Survival Inventory\" will cause items to disappear | Duplicate:inward:MC-268735:You can't drop items from hotbar in Creative Mode | Duplicate:inward:MC-263568:Dropping items from the creative inventory eliminates them | Duplicate:inward:MC-235111:Uh-oh, another exploit? 😲 | Duplicate:inward:MC-223210:Ctrl drop an item in creative menu doesn't work | Duplicate:inward:MC-223484:Bundle vanishes in creative when in Drop while in Inventory | Duplicate:inward:MC-218157:Items disappear when dropped from the creative inventory hotbar | Duplicate:inward:MC-206566:Dropped items get deleted in certain circumstance in creative mode | Duplicate:inward:MC-175095:Item drop bug in creative inventory | Relates:inward:MC-23039:Dropped item disappear in Creative",
+    "_title": "Dropping item stacks from the player's hotbar in any creative inventory tab other than \"Survival Inventory\" deletes items"
+  },
+  "stor": {
+    "bug_id": "MC-170863",
+    "recommended_version": "Minecraft Java Edition 1.21 (an affected release; do not use fix version 24w33a or a later version)",
+    "environment": "Vanilla Minecraft Java Edition 1.21 in a single-player Creative-mode world, using keyboard and mouse. Use the default Drop Selected Item binding of Q, or confirm before testing that the action is bound to Q. No particular seed, coordinates, difficulty, or world type are required.",
+    "preconditions": [
+      "Launch the game using an installation explicitly configured for Minecraft Java Edition 1.21.",
+      "Use a Creative-mode player in a loaded world.",
+      "Ensure the Drop Selected Item control is bound to Q; with default controls, this is already the case.",
+      "Have at least one empty hotbar slot. The hotbar is the row of nine item slots at the bottom of the screen and remains visible along the bottom of the Creative inventory.",
+      "Keep the Creative inventory open during the eventual drop action; do not perform the test from normal gameplay view.",
+      "Use a Creative inventory category other than Survival Inventory or Search Items. This plan uses the Combat tab.",
+      "Use a stack containing exactly one item for the deterministic reproduction path. This plan uses a Diamond Sword because it cannot stack above one item."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "From the title screen, select Singleplayer and create a new world with Game Mode set to Creative. Enter the world after creation completes. An existing Creative-mode world may be used instead if available.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is present in a world in Creative mode, with hearts and hunger indicators absent from the normal HUD.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Wait for the world to become ready before manipulating the inventory.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain has rendered, player movement responds normally, and no world-loading screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the player's Creative inventory using the inventory control.",
+        "exact_input": "Press E",
+        "success_cue": "The Creative inventory interface is open, showing category tabs, an item grid, and the nine hotbar slots along the bottom.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select the Combat category by left-clicking its sword-icon tab. Do not select the Survival Inventory tab, and do not select Search Items because keyboard input there can be captured by the search field.",
+        "exact_input": "Left-click the Combat tab",
+        "success_cue": "The Combat tab is highlighted, combat-related items are displayed, the Survival Inventory layout is not displayed, and no search text field has keyboard focus.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Locate the Diamond Sword in the Combat item grid and left-click it once to pick up a copy onto the mouse cursor.",
+        "exact_input": "Left-click the Diamond Sword icon",
+        "success_cue": "A Diamond Sword is attached to the mouse cursor. Because the item is unstackable, the held stack contains exactly one item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Move the cursor to an empty slot in the nine-slot hotbar at the bottom of the open inventory and left-click that slot to place the Diamond Sword there.",
+        "exact_input": "Left-click an empty hotbar slot",
+        "success_cue": "Exactly one Diamond Sword is present in the chosen hotbar slot, no second item is stacked with it, and the mouse cursor is no longer carrying the sword.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Confirm that the Combat tab remains selected. If another tab was selected accidentally, select Combat again without removing the Diamond Sword from the hotbar.",
+        "exact_input": null,
+        "success_cue": "The Creative inventory is still open on the Combat tab, not Survival Inventory or Search Items, and the single Diamond Sword remains in the hotbar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Move the mouse pointer directly over the hotbar slot containing the single Diamond Sword. Do not click the slot, close the inventory, or move the sword onto the cursor.",
+        "exact_input": null,
+        "success_cue": "The pointer is hovering over the Diamond Sword's hotbar slot while the Combat tab remains open, and the slot still contains exactly one sword.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "While continuing to hover over the Diamond Sword's hotbar slot, press the Drop Selected Item key once. With the required/default binding, press Q without Ctrl. This is the single-item variant from the report.",
+        "exact_input": "Press Q once",
+        "success_cue": "The Q input has been issued once while the pointer was over the one-item hotbar stack and the non-Survival Creative inventory tab remained open.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The player has just pressed Q once while hovering over a hotbar stack containing exactly one Diamond Sword, with the Creative inventory still open on the Combat tab. Begin observation immediately without closing the inventory or performing another input.",
+    "uncertainties": [],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_07a629103fd9a2e0016aa5bea495ac87d09709aa6343004d82",
+    "elapsed_seconds": 53.09,
+    "usage": {
+      "input_tokens": 9491,
+      "output_tokens": 3137,
+      "reasoning_tokens": 2070,
+      "total_tokens": 12628
+    },
+    "timestamp": "2026-09-12T21:06:32.872494+00:00"
+  }
+}
