@@ -1,0 +1,193 @@
+{
+  "bug_id": "MC-155084",
+  "category": "Textures and models",
+  "source_md": "[Textures and models] - MC-155084.md",
+  "source_meta": {
+    "mojira categories": "Textures and models",
+    "project": "MC",
+    "issue key": "MC-155084",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2019-06-24T01:50:09.678-0700",
+    "updated": "2025-04-30T04:50:40.298-0700",
+    "resolution date": "2023-04-14T23:45:27.653-0700",
+    "affects versions": "Minecraft 1.14.2; 1.14.4; 1.15 Pre-release 5; 1.15; 1.15.2; 20w12a; 20w18a; 20w19a; 20w20a; 1.16 Pre-release 3; 1.16 Release Candidate 1; 1.16; 1.16.2; 1.16.3; 1.16.4; 20w45a; 20w49a; 1.16.5; 21w06a; 21w10a; 21w17a; 21w18a; 1.17; 1.17.1; 21w39a; 21w40a; 21w42a; 1.18 Pre-release 1; 1.18 Pre-release 5; 1.18 Pre-release 8; 1.18; 1.18.1 Pre-release 1; 1.18.1; 22w03a; 22w05a; 22w06a; 22w07a; 1.18.2; 22w17a; 22w18a; 22w19a; 1.19 Pre-release 1; 1.19 Pre-release 2; 1.19 Pre-release 3; 1.19 Pre-release 4; 1.19 Pre-release 5; 1.19 Release Candidate 2; 1.19; 1.19.2; 22w43a; 22w44a; 22w46a; 1.19.3 Pre-release 2; 1.19.3; 23w04a; 23w05a; 1.19.4",
+    "fix versions": "23w14a",
+    "labels": "entity-model; z-fighting",
+    "watchers": "1",
+    "attachments": "11",
+    "attachment filenames": "2019-06-24_11.47.53.png; 2019-06-24_11.48.04.png; 2019-12-06_19.40.13.png; 2019-12-06_19.40.26.png; 2019-12-06_19.40.37.png; 2019-12-06_19.40.47.png; 2021-10-20_15.07.14.png; Bug.png; image-2020-12-02-18-16-15-662.png; image-2022-08-10-09-05-51-754.png; MC-155084.mp4",
+    "issue links": "Duplicate:inward:MC-161032:Lines in horse armor | Duplicate:inward:MC-167927:Horse Saddles have weird visual glitching on them | Duplicate:inward:MC-175025:Horse rein rendering | Duplicate:inward:MC-183850:Horse armor bugs the horse bridles (also, there's a Z-fighting) | Duplicate:inward:MC-190544:Mislocated pixels on golden horse armor texture | Duplicate:inward:MC-190625:Horse Armor handles look like spectography lines. | Duplicate:inward:MC-198222:Horse texture bug | Duplicate:inward:MC-202381:Horse armor has z fighting when viewed from the front | Duplicate:inward:MC-204794:Texture bug with Horse Armor | Duplicate:inward:MC-204838:Wheh siting on a horse with saddle and horse amor, you can see weird pixels | Duplicate:inward:MC-227415:Glitchy Horse Armor Textures | Duplicate:inward:MC-234132:Horse Armour Minor Graphical Glitch | Duplicate:inward:MC-259056:Horse Armor / Saddle Reins Texture | Relates:inward:MC-163875:Wandering Traider running very fast without potions. | Relates:inward:MCPE-163875:Bridles on horses, mules and donkeys create z-fighting",
+    "_title": "Horses' armor, reins, and bridles experience z-fighting"
+  },
+  "stor": {
+    "bug_id": "MC-155084",
+    "recommended_version": "Minecraft Java Edition 1.19.4",
+    "environment": "Vanilla Minecraft Java Edition 1.19.4 in a single-player Creative-mode world with commands/cheats enabled. Use the default resource pack and first-person perspective for the close-up views. A dedicated server, specific seed, and specific coordinates are not required by the report.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.19.4, which is a stable release listed as affected by the report.",
+      "Create or load a world in which the player is permitted to run the /summon command. The simplest setup is a single-player world created with Game Mode set to Creative and Allow Cheats set to ON.",
+      "Use a clear, well-lit area with enough room to stand beside and move around one horse. No particular biome, world seed, or coordinates are required.",
+      "Use the normal first-person camera perspective. If necessary, press F5 repeatedly until the player's body is not visible in front of the camera.",
+      "Know the configured controls for Use Item/Place Block and Sneak. Their default inputs are right-click and Left Shift, respectively.",
+      "Leave at least one hotbar slot empty so the horse can be mounted without accidentally using another item on it."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the 1.19.4 installation and open the prepared command-enabled single-player world.",
+        "exact_input": "Launcher installation: 1.19.4; Main Menu -> Singleplayer -> select the prepared world -> Play Selected World",
+        "success_cue": "The player is controlling a character inside a Minecraft Java Edition 1.19.4 world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Wait for the world and nearby chunks to finish loading before creating the test horse.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading overlay is gone, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a clear, well-lit location where there is room to view a horse from its front and both sides, then stop moving.",
+        "exact_input": "Use W, A, S, and D as needed; release all movement inputs when positioned.",
+        "success_cue": "There is an unobstructed block of space at the player's location and room to walk around the summoned horse.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Ensure the camera is in first-person perspective for the mounted close-up views.",
+        "exact_input": "Press F5 as needed to cycle to first-person perspective.",
+        "success_cue": "The player's full avatar is not displayed in front of the camera, and the crosshair is centered on the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select an empty hotbar slot so no held item interferes with mounting the horse.",
+        "exact_input": "Press the number key corresponding to an empty hotbar slot, or use the mouse wheel until an empty slot is selected.",
+        "success_cue": "The player's hand is empty in first-person view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open in-game chat so the report's summon command can be executed with the player's current position as the summon location.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the report's command exactly as written, including the leading slash, and execute it. Do not alter the entity identifier, coordinates, capitalization, or NBT.",
+        "exact_input": "/summon minecraft:horse ~ ~ ~ {Tame:1b,ArmorItem:{id:\"minecraft:diamond_horse_armor\",Count:1b},SaddleItem:{id:\"minecraft:saddle\",Count:1b}}",
+        "success_cue": "The command is accepted and a horse appears at the player's current location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Back away from the summon location until the entire horse can be seen without leaving the immediate area.",
+        "exact_input": "Hold S briefly, then release it when approximately 1 to 3 blocks from the horse.",
+        "success_cue": "One horse is visible in front of the player and is no longer overlapping the camera.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Confirm only the reproduction preconditions supplied by the command: the horse exists, is wearing diamond horse armor, and has saddle equipment. Do not evaluate the rendering defect yet.",
+        "exact_input": null,
+        "success_cue": "A living horse is visible with blue diamond horse armor and saddle-related equipment around its body and head.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Mount the horse. Face the horse at close range, place the crosshair on its body, release the Sneak control if it is held, and use the horse once.",
+        "exact_input": "Right-click the horse once with an empty hand.",
+        "success_cue": "The viewpoint moves onto the horse, the horse-riding interface is present, and the horse's head with its reins is visible from the rider's perspective.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Keep the horse stationary and aim the camera slightly downward toward the top and front of the horse's neck, where the reins extend toward the rider.",
+        "exact_input": "Release W, A, S, and D; move the mouse downward slightly.",
+        "success_cue": "The horse's head, upper neck, and reins occupy a large, unobstructed portion of the first-person view.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Adjust the view by a small amount while keeping the reins centered, providing a close viewing angle rather than a distant full-horse view.",
+        "exact_input": "Slowly move the mouse a few degrees left and right without pressing movement keys.",
+        "success_cue": "The reins remain close to the camera and clearly distinguishable from the horse's head and neck.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "While still mounted, aim just below the reins toward one side of the horse's neck.",
+        "exact_input": "Move the mouse slightly downward and toward the left side of the horse's neck.",
+        "success_cue": "One neck side directly below the reins is centered and visible at close range.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Aim just below the reins toward the opposite side of the horse's neck.",
+        "exact_input": "Move the mouse across the horse's neck toward the right side while remaining mounted.",
+        "success_cue": "The opposite neck side directly below the reins is centered and visible at close range.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Dismount the horse without moving it away from the viewing area.",
+        "exact_input": "Left Shift once, or the currently configured Sneak/Dismount control.",
+        "success_cue": "The player is standing on the ground beside the horse rather than viewing from the riding position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Move to the front-left side of the horse's head and face the saddle bridle around its face and neck. Stay close enough for the bridle to occupy a substantial portion of the view, but do not push the horse.",
+        "exact_input": "Use W, A, S, and D as needed, then aim with the mouse at the horse's head and upper neck.",
+        "success_cue": "The dismounted horse's head, bridle, and adjacent edge of the diamond horse armor are visible at close range from one side.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Move around the front of the horse to view the bridle from the other side.",
+        "exact_input": "Use A or D with small W/S adjustments as needed; keep the crosshair near the horse's head.",
+        "success_cue": "The opposite side of the bridle and the adjoining neck area are visible at close range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Stop all player movement and make one small, slow camera pan across the bridle and the nearby edge of the horse armor, keeping both surfaces in frame for the observation handoff.",
+        "exact_input": "Release movement keys; slowly move the mouse a few degrees across the horse's head and neck.",
+        "success_cue": "The player is dismounted and stationary near the horse's head, with the bridle and adjoining diamond horse armor enlarged and unobstructed in the first-person view.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The equipped horse has been mounted so its reins and both neck-side viewpoints can be framed, then dismounted as directed by the report. The player is now stationary near the horse's head in first-person perspective, with the bridle and adjoining diamond horse armor centered at close range. Begin visual observation from this state.",
+    "uncertainties": [
+      "The report lists many affected releases and snapshots but does not designate a single preferred test version. This plan selects Java Edition 1.19.4 because it is the latest stable release listed as affected and supports the exact command supplied in the report.",
+      "The report does not specify a required world seed, biome, coordinates, game mode, perspective, field of view, graphics quality, lighting level, hardware configuration, or camera distance.",
+      "Creative mode, an empty hand, first-person perspective, default resources, and a clear well-lit test area are practical execution choices rather than explicit requirements from the report.",
+      "The report does not specify whether both sides of the neck and bridle must be checked; the plan frames both sides to cover the phrase \"either side\" without changing the horse or its equipment.",
+      "Because the horse's idle movement and orientation are not fixed by the supplied command, minor player and camera repositioning may be necessary to maintain the requested close-up views. The command must not be modified merely to immobilize the horse."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a664805943dff06016aa5c26e253087d0ac180b0de2aab278",
+    "elapsed_seconds": 112.36,
+    "usage": {
+      "input_tokens": 10235,
+      "output_tokens": 6128,
+      "reasoning_tokens": 4102,
+      "total_tokens": 16363
+    },
+    "timestamp": "2026-09-12T21:23:41.207149+00:00"
+  }
+}

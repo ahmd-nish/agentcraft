@@ -1,0 +1,214 @@
+{
+  "bug_id": "MC-38022",
+  "category": "Textures and models",
+  "source_md": "[Textures and models] - MC-38022.md",
+  "source_meta": {
+    "mojira categories": "Rendering; Textures and models",
+    "project": "MC",
+    "issue key": "MC-38022",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2013-10-27T13:39:50.526-0700",
+    "updated": "2025-04-26T03:11:31.635-0700",
+    "resolution date": "2024-10-23T21:24:10.491-0700",
+    "affects versions": "Minecraft 1.7.2; Minecraft 14w25b; Minecraft 14w27b; Minecraft 14w29b; Minecraft 1.8-pre2; Minecraft 1.8.3; Minecraft 1.8.8; Minecraft 15w45a; Minecraft 15w46a; Minecraft 15w47a; Minecraft 15w47c; Minecraft 1.8.9; Minecraft 15w51b; Minecraft 1.9 Pre-Release 1; Minecraft 1.9 Pre-Release 2; Minecraft 1.10; Minecraft 1.11; Minecraft 16w50a; Minecraft 1.11.2; Minecraft 17w14a; Minecraft 1.12.2; Minecraft 18w02a; Minecraft 18w08a; Minecraft 18w08b; Minecraft 18w09a; Minecraft 18w11a; Minecraft 18w15a; Minecraft 18w20c; Minecraft 18w21a; Minecraft 18w22c; Minecraft 1.13-pre1; Minecraft 1.13-pre2; Minecraft 1.13-pre3; Minecraft 1.13-pre4; Minecraft 1.13-pre5; Minecraft 1.13-pre6; Minecraft 1.13-pre8; Minecraft 1.13-pre9; Minecraft 1.13-pre10; Minecraft 1.13; Minecraft 18w30b; Minecraft 18w31a; Minecraft 18w32a; Minecraft 18w33a; Minecraft 1.13.1-pre1; Minecraft 1.13.1; Minecraft 1.13.2-pre1; Minecraft 1.13.2-pre2; Minecraft 1.13.2; Minecraft 18w50a; Minecraft 19w04b; Minecraft 19w05a; Minecraft 19w06a; Minecraft 19w07a; Minecraft 19w08a; Minecraft 19w09a; Minecraft 19w11a; Minecraft 19w11b; Minecraft 19w12b; Minecraft 19w13a; Minecraft 19w13b; Minecraft 19w14a; Minecraft 19w14b; Minecraft 1.14 Pre-Release 1; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14 Pre-Release 4; Minecraft 1.14 Pre-Release 5; Minecraft 1.14; Minecraft 1.14.1; Minecraft 1.14.2 Pre-Release 1; Minecraft 1.14.2 Pre-Release 2; Minecraft 1.14.2; Minecraft 1.14.3 Pre-Release 2; Minecraft 1.14.3; Minecraft 1.14.4 Pre-Release 1; Minecraft 1.14.4 Pre-Release 3; Minecraft 1.14.4 Pre-Release 4; Minecraft 1.14.4 Pre-Release 5; Minecraft 1.14.4 Pre-Release 6; 1.14.4; 19w34a; 19w35a; 19w36a; 19w37a; 19w38b; 19w39a; 19w40a; 19w41a; 19w42a; 19w45b; 19w46b; 1.15 Pre-release 1; 1.15 Pre-Release 2; 1.15 Pre-release 3; 1.15 Pre-release 4; 1.15 Pre-release 5; 1.15 Pre-release 6; 1.15 Pre-release 7; 1.15; 1.15.1; 1.15.1 Pre-release 1; 1.15.2 Pre-Release 1; 1.15.2 Pre-release 2; 1.15.2; 20w06a; 20w07a; 20w08a; 20w09a; 20w10a; 20w11a; 20w13a; 20w13b; 20w15a; 20w17a; 20w18a; 20w19a; 20w20a; 20w20b; 20w21a; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16 Pre-release 5; 1.16 Pre-release 6; 1.16 Pre-release 7; 1.16 Pre-release 8; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w28a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Release Candidate 1; 1.16.2 Release Candidate 2; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w46a; 20w48a; 20w51a; 21w03a; 1.16.5; 21w05a; 21w05b; 21w06a; 21w07a; 21w11a; 1.17 Pre-release 1; 1.17 Pre-release 2; 1.17.1; 21w37a; 21w38a; 21w39a; 21w40a; 21w41a; 21w42a; 1.18 Pre-release 1; 1.18 Pre-release 4; 1.18 Pre-release 5; 1.18 Release Candidate 2; 1.18; 1.18.1; 22w03a; 1.18.2; 22w12a; 22w15a; 22w18a; 1.19 Pre-release 2; 1.19 Pre-release 5; 1.19; 1.19.1; 1.19.2; 22w42a; 1.19.3; 23w06a; 23w07a; 1.20 Release Candidate 1; 1.20; 1.20.1 Release Candidate 1; 1.20.1; 1.20.2; 1.20.4; 24w13a; 1.20.5 Pre-Release 1; 1.20.6; 1.21; 1.21.1; 24w33a",
+    "fix versions": "24w36a",
+    "area": "Platform",
+    "labels": "honey_block; ice; rendering; slime_block; stripes",
+    "watchers": "1",
+    "attachments": "35",
+    "attachment filenames": "2013-10-27_21.38.25.png; 2013-10-27_21.41.44.png; 2014-05-13_10.32.47.png; 2014-05-13_10.38.55.png; 2014-05-13_11.03.30.png; 2014-06-23_14.35.41.png; 2015-06-09_15.51.45.png; 2015-10-04_13.46.33.png; 2018-02-21_21.13.39.png; 2018-02-22_19.26.48.png; 2018-02-22_19.26.50.png; 2018-02-22_19.27.14.png; 2018-03-04_16.14.56.png; 2018-07-14_01.05.02.png; 2018-07-14_01.05.53.png; 2018-07-17_01.02.57.png; 2018-07-19_15.43.07.png; 2018-08-21_12.50.01.png; 2019-02-06_20.52.15.png; 2019-10-10_11.11.14.png; 2019-11-16_16.06.39.png; 2020-05-12_23.19.22.png; 2020-05-12_23.40.14.png; 2020-06-05_13.06.04.png; 2020-06-05_13.06.14.png; Analysis 1.png; Analysis 2.png; Analysis 3.png; Analysis 4.png; crash-2014-05-13_10.54.01-client.txt; crash-2014-07-02_19.22.27-client.txt; Example Superflat.png; Ice Rendering pre6.gif; Screenshot (5).png; Screenshot-Slime-Light-Bad.png",
+    "issue links": "Duplicate:inward:MC-275667:Frozen river ice being wrongly rendered | Relates:outward:MC-277808:Translucency sorting does not work correctly for large models | Relates:inward:MC-173723:Sometimes after loading a chunk, the grass and water colors on some blocks are not correct | Relates:inward:MC-268155:Rendering gaps in the world under specific conditions | Relates:inward:MC-186362:Casting issue: Translucent block rendering breaks down at high distances | Relates:inward:MC-261456:Chunk borders are sometimes visible in water | Duplicate:inward:MC-162672:Subtle light-grey/see-through squares appearing on ice | Relates:outward:MC-9553:Wrong rendering order of particles, hitboxes, clouds, transparent blocks, breaking animations and various other transparent textures | Duplicate:inward:MC-242025:Glass doesn't render properly behind other layers of glass | Duplicate:inward:MC-260342:Ice from far away renders more transparently | Duplicate:inward:MC-242394:Render bug | Duplicate:inward:MC-242393:渲染错误 | Duplicate:inward:MC-239997:Wall of stained glass with water behind it causes a visual bug/glitch | Duplicate:inward:MC-241794:Ice grid render bug | Duplicate:inward:MC-239376:Transparent Ice Blocks rendering | Duplicate:inward:MC-179562:Stained glass and water visual glitch | Duplicate:inward:MC-239011:Ice rendering issues | Duplicate:inward:MC-236819:Ice Makes Boarders Along the Chunk Boarder | Duplicate:inward:MC-39233:Shadow and Ice bugs | Relates:inward:MC-128066:Highly transparent block edges on ice, slime block and honey block | Duplicate:inward:MC-185536:Glass Blocks partially de-load when flying/moving around if the blocks are next to Water | Duplicate:inward:MC-181090:Blue glass placed one block above oceon/sea level causes it to sometimes go invisable | Duplicate:inward:MC-161241:Rarely, when Ice is viewed from a certain angle with water beneath it, it creates a gridlike pattern | Duplicate:inward:MC-161116:Ice Blocks Render Incorrectly | Duplicate:inward:MC-156238:Ice renders weirdly from a distance | Duplicate:inward:MC-153003:Ice rendering isusues | Duplicate:inward:MC-151180:glacier chunks render weird | Duplicate:inward:MC-149667:ice turns invisable | Duplicate:inward:MC-148446:ice rendering glitch | Duplicate:inward:MC-137243:Frost walker boots revealing water underneath ice | Duplicate:inward:MC-134740:Graphic glitch with ice on 1.13 (full-release) | Duplicate:inward:MC-130195:Weird rendering of ice | Duplicate:inward:MC-127570:Weird texture bug with ice. | Duplicate:inward:MC-127299:Ice side texture glitch | Duplicate:inward:MC-126576:Ice on Frozen Ocean loads oddly | Duplicate:inward:MC-126055:ice blocks render glitch | Duplicate:inward:MC-115787:Large sheets of ice render strangely when flying over them | Duplicate:inward:MC-105623:Can See Through Ice At Chunk Borders | Duplicate:inward:MC-104274:Ice rendering Glitch | Duplicate:inward:MC-97730:Boat Ice Viewing Glitch | Duplicate:inward:MC-81195:Slime Block Lighting Bug | Duplicate:inward:MC-50406:Ice in large quantities renders badly from distance. | Duplicate:inward:MC-62421:Ice looks strange from different angles | Duplicate:inward:MC-38842:Ice turns to Water",
+    "_title": "Order of rendering translucent block faces fails to update with camera position"
+  },
+  "stor": {
+    "bug_id": "MC-38022",
+    "recommended_version": "Minecraft Java Edition snapshot 24w33a",
+    "environment": "Vanilla singleplayer Minecraft Java Edition 24w33a, using Creative mode with commands enabled. Create a superflat world from the report's exact stained-glass preset. Use a render distance greater than 2 chunks; 8 chunks or more is recommended for a clear multi-chunk test.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start the historical Java Edition snapshot 24w33a.",
+      "Use an unmodified client without shaders, rendering mods, or custom resource packs, to avoid changing translucent-block rendering behavior.",
+      "Use a keyboard capable of sending the F3+T debug shortcut. If the operating system treats F3 as a media key, be prepared to hold Fn while pressing F3+T.",
+      "Keep the default teleport command syntax from the report unchanged, including the leading slash, relative Y coordinate, yaw, and pitch arguments.",
+      "Do not move or rotate the camera between the specified teleport, resource-reload, and final teleport actions unless a step explicitly requests movement."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Java Edition installation configured for snapshot 24w33a. Do not substitute snapshot 24w36a or another version.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 24w33a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the singleplayer world-creation screen by selecting Singleplayer and then Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the new world's game mode to Creative. Creative mode is used so the player can perform the report's required flight without obtaining equipment.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Ensure commands are enabled for the world. If an Allow Commands option is shown under the additional world settings, set it to On; Creative worlds may already enable commands automatically.",
+        "exact_input": null,
+        "success_cue": "The new world is configured to permit in-game commands such as /tp.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the World settings tab, change World Type to Superflat, select Customize, and then open the Presets screen.",
+        "exact_input": null,
+        "success_cue": "The Superflat Presets screen is open and contains an editable preset text field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Focus the preset text field, select and remove its entire existing contents, and paste the report's preset exactly. Do not add a version prefix, spaces, or line breaks.",
+        "exact_input": "minecraft:bedrock,minecraft:green_stained_glass,minecraft:red_stained_glass,minecraft:blue_stained_glass;minecraft:the_void",
+        "success_cue": "The preset text field exactly matches the supplied string, ending with minecraft:the_void.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Apply the preset using Use Preset, then select Done to return to the world-creation screen. Leave the world type set to Superflat.",
+        "exact_input": null,
+        "success_cue": "The new world remains configured as Superflat with bedrock, green stained glass, red stained glass, and blue stained glass layers, with blue stained glass as the exposed top layer.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Select Create New World and wait for world generation and initial loading to finish.",
+        "exact_input": null,
+        "success_cue": "The player is in the generated world, movement responds normally, and a flat blue-stained-glass surface extends across the loaded area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Open the pause menu, navigate to Options and then Video Settings, and set Render Distance to at least 8 chunks. Return to the world without changing other graphics settings.",
+        "exact_input": "Esc -> Options -> Video Settings -> Render Distance: 8 chunks or greater",
+        "success_cue": "The game view is open again with a render distance greater than 2 chunks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Wait without performing the reproduction commands until the surrounding flat terrain has rendered throughout the visible distance and player controls respond normally.",
+        "exact_input": null,
+        "success_cue": "Multiple chunks of the blue stained-glass surface are visible and no nearby chunk-loading gaps remain.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Enter Creative flight by quickly pressing the jump control twice. The default jump control is Space.",
+        "exact_input": "Space, Space",
+        "success_cue": "The player remains airborne instead of immediately falling back onto the glass surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While flying, hold the jump control to ascend approximately 10 blocks above the blue stained-glass surface, as requested by the report.",
+        "exact_input": "Hold Space until approximately 10 blocks above the surface",
+        "success_cue": "The player is hovering roughly 10 blocks above the blue stained-glass surface with several surrounding chunks visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Release the jump control and stop all movement while remaining in Creative flight. Do not rotate the camera before executing the first teleport.",
+        "exact_input": null,
+        "success_cue": "The player is hovering at a stable height and the camera is stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press T to open in-game chat. The command must be run from chat with its leading slash because this is a singleplayer reproduction.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to receive a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Enter the report's first teleport command exactly and press Enter. The relative ~ Y argument preserves the player's current elevated Y coordinate; 135 and 45 set the camera yaw and pitch.",
+        "exact_input": "/tp @p 100 ~ 100 135 45",
+        "success_cue": "The command is accepted, the player teleports to X=100 and Z=100 at the same Y level, and the camera snaps to yaw 135 and pitch 45.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Keep all movement and look controls released. Wait until the destination terrain has rendered and the game responds normally, without deliberately moving or rotating the camera.",
+        "exact_input": null,
+        "success_cue": "The stained-glass terrain around X=100, Z=100 is visible, chunk loading has settled, and the camera still has the orientation established by the teleport command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Reload client resources by pressing F3 and T together. If F3 is intercepted as a media key, hold Fn and press F3+T instead. Release the keys after the reload begins.",
+        "exact_input": "F3+T",
+        "success_cue": "The resource-reload screen or progress indicator appears, confirming that the F3+T action was recognized.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Wait for the resource reload to finish and then continue waiting until the surrounding chunks have rendered again. Keep movement and look controls released throughout this wait.",
+        "exact_input": null,
+        "success_cue": "The normal world view has returned, the visible stained-glass terrain is loaded, and the game responds normally without the player having changed position or camera direction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Press T to reopen in-game chat. Do not move or rotate the camera first.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open while the player remains at X=100, Z=100 and at the elevated Y level.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Enter the report's second teleport command exactly and press Enter. This command returns the player to X=0 and Z=0 while preserving Y, and changes the camera to yaw -45 and pitch 45.",
+        "exact_input": "/tp @p 0 ~ 0 -45 45",
+        "success_cue": "The command is accepted, chat closes, and the player arrives at X=0 and Z=0 with the command-defined camera orientation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Immediately release all controls and keep the player and camera stationary. Wait only until the destination frame and surrounding chunks are visible; do not press F3+T again, alter video settings, cross a chunk boundary, or approach the surface.",
+        "exact_input": null,
+        "success_cue": "The player is stationary above the stained-glass world at X=0, Z=0, with yaw -45 and pitch 45, and the destination terrain is ready for visual inspection.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The second teleport has just completed, and the player is stationary at X=0 and Z=0 at the preserved elevated Y coordinate, with yaw -45 and pitch 45. The surrounding stained-glass chunks are visible, and no movement, camera rotation, resource reload, or graphics-setting change has occurred after the teleport. Hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The report specifies flying up only approximately 10 blocks and states that the exact amount does not matter much; no exact Y coordinate is required.",
+      "The updated reproduction does not state a game mode. Creative mode is selected as a practical way to satisfy the explicit flight requirement.",
+      "The updated reproduction does not specify a render distance. An older report comment states that the issue was not reproduced at 2 chunks but was reproduced above 2 chunks in 14w27b; using at least 8 chunks is a practical choice rather than an explicitly stated 24w33a requirement.",
+      "No operating system, GPU, resolution, graphics mode, mipmap level, or other video setting is specified by the updated reproduction.",
+      "World-creation menu labels can vary slightly between launcher or snapshot interfaces, but the exact superflat preset must not be changed."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0b922652969225fe016aa5c489c36c87d0894924fa4141999e",
+    "elapsed_seconds": 80.64,
+    "usage": {
+      "input_tokens": 16404,
+      "output_tokens": 4896,
+      "reasoning_tokens": 2802,
+      "total_tokens": 21300
+    },
+    "timestamp": "2026-09-12T21:32:10.121772+00:00"
+  }
+}

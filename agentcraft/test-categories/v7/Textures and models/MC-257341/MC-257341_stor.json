@@ -1,0 +1,149 @@
+{
+  "bug_id": "MC-257341",
+  "category": "Textures and models",
+  "source_md": "[Textures and models] - MC-257341.md",
+  "source_meta": {
+    "mojira categories": "Textures and models",
+    "project": "MC",
+    "issue key": "MC-257341",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-11-09T08:05:45.308-0800",
+    "updated": "2025-04-29T10:59:10.483-0700",
+    "resolution date": "2024-01-23T07:27:36.960-0800",
+    "affects versions": "22w45a; 22w46a",
+    "fix versions": "1.19.3 Pre-release 1",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "2022-11-09_15.49.02.png; 2022-11-09_15.59.49.png; 2022-11-09_19.10.36.png; 2022-11-22_14.32.55.png; allay.png; AllayVexTransparent.png; AllayWingVexWing.png; vex.png",
+    "issue links": "Relates:outward:MC-251296:Allay has a transparent texture but it is not transparent in game",
+    "_title": "Vex texture does not utilize translucency"
+  },
+  "stor": {
+    "bug_id": "MC-257341",
+    "recommended_version": "Minecraft Java Edition snapshot 22w45a",
+    "environment": "Vanilla Minecraft Java Edition 22w45a in a single-player world. Use Creative mode with commands enabled for deterministic entity summoning. Do not enable a resource pack that replaces the allay or vex textures.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start the exact Java Edition snapshot 22w45a. Snapshot 22w46a is also listed as affected, but do not use the fixed version 1.19.3 Pre-release 1 or a later version for this reproduction.",
+      "Create or open a single-player world in Creative mode with commands enabled. The report supplies no required world seed, dimension, biome, or coordinates.",
+      "Use the unmodified vanilla allay and vex textures; disable any resource pack that replaces either texture.",
+      "Wait until the world and nearby chunks have finished loading and movement responds normally before summoning the entities."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the installation configured for snapshot 22w45a. Confirm the displayed game version before entering a world.",
+        "exact_input": "Minecraft Java Edition 22w45a",
+        "success_cue": "The 22w45a main menu is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer and create a new world, or open an existing disposable world, with Creative mode and commands enabled. No particular seed or world type is required by the report.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player is inside a 22w45a world and can access the normal HUD and hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without entering commands until nearby terrain is rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby blocks are fully visible, no loading screen is present, and movement responds without chunk-loading interruption.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to an open area where two small flying mobs can be viewed without blocks, tall grass, fire, water, or other entities obscuring them. Leave at least several blocks of clear viewing space around the player.",
+        "exact_input": "Default movement controls: W, A, S, D; use the mouse to turn",
+        "success_cue": "There is clear space at the player's current X coordinate and at least one block in both the negative-X and positive-X directions.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Stop moving, then open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's allay summon command exactly as written, including the leading slash and NBT data.",
+        "exact_input": "/summon allay ~-1 ~ ~ {NoAI:1}",
+        "success_cue": "The complete allay summon command is visible in the chat input field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Submit the allay summon command.",
+        "exact_input": "Enter",
+        "success_cue": "The command succeeds and an allay appears one block in the negative-X direction from the position at which the command was executed. The allay remains at its summoned location because NoAI is set.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Without deliberately changing the command origin, open chat again.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's vex summon command exactly as written, including the leading slash and NBT data.",
+        "exact_input": "/summon vex ~1 ~ ~ {NoAI:1}",
+        "success_cue": "The complete vex summon command is visible in the chat input field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Submit the vex summon command.",
+        "exact_input": "Enter",
+        "success_cue": "The command succeeds and a vex appears one block in the positive-X direction from the command origin. Both summoned entities are present approximately two blocks apart and remain at their summoned locations.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Move a few blocks away from the midpoint between the two entities, then turn toward them. Adjust the viewing angle and look slightly downward if necessary so the complete allay and complete vex are simultaneously visible without either entity overlapping the other.",
+        "exact_input": "Default controls: W, A, S, D and mouse movement",
+        "success_cue": "The allay and vex are both visible at the same time, separated on screen, and their lower bodies are not hidden by terrain or the other entity.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Approach or adjust the camera only enough to make the ragged-looking region at the bottom of each mob large and clear enough for visual inspection. Center the view on those lower regions, then stop movement and camera input.",
+        "exact_input": "Default controls: W, A, S, D and mouse movement",
+        "success_cue": "Both stationary mobs remain in view and the ragged lower edge of each model is clearly framed for the observation subsystem; no judgment about texture appearance has yet been made.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The NoAI allay and NoAI vex have been summoned side by side in 22w45a, both entities are loaded and stationary, and the camera has just been positioned so their ragged lower-body regions are simultaneously clear and unobstructed. Begin visual observation at this point.",
+    "uncertainties": [
+      "The report does not specify a world seed, world type, biome, dimension, coordinates, game mode, camera perspective, viewing distance, lighting condition, or graphics-quality setting.",
+      "Creative mode and commands enabled are practical choices for executing the supplied summon commands; the report does not explicitly require Creative mode.",
+      "The exact camera position is not specified. The executor should change position only as needed to obtain an unobstructed view of both lower-body regions.",
+      "Comments discuss possible vex-wing translucency separately, but the formal reproduction steps specifically direct examination of the ragged-looking region at the bottom of each mob. This plan therefore frames the lower bodies and does not add a separate wing test.",
+      "Snapshot 22w46a is also listed as affected, but this plan selects 22w45a because it is the first affected version named in the report."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_052491c578b12ab0016aa5c448370c87d0974d8d61c69b64aa",
+    "elapsed_seconds": 65.5,
+    "usage": {
+      "input_tokens": 8450,
+      "output_tokens": 3712,
+      "reasoning_tokens": 2349,
+      "total_tokens": 12162
+    },
+    "timestamp": "2026-09-12T21:30:49.476158+00:00"
+  }
+}

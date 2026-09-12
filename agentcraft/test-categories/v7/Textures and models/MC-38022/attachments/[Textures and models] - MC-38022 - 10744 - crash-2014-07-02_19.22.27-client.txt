@@ -1,0 +1,66 @@
+---- Minecraft Crash Report ----
+// Hi. I'm Minecraft, and I'm a crashaholic.
+
+Time: 2-7-14 19:22
+Description: Manually triggered debug crash
+
+java.lang.Throwable
+	at bmi.q(SourceFile:1539)
+	at bmi.ap(SourceFile:861)
+	at bmi.a(SourceFile:303)
+	at net.minecraft.client.main.Main.main(SourceFile:120)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Stacktrace:
+	at bza.a(SourceFile:310)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [ccx['Lafie'/71372, l='MpServer', x=-2453,98, y=82,07, z=361,33]]
+	Chunk stats: MultiplayerChunkCache: 620, 620
+	Level seed: 0
+	Level generator: ID 00 - default, ver 1. Features enabled: false
+	Level generator options: 
+	Level spawn location: -96,00,64,00,252,00 - World: (-96,64,252), Chunk: (at 0,4,12 in -6,15; contains blocks -96,0,240 to -81,255,255), Region: (-1,0; contains chunks -32,0 to -1,31, blocks -512,0,0 to -1,255,511)
+	Level time: 35007 game time, 35007 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 80 total; [abh['Creeper'/1948701, l='MpServer', x=-2379,82, y=33,00, z=287,32], ccx['Lafie'/71372, l='MpServer', x=-2453,98, y=82,07, z=361,33], abh['Creeper'/1947931, l='MpServer', x=-2409,50, y=58,00, z=283,50], abh['Creeper'/1947926, l='MpServer', x=-2405,50, y=58,00, z=291,50], acm['Skeleton'/1938692, l='MpServer', x=-2403,50, y=37,00, z=322,50], abh['Creeper'/1938694, l='MpServer', x=-2409,50, y=37,00, z=327,50], acm['Skeleton'/1885696, l='MpServer', x=-2422,09, y=16,00, z=346,41], yz['Bat'/1945344, l='MpServer', x=-2405,50, y=18,56, z=392,25], acz['Zombie'/1938749, l='MpServer', x=-2444,66, y=14,00, z=344,41], yz['Bat'/1930047, l='MpServer', x=-2422,49, y=25,86, z=404,46], acz['Zombie'/1922345, l='MpServer', x=-2470,34, y=44,00, z=366,31], acm['Skeleton'/1905757, l='MpServer', x=-2414,50, y=16,00, z=346,50], zw['Squid'/1873500, l='MpServer', x=-2450,53, y=61,91, z=347,12], acm['Skeleton'/1905759, l='MpServer', x=-2418,50, y=16,00, z=347,50], abh['Creeper'/1932371, l='MpServer', x=-2452,63, y=21,00, z=402,97], acm['Skeleton'/1932366, l='MpServer', x=-2457,38, y=26,00, z=414,81], aat['container.minecart'/1842501, l='MpServer', x=-2484,50, y=15,06, z=295,50], abh['Creeper'/1897536, l='MpServer', x=-2473,50, y=51,00, z=327,50], abh['Creeper'/1937018, l='MpServer', x=-2385,56, y=31,00, z=295,06], yz['Bat'/1943665, l='MpServer', x=-2403,69, y=18,91, z=372,91], yz['Bat'/1937508, l='MpServer', x=-2461,94, y=14,10, z=284,59], acm['Skeleton'/1920864, l='MpServer', x=-2449,50, y=25,00, z=369,50], yz['Bat'/1937506, l='MpServer', x=-2461,50, y=17,10, z=285,13], abh['Creeper'/1939611, l='MpServer', x=-2414,50, y=21,00, z=416,50], abh['Creeper'/1946004, l='MpServer', x=-2459,50, y=18,00, z=290,50], abh['Creeper'/1900432, l='MpServer', x=-2393,50, y=25,00, z=311,50], abh['Creeper'/1949327, l='MpServer', x=-2477,50, y=11,00, z=285,50], acm['Skeleton'/1887631, l='MpServer', x=-2457,72, y=16,16, z=309,06], acz['Zombie'/1945995, l='MpServer', x=-2459,50, y=18,00, z=291,50], zw['Squid'/1922949, l='MpServer', x=-2408,34, y=52,00, z=336,91], acz['Zombie'/1946503, l='MpServer', x=-2409,25, y=57,00, z=287,78], abh['Creeper'/1946497, l='MpServer', x=-2408,06, y=59,00, z=292,47], zw['Squid'/1922947, l='MpServer', x=-2391,25, y=48,28, z=341,69], zk['Pig'/1847220, l='MpServer', x=-2533,31, y=64,00, z=287,56], acm['Skeleton'/1946039, l='MpServer', x=-2454,50, y=16,00, z=285,50], zw['Squid'/1922742, l='MpServer', x=-2435,16, y=56,81, z=378,56], acm['Skeleton'/1946038, l='MpServer', x=-2459,44, y=16,00, z=283,44], acm['Skeleton'/1946033, l='MpServer', x=-2463,50, y=16,00, z=282,50], zw['Squid'/1922739, l='MpServer', x=-2452,19, y=58,97, z=388,03], acz['Zombie'/1934003, l='MpServer', x=-2411,03, y=14,00, z=407,63], acz['Zombie'/1938348, l='MpServer', x=-2462,50, y=20,00, z=396,50], yz['Bat'/1945519, l='MpServer', x=-2445,72, y=23,09, z=287,06], acm['Skeleton'/1946030, l='MpServer', x=-2460,16, y=16,22, z=285,69], acm['Skeleton'/1916585, l='MpServer', x=-2379,50, y=34,00, z=319,50], yz['Bat'/1943460, l='MpServer', x=-2480,88, y=16,03, z=300,72], abh['Creeper'/1916577, l='MpServer', x=-2379,50, y=34,00, z=321,50], acu['Spider'/1934754, l='MpServer', x=-2438,50, y=43,00, z=308,50], yz['Bat'/1943772, l='MpServer', x=-2407,78, y=18,91, z=389,34], yz['Bat'/1943770, l='MpServer', x=-2405,94, y=22,94, z=376,06], acm['Skeleton'/1946837, l='MpServer', x=-2439,50, y=34,00, z=385,50], yz['Bat'/1936593, l='MpServer', x=-2444,35, y=47,91, z=296,21], acu['Spider'/1931216, l='MpServer', x=-2443,41, y=14,00, z=343,16], yz['Bat'/1931987, l='MpServer', x=-2391,64, y=37,48, z=419,45], acm['Skeleton'/1931212, l='MpServer', x=-2443,47, y=14,00, z=344,59], yz['Bat'/1936588, l='MpServer', x=-2436,38, y=43,03, z=312,08], abh['Creeper'/1946828, l='MpServer', x=-2441,50, y=34,00, z=385,50], aap['item.item.dyePowder.black'/1927886, l='MpServer', x=-2453,44, y=54,00, z=401,16], abh['Creeper'/1934537, l='MpServer', x=-2414,50, y=40,00, z=399,50], acz['Zombie'/1925061, l='MpServer', x=-2443,50, y=17,00, z=339,50], acm['Skeleton'/1946565, l='MpServer', x=-2404,50, y=17,00, z=310,50], abh['Creeper'/1947589, l='MpServer', x=-2532,00, y=30,00, z=413,44], acz['Zombie'/1946560, l='MpServer', x=-2404,50, y=17,00, z=307,50], yz['Bat'/1945343, l='MpServer', x=-2405,53, y=21,47, z=391,44], acm['Skeleton'/1948408, l='MpServer', x=-2404,50, y=42,00, z=369,50], acz['Zombie'/1944315, l='MpServer', x=-2385,50, y=32,00, z=290,50], acm['Skeleton'/1927153, l='MpServer', x=-2446,50, y=46,00, z=398,50], abh['Creeper'/1889008, l='MpServer', x=-2461,09, y=16,00, z=285,69], zw['Squid'/1922802, l='MpServer', x=-2403,09, y=52,13, z=334,25], acm['Skeleton'/1927149, l='MpServer', x=-2447,50, y=46,00, z=401,50], acm['Skeleton'/1915375, l='MpServer', x=-2403,47, y=25,00, z=303,84], yz['Bat'/1945583, l='MpServer', x=-2426,09, y=15,75, z=294,00], acm['Skeleton'/1947625, l='MpServer', x=-2493,50, y=39,00, z=441,50], acz['Zombie'/1945064, l='MpServer', x=-2443,78, y=47,00, z=296,78], acm['Skeleton'/1934827, l='MpServer', x=-2415,50, y=17,00, z=319,50], abh['Creeper'/1945067, l='MpServer', x=-2451,09, y=45,00, z=306,59], acz['Zombie'/1945063, l='MpServer', x=-2451,22, y=45,00, z=304,72], acz['Zombie'/1945062, l='MpServer', x=-2449,50, y=45,00, z=307,56], acm['Skeleton'/1939681, l='MpServer', x=-2412,50, y=32,00, z=423,50], acz['Zombie'/1947616, l='MpServer', x=-2495,84, y=39,00, z=442,53], acm['Skeleton'/1948898, l='MpServer', x=-2419,93, y=16,00, z=382,50]]
+	Retry entities: 0 total; []
+	Server brand: vanilla
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at bza.a(SourceFile:310)
+	at bmi.b(SourceFile:2135)
+	at bmi.a(SourceFile:312)
+	at net.minecraft.client.main.Main.main(SourceFile:120)
+
+-- System Details --
+Details:
+	Minecraft Version: 14w27b
+	Operating System: Windows 7 (amd64) version 6.1
+	Java Version: 1.8.0_05, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 4043636360 bytes (3856 MB) / 4388814848 bytes (4185 MB) up to 11453595648 bytes (10923 MB)
+	JVM Flags: 2 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump -Xmx12G
+	IntCache: cache: 0, tcache: 0, allocated: 12, tallocated: 94
+	Launched Version: 14w27b
+	LWJGL: 2.9.1
+	OpenGL: GeForce GTX 670/PCIe/SSE2 GL version 4.4.0, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+
+	Is Modded: Probably not. Jar signature remains and client brand is untouched.
+	Type: Client (map_client.txt)
+	Resource Packs: []
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
