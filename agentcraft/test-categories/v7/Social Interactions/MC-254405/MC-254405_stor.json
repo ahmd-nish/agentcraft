@@ -1,0 +1,134 @@
+{
+  "bug_id": "MC-254405",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-254405.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-254405",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-07-20T13:20:00.642-0700",
+    "updated": "2025-03-08T10:38:34.831-0800",
+    "resolution date": "2022-07-21T06:42:32.816-0700",
+    "affects versions": "1.19.1 Pre-release 6",
+    "fix versions": "1.19.1 Release Candidate 2",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-254405.png; MC-254405 - Analysis.png",
+    "_title": "Debug messages aren't prefixed with gray color indicators"
+  },
+  "stor": {
+    "bug_id": "MC-254405",
+    "recommended_version": "Minecraft Java Edition 1.19.1 Pre-release 6 (launcher version 1.19.1-pre6), the exact affected version named in the report",
+    "environment": "Vanilla Minecraft Java Edition client in a single-player world using the integrated server. Use a keyboard that can send the F3+B debug-key combination. Creative mode and enabled cheats are selected as practical setup choices so the supplied command can be executed without additional permission configuration.",
+    "preconditions": [
+      "Install or make available Minecraft Java Edition 1.19.1 Pre-release 6 in the Minecraft Launcher.",
+      "Use an unmodified client unless the supplied test environment specifically requires otherwise.",
+      "Ensure chat is not hidden, because both the command-feedback message and the debug message must be available in chat history.",
+      "Ensure cheats are enabled or the player otherwise has permission to execute /tag.",
+      "Start with a player that does not already have the tag named test; a newly created world and player satisfy this condition.",
+      "Do not clear chat between executing the command and invoking the debug function."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select an installation that uses Minecraft Java Edition 1.19.1 Pre-release 6, and launch the game. Do not substitute 1.19.1 Release Candidate 2 or a later version.",
+        "exact_input": "Version: 1.19.1-pre6",
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 1.19.1 Pre-release 6.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open the single-player world-creation screen by selecting Singleplayer and then Create New World.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World configuration screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Open More World Options and confirm that Allow Cheats is set to ON. No particular world seed or world-generation setting is required by the report.",
+        "exact_input": "Game Mode: Creative; More World Options... -> Allow Cheats: ON",
+        "success_cue": "The world is configured for Creative mode and commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World and wait for world generation and loading to finish.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the world, surrounding terrain has rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Confirm that chat messages are visible. If chat is hidden, open the pause menu and change the chat visibility through Options, Chat Settings, Chat until it reads Shown; then return to the world.",
+        "exact_input": "Esc -> Options... -> Chat Settings... -> Chat: Shown -> Done -> Done -> Back to Game",
+        "success_cue": "Gameplay is active again and chat visibility is set to Shown.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press the Open Chat control, whose default key is T, so that an in-game command can be entered.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and has keyboard focus.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the report's command exactly as written, including the leading slash, and press Enter to execute it as the current player.",
+        "exact_input": "/tag @s add test",
+        "success_cue": "The chat input closes and a command-feedback line reporting the tag operation is displayed in the chat area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Allow the command-feedback line to finish rendering, and leave it in chat history as the comparison system-message entry. Ensure normal gameplay has keyboard focus before continuing.",
+        "exact_input": null,
+        "success_cue": "The tag command's feedback line is retained in chat history and no menu or text-entry field is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Invoke the hitbox debug function by holding F3, pressing B once, and then releasing the keys. On a keyboard where the function row controls media features, also hold the hardware Fn key as necessary. Do not repeatedly toggle the function.",
+        "exact_input": "F3+B (or Fn+F3+B when required by the keyboard)",
+        "success_cue": "A hitbox-debug status message has been emitted to chat, and the hitbox display state has toggled once.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Immediately press T to open the expanded chat history so that both the earlier command-feedback line and the newly emitted debug-status line are visible for the observation subsystem. Do not enter or send any additional text.",
+        "exact_input": "T",
+        "success_cue": "The expanded chat interface is open and contains both the tag-command feedback entry and the F3+B debug-status entry.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The F3+B debug function has just been toggled once, and the expanded chat history is open with both the prior /tag command-feedback entry and the resulting debug-status entry available for inspection. Hand control to the observation subsystem before closing or clearing chat.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer, game mode, world seed, operating system, or keyboard model. A fresh Creative single-player world with cheats enabled is the simplest deterministic setup that preserves the reported actions.",
+      "The report permits any debug function and gives F3+B as its example. This plan uses F3+B exactly to avoid selecting an unsupported alternative.",
+      "Whether a hardware Fn modifier is required depends on the keyboard and operating-system configuration; Fn is not part of Minecraft's logical debug-key combination.",
+      "The exact wording of the tag command feedback and hitbox debug message is not prescribed as a setup requirement, so the plan only requires that the corresponding entries be emitted and retained for inspection."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0922b5d37d83b70e016aa5cd0fcc2887d08ea03ec6df5d7c55",
+    "elapsed_seconds": 60.75,
+    "usage": {
+      "input_tokens": 8133,
+      "output_tokens": 3766,
+      "reasoning_tokens": 2538,
+      "total_tokens": 11899
+    },
+    "timestamp": "2026-09-12T22:08:12.257783+00:00"
+  }
+}

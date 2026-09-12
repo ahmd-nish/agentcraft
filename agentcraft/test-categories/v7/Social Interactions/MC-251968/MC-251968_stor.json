@@ -1,0 +1,142 @@
+{
+  "bug_id": "MC-251968",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-251968.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-251968",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-05-20T03:26:58.985-0700",
+    "updated": "2025-04-30T07:45:50.339-0700",
+    "resolution date": "2022-06-29T06:56:23.098-0700",
+    "affects versions": "1.19 Pre-release 1",
+    "fix versions": "1.19 Pre-release 3",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-251968.png",
+    "_title": "/execute running chat related commands logs \"Received chat packet without valid signature\" warning"
+  },
+  "stor": {
+    "bug_id": "MC-251968",
+    "recommended_version": "Minecraft Java Edition 1.19 Pre-release 1",
+    "environment": "Vanilla Minecraft Java Edition client running 1.19 Pre-release 1 in a single-player world hosted by the integrated server. Use a fresh Creative-mode Superflat world with commands allowed and difficulty set to Normal or another non-Peaceful difficulty. The active client log must be accessible through the instance's logs/latest.log file or an equivalent client-output monitor.",
+    "preconditions": [
+      "Launch the affected version stated in the report: Minecraft Java Edition 1.19 Pre-release 1.",
+      "Use an unmodified client without mods that replace or intercept chat, commands, or logging.",
+      "Commands must be permitted in the test world. For the proposed Creative-world setup, enable Allow Cheats when creating the world.",
+      "Do not use Peaceful difficulty, because the summoned creeper can be removed immediately on that difficulty.",
+      "Use the in-game chat screen for the reported /execute command. Do not substitute a command block, function, server console, or launcher console.",
+      "Ensure the client-side log for the active game instance can be read. In a standard instance this is the logs/latest.log file inside that instance's game directory.",
+      "If controls have been rebound, use the control assigned to Open Chat instead of the default T key."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that uses Minecraft Java Edition 1.19 Pre-release 1, then launch that installation.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and its version label identifies 1.19 Pre-release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer, then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Configure the new world for Game Mode: Creative, set Allow Cheats to ON, select the Superflat world type under the additional world options, and leave or set the difficulty to Normal. Then create the world.",
+        "exact_input": null,
+        "success_cue": "World generation begins with Creative mode, commands enabled, a Superflat world type, and a non-Peaceful difficulty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait for the player to enter the world. Do not continue until the flat terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in a fully rendered portion of the Superflat world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the active instance's client log file, normally logs/latest.log, in a monitor that can display newly appended lines. Position the monitor at the current end of the file, but do not evaluate the bug outcome yet. Keep Minecraft focused for the following game actions.",
+        "exact_input": "logs/latest.log",
+        "success_cue": "The client log monitor is attached to the active game's log and is positioned after the existing entries.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "In Minecraft, press the default Open Chat key to open the in-game chat screen.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible and ready to accept a command.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Type the following command exactly into the chat input. Include the leading slash, but do not submit it until the complete command is present.",
+        "exact_input": "/summon creeper ~2 ~ ~",
+        "success_cue": "The complete summon command is visible in the chat input field with no extra characters.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Press Enter once to execute the summon command.",
+        "exact_input": "Enter",
+        "success_cue": "The command is accepted and one creeper is visible or the command feedback confirms that a Creeper was summoned near the player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Press the default Open Chat key again. Perform this while the summoned creeper is still present and loaded in the world.",
+        "exact_input": "T",
+        "success_cue": "The in-game chat input field is open while the summoned creeper remains loaded.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Type the report's command exactly into the chat input. Preserve its capitalization and spacing, include the leading slash, and do not add a slash before the say subcommand.",
+        "exact_input": "/execute as @e[type=creeper] run say Hi",
+        "success_cue": "The complete command /execute as @e[type=creeper] run say Hi is visible in the chat input field and has not yet been submitted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Press Enter once to submit the /execute command from the in-game chat screen. Do not run it again; immediately hand control to the observation subsystem after this single execution.",
+        "exact_input": "Enter",
+        "success_cue": "The chat screen closes, the command has executed as the loaded creeper, and an in-game say message containing Hi is produced by the creeper.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The exact command /execute as @e[type=creeper] run say Hi has just been submitted once from the in-game chat screen while the summoned creeper is loaded, and the client log monitor is positioned to inspect entries appended by that execution. Begin client-log observation now.",
+    "uncertainties": [
+      "The report does not state whether the original test used single-player or a dedicated server. This plan uses a single-player integrated server because it is the simplest setup that preserves execution from the client chat screen and access to the client log.",
+      "The report does not specify the game mode, world type, difficulty, or exact method used to summon the creeper. Creative mode, Superflat terrain, Normal difficulty, and /summon creeper ~2 ~ ~ are deterministic operational choices rather than report requirements.",
+      "The report does not identify an operating system, launcher configuration, or absolute log path. The active instance's logs/latest.log file should be used; its parent game directory may differ for custom installations.",
+      "The externally verified summon command supplies the omitted operational detail for report step 1. The report's /execute command is preserved exactly and has not been modernized or otherwise rewritten."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_020a2a727ea22a97016aa5cc82e9c487d0b3eedbe0f46fa5f6",
+    "elapsed_seconds": 104.72,
+    "usage": {
+      "input_tokens": 16979,
+      "output_tokens": 6068,
+      "reasoning_tokens": 4747,
+      "total_tokens": 23047
+    },
+    "timestamp": "2026-09-12T22:06:32.944634+00:00"
+  }
+}

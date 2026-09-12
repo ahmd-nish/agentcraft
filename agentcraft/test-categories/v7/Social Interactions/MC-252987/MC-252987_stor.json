@@ -1,0 +1,111 @@
+{
+  "bug_id": "MC-252987",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-252987.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-252987",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-06-13T10:39:48.251-0700",
+    "updated": "2025-03-08T11:10:36.244-0800",
+    "resolution date": "2022-06-29T06:56:23.213-0700",
+    "affects versions": "1.19; 22w24a",
+    "fix versions": "1.19.1 Release Candidate 1",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "Click me text.png; Illegal Chars Screen.png",
+    "_title": "Illegal character '\\n' in text component clickEvent"
+  },
+  "stor": {
+    "bug_id": "MC-252987",
+    "recommended_version": "Minecraft Java Edition 1.19 release (preferred deterministic affected version; the report also lists snapshot 22w24a). Do not create the test world in a later version.",
+    "environment": "Minecraft Java Edition client running a singleplayer world through the integrated server, with cheats enabled. The report specifies no world seed, game mode, difficulty, resource pack, datapack, server, or additional player.",
+    "preconditions": [
+      "The Minecraft Launcher can start an installation using the Java Edition 1.19 release.",
+      "A keyboard and mouse are available; default controls are assumed below, but equivalent rebound controls may be used.",
+      "The complete command from the report is available to paste as one line.",
+      "When entering the command, preserve the single backslash followed by lowercase n in `Players:\\n`; do not replace it with a literal line break and do not add a second backslash."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation that uses the exact Java Edition 1.19 release, then start the game with that installation.",
+        "exact_input": null,
+        "success_cue": "The main menu is open and the lower-left version label identifies the running game as Minecraft 1.19.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select `Singleplayer`, then select `Create New World`.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Open `More World Options...` and toggle `Allow Cheats` until it reads `Allow Cheats: ON`. The report does not require a particular seed, game mode, or other world setting, so leave those settings unchanged.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows that cheats are enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select `Create New World` and wait for world generation and loading to finish. Do not continue while a loading screen is visible.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the singleplayer world, surrounding terrain has rendered, and normal movement and input are responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Press `T` to open in-game chat. Paste the report command into the chat input as one uninterrupted line. Include the leading `/`, preserve all quotation marks and backslashes exactly, and press `Enter` once to execute it.",
+        "exact_input": "/tellraw @s [{\"text\":\"Click me!\",\"clickEvent\": {\"action\":\"run_command\",\"value\": \"/tellraw @s [{\\\"text\\\":\\\"Players:\\n\\\"},{\\\"color\\\":\\\"gray\\\",\\\"selector\\\":\\\"@a\\\"}]\"} }]",
+        "success_cue": "The chat overlay closes after command submission and a new `Click me!` text component is visible in the chat area. No command-syntax error is shown.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Press `T` again to open the full chat interface. Locate the `Click me!` line created by the preceding command; if necessary, use the chat history area rather than typing anything new.",
+        "exact_input": null,
+        "success_cue": "The chat interface is open, the mouse pointer is available, and the `Click me!` text component is visible and unobstructed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Move the mouse pointer directly over the visible `Click me!` text component and left-click it exactly once. Do not click elsewhere, enter another command, or repeat the click before handing control to the observation subsystem.",
+        "exact_input": "Left-click `Click me!` once",
+        "success_cue": "A single left-click has just been issued on the `Click me!` chat component; no further reproduction input has been performed.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The player has just left-clicked the `Click me!` text component once in the chat interface of the Minecraft Java Edition 1.19 singleplayer world. Begin observation immediately without providing further input.",
+    "uncertainties": [
+      "The report lists both Java Edition 1.19 and snapshot 22w24a as affected but does not designate one as the preferred test version; this plan selects the stable 1.19 release.",
+      "The report does not specify a game mode, seed, difficulty, world type, or customized controls; none are treated as required.",
+      "The report says to `press` the text but does not explicitly name the mouse button; left-click is used as the standard activation input for a chat click event.",
+      "No external verification was needed because the supplied report includes the exact affected versions, environment requirement, command, action order, and trigger."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01b35afc2be11ef0016aa5cce9be9c87d0a93c2fc02f19fe7f",
+    "elapsed_seconds": 38.55,
+    "usage": {
+      "input_tokens": 8179,
+      "output_tokens": 2569,
+      "reasoning_tokens": 1552,
+      "total_tokens": 10748
+    },
+    "timestamp": "2026-09-12T22:07:11.496925+00:00"
+  }
+}
