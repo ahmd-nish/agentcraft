@@ -40,6 +40,7 @@ STOR_SCHEMA = {
     "type": "object",
     "properties": {
         "bug_id": {"type": "string"},
+        "affected_versions": {"type": "array", "items": {"type": "string"}},
         "recommended_version": {"type": "string"},
         "environment": {"type": "string"},
         "preconditions": {"type": "array", "items": {"type": "string"}},
@@ -67,8 +68,9 @@ STOR_SCHEMA = {
         "web_verification_used": {"type": "boolean"},
     },
     "required": [
-        "bug_id", "recommended_version", "environment", "preconditions", "steps",
-        "trigger_step", "handoff_condition", "uncertainties", "web_verification_used",
+        "bug_id", "affected_versions", "recommended_version", "environment",
+        "preconditions", "steps", "trigger_step", "handoff_condition",
+        "uncertainties", "web_verification_used",
     ],
     "additionalProperties": False,
 }
@@ -174,6 +176,34 @@ for the exact affected version.
 Historical Minecraft command syntax is version-sensitive.
 
 VERSION FIDELITY IS CRITICAL.
+
+============================================================
+AFFECTED VERSION SELECTION
+============================================================
+
+The report lists the versions on which the bug is known to occur.
+
+Populate affected_versions with EVERY version the report lists as
+affected, in the order the report lists them. Copy each version
+string exactly as written.
+
+Do not add versions the report does not list.
+Do not put fix versions in affected_versions.
+
+Set recommended_version to the FIRST entry of affected_versions.
+
+Reproduce against that first affected version unless the report
+itself states that this particular version cannot reproduce the
+issue. If you depart from the first entry for that reason, record
+the reason in uncertainties.
+
+NEVER set recommended_version to a fix version. A version listed as
+fixing the bug is a version on which the reproduction is expected
+to fail, so selecting it makes the whole plan invalid.
+
+If the report lists no affected version at all, leave
+affected_versions empty, state the version you selected in
+recommended_version, and record that choice in uncertainties.
 
 ============================================================
 WEB VERIFICATION POLICY

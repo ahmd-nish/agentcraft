@@ -25,253 +25,249 @@
   },
   "stor": {
     "bug_id": "MC-238073",
-    "recommended_version": "Minecraft Java Edition snapshot 21w42a, the latest affected snapshot explicitly confirmed in the supplied report. Do not run the primary reproduction in 21w43a, which is listed as the fix version.",
-    "environment": "Unmodified Minecraft Java Edition 21w42a in single-player, using two newly generated Creative-mode worlds with identical world-generation settings and the exact seed -8718622960759467126. No custom datapacks, mods, or pre-generated world files should be used.",
+    "affected_versions": [
+      "21w10a",
+      "1.17.1",
+      "21w37a",
+      "21w38a",
+      "21w39a",
+      "21w40a",
+      "21w41a",
+      "21w42a"
+    ],
+    "recommended_version": "21w10a",
+    "environment": "Minecraft Java Edition snapshot 21w10a in single-player. Use two separately created Single Biome worlds configured for the Lush Caves biome, both using seed -8718622960759467126. Use Creative mode with commands enabled, then Spectator mode for locating and revisiting an underground decorator-rich reference chamber. Use an unmodified vanilla client with no custom datapacks or world-generation modifications.",
     "preconditions": [
-      "Install or create a Minecraft Launcher installation for Java Edition snapshot 21w42a. Snapshot versions must be enabled in the launcher's installation/version settings if 21w42a is not selectable.",
-      "Use a clean, unmodified 21w42a client. Using no custom world-generation datapacks is a practical control to ensure that both worlds use the snapshot's built-in generator.",
-      "Prepare to retain two separate worlds named MC-238073-A and MC-238073-B; do not delete, recreate, optimize, or convert World A after recording its reference location.",
-      "Use the exact signed decimal seed -8718622960759467126 in both worlds.",
-      "Use identical world-generation options in both worlds. Only the world names should differ.",
-      "Creative mode and commands are enabled as practical execution aids for flying to a clear viewpoint and returning to its exact coordinates; they are not stated as requirements by the report."
+      "The Minecraft Launcher is able to start the exact Java Edition snapshot 21w10a; do not use the fixed snapshot 21w43a.",
+      "Snapshots are enabled in the Minecraft Launcher installation settings if 21w10a is not already available.",
+      "No existing world is reused or copied: the reproduction requires two independently generated world saves with identical generation settings and the same seed.",
+      "Use the same client settings for both worlds. Do not add or remove datapacks, mods, or other world-generation modifiers between world creation attempts.",
+      "The executor can save the first world's reference coordinates, yaw, pitch, and screenshot for use while loading the second world.",
+      "Instructions assume the English user interface and default controls: T opens chat, F3 opens the debug overlay, F2 captures a screenshot, and Esc opens the pause menu."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "In the Minecraft Launcher, select the installation that runs Java Edition snapshot 21w42a.",
-        "exact_input": "21w42a",
-        "success_cue": "The selected launcher installation displays version 21w42a.",
+        "action": "Start Minecraft Java Edition using the launcher installation for snapshot 21w10a. On the title screen, verify that the displayed version is 21w10a before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 21w10a.",
         "source_basis": "report"
       },
       {
         "step": 2,
-        "action": "Launch the selected installation and wait for the Minecraft main menu to finish loading.",
-        "exact_input": "Play",
-        "success_cue": "The main menu is responsive and identifies the running version as 21w42a.",
-        "source_basis": "practical_inference"
+        "action": "Open the single-player world list and begin creating the first independent world.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "report"
       },
       {
         "step": 3,
-        "action": "Open the single-player world list.",
-        "exact_input": "Singleplayer",
-        "success_cue": "The Select World screen is visible.",
+        "action": "Give the first world a distinct baseline name so that it cannot be confused with the later independently generated world.",
+        "exact_input": "World Name: MC-238073-Baseline",
+        "success_cue": "The world-name field contains MC-238073-Baseline.",
         "source_basis": "practical_inference"
       },
       {
         "step": 4,
-        "action": "Begin creating the first fresh comparison world.",
-        "exact_input": "Create New World",
-        "success_cue": "The Create New World configuration screen is open.",
-        "source_basis": "report"
+        "action": "Set the first world's game mode to Creative and enable commands. Creative mode and commands are execution aids for reaching an underground reference location without changing the required seed.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON",
+        "success_cue": "The creation screen shows Creative mode and commands/cheats enabled.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 5,
-        "action": "Set the first world's name so it can be distinguished from the second world.",
-        "exact_input": "MC-238073-A",
-        "success_cue": "The World Name field contains MC-238073-A.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 6,
-        "action": "Set Game Mode to Creative. If the mode selector currently shows another mode, activate it until Creative is displayed.",
-        "exact_input": "Game Mode: Creative",
-        "success_cue": "The world-creation screen displays Game Mode: Creative.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 7,
-        "action": "Ensure commands are allowed in World A. If necessary, set Allow Cheats to ON.",
-        "exact_input": "Allow Cheats: ON",
-        "success_cue": "The world-creation screen displays Allow Cheats: ON.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 8,
-        "action": "Open the additional world-generation settings containing the seed field.",
-        "exact_input": "More World Options...",
-        "success_cue": "The Seed for the World Generator field and world-generation options are visible.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 9,
-        "action": "Enter the report's exact seed into the seed field, including the leading minus sign and with no spaces.",
-        "exact_input": "-8718622960759467126",
+        "action": "Open the additional world-generation options and enter the report's seed exactly, including its leading minus sign.",
+        "exact_input": "More World Options... -> Seed for the World Generator: -8718622960759467126",
         "success_cue": "The seed field contains exactly -8718622960759467126.",
         "source_basis": "report"
       },
       {
+        "step": 6,
+        "action": "Configure the world as a Single Biome world and select Lush Caves as its biome. In 21w10a, Lush Caves do not generate in the default world type, so this custom world configuration is required to expose their generated decorators in the recommended affected version.",
+        "exact_input": "World Type: Single Biome -> Customize -> select Lush Caves -> Done",
+        "success_cue": "The world-generation screen shows Single Biome configured with the Lush Caves biome.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Leave all other world-generation settings unchanged, then create the first world.",
+        "exact_input": "Create New World",
+        "success_cue": "The game leaves the creation menus and begins generating MC-238073-Baseline.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Wait for the first world to finish loading. Do not continue while the loading screen is visible or while nearby terrain is still appearing.",
+        "exact_input": null,
+        "success_cue": "The player can move normally, nearby chunks are rendered, and the pause or chat interface responds without waiting for initial world loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Verify and record the world's seed using an in-game command. Press T to open chat, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/seed",
+        "success_cue": "Chat reports the seed as -8718622960759467126; save or copy this value as the seed used for the second world.",
+        "source_basis": "report"
+      },
+      {
         "step": 10,
-        "action": "Leave the generator on the normal built-in configuration: World Type set to Default, Generate Structures enabled, Bonus Chest disabled, and no custom world-generation datapack selected. Record these settings so the same values can be used for World B.",
-        "exact_input": "World Type: Default; Generate Structures: ON; Bonus Chest: OFF; no custom datapack",
-        "success_cue": "World A is configured with the exact seed and the recorded default generation settings.",
+        "action": "Enter Spectator mode so the executor can pass through terrain and locate an underground Lush Caves chamber without mining or placing blocks. Press T, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The player is in Spectator mode, can fly, and can pass through solid blocks.",
         "source_basis": "practical_inference"
       },
       {
         "step": 11,
-        "action": "Create World A.",
-        "exact_input": "Create New World",
-        "success_cue": "The world-generation loading screen appears.",
-        "source_basis": "report"
+        "action": "Move to a fixed staging area away from the initially generated spawn chunks. Press T, execute the teleport command with its leading slash, and press Enter.",
+        "exact_input": "/tp @s 512 32 512",
+        "success_cue": "The player is near X=512, Y=32, Z=512 in Spectator mode.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 12,
-        "action": "Wait until World A opens, nearby terrain has rendered, the loading overlay is gone, and movement responds normally.",
+        "action": "Wait until the terrain around the staging area has generated and rendered. Do not start selecting the reference chamber while chunks are still visibly loading.",
         "exact_input": null,
-        "success_cue": "The player can move normally in World A and the surrounding spawn-area chunks are visibly rendered.",
+        "success_cue": "Underground terrain around X=512, Z=512 is visible and flight responds normally.",
         "source_basis": "practical_inference"
       },
       {
         "step": 13,
-        "action": "Confirm the loaded world's seed. Press T to open chat, type the command exactly with the leading slash, and press Enter.",
-        "exact_input": "/seed",
-        "success_cue": "Chat reports the world seed as -8718622960759467126.",
-        "source_basis": "report"
+        "action": "While remaining in Spectator mode, fly through the nearby underground terrain until an unobstructed Lush Caves chamber is visible. Prefer a chamber containing several clearly identifiable generated decorative features, such as moss coverage, azalea bushes, cave vines, spore blossoms, or dripleaf. Do not break, place, or otherwise alter any blocks. If no suitable chamber is immediately visible, search vertically and horizontally around the staging point rather than returning to spawn.",
+        "exact_input": "Use movement controls and Space/Left Shift for vertical Spectator flight.",
+        "success_cue": "A well-lit or otherwise clearly visible underground chamber containing multiple generated Lush Caves decorative features is in view.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 14,
-        "action": "Choose a reference view in the generated area near spawn where naturally generated decorative features are clearly visible. Prefer an outdoor view containing several generated features rather than a close-up of a single block. To obtain a clear overview in Creative mode, double-tap Space to begin flying, use Space to rise, Left Shift to descend, and W/A/S/D to position the player. Remain near the already loaded spawn area rather than exploring randomly for a distant site.",
-        "exact_input": "Double-tap Space; then use Space, Left Shift, and W/A/S/D",
-        "success_cue": "The player is stationary at a clear, unobstructed reference viewpoint overlooking generated terrain near spawn.",
+        "action": "Choose a stationary reference viewpoint from which several of the chamber's generated decorative blocks are visible at once. Avoid positioning the camera inside a block. Once the view is selected, stop moving.",
+        "exact_input": null,
+        "success_cue": "The camera is stationary in open cave space and shows multiple identifiable generated decorative features.",
         "source_basis": "practical_inference"
       },
       {
         "step": 15,
-        "action": "Open the debug overlay with F3. Record the full player position from the XYZ line, including decimals, and the horizontal and vertical viewing angles shown by the Facing line. Label the recorded values X_A, Y_A, Z_A, YAW_A, and PITCH_A.",
+        "action": "Press F3 to open the debug overlay. Record the displayed player X, Y, and Z coordinates as X_REF, Y_REF, and Z_REF. Also record the two camera rotation values shown on the Facing line as YAW_REF and PITCH_REF. Preserve negative signs and decimal values. These five values must be substituted into the second-world teleport command later.",
         "exact_input": "F3",
-        "success_cue": "The debug overlay is visible and the exact XYZ position plus yaw and pitch have been recorded for later reuse.",
+        "success_cue": "X_REF, Y_REF, Z_REF, YAW_REF, and PITCH_REF have been saved outside the world and the player has not moved from the selected viewpoint.",
         "source_basis": "practical_inference"
       },
       {
         "step": 16,
-        "action": "While remaining motionless at the reference viewpoint with the debug overlay visible, take a reference screenshot using the screenshot control.",
+        "action": "Capture a baseline screenshot while still at the recorded viewpoint. Keep the debug overlay visible so the image also preserves the location and facing information. Do not move before taking the screenshot.",
         "exact_input": "F2",
-        "success_cue": "Minecraft confirms that a screenshot was saved; the image records World A's reference view and coordinate information.",
+        "success_cue": "Minecraft confirms that a screenshot was saved, and the player remains at the recorded reference viewpoint.",
         "source_basis": "practical_inference"
       },
       {
         "step": 17,
-        "action": "Close the debug overlay without moving the player, then take a second clean reference screenshot of the same view.",
-        "exact_input": "F3, then F2",
-        "success_cue": "A second screenshot is saved from the same position and orientation without the debug overlay covering the terrain.",
+        "action": "Pause the game and return to the title screen without deleting or copying the first world.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The title screen is visible and the MC-238073-Baseline save remains available in the single-player world list.",
         "source_basis": "practical_inference"
       },
       {
         "step": 18,
-        "action": "Open the pause menu and leave World A without deleting it.",
-        "exact_input": "Esc -> Save and Quit to Title",
-        "success_cue": "The main menu is displayed and World A remains saved.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 19,
-        "action": "Return to the single-player world list and begin creating a second fresh world. Do not open or recreate World A.",
+        "action": "Open the single-player world list and begin creating a second, independent world. Do not duplicate or reopen the baseline save.",
         "exact_input": "Singleplayer -> Create New World",
-        "success_cue": "A new Create New World configuration screen is open.",
+        "success_cue": "A fresh Create New World screen is open.",
         "source_basis": "report"
       },
       {
+        "step": 19,
+        "action": "Give the independently generated second world a distinct comparison name.",
+        "exact_input": "World Name: MC-238073-Replica",
+        "success_cue": "The world-name field contains MC-238073-Replica.",
+        "source_basis": "practical_inference"
+      },
+      {
         "step": 20,
-        "action": "Set the second world's name.",
-        "exact_input": "MC-238073-B",
-        "success_cue": "The World Name field contains MC-238073-B and does not duplicate World A's name.",
+        "action": "Set the second world to the same Creative game mode and commands setting used for the baseline world.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON",
+        "success_cue": "The second world's creation screen shows Creative mode and commands/cheats enabled.",
         "source_basis": "practical_inference"
       },
       {
         "step": 21,
-        "action": "Set World B to Creative mode and enable commands, matching World A's execution settings.",
-        "exact_input": "Game Mode: Creative; Allow Cheats: ON",
-        "success_cue": "World B is configured for Creative mode with commands allowed.",
-        "source_basis": "practical_inference"
+        "action": "Open the additional world-generation options and enter exactly the same report seed used for the baseline world.",
+        "exact_input": "More World Options... -> Seed for the World Generator: -8718622960759467126",
+        "success_cue": "The second world's seed field contains exactly -8718622960759467126.",
+        "source_basis": "report"
       },
       {
         "step": 22,
-        "action": "Open More World Options and enter the same exact signed seed used for World A.",
-        "exact_input": "-8718622960759467126",
-        "success_cue": "World B's seed field contains exactly -8718622960759467126.",
-        "source_basis": "report"
+        "action": "Configure the second world with exactly the same custom world type and biome as the first world.",
+        "exact_input": "World Type: Single Biome -> Customize -> select Lush Caves -> Done",
+        "success_cue": "The second world is configured as a Single Biome Lush Caves world.",
+        "source_basis": "verified_external"
       },
       {
         "step": 23,
-        "action": "Match every recorded world-generation setting from World A: use the built-in Default world type, keep Generate Structures enabled, keep Bonus Chest disabled, and do not add a custom world-generation datapack.",
-        "exact_input": "World Type: Default; Generate Structures: ON; Bonus Chest: OFF; no custom datapack",
-        "success_cue": "World B has the same seed and world-generation settings as World A; only the world name differs.",
-        "source_basis": "practical_inference"
+        "action": "Confirm that the second world's seed, world type, biome, and other world-generation options match the baseline settings, then create the world.",
+        "exact_input": "Create New World",
+        "success_cue": "The game begins generating the independent MC-238073-Replica world.",
+        "source_basis": "report"
       },
       {
         "step": 24,
-        "action": "Create World B. This is the trigger action that starts an independent generation of a second world instance using the same seed.",
-        "exact_input": "Create New World",
-        "success_cue": "The generation screen appears and then World B begins loading.",
-        "source_basis": "report"
-      },
-      {
-        "step": 25,
-        "action": "Wait until World B opens, nearby terrain has rendered, the loading overlay is gone, and movement and commands respond normally.",
+        "action": "Wait for the second world to finish its initial loading and for movement and chat to respond normally.",
         "exact_input": null,
-        "success_cue": "The player can move normally in World B and the surrounding spawn-area chunks are visibly rendered.",
+        "success_cue": "The player can move normally and nearby spawn chunks are rendered in MC-238073-Replica.",
         "source_basis": "practical_inference"
       },
       {
-        "step": 26,
-        "action": "Confirm that World B has the intended seed. Press T, enter the command exactly with the leading slash, and press Enter.",
+        "step": 25,
+        "action": "Verify that the second world received the required seed. Press T, enter the command with its leading slash, and press Enter.",
         "exact_input": "/seed",
-        "success_cue": "Chat reports the world seed as -8718622960759467126.",
+        "success_cue": "Chat reports exactly -8718622960759467126.",
         "source_basis": "report"
       },
       {
+        "step": 26,
+        "action": "Enter Spectator mode in the second world. Press T, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The player can fly and pass through blocks in MC-238073-Replica.",
+        "source_basis": "practical_inference"
+      },
+      {
         "step": 27,
-        "action": "Return to World A's exact recorded reference position and viewing direction. Press T and execute a teleport command using the five recorded values from step 15 in the order X, Y, Z, yaw, pitch. Keep the leading slash. For example, replace each angle-bracket placeholder rather than typing the placeholder text literally.",
-        "exact_input": "/tp @s <X_A> <Y_A> <Z_A> <YAW_A> <PITCH_A>",
-        "success_cue": "The command succeeds and the player is stationary at World A's recorded XYZ position with the same yaw and pitch in World B.",
+        "action": "Teleport to the exact baseline viewpoint and orientation. Replace X_REF, Y_REF, Z_REF, YAW_REF, and PITCH_REF with the five numeric values recorded in step 15; do not type the placeholder names or braces. Open chat with T, execute the completed command with its leading slash, and press Enter. This action loads or generates the second world's chunks at the reference location.",
+        "exact_input": "/tp @s {X_REF} {Y_REF} {Z_REF} {YAW_REF} {PITCH_REF}",
+        "success_cue": "The debug coordinates and camera rotation in the second world match the recorded baseline values.",
         "source_basis": "practical_inference"
       },
       {
         "step": 28,
-        "action": "Do not move after teleporting. Wait until all terrain visible from the reference viewpoint has rendered and command or movement input responds without chunk-loading delay.",
+        "action": "Do not move or interact after teleporting. Wait until the reference chamber and all surrounding chunks have fully rendered and camera movement would respond normally.",
         "exact_input": null,
-        "success_cue": "The reference area in World B is fully visible, no nearby chunk faces are missing, and the game is responsive.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 29,
-        "action": "Press F3 and verify that the displayed XYZ position and Facing angles match the values recorded from World A. If they do not match because a value was entered incorrectly, repeat the teleport command from step 27 with the recorded values.",
-        "exact_input": "F3",
-        "success_cue": "World B is displaying the same XYZ position, yaw, and pitch used for World A's reference screenshots.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 30,
-        "action": "Close the debug overlay without moving or rotating the player, leaving the clean World B reference view on screen for the observation subsystem.",
-        "exact_input": "F3",
-        "success_cue": "The debug overlay is closed, the player remains stationary, World B's reference chunks are loaded, and World A's reference screenshots remain available.",
+        "success_cue": "The second world is fully rendered at the same recorded position and orientation used for the baseline screenshot, with the player stationary in Spectator mode.",
         "source_basis": "practical_inference"
       }
     ],
-    "trigger_step": 24,
-    "handoff_condition": "World B has just been independently generated in snapshot 21w42a with seed -8718622960759467126 and the same world-generation settings as World A. The player is stationary at the exact XYZ position and viewing angles recorded in World A, the visible chunks are fully loaded, and both World A reference screenshots are available. Hand off now for comparison of the two generated instances.",
+    "trigger_step": 27,
+    "handoff_condition": "The independently generated MC-238073-Replica world has just loaded the target chunks for seed -8718622960759467126, and the stationary Spectator camera is at the exact position and orientation recorded in the baseline world. Hand control to the observation subsystem with the step-16 baseline screenshot available for comparison.",
     "uncertainties": [
-      "The report supplies a seed but no exact coordinates, biome, structure, cave, or named decorator to inspect. The plan therefore records a repeatable reference viewpoint near World A's spawn and returns to that exact viewpoint in World B.",
-      "The report broadly states that decorators are inconsistent and its attachments are not included as viewable image content in the supplied text. Consequently, no specific tree, plant, ore, dripstone, lush-cave feature, or other decorator is designated as the sole target.",
-      "Creative mode, commands, an elevated viewpoint, screenshots, and the teleport command are practical execution aids rather than report-stated reproduction requirements.",
-      "The report lists multiple affected versions. Snapshot 21w42a is recommended because it is the latest listed affected version and a comment explicitly confirms it there; behavior in other listed versions may involve different sets of underground or above-ground decorators.",
-      "If the initially selected spawn-area view contains too few clearly visible generated features for a meaningful comparison, the executor may choose another nearby feature-rich viewpoint in World A, but must record and reuse that exact position and orientation in World B. The report does not provide a deterministic coordinate for this fallback."
+      "The report does not specify a world type or target biome. Snapshot 21w10a is nevertheless the required recommended version because it is the first listed affected version. External version documentation confirms that Lush Caves in 21w10a are available through custom Single Biome world generation rather than the default world type, so this plan uses a Single Biome Lush Caves world.",
+      "The report supplies no comparison coordinates or individual decorator to inspect. The X=512, Y=32, Z=512 staging location and the procedure for dynamically recording a nearby decorator-rich chamber are practical choices intended to provide an exact location that can be revisited in the second world.",
+      "Creative mode, enabled commands, Spectator mode, the teleport commands, and the baseline screenshot are execution aids. The report does not state that these are required conditions of the bug.",
+      "The report says the same-seed creation may be repeated as many times as desired. This plan creates two independent worlds because two are the minimum needed to establish a baseline and a same-seed comparison state.",
+      "The unavailable report attachments may depict specific examples or locations, but the supplied report text does not identify any attachment as mandatory for reproduction."
     ],
-    "web_verification_used": false
+    "web_verification_used": true
   },
   "call": {
     "model": "gpt-5.6-sol",
     "reasoning_effort": "high",
     "verbosity": "high",
-    "web_used": false,
-    "web_call_count": 0,
-    "response_id": "resp_0e7ddbd417fd7950016aa5bb5fc19c87d0934e3bd7ce76b8f2",
-    "elapsed_seconds": 100.74,
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0483699c6ce2437d016aa5dbfddc7887d0a972e02faabdbc1d",
+    "elapsed_seconds": 102.87,
     "usage": {
-      "input_tokens": 9772,
-      "output_tokens": 6319,
-      "reasoning_tokens": 3624,
-      "total_tokens": 16091
+      "input_tokens": 18814,
+      "output_tokens": 7005,
+      "reasoning_tokens": 4178,
+      "total_tokens": 25819
     },
-    "timestamp": "2026-09-12T20:53:24.260689+00:00"
+    "timestamp": "2026-09-12T23:12:35.937784+00:00"
   }
 }

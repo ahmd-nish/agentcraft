@@ -25,109 +25,111 @@
   },
   "stor": {
     "bug_id": "MC-215139",
-    "recommended_version": "Minecraft Java Edition 1.18 Pre-release 1",
-    "environment": "A newly created single-player Java Edition world in Minecraft 1.18 Pre-release 1, using the Default world type and seed 5518843328198964868. Commands must be available. Creative mode is recommended as a practical execution choice so the player can safely teleport underground and remain stationary without survival-related interference.",
+    "affected_versions": [
+      "21w06a",
+      "21w38a",
+      "21w39a",
+      "21w40a",
+      "21w41a",
+      "21w44a"
+    ],
+    "recommended_version": "21w06a",
+    "environment": "Minecraft Java Edition snapshot 21w06a in a newly created single-player world using the Default world type and seed 4876135133240268742. Commands must be enabled. Creative mode is used only as a practical execution aid because the report does not specify a game mode.",
     "preconditions": [
-      "Launch exactly Minecraft Java Edition 1.18 Pre-release 1, not 1.18 Pre-release 3 or a later release.",
-      "Create a new world rather than reusing a world generated in another Minecraft version.",
-      "Ensure commands are available. Selecting Creative mode during world creation is the simplest way to satisfy this requirement in single-player.",
-      "Use seed 5518843328198964868 and leave the world type set to Default.",
-      "After teleporting, do not place or break blocks, empty or collect water, activate pistons, or otherwise interact with blocks near the target water; the report states that a block update can change the water state.",
-      "The report does not require a dedicated server, multiple players, a datapack, a resource pack, or a particular graphics setting."
+      "Launch the exact affected snapshot 21w06a, not a fix version such as 1.18 Pre-release 1 or 1.18 Pre-release 3.",
+      "Use a newly generated world rather than an existing or converted world.",
+      "Enter the seed exactly as 4876135133240268742, including all digits and without spaces.",
+      "Keep the world type set to Default.",
+      "Enable commands by selecting Creative mode or turning Allow Cheats on before creating the world.",
+      "Do not place, remove, or interact with blocks near the destination water before handing control to the observation subsystem, because a block update can change the fluid state being tested."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "From the Minecraft title screen, open the single-player world list by selecting Singleplayer.",
-        "exact_input": "Singleplayer",
-        "success_cue": "The Select World screen is open.",
+        "action": "In the Minecraft Launcher, select or create a Java Edition installation for snapshot 21w06a and start the game with that installation.",
+        "exact_input": "21w06a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 21w06a.",
         "source_basis": "practical_inference"
       },
       {
         "step": 2,
-        "action": "Start creating a new world by selecting Create New World.",
-        "exact_input": "Create New World",
-        "success_cue": "The Create New World configuration screen is open.",
-        "source_basis": "report"
+        "action": "Select Singleplayer, then select Create New World to open the world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is displayed.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 3,
-        "action": "Set the game mode to Creative. This is not specified by the report, but it enables commands and prevents underground teleportation from introducing survival hazards.",
-        "exact_input": "Game Mode: Creative",
-        "success_cue": "The world-creation screen displays Creative as the selected game mode, and commands are enabled.",
+        "action": "Set Game Mode to Creative. This is not a reported bug requirement; it is used to provide command permission and prevent survival hazards from interfering after teleportation.",
+        "exact_input": "Creative",
+        "success_cue": "The world-creation screen shows Game Mode: Creative.",
         "source_basis": "practical_inference"
       },
       {
         "step": 4,
-        "action": "Open the additional world-generation settings by selecting More World Options.",
-        "exact_input": "More World Options...",
-        "success_cue": "The seed field and World Type setting are visible.",
-        "source_basis": "practical_inference"
+        "action": "Open More World Options and enter the report's seed in the seed field exactly as supplied.",
+        "exact_input": "4876135133240268742",
+        "success_cue": "The seed field displays 4876135133240268742 exactly.",
+        "source_basis": "report"
       },
       {
         "step": 5,
-        "action": "Select the seed input field, remove any existing text, and enter the seed supplied for the 1.18 Pre-release 1 reproduction.",
-        "exact_input": "5518843328198964868",
-        "success_cue": "The seed field contains exactly 5518843328198964868, with no spaces or extra characters.",
+        "action": "In More World Options, verify that the world type is Default. If another type is selected, cycle the World Type control until Default is shown.",
+        "exact_input": "Default",
+        "success_cue": "The world-creation screen shows World Type: Default.",
         "source_basis": "report"
       },
       {
         "step": 6,
-        "action": "Verify that World Type is set to Default. If another world type is displayed, cycle the World Type button until it reads Default. Leave all other world-generation options at their normal defaults.",
-        "exact_input": "World Type: Default",
-        "success_cue": "The world-generation screen displays World Type: Default.",
-        "source_basis": "report"
+        "action": "Verify that Allow Cheats is ON. Creative mode normally enables commands, but explicitly confirm this setting if the screen exposes the option.",
+        "exact_input": "Allow Cheats: ON",
+        "success_cue": "Commands will be permitted for the player in the new world.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 7,
-        "action": "Select Create New World to generate the world from the configured seed.",
-        "exact_input": "Create New World",
-        "success_cue": "World generation begins and the player eventually appears in the newly created world.",
+        "action": "Select Create New World and wait for world generation and initial chunk loading to finish. Do not continue while a loading screen is present.",
+        "exact_input": null,
+        "success_cue": "The player is in the newly generated Overworld, terrain is rendered, and movement and controls respond normally.",
         "source_basis": "report"
       },
       {
         "step": 8,
-        "action": "Wait at the initial spawn point until world loading is complete enough for commands to respond normally. Do not begin the teleport while the loading screen is still displayed.",
-        "exact_input": null,
-        "success_cue": "The loading screen has closed, the world is rendered around the player, and ordinary player or camera input responds normally.",
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat command input field is visible and ready for text entry.",
         "source_basis": "practical_inference"
       },
       {
         "step": 9,
-        "action": "Open in-game chat using the Open Chat control; the default Java Edition key is T.",
-        "exact_input": "T",
-        "success_cue": "The chat input field is visible at the bottom of the screen.",
-        "source_basis": "practical_inference"
+        "action": "Enter the report's teleport command exactly, including the leading slash, and press Enter to execute it as the player. Do not replace, normalize, or round any command arguments.",
+        "exact_input": "/execute in minecraft:overworld run tp @s 5990 -22 1164 -326 11",
+        "success_cue": "The command executes, chat closes, and the player's view relocates to the underground Overworld destination near X=5990, Y=-22, Z=1164 with the command-specified viewing direction.",
+        "source_basis": "report"
       },
       {
         "step": 10,
-        "action": "Enter the report's teleport command exactly as written, including the leading slash, decimal coordinates, yaw, and pitch. Do not replace or normalize any of its arguments.",
-        "exact_input": "/execute in minecraft:overworld run tp @s -3256.64 20.73 -5797.15 -6134.40 30.36",
-        "success_cue": "The complete command is visible in the chat input field and has not been altered.",
-        "source_basis": "report"
+        "action": "After teleportation, remain still and wait until the destination cave and surrounding chunks are fully rendered. Do not break, place, or interact with any blocks, and do not touch the nearby water.",
+        "exact_input": null,
+        "success_cue": "The cave terrain has stopped visibly loading, nearby surfaces and water are rendered, and normal camera/control response has resumed.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 11,
-        "action": "Press Enter once to execute the command. This teleports the player within the Overworld to X -3256.64, Y 20.73, Z -5797.15 and applies the report-provided viewing direction.",
-        "exact_input": "Enter",
-        "success_cue": "The chat field closes and the player is teleported to an underground cave at the supplied coordinates.",
-        "source_basis": "report"
-      },
-      {
-        "step": 12,
-        "action": "Release movement and mouse controls, then wait for the destination chunks and cave geometry to finish rendering. Keep the report-provided camera direction, and do not touch, place, or break blocks near the exposed cave water.",
+        "action": "Keep the camera at the orientation established by the teleport command and identify the cave water presented at the destination. Do not evaluate its behavior yet and do not cause a neighboring block update.",
         "exact_input": null,
-        "success_cue": "The destination cave is fully rendered, movement and rendering are responsive, exposed cave water is visible from or near the arrival view, and no nearby block interaction has occurred since teleportation.",
-        "source_basis": "practical_inference"
+        "success_cue": "The destination cave water is visible while the player remains at the teleported location and has not interacted with the water or adjacent blocks.",
+        "source_basis": "report"
       }
     ],
-    "trigger_step": 11,
-    "handoff_condition": "The player has just teleported to X -3256.64, Y 20.73, Z -5797.15 in the Overworld of the seed 5518843328198964868 world. The destination cave and its exposed water have finished rendering, the report-provided viewing direction has been preserved, and no block update or water interaction has been performed. Hand control to the observation subsystem now.",
+    "trigger_step": 9,
+    "handoff_condition": "The teleport command has loaded the player into the target cave, destination chunk loading is complete, the cave water is visible from the command-established position and orientation, and no block or fluid update has been caused near it. Hand control to the observation subsystem before any interaction with the water or adjacent blocks.",
     "uncertainties": [
-      "The issue metadata lists 1.18 Pre-release 1 as a fix version, but the later report comment explicitly states that the issue was reproducible in 1.18 Pre-release 1 with seed 5518843328198964868 and the supplied teleport command. This plan preserves that later, version-specific reproduction.",
-      "The report does not specify a game mode. Creative mode is a practical execution choice rather than a reported requirement.",
-      "The unavailable image and video attachments may identify the precise shape or portion of water to inspect. In their absence, the command's supplied yaw and pitch are preserved so the player arrives facing the reporter's intended view.",
-      "The original seed 4876135133240268742 was reported as temporarily non-reproducible in an earlier snapshot. This plan therefore uses the later seed and coordinates supplied specifically for 1.18 Pre-release 1."
+      "The report does not specify a game mode. Creative mode is selected only as a practical way to grant command permission and avoid survival hazards; it is not asserted to be necessary for the bug.",
+      "A February 19, 2021 comment states that the original seed and coordinates could no longer reproduce the issue at that time, while later comments reconfirmed the issue in 21w40a and 21w41a using a more precise form of the original coordinates. The plan nevertheless uses 21w06a because it is the first listed affected version and the original report was filed against the original seed and command.",
+      "The report describes the failure as occurring occasionally. This plan performs one safe trigger and does not repeatedly update the water or regenerate the world merely to amplify the issue.",
+      "The text does not describe the exact shape or position of the target water within the cave. The yaw and pitch included in the supplied teleport command are preserved because they appear intended to orient the player toward the relevant area.",
+      "The later 21w44a comment supplies a different seed and coordinate set, but that variant is not used because the required version-selection policy chooses the first listed affected version."
     ],
     "web_verification_used": false
   },
@@ -137,14 +139,14 @@
     "verbosity": "high",
     "web_used": false,
     "web_call_count": 0,
-    "response_id": "resp_0df0387f335cd537016aa5bab4ad7087d0baac8d6761961f20",
-    "elapsed_seconds": 60.23,
+    "response_id": "resp_04156e6306f321a4016aa5da15ad5887d09da5b87a63f12539",
+    "elapsed_seconds": 56.99,
     "usage": {
-      "input_tokens": 8820,
-      "output_tokens": 3516,
-      "reasoning_tokens": 2145,
-      "total_tokens": 12336
+      "input_tokens": 9036,
+      "output_tokens": 3553,
+      "reasoning_tokens": 2209,
+      "total_tokens": 12589
     },
-    "timestamp": "2026-09-12T20:49:52.607750+00:00"
+    "timestamp": "2026-09-12T23:03:41.960184+00:00"
   }
 }

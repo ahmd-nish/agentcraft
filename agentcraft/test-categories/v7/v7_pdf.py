@@ -91,6 +91,22 @@ def build_html(rec: dict) -> str:
     # the id-derived form matches what those files contain.
     mojira_url = f"https://bugs.mojang.com/browse/{bug_id}"
 
+    # Every affected version the report listed, with the selected one marked.
+    # Selection should be the first entry; showing the whole list lets a tester
+    # fall back to the next version without reopening the Mojira issue.
+    avs = stor.get("affected_versions") or []
+    rec = stor.get("recommended_version", "") or ""
+    if avs:
+        chips = "".join(
+            f'<span class="ver{" sel" if (v and v in rec) else ""}">{esc(v)}</span>'
+            for v in avs
+        )
+        affected_html = (f'<div class="lead"><b>Affected versions '
+                         f'({len(avs)}):</b><div class="vers">{chips}</div></div>')
+    else:
+        affected_html = ('<div class="lead"><b>Affected versions:</b> '
+                         '<span class="muted">none listed in the report</span></div>')
+
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>{esc(bug_id)}</title>
 <style>
@@ -121,6 +137,12 @@ def build_html(rec: dict) -> str:
   .lead {{ background:#f8fafc; border-left:3px solid #2563eb; padding:8px 12px;
            margin-bottom:6px; font-size:9.6pt; }}
   .lead b {{ color:#1e40af; font-weight:600; }}
+  .vers {{ margin-top:5px; }}
+  .ver {{ display:inline-block; font-family:"SF Mono",Menlo,monospace; font-size:8pt;
+          background:#eef2f7; border:1px solid #dbe2ea; border-radius:3px;
+          padding:1.5px 6px; margin:0 4px 4px 0; color:#475569; }}
+  .ver.sel {{ background:#1d4ed8; border-color:#1d4ed8; color:#fff; font-weight:700; }}
+  .muted {{ color:#9ca3af; font-style:italic; }}
   ul.plain {{ margin:0; padding-left:18px; }}
   ul.plain li {{ margin-bottom:4px; }}
   li.none {{ color:#9ca3af; font-style:italic; list-style:none; margin-left:-18px; }}
@@ -162,7 +184,8 @@ def build_html(rec: dict) -> str:
 <table class="meta">{meta_rows}</table>
 
 <h2 class="first">Reproduction target</h2>
-<div class="lead"><b>Version:</b> {esc(stor.get('recommended_version',''))}</div>
+<div class="lead"><b>Use version:</b> {esc(stor.get('recommended_version',''))}</div>
+{affected_html}
 <div class="lead"><b>Environment:</b> {esc(stor.get('environment',''))}</div>
 
 <h2>Preconditions</h2>
