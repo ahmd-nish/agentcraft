@@ -1,0 +1,211 @@
+{
+  "bug_id": "MC-204430",
+  "category": "Village system",
+  "source_md": "[Village system] - MC-204430.md",
+  "source_meta": {
+    "mojira categories": "Block states; Village system",
+    "project": "MC",
+    "issue key": "MC-204430",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2020-11-06T11:13:55.547-0800",
+    "updated": "2025-04-15T10:21:23.121-0700",
+    "resolution date": "2022-09-01T15:38:42.854-0700",
+    "affects versions": "20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 21w05a; 21w05b; 21w06a; 21w07a; 21w08a; 21w08b; 21w10a; 21w11a",
+    "fix versions": "21w13a",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-204430.mp4",
+    "issue links": "Relates:inward:MC-227469:Leatherworker villagers use the lava cauldron or powder snow cauldron produces water sounds | Relates:inward:MCPE-43961:Villagers lose their job site association with cauldrons filled with lava",
+    "_title": "Cauldrons filled with water, lava or powder snow cannot be used as a workstation for villagers"
+  },
+  "stor": {
+    "bug_id": "MC-204430",
+    "affected_versions": [
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "21w05a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08a",
+      "21w08b",
+      "21w10a",
+      "21w11a"
+    ],
+    "recommended_version": "20w45a",
+    "environment": "Minecraft Java Edition snapshot 20w45a in a newly created local single-player world. Use Creative mode with cheats enabled. For deterministic isolation, use a Superflat world with structure generation disabled so that no naturally generated villagers or workstation blocks can interfere. Lock the time during villager working hours before placing the workstation.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition snapshot 20w45a for the primary reproduction.",
+      "Use a newly created world rather than a world upgraded from another version.",
+      "The player must be in Creative mode and permitted to execute commands.",
+      "Use an isolated test area with no other cauldrons or villager workstation blocks nearby.",
+      "Use an adult, unemployed villager that has never completed a trade. Do not complete a trade with the villager during setup, because trading can permanently lock its profession.",
+      "The primary reproduction uses water, which is explicitly included in the original Steps to Reproduce and is available in the recommended version.",
+      "The empty cauldron must be accessible to the villager; do not surround it with blocks that prevent the villager from approaching it.",
+      "Unless controls have been rebound, E opens the inventory, T opens chat, number keys or the mouse wheel select a hotbar slot, right-click performs Use Item/Place Block, and Esc closes an interface."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that uses Java Edition snapshot 20w45a, then start the game with that installation.",
+        "exact_input": "20w45a",
+        "success_cue": "The Minecraft title screen identifies the running version as 20w45a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, enable cheats, select the Superflat world type, and disable structure generation. These settings isolate the villager from unrelated job-site blocks; they are execution choices rather than requirements stated by the report.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON; World Type: Superflat; Generate Structures: OFF",
+        "success_cue": "The world-creation screen shows Creative mode, cheats enabled, Superflat terrain, and structures disabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Create the world and wait until the player can move normally and the nearby flat terrain has fully rendered.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a responsive, fully rendered Superflat world with no generated village or workstation blocks nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the time command with the leading slash, and press Enter. This places the villager within its daytime work schedule.",
+        "exact_input": "/time set 3000",
+        "success_cue": "The world is visibly daytime and the command completes without an error message.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, enter the gamerule command with the leading slash, and press Enter to prevent time from advancing out of the work period during setup.",
+        "exact_input": "/gamerule doDaylightCycle false",
+        "success_cue": "The command completes without an error, and daylight remains fixed while setup continues.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press E to open the Creative inventory. The hotbar is the row of nine item slots along the bottom of the inventory and gameplay screen.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open and the hotbar is visible at the bottom.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Use the Creative inventory search to locate a Cauldron, then place one Cauldron into an empty hotbar slot.",
+        "exact_input": "Cauldron",
+        "success_cue": "A Cauldron item is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Clear or replace the inventory search, locate a Villager Spawn Egg, and place it into a different empty hotbar slot.",
+        "exact_input": "Villager Spawn Egg",
+        "success_cue": "A Villager Spawn Egg is visible in the hotbar in a slot different from the Cauldron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Search for a Water Bucket and place it into a third hotbar slot. Leave at least one hotbar slot empty so the villager can later be checked without holding an item.",
+        "exact_input": "Water Bucket",
+        "success_cue": "The hotbar contains a Cauldron, a Villager Spawn Egg, and a Water Bucket, and at least one hotbar slot remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press E or Esc to close the inventory and return to the world.",
+        "exact_input": "E or Esc",
+        "success_cue": "The inventory is closed and the player can look and move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the hotbar slot containing the Cauldron. Aim at the top surface of a ground block in the open test area and right-click once to place the empty cauldron.",
+        "exact_input": "Right-click with Cauldron selected",
+        "success_cue": "One empty cauldron is standing on the ground with open space beside it for a villager.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the Villager Spawn Egg. Aim at the ground directly beside the cauldron and right-click once to spawn one villager.",
+        "exact_input": "Right-click with Villager Spawn Egg selected",
+        "success_cue": "One adult villager is standing next to the empty cauldron. No other villagers or workstation blocks are present in the test area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Do not place or remove any blocks. Wait while keeping the villager and cauldron loaded until the villager claims the empty cauldron as its job site. Do not continue merely after an arbitrary delay; continue only after the villager changes from unemployed clothing to the leatherworker profession appearance. Green claim particles may also briefly appear.",
+        "exact_input": null,
+        "success_cue": "The villager has changed into a leatherworker while the cauldron is still empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Select an empty hotbar slot so the player's hand holds no item.",
+        "exact_input": "Select an empty hotbar slot",
+        "success_cue": "The active hotbar slot is empty and no item is visible in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Aim at the villager and right-click once to open its trading interface. Use the interface only to confirm that it is identified as a leatherworker. Do not click a trade offer and do not complete any trade.",
+        "exact_input": "Right-click the villager with an empty hand",
+        "success_cue": "The trading interface identifies the villager as a leatherworker, and no trade has been completed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press Esc to close the trading interface without trading.",
+        "exact_input": "Esc",
+        "success_cue": "The world view is restored; the untraded leatherworker and its empty cauldron remain visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Select the hotbar slot containing the Water Bucket. Aim the crosshair at the cauldron's interior or upper surface.",
+        "exact_input": "Select Water Bucket",
+        "success_cue": "The Water Bucket is visible in the player's hand and the crosshair is positioned on the empty cauldron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Right-click the empty cauldron once with the Water Bucket to fill it. Perform no additional interaction after this click before handing control to the observation subsystem.",
+        "exact_input": "Right-click with Water Bucket selected",
+        "success_cue": "The cauldron visibly contains water and the item in the player's hand has become an empty Bucket.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The previously claimed empty cauldron has just been converted into a water-filled cauldron by the right-click in step 18, and the same untraded villager is still nearby. Begin observing the villager's workstation association and profession state without performing another player interaction.",
+    "uncertainties": [
+      "The report does not require a particular game mode, world type, seed, or server configuration. Creative single-player, Superflat terrain, and disabled structures are practical choices that remove unrelated workstation blocks and item-acquisition steps.",
+      "The report does not specify the time of day. Locking the time at 3000 is a practical measure intended to keep the villager within working hours while it claims the empty cauldron.",
+      "The primary plan uses water in 20w45a because water is explicitly present in the original reproduction and 20w45a is the first listed affected version.",
+      "The original description also names lava. A separate lava trial can use the same setup in 20w45a, replacing the Water Bucket with a Lava Bucket only at the final fill action.",
+      "Powder snow is explicitly added by the report's 20w46a comment. To test that variant, rerun the procedure in 20w46a or another listed affected version that supports the required powder-snow interaction and replace the final fluid with powder snow. The exact historical powder-snow acquisition and cauldron-filling controls were not externally verified.",
+      "No external web verification was needed for the primary water reproduction because the supplied report contains the affected versions and complete trigger sequence."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_09993ce013b0ebd4016aa5ddaa0d8c87d09c86753f4196e53d",
+    "elapsed_seconds": 91.81,
+    "usage": {
+      "input_tokens": 8781,
+      "output_tokens": 6188,
+      "reasoning_tokens": 4123,
+      "total_tokens": 14969
+    },
+    "timestamp": "2026-09-12T23:19:33.711528+00:00"
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "bug_id": "MC-305691",
+  "category": "Village system",
+  "source_md": "[Village system] - MC-305691.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Village system",
+    "project": "MC",
+    "issue key": "MC-305691",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2026-01-13T08:49:25.522-0800",
+    "updated": "2026-03-11T03:56:44.299-0700",
+    "resolution date": "2026-01-20T03:14:18.625-0800",
+    "affects versions": "26.1 Snapshot 3",
+    "fix versions": "26.1 Snapshot 4",
+    "area": "Platform EC",
+    "votes": "5",
+    "watchers": "4",
+    "attachments": "1",
+    "attachment filenames": "2026-01-13.png",
+    "issue links": "Duplicate:inward:MC-305846:Iron golem autocreation is out of control",
+    "_title": "Villagers have insomnia"
+  },
+  "stor": {
+    "bug_id": "MC-305691",
+    "affected_versions": [
+      "26.1 Snapshot 3"
+    ],
+    "recommended_version": "26.1 Snapshot 3",
+    "environment": "Minecraft: Java Edition on PC, using a vanilla single-player world hosted by the integrated server. Prepare the bed-and-villager state in 26.1 Snapshot 2, then preserve and open that same world in the affected version, 26.1 Snapshot 3. Use Creative mode with commands enabled. A dedicated server, multiple players, specific seed, coordinates, resource pack, or datapack is not required by the report.",
+    "preconditions": [
+      "Use a disposable test world rather than an important existing world.",
+      "Have launcher installations available for both 26.1 Snapshot 2 and 26.1 Snapshot 3. Snapshot 2 is used only to create the pre-existing bed state clarified by the reporter; Snapshot 3 is the affected version under test.",
+      "Ensure both installations use a game directory from which the same saved test world can be opened, or otherwise copy the complete saved world from the Snapshot 2 saves directory to the Snapshot 3 saves directory without changing its contents.",
+      "Use an unmodified vanilla client with no mods or datapacks that alter villagers, points of interest, beds, time, dimensions, or mob AI.",
+      "Set Particles to All, or at least do not use a particle setting that hides the green villager claim particles needed as a setup confirmation.",
+      "Keep only one villager and one bed in the immediate test area. Avoid generated villages or other nearby beds so ownership of the target bed is unambiguous.",
+      "Do not break, move, rotate, or replace the target bed after it has been claimed in Snapshot 2. Replacing the bed is explicitly excluded because the report says replacement restores normal sleeping functionality.",
+      "Remain close enough to keep the test area actively simulated when setting the time to night."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, enable snapshot versions if they are hidden, and create or select an installation for Minecraft: Java Edition 26.1 Snapshot 2.",
+        "exact_input": "Launcher -> Installations -> enable Snapshots -> New installation -> Version: 26.1 Snapshot 2 -> Create",
+        "success_cue": "An installation that launches 26.1 Snapshot 2 is visible in the launcher.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Create or select a second launcher installation for the affected version, Minecraft: Java Edition 26.1 Snapshot 3.",
+        "exact_input": "Launcher -> Installations -> New installation -> Version: 26.1 Snapshot 3 -> Create",
+        "success_cue": "Separate launcher installations are available for 26.1 Snapshot 2 and 26.1 Snapshot 3.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Launch the 26.1 Snapshot 2 installation and wait for the main menu to finish loading.",
+        "exact_input": "Select the 26.1 Snapshot 2 installation -> Play",
+        "success_cue": "The main menu identifies the running game as 26.1 Snapshot 2.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Configure a new single-player test world. Use Creative mode with commands enabled. For a deterministic empty test area, select Superflat generation, disable generated structures if that option is available, and use Peaceful difficulty. Name the world so it can be positively identified after changing versions.",
+        "exact_input": "Singleplayer -> Create New World -> World Name: MC-305691 -> Game Mode: Creative -> Allow Commands: On -> Difficulty: Peaceful -> World Type: Superflat -> Generate Structures: Off",
+        "success_cue": "The world-creation screen is configured for a Creative test world named MC-305691, with commands available and no intended nearby village structures.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Create the world and wait until terrain is rendered and player movement responds normally.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the newly created Snapshot 2 world, surrounding chunks are rendered, and movement is responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Construct a small open test enclosure on the flat ground so the villager cannot wander away. Make the enclosure approximately 7 by 7 blocks internally, surround it with a wall at least two blocks high, and leave the interior unobstructed and open to the sky. Do not place beds, bells, or job-site blocks other than the single target bed added later.",
+        "exact_input": "Open Creative inventory with E -> search for a solid block such as Stone -> move it to the hotbar -> select it -> right-click to place a two-block-high perimeter wall",
+        "success_cue": "An enclosed, unobstructed test area exists with enough floor space for one bed and one villager, and there are no other village points of interest inside it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Obtain one bed from the Creative inventory and put it in the hotbar. Use only one bed in the test area.",
+        "exact_input": "Press E -> Search Items -> enter: White Bed -> move one White Bed to a hotbar slot -> press E to close the inventory",
+        "success_cue": "One White Bed is present in the hotbar and no other bed has been placed in the test area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the bed's hotbar slot and place it on the floor near the center of the enclosure. Leave clear floor beside it and at least two blocks of unobstructed vertical space above both halves of the bed.",
+        "exact_input": "Select the hotbar slot containing the White Bed -> aim at the enclosure floor -> right-click once",
+        "success_cue": "Exactly one complete bed is placed inside the enclosure and is unobstructed so a villager can pathfind to it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Obtain a Villager Spawn Egg from the Creative inventory and place it in the hotbar.",
+        "exact_input": "Press E -> Search Items -> enter: Villager Spawn Egg -> move the Villager Spawn Egg to a hotbar slot -> press E to close the inventory",
+        "success_cue": "A Villager Spawn Egg is available in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Villager Spawn Egg and spawn one villager on the floor one or two blocks from the bed. Use the spawn egg on the ground rather than on an existing villager, and do not spawn additional villagers.",
+        "exact_input": "Select the Villager Spawn Egg's hotbar slot -> aim at the ground one or two blocks from the bed -> right-click once",
+        "success_cue": "Exactly one adult villager is visible inside the enclosure near the single bed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Stay near the enclosure and wait for the villager to detect and claim the bed. Do not break the bed, place another bed, or leave the world before the claim indication occurs.",
+        "exact_input": null,
+        "success_cue": "Green particles are visibly emitted by the villager, confirming the target bed has been claimed while the world is still running in 26.1 Snapshot 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "After the green claim particles have appeared, save the world and return to the title screen. This preserves the claimed bed and villager as pre-existing world data.",
+        "exact_input": "Press Esc -> Save and Quit to Title",
+        "success_cue": "The game has returned to the menu and the MC-305691 world is no longer actively loaded.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Create a backup of the saved Snapshot 2 world before opening it in another snapshot. Do not load or modify the backup during this reproduction attempt.",
+        "exact_input": "Singleplayer -> select MC-305691 -> Edit -> Make Backup",
+        "success_cue": "The game reports that a backup was completed, or a corresponding backup archive is present in the backups directory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Exit the Snapshot 2 game client completely so the launcher can start the affected version without the old client retaining the world.",
+        "exact_input": "Main menu -> Quit Game",
+        "success_cue": "The Snapshot 2 client is closed and the Minecraft Launcher is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Launch the installation for the affected version, 26.1 Snapshot 3, and wait for its main menu.",
+        "exact_input": "Select the 26.1 Snapshot 3 installation -> Play",
+        "success_cue": "The main menu identifies the running game as 26.1 Snapshot 3.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "Open the same MC-305691 world that was created and saved in Snapshot 2. If a snapshot or world-upgrade warning appears, select the option that creates a backup if necessary and continues loading the existing world; do not create a new replacement world.",
+        "exact_input": "Singleplayer -> select MC-305691 -> Play Selected World -> if prompted, choose the option to back up and continue loading",
+        "success_cue": "The original MC-305691 world has loaded in 26.1 Snapshot 3 rather than a newly generated world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Wait until surrounding chunks have rendered and player movement and mob animation respond normally. Verify that the original villager and original bed remain inside the enclosure. Do not touch, break, move, rotate, or replace the bed.",
+        "exact_input": null,
+        "success_cue": "The player is in the upgraded Snapshot 3 world, the original villager is active, the original bed remains in its original position, and the area is fully loaded.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Position the player just outside or above the enclosure, close enough to keep the villager simulated and with an unobstructed view of both the villager and the bed. Do not interact with either one.",
+        "exact_input": "Use movement controls W/A/S/D and, in Creative mode, Space to fly as needed",
+        "success_cue": "The villager and the full bed are simultaneously visible, and the player remains within the immediate test area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Open the in-game chat input while remaining near the enclosure.",
+        "exact_input": "Press T",
+        "success_cue": "The chat command input is open and ready to receive text.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Set the Overworld clock to night using the 26.1 Snapshot 3-compatible time command. Include the leading slash because the command is being executed through in-game chat, then press Enter exactly once.",
+        "exact_input": "/time set night",
+        "success_cue": "The command is accepted, chat closes, and the Overworld changes to nighttime while the original villager and original bed remain loaded nearby.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The same world created in 26.1 Snapshot 2 is now loaded in 26.1 Snapshot 3; the original villager and its previously claimed bed remain present and have not been broken or replaced; the player is nearby with both in view; and /time set night has just been accepted. Hand control to the observation subsystem immediately without placing another bed or interacting with the villager or existing bed.",
+    "uncertainties": [
+      "The report does not identify the exact older version in which the existing bed was originally placed. This plan uses 26.1 Snapshot 2 because it is the immediately preceding snapshot and therefore the simplest deterministic interpretation of 'placed before ... snapshot 3.'",
+      "The reporter clarified that the bed predated Snapshot 3 but did not explicitly say whether the villager also predated Snapshot 3. This plan preserves both the claimed bed and the claiming villager across the version change to retain the complete state described before the save/rejoin step.",
+      "No seed, coordinates, world type, difficulty, or game mode was supplied. Creative Superflat with structures disabled and Peaceful difficulty is a practical isolation choice, not a claimed bug requirement.",
+      "The original steps permit either leaving and re-entering the area or saving and rejoining the world. This plan uses the save-and-rejoin route because it also performs the version transition required by the reporter's clarification.",
+      "The report gives no maximum time for the initial bed claim. The executor must use the stated green particles as the readiness condition rather than advancing after an arbitrary fixed delay.",
+      "External verification was limited to official minecraft.net information confirming the snapshot versions, launcher snapshot availability and backup warning, and the changed but compatible /time set night syntax in 26.1 Snapshot 3."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_071828ec6142417f016aa5de05da4887d09d350d508d21e583",
+    "elapsed_seconds": 138.52,
+    "usage": {
+      "input_tokens": 36156,
+      "output_tokens": 9829,
+      "reasoning_tokens": 7216,
+      "total_tokens": 45985
+    },
+    "timestamp": "2026-09-12T23:21:52.238617+00:00"
+  }
+}

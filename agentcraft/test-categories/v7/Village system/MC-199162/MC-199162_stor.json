@@ -1,0 +1,171 @@
+{
+  "bug_id": "MC-199162",
+  "category": "Village system",
+  "source_md": "[Village system] - MC-199162.md",
+  "source_meta": {
+    "mojira categories": "Structures; Village system",
+    "project": "MC",
+    "issue key": "MC-199162",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-08-28T12:28:58.430-0700",
+    "updated": "2025-04-10T14:56:48.332-0700",
+    "resolution date": "2022-09-13T00:14:02.057-0700",
+    "affects versions": "1.16.2; 1.16.3 Release Candidate 1; 1.19; 1.19.1 Pre-release 5; 1.19.2",
+    "fix versions": "22w42a",
+    "labels": "village",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2020-08-28_15.22.13.png",
+    "issue links": "Relates:inward:MC-248331:The \"minecraft:woodland_mansion/1x2_a2\" structure generates with one dehydrated farmland block",
+    "_title": "One farmland block in plains_large_farm_1 has moisture level 0"
+  },
+  "stor": {
+    "bug_id": "MC-199162",
+    "affected_versions": [
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.19",
+      "1.19.1 Pre-release 5",
+      "1.19.2"
+    ],
+    "recommended_version": "1.16.2",
+    "environment": "Minecraft Java Edition 1.16.2, unmodified single-player client using the integrated server, in a Creative-mode Overworld with commands/cheats enabled. A Superflat world is recommended solely to provide a clear, level placement area.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.16.2, the first version listed as affected.",
+      "Use a world without mods or data packs that replace the built-in minecraft:village/plains/houses/plains_large_farm_1 structure template.",
+      "The player must be in Creative mode and able to execute commands.",
+      "Use a clear area with enough unobstructed space for a large plains-village farm; a newly created Superflat world is the simplest deterministic choice.",
+      "Do not use the report's /place template command in 1.16.2. The /place command was introduced later, so the same built-in template must be loaded through a structure block in this recommended version."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "From the Minecraft Launcher, select and start the Java Edition installation for version 1.16.2. Do not use the listed fix version or a newer release.",
+        "exact_input": "1.16.2",
+        "success_cue": "The main-menu version text identifies the running game as Minecraft 1.16.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new world. Set Game Mode to Creative, ensure Allow Cheats is ON, and select the Superflat world type under More World Options. Then create the world.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON; World Type: Superflat",
+        "success_cue": "The player has spawned in a flat Overworld and can fly by double-tapping Space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the nearby terrain has rendered and movement responds normally. Move away from any existing obstruction so the structure has open space around the player.",
+        "exact_input": null,
+        "success_cue": "A level, unobstructed placement area is visible and the surrounding chunks are fully rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the command exactly with its leading slash, and press Enter to obtain a structure block.",
+        "exact_input": "/give @s minecraft:structure_block",
+        "success_cue": "A Structure Block is added to the player's inventory or hotbar, and the command does not produce an unknown-command or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "If the Structure Block is not already in the nine-slot hotbar at the bottom of the screen, press E to open the inventory and move it into an empty hotbar slot. Close the inventory with E, then select that hotbar slot using its number key or the mouse wheel.",
+        "exact_input": null,
+        "success_cue": "The Structure Block is shown in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Aim at the top surface of the flat ground and right-click once to place the Structure Block.",
+        "exact_input": null,
+        "success_cue": "A Structure Block is placed on the ground directly in front of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Aim at the placed Structure Block and right-click it to open its configuration interface.",
+        "exact_input": null,
+        "success_cue": "The Structure Block interface is open and shows a mode button, structure-name field, position fields, and load/save controls.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Click the mode button in the lower-left portion of the interface repeatedly until the block is in LOAD mode. The button may initially display DATA or another mode.",
+        "exact_input": "LOAD",
+        "success_cue": "The Structure Block interface visibly identifies its current mode as LOAD.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Click the Structure Name field and replace its contents with the built-in template path. For the 1.16.2 Structure Block interface, use the path without the default minecraft namespace prefix.",
+        "exact_input": "village/plains/houses/plains_large_farm_1",
+        "success_cue": "The Structure Name field contains exactly village/plains/houses/plains_large_farm_1.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Set the three Relative Position fields to X=0, Y=1, and Z=0 so the detected template begins one block above the Structure Block rather than overwriting it during the initial placement operation.",
+        "exact_input": "0 1 0",
+        "success_cue": "The Relative Position fields display 0 for X, 1 for Y, and 0 for Z.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Leave rotation at 0 degrees and mirroring disabled. Set Structure Integrity to 1.0 so every block stored in the template is loaded; leave the integrity seed at its default value.",
+        "exact_input": "Rotation: 0; Mirror: none; Integrity: 1.0",
+        "success_cue": "The interface shows no rotation, no mirror transformation, and an integrity value of 1.0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Click the LOAD button in the lower-right once. This first activation detects the named built-in template and prepares its dimensions rather than being the final trigger.",
+        "exact_input": "LOAD",
+        "success_cue": "The template is found: its size fields become populated and/or a bounding-box outline is prepared, with no message stating that the structure is unavailable.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "If the first LOAD activation closed the interface, right-click the same Structure Block again. Confirm that it remains in LOAD mode, still names village/plains/houses/plains_large_farm_1, and now has detected size values. Do not alter the template name, rotation, mirror, integrity, or relative position.",
+        "exact_input": null,
+        "success_cue": "The prepared LOAD interface is open and retains the detected template dimensions and configuration.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Click the lower-right LOAD button a second time to place the prepared plains_large_farm_1 template. Perform no further block interaction after this click.",
+        "exact_input": "LOAD",
+        "success_cue": "The large plains-village farm template is visibly present at the prepared location, including its crop plots, irrigation channels, and composters.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The second Structure Block LOAD activation has just completed and minecraft:village/plains/houses/plains_large_farm_1 is present in the world. Immediately hand control to the observation subsystem without breaking, placing, tilling, jumping on, or otherwise interacting with any farmland block.",
+    "uncertainties": [
+      "The report's exact command, /place template minecraft:village/plains/houses/plains_large_farm_1, is usable in the affected 1.19-era versions but not in the recommended first affected version, 1.16.2, because /place was introduced in Java Edition 1.19. The plan therefore uses the version-compatible Structure Block loading procedure while preserving the same built-in template.",
+      "The report does not specify a game mode, world seed, coordinates, or world type. Creative mode, cheats, and a Superflat world are practical execution choices rather than reported requirements.",
+      "The Structure Block name field uses village/plains/houses/plains_large_farm_1 because minecraft is the default namespace. This refers to the same template identified in the report as minecraft:village/plains/houses/plains_large_farm_1.",
+      "The report does not identify the target farmland block's exact position within the template. Locating and evaluating that block belongs to the observation subsystem and is intentionally not added to these reproduction steps.",
+      "Farmland can receive later game-tick updates after placement. The handoff is therefore immediate, but no gamerule changes are introduced because the report does not require them."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0517e19635ea799a016aa5dd5ec84887d0a190c955b8120953",
+    "elapsed_seconds": 75.24,
+    "usage": {
+      "input_tokens": 24616,
+      "output_tokens": 5074,
+      "reasoning_tokens": 3360,
+      "total_tokens": 29690
+    },
+    "timestamp": "2026-09-12T23:18:01.891990+00:00"
+  }
+}
