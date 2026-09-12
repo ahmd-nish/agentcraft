@@ -1,0 +1,164 @@
+{
+  "bug_id": "MC-237986",
+  "category": "Structures",
+  "source_md": "[Structures] - MC-237986.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning; Structures",
+    "project": "MC",
+    "issue key": "MC-237986",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2021-09-30T00:38:25.834-0700",
+    "updated": "2025-04-30T06:41:35.747-0700",
+    "resolution date": "2022-10-17T13:42:22.606-0700",
+    "affects versions": "21w39a; 21w40a; 21w41a; 21w42a; 21w43a",
+    "fix versions": "21w44a",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2021-11-04_11.23.03.png; Screenshot (35).png; Screenshot (36).png",
+    "issue links": "Duplicate:inward:MC-238260:Pillagers not spawning at outpost, guardians not spawning in monuments, mob heads twitching",
+    "_title": "Mobs specific to structures aren't spawning in their structures"
+  },
+  "stor": {
+    "bug_id": "MC-237986",
+    "recommended_version": "Minecraft Java Edition snapshot 21w40a. This is an affected version with a report-supplied deterministic seed and witch-hut coordinates.",
+    "environment": "Vanilla Minecraft Java Edition 21w40a; singleplayer integrated server; newly generated Creative-mode world; seed -4910909757403150144; structures enabled; commands/cheats enabled; Normal difficulty; no mods or non-vanilla data packs.",
+    "preconditions": [
+      "Install and make a launcher installation for the historical Java Edition snapshot 21w40a.",
+      "Use a new world created directly in 21w40a. Do not upgrade an existing world for this reproduction.",
+      "Use the exact seed -4910909757403150144. The report supplies witch-hut test coordinates -474 76 -2878 for this seed and version.",
+      "Enable Generate Structures so the swamp hut can generate.",
+      "Select Creative mode and ensure commands/cheats are enabled, because the reproduction uses /locate, /teleport, /time, /difficulty, /gamerule, and /kill.",
+      "Use Normal difficulty rather than Peaceful so hostile mobs are eligible for natural spawning.",
+      "Do not install the community patch mentioned in the comments, mods, or data packs that modify structures or mob spawning."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher installation configured for Java Edition snapshot 21w40a, then wait for the main menu to appear. Confirm that the lower-left corner of the main menu identifies the running version as 21w40a.",
+        "exact_input": null,
+        "success_cue": "The 21w40a main menu is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World. Set Game Mode to Creative. Open More World Options, enter the supplied seed, leave Generate Structures enabled, and ensure Allow Cheats is enabled.",
+        "exact_input": "-4910909757403150144",
+        "success_cue": "The Create New World screen shows Creative mode, seed -4910909757403150144, structures enabled, and commands available.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Select Create New World and wait without issuing commands until terrain has rendered around the player and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing or flying in a newly generated 21w40a world and nearby chunks are fully rendered.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Set the difficulty explicitly. Press T to open in-game chat, type the command including the leading slash, and press Enter.",
+        "exact_input": "/difficulty normal",
+        "success_cue": "Chat confirms that the difficulty was set to Normal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Ensure natural mob spawning is enabled. Press T, enter the command including the leading slash, and press Enter. The Java Edition gamerule syntax is `gamerule <rule> [value]`. ([minecraft.wiki](https://minecraft.wiki/w/Commands/gamerule?utm_source=openai))",
+        "exact_input": "/gamerule doMobSpawning true",
+        "success_cue": "Chat confirms that the doMobSpawning game rule is now true.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Reproduce the report's daytime test condition. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/time set day",
+        "success_cue": "The world changes to daytime and the sky is brightly lit.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Prevent rain or a thunderstorm from obscuring the daytime setup. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/weather clear",
+        "success_cue": "Chat confirms clear weather and no rain is falling around the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Locate a swamp hut as required by the report. In 21w40a, use the historical pre-1.18.2 form of /locate rather than the later `/locate structure ...` form. The `swamp_hut` structure identifier and the later command-format change are externally documented. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ADefeating_temples?utm_source=openai)) Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/locate swamp_hut",
+        "success_cue": "Chat reports coordinates for the nearest swamp hut; on the supplied seed, the report's confirmed test location is around X=-474, Y=76, Z=-2878.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Teleport to a safe inspection position approximately 14 blocks above the report-supplied hut coordinate. Press T, enter the command including the leading slash, and press Enter. `/teleport @s <x> <y> <z>` is an in-game teleport form supported by Java Edition command syntax. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACommand_blocks_and_functions?utm_source=openai))",
+        "exact_input": "/teleport @s -474 90 -2878",
+        "success_cue": "The player is flying above the target swamp area near X=-474 and Z=-2878, with the destination chunks beginning to render.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Wait until the destination terrain has completely rendered and movement and chat commands respond normally. Look downward and identify the small raised wooden swamp hut at or immediately around the supplied coordinates. Do not proceed while the hut or surrounding swamp is still appearing as unloaded terrain.",
+        "exact_input": null,
+        "success_cue": "The swamp hut is visible below the player and its chunk is fully loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Remove any witch placed with the hut during initial structure generation so the subsequent test covers continued natural witch spawning rather than the one-time generated mob. While still near the hut, press T, enter the command including the leading slash, and press Enter. A result saying that no matching entity was found is also acceptable; it means there was no initial witch left to remove. The Java Edition /kill command accepts an entity selector, including a type and distance filter. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E5%91%BD%E4%BB%A4/kill?variant=zh&utm_source=openai))",
+        "exact_input": "/kill @e[type=minecraft:witch,distance=..64]",
+        "success_cue": "Chat either reports that one or more witches were killed or reports that no matching witch was found; in either case, no known initial witch remains near the hut.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Move to the report's stated waiting position 115 blocks above the supplied hut Y coordinate of 76. Press T, enter the exact teleport command including the leading slash, and press Enter. Remain in Creative flight after teleporting.",
+        "exact_input": "/teleport @s -474 191 -2878",
+        "success_cue": "The player is stationary in the air at approximately X=-474, Y=191, Z=-2878, directly above the loaded swamp hut.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Look downward toward the hut, release all movement keys, and wait until any post-teleport chunk-loading activity has stopped. Keep the game unpaused, keep the player at the same position, and do not change difficulty, time, weather, or the doMobSpawning game rule.",
+        "exact_input": null,
+        "success_cue": "The hut remains loaded below the stationary player, controls are responsive, and the unpaused world is ready for natural spawning attempts.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Begin a five-minute real-time observation interval while remaining stationary at the Creative-flight waiting position. Do not open the pause menu because pausing singleplayer stops the integrated server. This waiting interval is the trigger period for post-generation structure-specific spawning; hand control to the observation subsystem as soon as the interval begins.",
+        "exact_input": null,
+        "success_cue": "A five-minute timer is running, Minecraft remains unpaused, and the player remains 115 blocks above the loaded swamp hut.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The newly generated 21w40a swamp hut is loaded, any one-time generated witch has been removed, natural mob spawning is enabled on Normal difficulty, daytime conditions are active, and the player has just begun the unpaused five-minute waiting interval from X=-474, Y=191, Z=-2878. Begin observing entity spawning in and around the hut without changing the setup.",
+    "uncertainties": [
+      "The confirmation comment supplies seed -4910909757403150144 and coordinates -474 76 -2878 for 21w40a but does not explicitly repeat the words 'witch hut'; this plan interprets the coordinates as the witch-hut location because the comment confirms the report's original witch-hut reproduction.",
+      "The formal reproduction does not prescribe a waiting duration. Five real-time minutes is a practical observation window chosen to allow repeated natural-spawn attempts without intentionally producing excessive entities or lag.",
+      "The report states that the original reporter hovered 115 blocks above the hut during daytime but does not state the world difficulty. Normal difficulty is selected as a controlled non-Peaceful setting.",
+      "The historical /locate form is version-sensitive. External documentation establishes that the `/locate structure ...` form is later and identifies `swamp_hut`; the exact 21w40a command should also be visible through that version's chat autocomplete if the installation behaves differently."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0d5463ee74097638016aa5c745883c87d0bcedb6f2d3a2b848",
+    "elapsed_seconds": 137.65,
+    "usage": {
+      "input_tokens": 35713,
+      "output_tokens": 7801,
+      "reasoning_tokens": 5826,
+      "total_tokens": 43514
+    },
+    "timestamp": "2026-09-12T21:44:47.060197+00:00"
+  }
+}
