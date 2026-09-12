@@ -1,0 +1,271 @@
+{
+  "bug_id": "MC-181190",
+  "category": "Village system",
+  "source_md": "[Village system] - MC-181190.md",
+  "source_meta": {
+    "mojira categories": "Village system",
+    "project": "MC",
+    "issue key": "MC-181190",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2020-04-27T20:21:54.373-0700",
+    "updated": "2026-04-02T23:43:06.589-0700",
+    "resolution date": "2024-08-07T17:52:35.356-0700",
+    "affects versions": "1.15.2; 20w17a; 20w18a; 20w19a; 20w21a; 20w22a; 1.16 Pre-release 1; 1.16 Pre-release 2; 1.16 Pre-release 5; 1.16 Pre-release 8; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Release Candidate 1; 1.16.2; 1.16.3; 1.16.4 Release Candidate 1; 1.16.4; 20w46a; 20w49a; 20w51a; 1.16.5; 21w08b; 21w10a; 21w15a; 21w16a; 21w17a; 21w18a; 21w20a; 1.17 Pre-release 3; 1.17 Release Candidate 1; 1.17; 1.17.1; 21w38a; 21w39a; 1.18; 1.18.1; 1.18.2; 22w19a; 1.19 Pre-release 2; 1.19.1 Release Candidate 2; 1.19.2; 1.19.3; 1.19.4 Release Candidate 2; 1.19.4; 1.20 Release Candidate 1; 1.20",
+    "fix versions": "23w31a",
+    "area": "Gameplay",
+    "votes": "0",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "Screen Shot 2020-04-27 at 8.11.16 PM.png",
+    "issue links": "Relates:outward:MC-186647:Villager price changes are extremely inconsistent, and completely break in combination with hero of the village | Duplicate:inward:MC-230794:Villager Trading Gives More Loot Than Taken | Relates:inward:MC-268017:Re-curing fully discounted villagers resets/doesn't change discounts on that villager",
+    "_title": "The discount for curing a villager is multiplied if the villager is reinfected and cured again"
+  },
+  "stor": {
+    "bug_id": "MC-181190",
+    "recommended_version": "Minecraft Java Edition 1.20 (release)",
+    "environment": "Vanilla Minecraft Java Edition 1.20 in a fresh single-player world, using Creative mode, Hard difficulty, and cheats enabled. Use one player for every trade and both curing cycles. Default controls are assumed: E for inventory, T for chat, right-click for Use Item/Place Block, and Esc to close a screen.",
+    "preconditions": [
+      "Use Minecraft Java Edition 1.20 because it is the latest stable release explicitly listed under the report's affected versions.",
+      "Do not use 23w31a for this reproduction; the report lists that snapshot as its fix version.",
+      "Use the same player for the initial trade, both golden-apple interactions, and all price inspections so that the test follows one player's curing-related discount.",
+      "No seed, coordinates, server configuration, game mode, villager profession, or specific trade is supplied by the report. The fresh Creative single-player world, farmer profession, and containment chamber are practical choices for deterministic execution.",
+      "Choose an isolated test location with no other villagers, zombies, composters, or other job-site blocks nearby. Do not obtain Hero of the Village or perform unrelated actions that change villager reputation during the procedure.",
+      "Hard difficulty is used because a villager killed by a zombie has a 100% conversion chance on Hard, avoiding the 50% conversion chance on Normal and death without conversion on Easy. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the unmodified Java Edition 1.20 release installation and launch the game.",
+        "exact_input": null,
+        "success_cue": "The main menu identifies the running version as Minecraft Java Edition 1.20.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world in Creative mode with Allow Cheats enabled, and enter the world. The seed may remain random because the report supplies no required seed or coordinates.",
+        "exact_input": null,
+        "success_cue": "The player is in a newly loaded world, can fly, and has access to the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move or fly to a reasonably flat location away from any visible village, villagers, zombies, composters, or other job-site blocks.",
+        "exact_input": "Double-tap Space to start flying; use W to move",
+        "success_cue": "An isolated, level construction area is available and no other villagers or zombies are visible nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the difficulty command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/difficulty hard",
+        "success_cue": "Chat confirms that the difficulty has been set to Hard.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Open chat, disable natural mob spawning so that the only regular zombies near the test are the ones deliberately spawned, and press Enter.",
+        "exact_input": "/gamerule doMobSpawning false",
+        "success_cue": "Chat confirms that the doMobSpawning game rule is now false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open chat, set the world to daytime, and press Enter. Daytime helps the unemployed villager claim the composter while the later roof protects spawned zombies from sunlight.",
+        "exact_input": "/time set day",
+        "success_cue": "The world is visibly in daytime and the command succeeds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Build a containment chamber from opaque solid blocks: make a 5-by-5-block floor, construct walls two blocks high around its perimeter to leave a 3-by-3-block interior, and cover the entire chamber with a solid roof above the interior. In the center of one wall, leave out only the upper wall block while keeping the lower wall block in place. This one-block-high interaction window must let the player see and use items on entities without allowing adult villagers or zombies to walk out.",
+        "exact_input": "Right-click to place blocks; left-click to remove an incorrectly placed block",
+        "success_cue": "The chamber has a fully covered 3-by-3 interior, two-block-high walls, and one upper-level interaction window with a solid lower block beneath it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to obtain and place on the hotbar: one Composter, one Villager Spawn Egg, one Zombie Spawn Egg, at least two Splash Potions of Weakness, at least two regular Golden Apples, and spare solid blocks. Use the non-enchanted Golden Apple, not the Enchanted Golden Apple.",
+        "exact_input": "E",
+        "success_cue": "The required job-site block, spawn eggs, curing items, and spare blocks are available in the hotbar or inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the Composter and place it on an interior floor block in a corner of the chamber, where it will remain reachable by the villager.",
+        "exact_input": "Right-click",
+        "success_cue": "Exactly one composter is present inside the chamber and no other job-site block is nearby.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Select the Villager Spawn Egg, aim through the interaction window at an empty interior floor block, and use the egg exactly once.",
+        "exact_input": "Right-click",
+        "success_cue": "One adult villager is inside the chamber and cannot leave.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Wait without placing another job-site block until the villager claims the composter and changes into a farmer. If necessary, remain nearby while daytime continues.",
+        "exact_input": null,
+        "success_cue": "The villager wears the farmer's straw hat, and opening its interface identifies it as a Novice Farmer.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Aim at the farmer through the interaction window and use the villager to open its trading screen. Identify a novice offer in which the farmer buys wheat, carrots, potatoes, or beetroots and gives one emerald. Note the crop type and the offer's row or position, then close the screen without trading yet. Farmers buy crops, making this a convenient high-input offer for comparing the same trade through both curing cycles. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AVillager_trading_hall?utm_source=openai))",
+        "exact_input": "Right-click, then Esc",
+        "success_cue": "One specific crop-for-emerald offer has been selected for the entire test, and its crop type and position are recorded.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Open the Creative inventory, search for the exact crop requested by the selected offer, and put at least one full stack of that crop in the player inventory.",
+        "exact_input": "E",
+        "success_cue": "The inventory contains at least the quantity required to execute the selected farmer offer once.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Open the farmer's trading screen again. Place the requested crop quantity into the trade input slot and take the emerald from the output slot to complete the offer exactly once. Do not repeat the trade. Completing one trade locks the villager's profession and offers. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AVillager_trading_hall?utm_source=openai))",
+        "exact_input": "Right-click; left-click the required crop into the input slot; left-click the emerald output",
+        "success_cue": "One trade completes, the player receives an emerald, and the villager retains the farmer profession and selected offer.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Open the trading screen once more, select the same crop-for-emerald offer, and record its currently displayed crop input count as the locked pre-cure baseline. Do not execute another trade; close the screen with Esc.",
+        "exact_input": "Right-click, then Esc",
+        "success_cue": "The exact offer and its locked pre-cure input count have been recorded, and the trading screen is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select the Zombie Spawn Egg, aim through the interaction window at an empty interior block close to the farmer, and use the egg exactly once.",
+        "exact_input": "Right-click",
+        "success_cue": "One regular zombie and the same farmer villager are both alive inside the roofed chamber.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Remain near the chamber and wait for the regular zombie to attack the villager until the villager transforms into a zombie villager. Do not attack either entity. On Hard difficulty, a villager killed by a zombie converts instead of being lost. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The farmer has become a zombie villager, while the separate regular zombie is still present inside the chamber.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 18,
+        "action": "While standing within 10 blocks of the chamber, open chat and execute the command exactly as shown to remove regular zombies without targeting the differently typed zombie villager.",
+        "exact_input": "/kill @e[type=minecraft:zombie,distance=..10]",
+        "success_cue": "The regular zombie disappears, and the zombie villager remains alone and alive inside the chamber.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Select a Splash Potion of Weakness, aim through the interaction window so the potion directly splashes the zombie villager, and throw it using the Use Item control.",
+        "exact_input": "Right-click",
+        "success_cue": "Gray status-effect particles appear around the zombie villager, indicating that Weakness is active. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "Immediately select a regular Golden Apple, aim directly at the weakened zombie villager through the interaction window, and use the apple on the entity. Do not eat the apple or throw it on the floor.",
+        "exact_input": "Right-click",
+        "success_cue": "The zombie villager begins shaking and emits curing particles, confirming that the first curing process has started. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 21,
+        "action": "Stay close enough to keep the chamber loaded and wait until the first curing process finishes. Do not spawn another zombie, damage the zombie villager, leave the world, or move far enough away to unload the area. Conversion normally takes approximately three to five minutes. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The shaking zombie villager has converted back into a normal adult farmer villager, and no regular zombie is present.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 22,
+        "action": "Use the cured farmer to open the trading screen, select the same locked crop-for-emerald offer recorded earlier, and record its displayed crop input count as the first-cure value. Do not execute the trade. Close the screen with Esc.",
+        "exact_input": "Right-click, then Esc",
+        "success_cue": "The first-cure input count for the exact same locked offer has been recorded, and the trading screen is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Select the Zombie Spawn Egg again and use it exactly once on an empty interior block close to the cured farmer.",
+        "exact_input": "Right-click",
+        "success_cue": "One new regular zombie is inside the chamber with the same once-cured farmer.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Wait for the new zombie to attack and reinfect the same farmer. Do not attack either entity or introduce another villager. Hard difficulty makes the conversion deterministic. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The once-cured farmer has become a zombie villager again, and the regular zombie remains present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "While within 10 blocks of the chamber, open chat and execute the same regular-zombie removal command.",
+        "exact_input": "/kill @e[type=minecraft:zombie,distance=..10]",
+        "success_cue": "The regular zombie disappears, leaving only the reinfected zombie villager inside the chamber.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 26,
+        "action": "Select the second Splash Potion of Weakness and throw it through the interaction window so that it directly splashes the reinfected zombie villager.",
+        "exact_input": "Right-click",
+        "success_cue": "Gray status-effect particles appear around the reinfected zombie villager, confirming Weakness is active. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 27,
+        "action": "Immediately select the second regular Golden Apple and use it directly on the weakened zombie villager through the interaction window.",
+        "exact_input": "Right-click",
+        "success_cue": "The reinfected zombie villager begins shaking and emits curing particles, confirming that the second curing process has started. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACuring_a_zombie_villager?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 28,
+        "action": "Remain near the loaded chamber and wait until the second curing process finishes. Do not perform any unrelated villager interactions during the wait.",
+        "exact_input": null,
+        "success_cue": "The shaking zombie villager has converted back into the same adult farmer for the second time, and no regular zombie is present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 29,
+        "action": "Immediately use the twice-cured farmer to open its trading screen. Select the exact same locked crop-for-emerald offer used for the pre-cure and first-cure recordings, and leave the trading screen open without executing the offer.",
+        "exact_input": "Right-click",
+        "success_cue": "The twice-cured farmer's trading screen is open with the previously recorded crop-for-emerald offer selected and its current input count visible.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 29,
+    "handoff_condition": "The same villager has completed two player-performed curing cycles, and its trading screen is now open on the same locked crop-for-emerald offer used for the pre-cure and first-cure recordings. Hand control to the observation subsystem while the current input count remains visible.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce section. The procedure is reconstructed from the description's required order: cure a villager, reinfect that same villager, cure it again, and inspect its trade discount.",
+      "The report does not specify a single preferred affected version. Java Edition 1.20 is selected because it is the latest stable release listed as affected and avoids snapshot-specific setup.",
+      "The report does not specify game mode, world type, seed, coordinates, villager profession, or trade. Creative mode, an isolated chamber, and a novice farmer crop-purchase offer are practical implementation choices rather than report requirements.",
+      "A farmer's exact crop offer and starting input count can vary. The executor must record and revisit the identical locked offer rather than assuming a particular crop or numerical price.",
+      "The report does not specify whether a baseline price was recorded. Pre-cure and first-cure recordings are added so the observation subsystem has unambiguous comparison points after the second cure."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_038f5a51828c20f9016aa5bc6785d087d0b9600b2726bd31fc",
+    "elapsed_seconds": 219.85,
+    "usage": {
+      "input_tokens": 42323,
+      "output_tokens": 13077,
+      "reasoning_tokens": 9887,
+      "total_tokens": 55400
+    },
+    "timestamp": "2026-09-12T20:59:46.490438+00:00"
+  }
+}
