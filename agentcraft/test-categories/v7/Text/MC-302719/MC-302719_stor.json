@@ -1,0 +1,113 @@
+{
+  "bug_id": "MC-302719",
+  "category": "Text",
+  "source_md": "[Text] - MC-302719.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-302719",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2025-10-09T10:02:38.774-0700",
+    "updated": "2026-03-11T03:48:15.326-0700",
+    "resolution date": "2025-10-15T01:22:00.786-0700",
+    "affects versions": "25w41a",
+    "fix versions": "25w43a",
+    "area": "Platform HC",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-302719.png",
+    "_title": "Debug key binds text is improperly capitalized"
+  },
+  "stor": {
+    "bug_id": "MC-302719",
+    "recommended_version": "Minecraft Java Edition snapshot 25w41a",
+    "environment": "Vanilla single-player Minecraft Java Edition 25w41a with the language set to English (US), default resources, and commands/cheats enabled. No specific game mode, seed, coordinates, server, or additional player is required.",
+    "preconditions": [
+      "The Minecraft Launcher can install and start snapshot 25w41a; enable snapshot installations in the launcher if necessary.",
+      "Use the affected version 25w41a rather than fix version 25w43a or a later release.",
+      "Use the built-in English (US) language so the English capitalization listed in the report is displayed.",
+      "Use a world in which the executing player has permission to run /tellraw, such as a single-player world created with Allow Commands enabled.",
+      "Disable custom resource packs that replace the affected English translation strings."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create a Java Edition installation that uses snapshot 25w41a, and launch it.",
+        "exact_input": null,
+        "success_cue": "The game reaches the title screen and identifies its version as 25w41a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Options, select Language, choose English (US), and confirm with Done. If English (US) is already selected, leave it selected and return to the title screen.",
+        "exact_input": null,
+        "success_cue": "The title-screen menus are displayed in English and English (US) is the active language.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open Singleplayer and create a new test world. In the world-creation settings, enable Allow Commands. Any game mode, world seed, and world-generation settings may be used because the report specifies none. Start the world.",
+        "exact_input": null,
+        "success_cue": "The player has entered a single-player world in which commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait until the world has finished loading: surrounding terrain should be rendered and normal player movement should respond without a loading pause.",
+        "exact_input": null,
+        "success_cue": "The player can move normally and the nearby terrain is rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press the Open Chat control, which is T by default.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to receive a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Type the report's /tellraw command, replacing XYZ with one affected translation key. For a deterministic single-string reproduction, use the first listed key, key.debug.clearChat. Include the leading slash, and do not submit the command yet.",
+        "exact_input": "/tellraw @s {\"translate\":\"key.debug.clearChat\"}",
+        "success_cue": "The complete command is visible in the chat input field with no omitted characters.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press Enter once to execute the command.",
+        "exact_input": "Enter",
+        "success_cue": "The command is accepted without a red syntax or permission error, and one translated text line is rendered in the chat/HUD for the executing player.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The /tellraw command using key.debug.clearChat has just executed successfully, and the resulting translated text line is currently visible for capitalization inspection.",
+    "uncertainties": [
+      "The report permits any affected translation key and does not identify one mandatory key. This plan selects key.debug.clearChat, the first key in the report, as the simplest deterministic example.",
+      "The report does not explicitly state the active language. English (US) is selected as a practical requirement because the supplied current and expected strings are English strings.",
+      "The report does not specify game mode, seed, coordinates, or whether to use single-player or a server. A command-enabled single-player world is the minimum deterministic environment supported by the supplied reproduction.",
+      "To inspect another listed string, the same trigger can be repeated after handoff by replacing only key.debug.clearChat with that string's exact translation key; the report does not require every listed key to be tested in one run."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0f1fb08d86d658d6016aa5c600305087d0a7181742f3c42a81",
+    "elapsed_seconds": 55.61,
+    "usage": {
+      "input_tokens": 8830,
+      "output_tokens": 3325,
+      "reasoning_tokens": 2436,
+      "total_tokens": 12155
+    },
+    "timestamp": "2026-09-12T21:37:59.674336+00:00"
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "bug_id": "MC-172305",
+  "category": "Text",
+  "source_md": "[Text] - MC-172305.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-172305",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-02-14T23:06:14.034-0800",
+    "updated": "2025-04-11T12:50:14.425-0700",
+    "resolution date": "2023-03-08T12:16:29.444-0800",
+    "affects versions": "1.15.2; 20w06a; 20w07a; 20w14a; 1.16.2; 1.16.4; 20w48a; 20w49a; 21w03a; 1.16.5; 21w11a; 21w13a; 1.17; 1.17.1; 1.18.1; 1.18.2; 22w18a; 1.19.2; 22w43a; 1.19.3",
+    "fix versions": "1.19.4 Pre-release 4",
+    "area": "Platform",
+    "labels": "grammar; pluralization; spelling",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-172305.mp4; MC-172305.png; MC-172305-1.png",
+    "issue links": "Relates:inward:MC-124700:Scoreboard objective criterion is called criteria | Relates:outward:MC-211071:Some words within \"/spreadplayers\" command feedback messages are always pluralized",
+    "_title": "Some words within \"/clear\" command feedback messages are always pluralized"
+  },
+  "stor": {
+    "bug_id": "MC-172305",
+    "recommended_version": "Minecraft Java Edition 1.19.3",
+    "environment": "Unmodified Minecraft Java Edition 1.19.3 client in a single-player world, using the English (US) language and with commands/cheats enabled. No specific seed, coordinates, dimension, game mode, item, entity, or multiplayer server is required.",
+    "preconditions": [
+      "Launch the exact affected release Minecraft Java Edition 1.19.3 rather than a listed fix version.",
+      "Use the vanilla English (US) language resources; disable any resource pack that replaces English command translations.",
+      "Have permission to execute /tellraw. For the single-player procedure below, create or open a world with cheats enabled.",
+      "Use the report-supplied tellraw command without adding translation arguments or changing its JSON syntax."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the installation for Java Edition 1.19.3, and launch the game. Do not use a later version for this reproduction.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running version as Minecraft Java Edition 1.19.3.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Options, select Language, choose English (US), confirm the selection, and return to the title screen. If English (US) is already selected, leave it selected.",
+        "exact_input": null,
+        "success_cue": "The menus are displayed in English and English (US) is the selected language.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer and create a new world. Use Creative mode as a simple way to establish a command-capable test environment, and ensure Allow Cheats is set to ON before selecting Create New World. An existing cheats-enabled world may be used instead because the report does not require fresh world data.",
+        "exact_input": null,
+        "success_cue": "The player is inside a loaded single-player world and is permitted to run commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait before executing the test until surrounding terrain has rendered and normal player movement responds without world-loading interruption.",
+        "exact_input": null,
+        "success_cue": "Terrain is visible around the player and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press the control bound to Open Chat, which is T by default, to place the text cursor in the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report-supplied tellraw command using the affected translation key commands.clear.success.single. Include the leading slash, preserve the capitalization and JSON punctuation exactly, and press Enter to execute it as the current player.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.clear.success.single\"}",
+        "success_cue": "A new tellraw message is rendered for the player without a red command-syntax or permission error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Immediately press the Open Chat control again so the recent tellraw message remains fully visible in expanded chat. Do not enter another command or clear the chat.",
+        "exact_input": "T",
+        "success_cue": "Expanded chat is open and the tellraw message produced by step 6 is visible as the most recent chat entry.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 6,
+    "handoff_condition": "The translation component for commands.clear.success.single has just been rendered by the report-supplied /tellraw command, and expanded chat is open with that message visible. Hand control to the observation subsystem to inspect the wording of the rendered message.",
+    "uncertainties": [
+      "The report does not specify a required game mode, world seed, coordinates, dimension, or server type. The plan uses a Creative single-player world with cheats enabled solely as the simplest command-capable environment.",
+      "The report permits any of four affected translation keys. This minimal deterministic plan uses commands.clear.success.single; the other listed keys can be tested independently by replacing only that key in the otherwise identical command.",
+      "The supplied command does not provide values for the translation string's substitution fields. This plan preserves the command exactly instead of inventing additional translation arguments."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0abb288915d734db016aa5c4e9b49887d0b24c5549dce2de36",
+    "elapsed_seconds": 64.86,
+    "usage": {
+      "input_tokens": 9199,
+      "output_tokens": 3934,
+      "reasoning_tokens": 3033,
+      "total_tokens": 13133
+    },
+    "timestamp": "2026-09-12T21:33:29.761978+00:00"
+  }
+}
