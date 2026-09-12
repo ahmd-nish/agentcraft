@@ -1,0 +1,207 @@
+{
+  "bug_id": "MC-71990",
+  "category": "UI",
+  "source_md": "[UI] - MC-71990.md",
+  "source_meta": {
+    "mojira categories": "Textures and models; UI",
+    "project": "MC",
+    "issue key": "MC-71990",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2014-09-17T04:25:37.111-0700",
+    "updated": "2025-04-26T03:45:44.036-0700",
+    "resolution date": "2024-10-22T08:24:22.065-0700",
+    "affects versions": "Minecraft 1.8; Minecraft 1.8.1-pre2; Minecraft 1.8.1-pre3; Minecraft 15w35e; Minecraft 1.9 Pre-Release 3; Minecraft 1.10.2; Minecraft 16w36a; Minecraft 16w39c; Minecraft 1.11.2; Minecraft 17w06a; Minecraft 1.12.1; Minecraft 1.13-pre3; Minecraft 1.13; Minecraft 1.13.1; Minecraft 1.14.3; 1.15.2; 20w15a; 1.16 Release Candidate 1; 1.16; 1.16.3; 1.16.4 Pre-release 2; 1.16.4; 20w46a; 1.16.5; 21w08b; 21w18a; 1.17.1; 1.18.1; 1.19.2; 1.20.4; 24w07a; 1.20.5; 1.21.1",
+    "fix versions": "24w44a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "HatLayerNotShown.mp4; Screeny 1.png; Screeny 2.png",
+    "issue links": "Duplicate:inward:MC-275047:Hat layer on player heads in Tab Menu get unloaded when player is unloaded | Duplicate:inward:MC-203465:Inconsistent Rendering of Faces | Duplicate:inward:MC-155304:Second layer of skins do not show up in player list in Multiplayer in certain cases | Duplicate:inward:MC-190612:outer skin not rendering in multiplayer list display unless player is in same chunk | Duplicate:inward:MC-164964:Player list (TAB) only shows outside layer of player head of a player if that player is rendered in-game | Duplicate:inward:MC-136292:Second layer doesn't show up in tab list | Duplicate:inward:MC-131742:Client Renders Head Wrong in Tab(no hat) | Duplicate:inward:MC-87711:Dont show hat layer in TAB.",
+    "_title": "The 'Hat' layer of a player skin is not shown in the tab list under certain conditions"
+  },
+  "stor": {
+    "bug_id": "MC-71990",
+    "affected_versions": [
+      "Minecraft 1.8",
+      "Minecraft 1.8.1-pre2",
+      "Minecraft 1.8.1-pre3",
+      "Minecraft 15w35e",
+      "Minecraft 1.9 Pre-Release 3",
+      "Minecraft 1.10.2",
+      "Minecraft 16w36a",
+      "Minecraft 16w39c",
+      "Minecraft 1.11.2",
+      "Minecraft 17w06a",
+      "Minecraft 1.12.1",
+      "Minecraft 1.13-pre3",
+      "Minecraft 1.13",
+      "Minecraft 1.13.1",
+      "Minecraft 1.14.3",
+      "1.15.2",
+      "20w15a",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.3",
+      "1.16.4 Pre-release 2",
+      "1.16.4",
+      "20w46a",
+      "1.16.5",
+      "21w08b",
+      "21w18a",
+      "1.17.1",
+      "1.18.1",
+      "1.19.2",
+      "1.20.4",
+      "24w07a",
+      "1.20.5",
+      "1.21.1"
+    ],
+    "recommended_version": "Minecraft 1.8",
+    "environment": "Unmodified Minecraft Java Edition 1.8 running on two separate clients with two distinct authenticated player accounts. Use the viewer's client to host a LAN world with commands enabled. The viewer must remain in Creative mode or another non-Spectator mode; the target player will be changed to Spectator mode. The target account must use a skin whose head has a clearly visible, high-contrast outer/hat layer. Do not use client mods or resource packs that replace the player list, player models, or skins.",
+    "preconditions": [
+      "Two distinct authenticated Minecraft Java Edition accounts are available and can be logged in simultaneously on separate clients.",
+      "Both clients can run the exact recommended version, Minecraft 1.8, and can connect through LAN or an equivalent local multiplayer setup.",
+      "The target account has an equipped custom skin containing opaque, visually distinctive pixels in the head's secondary/hat layer; for example, contrasting hair, glasses, a hood, or a mask extending beyond the base face.",
+      "The target client's Skin Customization setting for Hat is enabled.",
+      "The viewer can host the world with cheats/commands enabled and execute a game-mode command targeting the other player's exact username.",
+      "The default List Players control is Tab; if controls were rebound, use the key assigned to List Players instead."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher on both machines or client instances, create or select an installation using the exact release version Minecraft 1.8. Do not select 1.8.1, a later release, or the fix version.",
+        "exact_input": "Minecraft 1.8",
+        "success_cue": "Both launcher installations display Minecraft 1.8 as the selected version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Ensure the target account has a custom skin whose head outer/hat layer is easy to distinguish from its base face. If necessary, configure the skin through the Minecraft Launcher's Java Edition skin controls by uploading and selecting an appropriate PNG skin. Minecraft's official skin instructions confirm that a Java skin can be uploaded and selected through the launcher. ([help.minecraft.net](https://help.minecraft.net/hc/es-es/articles/4408894664461-Como-criar-uma-skin-personalizada-no-Minecraft-Java-Edition?utm_source=openai))",
+        "exact_input": "A valid Java Edition skin PNG with a clearly contrasting head outer/hat layer",
+        "success_cue": "The target account's selected skin visibly includes distinctive pixels in the secondary layer surrounding the head or face.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Launch Minecraft 1.8 on both clients, signing the viewer and target clients into different accounts. Wait for each client to reach the Minecraft main menu.",
+        "exact_input": null,
+        "success_cue": "Both clients are at the Minecraft 1.8 main menu and display different authenticated usernames.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "On the target client, open Options, then Skin Customization, and click the Hat setting until it reads ON. Return to the main menu after changing it.",
+        "exact_input": "Options -> Skin Customization... -> Hat: ON",
+        "success_cue": "The target client's Skin Customization screen shows Hat: ON.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "On the viewer client, create a simple command-enabled Creative world: select Singleplayer, select Create New World, set Game Mode to Creative, open More World Options, ensure Allow Cheats is ON, and create the world. Remain near the initial spawn position after terrain loads.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options... -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The viewer is standing in a loaded Minecraft 1.8 world in Creative mode and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "On the viewer client, press Esc, select Open to LAN, ensure Allow Cheats is ON, and select Start LAN World. Note the confirmation message and port if Minecraft displays one.",
+        "exact_input": "Esc -> Open to LAN -> Allow Cheats: ON -> Start LAN World",
+        "success_cue": "Chat reports that the local game has been hosted, making the world available to another client.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "On the target client, select Multiplayer, wait for the LAN world to appear, select it, and choose Join Server. If LAN discovery is unavailable, connect through the equivalent direct LAN address without changing the two-player multiplayer condition.",
+        "exact_input": "Multiplayer -> detected LAN world -> Join Server",
+        "success_cue": "The target client enters the same world as the viewer and surrounding terrain finishes rendering.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "On the viewer client, briefly press and release the List Players control, which is Tab by default, to verify both players are connected. Do not evaluate the target icon's skin layers during this connectivity check.",
+        "exact_input": "Tab (press briefly, then release)",
+        "success_cue": "The player-list overlay opens and contains entries for both the viewer username and the target username; the overlay then closes when Tab is released.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Bring the two players close enough that the viewer can see the target's full player model. If they did not join near each other, press F3 on both clients to display coordinates, then use W, A, S, and D on the target client until the target's X and Z coordinates are within approximately 8 blocks of the viewer's X and Z coordinates. Close the debug screen with F3 afterward.",
+        "exact_input": "F3; W/A/S/D; F3",
+        "success_cue": "The target player's body and head are rendered directly in the viewer's world view at close range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "From the viewer client, look directly at the target player's head and confirm that the selected skin has a visible outer/hat layer in the in-world model. If the target appears as a default skin or the head has no discernible outer layer, stop and correct the target's skin or Hat setting before continuing.",
+        "exact_input": null,
+        "success_cue": "A clearly contrasting outer layer is visible around part of the target's head or face in the normal in-world player model.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Keep the viewer in Creative mode and do not place the viewer in Spectator mode. The viewer may verify Creative mode by confirming that the Creative hotbar is present and that double-tapping Space enables flight.",
+        "exact_input": "Space, Space (only if a mode check is needed)",
+        "success_cue": "The viewer remains in a non-Spectator game mode while the target is still connected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "On the viewer/host client, press T to open the in-game chat and command entry field.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open on the viewer client and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Replace TARGET_USERNAME with the target player's exact connected username, type the command with the leading slash, and press Enter. The numeric game-mode value 3 is the version-compatible Spectator value for Java Edition 1.8. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Minecraft_in_education/Minecraft_Vocabulary?utm_source=openai))",
+        "exact_input": "/gamemode 3 TARGET_USERNAME",
+        "success_cue": "The host receives command feedback indicating that the target player's game mode was changed, with no unknown-command, permission, or player-not-found error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "On the target client, wait for the game-mode change to finish. Confirm Spectator mode by checking that the normal survival/creative hotbar is replaced by the Spectator interface and that the target can fly through solid blocks. Do not disconnect or leave the world. Spectator mode in Java Edition permits flight and passage through blocks. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Indonesian_translation/Mode_Penonton?utm_source=openai))",
+        "exact_input": "W and Space while moving toward/through a solid block, if a mode check is needed",
+        "success_cue": "The target is in Spectator mode and remains connected, while the viewer remains non-Spectator.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "On the viewer client, press and continue holding the List Players control, which is Tab by default. Keep the key held so the multiplayer player-list overlay remains visible, then immediately hand control to the observation subsystem without changing either player's game mode or connection state.",
+        "exact_input": "Tab (press and hold)",
+        "success_cue": "The player-list overlay is open on the viewer client and contains the connected target player's entry while the target is in Spectator mode.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The non-Spectator viewer is holding the List Players control with the player-list overlay open, both usernames are present, and the target player is currently connected in Spectator mode with a confirmed skin containing a distinctive head outer/hat layer. Begin observing the target player's head icon without releasing Tab or changing either player's state.",
+    "uncertainties": [
+      "The report permits either a multiplayer server or a LAN server and permits either a Spectator-mode target or a distant/unrendered target. This plan selects the LAN plus Spectator-mode route because it is the shortest deterministic branch supported by the report.",
+      "The report does not supply a skin file or target account. A suitable custom skin must therefore be selected as a practical setup choice; it must contain a visually obvious head outer/hat layer so the relevant rendering state can be distinguished.",
+      "The target player's username is not supplied. TARGET_USERNAME in the command must be replaced with the exact username shown in the connected player list.",
+      "The report does not specify which player hosts the LAN world. This plan makes the viewer the host so that the viewer can reliably execute the game-mode command while remaining non-Spectator.",
+      "The historical Skin Customization menu path was not independently verified from an accessible version-specific page. If the wording differs slightly in the installed 1.8 client, locate the skin-parts customization screen and enable the setting named Hat."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0f9c8fefd63fc6b4016aa5e1b7392887d08534090133481484",
+    "elapsed_seconds": 117.99,
+    "usage": {
+      "input_tokens": 44257,
+      "output_tokens": 7951,
+      "reasoning_tokens": 5620,
+      "total_tokens": 52208
+    },
+    "timestamp": "2026-09-12T23:37:16.957499+00:00"
+  }
+}

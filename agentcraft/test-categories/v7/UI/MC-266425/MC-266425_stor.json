@@ -1,0 +1,215 @@
+{
+  "bug_id": "MC-266425",
+  "category": "UI",
+  "source_md": "[UI] - MC-266425.md",
+  "source_meta": {
+    "mojira categories": "UI",
+    "project": "MC",
+    "issue key": "MC-266425",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2023-11-07T20:46:15.152-0800",
+    "updated": "2025-11-11T02:56:56.278-0800",
+    "resolution date": "2025-11-11T02:56:56.226-0800",
+    "affects versions": "23w44a; 23w45a; 23w46a; 1.20.3 Pre-Release 3; 1.20.3; 24w12a; 1.20.5; 1.20.6; 1.21 Pre-Release 1; 1.21; 1.21.1; 1.21.2; 1.21.4; 1.21.5; 1.21.9",
+    "fix versions": "25w46a",
+    "area": "Expansion B",
+    "watchers": "3",
+    "attachments": "9",
+    "attachment filenames": "waxed_copper_blocks_1.png; waxed_copper_blocks_2.png; waxed_copper_blocks_3.png; waxed_copper_door_from_honeycomb.json; waxed_copper_door.json; waxed_exposed.png; waxed_oxidized.png; waxed_regular.png; waxed_weathered.png",
+    "issue links": "Duplicate:inward:MC-274704:Inconsistent grouping in recipe book for waxed chiseled copper | Duplicate:inward:MC-272548:Waxed copper grate and copper grate have the same crafting recipe | Duplicate:inward:MC-267064:New waxed copper blocks are not grouped together",
+    "_title": "Recipes for new waxed copper blocks are not grouped"
+  },
+  "stor": {
+    "bug_id": "MC-266425",
+    "affected_versions": [
+      "23w44a",
+      "23w45a",
+      "23w46a",
+      "1.20.3 Pre-Release 3",
+      "1.20.3",
+      "24w12a",
+      "1.20.5",
+      "1.20.6",
+      "1.21 Pre-Release 1",
+      "1.21",
+      "1.21.1",
+      "1.21.2",
+      "1.21.4",
+      "1.21.5",
+      "1.21.9"
+    ],
+    "recommended_version": "23w44a",
+    "environment": "Minecraft: Java Edition snapshot 23w44a in a single-player world with the Update 1.21 experiment and commands enabled. Creative mode is used as a practical setup choice so a Crafting Table can be obtained without unrelated gathering or crafting.",
+    "preconditions": [
+      "Install or select the exact Minecraft: Java Edition snapshot 23w44a in the Minecraft Launcher; snapshots may need to be enabled on the Launcher's Installations tab.",
+      "Use a disposable test world or a separate game directory because snapshots can damage worlds.",
+      "Use the standard in-game crafting-table recipe book; do not install a data pack that adds, removes, or changes recipes.",
+      "If the game is not using English, identify controls by their equivalent localized labels; the exact search input remains \"waxed\"."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the 23w44a launcher installation. At the title screen, check the version text in the lower-left corner before continuing.",
+        "exact_input": null,
+        "success_cue": "The main menu is open and its version text identifies the running version as 23w44a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World to open the world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "On the Game settings, set Game Mode to Creative. Creative mode is not stated as a requirement by the report; it is selected only to obtain and place the Crafting Table deterministically.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set Allow Commands to ON so the report's recipe-unlocking command can be executed after entering the world.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows that commands are allowed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Open the Experiments menu on the world-creation screen, enable the experiment named Update 1.21, and return to the main world-creation screen. Accept the experimental-world confirmation if one is displayed.",
+        "exact_input": "Update 1.21",
+        "success_cue": "Update 1.21 is enabled for the world being created, and the world-creation screen indicates that experiments are active.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World.",
+        "exact_input": null,
+        "success_cue": "World generation begins.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait until the world finishes loading. Do not continue while the loading screen is visible; wait until terrain has rendered and normal player movement responds.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the generated world, nearby terrain is rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T, the default Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input line is open and ready to receive a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's recipe command exactly as shown, including the leading slash, and press Enter.",
+        "exact_input": "/recipe give @s *",
+        "success_cue": "The command completes without a syntax or permission error, and command feedback indicates that recipes were granted to the current player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press E, the default Inventory control, to open the Creative inventory. Select the Search Items tab, represented by a compass icon, if that tab is not already active.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open with its item-search field available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Click the Creative inventory search field and enter the item name.",
+        "exact_input": "crafting table",
+        "success_cue": "A Crafting Table item appears among the filtered Creative inventory results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Move one Crafting Table item from the search results into the far-left hotbar slot at the bottom of the inventory, then press E or Escape to close the inventory. The hotbar is the row of nine item slots used while playing.",
+        "exact_input": null,
+        "success_cue": "The inventory is closed and a Crafting Table icon is present in the first, far-left hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press 1, the default key for selecting the first hotbar slot, so the Crafting Table becomes the active held item.",
+        "exact_input": "1",
+        "success_cue": "The first hotbar slot is highlighted and the player is visibly holding a Crafting Table.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Aim the crosshair at the top of a nearby solid ground block with empty space above it, then right-click once to place the Crafting Table.",
+        "exact_input": "right-click",
+        "success_cue": "A Crafting Table block is placed within interaction range of the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Aim the crosshair at the placed Crafting Table and right-click it once to open its crafting interface.",
+        "exact_input": "right-click",
+        "success_cue": "The Crafting Table interface is open and shows a 3-by-3 crafting grid.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "If the recipe-book panel is not visible beside the crafting grid, click the recipe-book toggle button, represented by a green book, once. If the panel is already visible, leave it open.",
+        "exact_input": null,
+        "success_cue": "The recipe-book panel is visible and includes a recipe search field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Ensure the recipe book is displaying all unlocked recipes rather than only recipes currently craftable from carried ingredients. If the filter is set to Showing Craftable, click its toggle so its tooltip/state becomes Showing All.",
+        "exact_input": null,
+        "success_cue": "The recipe-book filter is set to Showing All.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Click inside the recipe-book search field. If it contains existing text, select and delete that text so the field is empty.",
+        "exact_input": null,
+        "success_cue": "The recipe-book search field is focused and contains no text.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Type the report's search term into the focused recipe-book search field. Do not click any result after entering the term; immediately hand control to the observation subsystem.",
+        "exact_input": "waxed",
+        "success_cue": "The recipe-book search field contains \"waxed\" and matching waxed-item recipe icons are displayed in the results area.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The Crafting Table interface and its recipe book are open, the filter is set to Showing All, and the search field has just been populated with \"waxed\" so the matching recipe results are visible. Begin inspecting the recipe-result entries and their grouping without performing another player action.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode is selected only as a deterministic way to obtain the Crafting Table and is not asserted to be required for the bug.",
+      "The report permits optionally appending \" c\", \" e\", \" w\", or \" o\" to isolate regular, exposed, weathered, or oxidized entries. This plan uses the base search \"waxed\" because it is the report's primary reproduction path and exposes all matching variants at once.",
+      "The experiment-selection menu wording or placement may differ slightly with language, window size, or GUI scale, but the experiment enabled for the recommended version must be the one named Update 1.21.",
+      "Later comments narrow which block types remain affected in later game versions. This plan intentionally follows the original reproduction in 23w44a because 23w44a is the first version in the report's affected-version list.",
+      "The report does not state whether third-party recipe-altering data packs were present. Avoiding them is an interference-control measure rather than a reported prerequisite."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0732c2d31ccd1399016aa5e174f7a887d0ab7a5dd2bca389f0",
+    "elapsed_seconds": 66.22,
+    "usage": {
+      "input_tokens": 26128,
+      "output_tokens": 4454,
+      "reasoning_tokens": 2638,
+      "total_tokens": 30582
+    },
+    "timestamp": "2026-09-12T23:35:18.956088+00:00"
+  }
+}
