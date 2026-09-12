@@ -1,0 +1,143 @@
+{
+  "bug_id": "MC-198007",
+  "category": "Village system",
+  "source_md": "[Village system] - MC-198007.md",
+  "source_meta": {
+    "mojira categories": "Structures; Village system; World generation",
+    "project": "MC",
+    "issue key": "MC-198007",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-08-14T10:12:34.694-0700",
+    "updated": "2025-04-10T14:53:42.462-0700",
+    "resolution date": "2022-03-23T11:36:16.763-0700",
+    "affects versions": "1.16.2; 1.16.4; 20w51a; 21w03a; 21w05b",
+    "fix versions": "1.18 Pre-release 5",
+    "labels": "village-generation",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2020-08-14_18.08.04.png; 2020-08-14_18.08.16.png; 2020-08-14_18.08.30.png; 2020-08-14_18.08.51.png",
+    "issue links": "Relates:inward:MC-200492:Paths generated over shallow water do not replace the water with planks",
+    "_title": "Villages replace ice with path blocks instead of wood"
+  },
+  "stor": {
+    "bug_id": "MC-198007",
+    "affected_versions": [
+      "1.16.2",
+      "1.16.4",
+      "20w51a",
+      "21w03a",
+      "21w05b"
+    ],
+    "recommended_version": "1.16.2",
+    "environment": "Unmodified Minecraft Java Edition 1.16.2 in single-player, using a newly created Default-type world with seed -7882263134696652088, structure generation enabled, and commands available. Creative mode is selected as a practical way to execute the supplied teleport command without introducing survival-related setup.",
+    "preconditions": [
+      "Install and launch the exact Minecraft Java Edition version 1.16.2 rather than the listed fix version or a current release.",
+      "Use a newly created world so the distant target chunks have not already been generated in another Minecraft version.",
+      "Do not install datapacks, world-generation modifications, or server plugins that could alter terrain or village generation.",
+      "Ensure Generate Structures is set to ON because the reproduction target is part of a generated village.",
+      "Enable commands by selecting Creative mode during world creation. If the world-creation screen separately exposes Allow Cheats, ensure it is ON.",
+      "Use the exact supplied seed, including its leading minus sign: -7882263134696652088."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation that uses release 1.16.2, start that installation, and wait for the Minecraft main menu to appear. Verify that the lower-left corner of the main menu identifies the running version as Minecraft 1.16.2.",
+        "exact_input": null,
+        "success_cue": "The Minecraft Java Edition 1.16.2 main menu is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World. Use a new world rather than opening or recreating an existing save.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open for a new save.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative so in-game commands are available. If an Allow Cheats control is visible, set it to ON. The world name and difficulty do not affect this reproduction and may remain at their defaults.",
+        "exact_input": null,
+        "success_cue": "Creative mode is selected and commands are enabled for the new world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open More World Options. Select the world seed field, remove any existing contents, and enter the supplied seed exactly, preserving the leading minus sign.",
+        "exact_input": "-7882263134696652088",
+        "success_cue": "The seed field displays exactly -7882263134696652088.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "In More World Options, leave World Type set to Default and ensure Generate Structures is ON. Do not import custom world-generation settings or add datapacks. Select Done to return to the main world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The new world is configured with the exact seed, Default world generation, and Generate Structures set to ON.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World. Wait for world creation and the initial loading screen to finish. After the player appears, wait until nearby terrain is rendered and movement or menu input responds normally. The player should be in the Overworld.",
+        "exact_input": null,
+        "success_cue": "The player is controllable in a newly generated Overworld using the supplied seed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat. Execute the next command in chat rather than in a server console; therefore, retain the leading slash.",
+        "exact_input": null,
+        "success_cue": "The chat input field is open and ready to receive a command.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Enter the report's teleport command exactly as supplied, including the dimension, selector, decimal coordinates, yaw, and pitch. Press Enter once to execute it. Do not substitute rounded coordinates or remove the final two rotation values.",
+        "exact_input": "/execute in minecraft:overworld run tp @s -135.95 63.00 -303308.65 -178.50 22.50",
+        "success_cue": "The command is accepted and the player is teleported to X -135.95, Y 63.00, Z -303308.65 in the Overworld with yaw -178.50 and pitch 22.50; the distant destination terrain begins loading.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Release all movement and camera controls so the report-supplied position and viewing rotation are preserved. Wait until the destination chunks, nearby terrain, and village structures have fully rendered. Do not continue while void-colored gaps, missing chunk sections, a loading screen, or unresponsive controls remain.",
+        "exact_input": null,
+        "success_cue": "The terrain and village around the supplied location are fully rendered, the scene is stable, and controls respond normally while the player remains at the supplied position and orientation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Without moving the player or turning the camera, briefly open the debug overlay with F3 and verify that the XYZ position is approximately -135.950 / 63.000 / -303308.650 and that the player is in the Overworld. Close the overlay with F3 again so it does not obstruct inspection. If the keyboard requires a function modifier, use Fn+F3.",
+        "exact_input": null,
+        "success_cue": "The supplied destination and Overworld dimension have been verified, the debug overlay is closed, and the player remains at the report-specified position and orientation beside the loaded target village terrain.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The teleport command has generated or loaded the target chunks, the village terrain at X -135.95, Y 63.00, Z -303308.65 is fully rendered in Java Edition 1.16.2, and the player remains stationary at the supplied yaw and pitch. Hand control to the observation subsystem for inspection of the generated village path area.",
+    "uncertainties": [
+      "The report does not specify game mode, difficulty, single-player versus dedicated server, or an explicit cheats setting. This plan uses single-player Creative mode solely to provide a deterministic way to execute the supplied command.",
+      "Default world type and Generate Structures ON are not explicitly stated in the report, but they are retained because the report concerns naturally generated village terrain and does not provide custom world-generation settings.",
+      "The report does not name a particular village building, path segment, or inspection direction beyond the coordinates and rotation embedded in the teleport command. The plan therefore preserves the exact command orientation and does not direct the executor to move before observation.",
+      "The report does not explicitly state that the target chunks must be newly generated. A fresh world is used because generating the village in another version or with altered world-generation settings could change the test state."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_064f05123d42b7a6016aa5dd16d04487d08eec7f7e696a3f0b",
+    "elapsed_seconds": 71.96,
+    "usage": {
+      "input_tokens": 17214,
+      "output_tokens": 4720,
+      "reasoning_tokens": 3258,
+      "total_tokens": 21934
+    },
+    "timestamp": "2026-09-12T23:16:46.651574+00:00"
+  }
+}

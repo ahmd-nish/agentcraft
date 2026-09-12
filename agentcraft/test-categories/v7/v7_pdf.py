@@ -86,10 +86,15 @@ def build_html(rec: dict) -> str:
                 f"{'es' if call.get('web_call_count', 0) != 1 else ''})"
                 if call.get("web_used") else "no web verification")
 
-    # Mojira permalink. The source .md carries it as a bare "**Mojira URL:**"
-    # line rather than a "- **k:** v" bullet, so META_RE does not capture it;
-    # the id-derived form matches what those files contain.
-    mojira_url = f"https://bugs.mojang.com/browse/{bug_id}"
+    # Mojira permalink.
+    #
+    # The source .md files point at bugs.mojang.com/browse/<id>, but that host
+    # now answers every issue path with the same ~750-byte "Mojira Public Bug
+    # Tracker" landing shell -- it carries no issue data, so the link is dead
+    # for a specific bug. The tracker itself moved to Atlassian cloud, which is
+    # what the raw Jira payload agrees with: issues[0].self is
+    # https://mojira.atlassian.net/rest/api/3/issue/<numeric-id>.
+    mojira_url = f"https://mojira.atlassian.net/browse/{bug_id}"
 
     # Every affected version the report listed, with the selected one marked.
     # Selection should be the first entry; showing the whole list lets a tester
@@ -214,7 +219,7 @@ def build_html(rec: dict) -> str:
 
 <div class="foot">
   <span>{esc(bug_id)} &nbsp;|&nbsp; {esc(category)} &nbsp;|&nbsp; v7 STOR &nbsp;|&nbsp; {esc(web_note)}</span>
-  <a href="{mojira_url}">bugs.mojang.com/browse/{esc(bug_id)}</a>
+  <a href="{mojira_url}">mojira.atlassian.net/browse/{esc(bug_id)}</a>
 </div>
 
 </body></html>"""
