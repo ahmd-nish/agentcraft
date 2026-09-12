@@ -86,6 +86,11 @@ def build_html(rec: dict) -> str:
                 f"{'es' if call.get('web_call_count', 0) != 1 else ''})"
                 if call.get("web_used") else "no web verification")
 
+    # Mojira permalink. The source .md carries it as a bare "**Mojira URL:**"
+    # line rather than a "- **k:** v" bullet, so META_RE does not capture it;
+    # the id-derived form matches what those files contain.
+    mojira_url = f"https://bugs.mojang.com/browse/{bug_id}"
+
     return f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><title>{esc(bug_id)}</title>
 <style>
@@ -97,6 +102,7 @@ def build_html(rec: dict) -> str:
         color:#111827; }}
   .idline {{ font-family:"SF Mono",Menlo,Consolas,monospace; font-size:10pt;
              color:#374151; margin-bottom:14px; }}
+  .idline a {{ color:#2563eb; text-decoration:none; border-bottom:1px solid #bfdbfe; }}
   .idline .cat {{ color:#9ca3af; font-family:inherit; margin-left:8px;
                   font-size:8.5pt; letter-spacing:.06em; text-transform:uppercase; }}
   table.meta {{ width:100%; border-collapse:collapse; margin-bottom:18px;
@@ -105,9 +111,13 @@ def build_html(rec: dict) -> str:
                    background:#f3f4f6; padding:5px 9px; border:1px solid #e5e7eb;
                    vertical-align:top; }}
   table.meta td {{ padding:5px 9px; border:1px solid #e5e7eb; color:#1f2937; }}
+  /* Each section opens on its own page. The first one continues the cover page,
+     which already carries the title and metadata table. */
   h2 {{ font-size:8.8pt; font-weight:600; letter-spacing:.1em; text-transform:uppercase;
-        color:#2563eb; margin:20px 0 8px; padding-bottom:3px;
-        border-bottom:1px solid #dbeafe; }}
+        color:#2563eb; margin:0 0 10px; padding-bottom:3px;
+        border-bottom:1px solid #dbeafe;
+        break-before:page; page-break-before:always; }}
+  h2.first {{ break-before:auto; page-break-before:auto; margin-top:20px; }}
   .lead {{ background:#f8fafc; border-left:3px solid #2563eb; padding:8px 12px;
            margin-bottom:6px; font-size:9.6pt; }}
   .lead b {{ color:#1e40af; font-weight:600; }}
@@ -147,11 +157,11 @@ def build_html(rec: dict) -> str:
 </style></head><body>
 
 <h1>{esc(title)}</h1>
-<div class="idline">{esc(bug_id)}<span class="cat">{esc(category)}</span></div>
+<div class="idline"><a href="{mojira_url}">{esc(bug_id)}</a><span class="cat">{esc(category)}</span></div>
 
 <table class="meta">{meta_rows}</table>
 
-<h2>Reproduction target</h2>
+<h2 class="first">Reproduction target</h2>
 <div class="lead"><b>Version:</b> {esc(stor.get('recommended_version',''))}</div>
 <div class="lead"><b>Environment:</b> {esc(stor.get('environment',''))}</div>
 
@@ -181,7 +191,7 @@ def build_html(rec: dict) -> str:
 
 <div class="foot">
   <span>{esc(bug_id)} &nbsp;|&nbsp; {esc(category)} &nbsp;|&nbsp; v7 STOR &nbsp;|&nbsp; {esc(web_note)}</span>
-  <a href="https://bugs.mojang.com/browse/MC/issues/{esc(bug_id)}">bugs.mojang.com/browse/MC/issues/{esc(bug_id)}</a>
+  <a href="{mojira_url}">bugs.mojang.com/browse/{esc(bug_id)}</a>
 </div>
 
 </body></html>"""
