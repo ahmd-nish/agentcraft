@@ -1,0 +1,159 @@
+{
+  "bug_id": "MC-277111",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-277111.md",
+  "source_meta": {
+    "mojira categories": "Trading",
+    "project": "MC",
+    "issue key": "MC-277111",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-10-02T10:44:45.100-0700",
+    "updated": "2025-04-26T16:58:27.730-0700",
+    "resolution date": "2024-10-07T04:59:14.248-0700",
+    "affects versions": "24w40a",
+    "fix versions": "1.21.2 Pre-Release 1",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2024-10-02_18.41.31.png",
+    "_title": "Wandering traders can sell pale oak saplings even when they're disabled"
+  },
+  "stor": {
+    "bug_id": "MC-277111",
+    "affected_versions": [
+      "24w40a"
+    ],
+    "recommended_version": "24w40a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 24w40a in a newly created single-player world. Use Creative mode as a practical way to obtain Wandering Trader Spawn Eggs. The world must be created with the Winter Drop experiment disabled; do not test in the listed fix version, 1.21.2 Pre-Release 1.",
+    "preconditions": [
+      "The Minecraft Launcher can start the exact Java Edition snapshot 24w40a.",
+      "Use a new world or another world known to have been created without the Winter Drop experiment enabled.",
+      "Do not enable the Winter Drop experiment at any point during world creation.",
+      "No particular seed, coordinates, biome, difficulty, emerald supply, or completed trade is required by the report.",
+      "Wandering-trader offers are randomized, so the spawn-and-inspect cycle may require an indeterminate number of attempts."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the exact installation/version snapshot 24w40a. If necessary, enable snapshot installations in the Minecraft Launcher and select 24w40a before pressing Play.",
+        "exact_input": "24w40a",
+        "success_cue": "The title screen identifies the running Java Edition version as 24w40a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer, then select Create New World to begin creating a fresh test world.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Creative mode is not required by the report itself, but it provides direct access to the spawn egg explicitly allowed by the report and avoids relying on natural trader spawning.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the world-creation Experiments screen, normally through the More tab or the Experiments button. Locate Winter Drop and ensure its toggle is OFF. If it is already off by default, leave it unchanged. Do not enable any experiment merely to continue.",
+        "exact_input": "Winter Drop: OFF",
+        "success_cue": "Winter Drop is displayed as disabled before world creation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Return to the main world-creation screen and create the world. Wait until the loading screen has closed, surrounding terrain is rendered, and normal player movement responds.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly created Creative-mode world, chunks around the player are rendered, and the Winter Drop experiment was not enabled during creation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Press the inventory control, E by default, to open the Creative inventory. Select the Search Items tab, represented by a compass if tabs are shown as icons.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open with a searchable item list visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Click the Creative inventory search field and search for the Wandering Trader Spawn Egg. Place a stack of the matching spawn egg into an empty hotbar slot by clicking or using a number key while hovering over it. The hotbar is the row of nine quick-access slots at the bottom of the screen.",
+        "exact_input": "Wandering Trader Spawn Egg",
+        "success_cue": "A Wandering Trader Spawn Egg is present in one of the nine hotbar slots.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory with E or Esc. Select the hotbar slot containing the Wandering Trader Spawn Egg using its number key or the mouse wheel.",
+        "exact_input": "E or Esc, then hotbar key 1-9 as applicable",
+        "success_cue": "The Wandering Trader Spawn Egg is visible in the player's hand and its name briefly appears above the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Aim the crosshair at the top surface of a nearby solid ground block with open space above it, then press the use control, right-click by default, once to spawn one wandering trader.",
+        "exact_input": "right-click",
+        "success_cue": "A new wandering trader is visible on the targeted ground near the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Switch to an empty hotbar slot before interacting with the trader so that using the interact control does not spawn an additional trader accidentally.",
+        "exact_input": "hotbar key 1-9 for an empty slot",
+        "success_cue": "The player's active hand is empty and the spawned wandering trader remains nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Move close enough to the newly spawned wandering trader to target its body with the crosshair, then press the use control, right-click by default, once. Do not attack the trader and do not complete any trade.",
+        "exact_input": "right-click",
+        "success_cue": "The wandering trader trading interface is open and its list of offers is visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Inspect every offer in the open trading interface. Hover the pointer over each item on the output side of the offer to display its item-name tooltip. If the complete offer list does not fit at once, use the mouse wheel or the interface scroll control to expose the remaining rows. This inspection is only for selecting the randomized trader required by the report; do not place emeralds into the trading slots or take an output item.",
+        "exact_input": "hover each output item; use mouse wheel or scrollbar if needed",
+        "success_cue": "Every offer belonging to the current trader has been exposed for tooltip identification, and no trade has been executed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "If the current trader does not meet the report's pale-oak-sapling offer criterion, press Esc to close the trading interface, move to another clear patch of ground so traders remain distinguishable, reselect the Wandering Trader Spawn Egg, and repeat steps 9 through 12 with a newly spawned trader. Continue until the randomized criterion in the report is met. On that iteration, leave the trading interface open and do not purchase the item.",
+        "exact_input": "Esc, then repeat steps 9-12",
+        "success_cue": "The repetition loop has stopped with the selected wandering trader's trading interface still open and no trade completed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "On the successful randomized iteration, the newly spawned wandering trader's trading interface has just been opened, all of that trader's offer rows are available for inspection, the Winter Drop experiment remains disabled for the world, and no trade has been executed. Hand control to the observation subsystem while leaving this interface open.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode is selected solely to provide the spawn-egg method explicitly permitted by the report.",
+      "The report supplies no seed, coordinates, biome, difficulty, or world type, so a new default world and any clear ground near the player are used.",
+      "Wandering-trader offers are randomized, and the report gives neither the pale oak sapling offer's probability nor a maximum attempt count. The spawn-and-open loop must therefore continue for as many fresh traders as necessary.",
+      "The trigger step is step 11 on the successful loop iteration because a trader's offers become available for inspection when its trading interface is opened.",
+      "The report does not require purchasing the offer; the plan stops with the trading interface open to avoid adding an unnecessary emerald requirement."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0821d2c44bd5824a016aa5e45f2b1887d095b42caf83b2ad6d",
+    "elapsed_seconds": 95.0,
+    "usage": {
+      "input_tokens": 26829,
+      "output_tokens": 5797,
+      "reasoning_tokens": 4221,
+      "total_tokens": 32626
+    },
+    "timestamp": "2026-09-12T23:48:13.897413+00:00"
+  }
+}

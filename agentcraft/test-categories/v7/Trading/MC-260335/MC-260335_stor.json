@@ -1,0 +1,181 @@
+{
+  "bug_id": "MC-260335",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-260335.md",
+  "source_meta": {
+    "mojira categories": "Trading",
+    "project": "MC",
+    "issue key": "MC-260335",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2023-02-18T07:38:00.557-0800",
+    "updated": "2025-03-20T23:15:12.698-0700",
+    "resolution date": "2023-02-24T08:10:52.589-0800",
+    "affects versions": "23w07a",
+    "fix versions": "1.19.4 Pre-release 2",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "minecraft.webm",
+    "_title": "Clicking with an item that is out of stock in the villager trading menu with sufficient payment will allow purchase of the item regardless"
+  },
+  "stor": {
+    "bug_id": "MC-260335",
+    "affected_versions": [
+      "23w07a"
+    ],
+    "recommended_version": "23w07a",
+    "environment": "Minecraft Java Edition snapshot 23w07a in a single-player Creative-mode world. Creative mode is a practical setup choice for quickly obtaining a villager, workstation, and payment items; the report does not require a particular game mode or server type. Use an unmodified client and a clear area without unrelated villagers or job-site blocks. The procedure below uses a cleric selling stackable redstone dust as the concrete trade, but another villager trade with a stackable result may be used if necessary.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition snapshot 23w07a, which is the only affected version listed in the report. Do not reproduce in the listed fix version, 1.19.4 Pre-release 2.",
+      "Have enough empty player-inventory space to hold all items purchased while exhausting the selected trade.",
+      "Use a villager offer whose result item is stackable. The concrete setup below attempts to use a novice cleric's redstone-dust offer.",
+      "Obtain substantially more payment than is required to exhaust the offer so that at least one additional transaction's payment remains after the red out-of-stock X appears.",
+      "Once the offer becomes out of stock, perform the remaining steps immediately and do not wait for the villager to restock.",
+      "Use the standard interaction equivalents for right-click, left-click, inventory, and shift-click if controls have been rebound."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the Java Edition installation for snapshot 23w07a, and launch the game.",
+        "exact_input": "Select version 23w07a and press Play.",
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 23w07a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode. Use a fresh world and move to a clear, level area away from other villagers and job-site blocks so the test villager can claim the intended workstation.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is in a loaded Creative-mode world, surrounding chunks have rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Creative inventory and obtain one Villager Spawn Egg, one Brewing Stand, and several stacks of Emeralds. Place the spawn egg and brewing stand in accessible hotbar slots, and keep the emeralds in the player inventory. Do not obtain redstone dust from Creative inventory; the redstone used for the cursor action should come from the villager purchases.",
+        "exact_input": "Press E; use the Creative inventory search to find Villager Spawn Egg, Brewing Stand, and Emerald.",
+        "success_cue": "The player has a Villager Spawn Egg and Brewing Stand in the hotbar, several stacks of emeralds in the inventory, and multiple empty inventory slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Close the inventory, select the Villager Spawn Egg in the active hotbar slot, aim at the ground in the clear test area, and use the item once to spawn a villager.",
+        "exact_input": "Press E to close the inventory; select the Villager Spawn Egg; right-click the ground once.",
+        "success_cue": "A villager is standing in the test area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Confirm that the spawned villager is an adult capable of taking a profession. If it is a baby, or if it is a green-robed nitwit that cannot take a profession, spawn another villager and use the suitable adult for the following steps.",
+        "exact_input": null,
+        "success_cue": "An adult, non-nitwit villager is available in the clear test area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the Brewing Stand and place it on the ground where the selected villager can walk up to and claim it as a job-site block.",
+        "exact_input": "Select the Brewing Stand hotbar slot and right-click the ground beside the villager.",
+        "success_cue": "A brewing stand is placed within the villager's reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait for the villager to claim the brewing stand and become a cleric. Do not continue merely after a fixed delay; continue when the villager's clothing changes to the cleric profession appearance. If the villager does not claim it, confirm it is an adult non-nitwit, remove competing job-site blocks, and reposition the brewing stand within reach.",
+        "exact_input": null,
+        "success_cue": "The villager has visibly changed into a cleric and can present cleric trades.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Face the cleric and interact with it to open the villager trading menu.",
+        "exact_input": "Right-click the cleric.",
+        "success_cue": "The villager trading menu is open, with trade offers in the left sidebar and two payment slots plus a result slot in the main panel.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select a trade that sells a stackable item. For this setup, select the cleric offer that takes emerald payment and returns redstone dust. The result slot is the third trade slot: the slot to the right of the trade arrow, after the two payment slots. If this villager does not provide a stackable result offer, close the menu before making any trades and establish another suitable villager offer instead.",
+        "exact_input": "Left-click the sidebar entry showing emerald payment and redstone-dust output.",
+        "success_cue": "The selected offer displays emeralds as payment and redstone dust, a stackable item, in the result slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Verify that the player has enough emeralds to buy every remaining use of the selected offer and still pay for at least one additional transaction afterward. Also verify that the inventory has room for the purchased redstone dust. If necessary, close the menu briefly and obtain additional emeralds from the Creative inventory, then reopen the same villager and reselect the same trade.",
+        "exact_input": null,
+        "success_cue": "Several stacks of emeralds are available, the selected trade is ready to complete, and the player inventory has empty space for its output.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Purchase the selected stackable item repeatedly until the villager exhausts that offer. Take each result into the player inventory; shift-left-clicking the result slot may be used to transfer purchases efficiently. Continue only until the selected offer becomes unavailable, without discarding all of the purchased output.",
+        "exact_input": "Repeatedly shift+left-click the redstone-dust result slot until the offer locks.",
+        "success_cue": "A red X is displayed over the arrow for the selected trade in the left sidebar, the main result slot is empty, and at least one stack or partial stack of redstone dust is present in the player inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Keep the trading menu open with the exhausted trade still selected. Do not switch to a different offer, close the menu, or wait for a restock.",
+        "exact_input": null,
+        "success_cue": "The exhausted stackable-item offer remains selected, its red X remains visible, and its third/result slot remains empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Ensure that payment for at least one more execution of the selected trade is physically present in the applicable payment input slot or slots. If enough emeralds remain there from the previous purchases, leave them in place. Otherwise, pick up emeralds from the player inventory and place at least the currently displayed price into the first payment slot, then clear the cursor before continuing.",
+        "exact_input": "If required: left-click an emerald stack in the inventory, then left-click the first payment input slot.",
+        "success_cue": "The exhausted trade remains selected, the result slot is empty, and enough emeralds for one additional transaction are visible in the trade's payment input.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "In the player-inventory portion of the still-open trading menu, find the same item that was purchased from this offer—redstone dust in this setup. Left-click its stack once, without holding Shift, so the stack is picked up and attached to the mouse cursor.",
+        "exact_input": "Left-click once on a redstone-dust stack in the player inventory.",
+        "success_cue": "A redstone-dust stack is visibly attached to the cursor, while the exhausted offer's result slot remains empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Move the cursor carrying the purchased item over the empty third/result slot to the right of the trade arrow. Do not click another slot or return the carried item to the inventory.",
+        "exact_input": "Move the mouse pointer over the empty result slot without clicking.",
+        "success_cue": "The cursor is directly over the empty result slot while carrying redstone dust; the selected offer still shows its red out-of-stock X and sufficient emerald payment remains present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "With the matching purchased item still attached to the cursor and the cursor positioned over the empty result slot, left-click the result slot once, as though picking up a crafting or trading result. Make no additional input after this click.",
+        "exact_input": "Left-click once on the empty third/result slot.",
+        "success_cue": "The specified left-click has been issued under the prepared out-of-stock, sufficient-payment, matching-carried-item conditions; no subsequent inventory or trading input has occurred.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has just left-clicked the exhausted trade's empty result slot while carrying the same stackable item previously purchased from that trade, with the red out-of-stock X visible and sufficient payment present. Begin observation immediately, before any further click, menu closure, villager restock, or inventory action.",
+    "uncertainties": [
+      "The report does not specify a particular villager profession, offer, payment item, or result item. The cleric redstone-dust trade is a practical setup choice intended to provide a simple stackable result; another stackable-output offer may be substituted if this offer is unavailable.",
+      "The report says, 'To my knowledge, this only works on stackable items,' rather than establishing stackability as a fully tested requirement. This plan preserves that stated condition by selecting a stackable result.",
+      "The report does not state whether merely possessing sufficient payment is enough or whether payment must remain in the trading input slot. This plan uses the stronger condition by requiring sufficient payment to be physically present in the applicable input slot.",
+      "The attached video's contents were not supplied with the raw report. The cursor sequence is therefore reconstructed from the written steps as: left-click and release to pick up the purchased item, move the carried stack over the empty result slot, and then left-click that slot once.",
+      "Creative mode and single-player are not specified requirements in the report; they are selected only to make villager and payment setup deterministic and efficient."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0cc78f95f1f80a6e016aa5e291a03887d09c6b08fceb8e66be",
+    "elapsed_seconds": 121.33,
+    "usage": {
+      "input_tokens": 8497,
+      "output_tokens": 7684,
+      "reasoning_tokens": 5380,
+      "total_tokens": 16181
+    },
+    "timestamp": "2026-09-12T23:40:58.683366+00:00"
+  }
+}

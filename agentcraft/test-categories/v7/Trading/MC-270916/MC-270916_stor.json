@@ -1,0 +1,216 @@
+{
+  "bug_id": "MC-270916",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-270916.md",
+  "source_meta": {
+    "mojira categories": "Trading",
+    "project": "MC",
+    "issue key": "MC-270916",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-04-18T18:43:34.976-0700",
+    "updated": "2025-04-29T09:54:22.155-0700",
+    "resolution date": "2024-04-19T14:29:36.288-0700",
+    "affects versions": "24w13a; 1.20.5 Release Candidate 1",
+    "fix versions": "1.20.5 Release Candidate 2",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "image.png",
+    "_title": "Villagers can sell experimental enchantments without the 1.21 experiment enabled"
+  },
+  "stor": {
+    "bug_id": "MC-270916",
+    "affected_versions": [
+      "24w13a",
+      "1.20.5 Release Candidate 1"
+    ],
+    "recommended_version": "24w13a",
+    "environment": "Minecraft: Java Edition snapshot 24w13a in a fresh single-player Creative world. Use a Superflat world with structures disabled as a practical way to isolate one villager from naturally generated job-site blocks. Keep both the \"Update 1.21\" and \"Villager Trade Rebalance\" experiments disabled. Use the vanilla client without custom data packs or gameplay-altering mods.",
+    "preconditions": [
+      "The Minecraft Launcher has an installation for Java Edition snapshot 24w13a. Do not use 1.20.5 Release Candidate 2, because it is listed as the fix version rather than an affected version.",
+      "The test world must be newly created without enabling the \"Update 1.21\" experiment.",
+      "The \"Villager Trade Rebalance\" experiment must also remain disabled, based on the report's statement that the villager rework was not enabled.",
+      "Commands or cheats must be available so daytime can be held constant while repeatedly changing the villager's profession.",
+      "Use an adult, unemployed villager that has never been traded with. Completing even one trade would lock its profession and offers, preventing the required rerolls.",
+      "The report supplies no seed or fixed reroll count. Librarian offers are randomized, so the reroll loop may require an unspecified number of attempts."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation using the exact Java Edition snapshot version 24w13a, then launch the game.",
+        "exact_input": "24w13a",
+        "success_cue": "The Minecraft title screen is loaded and displays 24w13a as the running version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open the single-player world creation screen.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Configure the world for controlled setup: set Game Mode to Creative, set Difficulty to Peaceful, and ensure commands or cheats are allowed. The report does not require these settings; they avoid survival resource collection and hostile-mob interference.",
+        "exact_input": "Game Mode: Creative; Difficulty: Peaceful; Allow Commands/Cheats: ON",
+        "success_cue": "The world creation screen shows Creative mode, Peaceful difficulty, and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "In the world-generation settings, select Superflat and disable structure generation. This prevents nearby village workstations from being claimed by the test villager.",
+        "exact_input": "World Type: Superflat; Generate Structures: OFF",
+        "success_cue": "The selected world type is Superflat and structures are disabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Experiments settings. Leave both \"Update 1.21\" and \"Villager Trade Rebalance\" disabled, then return to the main world creation screen. Do not accept any prompt that would enable experimental features.",
+        "exact_input": "Update 1.21: OFF; Villager Trade Rebalance: OFF",
+        "success_cue": "Neither relevant experiment is enabled and the world can be created without an experimental-feature confirmation being accepted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Create the world and wait until terrain has rendered and player movement responds normally.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the newly generated world, nearby terrain is visible, and movement responds without initial loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Keep the world in daytime so the villager can repeatedly acquire and lose its profession. Press T to open chat, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamerule doDaylightCycle false",
+        "success_cue": "Chat confirms that doDaylightCycle is false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T again, enter the command including the leading slash, and press Enter to set the frozen time to day.",
+        "exact_input": "/time set day",
+        "success_cue": "The world is visibly in daytime and the sun no longer advances after the daylight-cycle rule was disabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to obtain a Villager Spawn Egg, a Lectern, a Diamond Axe, and a stack of any full solid block such as Stone. Put them into separate hotbar slots, then press E to close the inventory.",
+        "exact_input": "Search terms: Villager Spawn Egg; Lectern; Diamond Axe; Stone",
+        "success_cue": "The hotbar contains a villager spawn egg, a lectern, a diamond axe, and solid building blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "On level ground, make a small holding cell around one empty ground square. Place solid blocks on three sides of that square, make each of those three walls two blocks high, and place a roof block above the empty square. Leave the side facing the player open at ground level so a lectern can later occupy that opening.",
+        "exact_input": "right-click to place each solid block",
+        "success_cue": "There is one empty standing space enclosed by two-block-high walls on three sides and a roof, with one side left open for the lectern.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the Villager Spawn Egg and right-click the floor inside the holding cell. Confirm that the spawned villager is an adult and does not already show another profession. Do not continue with a baby villager or a green-robed nitwit; create a replacement adult unemployed villager if necessary.",
+        "exact_input": "right-click with Villager Spawn Egg",
+        "success_cue": "One adult, untraded, unemployed villager is contained in the cell.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select the Lectern and right-click the ground in the cell's open side, placing it directly adjacent to the villager. The lectern is the librarian job-site block, and librarians can offer enchanted books. ([minecraft.net](https://www.minecraft.net/de-de/article/lectern?utm_source=openai))",
+        "exact_input": "right-click with Lectern",
+        "success_cue": "A lectern occupies the open side of the cell and is directly adjacent to the contained villager.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Wait without interacting until the villager claims the lectern and changes into a librarian. Green particles may appear during the job-site change; use the librarian's profession clothing as the readiness condition.",
+        "exact_input": null,
+        "success_cue": "The adult villager visibly has the librarian profession and remains next to the lectern.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Select an empty hotbar slot so no block or spawn egg is held. Aim at the librarian and right-click once to open its trading interface. Do not complete any trade.",
+        "exact_input": "right-click librarian with an empty hand",
+        "success_cue": "The novice librarian trading interface is open and its current offers are visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Inspect every displayed novice trade. For each trade whose rightmost output is an Enchanted Book, move the pointer over that output and wait for its tooltip to appear. Compare the enchantment name, regardless of level, with Density, Breach, and Wind Burst; the official 24w13a notes identify these as the three mace-exclusive enchantments. If one of those names is shown, leave the pointer over the book, do not click anything, and hand control to the observation subsystem. If none is shown, continue to step 16. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-24w13a?utm_source=openai))",
+        "exact_input": "mouse-hover over each Enchanted Book output; do not click",
+        "success_cue": "Either the cursor is stationary over the selected candidate book with its full tooltip visible, or every current offer has been checked without completing a trade.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "Only if the current offers contain no qualifying candidate, press Esc to close the trading interface. Do not purchase any other offer, because trading once would permanently lock this villager's current profession and trades.",
+        "exact_input": "Esc",
+        "success_cue": "The trading interface is closed, the villager remains alive, and no trade has been completed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "Select the Diamond Axe, aim carefully at the lectern rather than the villager, and left-click to break the lectern. Breaking and replacing an untraded villager's job-site block is the reroll method for undesirable trades. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AVillager_trading_hall?utm_source=openai))",
+        "exact_input": "left-click the Lectern with Diamond Axe",
+        "success_cue": "The lectern block is gone while the contained villager remains alive and unharmed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 18,
+        "action": "Wait until the villager releases the removed job site and visibly loses the librarian profession. Do not place the lectern again while it still appears as a librarian.",
+        "exact_input": null,
+        "success_cue": "The villager has returned to its adult unemployed appearance.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 19,
+        "action": "Select the Lectern and right-click the same ground position in the open side of the cell to replace it.",
+        "exact_input": "right-click with Lectern",
+        "success_cue": "The lectern is again directly adjacent to the unemployed villager.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "Wait until the villager claims the replaced lectern and becomes a librarian again. This generates another set of offers because no trade has been completed.",
+        "exact_input": null,
+        "success_cue": "The villager has regained the librarian profession and is ready for its newly generated offers to be opened.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 21,
+        "action": "Return to step 14 and repeat the open, inspect, break, and replace cycle until step 15 reaches its handoff branch. Never complete a trade during this loop.",
+        "exact_input": "Repeat steps 14-20",
+        "success_cue": "Each iteration begins with an untraded librarian whose newly generated trade list is ready to inspect.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The test remains in a 24w13a world created with both Update 1.21 and Villager Trade Rebalance disabled. A freshly rerolled librarian trading interface is open, the cursor is stationary over the candidate Enchanted Book output with its tooltip fully visible, no trade has been purchased, and the interface has not been closed. Begin observation immediately in this state.",
+    "uncertainties": [
+      "The inaccessible image attachment may identify a specific enchantment and level, but the supplied text does not. The plan therefore accepts any level of Density, Breach, or Wind Burst as matching the report's generic reference to a Mace enchantment; official 24w13a notes list those three mace-exclusive enchantments. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-24w13a?utm_source=openai))",
+      "The report gives no seed, biome, villager type, trade price, enchantment level, or number of required rerolls. The procedure must therefore repeat the randomized trade-generation loop until a qualifying candidate is generated.",
+      "Creative mode, Peaceful difficulty, Superflat generation, disabled structures, the holding cell, and frozen daytime are practical setup choices not stated as bug requirements. They are intended only to remove resource collection, wandering, hostile mobs, unrelated job sites, and work-hour timing from the reproduction.",
+      "The report lists both 24w13a and 1.20.5 Release Candidate 1 as affected. Following the required version-selection policy, this plan uses the first listed version, 24w13a."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_043e99a08f8a93fd016aa5e30ace4487d08c92ec36c713ad3e",
+    "elapsed_seconds": 158.51,
+    "usage": {
+      "input_tokens": 44336,
+      "output_tokens": 10659,
+      "reasoning_tokens": 8183,
+      "total_tokens": 54995
+    },
+    "timestamp": "2026-09-12T23:43:37.202543+00:00"
+  }
+}

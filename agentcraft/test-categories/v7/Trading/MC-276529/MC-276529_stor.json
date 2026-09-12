@@ -1,0 +1,174 @@
+{
+  "bug_id": "MC-276529",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-276529.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Trading; UI",
+    "project": "MC",
+    "issue key": "MC-276529",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-09-08T13:52:42.126-0700",
+    "updated": "2025-04-26T16:43:05.170-0700",
+    "resolution date": "2024-11-18T06:10:59.132-0800",
+    "affects versions": "1.21.1; 24w36a; 24w37a; 24w38a; 1.21.2",
+    "fix versions": "24w44a",
+    "area": "Gameplay",
+    "labels": "villager; witch",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-276529.mp4; MC-276529.png",
+    "issue links": "Relates:outward:MC-276378:Converted witches lose their armor yet are still protected by it",
+    "_title": "Converting a villager into a witch does not close the trading GUI"
+  },
+  "stor": {
+    "bug_id": "MC-276529",
+    "affected_versions": [
+      "1.21.1",
+      "24w36a",
+      "24w37a",
+      "24w38a",
+      "1.21.2"
+    ],
+    "recommended_version": "1.21.1",
+    "environment": "Unmodified Minecraft Java Edition 1.21.1 in a new single-player Creative-mode world with commands/cheats enabled. Use Normal difficulty and a flat, nonflammable outdoor test area with room for a straight line at least 23 blocks long.",
+    "preconditions": [
+      "Launch exactly Java Edition 1.21.1, the first version listed as affected; do not use fix version 24w44a.",
+      "Use a new world so no entity already has the command tag mc276529_target.",
+      "The player must be in Creative mode and able to execute commands and edit command blocks.",
+      "Reserve a flat, nonflammable area large enough for a button, 20 repeaters, a command block, and a villager beside the button.",
+      "Use default controls where referenced: T opens chat, right-click performs Use Item/Place Block, and Esc closes a screen. If controls are rebound, use the corresponding bound actions.",
+      "Do not install mods, plugins, or datapacks that change villagers, trading, lightning, command blocks, or GUI behavior."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start the Java Edition 1.21.1 installation. Confirm the version displayed on the title screen before continuing.",
+        "exact_input": "1.21.1",
+        "success_cue": "The Minecraft title screen identifies the running game as Java Edition 1.21.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode with commands/cheats enabled and difficulty set to Normal. Enter the world and wait until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a responsive Creative-mode world and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a flat, nonflammable outdoor area. Press T to open chat and execute the following /give commands one at a time, pressing Enter after each command. Keep the leading slash because these commands are being entered in in-game chat.",
+        "exact_input": "/give @s minecraft:stone 1\n/give @s minecraft:stone_button 1\n/give @s minecraft:repeater 20\n/give @s minecraft:command_block 1",
+        "success_cue": "The inventory contains at least one stone block, one stone button, 20 redstone repeaters, and one command block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Place the stone block at the beginning of the test circuit. Attach the stone button to an accessible face of that block. Leave a clear patch beside the button for the villager and player.",
+        "exact_input": null,
+        "success_cue": "The button is attached to the stone block and can be reached while standing beside the reserved villager area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Starting directly against the opposite side of the button's stone block, place all 20 redstone repeaters end-to-end in one straight line. While placing them, face from the button toward the far end so every repeater passes power away from the button. Re-place any repeater facing the opposite direction.",
+        "exact_input": null,
+        "success_cue": "A continuous line of exactly 20 repeaters runs away from the button block, with every repeater oriented toward the far end.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Set every repeater to its maximum delay. Use right-click three times on each newly placed repeater, changing it from the default 1-redstone-tick setting to 4 redstone ticks. Twenty repeaters at this setting provide approximately eight seconds between pressing the button and powering the command block.",
+        "exact_input": "Right-click each of the 20 repeaters exactly 3 times.",
+        "success_cue": "All 20 repeaters are visibly set to their longest-delay configuration.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Place the command block immediately after the output end of the twentieth repeater so that the final repeater points directly into and powers the command block.",
+        "exact_input": null,
+        "success_cue": "The circuit forms one uninterrupted path: button block, 20 correctly oriented repeaters, then command block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Right-click the command block to open its configuration screen. Leave it as Impulse, Unconditional, and Needs Redstone. Enter the exact command below without a leading slash, then select Done.",
+        "exact_input": "execute at @e[type=minecraft:villager,tag=mc276529_target,limit=1] run summon minecraft:lightning_bolt ~ ~ ~",
+        "success_cue": "The command block stores the lightning command and remains configured as Impulse, Unconditional, and Needs Redstone.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Return to the button end of the circuit. Stand on level ground beside the button and face horizontally toward a clear block of ground that is not occupied by the repeater line. Press T, enter the exact summon command with its leading slash, and press Enter. The local coordinates place the villager approximately two blocks in front of the player. The command assigns the villager a farmer profession, gives it the unique target tag, and disables movement so it remains next to the activation button.",
+        "exact_input": "/summon minecraft:villager ^ ^ ^2 {NoAI:1b,Tags:[\"mc276529_target\"],VillagerData:{profession:\"minecraft:farmer\",level:1,type:\"minecraft:plains\"}}",
+        "success_cue": "One adult farmer villager appears approximately two blocks in front of the player and remains stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select an empty hotbar slot so the held item cannot interfere. Stand within normal interaction reach of the farmer, aim at its body, and use right-click once to perform a preflight check that it can be traded with.",
+        "exact_input": "Right-click the farmer villager.",
+        "success_cue": "A villager trading screen opens and shows the farmer's profession and at least one trade entry.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Press Esc once to close the preflight trading screen. Do not attack, remove, replace, or summon another villager. Position the player so the button can be pressed and the same stationary farmer can then be reached immediately.",
+        "exact_input": "Esc",
+        "success_cue": "The world view is visible, the tagged farmer remains beside the button, and both the button and farmer are within a few steps of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Aim at the stone button and right-click it once. This sends one pulse through the 20 maximum-delay repeaters. Do not press the button a second time.",
+        "exact_input": "Right-click the stone button once.",
+        "success_cue": "The first repeater becomes powered and the powered state begins progressing along the repeater line toward the command block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Immediately turn to the same farmer, move into interaction reach if necessary, aim at its body, and right-click it before the approximately eight-second repeater delay expires.",
+        "exact_input": "Right-click the tagged farmer villager.",
+        "success_cue": "The farmer trading screen is fully open before the delayed redstone pulse reaches the command block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Keep the trading screen untouched: do not press Esc, E, or another inventory key; do not click a trade; and do not move away. Wait until the delayed command executes and the lightning event occurs at the tagged villager's position. Make no further input after the lightning sound or flash.",
+        "exact_input": null,
+        "success_cue": "The delayed lightning sound or flash has just occurred while the trading screen was open immediately before the strike, triggering the villager-to-witch conversion event.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The delayed command has just summoned lightning at the tagged villager while its trading screen was open immediately before the strike. The villager-to-witch conversion event has been triggered and the player has made no subsequent input; hand control to the observation subsystem to inspect the resulting UI state and interaction availability.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, difficulty, or single-player versus dedicated-server environment. A new Creative-mode single-player world with cheats and Normal difficulty is selected as the simplest deterministic environment.",
+      "The report does not provide exact summon or lightning commands. The plan uses version-appropriate Java command syntax, a unique entity tag, and execution at the tagged villager to prevent the lightning from targeting an unrelated entity.",
+      "The report says to give the villager a job but does not prescribe a workstation or profession. The plan assigns the farmer profession through VillagerData NBT to avoid workstation-claiming timing and randomness.",
+      "NoAI:1b is an execution aid, not a requirement stated by the report. It keeps the target beside the activation button during the timed sequence; the report does not indicate that villager movement is relevant.",
+      "The report specifies only that the command-block setup should include enough delay to open the trading GUI. Twenty repeaters at maximum delay, approximately eight seconds total, are a practical deterministic implementation.",
+      "The supplied report does not include the attachment contents, so no spatial layout from the attached video or image could be preserved."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0f7c3461697b7c55016aa5e3a978ec87d0bd45ccea3ca4ac58",
+    "elapsed_seconds": 181.67,
+    "usage": {
+      "input_tokens": 42738,
+      "output_tokens": 9249,
+      "reasoning_tokens": 9208,
+      "total_tokens": 51987
+    },
+    "timestamp": "2026-09-12T23:46:38.886821+00:00"
+  }
+}
