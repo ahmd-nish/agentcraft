@@ -1,0 +1,177 @@
+[18:57:51] [main/ERROR]: Unknown biome, defaulting to plains
+[18:57:51] [main/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', name='PROD'
+[18:57:52] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[18:57:52] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[18:57:52] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]
+[18:57:52] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]
+[18:57:52] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]
+[18:57:52] [main/INFO]: Reloading ResourceManager: Default
+[18:57:52] [Worker-Main-4/INFO]: Loaded 7 recipes
+[18:57:53] [Worker-Main-4/INFO]: Loaded 927 advancements
+[18:57:53] [Server thread/INFO]: Starting minecraft server version 1.16 Pre-release 2
+[18:57:53] [Server thread/INFO]: Loading properties
+[18:57:53] [Server thread/INFO]: Default game type: SURVIVAL
+[18:57:53] [Server thread/INFO]: Generating keypair
+[18:57:53] [Server thread/INFO]: Starting Minecraft server on *:25565
+[18:57:53] [Server thread/INFO]: Using default channel type
+[18:57:54] [Server thread/INFO]: Preparing level "world"
+[18:57:58] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[18:57:59] [Worker-Main-6/INFO]: Preparing spawn area: 0%
+[18:57:59] [Worker-Main-5/INFO]: Preparing spawn area: 0%
+[18:57:59] [Worker-Main-5/INFO]: Preparing spawn area: 0%
+[18:58:00] [Worker-Main-5/INFO]: Preparing spawn area: 0%
+[18:58:00] [Worker-Main-6/INFO]: Preparing spawn area: 0%
+[18:58:01] [Worker-Main-5/INFO]: Preparing spawn area: 3%
+[18:58:01] [Worker-Main-6/INFO]: Preparing spawn area: 4%
+[18:58:02] [Worker-Main-4/INFO]: Preparing spawn area: 4%
+[18:58:03] [Worker-Main-4/INFO]: Preparing spawn area: 6%
+[18:58:03] [Worker-Main-4/INFO]: Preparing spawn area: 7%
+[18:58:03] [Worker-Main-6/INFO]: Preparing spawn area: 9%
+[18:58:04] [Worker-Main-5/INFO]: Preparing spawn area: 10%
+[18:58:04] [Worker-Main-6/INFO]: Preparing spawn area: 10%
+[18:58:05] [Worker-Main-4/INFO]: Preparing spawn area: 13%
+[18:58:05] [Worker-Main-5/INFO]: Preparing spawn area: 15%
+[18:58:06] [Worker-Main-6/INFO]: Preparing spawn area: 17%
+[18:58:06] [Worker-Main-6/INFO]: Preparing spawn area: 19%
+[18:58:07] [Worker-Main-4/INFO]: Preparing spawn area: 22%
+[18:58:07] [Worker-Main-4/INFO]: Preparing spawn area: 22%
+[18:58:08] [Worker-Main-5/INFO]: Preparing spawn area: 26%
+[18:58:08] [Worker-Main-5/INFO]: Preparing spawn area: 27%
+[18:58:09] [Worker-Main-6/INFO]: Preparing spawn area: 30%
+[18:58:09] [Worker-Main-5/INFO]: Preparing spawn area: 31%
+[18:58:10] [Worker-Main-4/INFO]: Preparing spawn area: 34%
+[18:58:10] [Worker-Main-5/INFO]: Preparing spawn area: 37%
+[18:58:11] [Worker-Main-4/INFO]: Preparing spawn area: 42%
+[18:58:11] [Worker-Main-6/INFO]: Preparing spawn area: 48%
+[18:58:12] [Worker-Main-5/INFO]: Preparing spawn area: 54%
+[18:58:12] [Worker-Main-4/INFO]: Preparing spawn area: 54%
+[18:58:13] [Worker-Main-4/INFO]: Preparing spawn area: 54%
+[18:58:13] [Worker-Main-6/INFO]: Preparing spawn area: 68%
+[18:58:14] [Worker-Main-5/INFO]: Preparing spawn area: 71%
+[18:58:15] [Worker-Main-5/INFO]: Preparing spawn area: 80%
+[18:58:15] [Worker-Main-6/INFO]: Preparing spawn area: 89%
+[18:58:15] [Worker-Main-5/INFO]: Preparing spawn area: 95%
+[18:58:15] [Server thread/INFO]: Time elapsed: 17100 ms
+[18:58:16] [Server thread/INFO]: Done (21.148s)! For help, type "help"
+[18:58:52] [User Authenticator #1/INFO]: UUID of player Galaxy_2Alex is e3748c1b-6bf3-48a0-9148-e4a08155f475
+[18:58:52] [Server thread/INFO]: Galaxy_2Alex[/127.0.0.1:49806] logged in with entity id 237 at (40.5, 68.0, 8.5)
+[18:58:52] [Server thread/INFO]: Galaxy_2Alex joined the game
+[18:59:05] [Server thread/INFO]: [Galaxy_2Alex: Set own game mode to Creative Mode]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:51] [main/ERROR]: Unknown biome, defaulting to plains<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:51] [main/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', name='PROD'<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [main/WARN]: Ambiguity between arguments [teleport, destination] and [teleport, targets] with inputs: [Player, 0123, @e, dd12be42-52a9-4a91-a8a1-11c01849e498]<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, destination] with inputs: [0.1 -0.5 .9, 0 0 0]<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [main/WARN]: Ambiguity between arguments [teleport, location] and [teleport, targets] with inputs: [0.1 -0.5 .9, 0 0 0]<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [main/WARN]: Ambiguity between arguments [teleport, targets] and [teleport, destination] with inputs: [Player, 0123, dd12be42-52a9-4a91-a8a1-11c01849e498]<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [main/WARN]: Ambiguity between arguments [teleport, targets, location] and [teleport, targets, destination] with inputs: [0.1 -0.5 .9, 0 0 0]<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [main/INFO]: Reloading ResourceManager: Default<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:52] [Worker-Main-4/INFO]: Loaded 7 recipes<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Worker-Main-4/INFO]: Loaded 927 advancements<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Server thread/INFO]: Starting minecraft server version 1.16 Pre-release 2<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Server thread/INFO]: Loading properties<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Server thread/INFO]: Default game type: SURVIVAL<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Server thread/INFO]: Generating keypair<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Server thread/INFO]: Starting Minecraft server on *:25565<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:53] [Server thread/INFO]: Using default channel type<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:54] [Server thread/INFO]: Preparing level "world"<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:58] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:59] [Worker-Main-6/INFO]: Preparing spawn area: 0%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:59] [Worker-Main-5/INFO]: Preparing spawn area: 0%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:57:59] [Worker-Main-5/INFO]: Preparing spawn area: 0%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:00] [Worker-Main-5/INFO]: Preparing spawn area: 0%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:00] [Worker-Main-6/INFO]: Preparing spawn area: 0%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:01] [Worker-Main-5/INFO]: Preparing spawn area: 3%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:01] [Worker-Main-6/INFO]: Preparing spawn area: 4%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:02] [Worker-Main-4/INFO]: Preparing spawn area: 4%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:03] [Worker-Main-4/INFO]: Preparing spawn area: 6%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:03] [Worker-Main-4/INFO]: Preparing spawn area: 7%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:03] [Worker-Main-6/INFO]: Preparing spawn area: 9%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:31] [Server thread/INFO]: [18:58:04] [Worker-Main-5/INFO]: Preparing spawn area: 10%<--[HERE]
+[18:59:31] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:04] [Worker-Main-6/INFO]: Preparing spawn area: 10%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:05] [Worker-Main-4/INFO]: Preparing spawn area: 13%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:05] [Worker-Main-5/INFO]: Preparing spawn area: 15%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:06] [Worker-Main-6/INFO]: Preparing spawn area: 17%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:06] [Worker-Main-6/INFO]: Preparing spawn area: 19%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:07] [Worker-Main-4/INFO]: Preparing spawn area: 22%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:07] [Worker-Main-4/INFO]: Preparing spawn area: 22%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:08] [Worker-Main-5/INFO]: Preparing spawn area: 26%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:08] [Worker-Main-5/INFO]: Preparing spawn area: 27%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:09] [Worker-Main-6/INFO]: Preparing spawn area: 30%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:09] [Worker-Main-5/INFO]: Preparing spawn area: 31%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:10] [Worker-Main-4/INFO]: Preparing spawn area: 34%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:10] [Worker-Main-5/INFO]: Preparing spawn area: 37%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:11] [Worker-Main-4/INFO]: Preparing spawn area: 42%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:11] [Worker-Main-6/INFO]: Preparing spawn area: 48%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:12] [Worker-Main-5/INFO]: Preparing spawn area: 54%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:12] [Worker-Main-4/INFO]: Preparing spawn area: 54%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:13] [Worker-Main-4/INFO]: Preparing spawn area: 54%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:13] [Worker-Main-6/INFO]: Preparing spawn area: 68%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:14] [Worker-Main-5/INFO]: Preparing spawn area: 71%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:15] [Worker-Main-5/INFO]: Preparing spawn area: 80%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:15] [Worker-Main-6/INFO]: Preparing spawn area: 89%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:15] [Worker-Main-5/INFO]: Preparing spawn area: 95%<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:15] [Server thread/INFO]: Time elapsed: 17100 ms<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:16] [Server thread/INFO]: Done (21.148s)! For help, type "help"<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:52] [User Authenticator #1/INFO]: UUID of player Galaxy_2Alex is e3748c1b-6bf3-48a0-9148-e4a08155f475<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:52] [Server thread/INFO]: Galaxy_2Alex[/127.0.0.1:49806] logged in with entity id 237 at (40.5, 68.0, 8.5)<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:58:52] [Server thread/INFO]: Galaxy_2Alex joined the game<--[HERE]
+[18:59:32] [Server thread/INFO]: Unknown or incomplete command, see below for error
+[18:59:32] [Server thread/INFO]: [18:59:05] [Server thread/INFO]: [Galaxy_2Alex: Set own game mode to Creative Mode]<--[HERE]

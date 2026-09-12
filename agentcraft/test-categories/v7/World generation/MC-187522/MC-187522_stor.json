@@ -1,0 +1,161 @@
+{
+  "bug_id": "MC-187522",
+  "category": "World generation",
+  "source_md": "[World generation] - MC-187522.md",
+  "source_meta": {
+    "mojira categories": "World generation",
+    "project": "MC",
+    "issue key": "MC-187522",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2020-06-04T21:04:55.314-0700",
+    "updated": "2025-04-29T21:03:05.757-0700",
+    "resolution date": "2021-11-23T17:34:59.346-0800",
+    "affects versions": "1.16 Pre-release 1",
+    "fix versions": "1.16 Pre-release 6",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "20w20b-server.log; 2f411e2bc7a217ac2c7568adc73d1e71-1.png; latest.log",
+    "issue links": "Cloners:inward:MC-241277:Server can't generate amplified/large biomes worlds from scratch",
+    "_title": "Server doesn't generate amplified / large biome worlds"
+  },
+  "stor": {
+    "bug_id": "MC-187522",
+    "recommended_version": "Minecraft Java Edition 1.16 Pre-release 1 for both the vanilla dedicated server and test client. This is the exact affected version named by the report; do not substitute 1.16 Pre-release 6 or a later release because the report lists Pre-release 6 as the fix version.",
+    "environment": "A local or remotely accessible vanilla Minecraft Java Edition dedicated server using the official 1.16 Pre-release 1 server JAR, a Java 8-compatible runtime, a fresh writable server directory, and a matching 1.16 Pre-release 1 client. Do not use a modded server, plugin server, proxy, or a world created in singleplayer.",
+    "preconditions": [
+      "The official vanilla dedicated server JAR for Minecraft Java Edition 1.16 Pre-release 1 is available.",
+      "The client that will connect to the server is also running Minecraft Java Edition 1.16 Pre-release 1.",
+      "Java is installed and can be invoked from a terminal or command prompt with the `java` command.",
+      "The tester is authorized to accept the Minecraft EULA by changing `eula=false` to `eula=true`.",
+      "Use a new server directory dedicated to this test so that no existing `server.properties`, `level.dat`, or generated world can influence the result.",
+      "The server must create the test world from scratch. Do not copy in an amplified world made in singleplayer, an older server world, or any other pre-generated world.",
+      "Keep the dedicated server stopped whenever editing `eula.txt`, editing `server.properties`, or removing an accidentally generated world directory.",
+      "The test computer has sufficient free memory and disk space to start the server and generate its initial Overworld chunks.",
+      "If the client is not running on the same computer as the server, the server address and networking configuration needed to connect are already available."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create a new, empty directory for this reproduction. Place the Minecraft Java Edition 1.16 Pre-release 1 vanilla dedicated server JAR in that directory and rename the JAR to `server.jar` for an unambiguous launch command.",
+        "exact_input": "server.jar",
+        "success_cue": "The fresh directory contains `server.jar` and does not contain a world directory, `level.dat`, or files copied from another Minecraft world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open a terminal or command prompt with the fresh server directory as its working directory. Start the server once so that it creates its initial configuration and EULA files. Type the command exactly as shown and press Enter.",
+        "exact_input": "java -Xms1G -Xmx2G -jar server.jar nogui",
+        "success_cue": "The server reports that the EULA must be accepted, then stops or remains unavailable for normal world startup. `eula.txt` and `server.properties` are present in the server directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Confirm that the server process from the initial launch is no longer running before editing its files. If it did not terminate automatically, close it only after it has produced `eula.txt` and `server.properties`.",
+        "exact_input": null,
+        "success_cue": "No server process is actively writing to the reproduction directory, and both `eula.txt` and `server.properties` are available for editing.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open `eula.txt` in a plain-text editor. After confirming that accepting the EULA is authorized, replace the existing `eula=false` line with the exact line shown, save the file, and close the editor.",
+        "exact_input": "eula=true",
+        "success_cue": "The saved `eula.txt` contains `eula=true`.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open `server.properties` in a plain-text editor. Locate the property whose line starts with `level-type=`. Replace that entire line with the exact lower-case setting supplied by the report. Do not use a singleplayer world-generation menu and do not add spaces around the equals sign.",
+        "exact_input": "level-type=amplified",
+        "success_cue": "The saved `server.properties` file contains exactly one active `level-type=amplified` line.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "In the same `server.properties` file, locate the `level-name=` property and record its value. If it has not been deliberately changed, its value will normally be `world`. Do not otherwise change this property.",
+        "exact_input": null,
+        "success_cue": "The executor knows the exact directory name the server will use for the new world, based on the current `level-name` value.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "While the server remains stopped, inspect the server directory for a folder whose name exactly matches the recorded `level-name` value. If such a folder was accidentally created during an earlier attempt, move it completely outside the server directory or delete it. Also remove matching dimension folders such as `<level-name>_nether` or `<level-name>_the_end` if they exist. Do not reuse or copy any existing world for this test.",
+        "exact_input": null,
+        "success_cue": "No folder matching the configured `level-name`, and no associated Nether or End world folder, exists in the server directory. The next startup must therefore create the world from scratch.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Close the text editor after saving `server.properties`. Reopen the file once, verify that `level-type=amplified` is still present, then close it without further changes.",
+        "exact_input": "level-type=amplified",
+        "success_cue": "The server is stopped, the target world directory is absent, and the persisted configuration still contains `level-type=amplified`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "From the terminal or command prompt whose working directory is the server directory, start the 1.16 Pre-release 1 dedicated server using the same launch command. Press Enter once after typing it. This startup is the action that causes the dedicated server to create the test world from scratch.",
+        "exact_input": "java -Xms1G -Xmx2G -jar server.jar nogui",
+        "success_cue": "The server process remains running and begins preparing or generating a new world under the configured `level-name`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Do not connect a client or interrupt the process while initial world generation is underway. Wait until the server console reports that startup is complete, typically with a `Done` message, and the console is ready to accept input.",
+        "exact_input": null,
+        "success_cue": "Initial world generation has completed, the server console is responsive, and the server remains running.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Launch the Minecraft Java Edition client using the exact matching version, 1.16 Pre-release 1. From the title screen, select `Multiplayer`. Acknowledge any multiplayer warning screen if it appears.",
+        "exact_input": null,
+        "success_cue": "The 1.16 Pre-release 1 client is displaying the Multiplayer server list.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select `Direct Connection`. If the server is running on the same computer as the client, enter `localhost`; otherwise enter the provided server IP address or hostname, including a non-default port if required. Select `Join Server`.",
+        "exact_input": "localhost",
+        "success_cue": "The client begins connecting to the dedicated 1.16 Pre-release 1 server and proceeds past the login/loading screens.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Wait until the player has spawned in the server's Overworld. Do not begin inspecting the world while the loading screen is visible or while nearby terrain is still appearing. Continue only after surrounding chunks are rendered and player look and movement controls respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly generated dedicated-server Overworld, nearby terrain is rendered, movement is responsive, and the server console remains running.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The 1.16 Pre-release 1 dedicated server has just created a completely new world from scratch with `level-type=amplified` configured, and a matching client is now present in the fully loaded Overworld. Begin observation of the generated world type without replacing, converting, or regenerating the world.",
+    "uncertainties": [
+      "The report does not provide a world seed or spawn coordinates. The server will therefore use an unspecified seed, and the amount of terrain needed for visual classification may vary.",
+      "The issue title and comments also identify `largebiomes` as affected, but the report's formal reproduction steps explicitly use `amplified`. This plan uses the report's primary `amplified` case rather than introducing an additional variant.",
+      "The original phrase `latest pre-release server .jar` referred to the pre-release current when the report was created. The issue metadata identifies Minecraft Java Edition 1.16 Pre-release 1 as the affected version, so this plan resolves that relative wording to the exact affected version.",
+      "The report notes that the server converts capitalization variants such as `AMPLIFIED` or `Amplified` to lower case during startup. The plan writes `amplified` directly and does not make `server.properties` read-only, because the report states that the read-only workaround did not solve the issue.",
+      "No exact server JAR filename is supplied in the report. Renaming it to `server.jar` and using the specified Java launch command are practical execution choices and do not change the server version or world-generation configuration.",
+      "The report does not specify whether the server and client run on the same machine. The direct-connection step uses `localhost` only for a local server; a remote setup must substitute its actual address."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_064589fd07b60bb8016aa5ba71ba9087d0a60915f84446d115",
+    "elapsed_seconds": 66.77,
+    "usage": {
+      "input_tokens": 8718,
+      "output_tokens": 4022,
+      "reasoning_tokens": 1959,
+      "total_tokens": 12740
+    },
+    "timestamp": "2026-09-12T20:48:52.376670+00:00"
+  }
+}
