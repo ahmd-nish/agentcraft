@@ -1,0 +1,149 @@
+{
+  "bug_id": "MC-145748",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-145748.md",
+  "source_meta": {
+    "mojira categories": "Sound; UI",
+    "project": "MC",
+    "issue key": "MC-145748",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2019-03-13T12:48:30.043-0700",
+    "updated": "2025-04-26T07:39:01.992-0700",
+    "resolution date": "2024-11-11T01:16:40.873-0800",
+    "affects versions": "Minecraft 19w11a; Minecraft 19w12b; Minecraft 19w13a; Minecraft 19w13b; Minecraft 19w14a; Minecraft 19w14b; Minecraft 1.14 Pre-Release 1; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14 Pre-Release 4; Minecraft 1.14 Pre-Release 5; Minecraft 1.14; Minecraft 1.14.1 Pre-Release 1; Minecraft 1.14.1 Pre-Release 2; Minecraft 1.14.1; Minecraft 1.14.2 Pre-Release 1; Minecraft 1.14.2 Pre-Release 2; Minecraft 1.14.2 Pre-Release 3; Minecraft 1.14.2 Pre-Release 4; Minecraft 1.14.2; Minecraft 1.14.3 Pre-Release 1; Minecraft 1.14.3 Pre-Release 2; Minecraft 1.14.3; Minecraft 1.14.4 Pre-Release 1; Minecraft 1.14.4 Pre-Release 3; Minecraft 1.14.4 Pre-Release 4; Minecraft 1.14.4 Pre-Release 5; Minecraft 1.14.4 Pre-Release 6; 1.14.4; 19w34a; 19w35a; 19w36a; 19w37a; 19w38b; 19w38a; 19w39a; 19w40a; 19w41a; 19w42a; 19w44a; 19w45a; 19w45b; 19w46a; 19w46b; 1.15 Pre-release 1; 1.15 Pre-Release 2; 1.15 Pre-release 3; 1.15 Pre-release 4; 1.15 Pre-release 5; 1.15 Pre-release 6; 1.15 Pre-release 7; 1.15; 1.15.1; 1.15.1 Pre-release 1; 1.15.2 Pre-Release 1; 1.15.2 Pre-release 2; 1.15.2; 20w06a; 20w07a; 20w08a; 20w09a; 20w10a; 20w11a; 20w12a; 20w13a; 20w13b; 20w14a; 20w15a; 20w16a; 20w17a; 20w18a; 20w19a; 20w20a; 20w20b; 20w21a; 20w22a; 1.16 Pre-release 1; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16 Pre-release 5; 1.16 Pre-release 6; 1.16 Pre-release 7; 1.16 Pre-release 8; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Release Candidate 1; 1.16.2 Release Candidate 2; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05a; 21w05b; 21w06a; 21w07a; 21w11a; 1.17 Pre-release 2; 1.17.1; 21w43a; 21w44a; 1.18 Pre-release 1; 1.18 Pre-release 2; 1.18 Release Candidate 1; 1.18.1; 22w03a; 22w05a; 1.18.2; 22w11a; 22w15a; 22w16b; 1.19 Pre-release 2; 1.19 Pre-release 4; 1.19; 1.19.1 Pre-release 1; 1.19.2",
+    "fix versions": "22w42a",
+    "labels": "button; click; clickEvent; cursor; gui; gui-slider; menu; mouse; music; screen; slider; sound; sounds; ui",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "Click button when slider under plays click sound twice.mp4; MC-145748.mp4; MC-145748.png",
+    "issue links": "Cloners:inward:MC-278164:Click sound is played twice when you click a setting button and there's a slider under the mouse in the next screen | Relates:outward:MC-170817:Click sound of sliders in the video settings noticeably louder than anywhere else | Duplicate:inward:MC-239663:Double sound when clicking on music & sounds | Duplicate:inward:MC-207551:Music and sounds | Duplicate:inward:MC-204225:When selecting \"music & sounds\" in options, the \"click\" noise plays twice | Duplicate:inward:MC-190004:Double sound when clicked on \"Chat Settings\" | Duplicate:inward:MC-189215:Button click event sound plays twice when you click “Music & Sounds…” | Duplicate:inward:MC-188027:Double-click sound in chat settings | Duplicate:inward:MC-185999:Duplicate sound playing when clicking specific buttons. | Duplicate:inward:MC-184567:Some menu buttons in options make the clicking sound twice | Duplicate:inward:MC-183950:Pressing the Music & Sounds button plays the sound twice | Duplicate:inward:MC-180417:UI click sound bug | Duplicate:inward:MC-179827:'Chat settings' button plays the click sound twice. | Duplicate:inward:MC-179385:double click sound when opening \"music & sounds\" menu | Duplicate:inward:MC-177536:Sound Effect happens twice when opening chat settings | Duplicate:inward:MC-156212:Doubled click sound in options | Duplicate:inward:MC-172453:It makes double sound after clicking the button | Duplicate:inward:MC-171677:Clicking \"Options>Music & Sounds\" button plays two click sound. | Duplicate:inward:MC-170263:Double sound when clicking on button \"music and sound\" and \"chat\"menu | Duplicate:inward:MC-169837:Some settings buttons makes selection sound on release | Duplicate:inward:MC-167973:Click sound plays twice when opening the Music and Sound config | Duplicate:inward:MC-167433:Double Click Noise | Duplicate:inward:MC-166848:Chat Settings Gui button Click sounds twice. | Duplicate:inward:MC-166482:Buttons in \"Options\" make twice the same sound | Duplicate:inward:MC-164802:Double Clicking Noise In Settings | Duplicate:inward:MC-163509:Chat Settings do a double-click-sound | Duplicate:inward:MC-157603:Menu sound glitch | Duplicate:inward:MC-156427:Double Click Noise when clicking \"Music & Sounds...\" button in options. | Duplicate:inward:MC-153560:2 button click sounds instead of one | Duplicate:inward:MC-152913:Audio Bug on button press | Duplicate:inward:MC-152418:Duplicate noise when clicking \"Music & Sounds\" | Duplicate:inward:MC-151798:Double click sound on certain buttons | Duplicate:inward:MC-151605:Clicking on the music and options button plays the click sound twice | Duplicate:inward:MC-151448:sound | Duplicate:inward:MC-151166:サウンド設定をクリックすると音が二回なる | Relates:inward:MC-144525:Clicking any slider then clicking anywhere on the screen plays the 'click' sound | Duplicate:inward:MC-150650:Issues with navigating menu and click noises | Duplicate:inward:MC-147408:Opening Music & Sounds menu plays click sound twice | Duplicate:inward:MC-149142:Bugs with some options in the menu Options... | Duplicate:inward:MC-148659:When you click the \"Chat Settings ...\" button, the click is issued twice. | Duplicate:inward:MC-148619:The \"Click\" sound sometimes plays twice in the option's menu | Duplicate:inward:MC-148531:Click sound on release of mouse on scrollable options in menu | Duplicate:inward:MC-148304:Double click sound in options menu | Duplicate:inward:MC-148286:Doubling clicking sound | Duplicate:inward:MC-148153:sometimes, clicking on \"music and sounds\" will play the click sound twice | Duplicate:inward:MC-148079:Double click sound in settings | Duplicate:inward:MC-147949:Button sound in options | Duplicate:inward:MC-147553:Chat settings and Music & Sounds buttons produce double click sound | Duplicate:inward:MC-146809:When you click on the \"Music & Sounds ...\" sound is duplicated. | Duplicate:inward:MC-146338:Dobule-click sound | Duplicate:inward:MC-145810:Clicking a Settings button when there's a slider under the mouse in the next screen plays the click sound twice",
+    "_title": "Clicking a settings button when there's a slider under the mouse in the next screen plays the click sound twice"
+  },
+  "stor": {
+    "bug_id": "MC-145748",
+    "recommended_version": "Minecraft Java Edition 1.19.2, the latest stable release listed as affected in the report; do not use snapshot 22w42a or a later version for this reproduction",
+    "environment": "Vanilla Minecraft Java Edition client running locally with a mouse or equivalent pointer input and audible game audio. Perform the reproduction entirely in the title-screen and Options interfaces; no world or server is required.",
+    "preconditions": [
+      "Install and select exactly Minecraft Java Edition 1.19.2 in the Minecraft Launcher.",
+      "Use an unmodified client where possible; disable client mods and custom resource packs that replace menus or interface sounds so they do not confound the test.",
+      "Connect an audio output device, unmute the operating-system audio mixer, and set the Minecraft application output to a clearly audible but comfortable level.",
+      "Have a method ready to capture or monitor game audio during the final input sequence.",
+      "Use a mouse or input device that permits the primary button to remain continuously held while the pointer is moved."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the installation for Java Edition 1.19.2, and launch the game.",
+        "exact_input": null,
+        "success_cue": "Minecraft Java Edition 1.19.2 is running and has reached the main title screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the Options screen normally so the in-game volume can be checked before recording the reproduction. Move the pointer to the center of the \"Options...\" button, press the left mouse button, and release it without dragging the pointer.",
+        "exact_input": "Left-click \"Options...\" normally: press and release without moving the mouse while held.",
+        "success_cue": "The Options screen is visible, including the FOV slider and the \"Music & Sounds...\" button.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the sound settings by moving the pointer to \"Music & Sounds...\" and performing a normal click. Do not begin the test recording yet, because this is only audio preparation.",
+        "exact_input": "Left-click \"Music & Sounds...\" normally: press and release without dragging.",
+        "success_cue": "The Music & Sound Options screen is visible, with the \"Master Volume\" slider available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "If Master Volume is muted or too low, move its slider to at least 50%. Click a point at or to the right of the slider's midpoint and release the button at that same point.",
+        "exact_input": "Left-click the midpoint or right half of the \"Master Volume\" slider.",
+        "success_cue": "The displayed Master Volume value is 50% or higher, and game interface audio is not muted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Return from Music & Sound Options by normally clicking the \"Done\" button at the bottom of the screen.",
+        "exact_input": "Left-click \"Done\" normally.",
+        "success_cue": "The general Options screen is visible again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Return to the main title screen by normally clicking the \"Done\" button at the bottom of the Options screen.",
+        "exact_input": "Left-click \"Done\" normally.",
+        "success_cue": "The main title screen is visible and the \"Options...\" button is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Start game-audio capture, or otherwise begin actively monitoring the game audio. Keep capture running without interruption through the remaining steps.",
+        "exact_input": null,
+        "success_cue": "Audio monitoring or recording is active while the main title screen remains visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Move the mouse pointer onto the center of the main title screen's \"Options...\" button without pressing any mouse button.",
+        "exact_input": "Mouse movement only; do not click yet.",
+        "success_cue": "The pointer is over the \"Options...\" button and the button is visibly highlighted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press and continuously hold the left mouse button while the pointer is on \"Options...\". Do not release the button when the Options screen opens.",
+        "exact_input": "Press and hold the left mouse button; keep it held through steps 10 and 11.",
+        "success_cue": "The general Options screen has opened, surrounding menu elements have rendered, and the left mouse button is still physically held down.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "While still holding the left mouse button, move the pointer upward onto the FOV slider. Identify this as the horizontal slider near the upper-left portion of the Options screen whose text begins with \"FOV:\"; use its label rather than relying on exact pixel coordinates.",
+        "exact_input": "Drag the mouse pointer onto the slider labeled \"FOV:\" without releasing the left mouse button.",
+        "success_cue": "The pointer is inside the rectangular bounds of the FOV slider, the Options screen is fully visible, and the left mouse button remains held.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Pause pointer movement while keeping the left mouse button held, ensuring the pointer remains over the FOV slider and audio capture remains active.",
+        "exact_input": "Continue holding the left mouse button; do not move the pointer off the FOV slider.",
+        "success_cue": "The pointer is stationary over the FOV slider, the button is still held, and the recording includes the complete title-screen-to-Options transition.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Release the left mouse button while the pointer remains over the FOV slider. Do not click again or move to another menu immediately afterward.",
+        "exact_input": "Release the held left mouse button over the \"FOV:\" slider.",
+        "success_cue": "The mouse button has been released over the FOV slider, the Options screen remains visible, and the audio capture contains the complete press-drag-release sequence.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The left mouse button has just been released over the FOV slider after being pressed on the title-screen \"Options...\" button and held continuously during the menu transition and pointer movement. The Options screen is still visible and audio capture is active or has preserved the entire sequence; hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The report does not prescribe a specific operating system, window resolution, GUI scale, or fixed pixel coordinates. The FOV slider should therefore be located by its visible \"FOV:\" label.",
+      "The report does not specify an audio volume value. Setting Master Volume to at least 50% is a practical choice solely to make the interface sounds readily observable.",
+      "The report lists many affected versions. This plan selects Java Edition 1.19.2 because it is the latest stable release explicitly listed as affected, while 22w42a is listed as the fix version.",
+      "Custom controls may replace the physical left mouse button, but the required action is the bound primary attack/select mouse action held continuously across the screen transition."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0db6592fbc20f3fc016aa5caa6a34487d0b8b359261514cb3e",
+    "elapsed_seconds": 86.34,
+    "usage": {
+      "input_tokens": 12021,
+      "output_tokens": 4835,
+      "reasoning_tokens": 3384,
+      "total_tokens": 16856
+    },
+    "timestamp": "2026-09-12T21:58:20.320410+00:00"
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "bug_id": "MC-182820",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-182820.md",
+  "source_meta": {
+    "mojira categories": "Sound",
+    "project": "MC",
+    "issue key": "MC-182820",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-05-06T14:33:04.358-0700",
+    "updated": "2025-04-29T12:15:32.012-0700",
+    "resolution date": "2023-09-22T09:48:54.602-0700",
+    "affects versions": "Minecraft 16w44a; 1.15.2; 20w19a; 20w21a; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16 Pre-release 4; 1.16 Pre-release 5; 1.16 Pre-release 7; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.4; 20w46a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w11a; 21w15a; 21w18a; 21w20a; 1.17 Pre-release 1; 1.17; 1.17.1; 21w42a; 1.18 Pre-release 8; 1.18; 1.18.2; 22w13a; 1.19.2; 1.19.3; 23w05a; 23w06a; 1.19.4; 23w16a; 1.20 Pre-release 6",
+    "fix versions": "23w33a",
+    "area": "Gameplay",
+    "labels": "incorrect-block-sound",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2020-05-06_22.32.39.png; 2020-05-06_22.32.40.png; 2020-05-06_22.32.41.png; 2020-05-06_22.32.42.png",
+    "issue links": "Relates:outward:MC-200484:Jukeboxes use stone sounds despite being composed predominantly of wood | Duplicate:inward:MC-109755:Jumping on Repeaters and Comparators Gives a Wooden Sound | Duplicate:inward:MC-242781:Repeaters and comparators use wood block sound despite being made of stone | Duplicate:inward:MC-262973:Redstone Comparator and Repeater use Wood Sound Set instead of Stone Sound Set, in addition to missing walking sounds.",
+    "_title": "Repeaters and comparators use wood sounds for placing/breaking despite being made mostly of stone"
+  },
+  "stor": {
+    "bug_id": "MC-182820",
+    "recommended_version": "Minecraft Java Edition 1.20 Pre-release 6 (the latest version explicitly listed as affected in the supplied report)",
+    "environment": "Vanilla Minecraft Java Edition 1.20 Pre-release 6 in a single-player Creative-mode world, using normal game audio and no resource pack that replaces block sounds. A new Superflat world is recommended only to provide a simple, unobstructed testing area; no particular seed, difficulty, dimension, or multiplayer server is required by the report.",
+    "preconditions": [
+      "Install and launch the exact Java Edition version Minecraft 1.20 Pre-release 6 rather than the later fix version 23w33a.",
+      "Connect working speakers or headphones and verify that the operating system has not muted Minecraft.",
+      "Use the default Minecraft resource pack, or disable any resource pack that changes block sounds, so custom audio does not interfere with the reproduction.",
+      "Create or open a world in Creative mode. Creative mode is an execution convenience for obtaining the required blocks and is not stated as a bug requirement.",
+      "Stand in an open area where blocks can be placed and individually targeted without nearby entities, pistons, flowing fluids, or other sources of distracting sound.",
+      "Default inputs are assumed: E opens the inventory, number keys select hotbar slots, right-click uses or places a block, and left-click breaks a targeted block in Creative mode. If controls are rebound, use the corresponding configured actions."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Confirm that the game is running the selected affected version by reading the version text displayed on the title screen before entering the test world.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running version as Minecraft 1.20 Pre-release 6.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode, preferably using the Superflat world type for an unobstructed test surface, and enter the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> World Type: Superflat (recommended) -> Create New World",
+        "success_cue": "The player has spawned in a Creative-mode world and surrounding terrain has rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until world loading is complete before generating any test sounds. Move the player briefly and turn the camera to confirm that the game responds normally.",
+        "exact_input": "W, then move the mouse",
+        "success_cue": "Nearby terrain is visible, movement responds without loading pauses, and the player is standing in an open placement area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the sound settings and make sure both the master volume and block-sound volume are above zero. Raise them to a clearly audible level if necessary, then return to the world.",
+        "exact_input": "Esc -> Options -> Music & Sounds -> set Master Volume and Blocks above 0% -> Done -> Done -> Back to Game",
+        "success_cue": "The world is visible again and Minecraft block sounds are not muted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory and obtain one Redstone Repeater, one Redstone Comparator, Stone, and Oak Planks. Put all four items into separate hotbar slots. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "Press E; use the Creative inventory search field to search for \"repeater\", \"comparator\", \"stone\", and \"oak planks\"; place each result into a different hotbar slot; press E to close the inventory",
+        "success_cue": "The hotbar contains a redstone repeater, a redstone comparator, stone, and oak planks in separate slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Establish an audible wood reference. Select Oak Planks, aim at the ground several blocks away from the intended target position, right-click once to place one plank, and listen to the placement sound.",
+        "exact_input": "Select Oak Planks with its hotbar number key or mouse wheel, then right-click the ground once",
+        "success_cue": "One oak-plank block is present and its placement sound event has been generated.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Keep the crosshair aimed at the placed oak-plank block and left-click once in Creative mode to break it, listening to the breaking sound as the wood reference.",
+        "exact_input": "Left-click the oak-plank block once",
+        "success_cue": "The oak-plank block has disappeared and its breaking sound event has been generated.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Establish an audible stone reference. Select Stone, aim at the ground near the former plank position, and right-click once to place one stone block while listening to the placement sound. Leave this stone block in place because its top face will support the repeater and comparator.",
+        "exact_input": "Select Stone with its hotbar number key or mouse wheel, then right-click the ground once",
+        "success_cue": "One stone block is present, its placement sound event has been generated, and its top face is unobstructed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Place and break a second stone block nearby to hear an uninterrupted stone breaking reference without destroying the support block reserved for the target components.",
+        "exact_input": "Right-click the ground near the support block to place another Stone block, then left-click that second Stone block once",
+        "success_cue": "The second stone block has been removed, its breaking sound event has been generated, and the first stone support block remains in place.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Redstone Repeater in the hotbar. Aim the crosshair at the unobstructed top face of the remaining stone support block. Begin audio observation, then right-click once to place the repeater and capture its placement sound.",
+        "exact_input": "Select the Redstone Repeater with its hotbar number key or mouse wheel, then right-click the top face of the stone support block once",
+        "success_cue": "A redstone repeater is visibly resting on top of the stone support block, and one repeater placement sound event has just been generated.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Aim directly at the thin repeater on top of the support block, not at the stone beneath it. Left-click once in Creative mode to break only the repeater while capturing its breaking sound.",
+        "exact_input": "Left-click the redstone repeater once",
+        "success_cue": "The repeater has disappeared, the stone support block remains, and one repeater breaking sound event has just been generated.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the Redstone Comparator in the hotbar. Aim at the now-unobstructed top face of the same stone support block and right-click once to place the comparator while capturing its placement sound.",
+        "exact_input": "Select the Redstone Comparator with its hotbar number key or mouse wheel, then right-click the top face of the stone support block once",
+        "success_cue": "A redstone comparator is visibly resting on top of the stone support block, and one comparator placement sound event has just been generated.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Aim directly at the thin comparator on top of the support block, not at the stone beneath it. Left-click once in Creative mode to break only the comparator while capturing its breaking sound.",
+        "exact_input": "Left-click the redstone comparator once",
+        "success_cue": "The comparator has disappeared, the stone support block remains, and one comparator breaking sound event has just been generated.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "Beginning with step 10, audio observation is active. After step 13, one repeater and one comparator have each been placed and broken once, producing the four target sound events. The wood and stone reference sounds were generated beforehand, and the captured target audio is ready for the separate observation subsystem to evaluate.",
+    "uncertainties": [
+      "The report does not specify a required game mode, world type, seed, dimension, coordinates, or server configuration. Single-player Creative mode and a Superflat world are practical choices that remove crafting and exploration but are not asserted requirements.",
+      "The report does not explicitly require reference blocks. Oak planks and stone are included as practical audio controls so an executor with little Minecraft knowledge can compare the target interactions with recognizable wood and stone placement/breaking sounds.",
+      "The report lists many affected versions. Minecraft 1.20 Pre-release 6 is recommended because it is the latest version explicitly included in the supplied affected-version list; the reproduction may also be executed in another exact affected version if required.",
+      "The report does not specify whether the repeater or comparator must be tested first. Repeater-first order is chosen only to make the procedure deterministic.",
+      "The Music & Sounds menu wording or arrangement may vary slightly among affected historical versions, but the only necessary audio condition is that master and block sounds are audible."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_09358a284cc0d0d4016aa5cafc933087d0bd8e4f0d43c5cbda",
+    "elapsed_seconds": 59.76,
+    "usage": {
+      "input_tokens": 9476,
+      "output_tokens": 3610,
+      "reasoning_tokens": 1749,
+      "total_tokens": 13086
+    },
+    "timestamp": "2026-09-12T21:59:20.086276+00:00"
+  }
+}

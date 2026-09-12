@@ -1,0 +1,160 @@
+{
+  "bug_id": "MC-266738",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-266738.md",
+  "source_meta": {
+    "mojira categories": "Accessibility; Sound; Text",
+    "project": "MC",
+    "issue key": "MC-266738",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-11-16T13:44:20.662-0800",
+    "updated": "2025-03-25T13:22:48.120-0700",
+    "resolution date": "2023-12-08T02:21:30.243-0800",
+    "affects versions": "23w45a; 23w46a; 1.20.3 Pre-Release 1; 1.20.3 Pre-Release 2; 1.20.3 Pre-Release 3; 1.20.3 Pre-Release 4; 1.20.3 Release Candidate 1; 1.20.3; 1.20.4 Release Candidate 1; 1.20.4",
+    "fix versions": "23w51a",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Subtitles string \"subtitles.block.trial_spawner.spawn_mob\" is misleading and inconsistent"
+  },
+  "stor": {
+    "bug_id": "MC-266738",
+    "recommended_version": "Minecraft Java Edition 1.20.4",
+    "environment": "Vanilla Minecraft Java Edition 1.20.4 in a new single-player world, using English (United States), the built-in Update 1.21 experimental data pack, default resource assets, Creative mode for deterministic setup, and Survival mode for activation.",
+    "preconditions": [
+      "Use an unmodified Minecraft Java Edition 1.20.4 client; disable mods and resource packs that could replace language or sound assets.",
+      "Create a disposable test world rather than using an important existing save.",
+      "Use the English (United States) language so the report's English translation for subtitles.block.trial_spawner.spawn_mob is exercised.",
+      "The reproduction requires subtitles to be enabled and the player to be in Survival mode when the configured Trial Spawner is approached.",
+      "Commands must be available because the setup changes the player from Creative mode to Survival mode."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition 1.20.4. At the main menu, open Options, select Language, choose English (United States), and click Done until the main menu is shown again.",
+        "exact_input": "English (United States)",
+        "success_cue": "The main-menu text is displayed in English and the lower-left version label identifies Minecraft 1.20.4.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then Create New World. Set Game Mode to Creative so the required experimental block and spawn egg can be obtained without exploration. Leave commands enabled; Creative worlds normally provide command access.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "From the world-creation screen, open Data Packs. In the available built-in packs, select the pack displayed as Update 1.21, also identifiable as update_1_21, and move it into the selected/enabled list. Click Done. Accept the experimental-feature warning if one appears. Java experimental features are enabled from the Data Packs screen. ([minecraft.net](https://www.minecraft.net/en-us/article/testing-new-minecraft-features))",
+        "exact_input": "Update 1.21 / update_1_21",
+        "success_cue": "The Update 1.21 pack is in the selected data-pack list and the world-creation screen can be continued.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "For a deterministic open spawning area, open the world settings and set World Type to Superflat. Leave Difficulty at Normal or another non-Peaceful setting.",
+        "exact_input": "World Type: Superflat; Difficulty: Normal",
+        "success_cue": "The world-creation screen shows Superflat and a non-Peaceful difficulty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Click Create New World. If another experimental-settings confirmation appears, choose the option that proceeds with world creation. Wait until the world has loaded, surrounding terrain is rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded, flat Overworld in Creative mode and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press Esc, select Options, then Accessibility Settings. Set Show Subtitles to ON. Click Done until gameplay resumes.",
+        "exact_input": "Show Subtitles: ON",
+        "success_cue": "The Accessibility Settings screen showed Show Subtitles: ON before returning to gameplay.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, click its search field, enter \"trial spawner\", left-click the Trial Spawner result, and left-click hotbar slot 1 to place the block there. The hotbar is the row of nine item slots along the bottom of the gameplay screen.",
+        "exact_input": "trial spawner",
+        "success_cue": "A Trial Spawner item is present in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "While the Creative inventory remains open, replace the search text with \"zombie spawn egg\". Left-click the Zombie Spawn Egg result and place it in hotbar slot 2, then press E to close the inventory.",
+        "exact_input": "zombie spawn egg",
+        "success_cue": "The inventory is closed, with a Trial Spawner in hotbar slot 1 and a Zombie Spawn Egg in hotbar slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move to an unobstructed part of the flat world with several blocks of solid floor available on every side. Avoid placing the test next to walls, holes, liquids, or other entities so the Trial Spawner has clear spawn positions.",
+        "exact_input": null,
+        "success_cue": "A level, open test area surrounds the player and nearby terrain is fully rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press 1 to select the Trial Spawner. Aim the crosshair at the top of a ground block in the open area and right-click once to place the Trial Spawner.",
+        "exact_input": "Default input: 1, then right-click",
+        "success_cue": "A Trial Spawner block is visibly placed one block above the flat ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press 2 to select the Zombie Spawn Egg. Aim directly at the placed Trial Spawner and right-click it once. A Trial Spawner placed by a Creative player initially has no mob type; interacting with it while holding a spawn egg configures that mob type. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-java-edition-1-20-3))",
+        "exact_input": "Default input: 2, then right-click the Trial Spawner once",
+        "success_cue": "The Trial Spawner displays a miniature zombie or other internal visual indicating that it is configured to spawn zombies.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Move approximately four blocks away from the configured Trial Spawner. Face it directly and ensure no blocks obstruct the line of sight between the player and the spawner. Keep the lower-right portion of the screen unobstructed by menus.",
+        "exact_input": "Default movement controls: W/A/S/D",
+        "success_cue": "The configured Trial Spawner is fully visible a short distance away, with open floor around it and no menu open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press T to open in-game chat. Enter the exact command \"/gamemode survival\", including the leading slash, and press Enter. Do not move away from the Trial Spawner after executing the command.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The Survival health and hunger HUD is visible, chat has closed, and the player remains near and in direct view of the configured Trial Spawner.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Without opening another menu or moving out of range, keep the Trial Spawner and the lower-right subtitle area visible. Wait until the Trial Spawner activates and a zombie visibly begins to appear near it. Stop all further input at the instant the first mob is spawned; that spawn is the sound/subtitle trigger to be inspected.",
+        "exact_input": null,
+        "success_cue": "A zombie has just been produced by the Trial Spawner while the player remains nearby in Survival mode with subtitles enabled.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The configured Trial Spawner has just spawned its first zombie while the player is nearby in Survival mode, Show Subtitles remains ON, and the lower-right subtitle area is visible. Hand control to the observation subsystem immediately at the spawn event without performing further input.",
+    "uncertainties": [
+      "The report supplies no world seed, coordinates, generated Trial Chamber, or mob type. This plan therefore uses a manually placed Trial Spawner configured with a Zombie Spawn Egg in a superflat world as the minimum deterministic implementation.",
+      "The report does not explicitly mention enabling the Update 1.21 experimental data pack, but the Trial Spawner is an experimental feature in the recommended affected version, so the pack is enabled as a verified execution requirement.",
+      "The Mojira comment provides /tellraw @s {\"translate\":\"subtitles.block.trial_spawner.spawn_mob\"} as an alternate way to render the translation. That alternate is not used here because the primary reproduction specifically exercises the subtitle generated by a real Trial Spawner mob-spawn event."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0202e5fc65521e82016aa5cbf3e52887d0b2aafec4ac78cd6f",
+    "elapsed_seconds": 125.43,
+    "usage": {
+      "input_tokens": 37083,
+      "output_tokens": 7635,
+      "reasoning_tokens": 5885,
+      "total_tokens": 44718
+    },
+    "timestamp": "2026-09-12T22:04:33.206779+00:00"
+  }
+}

@@ -1,0 +1,220 @@
+{
+  "bug_id": "MC-251919",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-251919.md",
+  "source_meta": {
+    "mojira categories": "Sound",
+    "project": "MC",
+    "issue key": "MC-251919",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-05-19T07:28:40.273-0700",
+    "updated": "2025-04-11T12:51:41.471-0700",
+    "resolution date": "2023-02-08T09:19:12.466-0800",
+    "affects versions": "1.19 Pre-release 1",
+    "fix versions": "1.19 Pre-release 2",
+    "labels": "reused-sound-event; subtitles",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2022-05-19_15.18.57.png; 2022-05-19_15.19.15.png; MC-251919.mp4; MC-251919.png",
+    "issue links": "Relates:inward:MC-259789:Subtitle for equipping a shield in the offhand is generic | Relates:outward:MC-98316:Wrong subtitles caused by missing distinction",
+    "_title": "Equipping a player head, skull or carved pumpkin displays the generic \"Gear equips\" subtitle"
+  },
+  "stor": {
+    "bug_id": "MC-251919",
+    "recommended_version": "Minecraft Java Edition 1.19 Pre-release 1 (launcher version ID: 1.19-pre1)",
+    "environment": "Minecraft Java Edition client in a clean single-player Creative-mode world, with English (US) selected, game audio active, and subtitles enabled.",
+    "preconditions": [
+      "The Minecraft Launcher can install and run historical snapshots and pre-releases.",
+      "Use exactly Java Edition 1.19 Pre-release 1; do not create or open the reproduction world in a different version.",
+      "A new single-player Creative-mode world is sufficient. The report specifies no seed, coordinates, dimension, difficulty, server, or multiplayer requirement.",
+      "The plan uses an Iron Chestplate as the report's armor comparison item and a Carved Pumpkin as the affected headwear item.",
+      "Use the configured equivalents if the default Inventory key E or other controls have been rebound.",
+      "Begin with the player's head and chest armor slots empty."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, open Installations, enable the Snapshots version category, create an installation using version 1.19-pre1, and launch that installation. Historical pre-releases are exposed through the launcher snapshot option. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/6319694424845-Minecraft-Java-Edition-1-19-Pre-Release-1?utm_source=openai))",
+        "exact_input": "Installations -> Snapshots: enabled -> New Installation -> Version: 1.19-pre1 -> Create -> Play",
+        "success_cue": "Minecraft reaches the main menu and identifies the running version as 1.19 Pre-release 1.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, create a new single-player world in Creative mode. Leave the seed and all other world-generation options at their defaults.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player spawns in a newly generated world and can fly or access the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before configuring or equipping anything until initial world and chunk loading has finished.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading overlay is gone, and movement and menu inputs respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the pause menu, enter the language menu, select English (US), and confirm the selection. This keeps the subtitle language consistent with the report.",
+        "exact_input": "Esc -> Options... -> Language... -> English (US) -> Done",
+        "success_cue": "Menu labels are displayed in English and the Options screen is visible again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open Music & Sounds settings and ensure Master Volume is not muted. A value such as 100% is suitable.",
+        "exact_input": "Options... -> Music & Sounds... -> Master Volume: 100%",
+        "success_cue": "Master Volume displays a nonzero value.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "In Music & Sounds settings, toggle subtitles on.",
+        "exact_input": "Show Subtitles: ON",
+        "success_cue": "The setting reads Show Subtitles: ON.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select Done until all option menus close and normal world view returns.",
+        "exact_input": "Done -> Done -> Back to Game",
+        "success_cue": "The player is back in the world with no menu open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the Creative inventory using the Inventory control.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface opens and displays category tabs and the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the Search Items tab, click its search field, and search for the comparison armor item.",
+        "exact_input": "iron chestplate",
+        "success_cue": "An item result named Iron Chestplate is visible in the Creative inventory results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Hover the pointer over the Iron Chestplate result and press the hotbar key for slot 1 to copy the item into that slot.",
+        "exact_input": "1",
+        "success_cue": "An Iron Chestplate is visible in hotbar slot 1 at the bottom of the inventory screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Select all text in the Creative inventory search field and replace it with the affected headwear item's name.",
+        "exact_input": "Ctrl+A, then type: carved pumpkin",
+        "success_cue": "An item result named Carved Pumpkin is visible in the Creative inventory results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Hover the pointer over the Carved Pumpkin result and press the hotbar key for slot 2 to copy the item into that slot.",
+        "exact_input": "2",
+        "success_cue": "A Carved Pumpkin is visible in hotbar slot 2, while the Iron Chestplate remains in hotbar slot 1.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Click the Survival Inventory tab in the Creative inventory. In this version, this is the chest-icon tab that opens the player inventory view containing the player model, crafting grid, and armor slots.",
+        "exact_input": "Left-click the chest-icon Survival Inventory tab",
+        "success_cue": "The player model and four vertical armor slots are visible, including the top head slot and the chest slot directly below it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Inspect the top head armor slot and the chest armor slot. If either contains an item, remove it to an unused inventory or hotbar slot before continuing.",
+        "exact_input": "If occupied: left-click the armor item, then left-click an empty inventory slot",
+        "success_cue": "Both the head and chest armor slots are empty; the Carved Pumpkin remains in hotbar slot 2 and the Iron Chestplate remains available in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Left-click the Iron Chestplate in hotbar slot 1 to attach it to the mouse cursor.",
+        "exact_input": "Left-click hotbar slot 1",
+        "success_cue": "The Iron Chestplate icon follows the mouse cursor and hotbar slot 1 is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Left-click the chest armor slot beside the player model to equip the Iron Chestplate. Inventory-slot equipping is the sound-producing armor path relevant to this pre-release. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/6319694424845-Minecraft-Java-Edition-1-19-Pre-Release-1?utm_source=openai))",
+        "exact_input": "Left-click the chest armor slot",
+        "success_cue": "The Iron Chestplate occupies the chest armor slot, appears on the player model, and no item remains attached to the cursor.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "Immediately close the inventory so the subtitle area of the normal game view can be checked.",
+        "exact_input": "E",
+        "success_cue": "Normal world view returns, the player is wearing the Iron Chestplate, and a fresh subtitle notification from the comparison equip action is visible near the lower-right corner.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Do not move, interact, or produce additional sounds. Wait until the comparison equip subtitle has completely disappeared, so it cannot be confused with the next equip event.",
+        "exact_input": null,
+        "success_cue": "No subtitle from the Iron Chestplate equip action remains visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Open the Creative inventory again and return to the Survival Inventory tab if the armor slots are not already displayed.",
+        "exact_input": "E, then left-click the chest-icon Survival Inventory tab if needed",
+        "success_cue": "The armor slots are visible, the Iron Chestplate remains in the chest slot, the head slot is empty, and the Carved Pumpkin is present in hotbar slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Left-click the Carved Pumpkin in hotbar slot 2 to attach it to the mouse cursor.",
+        "exact_input": "Left-click hotbar slot 2",
+        "success_cue": "The Carved Pumpkin icon follows the mouse cursor, hotbar slot 2 is empty, and the head armor slot remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Left-click the top head armor slot to equip the Carved Pumpkin. Official notes for this exact pre-release identify placing pumpkins or skulls into the headwear slot as the relevant sound-producing action. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/6319694424845-Minecraft-Java-Edition-1-19-Pre-Release-1?utm_source=openai))",
+        "exact_input": "Left-click the top head armor slot",
+        "success_cue": "The Carved Pumpkin occupies the head armor slot, appears on the player model, and no item remains attached to the cursor.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 22,
+        "action": "Immediately close the inventory without clicking, moving items, or performing any other sound-producing action.",
+        "exact_input": "E",
+        "success_cue": "Normal world view has just returned, the Carved Pumpkin is equipped, and no unrelated action has occurred since the headwear equip action.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The Carved Pumpkin has just been placed into the player's head armor slot in Java Edition 1.19 Pre-release 1, and the inventory has immediately been closed. Begin subtitle observation before the equip-event subtitle fades.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, dimension, difficulty, or server type; a new single-player Creative world is used only as the simplest deterministic way to obtain the required items.",
+      "The report permits any armor piece or elytra for the comparison action. This plan uses an Iron Chestplate so the head slot remains free for the affected item.",
+      "The report permits a player head, another skull, or a carved pumpkin for the affected action. This plan tests a Carved Pumpkin; the alternate head and skull variants would require separate repetitions after clearing the head slot and waiting for the previous subtitle to disappear.",
+      "Default Java Edition keyboard and mouse bindings are described; rebound controls must use their configured equivalents."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_05b232808e9b83b7016aa5cb68309087d0878b9649a33000ca",
+    "elapsed_seconds": 139.88,
+    "usage": {
+      "input_tokens": 32502,
+      "output_tokens": 8277,
+      "reasoning_tokens": 6203,
+      "total_tokens": 40779
+    },
+    "timestamp": "2026-09-12T22:02:27.770332+00:00"
+  }
+}
