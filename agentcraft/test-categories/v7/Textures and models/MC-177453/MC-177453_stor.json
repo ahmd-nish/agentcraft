@@ -1,0 +1,207 @@
+{
+  "bug_id": "MC-177453",
+  "category": "Textures and models",
+  "source_md": "[Textures and models] - MC-177453.md",
+  "source_meta": {
+    "mojira categories": "Textures and models",
+    "project": "MC",
+    "issue key": "MC-177453",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-04-04T17:31:35.141-0700",
+    "updated": "2025-04-26T09:43:42.586-0700",
+    "resolution date": "2024-08-17T07:14:49.205-0700",
+    "affects versions": "1.15.2; 20w14a; 20w18a; 20w21a; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16.1; 20w27a; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w08b; 21w15a; 21w16a; 21w20a; 1.17 Pre-release 1; 1.17; 1.17.1; 1.18; 1.18.1; 1.18.2; 1.19; 1.19.2; 1.20 Pre-release 1; 1.20.1; 23w43a; 1.21",
+    "fix versions": "24w33a",
+    "area": "Gameplay",
+    "labels": "1.8-bad-model-conversion-remnants; 1.8-model-conversion-remnants; unnecessary-planes",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2020-04-05_01.26.20.png; comparator_on.json; comparator_subtract.json; comparator.json",
+    "issue links": "Relates:inward:MC-177452:Unneeded faces inside repeater models | Relates:outward:MC-208191:Unneeded face in candle cake model | Duplicate:inward:MC-193574:Cullface inconsistency with torches on repeaters | Duplicate:inward:MC-159201:Lit torches on repeaters and comparators are missing their bottom texture, while they have a bottom face when unlit",
+    "_title": "Unneeded faces inside comparator models"
+  },
+  "stor": {
+    "bug_id": "MC-177453",
+    "affected_versions": [
+      "1.15.2",
+      "20w14a",
+      "20w18a",
+      "20w21a",
+      "1.16 Pre-release 2",
+      "1.16 Pre-release 3",
+      "1.16.1",
+      "20w27a",
+      "20w28a",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w08b",
+      "21w15a",
+      "21w16a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.2",
+      "1.20 Pre-release 1",
+      "1.20.1",
+      "23w43a",
+      "1.21"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Minecraft Java Edition 1.15.2 using the vanilla client and default vanilla resources, in a local single-player Creative-mode world with cheats enabled. A Superflat world and an elevated stone support are used as practical choices to make the comparator easy to approach from every direction.",
+    "preconditions": [
+      "Use Minecraft Java Edition 1.15.2, the first version listed as affected in the report.",
+      "Disable any resource pack that replaces or modifies redstone comparator block models or textures; use the vanilla resource pack for the model under test.",
+      "Use a single-player Creative-mode world with cheats enabled so the comparator and support blocks can be obtained without crafting and Spectator mode can be entered by command.",
+      "Keep the test comparator isolated from levers, redstone blocks, powered redstone dust, repeaters, comparators, or other possible sources of redstone input.",
+      "Use first-person view. Default keyboard and mouse controls are assumed; use the corresponding bound controls if they have been changed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start an installation configured for Java Edition 1.15.2. Wait for the title screen to finish loading.",
+        "exact_input": "Minecraft Java Edition 1.15.2",
+        "success_cue": "The Minecraft title screen is visible and identifies the running version as 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a local test world. From the title screen, open Singleplayer, choose Create New World, set Game Mode to Creative, open More World Options, set Allow Cheats to ON, and select the Superflat world type. Confirm the options and create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options... -> Allow Cheats: ON -> World Type: Superflat -> Done -> Create New World",
+        "success_cue": "World generation begins with Creative mode and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before interacting until the player has spawned, nearby terrain has rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded world and can move without waiting for terrain generation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the inventory control, which is E by default, and select the Search Items tab identified by the compass icon.",
+        "exact_input": "E; then click the Search Items tab",
+        "success_cue": "The Creative inventory search field and searchable item grid are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Click the search field, search for stone, and place one stack of the ordinary Stone block into hotbar slot 1. The hotbar is the row of nine item slots along the bottom of the inventory.",
+        "exact_input": "stone",
+        "success_cue": "Hotbar slot 1 contains Stone.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Replace the search text with comparator, locate the item named Redstone Comparator, and place it into hotbar slot 2.",
+        "exact_input": "comparator",
+        "success_cue": "Hotbar slot 2 contains a Redstone Comparator while slot 1 still contains Stone.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Close the Creative inventory using E or Escape and move to an open area with no existing redstone components nearby.",
+        "exact_input": "E or Escape; then W/A/S/D as needed",
+        "success_cue": "The normal first-person world view is visible and there is clear ground available for an isolated support pillar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select hotbar slot 1, aim at an exposed top face of the ground, and use the place-block control, which is right-click by default, once to place the first Stone support block.",
+        "exact_input": "1; right-click once",
+        "success_cue": "One Stone block has been placed on top of the ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Aim at the top face of the Stone block just placed and right-click once more to add a second Stone block above it, producing a two-block-high isolated pillar.",
+        "exact_input": "right-click once",
+        "success_cue": "A two-block-high Stone pillar stands in open space with air around its sides.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select hotbar slot 2, aim at the top face of the upper Stone block, and right-click once to place the Redstone Comparator on the pillar.",
+        "exact_input": "2; right-click once",
+        "success_cue": "A Redstone Comparator is resting on top of the Stone pillar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Leave the comparator in the state created by its initial placement. Do not right-click the comparator again, and do not place any redstone power source or input component next to it.",
+        "exact_input": null,
+        "success_cue": "The comparator remains isolated, receives no rear or side redstone input, and has not been toggled after placement.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Press T to open the in-game chat interface so a game-mode command can be executed.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to receive a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Enter the Spectator-mode command exactly as shown, including the leading slash, and press Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The command is accepted, command feedback identifies Spectator mode, and the player can fly and pass through blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Using Spectator flight, approach the comparator from one side. Use W, A, S, and D for horizontal movement, Space to rise, Left Shift to descend, and the mouse to look around. Stop just outside the comparator at approximately the height where its three torch elements emerge from the base.",
+        "exact_input": "W/A/S/D; Space; Left Shift; mouse movement",
+        "success_cue": "The camera is immediately beside the comparator and the three torch elements can be used as spatial reference points.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Fly forward through the side of the comparator model. Adjust the camera vertically until its viewpoint is inside the comparator base and below the three torch elements, then pitch the view upward so the underside regions of the torch elements are centered. Use small movement adjustments to avoid passing completely through the model.",
+        "exact_input": "W or the appropriate horizontal movement key; Space/Left Shift for small vertical adjustments; move the mouse upward to look toward the torch undersides",
+        "success_cue": "The Spectator camera is clipped inside the unpowered comparator, positioned beneath its torch elements, with the underside regions of those elements centered for inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player is in Spectator mode and the camera has just been positioned inside the isolated, unpowered comparator beneath its three torch elements, looking upward at their underside regions. Begin model-face observation without changing the comparator state or camera position.",
+    "uncertainties": [
+      "The report does not specify a world seed, terrain type, support-block arrangement, or comparator orientation. A Superflat Creative world and a two-block-high Stone pillar are practical execution choices that preserve the reported requirement of placing an unpowered comparator while making spectator-camera positioning easier.",
+      "The report does not provide exact camera coordinates or viewing angles. The final position must therefore be adjusted based on the rendered model until the camera is inside the comparator base and below the torch elements.",
+      "The report does not explicitly specify whether custom resource packs were active. This plan uses vanilla resources because the report identifies the affected vanilla comparator model files.",
+      "No external verification was needed because the report supplies the required edition, affected versions, target block state, game mode, and triggering camera action."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01121e444de948f1016aa5e540f53487d09585268120c95c1c",
+    "elapsed_seconds": 87.71,
+    "usage": {
+      "input_tokens": 9192,
+      "output_tokens": 5363,
+      "reasoning_tokens": 3511,
+      "total_tokens": 14555
+    },
+    "timestamp": "2026-09-12T23:51:52.409944+00:00"
+  }
+}
