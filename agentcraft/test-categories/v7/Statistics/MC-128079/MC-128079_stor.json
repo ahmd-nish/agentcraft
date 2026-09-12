@@ -1,0 +1,159 @@
+{
+  "bug_id": "MC-128079",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-128079.md",
+  "source_meta": {
+    "mojira categories": "Statistics",
+    "project": "MC",
+    "issue key": "MC-128079",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2018-04-06T14:49:15.703-0700",
+    "updated": "2025-04-26T06:28:52.513-0700",
+    "resolution date": "2025-01-07T06:21:24.148-0800",
+    "affects versions": "Minecraft 18w14b; Minecraft 18w15a; Minecraft 18w16a; Minecraft 18w20c; Minecraft 18w21a; Minecraft 18w22c; Minecraft 1.13-pre1; Minecraft 1.13; Minecraft 18w30b; Minecraft 18w31a; Minecraft 18w32a; Minecraft 18w33a; Minecraft 1.13.1-pre1; Minecraft 1.13.1-pre2; Minecraft 1.13.1; Minecraft 1.13.2; Minecraft 18w43b; Minecraft 18w43c; Minecraft 18w44a; Minecraft 18w45a; Minecraft 18w48a; Minecraft 18w48b; Minecraft 18w49a; Minecraft 18w50a; Minecraft 19w12b; Minecraft 19w13b; Minecraft 19w14a; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14 Pre-Release 4; Minecraft 1.14 Pre-Release 5; Minecraft 1.14; Minecraft 1.14.1; Minecraft 1.14.2 Pre-Release 2; Minecraft 1.14.2 Pre-Release 3; Minecraft 1.14.2; Minecraft 1.14.3 Pre-Release 1; Minecraft 1.14.3 Pre-Release 3; Minecraft 1.14.3; Minecraft 1.14.4 Pre-Release 3; Minecraft 1.14.4 Pre-Release 4; Minecraft 1.14.4 Pre-Release 5; Minecraft 1.14.4 Pre-Release 6; 1.14.4; 1.15.2; 20w18a; 1.16.4; 20w48a; 1.16.5; 21w05b; 21w06a; 21w14a; 21w18a; 21w20a; 1.17.1; 1.18.2; 1.19; 1.19.3; 1.20.1; 1.20.4; 1.20.6; 24w21b",
+    "fix versions": "25w02a",
+    "area": "Platform",
+    "game mode": "Survival",
+    "labels": "carpet; durability; shears; statistics; tool",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-128079.mp4; MC-128079.png",
+    "issue links": "Duplicate:inward:MC-272521:Shears item use statistic ignores tool component",
+    "_title": "Statistic for using shears doesn't increase when mining certain blocks"
+  },
+  "stor": {
+    "bug_id": "MC-128079",
+    "recommended_version": "Minecraft Java Edition 1.20.4 (an affected stable release explicitly listed in the report)",
+    "environment": "A new single-player Java Edition world using the integrated server. Use Survival mode for the actual mining action. Enable cheats for deterministic setup commands, and use a Superflat world so the carpet can be placed on a predictable level surface.",
+    "preconditions": [
+      "Minecraft Java Edition 1.20.4 is installed and selected in the launcher.",
+      "The test world permits commands because the report requires two /scoreboard commands; cheats should therefore be enabled when the world is created.",
+      "The same player must execute the scoreboard commands and perform the shears mining action.",
+      "Use the default Attack/Destroy control (left mouse button), or identify the rebound control before testing.",
+      "Do not use the test shears after resetting the score to 0 until the carpet is mined in the trigger step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the exact affected Minecraft version selected for this reproduction.",
+        "exact_input": "Launch Minecraft Java Edition 1.20.4 from the Minecraft Launcher.",
+        "success_cue": "The main menu displays Minecraft Java Edition 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a simple command-enabled test world. From the main menu, choose Singleplayer and Create New World. Set the game mode to Survival, enable cheats, select the Superflat world type, and create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Survival; Allow Cheats: ON; World Type: Superflat -> Create New World",
+        "success_cue": "The player spawns in a flat world with the Survival HUD visible, including hearts and hunger icons.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for the integrated server and nearby chunks to finish loading before entering commands.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, player movement responds normally, and opening chat does not stall.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Create the statistic-backed scoreboard objective specified by the report. Press T to open in-game chat, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives add shear minecraft.used:minecraft.shears",
+        "success_cue": "Command feedback confirms that the objective named \"shear\" was created, with no red syntax or permission error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Display the new objective in the sidebar. Open chat with T, enter the command exactly, and press Enter.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar shear",
+        "success_cue": "A scoreboard sidebar headed \"shear\" appears on the right side of the screen. The player may not have an entry yet because no score has been initialized.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Obtain one fresh pair of shears without performing an unrelated shearing action. Open chat, run the give command, and press Enter.",
+        "exact_input": "/give @s minecraft:shears 1",
+        "success_cue": "A shears item is present in the player's hotbar or inventory and has a full durability bar/no visible durability damage.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Create the carpet target on the flat ground next to the player. Stand still on the level surface, open chat, execute the setblock command, and press Enter. The relative coordinates place the carpet one block in the positive-X direction from the block containing the player.",
+        "exact_input": "/setblock ~1 ~ ~ minecraft:white_carpet",
+        "success_cue": "One white carpet block is visible on top of the ground immediately beside the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Explicitly restore or confirm the report-required game mode after command-based setup. Open chat, execute the game-mode command, and press Enter.",
+        "exact_input": "/gamemode survival @s",
+        "success_cue": "Command feedback confirms Survival mode, and the Survival hearts and hunger HUD is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Ensure the shears are in the nine-slot hotbar. If they are only in the main inventory, press E, move the shears into an empty hotbar slot, and close the inventory with E.",
+        "exact_input": "E; move minecraft:shears to a hotbar slot if necessary; E",
+        "success_cue": "The shears icon is visible in one of the nine hotbar slots at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the hotbar slot containing the shears using its number key or the mouse wheel.",
+        "exact_input": "Press the number key corresponding to the shears hotbar slot, or scroll until that slot is highlighted.",
+        "success_cue": "The shears slot has the active-slot highlight and the shears model is visible in the player's main hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Initialize a visible baseline immediately before the test. Without using the shears on anything, press T, enter the scoreboard command, and press Enter.",
+        "exact_input": "/scoreboard players set @s shear 0",
+        "success_cue": "The sidebar displays the executing player's name with a score of 0 under the \"shear\" objective, and the shears remain selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Face the adjacent white carpet and place the crosshair directly over its thin top surface. Do not press the Attack/Destroy control yet.",
+        "exact_input": "Move and aim with the mouse until the crosshair targets minecraft:white_carpet.",
+        "success_cue": "The white carpet is within mining reach, is under the crosshair, and the shears remain visible in the main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Mine the targeted white carpet while continuing to hold the shears. Press the Attack/Destroy control and stop as soon as the one carpet block has broken; do not use the shears again.",
+        "exact_input": "Attack/Destroy (default: press or hold the left mouse button until the carpet breaks)",
+        "success_cue": "The targeted white carpet block has disappeared and, unless immediately collected, its dropped carpet item is visible at that position. No additional block or entity has been acted upon with the shears.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The player has just destroyed exactly one white carpet block in Survival mode with the selected shears. The \"shear\" statistic objective remains displayed in the sidebar, and no further shears interaction has occurred. Hand control to the observation subsystem immediately.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer, world seed, terrain type, carpet color, or an exact target location. A new single-player Superflat world and white carpet are deterministic practical choices that preserve the stated test condition.",
+      "The report does not provide formal numbered Steps to Reproduce. The procedure is reconstructed from its description and exact scoreboard commands.",
+      "The report also identifies tall grass, large fern, seagrass, tall seagrass, and nether sprouts as affected targets. This plan uses carpet because it is the report's primary example and requires no dimension travel, water placement, biome search, or multi-block plant setup. Those other blocks would require separate runs and target-specific setup.",
+      "The baseline command that sets the player's objective score to 0 is not stated in the report; it is included to ensure the sidebar has an unambiguous visible pre-trigger value.",
+      "The supplied attachment files were not available as content in the report text and were not used to add reproduction requirements."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0fce0c5450f2bd6e016aa5c8ad936887d0b66e87f910ba7a64",
+    "elapsed_seconds": 105.81,
+    "usage": {
+      "input_tokens": 8924,
+      "output_tokens": 6001,
+      "reasoning_tokens": 4411,
+      "total_tokens": 14925
+    },
+    "timestamp": "2026-09-12T21:50:14.603484+00:00"
+  }
+}

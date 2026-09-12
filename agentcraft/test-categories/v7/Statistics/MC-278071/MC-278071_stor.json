@@ -1,0 +1,164 @@
+{
+  "bug_id": "MC-278071",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-278071.md",
+  "source_meta": {
+    "mojira categories": "Items; Statistics",
+    "project": "MC",
+    "issue key": "MC-278071",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-11-03T01:51:57.474-0700",
+    "updated": "2025-02-11T06:46:17.012-0800",
+    "resolution date": "2024-11-06T01:34:12.513-0800",
+    "affects versions": "24w44a; 1.21.3",
+    "fix versions": "24w45a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "1730623827775.jpg",
+    "_title": "\"minecraft.used:minecraft.trident\" doesn't increase when throwing a trident"
+  },
+  "stor": {
+    "bug_id": "MC-278071",
+    "recommended_version": "Minecraft Java Edition 1.21.3",
+    "environment": "A fresh single-player Java Edition 1.21.3 world in Survival mode with commands/cheats enabled. Use one player, default or known controls, and an unenchanted trident. No specific seed, coordinates, difficulty, server configuration, or graphics settings are stated in the report.",
+    "preconditions": [
+      "Launch the affected Java Edition release 1.21.3, not the unaffected comparison version 1.21.1.",
+      "Use a fresh world or a player profile in that world that has not previously used a trident, so the initial trident-use statistic is not confused with earlier throws. This is a deterministic test choice rather than a report-stated requirement.",
+      "Enable commands/cheats so the two supplied scoreboard commands and the deterministic item-give command can be executed.",
+      "Ensure the player has at least one empty inventory or hotbar slot.",
+      "The test trident must not have the Riptide enchantment.",
+      "Perform exactly one trident throw before inspecting the configured objective and Items statistics; do not use the trident for melee attacks or make additional throws."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open or create the single-player Survival world with commands enabled. After spawning, wait until nearby terrain is rendered and movement and chat input respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded Java Edition 1.21.3 world, can move normally, and has permission to execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Move to an open area and face a direction where a thrown trident will not immediately strike a nearby wall, entity, or block directly in front of the player.",
+        "exact_input": null,
+        "success_cue": "There is clear space in front of the crosshair for the trident projectile to leave the player's hand visibly.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press T to open in-game chat, enter the report's first scoreboard command with the leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives add MC-278071 minecraft.used:minecraft.trident",
+        "success_cue": "Command feedback confirms that the scoreboard objective named MC-278071 was created. If the command reports that the objective already exists, use a fresh world or remove the old objective before restarting the procedure.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat again, enter the report's sidebar-display command with the leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar MC-278071",
+        "success_cue": "A scoreboard sidebar headed MC-278071 is displayed on the right side of the gameplay HUD; the player list beneath the heading may initially be empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Obtain one deterministic, plain trident by opening chat with T, entering the give command with the leading slash, and pressing Enter.",
+        "exact_input": "/give @s minecraft:trident",
+        "success_cue": "Command feedback indicates that a trident was given, and one trident is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "If the trident is not already in the hotbar, press E to open the inventory and move the trident into any of the nine slots in the bottom hotbar row. Close the inventory with E or Esc. Select that hotbar slot using its number key, 1 through 9, or the mouse wheel.",
+        "exact_input": null,
+        "success_cue": "The trident is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Confirm that the selected trident is not enchanted with Riptide. If necessary, open the inventory with E and hover the pointer over the trident to inspect its tooltip; the tooltip must not list Riptide. Close the inventory afterward without enchanting the item.",
+        "exact_input": null,
+        "success_cue": "The selected test item is a trident with no Riptide enchantment.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Return the crosshair to the open space chosen earlier while keeping the unenchanted trident selected.",
+        "exact_input": null,
+        "success_cue": "The gameplay HUD is visible, the MC-278071 sidebar remains configured, and the player is holding the unenchanted trident while aiming into clear space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press and hold the Use Item control, which is right mouse button by default, until the trident has completed enough of its draw-back animation to be thrown. Continue holding briefly rather than clicking and immediately releasing.",
+        "exact_input": "Hold right mouse button",
+        "success_cue": "The player is visibly holding the trident in its charged throwing pose, ready for release.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Release the Use Item control once to throw the trident. Do not press the attack control and do not make another throw.",
+        "exact_input": "Release right mouse button",
+        "success_cue": "The trident leaves the player's hand as a projectile, confirming that one unenchanted trident throw has occurred.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait until the throwing animation has completed and normal player input is responsive. Do not retrieve, attack with, or throw the trident again. Leave the gameplay HUD visible briefly so the already-configured MC-278071 sidebar can be inspected before opening a menu.",
+        "exact_input": null,
+        "success_cue": "The single throw is complete, no second trident use has occurred, and the MC-278071 sidebar remains displayed on the gameplay HUD.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press Esc to open the pause menu, then select Statistics.",
+        "exact_input": "Esc -> Statistics",
+        "success_cue": "The Statistics screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select the Items tab on the Statistics screen.",
+        "exact_input": "Items",
+        "success_cue": "The item-statistics table is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Locate the trident entry in the Items statistics table. Scroll through the table if necessary, using the trident item icon and its hover tooltip to identify the correct entry, and bring its used-statistic value into view. Do not perform any additional trident actions.",
+        "exact_input": null,
+        "success_cue": "The trident entry and its usage-statistic field are visible in the Items tab, ready for the observation subsystem to evaluate.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "Exactly one unenchanted trident has been thrown after configuring the MC-278071 objective, no additional trident use has occurred, and the Statistics screen's Items tab is open with the trident usage entry in view. The observation subsystem should now evaluate the captured sidebar state and the displayed trident statistic.",
+    "uncertainties": [
+      "The report does not specify a game mode. Survival mode is selected as a practical test environment, while commands are enabled solely to execute the supplied scoreboard setup and deterministically provide the trident.",
+      "The report does not specify a world seed, coordinates, difficulty, or whether the test was originally performed in single-player or multiplayer; none appears necessary for the supplied reproduction.",
+      "The exact visual layout and sorting of the Items statistics table are not specified. The executor may need to scroll or hover over item icons to identify the trident entry.",
+      "The report says to give yourself a trident but does not prescribe an acquisition method. The /give @s minecraft:trident command is used as a deterministic practical implementation.",
+      "In a fresh world, a scoreboard objective backed by an automatically tracked statistic may show only its sidebar heading until the player has a score entry; an initially empty player list should not be treated as setup failure."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01c527a1d88edcb2016aa5ca4c34b487d0925a669aac9f1434",
+    "elapsed_seconds": 75.22,
+    "usage": {
+      "input_tokens": 8090,
+      "output_tokens": 4239,
+      "reasoning_tokens": 2588,
+      "total_tokens": 12329
+    },
+    "timestamp": "2026-09-12T21:56:39.157281+00:00"
+  }
+}

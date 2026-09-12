@@ -1,0 +1,180 @@
+{
+  "bug_id": "MC-256481",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-256481.md",
+  "source_meta": {
+    "mojira categories": "Statistics",
+    "project": "MC",
+    "issue key": "MC-256481",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-10-19T06:45:40.595-0700",
+    "updated": "2025-10-06T08:09:04.557-0700",
+    "resolution date": "2022-11-21T06:19:45.639-0800",
+    "affects versions": "22w42a; 22w43a; 22w44a; 22w45a",
+    "fix versions": "1.19.3 Pre-release 1",
+    "area": "Expansion A",
+    "labels": "chiseled_bookshelf",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-256481.mp4; MC-256481.png",
+    "issue links": "Relates:outward:MC-302587:“minecraft.used:minecraft.ITEM” doesn't increase when placing items onto shelves",
+    "_title": "minecraft.used:minecraft.BOOK_TYPE doesn't increase when placing books onto chiseled bookshelves"
+  },
+  "stor": {
+    "bug_id": "MC-256481",
+    "recommended_version": "Minecraft: Java Edition snapshot 22w45a, the latest snapshot listed as affected in the report. Do not perform the reproduction in 1.19.3 Pre-release 1, which the report lists as the fix version.",
+    "environment": "Fresh single-player Java Edition 22w45a world. Use Creative mode with commands enabled as a practical execution choice. Enable the built-in Update 1.20 experimental data pack during world creation so the Chiseled Bookshelf is available. No seed, coordinates, dedicated server, or multiple players are required by the report.",
+    "preconditions": [
+      "The Minecraft Launcher can start the historical Java Edition snapshot 22w45a.",
+      "Create a new world rather than reusing an existing world, because the required Update 1.20 experimental feature toggle is selected during world creation.",
+      "Use Creative mode so the required Lectern, Chiseled Bookshelf, and Book and Quill can be obtained deterministically without crafting.",
+      "Commands must be enabled because the reproduction uses two /scoreboard commands.",
+      "Use the default Use Item/Place Block input of right-click, or the equivalent rebound control.",
+      "Keep the sidebar visible throughout the lectern control interaction and the final chiseled-bookshelf interaction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft: Java Edition using the 22w45a snapshot installation. On the main menu, verify that the displayed game version is 22w45a before continuing.",
+        "exact_input": "22w45a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 22w45a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer, choose Create New World, set Game Mode to Creative, and ensure Allow Cheats is ON. The world name and seed may be left at their defaults because the report supplies neither a seed nor coordinates.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON",
+        "success_cue": "The Create New World screen is configured for Creative mode with commands permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Before creating the world, open the Data Packs screen. Move the built-in data pack identified as Update 1.20 from the available list to the selected/enabled list, then choose Done. Accept the experimental-feature warning if one appears.",
+        "exact_input": "Create New World -> Data Packs -> enable the built-in Update 1.20 data pack -> Done",
+        "success_cue": "The Update 1.20 built-in data pack is shown as selected, and the world-creation screen indicates or warns that experimental settings are enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Choose Create New World and wait until world generation and chunk loading finish. Do not begin setup while the loading screen is present.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the world, nearby terrain has rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat. Enter the report's objective-creation command exactly as written, including the leading slash, then press Enter.",
+        "exact_input": "/scoreboard objectives add UseWritableBook minecraft.used:minecraft.writable_book",
+        "success_cue": "Chat reports that the scoreboard objective UseWritableBook was created successfully; no red command error is shown.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open chat again. Enter the report's sidebar-display command exactly as written, including the leading slash, then press Enter.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar UseWritableBook",
+        "success_cue": "A scoreboard sidebar titled UseWritableBook is visible on the right side of the game screen. The player may not have a listed score until the tracked item is first used.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, identified by a magnifying-glass icon. Search for and move one Lectern, one Chiseled Bookshelf, and one Book and Quill into separate hotbar slots. The hotbar is the nine-slot row shown at the bottom of the screen during play. In commands and statistics, the Book and Quill is the writable_book item referenced by the report.",
+        "exact_input": "Search terms: Lectern; Chiseled Bookshelf; Book and Quill",
+        "success_cue": "The hotbar contains a Lectern, a Chiseled Bookshelf, and a Book and Quill.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory with E. Select the Lectern's hotbar slot using the corresponding number key or mouse wheel. Aim at the top surface of a nearby solid ground block and use right-click to place the Lectern.",
+        "exact_input": "Select Lectern -> right-click a ground block",
+        "success_cue": "A Lectern is placed in front of the player and can be reached without moving far away.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select the Chiseled Bookshelf's hotbar slot. Aim at the top surface of another ground block close to, but not replacing or obstructing, the Lectern. Right-click to place the Chiseled Bookshelf while facing the intended accessible side.",
+        "exact_input": "Select Chiseled Bookshelf -> right-click a nearby ground block",
+        "success_cue": "An empty Chiseled Bookshelf is placed near the Lectern, with its shelf-patterned front face visible and reachable by the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select the Book and Quill in the hotbar. Confirm that it is the active slot by checking that its icon is outlined in the hotbar and the item appears in the player's hand.",
+        "exact_input": "Select the hotbar slot containing Book and Quill",
+        "success_cue": "The Book and Quill is held in the player's active hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Aim the crosshair directly at the Lectern and use right-click once to place the Book and Quill onto it. If the lectern reading interface opens automatically, leave it open for the removal step after recording the sidebar value.",
+        "exact_input": "Right-click the empty Lectern while holding the Book and Quill",
+        "success_cue": "The Lectern visibly contains the book, and the Book and Quill is no longer held in the player's hand; the lectern reading interface may be open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Read the UseWritableBook sidebar and record the exact numeric score now displayed beside the player's name. This is the control value produced after using the Book and Quill on the Lectern; do not proceed until a numeric player entry is visible.",
+        "exact_input": null,
+        "success_cue": "The player's numeric UseWritableBook score is visible and has been recorded for later comparison.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Retrieve the Book and Quill from the Lectern. If the lectern reading interface is already open, click its Take Book button. Otherwise, right-click the occupied Lectern to open the reading interface and then click Take Book.",
+        "exact_input": "Occupied Lectern -> right-click if necessary -> Take Book",
+        "success_cue": "The Lectern is visibly empty and the Book and Quill has returned to the player's inventory or cursor.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "If the retrieved Book and Quill is not already in a hotbar slot, press E, move it into an empty hotbar slot, and close the inventory. Select that slot so the Book and Quill is held again.",
+        "exact_input": "Select the hotbar slot containing Book and Quill",
+        "success_cue": "The same type of writable item, Book and Quill, is held in the active hand and is ready for use on the Chiseled Bookshelf.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Stand close enough to interact with the Chiseled Bookshelf. Aim at the shelf-patterned front face rather than its side, top, or a neighboring block. Confirm visually that the bookshelf is still empty and that the UseWritableBook sidebar remains visible.",
+        "exact_input": null,
+        "success_cue": "The crosshair is on the empty front face of the Chiseled Bookshelf, the Book and Quill is held, and the scoreboard sidebar is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Record the exact UseWritableBook score displayed immediately before the bookshelf interaction. Without performing any additional item-use action, right-click the front face of the empty Chiseled Bookshelf once while holding the Book and Quill.",
+        "exact_input": "Right-click the front face of the empty Chiseled Bookshelf while holding the Book and Quill",
+        "success_cue": "One Book and Quill has been inserted into the Chiseled Bookshelf and the single interaction has completed; do not perform another interaction before handing off.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The Book and Quill has just been inserted into the previously empty Chiseled Bookshelf with one right-click, the pre-interaction UseWritableBook score has been recorded, and the UseWritableBook sidebar remains visible. Hand control to the observation subsystem immediately, before removing the book or using another item.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, server type, or multiplayer requirement. A fresh single-player Creative world with commands enabled is used as the simplest deterministic execution path.",
+      "The Chiseled Bookshelf is an experimental Update 1.20 feature in the affected snapshots and therefore requires the built-in Update 1.20 data pack to be enabled during world creation, although the report does not explicitly mention this setup requirement.",
+      "The report uses both the spelling 'writeable book' and the display name 'book and quill.' The exact tracked item is preserved from its command criterion: minecraft:writable_book.",
+      "The report does not explicitly state whether the identical item instance must be moved from the Lectern to the Chiseled Bookshelf. This plan retrieves and reuses the Book and Quill to follow the stated order as closely as possible.",
+      "The exact capitalization or presentation of the built-in Update 1.20 data pack label may vary with language settings, but it is the built-in pack that enables the 1.20 experimental features, including the Chiseled Bookshelf."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0b9620a33e34f420016aa5c95fbca487d0852c87275b90099d",
+    "elapsed_seconds": 109.61,
+    "usage": {
+      "input_tokens": 41738,
+      "output_tokens": 5111,
+      "reasoning_tokens": 4249,
+      "total_tokens": 46849
+    },
+    "timestamp": "2026-09-12T21:53:17.179963+00:00"
+  }
+}
