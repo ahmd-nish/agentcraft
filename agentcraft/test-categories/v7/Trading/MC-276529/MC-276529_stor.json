@@ -1,0 +1,286 @@
+{
+  "bug_id": "MC-276529",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-276529.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Trading; UI",
+    "project": "MC",
+    "issue key": "MC-276529",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-09-08T13:52:42.126-0700",
+    "updated": "2025-04-26T16:43:05.170-0700",
+    "resolution date": "2024-11-18T06:10:59.132-0800",
+    "affects versions": "1.21.1; 24w36a; 24w37a; 24w38a; 1.21.2",
+    "fix versions": "24w44a",
+    "area": "Gameplay",
+    "labels": "villager; witch",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-276529.mp4; MC-276529.png",
+    "issue links": "Relates:outward:MC-276378:Converted witches lose their armor yet are still protected by it",
+    "_title": "Converting a villager into a witch does not close the trading GUI"
+  },
+  "stor": {
+    "bug_id": "MC-276529",
+    "recommended_version": "Minecraft Java Edition 1.21.2 (explicitly listed as affected in the report)",
+    "environment": "Unmodified Minecraft Java Edition 1.21.2 in a single-player Creative-mode world using the integrated server, with commands enabled. Perform the reproduction in the Overworld on flat, open ground with no roof above the target villager and no other villagers nearby. Use Normal difficulty. The instructions assume default keyboard and mouse controls; if controls are rebound, use the equivalent Open Chat, Use Item/Place Block, Jump/Fly, and Sneak/Descend actions.",
+    "preconditions": [
+      "The launcher can start the exact Java Edition 1.21.2 installation rather than a later release or snapshot.",
+      "The test world permits commands and command-block use.",
+      "The player is in Creative mode so the pen and delayed command-block circuit can be built without gathering materials.",
+      "Use a new or otherwise controlled area with no other villagers in loaded chunks; the command block selects the nearest villager.",
+      "Keep the target pen and redstone circuit within the same normally loaded area.",
+      "Do not put a roof over the target pen.",
+      "The lever must remain off until the actual trigger sequence."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the exact affected Minecraft Java Edition installation from the launcher.",
+        "exact_input": "Minecraft Java Edition 1.21.2",
+        "success_cue": "The main menu displays Minecraft Java Edition 1.21.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world. Set the game mode to Creative and enable commands before creating the world. A flat or Superflat world is preferred, but is not required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Commands: On -> Create New World",
+        "success_cue": "World generation begins with Creative mode and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for world loading to finish before entering commands or building anything.",
+        "exact_input": null,
+        "success_cue": "Surrounding terrain is rendered, the player can move normally, and chat opens without loading delay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open chat, enter the difficulty command including the leading slash, and press Enter.",
+        "exact_input": "/difficulty normal",
+        "success_cue": "Chat confirms that the difficulty is Normal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open chat, clear the weather to prevent unrelated natural lightning during setup, and press Enter.",
+        "exact_input": "/weather clear",
+        "success_cue": "The sky is clear and chat confirms the weather change.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open chat and disable the weather cycle so the controlled setup remains clear.",
+        "exact_input": "/gamerule doWeatherCycle false",
+        "success_cue": "Chat confirms that doWeatherCycle is now false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open chat and set the time to daytime so an unemployed villager can claim a workstation.",
+        "exact_input": "/time set day",
+        "success_cue": "The world is visibly in daytime and chat confirms the time change.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open chat and freeze the daylight cycle while it is daytime.",
+        "exact_input": "/gamerule doDaylightCycle false",
+        "success_cue": "Chat confirms that doDaylightCycle is now false and daylight remains stable.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move to a level outdoor workspace away from villages and other villagers. Leave at least 25 blocks of unobstructed ground in one direction for the repeater line.",
+        "exact_input": "W/A/S/D; double-tap Space to fly if necessary",
+        "success_cue": "There is enough flat space for a small villager pen and a straight 20-repeater line, with no other villagers visible nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Open chat and give yourself ten oak fences for the holding pen.",
+        "exact_input": "/give @s minecraft:oak_fence 10",
+        "success_cue": "Ten oak fences are present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Open chat and give yourself one lectern, which will be used as the villager's workstation.",
+        "exact_input": "/give @s minecraft:lectern 1",
+        "success_cue": "A lectern is present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Open chat and give yourself one lever for activating the delayed circuit.",
+        "exact_input": "/give @s minecraft:lever 1",
+        "success_cue": "A lever is present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Open chat and give yourself twenty redstone repeaters.",
+        "exact_input": "/give @s minecraft:repeater 20",
+        "success_cue": "Twenty redstone repeaters are present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Open chat and give yourself one command block.",
+        "exact_input": "/give @s minecraft:command_block 1",
+        "success_cue": "A command block is present in the player's inventory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Select the oak fences and place all ten as the perimeter of a 4-by-3-block rectangle. The completed perimeter must leave exactly two adjacent ground blocks as its 2-by-1 interior. Do not add a roof.",
+        "exact_input": "Right-click once for each fence placement",
+        "success_cue": "A closed fence pen with a two-block interior and open sky above it is complete.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select the lectern and place it on one of the two ground blocks inside the pen. Leave the other interior block empty for the villager.",
+        "exact_input": "Right-click the chosen interior ground block",
+        "success_cue": "The lectern occupies one interior cell and the adjacent interior cell remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Use Creative flight to enter the empty interior cell without breaking the fence. Double-tap Space to start flying, move over the fence, and use Left Shift to descend into the empty cell.",
+        "exact_input": "Double-tap Space -> movement keys -> Left Shift",
+        "success_cue": "The player is standing in the pen's empty interior cell directly beside the lectern.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "While standing in the empty interior cell, press T, summon a default adult villager at the player's current position using the exact command, and press Enter.",
+        "exact_input": "/summon minecraft:villager ~ ~ ~",
+        "success_cue": "An adult villager appears in the pen beside the lectern.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Immediately use Creative flight to leave the pen without removing any fences or the lectern.",
+        "exact_input": "Double-tap Space -> movement keys -> Left Shift to land outside",
+        "success_cue": "The player is outside the closed pen while the villager and lectern remain inside.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Wait for the villager to claim the lectern and become a librarian. Do not proceed while it still has the plain unemployed appearance.",
+        "exact_input": null,
+        "success_cue": "Green job-site particles may appear, and the villager visibly wears the librarian profession outfit, confirming that its trading interface is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Select the lever and place it on the ground immediately outside the fence, close enough that the player can activate it and then target the villager without walking more than a few blocks. Leave the lever in its initial off position.",
+        "exact_input": "Right-click the ground beside the pen",
+        "success_cue": "An unpowered lever is present beside the pen and the villager can be reached with the Use action from the same general position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Select the repeaters. Starting directly adjacent to the lever, place all twenty in one continuous straight line extending away from the pen. Each repeater must face away from the lever so its output leads toward the next repeater. Stand behind each placement and face down the intended signal direction when placing it.",
+        "exact_input": "Right-click once per repeater while facing away from the lever",
+        "success_cue": "A continuous line runs from the lever through exactly twenty repeaters, and every repeater points toward the far end of the line.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Set every repeater to its maximum four-redstone-tick delay. Starting from the first repeater, right-click each repeater exactly three times without breaking or changing its orientation.",
+        "exact_input": "Right-click each of the 20 repeaters three times",
+        "success_cue": "The two small repeater torches on every repeater are at their maximum separation; twenty maximum-delay repeaters provide approximately eight seconds before the command block is powered.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 24,
+        "action": "Select the command block and place it directly against the output side of the twentieth repeater so that the final repeater points into and powers the command block.",
+        "exact_input": "Right-click the ground immediately beyond repeater 20",
+        "success_cue": "The command block is directly adjacent to the last repeater at the output end of the line.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 25,
+        "action": "Right-click the command block to open its configuration interface.",
+        "exact_input": "Right-click the command block",
+        "success_cue": "The command-block configuration screen is open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 26,
+        "action": "Enter the lightning command exactly as shown, without a leading slash. Keep the command block set to Impulse, Unconditional, and Needs Redstone, then click Done. The selector intentionally uses the nearest villager to the command block, so the target must be the only nearby villager.",
+        "exact_input": "execute at @e[type=minecraft:villager,sort=nearest,limit=1] run summon minecraft:lightning_bolt ~ ~ ~",
+        "success_cue": "The configuration screen closes, the command block remains unpowered, and its saved command will summon lightning at the nearest villager when the delayed signal arrives.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 27,
+        "action": "Return to the lever beside the pen. Select an empty hotbar slot so no held item interferes when using the villager. The hotbar is the row of nine item slots at the bottom of the screen; use the number key for an empty slot or the mouse wheel to select it.",
+        "exact_input": "Number key for an empty hotbar slot, or mouse wheel",
+        "success_cue": "The player's hand is empty, the lever is within reach, and the librarian can be targeted immediately afterward.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 28,
+        "action": "Aim at the lever and activate the delayed command-block setup using the Use action. Do not activate it more than once.",
+        "exact_input": "Right-click the lever",
+        "success_cue": "The lever visibly switches to its on position and the first repeater begins the delayed signal sequence.",
+        "source_basis": "report"
+      },
+      {
+        "step": 29,
+        "action": "Immediately turn toward the employed villager, aim directly at its exposed upper body or head over the fence, and use the villager before the delayed signal reaches the command block. The default Use action is right-click.",
+        "exact_input": "Right-click the librarian villager",
+        "success_cue": "The villager trading interface is open, showing its trade offers, before the lightning command executes.",
+        "source_basis": "report"
+      },
+      {
+        "step": 30,
+        "action": "Keep the trading interface open. Do not press Esc, the inventory key, or any control that closes the interface. Do not pause the game.",
+        "exact_input": null,
+        "success_cue": "The trading interface remains the active screen while the delayed redstone signal continues toward the command block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 31,
+        "action": "Wait in the open trading interface until the twenty-repeaters delay finishes and the command block summons lightning at the targeted villager. Stop further player input as soon as the controlled lightning event occurs.",
+        "exact_input": null,
+        "success_cue": "A lightning flash and thunder event has just occurred at the target villager while its trading interface was already open; the trigger has completed and observation should begin immediately.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 31,
+    "handoff_condition": "The target librarian's trading interface was opened before the delayed command fired, and command-summoned lightning has just struck the target. Keep the current screen and player state unchanged and hand control to the observation subsystem immediately.",
+    "uncertainties": [
+      "The report does not provide the original command-block command, circuit geometry, or delay length. This plan uses a deterministic nearest-villager execute command and twenty maximum-delay repeaters, producing approximately eight seconds to open the interface.",
+      "The report does not specify the villager profession. A lectern and librarian were selected as the simplest deterministic way to satisfy the stated requirement that the villager have a job.",
+      "No world seed, coordinates, or server requirement are supplied. The plan therefore uses a controlled single-player Creative world and an arbitrary clear workspace.",
+      "The attachment contents are not included in the supplied report, so their exact build arrangement cannot be preserved.",
+      "Villager workstation claiming can occasionally take a short time. The plan freezes the world during daytime and requires visible profession acquisition before the circuit is activated."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_01685c6b1d0bd84b016aa5c1410d7487d0876ae2bb910fdf4d",
+    "elapsed_seconds": 188.77,
+    "usage": {
+      "input_tokens": 24777,
+      "output_tokens": 11293,
+      "reasoning_tokens": 8481,
+      "total_tokens": 36070
+    },
+    "timestamp": "2026-09-12T21:19:57.693020+00:00"
+  }
+}

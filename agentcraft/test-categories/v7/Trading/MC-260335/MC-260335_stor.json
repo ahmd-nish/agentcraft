@@ -1,0 +1,206 @@
+{
+  "bug_id": "MC-260335",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-260335.md",
+  "source_meta": {
+    "mojira categories": "Trading",
+    "project": "MC",
+    "issue key": "MC-260335",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2023-02-18T07:38:00.557-0800",
+    "updated": "2025-03-20T23:15:12.698-0700",
+    "resolution date": "2023-02-24T08:10:52.589-0800",
+    "affects versions": "23w07a",
+    "fix versions": "1.19.4 Pre-release 2",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "minecraft.webm",
+    "_title": "Clicking with an item that is out of stock in the villager trading menu with sufficient payment will allow purchase of the item regardless"
+  },
+  "stor": {
+    "bug_id": "MC-260335",
+    "recommended_version": "Minecraft: Java Edition snapshot 23w07a exactly",
+    "environment": "A fresh, disposable single-player world running Java Edition snapshot 23w07a. Use Creative mode with commands enabled only for deterministic setup, then switch to Survival mode before interacting with the villager. Use an unmodified client with standard mouse-based inventory controls.",
+    "preconditions": [
+      "Install and launch snapshot 23w07a in a separate launcher installation or game directory so the test does not affect normal worlds.",
+      "Create a new disposable world rather than opening an existing world in this snapshot.",
+      "Commands/cheats must be enabled so the custom villager, payment items, and Survival mode can be established deterministically.",
+      "Do not use mods, datapacks, or resource packs that change villagers, trading, inventory screens, or item behavior.",
+      "The test uses wheat as the villager's sold item because the report indicates that the affected item should be stackable.",
+      "Keep at least one empty player-inventory slot available for the purchased wheat."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft: Java Edition using the exact snapshot installation 23w07a.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running version as 23w07a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a fresh single-player world. Set the game mode to Creative and ensure commands or cheats are enabled before creating the world. No particular seed or experimental feature is required.",
+        "exact_input": null,
+        "success_cue": "The player has entered a new world in Creative mode and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Surrounding chunks are visible and the player can move without initial world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press the Open Chat control, which is T by default.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "In chat, enter the supplied command exactly, including the leading slash, and press Enter. This summons a farmer villager approximately two blocks away with one custom trade: one emerald for one wheat, with only one use in stock.",
+        "exact_input": "/summon minecraft:villager ~ ~ ~2 {VillagerData:{profession:\"minecraft:farmer\",level:2,type:\"minecraft:plains\"},Offers:{Recipes:[{buy:{id:\"minecraft:emerald\",Count:1b},sell:{id:\"minecraft:wheat\",Count:1b},uses:0,maxUses:1,rewardExp:0b}]}}",
+        "success_cue": "A farmer villager appears approximately two blocks from the player, and chat does not display a command syntax error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Press T again to open chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Give the player one full stack of emeralds by entering the command exactly, including the leading slash, and pressing Enter.",
+        "exact_input": "/give @s minecraft:emerald 64",
+        "success_cue": "A stack of 64 emeralds is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T again to open chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Switch to Survival mode by entering the command exactly, including the leading slash, and pressing Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The player is in Survival mode; the normal health and hunger HUD is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Face the summoned farmer villager and use the Interact control on it, which is right-click by default.",
+        "exact_input": "Right-click",
+        "success_cue": "The villager trading menu is open and shows a single offer exchanging one emerald for one wheat.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Identify the three trade slots above the player inventory. From left to right, they are the first payment slot, the optional second payment slot, and the third or result slot on the right side of the trade arrow. Also identify the corresponding offer row in the left sidebar. Do not click the offer row, because the full emerald stack should be placed manually.",
+        "exact_input": null,
+        "success_cue": "The first payment slot and the rightmost third/result slot can be targeted without closing the menu.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Left-click the stack of 64 emeralds in the player inventory or hotbar to attach the full stack to the mouse cursor.",
+        "exact_input": "Left-click the 64-emerald stack",
+        "success_cue": "The emerald stack icon follows the mouse cursor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Move the cursor to the first, leftmost payment slot and left-click once to place the full emerald stack into that slot.",
+        "exact_input": "Left-click the first payment slot",
+        "success_cue": "The first payment slot contains the emerald stack, and one wheat appears in the third/result slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Perform exactly one ordinary trade by left-clicking the wheat in the third/result slot once. Do not Shift-click and do not repeat the click.",
+        "exact_input": "Left-click the wheat in the third/result slot once",
+        "success_cue": "One wheat is attached to the cursor, one emerald has been consumed, and the remaining emeralds are still available as payment.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Move the cursor to an empty slot in the player inventory and left-click once to place the purchased wheat there.",
+        "exact_input": "Left-click an empty player-inventory slot",
+        "success_cue": "The wheat occupies an inventory slot and the mouse cursor is empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Wait for the trading menu to update after the one-use trade is exhausted.",
+        "exact_input": null,
+        "success_cue": "A red X is displayed over the arrow for the wheat offer in the left sidebar, and the third/result slot is empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Confirm that sufficient payment remains in the first payment slot. The expected setup leaves 63 emeralds there. If the emeralds were returned to the player inventory, manually move at least one emerald back into the first payment slot without closing the trading menu.",
+        "exact_input": null,
+        "success_cue": "At least one emerald is present in the first payment slot while the offer still displays its red out-of-stock X and the third/result slot remains empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Left-click the wheat that was placed in the player inventory to pick it up with the mouse. Release the mouse button after the click; do not use Shift-click or right-click.",
+        "exact_input": "Left-click the wheat in the player inventory",
+        "success_cue": "The wheat icon follows the cursor and its former inventory slot is empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Move the cursor carrying the wheat over the empty third/result slot. Do not press a mouse button while moving the cursor.",
+        "exact_input": null,
+        "success_cue": "The cursor is carrying wheat and is positioned directly over the empty third/result slot; sufficient emerald payment remains in the first slot and the offer remains marked with a red X.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "While still carrying the wheat on the cursor, left-click the empty third/result slot exactly once. Do not perform any additional inventory action after this click.",
+        "exact_input": "Left-click the empty third/result slot once",
+        "success_cue": "The specified trigger click has been issued while the cursor carried wheat, the out-of-stock offer was selected, and sufficient payment was present.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The player has just left-clicked the empty third/result slot while carrying wheat on the cursor, with at least one emerald in the first payment slot and the trade row marked out of stock by a red X. Keep the trading menu open and hand control immediately to the observation subsystem.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, or whether multiplayer is required. A fresh single-player world with Creative setup followed by Survival trading is a practical deterministic choice.",
+      "The custom one-use emerald-for-wheat villager is not supplied by the report. It is a deterministic setup replacement for finding, leveling, and exhausting a naturally generated villager trade.",
+      "The reporter states that the issue worked on stackable items to their knowledge but does not establish whether non-stackable items are unaffected. This plan therefore uses stackable wheat and does not test the non-stackable case.",
+      "The wording 'drag it over' is interpreted as picking the wheat up with one left-click, releasing the mouse button, moving the carried stack over the result slot, and then performing the separate left-click described by the report.",
+      "The attached video was not available in the supplied report contents, so no additional timing or cursor-motion requirements could be extracted from it."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_003cd974cad313d2016aa5c00ab4e087d0997cf9938f768681",
+    "elapsed_seconds": 133.74,
+    "usage": {
+      "input_tokens": 35284,
+      "output_tokens": 8584,
+      "reasoning_tokens": 6638,
+      "total_tokens": 43868
+    },
+    "timestamp": "2026-09-12T21:13:52.330109+00:00"
+  }
+}

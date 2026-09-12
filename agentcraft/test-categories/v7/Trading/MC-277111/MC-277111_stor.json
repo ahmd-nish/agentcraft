@@ -1,0 +1,177 @@
+{
+  "bug_id": "MC-277111",
+  "category": "Trading",
+  "source_md": "[Trading] - MC-277111.md",
+  "source_meta": {
+    "mojira categories": "Trading",
+    "project": "MC",
+    "issue key": "MC-277111",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-10-02T10:44:45.100-0700",
+    "updated": "2025-04-26T16:58:27.730-0700",
+    "resolution date": "2024-10-07T04:59:14.248-0700",
+    "affects versions": "24w40a",
+    "fix versions": "1.21.2 Pre-Release 1",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2024-10-02_18.41.31.png",
+    "_title": "Wandering traders can sell pale oak saplings even when they're disabled"
+  },
+  "stor": {
+    "bug_id": "MC-277111",
+    "recommended_version": "Minecraft: Java Edition snapshot 24w40a",
+    "environment": "A new, disposable singleplayer Java Edition 24w40a world using the integrated server. Use Creative mode with commands allowed. The Winter Drop experiment must remain disabled; no datapacks or mods are required.",
+    "preconditions": [
+      "Configure a Minecraft Launcher installation to run the exact affected snapshot, 24w40a.",
+      "Use a newly created test world rather than upgrading an existing world, so its experiment settings are unambiguous.",
+      "Keep the Winter Drop experiment disabled while creating the world. For the most isolated setup, leave every experiment disabled.",
+      "Allow commands so wandering traders can be spawned and removed quickly without waiting for natural spawning.",
+      "The relevant trade is randomly selected. The report provides no seed, fixed attempt count, or deterministic trader data, so multiple freshly spawned traders may need to be sampled.",
+      "Do not inject a Pale Oak Sapling trade through entity NBT or commands; each trader must use its naturally randomized offers."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation for the exact Java Edition snapshot 24w40a, then start the game with that installation.",
+        "exact_input": "24w40a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 24w40a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open Singleplayer and select Create New World.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "On the Game tab, set Game Mode to Creative. This avoids survival preparation and permits unrestricted interaction during repeated trials.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world configuration displays Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "On the Game tab, set Allow Commands to On so the trader summon and cleanup commands can be executed from in-game chat.",
+        "exact_input": "Allow Commands: On",
+        "success_cue": "The world configuration displays that commands are allowed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the experiment configuration from the world-creation screen by selecting More, then Experiments.",
+        "exact_input": "More -> Experiments",
+        "success_cue": "The Experiments screen is open and includes an entry named Winter Drop.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Ensure the toggle beside Winter Drop is Off. Do not enable it. For an isolated test, also leave all other experiment toggles Off, then select Done to return to world creation.",
+        "exact_input": "Winter Drop: Off",
+        "success_cue": "The world-creation screen is restored without Winter Drop having been enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select Create New World.",
+        "exact_input": "Create New World",
+        "success_cue": "The player enters the newly generated world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Wait until the surrounding terrain has rendered and player movement responds normally. Do not execute the test while the initial world-loading overlay or severe chunk-loading delay remains.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, the loading overlay is gone, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move to a reasonably flat, unobstructed location with at least two blocks of vertical clearance and free space within a few blocks of the player. Stop moving before summoning the trader.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "There is a clear standing position near the player where a wandering trader can appear and be targeted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press the default Open Chat key to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat command input is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Enter the wandering trader summon command exactly as written, including the leading slash, and press Enter. The relative coordinates place the trader two blocks toward positive Z from the player.",
+        "exact_input": "/summon minecraft:wandering_trader ~ ~ ~2",
+        "success_cue": "A new wandering trader is visible within a few blocks of the player, and the command does not report a syntax or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Immediately aim the crosshair at the newly summoned wandering trader and press the Use Item/Place Block control once; with default mouse controls, this is right-click. Do not attack the trader and do not supply custom trade NBT.",
+        "exact_input": "right-click",
+        "success_cue": "The wandering trader trading interface is open and its list of randomized offers is available for the observation subsystem to inspect.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "If the observation subsystem reports that another randomized trader must be sampled, press Esc to close the current trading interface. Otherwise, leave the interface open and end the reproduction sequence.",
+        "exact_input": "Esc",
+        "success_cue": "When a retry is required, the trading interface is closed and normal world control has returned.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "For a requested retry, press T to open chat for cleanup.",
+        "exact_input": "T",
+        "success_cue": "The chat command input is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Remove the nearest wandering trader so traders do not accumulate and obstruct targeting. Enter the cleanup command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/kill @e[type=minecraft:wandering_trader,sort=nearest,limit=1]",
+        "success_cue": "The previously inspected wandering trader is no longer present, leaving the test area ready for a fresh randomized trader.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Repeat steps 10 through 15 for freshly summoned wandering traders. Hand control to the observation subsystem immediately after step 12 on every attempt; continue the loop only when that subsystem requests another sample.",
+        "exact_input": "Repeat steps 10-15",
+        "success_cue": "Each trial opens the trade interface of one newly summoned trader, and rejected samples are removed before the next trial.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "A newly summoned wandering trader's trading interface has just been opened in a 24w40a world created with Winter Drop disabled. The randomized offer list is visible and ready for the observation subsystem to inspect. If the observation subsystem requests another sample, resume at step 13.",
+    "uncertainties": [
+      "The report does not state how many traders were required before the relevant randomized offer appeared; no maximum attempt count is supported by the report.",
+      "The report does not specify a game mode or whether spawn eggs or commands were used. Creative mode with the summon command is a practical choice supported by the report's permitted command method.",
+      "The report supplies no world seed, coordinates, or trader NBT that deterministically selects the relevant offer. Random offer sampling must therefore be preserved.",
+      "Leaving every experiment disabled is an isolation choice; the report strictly requires only that Winter Drop be disabled."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_05e1c3affca9054f016aa5c1fdd36487d09cc6c74d2d851763",
+    "elapsed_seconds": 96.79,
+    "usage": {
+      "input_tokens": 34851,
+      "output_tokens": 5766,
+      "reasoning_tokens": 4267,
+      "total_tokens": 40617
+    },
+    "timestamp": "2026-09-12T21:21:34.493964+00:00"
+  }
+}
