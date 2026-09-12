@@ -1,0 +1,191 @@
+{
+  "bug_id": "MC-245854",
+  "category": "Text",
+  "source_md": "[Text] - MC-245854.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-245854",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-12-20T11:28:19.311-0800",
+    "updated": "2025-10-14T04:44:45.900-0700",
+    "resolution date": "2025-10-14T04:44:45.824-0700",
+    "affects versions": "1.18.1; 1.19; 1.19.1; 1.19.2; 1.21.4",
+    "fix versions": "25w41a",
+    "area": "Platform",
+    "labels": "fast-graphics; graphics-setting; text",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2021-11-12_19.04.07.png; 2025-10-14_12.43.49.png",
+    "_title": "Fast graphics description is slightly misleading"
+  },
+  "stor": {
+    "bug_id": "MC-245854",
+    "affected_versions": [
+      "1.18.1",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "1.21.4"
+    ],
+    "recommended_version": "1.18.1",
+    "environment": "Minecraft Java Edition 1.18.1 in a vanilla single-player Creative-mode world, using English (US), the default resource pack, no mods or shaders, and a display area containing leaves and representative transparent blocks.",
+    "preconditions": [
+      "Install and launch the exact Minecraft Java Edition version 1.18.1, which is the first version listed as affected.",
+      "Use the vanilla client without mods, shaders, or resource packs that replace menu text or block textures.",
+      "Use English (US) so the affected English graphics tooltip can be inspected.",
+      "A new Creative-mode world is sufficient; the report does not require a particular seed, coordinates, dimension, difficulty, or server.",
+      "Prepare representative blocks before changing the graphics setting so the same blocks can be viewed from the same position under both Fancy and Fast graphics."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation for Java Edition 1.18.1, then start the game with that exact version.",
+        "exact_input": "1.18.1",
+        "success_cue": "The Minecraft Java Edition main menu is open and the lower-left version text identifies version 1.18.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open Options, select Language, choose English (US), and select Done. This ensures the affected English translation string is used.",
+        "exact_input": "English (US)",
+        "success_cue": "The main menu and its buttons are displayed in English.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, then Create New World. Change Game Mode until it reads Creative, leave the seed and world type at their defaults, and select Create New World.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The player enters a newly generated world and can access Creative inventory without crafting or gathering materials.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait before continuing until nearby terrain has rendered and player movement and camera rotation respond normally.",
+        "exact_input": null,
+        "success_cue": "The area around the player is rendered, the loading overlay is gone, and controls respond without chunk-loading interruption.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press the inventory action, E by default, to open the Creative inventory. Use the Search Items tab and place Oak Leaves, Ice, White Stained Glass, a Slime Block, and a Honey Block into separate hotbar slots. To obtain each block, enter its display name in the search field and click or drag its icon into the hotbar at the bottom of the inventory.",
+        "exact_input": "Oak Leaves\nIce\nWhite Stained Glass\nSlime Block\nHoney Block",
+        "success_cue": "All five block types are visible in separate hotbar slots at the bottom of the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Close the inventory with E or Esc. In an open, well-lit area, place the blocks as an easily visible comparison display. Make a two-block-high Oak Leaves column and separate two-block-high columns of Ice, White Stained Glass, Slime Block, and Honey Block, leaving at least one block of space between columns. Arrange the upper blocks with open terrain or sky behind them so transparency is easy to inspect.",
+        "exact_input": null,
+        "success_cue": "A row of separated, two-block-high sample columns is present, including Oak Leaves and each of the four comparison blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Stand several blocks in front of the display and aim the camera so every upper sample block is simultaneously visible. Do not change this viewing position more than necessary during the comparison.",
+        "exact_input": null,
+        "success_cue": "Oak Leaves, Ice, White Stained Glass, Slime Block, and Honey Block are all visible in one view with background scenery visible behind or around them.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press Esc to open the pause menu, select Options, and then select Video Settings.",
+        "exact_input": "Esc -> Options -> Video Settings",
+        "success_cue": "The Video Settings screen is open and contains a button whose label begins with Graphics.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Find the Graphics setting button. Left-click it as many times as necessary until the button reads Graphics: Fancy. Do not select Fabulous for this baseline.",
+        "exact_input": "Graphics: Fancy",
+        "success_cue": "The graphics button visibly reads Graphics: Fancy.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select Done to leave Video Settings, select Done again if returned to the Options screen, and then select Back to Game if the pause menu remains open.",
+        "exact_input": "Done -> Done -> Back to Game",
+        "success_cue": "Gameplay resumes at the prepared comparison display with Graphics set to Fancy.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Keep the prepared blocks in view long enough to establish their Fancy-graphics appearance. Retain the same position and camera angle for the later Fast-graphics view; do not remove or replace any sample blocks.",
+        "exact_input": null,
+        "success_cue": "The complete comparison display remains visible from a repeatable viewing position while Graphics is set to Fancy.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press Esc, select Options, and select Video Settings again.",
+        "exact_input": "Esc -> Options -> Video Settings",
+        "success_cue": "The Video Settings screen is open again and the Graphics button currently reads Graphics: Fancy.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Move the cursor to the Graphics button and left-click it as many times as necessary until it reads Graphics: Fast.",
+        "exact_input": "Graphics: Fast",
+        "success_cue": "The graphics button visibly reads Graphics: Fast.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Select Done to leave Video Settings, select Done again if the Options screen appears, and select Back to Game if necessary.",
+        "exact_input": "Done -> Done -> Back to Game",
+        "success_cue": "Gameplay resumes with Graphics set to Fast and the prepared block display still present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Return the camera to the same position and angle used for the Fancy view, with the Oak Leaves and all comparison blocks visible. Pause briefly after the menu closes so chunk rendering and block rendering are stable.",
+        "exact_input": null,
+        "success_cue": "The same Oak Leaves, Ice, White Stained Glass, Slime Block, and Honey Block display is visible under Fast graphics, and the world is fully responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Without changing the Graphics setting, press Esc, select Options, and select Video Settings one final time.",
+        "exact_input": "Esc -> Options -> Video Settings",
+        "success_cue": "The Video Settings screen is open and the graphics button reads Graphics: Fast.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Move the mouse cursor onto the Graphics: Fast button without clicking it, and keep the cursor stationary until the setting's tooltip appears. Leave the cursor in place so the tooltip remains available for the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "The tooltip associated with Graphics: Fast is fully visible beside the hovered button and is not obscured by the cursor.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "Graphics remains set to Fast, and the cursor is stationary over the Graphics: Fast button with its complete tooltip visible. Begin observing the tooltip text; the prepared world also remains available for a same-angle block-rendering comparison after closing the menus.",
+    "uncertainties": [
+      "The report does not specify a game mode, seed, coordinates, world type, or multiplayer requirement. A default single-player Creative world is selected only to make the visual display deterministic and quick to prepare.",
+      "The report does not prescribe a particular set or arrangement of comparison blocks. Oak Leaves are required by the report; Ice, stained glass, slime blocks, and honey blocks are used as representative transparent blocks because those block types are mentioned in the report's discussion, but this finite display cannot exhaustively test every block family.",
+      "Forcing Graphics to Fancy before selecting Fast is an added comparison baseline, not an explicit report requirement.",
+      "The report's original sequence displays the Fast tooltip before returning to the world. The plan reopens Video Settings and hovers the button again at the end so the transient tooltip remains visible at handoff without removing the report's world-viewing step."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_074fabb63f2340e2016aa5dfcf4b5087d0abb526519bfc561c",
+    "elapsed_seconds": 82.06,
+    "usage": {
+      "input_tokens": 8651,
+      "output_tokens": 5111,
+      "reasoning_tokens": 3317,
+      "total_tokens": 13762
+    },
+    "timestamp": "2026-09-12T23:28:33.208373+00:00"
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "bug_id": "MC-302719",
+  "category": "Text",
+  "source_md": "[Text] - MC-302719.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-302719",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2025-10-09T10:02:38.774-0700",
+    "updated": "2026-03-11T03:48:15.326-0700",
+    "resolution date": "2025-10-15T01:22:00.786-0700",
+    "affects versions": "25w41a",
+    "fix versions": "25w43a",
+    "area": "Platform HC",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-302719.png",
+    "_title": "Debug key binds text is improperly capitalized"
+  },
+  "stor": {
+    "bug_id": "MC-302719",
+    "affected_versions": [
+      "25w41a"
+    ],
+    "recommended_version": "25w41a",
+    "environment": "Minecraft Java Edition snapshot 25w41a in a single-player world, using the English (US) language and with commands/cheats enabled. No particular seed, game mode, location, item, entity, or world structure is required.",
+    "preconditions": [
+      "The official Minecraft Launcher can start Minecraft Java Edition snapshot 25w41a.",
+      "The game language is set to English (US) so the command resolves the affected English translation strings listed in the report.",
+      "A single-player world is available with commands/cheats enabled; Creative mode may be used for convenience but is not required.",
+      "The player has finished joining the world, surrounding terrain has rendered, and keyboard/chat input responds normally."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select or create a Java Edition installation that uses snapshot 25w41a, and start the game. Do not use fix version 25w43a.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is visible and identifies the running version as 25w41a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Options, open Language, select English (US), and confirm the selection by using the Done buttons until you return to the title screen.",
+        "exact_input": null,
+        "success_cue": "The game menus are displayed in English (US).",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer and create a new world, or open an existing world, with commands/cheats enabled. If creating a world, any seed and game mode may be used; Creative mode is a convenient choice. Enter the world.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded world where commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait until the world has finished its initial loading. Do not execute the test command while the loading screen is present or while terrain is still preventing normal input.",
+        "exact_input": null,
+        "success_cue": "Terrain is visible, the player can move normally, and the game accepts keyboard input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the currently bound Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Type the report's tellraw command with the first listed affected translation key substituted for XYZ. Include the leading slash exactly as shown, then press Enter once to execute it as the current player.",
+        "exact_input": "/tellraw @s {\"translate\":\"key.debug.clearChat\"}",
+        "success_cue": "The command is accepted and one translated tellraw message is displayed in the player's chat. Stop here without evaluating its capitalization.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 6,
+    "handoff_condition": "The command `/tellraw @s {\"translate\":\"key.debug.clearChat\"}` has just executed in snapshot 25w41a, and its translated message is visible in chat. Hand control to the observation subsystem to inspect the displayed capitalization.",
+    "uncertainties": [
+      "The report does not specify a game mode, seed, world, server type, or location. A single-player world with commands enabled is selected as the minimum deterministic environment.",
+      "The report states that any listed affected translation key may be used. This plan deterministically uses the first listed key, `key.debug.clearChat`; the other listed keys can be tested by repeating the command and replacing only that translation-key value.",
+      "English (US) is selected because the report supplies English current and expected strings, but it does not explicitly state the reporter's in-game language.",
+      "No web verification was needed because the report provides the exact affected version, translation key, and command syntax required for the reproduction."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_062bf32989fe9d0c016aa5e08a27a887d09af7ba454e0ab023",
+    "elapsed_seconds": 30.07,
+    "usage": {
+      "input_tokens": 9046,
+      "output_tokens": 1870,
+      "reasoning_tokens": 1034,
+      "total_tokens": 10916
+    },
+    "timestamp": "2026-09-12T23:30:48.114154+00:00"
+  }
+}

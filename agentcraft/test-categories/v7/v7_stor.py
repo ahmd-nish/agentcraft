@@ -22,10 +22,46 @@ except ImportError:
 from openai import OpenAI
 
 MODEL = "gpt-5.6-sol"
-_KEY = os.environ.get("OPENAI_API_KEY_V6") or os.environ.get("OPENAI_API_KEY")
-if not _KEY:
-    sys.exit("set OPENAI_API_KEY")
-client = OpenAI(api_key=_KEY, timeout=900.0, max_retries=2)
+
+# Key ring. A key that runs out of credit returns 429 insufficient_quota on
+# every call, which looks exactly like normal work from the outside: categories
+# complete instantly with zero output. Rotate to the next key instead, and make
+# exhaustion of the whole ring a hard stop rather than a silent no-op run.
+_KEY_ENVS = ["OPENAI_API_KEY_ALT1", "OPENAI_API_KEY_V6",
+             "OPENAI_API_KEY_ALT2", "OPENAI_API_KEY"]
+_KEY_RING = []
+for _n in _KEY_ENVS:
+    _v = os.environ.get(_n, "").strip()
+    if _v and _v not in [k for _, k in _KEY_RING]:
+        _KEY_RING.append((_n, _v))
+if not _KEY_RING:
+    sys.exit("no OpenAI key found (OPENAI_API_KEY / _ALT1 / _ALT2 / _V6)")
+
+_key_idx = 0
+client = OpenAI(api_key=_KEY_RING[0][1], timeout=900.0, max_retries=2)
+
+
+def _is_quota_error(e) -> bool:
+    body = getattr(e, "body", None) or {}
+    code = ""
+    if isinstance(body, dict):
+        err = body.get("error") or {}
+        if isinstance(err, dict):
+            code = err.get("code") or ""
+    t = f"{code} {e}".lower()
+    return "insufficient_quota" in t or "no credits remaining" in t
+
+
+def _rotate_key() -> bool:
+    """Advance to the next key with credit. False when the ring is exhausted."""
+    global _key_idx, client
+    if _key_idx + 1 >= len(_KEY_RING):
+        return False
+    _key_idx += 1
+    name, key = _KEY_RING[_key_idx]
+    print(f"  !! credits exhausted -> rotating to {name}", flush=True)
+    client = OpenAI(api_key=key, timeout=900.0, max_retries=2)
+    return True
 
 SRC_ROOT = Path("/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel-five-year-refresh")
 V7_ROOT  = Path("/Users/nish/Documents/agentcraft/agentcraft/test-categories/v7")
@@ -735,8 +771,24 @@ Do not generate Observed Behavior.
 # API call
 # ============================================================
 
+class CreditsExhausted(RuntimeError):
+    """Every key in the ring is out of credit; the run must stop, not continue."""
+
+
 def enhance_stor(bug_report: str) -> tuple[dict, dict]:
     """Returns (parsed_stor, call_metadata)."""
+    while True:
+        try:
+            return _enhance_stor_once(bug_report)
+        except Exception as e:
+            if _is_quota_error(e):
+                if _rotate_key():
+                    continue
+                raise CreditsExhausted("all API keys are out of credit") from e
+            raise
+
+
+def _enhance_stor_once(bug_report: str) -> tuple[dict, dict]:
     t0 = time.time()
     response = client.responses.create(
         model=MODEL,
@@ -866,6 +918,13 @@ def process_category(category: str) -> dict:
 
         try:
             stor, meta = enhance_stor(md_text)
+        except CreditsExhausted:
+            # Do not keep walking categories: without credit every remaining bug
+            # fails identically and the run looks like it is making progress
+            # while producing nothing.
+            print(f"\n!! ALL API KEYS OUT OF CREDIT — stopping at {category}/{bug_id}",
+                  flush=True)
+            raise
         except Exception as e:
             print(f"  [{i}/{len(bug_dirs)}] {bug_id}: ERROR {type(e).__name__}: {str(e)[:160]}")
             stats["failed"] += 1
@@ -904,4 +963,7 @@ def process_category(category: str) -> dict:
 
 
 if __name__ == "__main__":
-    process_category(sys.argv[1] if len(sys.argv) > 1 else "World generation")
+    try:
+        process_category(sys.argv[1] if len(sys.argv) > 1 else "World generation")
+    except CreditsExhausted:
+        sys.exit(9)   # orchestrator treats 9 as "stop the whole run"

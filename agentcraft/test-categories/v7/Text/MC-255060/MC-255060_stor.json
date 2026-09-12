@@ -1,0 +1,155 @@
+{
+  "bug_id": "MC-255060",
+  "category": "Text",
+  "source_md": "[Text] - MC-255060.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-255060",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-08-08T10:30:19.597-0700",
+    "updated": "2025-04-11T12:50:14.586-0700",
+    "resolution date": "2023-03-08T12:16:29.584-0800",
+    "affects versions": "1.19.2; 22w45a; 1.19.3",
+    "fix versions": "1.19.4 Pre-release 4",
+    "labels": "grammar; pluralization; spelling",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-255060.png; MC-255060 - Analysis.png",
+    "issue links": "Relates:outward:MC-211071:Some words within \"/spreadplayers\" command feedback messages are always pluralized",
+    "_title": "Some words within \"/function\" and \"/schedule\" command feedback messages are always pluralized"
+  },
+  "stor": {
+    "bug_id": "MC-255060",
+    "affected_versions": [
+      "1.19.2",
+      "22w45a",
+      "1.19.3"
+    ],
+    "recommended_version": "1.19.2",
+    "environment": "Minecraft Java Edition 1.19.2, vanilla client resources, English (US) language, single-player Creative-mode world with commands/cheats enabled and chat set to Shown. No special seed, coordinates, server, datapack, resource pack, or additional player is required.",
+    "preconditions": [
+      "Install and select the exact Minecraft Java Edition version 1.19.2. Do not use the listed fix version, 1.19.4 Pre-release 4.",
+      "Use the standard English (US) language resources so the English translation strings named in the report are displayed.",
+      "Use a world in which the player has permission to execute /tellraw; the plan uses a single-player Creative-mode world with commands/cheats enabled as the simplest practical setup.",
+      "Set chat visibility to Shown so each /tellraw result is visible.",
+      "Enter each command exactly as supplied below, including the leading slash, the @s target selector, quotation marks, braces, and translation key. Do not add \"with\" substitution arguments, because the report's reproduction command does not provide them.",
+      "Keep the chat history available after executing the commands so the separate observation subsystem can inspect all seven generated messages."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select an installation that runs Minecraft Java Edition 1.19.2, and launch the game. Confirm the version shown on the title screen before continuing.",
+        "exact_input": "1.19.2",
+        "success_cue": "The Minecraft Java Edition title screen is open and displays version 1.19.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Options, select Language, choose English (US), and select Done to apply it. If English (US) is already selected, leave it selected.",
+        "exact_input": "Options -> Language -> English (US) -> Done",
+        "success_cue": "Menu text is displayed in English and English (US) is the active language.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "From Options, open Chat Settings and cycle the Chat setting until it reads Shown. Select Done to retain the setting and return to the title screen.",
+        "exact_input": "Options -> Chat Settings -> Chat: Shown -> Done",
+        "success_cue": "The Chat setting reads Shown.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Singleplayer and create a new world. Set Game Mode to Creative. Open More World Options, ensure Allow Cheats is ON, return to the main world-creation screen, and select Create New World. A default seed and default world-generation settings are sufficient.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player enters a newly loaded Creative-mode world in which commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Wait until the world has finished its initial loading. Confirm that terrain is rendered, the hotbar is visible, and player movement responds normally before entering commands.",
+        "exact_input": null,
+        "success_cue": "Surrounding terrain is rendered, the hotbar is visible, and the player can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open chat. Type or paste the exact command, including its leading slash, and press Enter once. Do not replace the translation key and do not add translation arguments.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.debug.function.success.single\"}",
+        "success_cue": "A tellraw message generated from commands.debug.function.success.single is added to the player's chat without an unknown-command or insufficient-permission error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press T to reopen chat, type or paste the exact command including its leading slash, and press Enter once.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.debug.function.success.multiple\"}",
+        "success_cue": "A tellraw message generated from commands.debug.function.success.multiple is added below the preceding message without a command error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press T to reopen chat, type or paste the exact command including its leading slash, and press Enter once.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.function.success.single\"}",
+        "success_cue": "A tellraw message generated from commands.function.success.single is added to chat without a command error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press T to reopen chat, type or paste the exact command including its leading slash, and press Enter once.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.function.success.multiple\"}",
+        "success_cue": "A tellraw message generated from commands.function.success.multiple is added to chat without a command error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press T to reopen chat, type or paste the exact command including its leading slash, and press Enter once.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.schedule.created.function\"}",
+        "success_cue": "A tellraw message generated from commands.schedule.created.function is added to chat without a command error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Press T to reopen chat, type or paste the exact command including its leading slash, and press Enter once.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.schedule.created.tag\"}",
+        "success_cue": "A tellraw message generated from commands.schedule.created.tag is added to chat without a command error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Press T to reopen chat, type or paste the exact command including its leading slash, and press Enter once. Leave the resulting chat history available and do not execute further commands before handing control to the observation subsystem.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.schedule.cleared.success\"}",
+        "success_cue": "A tellraw message generated from commands.schedule.cleared.success is the newest chat entry, and the messages generated for all seven affected translation keys remain available in chat history.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "All seven affected translation keys have been emitted through the exact /tellraw form supplied by the report, with commands.schedule.cleared.success most recently emitted. The chat history containing the generated /function and /schedule messages is available for the observation subsystem to inspect.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, or single-player versus multiplayer environment. A fresh single-player Creative-mode world with cheats enabled is used only as the simplest way to obtain permission to execute /tellraw.",
+      "The report does not explicitly state a client language. English (US) is selected because the report identifies English translation strings and evaluates their English grammar; another language could provide different translations.",
+      "The supplied /tellraw reproduction form does not include a \"with\" array for the %s substitution fields. The commands are intentionally preserved exactly rather than inventing replacement values.",
+      "The report says that displaying any listed affected string is sufficient. This plan emits all seven listed keys, one time each, to cover both /function and /schedule message groups without repeatedly triggering any one string."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a0c4b794080c8de016aa5e0508a8487d09e0d0464bfd541b1",
+    "elapsed_seconds": 57.76,
+    "usage": {
+      "input_tokens": 8899,
+      "output_tokens": 3983,
+      "reasoning_tokens": 2444,
+      "total_tokens": 12882
+    },
+    "timestamp": "2026-09-12T23:30:18.034402+00:00"
+  }
+}

@@ -1,0 +1,171 @@
+{
+  "bug_id": "MC-172305",
+  "category": "Text",
+  "source_md": "[Text] - MC-172305.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-172305",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-02-14T23:06:14.034-0800",
+    "updated": "2025-04-11T12:50:14.425-0700",
+    "resolution date": "2023-03-08T12:16:29.444-0800",
+    "affects versions": "1.15.2; 20w06a; 20w07a; 20w14a; 1.16.2; 1.16.4; 20w48a; 20w49a; 21w03a; 1.16.5; 21w11a; 21w13a; 1.17; 1.17.1; 1.18.1; 1.18.2; 22w18a; 1.19.2; 22w43a; 1.19.3",
+    "fix versions": "1.19.4 Pre-release 4",
+    "area": "Platform",
+    "labels": "grammar; pluralization; spelling",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-172305.mp4; MC-172305.png; MC-172305-1.png",
+    "issue links": "Relates:inward:MC-124700:Scoreboard objective criterion is called criteria | Relates:outward:MC-211071:Some words within \"/spreadplayers\" command feedback messages are always pluralized",
+    "_title": "Some words within \"/clear\" command feedback messages are always pluralized"
+  },
+  "stor": {
+    "bug_id": "MC-172305",
+    "affected_versions": [
+      "1.15.2",
+      "20w06a",
+      "20w07a",
+      "20w14a",
+      "1.16.2",
+      "1.16.4",
+      "20w48a",
+      "20w49a",
+      "21w03a",
+      "1.16.5",
+      "21w11a",
+      "21w13a",
+      "1.17",
+      "1.17.1",
+      "1.18.1",
+      "1.18.2",
+      "22w18a",
+      "1.19.2",
+      "22w43a",
+      "1.19.3"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Minecraft Java Edition 1.15.2 in a local single-player world, using the English (US) language and an unmodified client. Use Creative mode with cheats enabled so the player can execute /tellraw. Any world seed is suitable because the reproduction only renders translation strings in chat.",
+    "preconditions": [
+      "A Minecraft Java Edition 1.15.2 installation is available in the Minecraft Launcher.",
+      "The game language can be set to English (US), matching the affected English translation strings listed in the report.",
+      "The test world permits command execution. For the selected single-player procedure, create the world with cheats enabled; operator permission would be required if the commands were instead executed by a player on a dedicated server.",
+      "Use the exact translation-component commands from the report. Do not replace them with actual /clear commands, and do not add translation arguments that the report did not supply."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select or create an installation that uses Java Edition 1.15.2, and start the game with that installation.",
+        "exact_input": "Minecraft Java Edition 1.15.2",
+        "success_cue": "The Minecraft main menu is visible and identifies the running version as 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open Options, select Language, choose English (US), and confirm with Done. Return to the main menu if necessary.",
+        "exact_input": "Options -> Language -> English (US) -> Done",
+        "success_cue": "Menu labels are displayed in English and the selected language is English (US).",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open Singleplayer and create a new world. Select Creative mode, open More World Options, ensure Allow Cheats is ON, and then select Create New World. No particular seed or world-generation setting is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> Allow Cheats: ON -> Create New World",
+        "success_cue": "World generation begins and the player is placed into the new world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait for the world to finish its initial loading. Do not enter the first command until nearby terrain is rendered and normal player movement responds without loading interruption.",
+        "exact_input": null,
+        "success_cue": "The player can look and move normally in the loaded world, and the HUD and hotbar are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open in-game chat using the Open Chat control, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's /tellraw command for the commands.clear.success.single translation key, including the leading slash and JSON exactly as shown, and press Enter.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.clear.success.single\"}",
+        "success_cue": "Chat closes after command submission and a line generated from commands.clear.success.single is displayed in the player's chat.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Open in-game chat again using the Open Chat control, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open, with the previously rendered line retained in chat history.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter the report's /tellraw command for the commands.clear.success.multiple translation key, including the leading slash and JSON exactly as shown, and press Enter.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.clear.success.multiple\"}",
+        "success_cue": "Chat closes after command submission and a line generated from commands.clear.success.multiple is displayed below the previous line.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Open in-game chat again using the Open Chat control, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and both previously rendered translation lines remain available in chat history.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's /tellraw command for the commands.clear.test.single translation key, including the leading slash and JSON exactly as shown, and press Enter.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.clear.test.single\"}",
+        "success_cue": "Chat closes after command submission and a line generated from commands.clear.test.single is displayed below the earlier lines.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Open in-game chat again using the Open Chat control, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and the three previously rendered translation lines remain available in chat history.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Enter the report's /tellraw command for the commands.clear.test.multiple translation key, including the leading slash and JSON exactly as shown, and press Enter. Leave the newly rendered chat output available for immediate inspection.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.clear.test.multiple\"}",
+        "success_cue": "Chat closes after command submission and a fourth line, generated from commands.clear.test.multiple, is displayed. The four affected translation strings are now available together in recent chat history.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The four affected /clear translation components have been rendered in chat, with commands.clear.test.multiple having just been rendered most recently and the other three lines retained in recent chat history. Hand control to the observation subsystem for inspection of the displayed wording.",
+    "uncertainties": [
+      "The report says that displaying any one of the four affected strings is sufficient. This plan renders all four listed keys so the autonomous agent can cover every affected string without choosing an arbitrary subset.",
+      "The report does not specify a game mode, world seed, single-player versus multiplayer, or a language setting. A single-player Creative world with cheats and English (US) is used as the simplest deterministic environment for executing and reading the supplied commands.",
+      "The supplied /tellraw template does not include a \"with\" array providing values for the translation placeholders. The plan preserves the report's command syntax exactly rather than inventing substitution arguments.",
+      "No external version verification was necessary because the report explicitly supplies the command form, affected translation keys, and affected version list."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a99e468533cc570016aa5df98fd1887d0863a6c3aa4049a4f",
+    "elapsed_seconds": 54.66,
+    "usage": {
+      "input_tokens": 9415,
+      "output_tokens": 3888,
+      "reasoning_tokens": 2418,
+      "total_tokens": 13303
+    },
+    "timestamp": "2026-09-12T23:27:11.147482+00:00"
+  }
+}
