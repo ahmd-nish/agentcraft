@@ -1,0 +1,36 @@
+{
+  "key": "MC-249172",
+  "created_date": "2022-03-16T17:47:12.067-0700",
+  "updated_date": "2026-08-27T02:56:42.194-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "22w11a"
+  ],
+  "fix_versions": [
+    "22w12a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2022-03-22T01:49:29.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Map color for mangrove slab is incorrect",
+  "environment_raw": "",
+  "description": "## The bug\n\nThe map color for mangrove slabs is incorrect. Unlike mangrove planks, which appear red on a map, mangrove slabs appear brown on a map. This behavior is inconsistent with the behavior of other types of wood, which use the same color on maps for both their slabs and their planks.\n\n## How to reproduce\n\n - Obtain and fill a map\n\n - Place oak slabs and planks\n\n The slabs and planks appear brown on the map\n\n - Place mangrove slabs and planks\n\n The planks appear red, but the slabs appear brown on the map\n\n## Expected behavior\n\nThe mangrove slab color would be red, like the map color of mangrove planks.\n\n## Actual behavior\n\nThe mangrove slab color is brown, like the map color of oak planks and slabs.",
+  "Steps to Reproduce": "1. Obtain a map.\n2. Fill the map.\n3. Place oak slabs.\n4. Place oak planks.\n5. Observe the oak slabs and planks on the map; both appear brown.\n6. Place mangrove slabs.\n7. Place mangrove planks.\n8. Observe the mangrove slabs and planks on the map; the planks appear red, but the slabs appear brown.",
+  "Environment": "Minecraft Java Edition Version 22w11a (snapshot)",
+  "Observed Behavior": "## Actual behavior\n\nMangrove slabs are rendered as brown on maps, while mangrove planks are rendered as red. This causes mangrove slabs to use the same map color as oak slabs and planks instead of matching the red map color of mangrove planks. Other wood types use a consistent map color for their planks and slabs.",
+  "Expected Behavior": "The mangrove slab should appear red on a filled map, matching the map color of mangrove planks. Mangrove slabs and planks should use the same wood-specific map color, rather than having slabs appear brown like oak slabs and planks. This behavior should be consistent with the way other wood types are represented on maps.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Maps/MC-249172",
+  "improvement_metadata": {
+    "original_key": "MC-249172"
+  }
+}

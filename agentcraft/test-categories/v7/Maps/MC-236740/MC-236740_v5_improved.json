@@ -1,0 +1,48 @@
+{
+  "key": "MC-236740",
+  "created_date": "2021-09-15T17:27:12.428-0700",
+  "updated_date": "2026-08-20T04:12:46.895-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "21w37a",
+    "21w38a",
+    "21w39a",
+    "21w40a",
+    "21w41a",
+    "21w42a",
+    "21w43a",
+    "21w44a",
+    "1.18 Pre-release 1"
+  ],
+  "fix_versions": [
+    "1.18 Pre-release 3"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [
+    "buried-treasure-map",
+    "lag-spike",
+    "shipwreck"
+  ],
+  "resolution_date": "2021-11-17T07:22:39.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Server-side lag spike sometimes occurs when attempting to locate a buried treasure or opening/breaking a chest containing a map",
+  "environment_raw": "",
+  "description": "## The bug\n\nA large server-side lag spike sometimes occurs when opening/breaking a chest containing a map or executing /locate buried_treasure. This affects both shipwrecks and underwater ruins. In some cases, the lag spike can be so severe that it can last upwards of 30 seconds, and some users have reported crashes.\n\nIf the server fails to locate a nearby buried treasure, it generates an empty map instead of a buried treasure map (\n \n \n \n MC-238484\n \n Resolved\n \n).\n\n## To reproduce\n\nThis occurs for a noticeable portion of shipwrecks/underwater ruins, but the seed and coordinates below are particularly good examples.\n\n - Create a world with one of the following seed and coordinates:\n\nSeed: 5120366084678867272\nCoordinates: /execute in minecraft:overworld run tp @s 1303.51 49.00 4016.70 178.65 27.45\n\nSeed: -1899573754757393022\nCoordinates (shipwreck): /execute in minecraft:overworld run tp @s 2843.30 60.63 -977.73 255.15 36.00\nCoordinates (underwater ruins): /execute in minecraft:overworld run tp @s 2263.13 41.86 -1161.19 264.75 52.80\n\n - Wait for the teleportation lag to finish.\n\n - Open the chest.\n\n A massive server-side lag spike occurs.",
+  "Steps to Reproduce": "1. Create a world using the seed `5120366084678867272`.\n2. Execute `/execute in minecraft:overworld run tp @s 1303.51 49.00 4016.70 178.65 27.45`.\n3. Wait until the teleportation lag finishes.\n4. Open the chest at the destination.\n5. Observe a massive server-side lag spike, which may last upwards of 30 seconds.",
+  "Environment": "Minecraft Java Edition Versions: 21w37a, 21w38a, 21w39a, 21w40a, 21w41a, 21w42a, 21w43a, 21w44a, 1.18 Pre-release 1 (includes snapshots)",
+  "Observed Behavior": "## Actual behavior\n\nWhen the chest in a shipwreck or underwater ruin is opened or broken, the server may experience a severe synchronous lag spike while processing its map-related loot. The delay affects server-side ticking and can last up to approximately 30 seconds; in some cases, the server reportedly crashes.\n\nThe same type of lag spike can occur when executing:\n\n```mcfunction\n/locate buried_treasure\n```\n\nIf no nearby buried treasure is found, the command may also produce an empty map rather than a buried treasure map, as described in [MC-238484](https://bugs.mojang.com/browse/MC-238484).",
+  "Expected Behavior": "Opening or breaking a chest containing a map, or using `/locate buried_treasure`, should complete normally without causing a significant server-side lag spike. The server should remain responsive, the operation should finish promptly, and the game should not crash. When a buried treasure is successfully located, the chest should provide the expected buried treasure map rather than leaving the server stalled.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Maps/MC-236740",
+  "improvement_metadata": {
+    "original_key": "MC-236740"
+  }
+}
