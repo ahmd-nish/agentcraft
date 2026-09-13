@@ -1,0 +1,36 @@
+{
+  "key": "MC-307585",
+  "created_date": "2026-04-16T14:33:16.006-0700",
+  "updated_date": "2026-05-07T23:07:12.463-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "26.1.2"
+  ],
+  "fix_versions": [
+    "26.2 Snapshot 7"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2026-05-07T23:07:12.357-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "The `fall_after_explosion` advancement trigger does not work with TNT anymore",
+  "environment_raw": "",
+  "description": "Affected Versions: 26.1+\n\nIn snapshot 24w12a for the Minecraft Update 1.20.5 a new advancement trigger was added called 'fall_after_explosion'. Internally, it was used for the Who Needs Rockets? advancement which was to launch yourself 8 blocks or higher using wind charges. For datapacks, it allowed to detect using TNT cannons to launch yourself upwards, which is exactly what the BlazeandCave's Advancement Pack did. The advancement pack added an advancement called \"We Have Liftoff!\" to launch yourself 100 blocks upwards using TNT, clearly implying the use of TNT cannons to achieve the goal. Below you may find the difference in triggers between Who Needs Rockets? and We Have Liftoff! \n\nWho Needs Rockets?\n\n{{ \"trigger\": \"minecraft:fall_after_explosion\",}}\n\n{{ \"conditions\": {}}\n\n{{ \"cause\": [}}\n\n{{ {}}\n\n{{ \"condition\": \"minecraft:entity_properties\",}}\n\n{{ \"entity\": \"this\",}}\n\n{{ \"predicate\": {}}\n\n{{ \"type\": \"minecraft:wind_charge\"}}\n\n{{ }}}\n\n{{ }}}\n\n{{ ],}}\n\n{{ \"distance\": {}}\n\n{{ \"y\": {}}\n\n{{ \"min\": 8.0}}\n\nWe Have Liftoff!\n\n{{ \"trigger\": \"minecraft:fall_after_explosion\",}}\n\n{{ \"conditions\": {}}\n\n{{ \"cause\": [}}\n\n{{ {}}\n\n{{ \"condition\": \"minecraft:entity_properties\",}}\n\n{{ \"entity\": \"this\",}}\n\n{{ \"predicate\": {}}\n\n{{ \"type\": \"minecraft:tnt\"}}\n\n{{ }}}\n\n{{ }}}\n\n{{ ],}}\n\n{{ \"distance\": {}}\n\n{{ \"y\": {}}\n\n{{ \"min\": 100.0}}\n\nAs you can see, the difference is very minimal.\n\nSteps to reproduce:\n\nYou may replicate this advancement in your world in one of the 3 ways:\n\n1) Use the custom datapack attached to this bug report compatbile with both Minecraft 1.21.11 and 26.1\n\n2) Change the Who Needs Rockets advancement to be 1:1 We Have Liftoff\n\n3) Download the BlazeandCave\u2019s Advancement Pack 1.20.2 for Minecraft 1.21.11 and BlazeandCave\u2019s Advancement Pack 1.20.3 for Minecraft 26.1.x\n\nAfter you have chosen a method, follow these steps to reproduce the issue:\n\n1) Create a world with the attached datapack, modified advancement, or the BlazeandCave\u2019s Advancement Pack in Minecraft version 1.21.11; \n\n2) Recreate the following contraption as shown in the video attached;\n\n3) Create a world with the attached datapack, modified advancement, or the BlazeandCave\u2019s Advancement Pack in Minecraft version 26.1;\n\n4) Recreate the following contraption as shown in the video attached.\n\nExpected Behaviour:\n\nUpon the Player launching themselves in the air, they get the advancement in both versions of the game\n\nObserved Behaviour: \n\nThe Player only gets the advancement to trigger in an earlier version\n\nKey notes:\n\na) the trigger has not changed since its release in 1.21 \n\nb) the trigger only does not work for TNT rather than Wind Charges as you are still able to obtain the vanilla advancement on the latest version",
+  "Steps to Reproduce": "1. Launch Minecraft version 1.21.11.\n2. Create a world with the custom datapack attached to the bug report.\n3. Recreate the TNT contraption shown in the attached video.\n4. Use the contraption to launch the player into the air with TNT.\n5. Observe that the advancement is granted.\n6. Launch Minecraft version 26.1.\n7. Create a world with the same custom datapack.\n8. Recreate the TNT contraption shown in the attached video.\n9. Use the contraption to launch the player into the air with TNT.\n10. Observe that the `fall_after_explosion` advancement does not trigger in version 26.1, despite triggering in version 1.21.11.",
+  "Environment": "Minecraft Java Edition Version 26.1.2",
+  "Observed Behavior": "### Actual behavior\n\nIn Minecraft 1.21.11, the advancement criterion is granted after the player is launched upward by a TNT explosion and falls at least the configured distance. The same criterion does not grant the advancement in Minecraft 26.1 or later when its `fall_after_explosion` `cause` condition specifies an entity of type `minecraft:tnt`.\n\nThe issue is specific to TNT explosions:\n\n- A criterion using `minecraft:fall_after_explosion` with `cause` set to `minecraft:tnt` remains incomplete in 26.1+ even when the player is launched at least 100 blocks vertically and subsequently falls.\n- The equivalent criterion using `minecraft:wind_charge` continues to work, as demonstrated by the vanilla \u201cWho Needs Rockets?\u201d advancement.\n- The same TNT-based advancement definition grants correctly in 1.21.11.\n\nThus, in 26.1+, TNT is no longer recognized as the explosion cause by `minecraft:fall_after_explosion` advancement criteria, while wind charges remain recognized.",
+  "Expected Behavior": "When a player is launched by a TNT explosion and subsequently falls the required distance, the `minecraft:fall_after_explosion` advancement trigger should activate when its conditions specify TNT as the cause. A qualifying TNT launch should grant the corresponding advancement consistently in both Minecraft 1.21.11 and 26.1+, just as qualifying wind-charge launches continue to activate the vanilla advancement.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Advancements/MC-307585",
+  "improvement_metadata": {
+    "original_key": "MC-307585"
+  }
+}

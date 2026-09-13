@@ -1,0 +1,36 @@
+{
+  "key": "MC-266968",
+  "created_date": "2023-11-24T00:11:08.943-0800",
+  "updated_date": "2026-08-20T04:32:54.885-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.20.3 Pre-Release 2"
+  ],
+  "fix_versions": [
+    "1.20.3 Pre-Release 4"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-11-28T05:09:37.000-0800",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "/return executed within an advancement reward function globally discards all subsequent commands",
+  "environment_raw": "",
+  "description": "## The bug\n\nWhen /return is executed within an advancement reward function, it will discard all subsequent commands globally, not just the local commands that the function has.\n\n## How to reproduce\n\n - Install the data pack in Attachments\n\n - Run \n\n/function mc-266968:a\n\n## Results\n\nThe following table shows whether each message was expected to be printed or not, and whether it was actually printed or not.\n\nMessage\n\nExpected\n\nActual\n\n\u00a0\n\na-1\n\nYes\n\nYes\n\na-2\n\nYes\n\nNo\n\nb-1\n\nYes\n\nYes\n\nb-2\n\nNo\n\nNo\n\nAs the table suggests, say a-2 in mc-266968:a was not executed because it was discarded by return 0 in mc-266968:b.\n\n## Resources\n\ndata/mc-266968/functions/a.mcfunction\n\nsay a-1\nadvancement grant @s only mc-266968:b\nsay a-2\n\ndata/mc-266968/functions/b.mcfunction\n\nadvancement revoke @s only mc-266968:b\nsay b-1\nreturn 0\nsay b-2\n\ndata/mc-266968/advancements/b.json\n\n{\n \"criteria\": {\n \"\": {\n \"trigger\": \"impossible\"\n }\n },\n \"rewards\": {\n \"function\": \"mc-266968:b\"\n }\n}\n\n## Code analysis\n\nAn advancement reward function is executed as an initial function, which has a frame with depth 0, regardless of the current depth. Because /return discards all command queue entries above the depth of the currently executed function, /return executed in an advancement reward function discards all entries, which have a depth >= 0.",
+  "Steps to Reproduce": "1. Open a Minecraft world.\n2. Install the data pack from the report\u2019s Attachments into the world.\n3. Run `/function mc-266968:a`.\n4. Observe the chat output: `a-1` and `b-1` are printed, while `a-2` and `b-2` are not printed.",
+  "Environment": "Minecraft Java Edition Version 1.20.3 Pre-Release 2",
+  "Observed Behavior": "## Actual behavior\n\nRunning `/function mc-266968:a` prints:\n\n```text\na-1\nb-1\n```\n\nThe `return 0` command in `mc-266968:b`, which is executed as the reward function for the granted advancement, prevents both of the following commands from executing:\n\n- `say b-2` in `mc-266968:b` \u2014 expected, because it follows `/return 0` in the same function.\n- `say a-2` in `mc-266968:a` \u2014 unexpected, because it follows the command that granted the advancement and belongs to the caller function.\n\nThus, `/return 0` in an advancement reward function does not only terminate that reward function. It also discards the pending commands in the calling function, causing subsequent commands to be skipped globally.",
+  "Expected Behavior": "When the advancement reward function executes `/return 0`, it should stop only the remaining commands within that reward function. The surrounding function should continue normally, so `b-1` should be printed, `b-2` should not be printed, and execution should then return to `mc-266968:a`, where `a-2` should also be printed. Subsequent commands should not be discarded globally.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Advancements/MC-266968",
+  "improvement_metadata": {
+    "original_key": "MC-266968"
+  }
+}
