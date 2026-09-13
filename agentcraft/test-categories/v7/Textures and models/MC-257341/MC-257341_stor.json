@@ -1,0 +1,138 @@
+{
+  "bug_id": "MC-257341",
+  "category": "Textures and models",
+  "source_md": "[Textures and models] - MC-257341.md",
+  "source_meta": {
+    "mojira categories": "Textures and models",
+    "project": "MC",
+    "issue key": "MC-257341",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-11-09T08:05:45.308-0800",
+    "updated": "2025-04-29T10:59:10.483-0700",
+    "resolution date": "2024-01-23T07:27:36.960-0800",
+    "affects versions": "22w45a; 22w46a",
+    "fix versions": "1.19.3 Pre-release 1",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "2022-11-09_15.49.02.png; 2022-11-09_15.59.49.png; 2022-11-09_19.10.36.png; 2022-11-22_14.32.55.png; allay.png; AllayVexTransparent.png; AllayWingVexWing.png; vex.png",
+    "issue links": "Relates:outward:MC-251296:Allay has a transparent texture but it is not transparent in game",
+    "_title": "Vex texture does not utilize translucency"
+  },
+  "stor": {
+    "bug_id": "MC-257341",
+    "affected_versions": [
+      "22w45a",
+      "22w46a"
+    ],
+    "recommended_version": "22w45a",
+    "environment": "Minecraft Java Edition snapshot 22w45a in a vanilla single-player world (integrated server). Use Creative mode with commands/cheats enabled for deterministic positioning and command execution. Use the built-in Allay and Vex textures; disable resource packs or other modifications that replace or alter either entity texture.",
+    "preconditions": [
+      "Minecraft Java Edition snapshot 22w45a is installed and selected in the Minecraft Launcher.",
+      "A single-player world can be created or opened with commands/cheats enabled.",
+      "The executing player has permission to run /summon commands.",
+      "No resource pack, shader, or mod that replaces or alters the Allay or Vex texture is active.",
+      "There is enough unobstructed space to summon and view two entities at the same height."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the 22w45a snapshot installation from the Minecraft Launcher.",
+        "exact_input": "22w45a",
+        "success_cue": "The title screen identifies the running game version as snapshot 22w45a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player Creative-mode world with commands enabled. A Superflat world may be used to provide a clear viewing area; no particular seed is required by the report.",
+        "exact_input": null,
+        "success_cue": "The player enters a world in Creative mode and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish before summoning either entity.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, player movement responds normally, and the loading screen is no longer visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a clear, well-lit location where blocks, vegetation, and other entities will not obscure the summoned mobs. In Creative mode, double-tap Space to begin flying and position the player a few blocks above the surface so the entities' lower regions can be viewed without ground obstruction.",
+        "exact_input": null,
+        "success_cue": "The player is stationary in an unobstructed area with clear air around the current position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the currently bound Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's Allay summon command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/summon allay ~-1 ~ ~ {NoAI:1}",
+        "success_cue": "An Allay is visible one block in the negative X direction from the command execution position and remains stationary because NoAI is set.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Without moving away from the summon position, press T again to reopen in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open while the summoned Allay remains present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter the report's Vex summon command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/summon vex ~1 ~ ~ {NoAI:1}",
+        "success_cue": "A Vex is visible one block in the positive X direction from the command execution position and remains stationary because NoAI is set; both the Allay and Vex are present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Move several blocks away from the two stationary mobs and rotate the camera until the complete Allay and Vex models are visible at the same time. Reposition around the pair as needed because the commands place them along the world's X axis rather than relative to the camera's left and right directions.",
+        "exact_input": null,
+        "success_cue": "Both mobs are simultaneously visible, neither model is blocked by the player or terrain, and their lower body regions are large enough on screen to inspect.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Center the view on the ragged-looking region at the bottom of each mob and begin a side-by-side visual examination of those corresponding regions. Do not change versions, textures, resource packs, or graphics configuration after positioning the camera.",
+        "exact_input": null,
+        "success_cue": "The stationary Allay and Vex are framed together with both bottom ragged-looking regions clearly exposed for the observation subsystem.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "Both NoAI entities have been summoned in snapshot 22w45a, and the camera is now positioned so the ragged-looking bottom regions of the Allay and Vex can be examined side by side. Begin visual observation at this point.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, world type, game mode, lighting condition, camera direction, or graphics setting. Creative mode, a clear well-lit area, and an optional Superflat world are practical choices for deterministic command execution and unobstructed viewing, not stated reproduction requirements.",
+      "The report does not explicitly require vanilla resource settings, but texture-altering resource packs, shaders, or mods are excluded so they do not replace or modify the entity textures being compared.",
+      "The report's reproduction targets the ragged-looking lower regions of the mobs. Later comments discussing Vex wings describe a potentially separate issue and are therefore not incorporated into these steps."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0c95ab52c072ce64016aa70b6d095487d099b6fe35d73459fb",
+    "elapsed_seconds": 46.44,
+    "usage": {
+      "input_tokens": 8666,
+      "output_tokens": 2852,
+      "reasoning_tokens": 1687,
+      "total_tokens": 11518
+    },
+    "timestamp": "2026-09-13T20:46:19.350195+00:00"
+  }
+}

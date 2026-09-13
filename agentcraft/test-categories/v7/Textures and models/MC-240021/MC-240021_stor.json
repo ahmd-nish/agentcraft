@@ -1,0 +1,215 @@
+{
+  "bug_id": "MC-240021",
+  "category": "Textures and models",
+  "source_md": "[Textures and models] - MC-240021.md",
+  "source_meta": {
+    "mojira categories": "Textures and models",
+    "project": "MC",
+    "issue key": "MC-240021",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-10-29T06:21:17.774-0700",
+    "updated": "2025-04-26T14:01:02.731-0700",
+    "resolution date": "2024-09-10T04:25:01.837-0700",
+    "affects versions": "1.17.1; 21w43a",
+    "fix versions": "1.18 Pre-release 1",
+    "labels": "unnecessary-cullface",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2021-10-29_13.43.07.png; 2021-10-29_13.43.09.png; 2021-10-29_13.43.18.png; cauldron-interior-fix-21w43a-v1.0.zip",
+    "_title": "Cullface arguments in cauldrons are excessive"
+  },
+  "stor": {
+    "bug_id": "MC-240021",
+    "affected_versions": [
+      "1.17.1",
+      "21w43a"
+    ],
+    "recommended_version": "1.17.1",
+    "environment": "Minecraft Java Edition 1.17.1 in a new single-player Superflat world. Use Creative mode with cheats enabled only to construct and validate the contraption, then change to Survival mode before entering it. Use the default resource pack and do not enable the attached cauldron-fix resource pack or any other pack that replaces the cauldron model.",
+    "preconditions": [
+      "Install and launch the exact affected Java Edition version 1.17.1, not the fix version 1.18 Pre-release 1 or a newer release.",
+      "Ensure no resource pack that changes the cauldron block model is active. In particular, do not install or enable cauldron-interior-fix-21w43a-v1.0.zip from the report.",
+      "Create a new single-player world with Game Mode set to Creative, Allow Cheats enabled, and World Type set to Superflat. The report supplies no required seed.",
+      "Use default controls or their rebound equivalents: T opens chat, W moves forward, Space controls flight in Creative, and right-click uses a trapdoor or lever.",
+      "The commands below are in-game chat commands. Include the leading slash, press Enter after each command, and wait for the command-success message before continuing."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "From the launcher, start Minecraft Java Edition 1.17.1. At the title screen, open Options -> Resource Packs and ensure that only the built-in default resources are active; then return to the title screen.",
+        "exact_input": null,
+        "success_cue": "The lower-left title-screen version text identifies Java Edition 1.17.1, and no cauldron-model resource pack is selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create the Superflat Creative single-player world described in the preconditions and wait until terrain has rendered and movement and chat respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded Superflat world in Creative mode and can execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press T, enter the foundation command including its leading slash, and press Enter. This creates a stone platform around the fixed test coordinates.",
+        "exact_input": "/fill -3 99 -5 3 99 2 minecraft:stone",
+        "success_cue": "Chat reports that blocks were filled at the specified location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T and execute the command to create a three-block-wide approach floor leading toward the cauldron.",
+        "exact_input": "/fill -1 100 -4 1 100 -1 minecraft:stone",
+        "success_cue": "A raised stone approach floor exists from Z=-4 through Z=-1 at Y=100.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T and execute the command to place an empty cauldron at X=0, Y=100, Z=0.",
+        "exact_input": "/setblock 0 100 0 minecraft:cauldron",
+        "success_cue": "An empty cauldron occupies block coordinates 0 100 0 immediately south of the approach floor.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Press T and execute the command to place the low stone ceiling over the final two approach blocks. The one-block-high clearance beneath this ceiling keeps the player in a crawling pose while approaching the cauldron.",
+        "exact_input": "/fill 0 102 -2 0 102 -1 minecraft:stone",
+        "success_cue": "Stone ceiling blocks occupy 0 102 -2 and 0 102 -1, with a one-block-high passage between the approach floor and ceiling.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T and execute the command to place an open top-half oak trapdoor at the north entrance to the low passage.",
+        "exact_input": "/setblock 0 101 -3 minecraft:oak_trapdoor[facing=south,half=top,open=true,powered=false,waterlogged=false]",
+        "success_cue": "An open, vertically oriented oak trapdoor is visible at 0 101 -3 in front of the low passage.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T and execute the command to place a downward-facing sticky piston three blocks above the cauldron.",
+        "exact_input": "/setblock 0 103 0 minecraft:sticky_piston[facing=down,extended=false]",
+        "success_cue": "A retracted sticky piston at 0 103 0 points downward toward the cauldron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T and execute the command to place the movable solid block on the sticky piston's face. In this retracted position, it is one block above the position directly touching the cauldron.",
+        "exact_input": "/setblock 0 102 0 minecraft:stone",
+        "success_cue": "A stone block occupies 0 102 0; block 0 101 0 directly above the cauldron remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T and execute the command to place a support block immediately east of the sticky piston.",
+        "exact_input": "/setblock 1 103 0 minecraft:stone",
+        "success_cue": "A stone support block occupies 1 103 0 beside the piston.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T and execute the command to attach an unpowered lever to the underside of the support block. This places the lever above and east of the cauldron where it can be reached from inside.",
+        "exact_input": "/setblock 1 102 0 minecraft:lever[face=ceiling,facing=north,powered=false]",
+        "success_cue": "An unpowered ceiling-mounted lever hangs at 1 102 0, immediately east of the movable stone block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T and teleport to the centered starting point north of the trapdoor. The final two numbers orient the player south toward the contraption.",
+        "exact_input": "/tp @s 0.5 101 -4.5 0 0",
+        "success_cue": "The player stands centered on the approach at X=0.5 and faces south toward the open trapdoor, low tunnel, and cauldron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "While still in Creative mode, validate the lever and piston before entering the contraption. If necessary, double-tap Space to fly, move within right-click reach of the ceiling lever, aim at its handle, and right-click it once.",
+        "exact_input": null,
+        "success_cue": "The lever turns on, the sticky piston extends downward, and the movable stone block is pushed from 0 102 0 to 0 101 0 directly above the cauldron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Right-click the same lever a second time to reset the mechanism before the actual reproduction.",
+        "exact_input": null,
+        "success_cue": "The lever turns off, the sticky piston retracts, the stone block returns to 0 102 0, and the space at 0 101 0 directly above the cauldron is open again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Press T and teleport back to the centered starting point north of the trapdoor.",
+        "exact_input": "/tp @s 0.5 101 -4.5 0 0",
+        "success_cue": "The player is centered on the approach, faces south, and the open trapdoor is directly ahead.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press T and switch to Survival mode before entering the cauldron. This preserves the report's condition that the enclosed cauldron interior is reachable during Survival gameplay.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The Survival health, hunger, and hotbar interface is visible, and the player remains at the approach entrance.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Hold W to walk directly south until positioned against or within the space of the vertically open trapdoor. Keep the player centered at approximately X=0.5 so the player will align with the narrow center opening of the cauldron.",
+        "exact_input": "W",
+        "success_cue": "The player is immediately beside the open trapdoor, facing into the one-block-high stone passage.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Aim at the oak trapdoor and right-click once to close it over the player's upper body. Do not break the trapdoor.",
+        "exact_input": "right-click",
+        "success_cue": "The trapdoor is horizontal in its closed top-half position, the camera lowers, and the player enters the prone crawling pose beneath it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 19,
+        "action": "Hold W to crawl south through the one-block-high passage. Continue straight over the centered opening of the cauldron until the player drops into its interior, then release W. Do not move sideways because the cauldron's interior opening is narrow.",
+        "exact_input": "W",
+        "success_cue": "The player is stationary inside the empty cauldron at 0 100 0, below the rim; the low viewpoint is surrounded by the cauldron interior, and the ceiling-mounted lever is above and to the east/right.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Without leaving the cauldron, turn the view upward and east toward the ceiling-mounted lever at 1 102 0. Center the crosshair on the lever handle. Do not click until the lever is clearly targeted and within reach.",
+        "exact_input": null,
+        "success_cue": "The lever handle is under the crosshair while the player remains inside the cauldron and the piston is still retracted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Right-click the ceiling-mounted lever exactly once, then stop all movement and input as soon as the piston finishes extending.",
+        "exact_input": "right-click",
+        "success_cue": "The lever is powered, the sticky piston has completed its downward extension, the stone block now occupies 0 101 0 directly above the cauldron, and the player remains enclosed inside the cauldron.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The Survival-mode player is inside the cauldron at 0 100 0 immediately after pulling the lever; the piston is fully extended and a solid stone block occupies 0 101 0 directly on top of the cauldron. Begin observation without moving the player, toggling the lever again, or changing the resource pack.",
+    "uncertainties": [
+      "The three screenshot attachments showing the reporter's exact contraption were not included in the supplied report text and could not be recovered from the permitted external sources. The plan therefore uses a minimal deterministic sticky-piston-and-lever contraption that preserves the reported sequence: initiate crawling with a trapdoor, enter the cauldron, and pull a lever to move a solid block directly above it.",
+      "The report does not specify the trapdoor material or the type of solid block moved above the cauldron. Oak trapdoor and stone are practical implementation choices and are not asserted as requirements of the bug.",
+      "The report does not formally specify a game mode for world construction. Creative mode and cheats are used only to construct and validate the deterministic setup; the player is switched to Survival before performing the reported crawling and lever sequence.",
+      "No world seed or original coordinates are supplied. Coordinates around 0 100 0 and a Superflat world are practical choices intended to eliminate terrain and exploration variability."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0e9173dd224f4d78016aa70ac2687887d080931f951a588699",
+    "elapsed_seconds": 172.12,
+    "usage": {
+      "input_tokens": 37758,
+      "output_tokens": 11070,
+      "reasoning_tokens": 8607,
+      "total_tokens": 48828
+    },
+    "timestamp": "2026-09-13T20:45:32.883927+00:00"
+  }
+}
