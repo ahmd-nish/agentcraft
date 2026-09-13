@@ -1,0 +1,149 @@
+{
+  "bug_id": "MC-307140",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-307140.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-307140",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2026-03-30T04:28:41.121-0700",
+    "updated": "2026-04-01T06:30:37.498-0700",
+    "resolution date": "2026-03-31T02:34:39.623-0700",
+    "affects versions": "26.1",
+    "fix versions": "26.1.1 Release Candidate 1",
+    "area": "Platform HC",
+    "votes": "2",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "image-20260330-112856.png",
+    "_title": "Chat messages can no longer be reported if the chat is enabled"
+  },
+  "stor": {
+    "bug_id": "MC-307140",
+    "affected_versions": [
+      "26.1"
+    ],
+    "recommended_version": "26.1",
+    "environment": "Minecraft: Java Edition 26.1. Use two separate vanilla 26.1 client instances authenticated with two distinct Minecraft accounts and a vanilla Java Edition 26.1 dedicated server configured with online-mode=true. The instructions assume the default keyboard-and-mouse controls and English UI labels. Any game mode and world may be used; no particular seed or coordinates are required.",
+    "preconditions": [
+      "The dedicated server is running Minecraft: Java Edition 26.1, not the listed fix version 26.1.1 Release Candidate 1.",
+      "The server's server.properties file contains online-mode=true, and the server has been restarted after that setting was established.",
+      "Two distinct authenticated Minecraft accounts are available and can be connected to the server simultaneously. Designate them Account A (message sender) and Account B (reporting client).",
+      "Both client instances are running unmodified Java Edition 26.1. Avoid proxies, plugins, or mods that rewrite, delete, or replace signed player chat messages.",
+      "Both accounts are permitted to use online multiplayer and player chat through their account privacy settings.",
+      "Account B has not blocked Account A. If Account A appears blocked in Social Interactions, unblock it before beginning the reproduction.",
+      "Account B's Chat setting must be set to its fully enabled state, shown in the English UI as Chat: Shown. Do not use Commands Only or Hidden.",
+      "The test message must be sent as an ordinary player chat message by Account A, not with a command, server console, command block, plugin, or system-message mechanism."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the vanilla Java Edition 26.1 dedicated server whose server.properties file has online-mode=true. Wait until server startup is complete and the console reports that it is ready to accept connections.",
+        "exact_input": "online-mode=true",
+        "success_cue": "The 26.1 server is running in online mode and its console has reached the normal ready state, commonly indicated by a line beginning with \"Done\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Launch the first Minecraft: Java Edition client using version 26.1 and sign in as Account A, which will send the message.",
+        "exact_input": null,
+        "success_cue": "Account A is authenticated and the title screen identifies the running game version as 26.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Launch a separate Minecraft: Java Edition client instance using version 26.1 and sign in as the distinct Account B, which will perform the reporting-menu actions.",
+        "exact_input": null,
+        "success_cue": "Account B is authenticated in a separate 26.1 client instance; it is not using Account A's session.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "On Account B's client, open Options from the title screen, or press Esc and select Options if already in a world. Open Chat Settings, then activate the Chat setting until its value is Shown. Select Done as needed to save the setting and return.",
+        "exact_input": "Chat: Shown",
+        "success_cue": "Account B's Chat setting visibly reads Shown rather than Commands Only or Hidden.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "On Account A's client, open Multiplayer, select or add the prepared online-mode server, and join it. Wait until the world and surrounding chunks have rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Account A is present in the server world and can move normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "On Account B's client, open Multiplayer and join the same server. Wait until the world and surrounding chunks have rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Account B is present in the same server session as Account A and can move normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Confirm from Account B's client that both accounts are connected. By default, hold Tab to display the online-player list, verify that Account A and Account B are both listed, and then release Tab.",
+        "exact_input": null,
+        "success_cue": "The server's player list contains both Account A and Account B at the same time.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "On Account A's client, press T to open ordinary player chat. Type the exact benign test message below without a leading slash, and press Enter once to send it.",
+        "exact_input": "test message",
+        "success_cue": "Account B receives a normal chat line attributed to Account A. Do not continue until that player-authored message is visible on Account B's client.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "On Account B's client, press the Social Interactions control, which is P by default. If P has been rebound, use the control currently assigned to Social Interactions instead.",
+        "exact_input": null,
+        "success_cue": "The Social Interactions screen is open and Account A appears in its player list.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "In Account B's Social Interactions screen, locate Account A's entry—the account that sent \"test message\"—and click its Report Player button. Do not select Account B or another player.",
+        "exact_input": null,
+        "success_cue": "The Report Player screen for Account A is open and contains a Chat Messages button.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Move Account B's mouse cursor onto the Chat Messages button and leave the cursor resting over the button. Do not click the button and do not change Account B's Chat setting.",
+        "exact_input": null,
+        "success_cue": "The cursor is stationary over the Chat Messages button on Account A's Report Player screen, ready for the observation subsystem to inspect the button state and any hover tooltip.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "Account B has just moved the cursor onto the Chat Messages button in Account A's Report Player screen while Account B's Chat setting remains Shown and Account A's ordinary player message is still part of the current server chat context. Begin observation immediately without clicking the button or changing settings.",
+    "uncertainties": [
+      "The report specifies an online-mode server but does not name server software. This plan uses a clean vanilla 26.1 dedicated server as the least confounded implementation of that requirement.",
+      "The report does not explicitly identify which account must have chat enabled. This plan applies Chat: Shown to Account B because Account B is the client opening the report interface; setting it to Shown on both clients is acceptable but should not be necessary.",
+      "The report does not supply message text. \"test message\" is chosen as a deterministic benign ordinary chat message; its wording is not asserted to be required.",
+      "The exact menu capitalization or layout may differ with language, window size, or accessibility configuration. The required setting is the fully enabled Chat state, contrasted in the report with Commands Only and Hidden.",
+      "The default P binding for Social Interactions was externally verified, but a locally rebound control should be used if P no longer opens that screen."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0f54d4da19829f97016aa71245c67c87d0adc4f50f0a9add39",
+    "elapsed_seconds": 57.68,
+    "usage": {
+      "input_tokens": 31347,
+      "output_tokens": 3763,
+      "reasoning_tokens": 2286,
+      "total_tokens": 35110
+    },
+    "timestamp": "2026-09-13T21:15:43.340927+00:00"
+  }
+}

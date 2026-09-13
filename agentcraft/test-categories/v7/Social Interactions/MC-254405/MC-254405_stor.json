@@ -1,0 +1,109 @@
+{
+  "bug_id": "MC-254405",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-254405.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-254405",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-07-20T13:20:00.642-0700",
+    "updated": "2025-03-08T10:38:34.831-0800",
+    "resolution date": "2022-07-21T06:42:32.816-0700",
+    "affects versions": "1.19.1 Pre-release 6",
+    "fix versions": "1.19.1 Release Candidate 2",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-254405.png; MC-254405 - Analysis.png",
+    "_title": "Debug messages aren't prefixed with gray color indicators"
+  },
+  "stor": {
+    "bug_id": "MC-254405",
+    "affected_versions": [
+      "1.19.1 Pre-release 6"
+    ],
+    "recommended_version": "1.19.1 Pre-release 6",
+    "environment": "Minecraft: Java Edition 1.19.1 Pre-release 6 using an unmodified client. Use a fresh single-player world with commands enabled as the simplest deterministic environment; no dedicated server or additional player is required by the report. Use default chat and keyboard controls unless they have been rebound.",
+    "preconditions": [
+      "Launch exactly Minecraft: Java Edition 1.19.1 Pre-release 6, not the listed fix version 1.19.1 Release Candidate 2 or a newer release.",
+      "Create or open a world in which the player has permission to execute commands. For a fresh single-player world, set Allow Cheats to ON during world creation.",
+      "Ensure chat is not hidden. If necessary, open Esc -> Options -> Chat Settings and set Chat to Shown.",
+      "Ensure command feedback is enabled. This is enabled by default in a fresh world; if it was previously disabled, execute /gamerule sendCommandFeedback true before starting the listed steps.",
+      "Use a keyboard capable of sending the F3+B debug-key combination. On keyboards where the function row controls media features, the Fn key may also need to be held.",
+      "The player must be fully loaded into the world, with normal movement and keyboard input responding."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft using the installation for Java Edition 1.19.1 Pre-release 6, then open the command-enabled test world.",
+        "exact_input": null,
+        "success_cue": "The player is present in the world and the pause or loading screen is no longer displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Wait for the world to finish its initial loading before sending any input.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the player can move normally, and keyboard input responds without a loading delay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the in-game chat input using the Open Chat control; its default key is T.",
+        "exact_input": "T",
+        "success_cue": "A chat input field is visible at the bottom of the screen and is ready to accept text.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Enter the report's command exactly as written, including the leading slash, and press Enter to execute it as the current player.",
+        "exact_input": "/tag @s add test",
+        "success_cue": "The chat input closes and a command-feedback message concerning the addition of the test tag appears in the chat area. If an insufficient-permission or unknown-command error appears instead, stop and enable commands before retrying in a fresh world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Use the command-feedback message as the control system message. Inspect the left side of that message and confirm that its gray system-message color indicator is visible before proceeding.",
+        "exact_input": null,
+        "success_cue": "The command-feedback line remains identifiable in chat and has a gray indicator immediately to its left, establishing the report's control condition.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "With the game world active and no menu or chat input field open, invoke the debug hitbox function once. Hold F3 and tap B; on keyboards that reserve function keys for media controls, hold Fn as well while sending F3+B. Do not invoke the combination a second time before observation.",
+        "exact_input": "F3+B",
+        "success_cue": "A debug status message indicating that hitboxes were shown or hidden has just appeared in the chat area, confirming that the debug function executed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 6,
+    "handoff_condition": "The F3+B debug function has just executed once, and its resulting debug status message is visible in the chat area. Begin observation of that message and its left-side indicator presentation without pressing F3+B again.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer, game mode, world seed, operating system, or customized controls. A fresh command-enabled single-player world with default controls is selected as the minimal deterministic setup.",
+      "The report permits any debug function and gives F3+B as its example. This plan uses F3+B exactly to avoid introducing an unreported alternative.",
+      "The report does not explicitly state the command-feedback gamerule or chat visibility settings. Their enabled states are necessary for the two comparison messages to be visible and are normally present in a fresh world.",
+      "No external version verification was needed because the affected version, exact command, and debug-key combination are all supplied directly by the report."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_059d992b272f1e2c016aa7120786bc87d097146b13a127a308",
+    "elapsed_seconds": 31.63,
+    "usage": {
+      "input_tokens": 8349,
+      "output_tokens": 2175,
+      "reasoning_tokens": 1214,
+      "total_tokens": 10524
+    },
+    "timestamp": "2026-09-13T21:14:15.007605+00:00"
+  }
+}
