@@ -1,0 +1,173 @@
+{
+  "bug_id": "MC-225364",
+  "category": "Projectiles",
+  "source_md": "[Projectiles] - MC-225364.md",
+  "source_meta": {
+    "mojira categories": "Player; Projectiles",
+    "project": "MC",
+    "issue key": "MC-225364",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-05-12T07:51:37.394-0700",
+    "updated": "2025-04-29T11:25:21.112-0700",
+    "resolution date": "2023-12-11T02:50:01.594-0800",
+    "affects versions": "1.16.5; 21w19a; 1.17; 1.17.1; 21w37a; 1.18.1; 1.18.2; 1.19; 1.19.1; 1.19.3; 23w03a; 1.19.4; 23w18a; 23w41a",
+    "fix versions": "23w42a",
+    "area": "Gameplay",
+    "game mode": "Adventure",
+    "labels": "chorus_flower",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2021-05-15_18.44.00.png; MC-225364.mp4",
+    "issue links": "Relates:outward:MC-265758:Decorated pots can be destroyed by projectiles in adventure mode | Relates:inward:MC-176161:Striders unaffected by speed while riding | Relates:inward:MCPE-176161:Chorus flowers can be destroyed by projectiles in adventure mode",
+    "_title": "Chorus flowers can be destroyed by projectiles in adventure mode"
+  },
+  "stor": {
+    "bug_id": "MC-225364",
+    "affected_versions": [
+      "1.16.5",
+      "21w19a",
+      "1.17",
+      "1.17.1",
+      "21w37a",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.3",
+      "23w03a",
+      "1.19.4",
+      "23w18a",
+      "23w41a"
+    ],
+    "recommended_version": "1.16.5",
+    "environment": "Minecraft Java Edition 1.16.5 in a single-player world. Use Creative mode with commands available for setup, then change to Adventure mode before firing the arrow. Default keyboard and mouse controls are assumed unless they have been rebound.",
+    "preconditions": [
+      "Launch an installation/profile using exactly Minecraft Java Edition 1.16.5, the first version listed as affected.",
+      "Create or open a world in which commands are available. A newly created Creative-mode single-player world is the simplest setup; no particular seed or coordinates are specified.",
+      "Ensure there is a clear, level area where a chorus flower can be placed and approached without other blocks or entities obstructing a bow shot.",
+      "Do not use the fixed version 23w42a for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create a new single-player world in Creative mode, or open an existing command-enabled world and enter Creative mode for setup. Wait for terrain generation and chunk loading to finish before continuing.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in a loaded area and has access to the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Press E to open the inventory. Open the Creative inventory's Search Items tab, identified by the compass icon.",
+        "exact_input": "E",
+        "success_cue": "The Creative item catalogue and its search field are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Use the search field to obtain one End Stone block, one Chorus Flower, one Bow, and at least one Arrow. For each item, clear the previous search, enter the exact item name, and move the matching item icon into the hotbar or player inventory. Keep the bow in the hotbar and the arrow anywhere in the inventory.",
+        "exact_input": "End Stone; Chorus Flower; Bow; Arrow",
+        "success_cue": "The player possesses End Stone, a Chorus Flower, a Bow, and at least one Arrow, with the bow accessible from the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Close the inventory by pressing E or Esc. Select the hotbar slot containing End Stone using the corresponding number key or mouse wheel.",
+        "exact_input": "E or Esc",
+        "success_cue": "The world view is visible and End Stone is shown as the held item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Aim at the top face of a ground block in the clear test area and use the Place Block control, default right-click, once to place the End Stone as an exposed support block.",
+        "exact_input": "right-click",
+        "success_cue": "One End Stone block is present with its top face unobstructed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the Chorus Flower in the hotbar. Aim at the exposed top face of the End Stone and use the Place Block control, default right-click, once.",
+        "exact_input": "right-click",
+        "success_cue": "A chorus flower is visibly attached to the top of the End Stone.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Move approximately 4 to 6 blocks horizontally away from the chorus flower while remaining on roughly the same ground level. Face the flower and ensure no block or entity lies between the player and the flower.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The entire chorus flower is visible from a short distance with a clear line of fire.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat command input is open and ready to accept text.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the Adventure-mode command exactly as shown, including the leading slash, and press Enter to execute it.",
+        "exact_input": "/gamemode adventure",
+        "success_cue": "Command feedback confirms that the player's game mode is now Adventure mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the hotbar slot containing the bow. Confirm that at least one arrow remains in the player inventory.",
+        "exact_input": "Corresponding hotbar number key or mouse wheel",
+        "success_cue": "The bow is visible in the player's hand and an arrow is available as ammunition.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Place the crosshair over the central visible portion of the chorus flower rather than over the supporting End Stone. Adjust the player's position or aim if necessary, but do not fire yet.",
+        "exact_input": "Mouse movement",
+        "success_cue": "The crosshair rests on the chorus flower with an unobstructed trajectory from the bow to the flower.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Hold the Use Item control, default right mouse button, until the bow is fully drawn.",
+        "exact_input": "Hold right-click",
+        "success_cue": "The bow is in its fully drawn visual state while the crosshair remains aimed at the chorus flower.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Release the Use Item control to fire exactly one arrow directly at the chorus flower. Wait only until the arrow reaches the target, then perform no additional attacks or shots.",
+        "exact_input": "Release right-click",
+        "success_cue": "The single fired arrow has reached the chorus flower; the setup and trigger are complete and no second projectile has been fired.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The player is in Adventure mode and a single arrow fired from the bow has just impacted the placed chorus flower. Stop player input and hand control to the observation subsystem immediately.",
+    "uncertainties": [
+      "The report does not specify single-player versus dedicated-server operation, a world seed, coordinates, or a shooting distance. A command-enabled single-player world and a short unobstructed shot are used as practical implementation choices.",
+      "The report only instructs the player to place a chorus flower. End Stone is added as a practical support block so the flower can be placed deterministically in an ordinary test area.",
+      "Creative mode is used only to acquire and place the required items efficiently; the projectile is fired only after changing to the report-required Adventure mode.",
+      "The report does not state whether controls are rebound. The plan gives the default Java Edition controls."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_008f2c217e725438016aa71c4ad84487d0a2e7c3fb3a835600",
+    "elapsed_seconds": 39.39,
+    "usage": {
+      "input_tokens": 9205,
+      "output_tokens": 2941,
+      "reasoning_tokens": 1552,
+      "total_tokens": 12146
+    },
+    "timestamp": "2026-09-13T21:58:09.597261+00:00"
+  }
+}

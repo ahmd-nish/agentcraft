@@ -1,0 +1,200 @@
+{
+  "bug_id": "MC-278417",
+  "category": "Projectiles",
+  "source_md": "[Projectiles] - MC-278417.md",
+  "source_meta": {
+    "mojira categories": "Projectiles",
+    "project": "MC",
+    "issue key": "MC-278417",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-11-20T03:03:27.176-0800",
+    "updated": "2025-04-26T17:33:00.847-0700",
+    "resolution date": "2025-01-28T14:41:10.562-0800",
+    "affects versions": "24w36a; 1.21.3; 24w46a; 1.21.4 Pre-Release 1; 1.21.4",
+    "fix versions": "25w02a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "Minecraft 25w02a - Singleplayer 2025-01-11 15-42-34.mp4; Minecraft 25w02a - Singleplayer 2025-01-11 16-07-28.mp4",
+    "issue links": "Relates:outward:MC-279830:Fire value is not decreased for projectiles (arrows, trident) with inGround:1b",
+    "_title": "Arrows and tridents on fire and stuck in the ground cannot be extinguished by rain"
+  },
+  "stor": {
+    "bug_id": "MC-278417",
+    "affected_versions": [
+      "24w36a",
+      "1.21.3",
+      "24w46a",
+      "1.21.4 Pre-Release 1",
+      "1.21.4"
+    ],
+    "recommended_version": "24w36a",
+    "environment": "Minecraft Java Edition 24w36a in a fresh singleplayer Creative-mode world with commands enabled. Use an open, unsheltered location in a biome where precipitation falls as rain. Default controls are assumed: T for chat, E for inventory, number keys or mouse wheel for hotbar selection, and right mouse button for using the bow.",
+    "preconditions": [
+      "The Minecraft Launcher can launch the exact affected snapshot 24w36a; do not use the fix version 25w02a.",
+      "Use a fresh singleplayer test world so there are no previously fired arrows that could be selected by the nearest-arrow selector @n[type=minecraft:arrow].",
+      "Commands must be permitted. Creating the test world in Creative mode is the simplest way to provide command access, although the report does not require a particular game mode.",
+      "The test location must have a clear view of the sky and exposed solid ground, such as the top surface of grass, dirt, or stone. Do not perform the test beneath trees, roofs, caves, or other blocks that can intercept rain.",
+      "Use a biome where /weather rain produces visible rain rather than no precipitation or snow; an open plains or forest location is suitable.",
+      "Use the commands exactly as written, including capitalization, selectors, component syntax, and the leading slash."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation for snapshot 24w36a, launch it, and wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The main menu identifies the running Minecraft Java Edition version as 24w36a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world in Creative mode, and enter the world. Wait until surrounding terrain is rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded 24w36a world and has permission to execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to flat, exposed ground in a rain-capable biome. Stand where the sky directly above both the player and the intended arrow landing point is unobstructed. Ensure no other arrows are present nearby.",
+        "exact_input": null,
+        "success_cue": "There is an exposed solid ground surface several blocks in front of the player, with no roof or foliage overhead and no other arrow entities nearby.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the weather-clear command exactly as supplied, including the leading slash, and press Enter.",
+        "exact_input": "/weather clear",
+        "success_cue": "The game acknowledges the weather command and begins or maintains clear weather.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Wait until any previous precipitation has stopped and the exposed test area is visibly clear. Do not continue while rain or snow particles are still falling at the test location.",
+        "exact_input": null,
+        "success_cue": "No precipitation particles are falling at the player or the intended arrow landing point.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the supplied command that gives the player a Flame-enchanted bow, and press Enter.",
+        "exact_input": "/give @s minecraft:bow[minecraft:enchantments={levels:{\"minecraft:flame\":1}}]",
+        "success_cue": "The command succeeds and a bow with Flame level 1 is present in the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press T, enter the supplied command that gives the player an arrow, and press Enter.",
+        "exact_input": "/give @s minecraft:arrow",
+        "success_cue": "The command succeeds and at least one arrow is present in the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press E to open the inventory. If necessary, move the Flame-enchanted bow into one of the nine hotbar slots at the bottom of the inventory. Leave at least one arrow anywhere in the player inventory. Close the inventory with E, then select the bow's hotbar slot using its number key or the mouse wheel.",
+        "exact_input": null,
+        "success_cue": "The Flame-enchanted bow is visible in the player's hand, and an arrow remains available in the inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Look downward and aim the crosshair at the exposed top face of a solid ground block approximately 3 to 5 blocks away. Choose a point that remains directly exposed to the sky and is close enough that the resulting arrow will be the nearest arrow to the player.",
+        "exact_input": null,
+        "success_cue": "The crosshair is on an exposed horizontal ground surface with no entity or block overhang between the bow and the target point.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press and hold the use-item control, which is the right mouse button by default, until the bow reaches full draw.",
+        "exact_input": null,
+        "success_cue": "The bow is fully drawn while the crosshair remains aimed at the exposed ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Release the right mouse button once to shoot the Flame arrow into the targeted ground surface.",
+        "exact_input": null,
+        "success_cue": "One arrow has been fired toward the selected ground block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Wait only until the fired arrow is visibly embedded in the ground and has stopped moving. Confirm that it is aflame before changing the weather. Keep the player near this arrow and perform the remaining steps promptly so the projectile does not despawn.",
+        "exact_input": null,
+        "success_cue": "A single visibly flaming arrow is stationary and embedded in exposed ground near the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press T, enter the supplied entity-data command, and press Enter. Record the numeric Fire value returned for the nearest arrow, but do not remove or disturb the arrow.",
+        "exact_input": "/data get entity @n[type=minecraft:arrow] Fire",
+        "success_cue": "Chat returns a numeric Fire tag value for an arrow rather than reporting that no matching entity was found.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Leave the arrow embedded and wait approximately 2 seconds without shooting another projectile, moving far away, changing dimension, or altering the weather. This short delay makes the two pre-rain queries meaningfully separated in time.",
+        "exact_input": null,
+        "success_cue": "The same arrow remains stationary in the exposed ground and is still the only nearby arrow.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Press T, enter the same supplied entity-data command again, and press Enter. Record the second numeric Fire value without interpreting the result.",
+        "exact_input": "/data get entity @n[type=minecraft:arrow] Fire",
+        "success_cue": "Chat returns a second numeric Fire tag value for the same nearest embedded arrow.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Press T, enter the supplied rain command, and press Enter. Do not move or disturb the embedded arrow.",
+        "exact_input": "/weather rain",
+        "success_cue": "The game acknowledges the weather command and begins transitioning the world to rain.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Wait at the test location until rain particles are visibly falling through the open sky at the embedded arrow's exact position. Keep the arrow loaded and within a few blocks of the player.",
+        "exact_input": null,
+        "success_cue": "The same embedded arrow is present, and visible rain is falling directly at its unsheltered location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "While the arrow remains embedded and exposed to active rain, press T, enter the supplied entity-data command for the third time, and press Enter. Record the returned Fire value without evaluating either the visual or data result.",
+        "exact_input": "/data get entity @n[type=minecraft:arrow] Fire",
+        "success_cue": "Chat has returned a third numeric Fire tag value for the same embedded arrow while rain is visibly falling at the arrow's position.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The originally flaming arrow is still embedded in exposed ground, visible rain is falling directly at its position, and the third Fire-tag query has just returned in chat. Hand control to the observation subsystem to inspect the projectile's visual and entity-data state.",
+    "uncertainties": [
+      "The report does not specify a game mode. This plan uses Creative mode as a practical way to guarantee command access and simplify item handling; the reported trigger itself does not state that Creative mode is required.",
+      "The report provides no world seed, biome, or coordinates. The executor must choose an exposed location in a biome where precipitation appears as rain rather than snow or no precipitation.",
+      "The report says to execute the first data command twice but does not specify the delay between executions. A delay of approximately 2 seconds is added so measurable game time passes while keeping the procedure well within the arrow's lifetime.",
+      "Although the issue title includes both arrows and tridents, the supplied reproduction procedure provides exact commands and actions only for the arrow variant. This plan therefore reproduces only the explicitly documented arrow path.",
+      "The report does not explicitly require singleplayer, but the supplied attachment filenames identify singleplayer recordings. A fresh singleplayer world is selected to avoid unrelated nearby arrows and selector ambiguity."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_070d0b0f3c5c5657016aa71ca986d487d09d677589aebe4723",
+    "elapsed_seconds": 86.8,
+    "usage": {
+      "input_tokens": 8800,
+      "output_tokens": 6128,
+      "reasoning_tokens": 4142,
+      "total_tokens": 14928
+    },
+    "timestamp": "2026-09-13T22:00:32.152628+00:00"
+  }
+}
