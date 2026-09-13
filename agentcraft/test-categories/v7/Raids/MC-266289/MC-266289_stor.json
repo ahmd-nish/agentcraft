@@ -1,0 +1,192 @@
+{
+  "bug_id": "MC-266289",
+  "category": "Raids",
+  "source_md": "[Raids] - MC-266289.md",
+  "source_meta": {
+    "mojira categories": "Raids; Save Data",
+    "project": "MC",
+    "issue key": "MC-266289",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2023-11-01T09:46:33.658-0700",
+    "updated": "2025-04-11T10:39:32.293-0700",
+    "resolution date": "2023-11-06T03:08:18.551-0800",
+    "affects versions": "23w44a",
+    "fix versions": "23w45a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-266330:Loot Tables reset when reloading world | Relates:outward:MC-266287:Can't load .dat and .nbt files (server list & saved hotbar) | Duplicate:inward:MC-266325:Map data erased on restart | Duplicate:inward:MC-266332:Data files like raids, scoreboards, maps, etc. are not saved if they do not already exist | Duplicate:inward:MC-266375:Newly made maps won't save and throw exceptions to the log, when reloading into the save all affected maps are permanently blank. | Duplicate:inward:MC-266398:Maps cannot save",
+    "_title": "Could not save data raids.dat and random_sequences.dat"
+  },
+  "stor": {
+    "bug_id": "MC-266289",
+    "affected_versions": [
+      "23w44a"
+    ],
+    "recommended_version": "23w44a",
+    "environment": "Vanilla Minecraft Java Edition snapshot 23w44a in a single-player world using the integrated server. Use a newly created Overworld with commands enabled. Creative mode and Normal difficulty are practical choices for safe travel and reliable raid setup; the report does not specify a game mode or difficulty. Configure the launcher or test harness to retain the game's output log/stdout for the separate observation subsystem.",
+    "preconditions": [
+      "Install or select the exact Java Edition snapshot 23w44a; do not use fix version 23w45a.",
+      "Use an unmodified client without mods or third-party server software.",
+      "Create a new world for this test rather than reusing a world that may already contain saved raid or random-sequence data.",
+      "Enable commands/cheats so the report's /locate and /effect commands can be executed.",
+      "Use a non-Peaceful difficulty; Normal is recommended as a practical inference.",
+      "Ensure the game process output or latest game log is retained for later inspection, but do not evaluate its contents during these reproduction steps.",
+      "Remain in the Overworld for the village and raid setup.",
+      "Do not defeat or intentionally cancel the raid before leaving the world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using an installation configured for snapshot 23w44a. Wait for the main menu to finish loading and verify the displayed version before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is responsive and identifies the running version as 23w44a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer, choose Create New World, assign the world a unique test name such as MC-266289-23w44a, select Creative mode, set difficulty to Normal, and enable commands/cheats. Do not add datapacks or reuse an existing world.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen is configured for a new Creative, Normal-difficulty world with commands available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Create the world and wait without entering commands until terrain has rendered, the hotbar is visible, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a fully loaded new Overworld and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press Esc once to pause the single-player game and open the Game Menu. Keep the captured game output available, but do not assess whether any particular error occurred.",
+        "exact_input": "Esc",
+        "success_cue": "The Game Menu is visible and the single-player game is paused.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Choose Back to Game, or press Esc again, to close the pause menu.",
+        "exact_input": "Esc",
+        "success_cue": "The Game Menu has closed and normal player control has resumed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat. Type the report's locate command exactly as shown, including the leading slash, and press Enter. This must be run by the player in chat, not by a server console.",
+        "exact_input": "/locate structure #minecraft:village",
+        "success_cue": "Chat reports the nearest structure matching the village tag and displays bracketed coordinates containing an X and Z position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Record the X and Z coordinates returned by the locate command. Press T, enter the teleport command shown in exact_input after replacing <X> and <Z> with those returned integers, and press Enter. Keep Y set to 200 so the player arrives above terrain rather than inside an unknown block.",
+        "exact_input": "/tp @s <X> 200 <Z>",
+        "success_cue": "The player is teleported to X and Z matching the locate result, at approximately Y=200 above the destination area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Allow the player to descend safely in Creative mode, or double-tap Space to begin flying and hold Left Shift to descend under control. Wait for the destination chunks to render before searching the immediate area.",
+        "exact_input": null,
+        "success_cue": "Terrain around the located coordinates is rendered, the player is in open air or safely on the terrain, and controls respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move into the located village. Identify it by the nearby group of village buildings and village features such as villagers, beds, workstations, paths, farms, or a bell. Stand among the village buildings rather than merely viewing them from a distance.",
+        "exact_input": null,
+        "success_cue": "The player is physically within the village area among its buildings or villagers.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press T to open chat. Enter the Bad Omen command from the report exactly as written, including the leading slash, and press Enter. Execute it only after entering the village so the default effect duration is not spent traveling.",
+        "exact_input": "/effect give @s minecraft:bad_omen",
+        "success_cue": "Command feedback confirms that Bad Omen was applied to the player; the status-effect icon may appear briefly before the village consumes the effect to initiate the raid.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Remain within the village and wait for raid initialization. Do not attack villagers, raid mobs, or otherwise attempt to finish the raid. Continue only after the raid boss bar has appeared at the top of the screen.",
+        "exact_input": null,
+        "success_cue": "A raid boss bar is visible, confirming that a raid is active in the current village.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "While the raid boss bar is still visible, press Esc to open the Game Menu. Do not wait for the raid to finish.",
+        "exact_input": "Esc",
+        "success_cue": "The Game Menu is open while the world still contains the active raid established in the preceding step.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Click Save and Quit to Title once. Wait until world shutdown completes and the main title screen is responsive; do not force-close the game process.",
+        "exact_input": null,
+        "success_cue": "The world has closed normally and the main title screen is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "From the title screen, click Singleplayer and wait for the world-selection list to appear.",
+        "exact_input": null,
+        "success_cue": "The world-selection screen lists the test world created earlier.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Select the same test world used to start the raid. Confirm its name matches the world created for this reproduction and do not create or select another world.",
+        "exact_input": null,
+        "success_cue": "The original MC-266289 test world is highlighted in the world-selection list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Click Play Selected World, or double-click the highlighted test world, to reopen that same save.",
+        "exact_input": null,
+        "success_cue": "The loading screen appears for the original test world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Wait until world loading and chunk rendering finish. Do not perform additional commands, change dimensions, apply another effect, or start another raid after loading. Stop execution as soon as the player can move and the village area is visible.",
+        "exact_input": null,
+        "success_cue": "The same world has finished reloading, the player can move normally, and the surrounding village chunks are rendered.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The same 23w44a world has just been reopened after it was saved and exited while a raid boss bar was active. The village area is rendered, player controls are responsive, no post-load commands or interactions have occurred, and the captured game output remains available. Hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The report does not specify a world seed or fixed village coordinates. The plan therefore uses the supplied /locate command and dynamically substitutes its returned X and Z coordinates into a practical teleport command.",
+      "The report does not specify game mode or difficulty. Creative mode and Normal difficulty are selected only to make travel safe and to avoid Peaceful difficulty interfering with raid setup.",
+      "The report says to find a village but does not specify how to travel to the locate result. Teleporting to Y=200 above the returned X/Z position is a practical inference and is not asserted as necessary for the bug.",
+      "A new world is selected to avoid pre-existing saved-data files affecting reproducibility; the report itself only says to open a world.",
+      "The report provides both an output-log reproduction and a raid-persistence reproduction. This plan includes the initial pause and log capture from the first route, then uses the more operationally explicit raid route for the final trigger and handoff.",
+      "The Windows filesystem path in the sample exception reflects the reporter's machine and is not treated as an operating-system requirement.",
+      "No external web verification was used because the exact affected version and version-specific /locate and /effect commands were supplied directly by the report."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_07b321b82d012bec016aa71a6ee10487d08e780606f09a3c6e",
+    "elapsed_seconds": 105.06,
+    "usage": {
+      "input_tokens": 8665,
+      "output_tokens": 7702,
+      "reasoning_tokens": 5804,
+      "total_tokens": 16367
+    },
+    "timestamp": "2026-09-13T21:51:19.631899+00:00"
+  }
+}

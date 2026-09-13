@@ -1,0 +1,214 @@
+{
+  "bug_id": "MC-249168",
+  "category": "Redstone",
+  "source_md": "[Redstone] - MC-249168.md",
+  "source_meta": {
+    "mojira categories": "Redstone",
+    "project": "MC",
+    "issue key": "MC-249168",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-03-16T16:15:48.071-0700",
+    "updated": "2025-03-25T13:39:49.211-0700",
+    "resolution date": "2022-03-31T11:06:17.477-0700",
+    "affects versions": "22w11a; 22w12a",
+    "fix versions": "22w13a",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Dispensing a Bucket of Tadpole above or below a dimension dispenses the item, instead of a tadpole"
+  },
+  "stor": {
+    "bug_id": "MC-249168",
+    "affected_versions": [
+      "22w11a",
+      "22w12a"
+    ],
+    "recommended_version": "22w11a",
+    "environment": "Minecraft Java Edition snapshot 22w11a in a single-player Creative-mode world with commands/cheats enabled. Perform the reproduction in the Nether. No dedicated server, specific world seed, datapack, resource pack, or nondefault graphics setting is required by the report.",
+    "preconditions": [
+      "Install and launch the exact Java Edition snapshot 22w11a rather than the fix version 22w13a.",
+      "Create or load a world in Creative mode with commands/cheats enabled so the supplied /setblock and /tp commands can be executed.",
+      "Have one Dispenser, one Stone Button, one Bucket of Axolotl, and one Bucket of Tadpole available from the Creative inventory.",
+      "If using a manually constructed Nether portal, also have 14 Obsidian and one Flint and Steel.",
+      "Use only one mob bucket in the dispenser at a time. Before testing the Bucket of Tadpole, remove the empty bucket left by the axolotl control activation so dispenser slot selection is deterministic."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that uses snapshot 22w11a, launch it, and wait for the main menu to appear. Confirm that the displayed version is 22w11a before continuing.",
+        "exact_input": "22w11a",
+        "success_cue": "The Minecraft Java Edition main menu is open and identifies the running version as 22w11a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer and create a new world. Set Game Mode to Creative and ensure commands/cheats are enabled, then create the world and wait until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded Creative-mode world and can execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to obtain one Dispenser, one Stone Button, one Bucket of Axolotl, one Bucket of Tadpole, 14 Obsidian, and one Flint and Steel. Place them in accessible inventory or hotbar slots, then close the inventory with E or Esc.",
+        "exact_input": "Dispenser; Stone Button; Bucket of Axolotl; Bucket of Tadpole; Obsidian; Flint and Steel",
+        "success_cue": "All required dispenser-test items and Nether-portal materials are present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "In an open area, build a vertical Nether portal frame from Obsidian. Make the outside of the rectangle 4 blocks wide and 5 blocks tall, leaving a 2-block-wide by 3-block-tall empty opening inside the frame.",
+        "exact_input": null,
+        "success_cue": "A complete upright Obsidian rectangle with a 2-by-3-block empty interior is present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select Flint and Steel in the active hotbar slot and use it with right-click on an Obsidian block along the inside bottom of the frame.",
+        "exact_input": null,
+        "success_cue": "The portal interior is filled with the animated purple Nether portal field.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Walk into the purple portal field and remain inside it until dimension travel begins.",
+        "exact_input": null,
+        "success_cue": "The Nether loading screen or dimension transition begins.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait until the Nether terrain has rendered and normal movement and inventory interaction respond again. If necessary, verify the Nether by its red-toned terrain and Nether ambience.",
+        "exact_input": null,
+        "success_cue": "The player is fully loaded in the Nether and can move normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Enable Creative flight by double-tapping the Jump control, which is Space by default. Rise slightly to confirm that flight is active; this prevents an unintended fall while working at the upper dimension boundary.",
+        "exact_input": "Space twice",
+        "success_cue": "The player can hover without standing on a block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T to open in-game chat, type the report's setblock command exactly with the leading slash, and press Enter. Execute it as the player, not from a server console.",
+        "exact_input": "/setblock ~ 255 ~ dispenser[facing=up]",
+        "success_cue": "The command completes without a red syntax or permission error, placing an upward-facing dispenser at the player's current X and Z coordinates and Y=255.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press T to open chat again, type the report's teleport command exactly with the leading slash, and press Enter.",
+        "exact_input": "/tp @s ~ 256 ~",
+        "success_cue": "The player is teleported to Y=256 while retaining the same X and Z coordinates.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait until movement and rendering respond normally after teleportation. If needed, press F3 to confirm the player's Y coordinate is approximately 256, then close the debug display with F3. Look downward to locate the dispenser directly below at Y=255.",
+        "exact_input": "F3",
+        "success_cue": "The player is hovering at the Nether's upper boundary and the upward-facing dispenser is directly below or immediately adjacent.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While remaining in Creative flight, move horizontally far enough to see and target a side or the top face of the dispenser without drifting away from it.",
+        "exact_input": null,
+        "success_cue": "The crosshair can be placed on a visible face of the dispenser.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Use right-click on the dispenser to open its inventory. Confirm that all nine dispenser slots are empty before adding the control item.",
+        "exact_input": null,
+        "success_cue": "The Dispenser interface is open and its nine storage slots are empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "In the open Dispenser interface, click the Bucket of Axolotl in the player inventory and then click one empty dispenser slot to place it there. Do not add the Bucket of Tadpole yet. Press Esc to close the interface.",
+        "exact_input": null,
+        "success_cue": "The dispenser contains only one Bucket of Axolotl and the interface is closed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Select the Stone Button in the hotbar. Aim at a vertical side face of the dispenser and right-click to attach the button. Leave at least one other dispenser face accessible for reopening its inventory.",
+        "exact_input": null,
+        "success_cue": "A button is attached to the side of the dispenser and can be targeted with the crosshair.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Aim at the attached button and right-click it once to activate the dispenser for the axolotl control trial. Allow the button to release before continuing.",
+        "exact_input": null,
+        "success_cue": "The dispenser has activated once, an axolotl has been released above it, and the button has returned to its unpressed state.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Aim at a dispenser face that is not occupied by the button and right-click to reopen the Dispenser interface.",
+        "exact_input": null,
+        "success_cue": "The Dispenser interface is open after the axolotl control activation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Remove every item remaining in the dispenser, including the empty bucket produced by the control activation. Shift-clicking the remaining item transfers it to the player inventory. Confirm that all nine dispenser slots are empty.",
+        "exact_input": null,
+        "success_cue": "All nine dispenser slots are empty, preventing a residual item from being randomly selected during the tadpole trial.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "While the Dispenser interface remains open, click the Bucket of Tadpole in the player inventory and then click one empty dispenser slot to place it there. Do not place any other item in the dispenser.",
+        "exact_input": null,
+        "success_cue": "The Bucket of Tadpole is the dispenser's only stored item.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Press Esc to close the Dispenser interface. Keep the player hovering close enough to target the attached button.",
+        "exact_input": null,
+        "success_cue": "The dispenser interface is closed, the dispenser contains only the Bucket of Tadpole, and the button is visible and reachable.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Aim directly at the attached button and right-click it exactly once to activate the dispenser with the Bucket of Tadpole. Do not activate it repeatedly; hand off immediately after this activation.",
+        "exact_input": null,
+        "success_cue": "The button has just been pressed and the dispenser has begun its single tadpole-bucket activation.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The upward-facing dispenser at Y=255 in the Nether has just been activated once while containing only one Bucket of Tadpole, with the player positioned at the upper dimension boundary. Begin observation immediately after this activation.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, or world-generation settings. Creative mode with cheats enabled is selected as the simplest deterministic way to obtain the items and execute the supplied commands.",
+      "The report only says to enter the Nether and does not prescribe a portal or command-based travel method. A manually constructed Nether portal is used to avoid introducing an additional version-sensitive dimension command.",
+      "The report specifies activation with a button but does not identify the button material. A Stone Button is selected as a practical implementation choice; no button type is stated as required.",
+      "A comment states that the issue occurs in all dimensions, but the original reproduction explicitly uses the Nether. This plan preserves the original Nether procedure.",
+      "No external verification was needed because the report supplies the affected snapshots, exact commands, dimension, item order, dispenser orientation, and trigger action."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0242ed53bc34f049016aa71826e74087d098685cef0f923bfd",
+    "elapsed_seconds": 82.16,
+    "usage": {
+      "input_tokens": 8365,
+      "output_tokens": 5510,
+      "reasoning_tokens": 3410,
+      "total_tokens": 13875
+    },
+    "timestamp": "2026-09-13T21:41:12.325399+00:00"
+  }
+}

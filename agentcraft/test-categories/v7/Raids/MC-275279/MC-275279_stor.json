@@ -1,0 +1,167 @@
+{
+  "bug_id": "MC-275279",
+  "category": "Raids",
+  "source_md": "[Raids] - MC-275279.md",
+  "source_meta": {
+    "mojira categories": "Raids",
+    "project": "MC",
+    "issue key": "MC-275279",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-08-15T11:30:42.179-0700",
+    "updated": "2025-04-26T16:09:10.737-0700",
+    "resolution date": "2024-08-22T02:27:13.551-0700",
+    "affects versions": "24w33a",
+    "fix versions": "24w35a",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2024-08-16_04.19.52.png; 2024-08-17_12.24.35.png; Screenshot_2024-08-14-20-50-04-430_com.mojang.minecraftpe.jpg",
+    "_title": "Raiders do not spawn on small islands even though there are close enough places around the village"
+  },
+  "stor": {
+    "bug_id": "MC-275279",
+    "affected_versions": [
+      "24w33a"
+    ],
+    "recommended_version": "24w33a",
+    "environment": "Vanilla Minecraft Java Edition snapshot 24w33a in a new single-player world using the Default world type and seed 23925373020405760. Use Survival mode, Normal difficulty, and enable commands/cheats for deterministic setup. Do not use mods, datapacks, custom world generation, or a fix version such as 24w35a.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start the historical Java Edition snapshot 24w33a.",
+      "Use a new world rather than an existing or upgraded world.",
+      "Use the exact positive seed 23925373020405760 and leave World Type set to Default.",
+      "Enable commands/cheats during world creation so the teleport, block placement, entity summon, and item-give commands can be executed.",
+      "Keep the default game tick rate and do not pause the game during timed Raid Omen or raid-start waiting periods.",
+      "The instructions assume the default Use Item control is right-click. If controls are rebound, use the key or mouse button assigned to Use Item instead."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the launcher installation configured for snapshot 24w33a. Do not select 24w35a, because that is listed as a fix version rather than an affected version.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running version as Minecraft Java Edition 24w33a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, open the world-generation settings, enter the report's seed, and make sure World Type is Default.",
+        "exact_input": "23925373020405760",
+        "success_cue": "The create-world screen shows seed 23925373020405760 and the Default world type.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Leave the game mode as Survival and the difficulty as Normal, enable Allow Commands or cheats, and create the world. Survival and Normal are controlled practical choices because the report does not specify game mode or difficulty; Normal is used to avoid Peaceful-mode interference while retaining ordinary raid gameplay.",
+        "exact_input": null,
+        "success_cue": "The new world begins loading with commands available to the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait without entering commands until the player has spawned, nearby terrain is rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player can move normally and the initial surrounding chunks are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat, type the teleport command including its leading slash, and press Enter. This implements the report's instruction to teleport to X=204, Y=65, Z=110.",
+        "exact_input": "/tp @s 204 65 110",
+        "success_cue": "The player is teleported to the island area at 204 65 110 and the command reports successful teleportation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Do not modify the terrain. Wait until the terrain around the destination has rendered and player movement and commands respond normally. The player may settle slightly below Y=65 if gravity moves them after teleportation.",
+        "exact_input": null,
+        "success_cue": "The small-island terrain around coordinates 204 65 110 is fully visible and responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open chat with T and place the required composter at the report's exact block coordinates by running the command below. Include the leading slash and press Enter.",
+        "exact_input": "/setblock 202 62 111 minecraft:composter",
+        "success_cue": "A composter occupies block X=202, Y=62, Z=111, and chat reports that the block was placed or changed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open chat and summon one ordinary villager centered on the horizontally adjacent block immediately east of the composter. The report only says to summon the villager beside the composter; X=203.5, Y=62, Z=111.5 is the deterministic adjacent position selected for this plan.",
+        "exact_input": "/summon minecraft:villager 203.5 62 111.5",
+        "success_cue": "One living adult villager is visible beside the composter and chat reports that a villager was summoned.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Remain nearby and allow the villager to detect and claim the composter. Look for the brief green linking particles and/or the villager changing from unemployed clothing to the farmer profession. Do not remove the composter or allow the villager to die. A villager linked to a job-site block is sufficient to establish the raid-relevant village condition. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAdvancement_guide/Adventure_tab?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The villager is alive near the composter and visibly has the farmer profession, confirming that the composter has been claimed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Open chat and give the player two ordinary Ominous Bottles so one is available for the first attempt and one is reserved for the report's requested repeat. Include the leading slash and press Enter. The Java Edition item identifier is ominous_bottle, and an unmodified bottle uses the default lowest amplifier. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E7%89%A9%E5%93%81%E5%A0%86%E5%8F%A0%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F?utm_source=openai))",
+        "exact_input": "/give @s minecraft:ominous_bottle 2",
+        "success_cue": "Chat reports that two Ominous Bottles were given, and the inventory contains a stack of two bottles.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Return the player to the report's test position without moving the villager or composter. Open chat, execute the exact command, and wait for movement to stabilize.",
+        "exact_input": "/tp @s 204 65 110",
+        "success_cue": "The player is back at or settling immediately around 204 65 110, within the test village area, while the villager remains alive and linked to the composter.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Close chat. Locate the stack of two Ominous Bottles in the nine-slot hotbar at the bottom of the screen. Select its slot using the corresponding number key 1 through 9 or the mouse wheel so the bottle is held in the player's hand.",
+        "exact_input": null,
+        "success_cue": "An Ominous Bottle is visible in the player's hand and its hotbar slot is highlighted; the stack count is 2 before drinking.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "While remaining near the villager and composter, hold Use Item—right-click by default—until the drinking animation completes and one bottle is consumed. Do not walk away during or after consumption. Drinking an Ominous Bottle grants Bad Omen, which converts to the approximately 30-second Raid Omen countdown when the player is in a recognized village. ([minecraft.net](https://www.minecraft.net/en-us/article/ominous-bottle?utm_source=openai))",
+        "exact_input": "Hold right-click until consumption completes",
+        "success_cue": "The bottle-consumption sound and animation finish, the held stack decreases from 2 to 1, and the player receives Raid Omen with a countdown near 30 seconds.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Keep the player near coordinates 204 65 110 and leave the villager, composter, terrain, and remaining bottle untouched. Do not pause the game. Wait until the Raid Omen countdown completes and the Raid boss bar appears. This transition starts the raid and its spawn-location search. ([minecraft.net](https://www.minecraft.net/en-us/article/ominous-bottle?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The Raid boss bar has just appeared while the player remains beside the prepared small-island village; begin observation immediately without evaluating the raider outcome in this setup plan.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The first Raid boss bar has just appeared at the small-island village, the farmer villager is alive and linked to the composter at 202 62 111, the player remains near 204 65 110, and one unused Ominous Bottle remains in inventory. The observation subsystem should now monitor the unchanged setup for at least 60 seconds. To preserve the report's requested repeat, once the first raid lifecycle and its UI are no longer active, the observation subsystem should select the reserved bottle, consume it while remaining beside the same villager and composter, wait through the next Raid Omen countdown, and observe the second raid-start window without rebuilding or moving the village.",
+    "uncertainties": [
+      "The report does not specify game mode or difficulty. This plan uses Survival mode and Normal difficulty with commands enabled as a practical deterministic configuration.",
+      "The report does not provide the exact position at which the villager was summoned, only that it was beside the composter. This plan uses the center of the adjacent block at 203.5 62 111.5.",
+      "The report does not state an Ominous Bottle level. This plan uses the ordinary default Ominous Bottle, corresponding to the lowest default amplifier, and reserves a second identical bottle for the requested repeat.",
+      "The report asks to wait approximately one minute and then repeat the bottle-and-wait sequence. Because observation must begin as soon as the raid starts, that timed waiting period and the repeated attempt are delegated to the observation subsystem in the handoff condition.",
+      "The villager must claim the composter before the bottle is consumed. If the villager never becomes a farmer, the raid village precondition has not been reached and the trigger steps must not be executed."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_02623e7829db7e53016aa71bbbaef487d0838ff92ffff28d05",
+    "elapsed_seconds": 124.34,
+    "usage": {
+      "input_tokens": 38873,
+      "output_tokens": 9710,
+      "reasoning_tokens": 7649,
+      "total_tokens": 48583
+    },
+    "timestamp": "2026-09-13T21:57:11.902314+00:00"
+  }
+}

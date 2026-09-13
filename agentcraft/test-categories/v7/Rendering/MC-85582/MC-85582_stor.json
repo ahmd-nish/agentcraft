@@ -1,0 +1,137 @@
+{
+  "bug_id": "MC-85582",
+  "category": "Rendering",
+  "source_md": "[Rendering] - MC-85582.md",
+  "source_meta": {
+    "mojira categories": "Rendering",
+    "project": "MC",
+    "issue key": "MC-85582",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2015-08-08T15:44:52.769-0700",
+    "updated": "2025-04-30T03:49:47.885-0700",
+    "resolution date": "2023-08-05T04:56:05.420-0700",
+    "affects versions": "Minecraft 1.8.8; Minecraft 15w41b; Minecraft 15w42a; Minecraft 15w43c; Minecraft 15w44a; Minecraft 15w44b; Minecraft 15w46a; Minecraft 15w47c; Minecraft 1.13.2; 1.19.2; 22w43a; 1.19.3; 23w06a; 1.19.4; 1.20 Pre-release 7; 1.20",
+    "fix versions": "23w31a",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "2015-08-08_18.36.50.png; 2015-10-08_00.03.00.png; 2015-10-08_00.22.16.png; 2015-10-08_00.25.18.png; 2015-10-08_00.25.25.png; MC-85582.png; MC-85582 - Close up.png; MC-85582 - Non-player entity example.png",
+    "issue links": "Relates:inward:MC-2791:The player model in the inventory screen renders in the wrong orientation when it's not standing up straight | Duplicate:inward:MC-90068:player lying on inventory when flying with Elytra | Duplicate:inward:MC-90278:Elytra, inventory bug | Duplicate:inward:MC-90290:Character comes out of portrait while gliding with Elytra | Duplicate:inward:MC-91262:When using elytra in midair, when you open inventory the player covers part of the inventory | Duplicate:inward:MC-91782:Character in down | Duplicate:inward:MC-92619:13.11.2015 | Duplicate:inward:MC-93416:Avatar glitch when flying on Elytra | Duplicate:inward:MC-94606:Elytra bug when open the inventory in fly | Duplicate:inward:MC-97431:Opening inventory while flying | Duplicate:inward:MC-98004:Elytra in inventory | Duplicate:inward:MC-98330:Elytra Inventory Bug | Duplicate:inward:MC-101189:Elytra Inventory Appearance In-Flight Boundries | Duplicate:inward:MC-103185:If you fly with eleytra with your inventory open, your body is going through you inventory slots. | Duplicate:inward:MC-111701:Elytra Inventory Glitch | Duplicate:inward:MC-134029:opening inventory while swimming causes inventory character to overlap inventory grid | Duplicate:inward:MC-144970:Items in inventory show on top of the player model while flying | Duplicate:inward:MC-149170:Player in inventory has wrong orientation while flying with elytra | Duplicate:inward:MC-165395:Player rendering behind items in inventory | Duplicate:inward:MC-172070:Player character renders under items in inventory while flying Elytra | Duplicate:inward:MC-175555:When flying with elytra, person display in inventor \"E\" is upside down | Duplicate:inward:MC-181875:Inventory Sprite not inside box when using elytra | Duplicate:inward:MC-188430:Flying Player overlaps items in inventory | Duplicate:inward:MC-191283:Layers Issue | Duplicate:inward:MC-211187:Elytra flying in inventory | Duplicate:inward:MC-221313:Arrows shot in the feet can be rendered over the item part in the inventory. | Duplicate:inward:MC-231622:Skin In Inventory When Flying With Elytra Is Flipped | Duplicate:inward:MC-254509:Player character minifigure elytra bug | Relates:outward:MC-78777:Player renders behind armor but in front of GUI in inventory | Relates:inward:MC-16164:Donkey/Horse lead still visible over their inventory | Relates:inward:MCPE-19504:Elytra bug - paper doll model renders outside box in inventory when gliding",
+    "_title": "Entity models in the inventory can render outside the boundaries of the black box"
+  },
+  "stor": {
+    "bug_id": "MC-85582",
+    "affected_versions": [
+      "Minecraft 1.8.8",
+      "Minecraft 15w41b",
+      "Minecraft 15w42a",
+      "Minecraft 15w43c",
+      "Minecraft 15w44a",
+      "Minecraft 15w44b",
+      "Minecraft 15w46a",
+      "Minecraft 15w47c",
+      "Minecraft 1.13.2",
+      "1.19.2",
+      "22w43a",
+      "1.19.3",
+      "23w06a",
+      "1.19.4",
+      "1.20 Pre-release 7",
+      "1.20"
+    ],
+    "recommended_version": "Minecraft 1.8.8",
+    "environment": "Minecraft Java Edition 1.8.8, preferably an unmodified single-player Creative-mode world with commands/cheats available, using a keyboard and mouse. The deterministic non-player entity variant described by the report is used because the report's elytra-based player variant cannot be performed in this first listed affected version.",
+    "preconditions": [
+      "Launch the exact affected version Minecraft 1.8.8 rather than the fixed version 23w31a.",
+      "Use a single-player world in Creative mode with commands available.",
+      "Stand on open, solid terrain with at least several blocks of unobstructed space in front of the player so a horse can spawn and be approached.",
+      "Keep the game window large enough that the complete horse inventory interface is visible."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Java Edition installation configured for Minecraft 1.8.8, then verify the title screen identifies the running version as 1.8.8.",
+        "exact_input": null,
+        "success_cue": "The Minecraft 1.8.8 title screen is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create or load a single-player Creative-mode world in which commands are enabled. After entering the world, wait until nearby terrain has rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a responsive Creative-mode world and can execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a flat, unobstructed location and face toward an empty area at least two blocks away.",
+        "exact_input": "W/A/S/D and mouse movement as needed",
+        "success_cue": "There is solid, open ground approximately two blocks in front of the player with enough room for a horse.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Enter the following legacy-version command exactly as written, including the leading slash, and press Enter: /summon EntityHorse ~ ~ ~2 {Tame:1}. This uses the historical EntityHorse identifier and Tame tag rather than modern horse command syntax. ([minecraft.wiki](https://minecraft.wiki/w/Talk%3AHorse/Archive_1?utm_source=openai))",
+        "exact_input": "/summon EntityHorse ~ ~ ~2 {Tame:1}",
+        "success_cue": "A living horse is visible approximately two blocks in front of the player and no command-syntax error is shown.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Approach the summoned horse until it is within interaction range. If the selected hotbar slot contains an item, select an empty hotbar slot before interacting so the held item does not perform another action.",
+        "exact_input": "W, then a number key for an empty hotbar slot if needed",
+        "success_cue": "The crosshair can be placed directly on the horse and the player's active hand is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Place the crosshair on the horse, hold the Sneak control—Left Shift by default—and right-click the horse once to open its inventory. If controls have been rebound, use the configured Sneak and Use/Interact controls instead. Horse inventory access while standing beside the horse uses sneak plus right-click. ([de.minecraft.wiki](https://de.minecraft.wiki/w/Inventar?utm_source=openai))",
+        "exact_input": "Hold Left Shift and right-click the horse once",
+        "success_cue": "The horse inventory interface is open, with the horse model preview visible in its dark preview area and the player's inventory slots visible below.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Without clicking or closing the horse inventory, move the mouse cursor around the interface so the horse preview rotates through multiple orientations. Sweep the cursor near the left, right, upper, and lower edges and corners of the game window rather than leaving it stationary in the center.",
+        "exact_input": "Move the mouse cursor around the open horse inventory interface",
+        "success_cue": "The horse inventory remains open and the horse preview has been rotated through several substantially different orientations; stop input and hand off immediately.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The horse inventory is still open in Minecraft 1.8.8, and the mouse has just been swept around the interface to rotate the horse model through multiple orientations. Begin visual observation of the inventory GUI without closing it or moving the cursor further.",
+    "uncertainties": [
+      "The report's formal player-model steps require elytra, but elytra was introduced in Java Edition snapshot 15w41a and therefore is unavailable in the first listed affected version, Minecraft 1.8.8. The plan consequently uses the non-player horse-inventory variant explicitly identified in the report description. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Indonesian_translation/Alat?utm_source=openai))",
+      "The horse summon command is a deterministic setup choice not supplied by the report. Its legacy EntityHorse identifier and Tame:1 syntax were externally verified for the relevant historical command format. ([minecraft.wiki](https://minecraft.wiki/w/Talk%3AHorse/Archive_1?utm_source=openai))",
+      "The report does not specify a world seed, coordinates, GUI scale, window resolution, graphics setting, resource pack, exact horse orientation, or exact cursor coordinate. No unreported fixed value is imposed; the cursor is swept broadly to exercise the report's mouse-movement instruction.",
+      "The affected-version list contains Minecraft 1.8.8 even though the formal elytra route cannot be used there. This plan preserves Minecraft 1.8.8 as recommended_version because it is the first affected version listed, as required."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0b35d40305e68070016aa717c9d87087d08722738064dbfcaf",
+    "elapsed_seconds": 79.05,
+    "usage": {
+      "input_tokens": 36837,
+      "output_tokens": 5044,
+      "reasoning_tokens": 3725,
+      "total_tokens": 41881
+    },
+    "timestamp": "2026-09-13T21:39:36.693225+00:00"
+  }
+}

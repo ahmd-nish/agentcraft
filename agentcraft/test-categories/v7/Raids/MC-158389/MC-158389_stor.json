@@ -1,0 +1,235 @@
+{
+  "bug_id": "MC-158389",
+  "category": "Raids",
+  "source_md": "[Raids] - MC-158389.md",
+  "source_meta": {
+    "mojira categories": "Raids",
+    "project": "MC",
+    "issue key": "MC-158389",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2019-08-04T08:55:49.416-0700",
+    "updated": "2025-04-26T08:21:41.401-0700",
+    "resolution date": "2024-08-15T08:39:25.076-0700",
+    "affects versions": "1.14.4; 1.17.1; 21w38a; 21w43a; 1.18 Release Candidate 3; 1.18.1; 22w07a; 1.19.2",
+    "fix versions": "24w33a",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2021-07-27 08-49-55.mp4",
+    "issue links": "Relates:outward:MC-274911:If the raid begins more than 112 blocks above the ground, all illagers will be summoned and the player wins",
+    "_title": "Raid results in victory if it cannot find a valid spawn point"
+  },
+  "stor": {
+    "bug_id": "MC-158389",
+    "affected_versions": [
+      "1.14.4",
+      "1.17.1",
+      "21w38a",
+      "21w43a",
+      "1.18 Release Candidate 3",
+      "1.18.1",
+      "22w07a",
+      "1.19.2"
+    ],
+    "recommended_version": "1.14.4",
+    "environment": "Minecraft Java Edition 1.14.4, vanilla client, single-player integrated server, a newly created Superflat Overworld, Creative mode, cheats enabled, Normal difficulty, and raids enabled. The reproduction uses a minimal claimed-bed village on an enclosed glass platform around Y=200 so that the platform itself does not provide valid raid-spawn surfaces and the Superflat ground is far below it.",
+    "preconditions": [
+      "Launch the exact affected version 1.14.4 rather than the fix version 24w33a or any later release.",
+      "Use an unmodified vanilla installation with no mods, datapacks, or previously created village points of interest affecting the test area.",
+      "The executor must be able to run commands from in-game chat; all commands below include the leading slash and require cheats.",
+      "Use the default control bindings unless controls have been rebound: T opens chat, E opens the inventory, number keys select hotbar slots, right-click uses or places an item, and double-tapping Space toggles Creative flight.",
+      "Keep the villager and its claimed bed intact through the trigger step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start the Java Edition installation for version 1.14.4. Do not select 24w33a or another fix/later version.",
+        "exact_input": null,
+        "success_cue": "The main-menu version label identifies the running game as Minecraft Java Edition 1.14.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, open More World Options, set Allow Cheats to ON, cycle World Type to Superflat, and create the world. Leave the Superflat preset at its default so that the ordinary ground remains far below the planned sky village.",
+        "exact_input": null,
+        "success_cue": "A new Superflat world opens and the player can fly and use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before issuing commands until the nearby Superflat terrain has rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The nearby flat terrain is visible, movement is responsive, and no world-loading screen is present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T, enter the difficulty command exactly as supplied, and press Enter.",
+        "exact_input": "/difficulty normal",
+        "success_cue": "Chat confirms that the difficulty was set to Normal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, enter the gamerule command exactly as supplied, and press Enter to ensure that raid triggering is not disabled.",
+        "exact_input": "/gamerule disableRaids false",
+        "success_cue": "Chat reports that disableRaids is set to false.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the teleport command exactly as supplied, and press Enter. Wait for the player to settle onto the Superflat terrain near the origin; the purpose is to make all later structure coordinates deterministic.",
+        "exact_input": "/tp @s 0 5 0",
+        "success_cue": "The player is near X=0 and Z=0 on the Superflat ground, with movement responsive after teleportation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, enter the fill command exactly as supplied, and press Enter to create the 9-by-9 glass floor of the sky village at Y=199.",
+        "exact_input": "/fill -4 199 -4 4 199 4 minecraft:glass",
+        "success_cue": "Chat confirms that blocks were filled at the requested coordinates.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T, enter the fill command exactly as supplied, and press Enter to create the north glass wall.",
+        "exact_input": "/fill -4 200 -4 4 202 -4 minecraft:glass",
+        "success_cue": "Chat confirms that the north wall blocks were filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T, enter the fill command exactly as supplied, and press Enter to create the south glass wall.",
+        "exact_input": "/fill -4 200 4 4 202 4 minecraft:glass",
+        "success_cue": "Chat confirms that the south wall blocks were filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T, enter the fill command exactly as supplied, and press Enter to create the west glass wall between the previously created north and south walls.",
+        "exact_input": "/fill -4 200 -3 -4 202 3 minecraft:glass",
+        "success_cue": "Chat confirms that the west wall blocks were filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T, enter the fill command exactly as supplied, and press Enter to create the east glass wall between the previously created north and south walls.",
+        "exact_input": "/fill 4 200 -3 4 202 3 minecraft:glass",
+        "success_cue": "Chat confirms that the east wall blocks were filled; the resulting structure has a glass floor, three-block-high glass perimeter walls, and an open roof.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T, enter the teleport command exactly as supplied, and press Enter. Wait for the sky platform to render completely.",
+        "exact_input": "/tp @s 0.5 200 0.5",
+        "success_cue": "The player is standing inside the glass enclosure around Y=200, the entire floor and perimeter walls are visible, and the low Superflat ground is far below.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press T, enter the give command exactly as supplied, and press Enter to obtain one white bed.",
+        "exact_input": "/give @s minecraft:white_bed 1",
+        "success_cue": "Chat confirms that a white bed was given, and a white-bed item is visible in the inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Select the white bed in the active hotbar slot. If it is not already in the hotbar, press E, move it into any hotbar slot, close the inventory, and press that slot's number key. Look at a glass floor block near the center of the enclosure with at least one adjacent unobstructed floor block, then right-click once to place the bed. Do not place it against a wall.",
+        "exact_input": null,
+        "success_cue": "A complete two-block white bed is present near the center of the glass enclosure, with open space allowing a villager to reach it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Press T, enter the summon command exactly as supplied, and press Enter to create a villager inside the enclosure.",
+        "exact_input": "/summon minecraft:villager 0.5 200 2.5",
+        "success_cue": "Chat confirms that a villager was summoned, and one villager is visible inside the glass enclosure without falling from the platform.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press T, enter the time command exactly as supplied, and press Enter. Move away from the bed so that the villager has an unobstructed path to it.",
+        "exact_input": "/time set night",
+        "success_cue": "The world becomes nighttime and the villager can walk to the bed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Wait until the villager reaches the bed and lies down in it. Do not continue merely because nighttime has started; sleeping is the readiness check that the bed has been found and claimed.",
+        "exact_input": null,
+        "success_cue": "The villager is visibly lying in the white bed, confirming that the high-altitude setup contains a villager with a claimed bed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 18,
+        "action": "Press T, enter the time command exactly as supplied, and press Enter, then wait for the villager to leave the bed.",
+        "exact_input": "/time set day",
+        "success_cue": "It is daytime, the villager is awake and remains enclosed on the platform, and the bed remains intact.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Double-tap Space to enable Creative flight, then stop providing movement input and verify that the player can hover without descending.",
+        "exact_input": null,
+        "success_cue": "The player remains suspended when no movement key is held, confirming that Creative flight is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Press T, enter the teleport command exactly as supplied, and press Enter. Remain hovering at that location; do not descend to the Superflat ground.",
+        "exact_input": "/tp @s 128.5 200 0.5",
+        "success_cue": "The player is hovering around X=128.5, Y=200, Z=0.5, well away from the claimed bed, and no raid bar is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Press T, enter the effect command exactly as supplied, and press Enter to give the player Bad Omen for ten minutes.",
+        "exact_input": "/effect give @s minecraft:bad_omen 600 0",
+        "success_cue": "Chat confirms that Bad Omen was applied and its status-effect indicator is present; no raid has started while the player remains at the remote location.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 22,
+        "action": "Before returning, verify that the villager and bed have not been removed and that Creative flight is still active. Do not clear Bad Omen, change difficulty, or break any part of the glass village.",
+        "exact_input": null,
+        "success_cue": "Bad Omen is active, the player is still hovering away from the village, and the sky-village setup remains intact.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Press T, enter the teleport command exactly as supplied, and press Enter to enter the high-altitude village while Bad Omen is active. Stop issuing commands as soon as the Raid boss bar appears and hand control to the observation subsystem.",
+        "exact_input": "/tp @s 0.5 203 0.5",
+        "success_cue": "The player is hovering directly above the open-topped glass enclosure, the villager and claimed bed remain below, and the Raid boss bar has appeared.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 23,
+    "handoff_condition": "The player has just entered the Y=200 glass sky village while carrying Bad Omen, and the Raid boss bar has appeared. The villager and claimed bed are intact, Creative flight remains active, and no further commands or interactions have been performed; begin observing raid progression and entity activity now.",
+    "uncertainties": [
+      "The report states only that the player-built village was high in the sky; it does not provide a seed, coordinates, exact height, village layout, or building materials. Y=200 in a default Superflat world and a glass enclosure were selected as a deterministic implementation of that condition.",
+      "The report does not specify game mode or difficulty. Creative mode was selected to construct and reach the test site safely, and Normal difficulty was selected to avoid Peaceful-mode ambiguity.",
+      "The exact Bad Omen acquisition method is not supplied. The version-compatible /effect command is used to reproduce the report's explicit statement that the reporter gave themselves Bad Omen without introducing patrol-spawn randomness.",
+      "A one-villager, one-claimed-bed setup is used as the minimum executable village. The written report does not state how many villagers, beds, job sites, or bells were in the reporter's original build.",
+      "The linked video and attachment contents were not supplied in the report text and were not used to infer additional geometry or timing requirements."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0a1ce9a773080dce016aa719e0712c87d0832c3178f1a39e49",
+    "elapsed_seconds": 142.71,
+    "usage": {
+      "input_tokens": 33454,
+      "output_tokens": 10270,
+      "reasoning_tokens": 7765,
+      "total_tokens": 43724
+    },
+    "timestamp": "2026-09-13T21:49:34.559406+00:00"
+  }
+}

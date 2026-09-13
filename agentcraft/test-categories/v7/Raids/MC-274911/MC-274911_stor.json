@@ -1,0 +1,242 @@
+{
+  "bug_id": "MC-274911",
+  "category": "Raids",
+  "source_md": "[Raids] - MC-274911.md",
+  "source_meta": {
+    "mojira categories": "Raids",
+    "project": "MC",
+    "issue key": "MC-274911",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-08-04T07:24:20.844-0700",
+    "updated": "2025-05-29T09:05:07.317-0700",
+    "resolution date": "2024-08-27T01:07:41.619-0700",
+    "affects versions": "1.21; 1.21.1 Release Candidate 1; 1.21.1",
+    "fix versions": "24w33a",
+    "area": "Expansion B",
+    "watchers": "3",
+    "attachments": "3",
+    "attachment filenames": "2024-08-05_14.30.48.png; 24w33a_274911_RaidInnermostRingBroken.mp4; javaw 2024-08-05 01-44-33-519.mp4",
+    "issue links": "Relates:inward:MC-158389:Raid results in victory if it cannot find a valid spawn point | Relates:outward:MC-173524:Raiders travelling to another dimension does not remove them from the raid",
+    "_title": "If the raid begins more than 112 blocks above the ground, all illagers will be summoned and the player wins"
+  },
+  "stor": {
+    "bug_id": "MC-274911",
+    "affected_versions": [
+      "1.21",
+      "1.21.1 Release Candidate 1",
+      "1.21.1"
+    ],
+    "recommended_version": "1.21",
+    "environment": "Unmodified Minecraft Java Edition 1.21 in a fresh single-player Superflat world using the integrated server. Use Creative mode, enable commands/cheats, and select Normal difficulty. Do not use the fix snapshot 24w33a or a later version for the primary reproduction. Use default raid-related gamerules, with doMobSpawning enabled and disableRaids disabled.",
+    "preconditions": [
+      "The Minecraft Launcher has an installation for the exact Java Edition 1.21 release.",
+      "No mods, datapacks, or server plugins are active.",
+      "A fresh Superflat world can be created so that the surface is level and the supplied relative teleport reliably puts the raid point more than 112 blocks above the ground.",
+      "Keyboard and mouse controls are available. If controls are rebound, use the bindings corresponding to Open Chat, Jump/Fly, Use Item, and Inventory.",
+      "Commands must be enabled because the report requires /tp and the deterministic setup uses additional commands.",
+      "Keep the world difficulty above Peaceful; Normal is selected for this plan.",
+      "Do not construct any additional solid platforms or spawnable blocks near the elevated enclosure."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the exact Minecraft Java Edition 1.21 release. From the title screen, select Singleplayer and create a new world.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen for Java Edition 1.21 is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Configure the new world as a fresh Superflat world. Set the game mode to Creative, allow commands/cheats, and set difficulty to Normal, then create the world. Leave the default Superflat preset unchanged.",
+        "exact_input": "World Type: Superflat; Game Mode: Creative; Allow Commands/Cheats: On; Difficulty: Normal",
+        "success_cue": "The player loads into a new level Superflat world in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the nearby terrain has rendered and movement responds normally. Stand directly on the grass surface, not on a structure or another placed block. Open the debug screen with F3 and record the player's displayed Y coordinate as the starting surface-level coordinate, then close the debug screen with F3.",
+        "exact_input": "F3",
+        "success_cue": "The surrounding Superflat ground is fully visible, the player is standing on it, and the starting Y coordinate has been recorded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Enter Creative flight before teleporting so the player does not fall after arriving in midair. Double-tap the Jump control, which is Space by default, and rise slightly to confirm flight, then return to approximately the recorded standing height without landing elsewhere.",
+        "exact_input": "Double-tap Space",
+        "success_cue": "The player is hovering in Creative flight and does not fall when no movement key is held.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "While hovering above the original surface position, press T to open in-game chat, enter the report's teleport command exactly with the leading slash, and press Enter. Do not move horizontally after teleporting because subsequent relative construction commands use this position as their center.",
+        "exact_input": "/tp @s ~ ~120 ~",
+        "success_cue": "The player is teleported vertically upward and is hovering over the same ground location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Wait until the ground below and the surrounding chunk columns are rendered. Open the debug screen with F3 and verify that the displayed Y coordinate is 120 blocks higher than the coordinate recorded before the teleport, then close the debug screen. If the player is descending, immediately double-tap Space to resume Creative flight before continuing.",
+        "exact_input": "F3",
+        "success_cue": "The player is stationary in the air 120 blocks above the original position, with the level ground visible far below.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Create a small non-spawnable floor directly beneath the hovering player. Press T, enter the fill command exactly, and press Enter. The command creates a 7-by-7 glass floor one block below the current position.",
+        "exact_input": "/fill ~-3 ~-1 ~-3 ~3 ~-1 ~3 minecraft:glass",
+        "success_cue": "A 7-by-7 glass platform appears immediately below the player and command feedback reports that blocks were filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Stop flying by double-tapping the Jump control and settle onto the center of the new glass platform. Do not move horizontally away from the center until all four wall commands have been executed.",
+        "exact_input": "Double-tap Space",
+        "success_cue": "The player is standing at the center of the glass platform without falling.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Construct the first two-block-high glass wall along one edge of the platform. Open chat, execute the command, and press Enter.",
+        "exact_input": "/fill ~-3 ~ ~-3 ~3 ~1 ~-3 minecraft:glass",
+        "success_cue": "A seven-block-wide, two-block-high glass wall exists along the platform edge at relative Z -3.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Construct the opposite two-block-high glass wall. Open chat, execute the command, and press Enter.",
+        "exact_input": "/fill ~-3 ~ ~3 ~3 ~1 ~3 minecraft:glass",
+        "success_cue": "A matching glass wall exists along the opposite platform edge at relative Z +3.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Construct the third two-block-high glass wall. Open chat, execute the command, and press Enter.",
+        "exact_input": "/fill ~-3 ~ ~-2 ~-3 ~1 ~2 minecraft:glass",
+        "success_cue": "A glass wall closes the platform edge at relative X -3.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Construct the fourth two-block-high glass wall. Open chat, execute the command, and press Enter.",
+        "exact_input": "/fill ~3 ~ ~-2 ~3 ~1 ~2 minecraft:glass",
+        "success_cue": "The player is inside a roofless 5-by-5 interior surrounded by two-block-high glass walls, with no opening through which villagers can walk.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Obtain two beds for the elevated village. Press T, execute the give command with its leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:red_bed 2",
+        "success_cue": "Two Red Beds are present in the player's inventory and command feedback confirms that they were given.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Obtain two villager spawn eggs. Press T, execute the give command, and press Enter.",
+        "exact_input": "/give @s minecraft:villager_spawn_egg 2",
+        "success_cue": "Two Villager Spawn Eggs are present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Obtain the item called an Ominous Bottle in Java Edition 1.21; this is the bottle that grants Bad Omen when consumed. Press T, execute the give command, and press Enter.",
+        "exact_input": "/give @s minecraft:ominous_bottle 1",
+        "success_cue": "One Ominous Bottle is present in the player's inventory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "Press E to open the inventory. Move the Red Beds, Villager Spawn Eggs, and Ominous Bottle into separate hotbar slots if they were not placed there automatically. The hotbar is the row of nine item slots at the bottom of the inventory and gameplay screen. Close the inventory with E.",
+        "exact_input": "E",
+        "success_cue": "The beds, spawn eggs, and Ominous Bottle are visible in known hotbar slots and can be selected with the number keys or mouse wheel.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Select the Red Bed in the hotbar. Inside the glass enclosure, right-click a glass floor block to place the first bed. Place the second bed parallel to the first on a separate pair of floor blocks. Each bed needs two unobstructed floor positions and open space above it; do not overlap the beds or place them against an arrangement that prevents villagers from reaching them.",
+        "exact_input": "Select Red Bed; right-click twice on two separate valid floor positions",
+        "success_cue": "Two complete Red Beds are visible inside the enclosure, with enough open floor space for villagers to approach them.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Select the Villager Spawn Egg. Right-click two separate exposed glass floor blocks inside the enclosure, once per egg, to create two villagers. Do not right-click an existing villager, because that can spawn a baby villager instead of the intended second adult.",
+        "exact_input": "Select Villager Spawn Egg; right-click an exposed floor block twice",
+        "success_cue": "Two adult villagers are alive inside the glass enclosure and cannot leave through the walls.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Confirm deterministically that the villagers can claim and use the beds. Open chat, set the time to night, and press Enter.",
+        "exact_input": "/time set night",
+        "success_cue": "The sky becomes dark and the world is at nighttime.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Wait without moving the beds until both villagers navigate to and lie in the two beds. If a villager cannot reach a bed, remove and replace that bed within the enclosure with an unobstructed approach, then wait again. Do not continue until both villagers have demonstrated access to separate beds.",
+        "exact_input": null,
+        "success_cue": "Both villagers are lying in separate beds, confirming that the elevated enclosure contains villagers with usable, claimed beds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Return the world to daytime while preserving the same villagers and beds. Press T, execute the time command, and press Enter.",
+        "exact_input": "/time set day",
+        "success_cue": "Daylight returns, both villagers remain confined in the enclosure, and both beds remain in place.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Select the Ominous Bottle in the active hotbar slot. The active slot is the hotbar slot outlined on the gameplay screen. Remain inside the elevated enclosure near the villagers and beds.",
+        "exact_input": "Select the hotbar slot containing minecraft:ominous_bottle",
+        "success_cue": "The Ominous Bottle is visible in the player's hand while the player stands inside the elevated village enclosure.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Drink the Ominous Bottle by holding the Use Item control, which is right-click by default, until the drinking animation finishes and the bottle is consumed. Do not leave the enclosure and do not drink milk afterward.",
+        "exact_input": "Hold right-click until consumption completes",
+        "success_cue": "The bottle has been consumed; Bad Omen is applied and, because the player is already within the bed-and-villager village, it changes into the timed Raid Omen effect.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Remain inside the enclosure without breaking beds, moving villagers, descending toward the ground, or placing additional blocks. Wait through the Raid Omen countdown. Do not proceed based only on elapsed wall-clock time; wait until the Raid Omen effect expires and the raid interface begins.",
+        "exact_input": null,
+        "success_cue": "Raid Omen has expired and a Raid boss bar has just appeared or begun its initial charge, while the player and both villagers remain in the elevated glass enclosure.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 24,
+    "handoff_condition": "The player is still inside the glass enclosure approximately 120 blocks above the original Superflat surface; both villagers and both claimed beds remain present; the Raid Omen countdown has just expired; and the Raid boss bar has appeared or begun charging. Hand control to the observation subsystem now so it can monitor the first raid wave and subsequent raid progression without the reproduction agent moving, fighting, adding blocks, or descending to the ground.",
+    "uncertainties": [
+      "The report does not specify a seed, world type, biome, game mode, difficulty, villager count, bed count, or exact enclosure design. This plan uses a fresh Superflat world, Creative mode, Normal difficulty, two adult villagers, two beds, and a 7-by-7 glass platform with a 5-by-5 enclosed interior as the simplest deterministic implementation of the reported setup.",
+      "The report's phrase 'bottle of bad omen' refers operationally to the Ominous Bottle item introduced for Java Edition 1.21. Drinking it grants Bad Omen, which changes to Raid Omen when the player is within a qualifying village.",
+      "Only the supplied /tp @s ~ ~120 ~ command comes directly from the report. The /fill, /give, and /time commands are practical setup choices and do not replace or alter the supplied teleport command.",
+      "The 120-block separation is relative to the player's starting position. This plan requires the player to begin directly on the level Superflat surface so the elevated village remains more than 112 blocks above the ground.",
+      "The report does not state whether Creative mode was used. Creative mode is selected to prevent an accidental fatal fall and to make construction deterministic; no Creative-only interaction is used after the raid countdown begins.",
+      "The report lists 24w33a as a fix version. It is intentionally excluded from recommended_version because the primary reproduction must be performed in the first listed affected version, 1.21."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0346fa95361fc7c1016aa71b417ed887d095f6311cd9022338",
+    "elapsed_seconds": 122.26,
+    "usage": {
+      "input_tokens": 26974,
+      "output_tokens": 9116,
+      "reasoning_tokens": 6238,
+      "total_tokens": 36090
+    },
+    "timestamp": "2026-09-13T21:55:07.551345+00:00"
+  }
+}

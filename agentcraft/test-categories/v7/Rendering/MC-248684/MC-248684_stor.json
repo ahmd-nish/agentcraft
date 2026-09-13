@@ -1,0 +1,208 @@
+{
+  "bug_id": "MC-248684",
+  "category": "Rendering",
+  "source_md": "[Rendering] - MC-248684.md",
+  "source_meta": {
+    "mojira categories": "Rendering",
+    "project": "MC",
+    "issue key": "MC-248684",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-02-18T17:48:55.974-0800",
+    "updated": "2025-04-26T14:14:53.147-0700",
+    "resolution date": "2025-01-24T05:38:01.267-0800",
+    "affects versions": "1.18.1 Pre-release 1; 1.18.2 Pre-release 1; 1.18.2; 1.19; 1.19.3; 23w07a",
+    "fix versions": "24w05a",
+    "area": "Platform",
+    "labels": "fog",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2022-02-19_01.42.15.png; 2022-02-19_01.42.32.png; 2022-02-19_01.42.34.png; 2022-02-19_01.42.44.png; 202302201000.mp4; MC-248684.mp4; MC-248684.png",
+    "issue links": "Relates:outward:MC-264821:The fog on armor worn by entities occurs too early",
+    "_title": "Fog on moving pistons happens too early"
+  },
+  "stor": {
+    "bug_id": "MC-248684",
+    "affected_versions": [
+      "1.18.1 Pre-release 1",
+      "1.18.2 Pre-release 1",
+      "1.18.2",
+      "1.19",
+      "1.19.3",
+      "23w07a"
+    ],
+    "recommended_version": "1.18.1 Pre-release 1",
+    "environment": "Vanilla Minecraft Java Edition 1.18.1 Pre-release 1, using a single-player integrated server, a fresh Superflat Overworld, Creative mode with cheats enabled, the default resource pack, no shaders or rendering mods, and Render Distance set to 2 chunks.",
+    "preconditions": [
+      "The Minecraft Launcher can install and launch the historical Java Edition version listed as 1.18.1 Pre-release 1.",
+      "Use an unmodified client. Disable shaders, rendering mods, and non-default resource packs so they do not change fog or piston rendering.",
+      "A keyboard and mouse are available. Instructions name default controls; use the corresponding bound control if keys have been remapped.",
+      "The test world is disposable because the procedure places blocks at fixed coordinates near X=0, Z=0.",
+      "Commands must be permitted in the world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the report's first affected version, 1.18.1 Pre-release 1, and launch it. This version is also identified as 1.18.1-pre1. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Java%E7%89%881.18.1-pre1?utm_source=openai))",
+        "exact_input": "Minecraft Java Edition 1.18.1 Pre-release 1",
+        "success_cue": "The title screen is open and identifies the running version as 1.18.1 Pre-release 1 or 1.18.1-pre1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open the single-player world creation screen.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Open More World Options and ensure Allow Cheats is ON so the setup commands can be executed.",
+        "exact_input": "Game Mode: Creative; More World Options... -> Allow Cheats: ON",
+        "success_cue": "The creation screen shows Creative mode and cheats enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "While in More World Options, cycle World Type until Superflat is selected. Leave the seed and Superflat preset at their defaults, then return to the main creation screen.",
+        "exact_input": "World Type: Superflat",
+        "success_cue": "The world creation screen shows the Superflat world type.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Create the world and wait without entering commands until world loading finishes and normal player movement is responsive.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is in a Superflat Overworld and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Set the client to the low render distance recommended by the report. Press Esc, open Options, open Video Settings, set Render Distance to 2 chunks, and select Done until gameplay resumes. Two chunks is a valid render-distance value for this version family. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%80%89%E9%A1%B9%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F?variant=zh-tw&utm_source=openai))",
+        "exact_input": "Esc -> Options... -> Video Settings... -> Render Distance: 2 chunks -> Done -> Done",
+        "success_cue": "Gameplay has resumed with Render Distance displayed as 2 chunks in Video Settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter Creative flight so the player will remain suspended while the elevated test platform is constructed. Rapidly press the jump control twice; the default key is Space.",
+        "exact_input": "Space, Space",
+        "success_cue": "The player can hover and does not fall when movement keys are released.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open chat with T, enter the teleport command exactly as shown including the leading slash, and press Enter. This moves the player near the fixed construction area while preserving flight.",
+        "exact_input": "/tp @s 0.5 105 -8.5",
+        "success_cue": "The player is hovering near X=0, Y=105, Z=-8 and has not fallen toward the Superflat ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Wait until the surrounding chunk has loaded and commands and movement respond normally before placing the test structure.",
+        "exact_input": null,
+        "success_cue": "No loading screen is present, the sky and distant Superflat terrain render normally, and player movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Standardize illumination by opening chat, executing the command, and pressing Enter.",
+        "exact_input": "/time set noon",
+        "success_cue": "The world is in daytime with bright overhead illumination.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Remove weather as a visual obstruction by opening chat, executing the command, and pressing Enter.",
+        "exact_input": "/weather clear",
+        "success_cue": "There is no rain, snow, or thunder at the test location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Create an 11-by-11 static stone comparison platform. Open chat, enter the command exactly as shown, and press Enter. Java Edition setblock/fill block arguments support namespaced block identifiers and block-state syntax in this command format. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E5%91%BD%E4%BB%A4/setblock?variant=zh-cn&utm_source=openai))",
+        "exact_input": "/fill -5 99 -5 5 99 5 minecraft:stone",
+        "success_cue": "A square stone platform is visible below the player, centered near X=0, Y=99, Z=0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Place the test piston in the center of the platform, facing upward. Open chat, enter the command exactly as shown, and press Enter.",
+        "exact_input": "/setblock 0 100 0 minecraft:piston[facing=up]",
+        "success_cue": "An upward-facing piston is present at the center of the stone platform.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Place the outer half of the two-observer redstone clock. Open chat, enter the command exactly as shown, and press Enter. The selected observer facing value makes its redstone output point east and its detecting face point west. ([minecraft.wiki](https://minecraft.wiki/w/Module%3ASchematic/titles?utm_source=openai))",
+        "exact_input": "/setblock 2 100 0 minecraft:observer[facing=east]",
+        "success_cue": "An observer is present two blocks east of the piston; the piston is not required to cycle yet.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Complete and start the redstone clock by placing the second observer between the piston and the first observer. Open chat, enter the command exactly as shown, and press Enter. Its output points west toward the piston, while the two observers' detecting faces point toward one another. ([minecraft.wiki](https://minecraft.wiki/w/Module%3ASchematic/titles?utm_source=openai))",
+        "exact_input": "/setblock 1 100 0 minecraft:observer[facing=west]",
+        "success_cue": "The upward-facing piston repeatedly extends and retracts without further player input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Remain near the platform briefly and confirm that the redstone clock continues running rather than producing only one piston movement. Do not proceed during a chunk-loading pause.",
+        "exact_input": null,
+        "success_cue": "At least three complete piston extension-and-retraction cycles have occurred and player movement remains responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Move to a repeatable distant viewing position. Open chat, enter the teleport command exactly as shown including the final yaw and pitch values, and press Enter. This places the player north of and above the platform, facing south and downward toward it.",
+        "exact_input": "/tp @s 0.5 120 -24.5 0 42",
+        "success_cue": "The stone platform is approximately centered in view below and ahead of the player, and the piston remains inside the rendered scene.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Do not evaluate the bug yet. Wait until the platform and piston have rendered fully, the piston is visibly continuing its mechanical cycle, and movement and commands respond without chunk-loading delay.",
+        "exact_input": null,
+        "success_cue": "The platform is loaded, the player is stationary, and the piston continues extending and retracting at the center of the platform.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Fine-tune the viewing distance to satisfy the report's fog-boundary condition. Keep looking at the piston and use short taps of the flight-up control (default Space), flight-down control (default Left Shift), forward control (default W), or backward control (default S). Remain approximately within X=0, Y=116 to 126, and Z=-22 to -28. Stop moving as soon as the surrounding static stone platform is close to the fog boundary but is still identifiable, while the piston continues cycling.",
+        "exact_input": "Short taps of Space, Left Shift, W, or S as needed",
+        "success_cue": "The player is stationary near the fog boundary; the surrounding stone platform remains discernible, the piston location is centered or nearly centered, and the piston continues cycling.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The player is stationary at a low-render-distance vantage near the fog boundary, looking toward the continuously cycling upward-facing piston and its surrounding static stone platform. Chunk loading is complete and controls are responsive; begin rendering observation now.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, game mode, world type, graphics quality, clock design, or exact render-distance value. The fresh Superflat Creative world, fixed coordinates, two-observer clock, and 2-chunk render distance are practical deterministic setup choices.",
+      "The report refers to pistons in the plural but does not prescribe a minimum count. This plan uses one repeatedly moving piston to minimize setup complexity while preserving the stated piston-clock interaction.",
+      "The exact point described as close to being obscured by fog can vary with camera position and client presentation. Step 17 provides a repeatable starting position, and step 19 deliberately allows bounded fine adjustment without changing the clock or target structure.",
+      "No fixed world seed from the report is available; default Superflat generation is used because terrain generation is not identified as part of the reproduction.",
+      "The report does not require a particular Graphics setting. Leave Graphics at the client's existing vanilla value rather than introducing an unsupported requirement."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0ef525ea28f0fb4e016aa716dc654887d0bdc74b730753bc27",
+    "elapsed_seconds": 197.85,
+    "usage": {
+      "input_tokens": 34911,
+      "output_tokens": 12831,
+      "reasoning_tokens": 10601,
+      "total_tokens": 47742
+    },
+    "timestamp": "2026-09-13T21:37:38.131553+00:00"
+  }
+}

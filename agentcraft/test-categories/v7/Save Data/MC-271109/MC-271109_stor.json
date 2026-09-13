@@ -1,0 +1,205 @@
+{
+  "bug_id": "MC-271109",
+  "category": "Save Data",
+  "source_md": "[Save Data] - MC-271109.md",
+  "source_meta": {
+    "mojira categories": "Datafixer; Save Data",
+    "project": "MC",
+    "issue key": "MC-271109",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-04-24T11:13:58.727-0700",
+    "updated": "2025-03-25T13:31:26.974-0700",
+    "resolution date": "2024-04-26T02:24:43.046-0700",
+    "affects versions": "1.20.5",
+    "fix versions": "1.20.6 Release Candidate 1",
+    "area": "Expansion A",
+    "votes": "1",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2024-04-24_23-54-57_MC-271109.zip; image-2024-04-24-23-39-10-540.png; image-2024-04-24-23-40-13-974.png",
+    "_title": "Trader llama inventory shifted, partially lost during upgrade"
+  },
+  "stor": {
+    "bug_id": "MC-271109",
+    "affected_versions": [
+      "1.20.5"
+    ],
+    "recommended_version": "1.20.5",
+    "environment": "Minecraft: Java Edition, single-player/integrated server. Create the save in the exact release 1.20.4, then open that same save in the affected release 1.20.5. Use clean vanilla client profiles that share the same saves directory. Creative mode and enabled commands are practical choices for executing the report's supplied summon command deterministically.",
+    "preconditions": [
+      "Install or configure launcher profiles for the exact Java Edition releases 1.20.4 and 1.20.5.",
+      "Ensure both launcher profiles use the same game directory, or otherwise ensure the 1.20.4 world remains available unchanged to the 1.20.5 profile.",
+      "Use a temporary test world. Do not perform this upgrade on an important world without a backup.",
+      "Run without mods, third-party server software, or datapacks that alter entities, inventories, or data conversion.",
+      "Use keyboard-and-mouse controls or equivalent rebound controls. Default relevant inputs are T for chat, E for inventory, Esc for pause/closing a screen, right-click for Use/Interact, and Left Shift for Sneak/Dismount.",
+      "Do not create the test world directly in 1.20.5; the same save must first contain the configured trader llama while saved by 1.20.4.",
+      "The supplied attachment world is not required because the report explicitly provides a summon-command route that skips manual summoning, taming, and chest equipping."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation whose version is exactly Java Edition 1.20.4, then launch it. Do not begin with 1.20.5.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer -> Create New World. Give the world a recognizable name such as \"MC-271109 upgrade test\", set Game Mode to Creative, enable Allow Cheats/Allow Commands, leave the seed and other generation settings at their defaults, and create the world.",
+        "exact_input": null,
+        "success_cue": "A new 1.20.4 world begins loading with commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait after entering the world until nearby terrain has rendered and movement and camera controls respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is in the Overworld, surrounding chunks are visible, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "On level ground, construct a temporary enclosure with at least a 5-by-5-block clear interior and a two-full-block-high perimeter made from solid blocks. Leave the top open and stand near the center of the enclosure. This keeps the trader llama near the player across the save-and-upgrade sequence.",
+        "exact_input": null,
+        "success_cue": "The player is inside a clear enclosure whose perimeter is two blocks high, with enough room to summon and mount a llama.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the rebound Open Chat control, to open the in-game chat input.",
+        "exact_input": null,
+        "success_cue": "The chat input line is visible and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's command exactly as supplied, including the leading slash, capitalization of NBT field names, item identifiers, slot numbers, commas, braces, and brackets. Press Enter once to execute it. Do not modernize or otherwise modify the command.",
+        "exact_input": "/summon trader_llama ~ ~ ~ {Tame:1b,ChestedHorse:1b,Items:[{Slot:2b,id:\"minecraft:egg\",Count:1b},{Slot:3b,id:\"minecraft:fern\",Count:1b},{Slot:4b,id:\"minecraft:dirt\",Count:1b}]}",
+        "success_cue": "Command feedback indicates that a Trader Llama was summoned, and one trader llama is visible inside the enclosure near the player's former position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select an empty hotbar slot so that the main hand holds no usable item. Move within interaction range, center the crosshair on the trader llama, and right-click it once to mount it.",
+        "exact_input": null,
+        "success_cue": "The viewpoint changes to the mounted position on the trader llama and the player remains seated on it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "While mounted, press E, or the rebound Open Inventory control, to open the trader llama's inventory rather than the player's normal inventory.",
+        "exact_input": null,
+        "success_cue": "A llama inventory interface is visible, including the llama equipment area and the storage slots supplied by its chest.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Without clicking, shift-clicking, dragging, or otherwise moving any item, verify the pre-upgrade setup: the llama's chest storage contains one egg, one fern, and one dirt stack. The exact number of additional empty storage slots may vary; only the three supplied item stacks are required.",
+        "exact_input": null,
+        "success_cue": "The egg, fern, and dirt are all simultaneously visible in the trader llama's chest-storage interface before upgrading.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press Esc to close the llama inventory without moving any item.",
+        "exact_input": null,
+        "success_cue": "The world view is visible again and the player is still mounted on the trader llama.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press Left Shift, or the rebound Sneak/Dismount control, once to dismount. Do not attack or otherwise interact with the llama afterward.",
+        "exact_input": null,
+        "success_cue": "The player is standing beside the same trader llama inside the enclosure.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press Esc and select Save and Quit to Title. Wait for the title screen; do not force-close the game while the world is saving.",
+        "exact_input": null,
+        "success_cue": "The 1.20.4 title screen has returned, indicating that the world was closed and saved.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Create a safety backup of the saved world: open Singleplayer, select \"MC-271109 upgrade test\", choose Edit, then choose Make Backup. Wait for backup completion and return to the title screen. Continue the reproduction with the original world, not by restoring or opening the backup. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AThings_not_to_do?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "Minecraft reports that the backup was created, and the original test world remains listed in Singleplayer.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Return to the title screen, select Quit Game, and wait until the 1.20.4 game process has fully closed before changing launcher versions.",
+        "exact_input": null,
+        "success_cue": "Minecraft 1.20.4 is closed and the launcher is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "In the launcher, select or create an installation whose version is exactly Java Edition 1.20.5 and launch it.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 1.20.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Select Singleplayer, select the original world named \"MC-271109 upgrade test\", and choose Play Selected World. Do not use Re-Create and do not make a new 1.20.5 world. If Minecraft displays an upgrade or backup warning, choose the option that creates a backup and then loads the selected world; otherwise continue loading normally.",
+        "exact_input": null,
+        "success_cue": "The original world begins loading under Java Edition 1.20.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Wait for the upgrade and world load to finish. Do not interact with the trader llama until surrounding chunks have rendered and player movement responds normally. If needed, briefly press F3 and verify that the debug overlay identifies the running client as 1.20.5, then close the overlay with F3. Locate the same trader llama inside the enclosure.",
+        "exact_input": null,
+        "success_cue": "The player is in the converted world under 1.20.5, movement is responsive, and the previously summoned trader llama is visible inside the enclosure.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Select an empty hotbar slot, center the crosshair on the same trader llama, and right-click once to mount it. Do not attack the llama and do not place or remove any items.",
+        "exact_input": null,
+        "success_cue": "The player is mounted on the original trader llama in the upgraded 1.20.5 world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Press E, or the rebound Open Inventory control, once to open the upgraded trader llama's inventory. As soon as the interface appears, stop all input: do not click, shift-click, drag, add, or remove any item.",
+        "exact_input": null,
+        "success_cue": "The upgraded trader llama inventory interface is open and stable, ready for the separate observation subsystem to record its slot contents.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The original world created and saved in 1.20.4 has been loaded by 1.20.5, the same trader llama is mounted, and its inventory interface has just been opened without any post-upgrade item manipulation. Begin inventory-state capture immediately while leaving every slot untouched.",
+    "uncertainties": [
+      "The downloadable world attachment was not supplied as usable world data here. This plan therefore uses the exact summon command explicitly offered by the report as the alternative reproduction route.",
+      "The report does not specify a seed, coordinates, game mode, or terrain type. Creative mode, enabled commands, default world generation, and the temporary enclosure are practical execution choices rather than reported requirements.",
+      "The report does not specify the interaction sequence for opening the llama interface. Mounting the already-tamed trader llama and pressing the inventory control is used as the practical execution method.",
+      "The supplied summon command does not specify the llama's Strength value, so the inventory interface may contain more empty storage slots in some runs. The three relevant pre-upgrade stacks are still the egg, fern, and dirt assigned to NBT slots 2, 3, and 4.",
+      "The description and a comment also mention the trader llama carpet/decor slot, but the report's supplied command does not populate DecorItem. This reproduction plan preserves that command unchanged and exercises the three chest-storage items only.",
+      "External verification was used only for the optional safety-backup UI path; the report's version numbers, cross-version order, entity command, NBT, and item setup were preserved unchanged."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_06278e3aacb97a05016aa713355dec87d0809da356ec8c3359",
+    "elapsed_seconds": 119.94,
+    "usage": {
+      "input_tokens": 23984,
+      "output_tokens": 8067,
+      "reasoning_tokens": 5765,
+      "total_tokens": 32051
+    },
+    "timestamp": "2026-09-13T21:20:45.169883+00:00"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "bug_id": "MC-278231",
+  "category": "Resource Packs",
+  "source_md": "[Resource Packs] - MC-278231.md",
+  "source_meta": {
+    "mojira categories": "Resource Packs; UI",
+    "project": "MC",
+    "issue key": "MC-278231",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2024-11-09T10:03:25.898-0800",
+    "updated": "2025-05-04T13:32:17.786-0700",
+    "resolution date": "2025-05-04T13:32:17.761-0700",
+    "affects versions": "24w45a",
+    "fix versions": "25w18a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "9",
+    "attachment filenames": "2024-11-09_18.00.47.png; 2024-11-09_18.00.51.png; 2024-11-09_18.01.03.png; 2024-11-09_18.01.06.png; 2024-11-09_18.01.26.png; 2024-11-09_18.01.27.png; 2025-05-04_15.57.10-20250504-065710.png; 2025-05-04_15.59.43-20250504-065943.png; space-distinguisher-24w45a-v1.0.zip",
+    "_title": "Space characters at the end of a line in book and quill are invisible even if given a texture"
+  },
+  "stor": {
+    "bug_id": "MC-278231",
+    "affected_versions": [
+      "24w45a"
+    ],
+    "recommended_version": "24w45a",
+    "environment": "Minecraft: Java Edition snapshot 24w45a, using the attached space-distinguisher-24w45a-v1.0.zip resource pack in a new disposable single-player Creative-mode world. No seed, coordinates, dedicated server, multiplayer session, commands, or non-default controls are required by the report.",
+    "preconditions": [
+      "The Minecraft Launcher can install and launch the exact Java Edition snapshot 24w45a.",
+      "The Mojira attachment space-distinguisher-24w45a-v1.0.zip is available as an intact .zip file. Do not extract it before installing it as a resource pack.",
+      "Use a new disposable test world rather than an important existing world because the affected version is a snapshot.",
+      "Disable other non-default resource packs so that they cannot override the attached pack's modified space-character appearance.",
+      "A keyboard input method capable of entering an ordinary ASCII space character (U+0020) is available."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Obtain the resource-pack attachment named space-distinguisher-24w45a-v1.0.zip from the report and retain it as a .zip file without extracting its contents.",
+        "exact_input": "space-distinguisher-24w45a-v1.0.zip",
+        "success_cue": "The intact file space-distinguisher-24w45a-v1.0.zip is accessible from the operating system's file manager.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the Minecraft Launcher and launch Minecraft: Java Edition using an installation configured for the exact snapshot version 24w45a. If no such installation exists, open the Installations tab, enable visibility of snapshot versions, create an installation whose version is snapshot 24w45a, and launch it.",
+        "exact_input": "24w45a",
+        "success_cue": "The Minecraft Java Edition 24w45a main menu is fully loaded and responds to input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "From the main menu, open Options, then Resource Packs, and select Open Pack Folder to open this game installation's resourcepacks directory in the operating system.",
+        "exact_input": null,
+        "success_cue": "The operating system displays the resourcepacks folder used by the running 24w45a client.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Copy space-distinguisher-24w45a-v1.0.zip into the open resourcepacks folder. Leave the file zipped.",
+        "exact_input": "space-distinguisher-24w45a-v1.0.zip",
+        "success_cue": "The zip file is present directly inside the resourcepacks folder.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Return to Minecraft's Resource Packs screen. If the new pack is not listed immediately, leave and reopen Options -> Resource Packs once to refresh the list.",
+        "exact_input": null,
+        "success_cue": "An available resource-pack entry corresponding to space-distinguisher-24w45a-v1.0.zip is visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Disable any unrelated non-default resource packs, then activate the entry corresponding to space-distinguisher-24w45a-v1.0.zip by moving it from Available Resource Packs to Selected Resource Packs. Select Done to apply the selection.",
+        "exact_input": null,
+        "success_cue": "The attached pack is in Selected Resource Packs, unrelated packs are disabled, and Minecraft has started applying the selected resources.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait until resource reloading finishes. Do not proceed while a reload screen is present or the menu is temporarily unresponsive.",
+        "exact_input": null,
+        "success_cue": "The reload screen has closed and the main menu responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select Singleplayer, choose Create New World, set the game mode to Creative, and create the world. No particular seed or world-generation setting is required by the report.",
+        "exact_input": "Creative",
+        "success_cue": "The player has entered a new Creative-mode world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Wait until the loading-terrain screen has closed, nearby terrain has rendered, and player movement and menu input respond normally.",
+        "exact_input": null,
+        "success_cue": "The world is fully interactive and surrounding chunks are rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press the inventory action key, default E, to open the Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open, showing Creative item tabs and the player's hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Open the Search Items tab, click its search field, and search for Book and Quill. Use the writable Book and Quill item, not a Written Book.",
+        "exact_input": "book and quill",
+        "success_cue": "A Book and Quill item is visible in the Creative inventory search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Place one Book and Quill from the search results into any hotbar slot. The hotbar is the row of nine item slots along the bottom of the inventory.",
+        "exact_input": null,
+        "success_cue": "A Book and Quill is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Close the inventory using Esc or the inventory key, then select the Book and Quill's hotbar slot using its number key or the mouse wheel.",
+        "exact_input": null,
+        "success_cue": "The world view is open and the Book and Quill is displayed as the currently selected hotbar item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Use the selected Book and Quill, using right-click by default, to open its writing interface. Do not sign the book.",
+        "exact_input": "right-click",
+        "success_cue": "The editable Book and Quill page is open with an active text-entry area and the Sign and Done controls visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "With the book's text-entry area focused, type the lowercase word test without punctuation or a trailing space yet. This is a deterministic substitute for the report's unspecified instruction to type 'something'.",
+        "exact_input": "test",
+        "success_cue": "The characters test have been entered on the current book page, and the book editor remains open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Immediately after the final t, press the Space key exactly once to enter one ordinary ASCII space character at the end of the current line. Do not type another character, change lines, select Done, or sign the book afterward.",
+        "exact_input": " ",
+        "success_cue": "One Space-key input has just been sent directly after test while the Book and Quill editor remains open and unchanged by any later input.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The Book and Quill writing interface is still open under the attached resource pack, and one ordinary space character has just been entered immediately after the text test as the final character on the current line. Begin observation before entering any additional character or closing the book.",
+    "uncertainties": [
+      "The supplied report does not include the attachment's internal files or displayed resource-pack name; identify the pack entry by its association with space-distinguisher-24w45a-v1.0.zip. Reproduction cannot proceed if that attachment is unavailable because the modified visual appearance of space characters is essential to the test.",
+      "The report does not prescribe a game mode, world seed, server type, or item-acquisition method. A disposable single-player Creative-mode world is selected solely to obtain a Book and Quill deterministically without crafting or commands.",
+      "The report says to type 'something followed by a space' but provides no exact text. The string test followed by one U+0020 space is selected as a minimal deterministic input.",
+      "The report does not explicitly state whether other resource packs were active. Disabling unrelated packs is a practical isolation measure and is not asserted as a bug requirement."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_02f5360b16669f39016aa71543ebc487d083a5e0b0af7420b6",
+    "elapsed_seconds": 60.01,
+    "usage": {
+      "input_tokens": 16722,
+      "output_tokens": 4063,
+      "reasoning_tokens": 2358,
+      "total_tokens": 20785
+    },
+    "timestamp": "2026-09-13T21:28:31.802231+00:00"
+  }
+}

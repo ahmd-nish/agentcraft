@@ -1,0 +1,197 @@
+{
+  "bug_id": "MC-297491",
+  "category": "Resource Packs",
+  "source_md": "[Resource Packs] - MC-297491.md",
+  "source_meta": {
+    "mojira categories": "Rendering; Resource Packs",
+    "project": "MC",
+    "issue key": "MC-297491",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-05-04T09:51:22.594-0700",
+    "updated": "2026-05-08T06:55:32.404-0700",
+    "resolution date": "2026-05-08T06:55:32.324-0700",
+    "affects versions": "1.21.5; 1.21.6",
+    "fix versions": "26.2 Snapshot 7",
+    "area": "Platform G",
+    "votes": "5",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "2025-06-20_16.44.23.png; 2025-06-20_21.35.24.png; 2025-10-05_23.27.42-20251005-212742.png; font_from_png.mp4; font_from_png.zip; font_from_ttf.mp4; font_from_ttf.zip; sign_text.txt",
+    "issue links": "Duplicate:inward:MC-298982:TTF fonts cause z-fighting on signs with glow ink sacks | Relates:outward:MC-300693:Object text components on glowing signs render incorrectly",
+    "_title": "Glyphs from TTF files are no longer rendered correctly on glow signs"
+  },
+  "stor": {
+    "bug_id": "MC-297491",
+    "affected_versions": [
+      "1.21.5",
+      "1.21.6"
+    ],
+    "recommended_version": "1.21.5",
+    "environment": "Minecraft: Java Edition 1.21.5 using the report attachment font_from_ttf.zip as the active resource pack. Use a local single-player Creative-mode world as a deterministic way to obtain the required sign and glow ink sac; the report does not require multiplayer, a particular seed, coordinates, graphics settings, or a particular sign wood type. Disable unrelated custom resource packs to avoid font-provider conflicts.",
+    "preconditions": [
+      "Minecraft: Java Edition release 1.21.5 is installed and selectable in the Minecraft Launcher.",
+      "The report attachments font_from_ttf.zip and sign_text.txt are available locally and have not been modified.",
+      "The operating system permits copying the resource-pack ZIP into Minecraft's resourcepacks folder.",
+      "The complete contents of sign_text.txt can be copied to the system clipboard.",
+      "No unrelated custom resource pack that replaces the same font glyphs is enabled."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, create or select a Java Edition installation that uses release 1.21.5, and launch that installation. Do not select the listed fix version or a newer release.",
+        "exact_input": "1.21.5",
+        "success_cue": "The Minecraft: Java Edition main menu is displayed and its version label identifies the running game as 1.21.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open Options, then Resource Packs, and select Open Pack Folder. Leave Minecraft running while the operating-system file browser opens the resourcepacks directory.",
+        "exact_input": null,
+        "success_cue": "A file-browser window showing Minecraft's resourcepacks directory is open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Copy the report attachment font_from_ttf.zip into the opened resourcepacks directory. Keep it as a ZIP archive; do not alter its files or add an extra enclosing folder.",
+        "exact_input": "font_from_ttf.zip",
+        "success_cue": "font_from_ttf.zip is present directly inside the resourcepacks directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Return to Minecraft's Resource Packs screen. If the pack is not yet listed, leave and reopen the Resource Packs screen. Find the pack corresponding to font_from_ttf.zip under Available, then click its icon or activation arrow to move it to the Selected side. Remove or deactivate unrelated custom packs that could override the same font glyphs.",
+        "exact_input": "font_from_ttf.zip",
+        "success_cue": "The TTF test pack appears in the Selected resource-packs list, with no unrelated font-replacing pack selected above it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Select Done and wait for resource reloading to finish. Do not continue while the reload screen is visible or the menus are unresponsive.",
+        "exact_input": null,
+        "success_cue": "Resource loading has completed and the main menu or Options menu responds normally.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Return to the main menu, select Singleplayer, then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Set Game Mode to Creative. Leave the seed and other world settings at their defaults; the report does not prescribe them.",
+        "exact_input": "Creative",
+        "success_cue": "The world-creation screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select Create New World and wait until the player has entered the world, surrounding terrain has rendered, and movement and inventory input respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded Creative-mode world and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press E, or the bound Open/Close Inventory control, to open the Creative inventory. Open the Search Items tab, search for Oak Sign, click the Oak Sign item to pick up a stack, and click an empty hotbar slot at the bottom of the inventory to place it there.",
+        "exact_input": "Oak Sign",
+        "success_cue": "An Oak Sign stack is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "While the Creative inventory remains open, use the Search Items field to search for Glow Ink Sac. Click the Glow Ink Sac item to pick up a stack, then place it in a different empty hotbar slot.",
+        "exact_input": "Glow Ink Sac",
+        "success_cue": "A Glow Ink Sac stack is visible in a hotbar slot separate from the Oak Sign.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press E or Esc to close the Creative inventory. Use the number key corresponding to the Oak Sign's hotbar slot, or scroll the mouse wheel until the Oak Sign is the selected active item.",
+        "exact_input": "Oak Sign",
+        "success_cue": "The hotbar selection outline surrounds the Oak Sign slot and the player is holding an Oak Sign.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Aim the crosshair at the exposed top face of a nearby solid ground block and use the Place/Use Item control, right-click by default, once. This places a fresh standing sign and should immediately open its front-text editing screen.",
+        "exact_input": null,
+        "success_cue": "A newly placed standing sign exists and the sign-editing screen is open for its front face.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Outside Minecraft, open sign_text.txt and copy its complete contents without changing, retyping, translating, or reflowing the characters. Return to the sign editor, select the first text line, and paste using Ctrl+V on Windows/Linux or Command+V on macOS. Preserve any line breaks supplied by the attachment.",
+        "exact_input": "The complete, unmodified contents of sign_text.txt",
+        "success_cue": "The text from sign_text.txt is visible in the sign editor, including at least one character whose glyph is supplied or changed by the active TTF resource pack.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Select Done in the sign editor to save the text and close the editor.",
+        "exact_input": null,
+        "success_cue": "The world view is restored, the text is visible on the sign's front face, and the sign has not yet been treated with a glow ink sac.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Confirm the TTF-font test precondition before triggering: keep the sign in view and verify that at least one pasted character is visibly rendered using a glyph changed by font_from_ttf.zip. If the characters are absent, shown as missing-glyph boxes, or unchanged because the pack failed to load, stop and correct the pack or text setup rather than applying the glow effect.",
+        "exact_input": null,
+        "success_cue": "At least one target character is legible on the sign using the active resource pack's TTF-provided glyph.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Use the appropriate number key or mouse wheel to select the hotbar slot containing the Glow Ink Sac.",
+        "exact_input": "Glow Ink Sac",
+        "success_cue": "The hotbar selection outline surrounds the Glow Ink Sac slot and the player is holding a Glow Ink Sac.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Stand close enough to interact with the sign and aim the crosshair directly at the sign's front face—the same face displaying the TTF-rendered text. Do not interact yet.",
+        "exact_input": null,
+        "success_cue": "The sign's text-bearing front face is within interaction range and centered under the crosshair while the Glow Ink Sac remains selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Use the Place/Use Item control, right-click by default, exactly once on the text-bearing front face to apply the Glow Ink Sac. Do not click repeatedly or perform any further interaction before handing off.",
+        "exact_input": "right-click once",
+        "success_cue": "One use-item input has just been sent to the sign's front face with a Glow Ink Sac selected.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The TTF resource pack remains active, the sign contains the unmodified text from sign_text.txt, and a glow ink sac has just been applied once to the sign's text-bearing front face. Hand control immediately to the observation subsystem without moving away, reopening the sign editor, changing resource packs, or applying another item.",
+    "uncertainties": [
+      "The supplied raw report names font_from_ttf.zip and sign_text.txt but does not include their binary/text contents or direct attachment download data. The exact glyph sequence therefore cannot be reproduced in this plan; the executor must use the complete sign_text.txt attachment unchanged.",
+      "If the original attachments cannot be obtained, the report permits substitution with another resource pack that loads glyphs from a TTF file and any character specifically changed by that pack, but this is less deterministic than using the supplied attachments.",
+      "The report does not specify game mode, world seed, coordinates, sign wood type, operating system, graphics hardware, window resolution, or video settings. A local Creative-mode world and an Oak Sign are selected only to minimize unrelated setup.",
+      "The comments mention stronger visual problems at lower resolutions, but the formal reproduction steps do not require a particular resolution; this plan does not introduce one.",
+      "Web verification confirmed the standard Java Edition resource-pack installation and activation path, but the public issue page did not expose the attachment contents during verification."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0a5241eec1cfe759016aa715801dd887d08ac4a4d079070883",
+    "elapsed_seconds": 78.59,
+    "usage": {
+      "input_tokens": 23297,
+      "output_tokens": 4954,
+      "reasoning_tokens": 2999,
+      "total_tokens": 28251
+    },
+    "timestamp": "2026-09-13T21:29:50.408316+00:00"
+  }
+}

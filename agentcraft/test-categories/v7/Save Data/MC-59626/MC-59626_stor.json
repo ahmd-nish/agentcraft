@@ -1,0 +1,244 @@
+{
+  "bug_id": "MC-59626",
+  "category": "Save Data",
+  "source_md": "[Save Data] - MC-59626.md",
+  "source_meta": {
+    "mojira categories": "Entities; Save Data",
+    "project": "MC",
+    "issue key": "MC-59626",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2014-06-29T13:03:28.999-0700",
+    "updated": "2025-04-29T09:44:04.950-0700",
+    "resolution date": "2024-04-30T01:48:04.315-0700",
+    "affects versions": "Minecraft 14w26c; Minecraft 1.7.10; Minecraft 14w28a; Minecraft 14w29b; Minecraft 14w32d; Minecraft 1.8.1; Minecraft 1.8.2-pre1; Minecraft 16w36a; Minecraft 16w40a; Minecraft 1.11.2; Minecraft 1.12.2; Minecraft 18w08a; Minecraft 1.13.1; 1.15.2; 20w22a; 1.16.3; 1.16.4; 20w51a; 1.19.3; 1.20.2",
+    "fix versions": "24w18a",
+    "area": "Platform",
+    "labels": "arrow; enchantment; punch; unload",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Relates:inward:MC-270540:The prevention of fall damage from wind charges is not retained upon reloading the world | Relates:outward:MC-50319:Player owned projectiles lose their player ownership when exiting portals | Relates:inward:MC-254131:The wet state of wolves isn't saved to NBT | Relates:inward:MC-107138:Shot arrow loses its critical state after reloading",
+    "_title": "Arrows lose their Punch enchantment property when unloaded"
+  },
+  "stor": {
+    "bug_id": "MC-59626",
+    "affected_versions": [
+      "Minecraft 14w26c",
+      "Minecraft 1.7.10",
+      "Minecraft 14w28a",
+      "Minecraft 14w29b",
+      "Minecraft 14w32d",
+      "Minecraft 1.8.1",
+      "Minecraft 1.8.2-pre1",
+      "Minecraft 16w36a",
+      "Minecraft 16w40a",
+      "Minecraft 1.11.2",
+      "Minecraft 1.12.2",
+      "Minecraft 18w08a",
+      "Minecraft 1.13.1",
+      "1.15.2",
+      "20w22a",
+      "1.16.3",
+      "1.16.4",
+      "20w51a",
+      "1.19.3",
+      "1.20.2"
+    ],
+    "recommended_version": "Minecraft 14w26c",
+    "environment": "Unmodified Minecraft: Java Edition 14w26c in a local single-player world. Create the test structure in Creative mode with commands available, then change to Survival mode before firing either arrow. Use keyboard and mouse controls; the stated keys are defaults and should be replaced with the corresponding bound actions if controls have been changed.",
+    "preconditions": [
+      "Configure and launch an isolated installation of exactly Minecraft: Java Edition 14w26c.",
+      "Create a new single-player Creative-mode world. No seed or coordinates are specified by the report.",
+      "Use an open, level area with a solid floor and enough horizontal room for the player to be moved without striking walls, falling from an edge, or entering hazards.",
+      "Keep commands available. A Creative single-player world in this version permits the item-give and game-mode commands used below.",
+      "Begin with full health. Do not equip armor or apply status effects unless they are already unavoidable, because the report does not specify them.",
+      "Preserve and reopen this same world when performing the logout/relogin portion of the reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the installation configured for Minecraft 14w26c, select Singleplayer, create a new Creative-mode world, and wait for initial world loading to finish.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is standing in a loaded single-player world, nearby terrain is rendered, movement responds normally, and the player can fly and instantly break blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Move to a level, open area. Choose a section of floor with enough unobstructed space around it that neither arrow impact can push the player into a wall, drop, fire, water, or another entity.",
+        "exact_input": null,
+        "success_cue": "A flat test area with several blocks of clear floor in every horizontal direction is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open in-game chat and execute the historical-version command that gives the nearest player one bow enchanted with Punch II. Include the leading slash because the command is being entered in game chat. This command uses the pre-1.13 item NBT form and numeric enchantment ID 49 for Punch.",
+        "exact_input": "/give @p minecraft:bow 1 0 {ench:[{id:49s,lvl:2s}]}",
+        "success_cue": "A bow is added to the inventory. When the bow is inspected in the inventory, its tooltip lists Punch II.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Open chat again and give the nearest player 64 arrows. Include the leading slash.",
+        "exact_input": "/give @p minecraft:arrow 64",
+        "success_cue": "A stack of 64 arrows is visible in the player inventory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Open chat and give the nearest player eight dirt blocks for constructing the test structure. Include the leading slash.",
+        "exact_input": "/give @p minecraft:dirt 8",
+        "success_cue": "At least eight dirt blocks are present in the player inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press E to open the inventory. Move the Punch II bow into one of the nine hotbar slots at the bottom of the inventory, leave the arrows anywhere in the inventory, and move the dirt into another hotbar slot. Close the inventory with E.",
+        "exact_input": "E; arrange bow and dirt in separate hotbar slots; E",
+        "success_cue": "The Punch II bow and dirt are accessible from separate hotbar slots, and the inventory contains arrows.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the dirt hotbar slot. Enter Creative flight by double-tapping the Jump control, whose default key is Space, and rise slightly above the floor.",
+        "exact_input": "Select dirt; double-tap Space; hold Space briefly to rise",
+        "success_cue": "The player is flying in Creative mode with dirt selected in the active hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Construct a vertical pillar exactly five dirt blocks tall, counting the first dirt block placed directly on top of the existing floor as block 1. Place four additional dirt blocks on top of it, producing blocks 1 through 5.",
+        "exact_input": "Right-click the floor once, then right-click the top face of the pillar four more times while rising as needed",
+        "success_cue": "A five-block-tall vertical dirt pillar stands on the floor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "At the height of pillar block 5, attach one additional dirt block horizontally to a side face of block 5. The two highest dirt blocks must be directly beside each other at the same height.",
+        "exact_input": "Right-click a horizontal side face of the fifth/highest pillar block",
+        "success_cue": "Two adjacent dirt blocks form a horizontal pair at the top of the pillar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "In Creative mode, break only the lower four blocks of the original vertical pillar. Leave the original fifth block and its horizontally adjacent block floating in place.",
+        "exact_input": "Left-click pillar blocks 1, 2, 3, and 4 once each; do not break either top block",
+        "success_cue": "Exactly two adjacent dirt blocks remain floating, with four complete empty block spaces between the floor and the underside of the pair.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Return to the floor and stop flying. Inspect the structure from below. Designate one dirt block as the first target and the adjacent dirt block as the second target; retain this distinction for the rest of the procedure.",
+        "exact_input": "Descend with Left Shift, then double-tap Space to stop flying when at floor level",
+        "success_cue": "The player is safely standing on the floor, the two target blocks remain overhead, and the first and second target positions have been identified.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Open chat and change the player to Survival mode using the historical numeric game-mode argument. Include the leading slash.",
+        "exact_input": "/gamemode 0",
+        "success_cue": "The Survival health and hunger bars are visible, blocks no longer break instantly, and Creative flight is unavailable.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select the Punch II bow in the active hotbar slot. Stand beneath the first target block, point the crosshair at the center of its underside, hold Use Item to draw the bow fully, and release Use Item to fire one arrow upward into the block. The default Use Item control is right mouse button.",
+        "exact_input": "Select Punch II bow; aim at first block underside; hold right mouse button until fully drawn; release",
+        "success_cue": "One arrow is visibly embedded in the underside of the first dirt block rather than lying on the floor or lodged in another surface.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Move beneath the second target block without disturbing the first arrow. Aim at the center of the second block's underside, fully draw the same Punch II bow, and release to fire a second arrow upward.",
+        "exact_input": "Aim at second block underside; hold right mouse button until fully drawn; release",
+        "success_cue": "A second arrow is visibly embedded in the underside of the second dirt block, leaving one embedded arrow under each target block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Switch away from the bow to an empty hotbar slot or any slot that cannot fire another projectile. Confirm that both embedded arrows and both dirt blocks are still present.",
+        "exact_input": "Select a hotbar slot that does not contain the bow",
+        "success_cue": "The bow is not active, and two separate arrows remain embedded under the two adjacent dirt blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Stand directly below the first target so the embedded arrow is vertically above the player's body. Look at the first dirt block's underside and hold the Attack/Destroy control, whose default is left mouse button, until that dirt block breaks. Do not step aside as the arrow becomes unsupported.",
+        "exact_input": "Hold left mouse button on the first dirt block until it breaks",
+        "success_cue": "The first dirt block is gone and its embedded arrow is unsupported and falling toward the player; the second dirt block and second embedded arrow remain intact.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Remain beneath the first arrow until it contacts the player. Do not evaluate or encode the distance of the resulting movement; continue once contact has occurred and the player is still alive. Allow only enough time for the player to land and regain normal movement control.",
+        "exact_input": "No movement input until arrow contact; then wait only until standing and movement are controllable",
+        "success_cue": "An arrow-contact cue has occurred, such as the hurt sound, damage animation, or health reduction, and the surviving player has regained normal control.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Immediately unload the single-player world by opening the pause menu and selecting Save and Quit to Title. Do not create or enter a different world.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The Minecraft title screen is displayed and the test world is no longer running.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Reopen the same saved world from the Singleplayer world list. Wait until terrain, the test structure, and entities have rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> select the same test world -> Play Selected World",
+        "success_cue": "The player is back in the same Survival-mode world, the remaining dirt block has loaded, and its saved embedded arrow is visible beneath it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Keep the world unpaused and wait at least five real-time seconds before disturbing the remaining block. This allows the post-login player-invulnerability interval mentioned by the report to expire. Do not stand where the arrow could be released during this wait.",
+        "exact_input": "Wait at least 5 seconds with the world unpaused",
+        "success_cue": "At least five seconds have elapsed after loading and player movement continues to respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Move directly beneath the remaining second dirt block. Align the player's body under the embedded arrow, select a non-bow hotbar slot, and aim the crosshair at the dirt block's underside.",
+        "exact_input": "Move beneath the second arrow; select a non-bow slot; aim at the remaining dirt block",
+        "success_cue": "The player is in Survival mode directly below the remaining embedded arrow, the login wait has elapsed, and the crosshair is on the supporting dirt block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Trigger the post-unload test by holding the Attack/Destroy control until the second dirt block breaks. Release the control and perform no further movement as the saved arrow becomes unsupported and falls toward the player.",
+        "exact_input": "Hold left mouse button on the remaining dirt block until it breaks, then release all controls",
+        "success_cue": "The second dirt block has just broken and the previously unloaded/reloaded arrow is now unsupported and falling toward or beginning to contact the stationary player.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "The same world has been reopened, at least five unpaused seconds have elapsed, the player is in Survival mode directly beneath the second saved arrow, and the second supporting dirt block has just been removed. The arrow is now falling toward or beginning to contact the player; begin observation immediately without issuing additional player input.",
+    "uncertainties": [
+      "The report provides no world seed, coordinates, difficulty, or exact terrain, so the plan uses a newly created flat local area as a practical setup choice.",
+      "The phrase 'four blocks space between the floor and the blocks' is interpreted as four complete air-block cells between the floor surface and the undersides of the two floating dirt blocks.",
+      "The report's displayed description commands use a newer item-NBT form and the later @s selector. For the recommended first affected version, the bow command is adapted from the historical syntax shown in Report Comment 3, changing only lvl:20s to lvl:2s so the required enchantment remains Punch II. Historical documentation also gives the old /give argument structure and Punch numeric ID 49. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Java%E7%89%881.7.2?utm_source=openai))",
+      "The five-second post-login delay is a conservative operational interpretation of the report's instruction to wait 'a few seconds.' A mechanics reference describes a 60-game-tick, three-second player spawn-invulnerability interval, but the exact historical implementation in 14w26c was not independently established. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E7%8E%A9%E5%AE%B6?variant=zh-tw&utm_source=openai))",
+      "Single-player Save and Quit is selected as the deterministic way to perform the report's example of unloading by logging out. The report does not state that a dedicated server or second player is required.",
+      "If the historical enchanted-bow command is rejected despite using 14w26c, stop rather than substituting modern Enchantments syntax; the exact launcher build and command error should be returned for version-specific resolution."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0484636c36aa29f4016aa713f4698487d0b66e15fd3bf23ffd",
+    "elapsed_seconds": 180.82,
+    "usage": {
+      "input_tokens": 39894,
+      "output_tokens": 12119,
+      "reasoning_tokens": 9222,
+      "total_tokens": 52013
+    },
+    "timestamp": "2026-09-13T21:24:56.923333+00:00"
+  }
+}

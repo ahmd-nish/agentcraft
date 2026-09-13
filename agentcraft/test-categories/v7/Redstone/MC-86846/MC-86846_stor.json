@@ -1,0 +1,231 @@
+{
+  "bug_id": "MC-86846",
+  "category": "Redstone",
+  "source_md": "[Redstone] - MC-86846.md",
+  "source_meta": {
+    "mojira categories": "Block states; Commands; Redstone",
+    "project": "MC",
+    "issue key": "MC-86846",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2015-08-20T14:30:54.998-0700",
+    "updated": "2025-04-29T21:13:24.428-0700",
+    "resolution date": "2021-11-19T07:56:09.058-0800",
+    "affects versions": "Minecraft 15w34b; Minecraft 15w44b; Minecraft 15w50a; Minecraft 15w51b; Minecraft 16w05b; Minecraft 1.9; Minecraft 1.9.1 Pre-Release 1; Minecraft 1.9.1 Pre-Release 2; Minecraft 1.9.1 Pre-Release 3; Minecraft 1.10.2; Minecraft 16w43a; Minecraft 1.11; Minecraft 1.11.2; Minecraft 17w06a; Minecraft 1.12.2; Minecraft 18w03b; Minecraft 1.13.1; Minecraft 1.13.2; Minecraft 19w04b; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14 Pre-Release 4; Minecraft 1.14 Pre-Release 5; Minecraft 1.14.1; Minecraft 1.14.2 Pre-Release 1; Minecraft 1.14.2 Pre-Release 2; Minecraft 1.14.2; Minecraft 1.14.3; Minecraft 1.14.4 Pre-Release 1; Minecraft 1.14.4 Pre-Release 3; Minecraft 1.14.4 Pre-Release 4; Minecraft 1.14.4 Pre-Release 5; Minecraft 1.14.4 Pre-Release 6; 1.14.4; 19w34a; 19w35a; 19w36a; 19w37a; 19w38b; 19w39a; 19w40a",
+    "fix versions": "19w41a",
+    "labels": "chain-mode; impulse-mode; powered-command-block; repeat-mode; trigger",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "repeatingCommandBlock.webm",
+    "issue links": "Duplicate:inward:MC-156789:Repeating Command Blocks Won't work 1.14.1+ | Duplicate:inward:MC-87257:\"Always active\" Command Blocks not running after switched to \"Repeat\"-mode | Duplicate:inward:MC-91133:Active command blocks turned into repeating command blocks don't automatically start executing | Duplicate:inward:MC-92636:Repeat type Command Blocks suddenly stop working | Duplicate:inward:MC-94459:Command block \"Always Active\" | Duplicate:inward:MC-94667:Repeat Command Blocks don't activate when switching from other modes to Repeat when on No Redstone mode | Duplicate:inward:MC-94952:Conditional statements don't carry correctly | Duplicate:inward:MC-96494:You can't give Levitation effect via Commandblocks. | Duplicate:inward:MC-96770:Command Blocks | Duplicate:inward:MC-96799:Command Blocks wont do /setblock | Duplicate:inward:MC-109479:Repeating command block not repeating | Duplicate:inward:MC-114776:Command blocks do not work properly after switching from Chain | Duplicate:inward:MC-143287:Command blocks on always activate do not activate after changing mode to repeat | Duplicate:inward:MC-150230:Repeating command blocks do not repeat. | Duplicate:inward:MC-155264:Repeating command blocks are not working | Duplicate:inward:MC-208887:/give repeating_command_block is glitched. | Relates:outward:MC-95873:Command Blocks Sometimes Don't Work After being placed from Ctrl+Middle Click | Relates:inward:MC-149038:Command blocks on repeating with always active or need redstone stop working",
+    "_title": "Changing a powered Command block from impulse/chain mode to repeat mode doesn't trigger it until repowering"
+  },
+  "stor": {
+    "bug_id": "MC-86846",
+    "affected_versions": [
+      "Minecraft 15w34b",
+      "Minecraft 15w44b",
+      "Minecraft 15w50a",
+      "Minecraft 15w51b",
+      "Minecraft 16w05b",
+      "Minecraft 1.9",
+      "Minecraft 1.9.1 Pre-Release 1",
+      "Minecraft 1.9.1 Pre-Release 2",
+      "Minecraft 1.9.1 Pre-Release 3",
+      "Minecraft 1.10.2",
+      "Minecraft 16w43a",
+      "Minecraft 1.11",
+      "Minecraft 1.11.2",
+      "Minecraft 17w06a",
+      "Minecraft 1.12.2",
+      "Minecraft 18w03b",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2",
+      "Minecraft 19w04b",
+      "Minecraft 1.14 Pre-Release 2",
+      "Minecraft 1.14 Pre-Release 3",
+      "Minecraft 1.14 Pre-Release 4",
+      "Minecraft 1.14 Pre-Release 5",
+      "Minecraft 1.14.1",
+      "Minecraft 1.14.2 Pre-Release 1",
+      "Minecraft 1.14.2 Pre-Release 2",
+      "Minecraft 1.14.2",
+      "Minecraft 1.14.3",
+      "Minecraft 1.14.4 Pre-Release 1",
+      "Minecraft 1.14.4 Pre-Release 3",
+      "Minecraft 1.14.4 Pre-Release 4",
+      "Minecraft 1.14.4 Pre-Release 5",
+      "Minecraft 1.14.4 Pre-Release 6",
+      "1.14.4",
+      "19w34a",
+      "19w35a",
+      "19w36a",
+      "19w37a",
+      "19w38b",
+      "19w39a",
+      "19w40a"
+    ],
+    "recommended_version": "Minecraft 15w34b",
+    "environment": "Minecraft Java Edition Minecraft 15w34b, unmodified client, single-player integrated server, Creative mode, cheats enabled, preferably an English-language UI and a Superflat world. Default keyboard and mouse controls are assumed: T for chat, number keys or mouse wheel for hotbar selection, right-click for Use/Place, and Left Shift for Sneak.",
+    "preconditions": [
+      "Install and launch the exact historical Java Edition snapshot Minecraft 15w34b in a separate launcher installation so newer worlds are not opened accidentally.",
+      "Use a newly created single-player Creative world with cheats enabled. No specific seed or coordinates are required.",
+      "Ensure the player has permission to execute commands and edit command blocks; enabling cheats in this single-player world supplies the required permission.",
+      "Use an open, loaded area with a solid floor and enough room to place and access one command block.",
+      "Do not use the report's fix version 19w41a.",
+      "Leave command feedback at its new-world default so the harmless test command can be confirmed from chat.",
+      "Do not toggle or otherwise interrupt the lever's power after the initial impulse execution; continuous power through the mode change is the key test condition."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start the exact Java Edition installation for Minecraft 15w34b. Do not substitute a later affected version or the fix version.",
+        "exact_input": "Minecraft 15w34b",
+        "success_cue": "The Minecraft main menu has loaded and displays version 15w34b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player test world. Select Creative game mode, open More World Options, set Allow Cheats to ON, and select the Superflat world type to provide a deterministic open building area. Then create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options... -> Allow Cheats: ON -> World Type: Superflat -> Create New World",
+        "success_cue": "The player has spawned in a new Creative-mode world on a flat surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building until the nearby terrain has rendered and player movement and controls respond normally.",
+        "exact_input": null,
+        "success_cue": "The ground around the player is fully rendered and the player can move and look around without world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Obtain one command block. Press T to open in-game chat, type the exact command including the leading slash, and press Enter.",
+        "exact_input": "/give @p minecraft:command_block 1",
+        "success_cue": "A command block item appears in the player's inventory or hotbar, and the command reports that the item was given successfully.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Obtain one lever. Press T to open in-game chat again, type the exact command including the leading slash, and press Enter.",
+        "exact_input": "/give @p minecraft:lever 1",
+        "success_cue": "A lever item appears in the player's inventory or hotbar, and the command reports that the item was given successfully.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select the command block in the hotbar. The hotbar is the row of nine item slots at the bottom of the screen; use the corresponding number key or the mouse wheel until the command block is outlined as the active item.",
+        "exact_input": "Select the hotbar slot containing minecraft:command_block",
+        "success_cue": "The command block is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Aim at the top of a solid floor block directly in front of the player and right-click once to place the command block.",
+        "exact_input": "right-click",
+        "success_cue": "One orange impulse command block is placed on the floor and has at least one exposed side that the player can target.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Aim at an exposed face of the command block and right-click to open its configuration interface.",
+        "exact_input": "right-click",
+        "success_cue": "The command block configuration interface is open and contains a command-entry field and a block-type control.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Click the command-entry field and enter the harmless deterministic test command exactly as shown, without a leading slash.",
+        "exact_input": "say MC-86846",
+        "success_cue": "The command field contains exactly \"say MC-86846\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Confirm that the command block type is Impulse. If the type control does not currently show Impulse, click it until it does. Do not change the command block to Repeat yet.",
+        "exact_input": "Impulse",
+        "success_cue": "The type control in the command block interface reads Impulse.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Click Done to save the command while the block is still an impulse command block and return to the world.",
+        "exact_input": "Done",
+        "success_cue": "The interface closes, the orange impulse command block remains placed, and no power source is attached yet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the lever in the hotbar using its number key or the mouse wheel.",
+        "exact_input": "Select the hotbar slot containing minecraft:lever",
+        "success_cue": "The lever is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Attach the lever directly to the top of the command block. Because right-clicking a command block normally opens its interface, hold the Sneak control, whose default key is Left Shift, while right-clicking the command block's top face. Release Left Shift after the lever is placed.",
+        "exact_input": "Hold Left Shift + right-click the top face of the command block",
+        "success_cue": "A lever is visibly attached to the top of the command block, and the command block interface is not open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Aim directly at the attached lever and right-click it once to switch it on. Do not turn it off during any later step.",
+        "exact_input": "right-click the lever once",
+        "success_cue": "The lever handle moves to its powered position and a chat line containing \"MC-86846\" appears, confirming that the impulse command block executed once while becoming powered.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "While the lever remains on, aim at an exposed side face of the command block rather than at the lever, and right-click to reopen the command block configuration interface. Do not touch the lever first.",
+        "exact_input": "right-click an exposed side face of the powered command block",
+        "success_cue": "The command block configuration interface is open, the command field still contains \"say MC-86846\", and no action has been taken to remove or toggle the lever's power.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Use the command block type control to change the block from Impulse to Repeat. Click the type control as many times as required until its displayed type is Repeat. Do not close the interface until Repeat is visibly selected, and do not change the command text.",
+        "exact_input": "Repeat",
+        "success_cue": "The command block type control reads Repeat and the command field still contains exactly \"say MC-86846\".",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Click Done to commit the change from Impulse to Repeat while the same lever has remained continuously on. Immediately hand control to the observation subsystem; do not toggle the lever, place or break neighboring blocks, reopen the command block interface, or otherwise update the setup.",
+        "exact_input": "Done",
+        "success_cue": "The configuration interface has just closed, the command block is in its purple Repeat form, and the attached lever remains in the same powered position without having been toggled off and on.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The command block has just been committed from Impulse mode to Repeat mode by clicking Done while its attached lever remained continuously on from the initial impulse execution. Begin observation immediately, without repowering the block or causing any additional block update.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, terrain type, or dedicated-server requirement. A fresh single-player Superflat Creative world is therefore used as a practical deterministic setup.",
+      "The report does not prescribe a particular command. The harmless command \"say MC-86846\" is used because one execution is easy to confirm in chat and it does not modify the world or player state.",
+      "The report does not prescribe the redstone power source. A lever attached directly to the command block is used because it can provide visibly continuous power throughout the mode change.",
+      "Minecraft 15w34b is the first listed affected version and is therefore selected. The later Always Active reproduction variant is not used because external version-history information indicates that the Always Active/Needs Redstone UI option was added after 15w34b; the original continuously redstone-powered variant is applicable to the recommended version.",
+      "Comment 19 mentions Minecraft 1.17.1, but that version is not present in the report's Affects versions field and has therefore not been added to affected_versions.",
+      "The exact translated wording and visual placement of the historical command-block type control may vary with the selected language, but the executor must identify the control whose displayed state cycles among Impulse, Chain, and Repeat."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_06643127cb04d7e6016aa71915e2ac87d095f12d52b3d237e0",
+    "elapsed_seconds": 87.32,
+    "usage": {
+      "input_tokens": 27016,
+      "output_tokens": 6274,
+      "reasoning_tokens": 3938,
+      "total_tokens": 33290
+    },
+    "timestamp": "2026-09-13T21:45:16.940419+00:00"
+  }
+}

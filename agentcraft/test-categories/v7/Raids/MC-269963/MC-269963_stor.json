@@ -1,0 +1,181 @@
+{
+  "bug_id": "MC-269963",
+  "category": "Raids",
+  "source_md": "[Raids] - MC-269963.md",
+  "source_meta": {
+    "mojira categories": "Raids",
+    "project": "MC",
+    "issue key": "MC-269963",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-03-27T11:58:58.180-0700",
+    "updated": "2025-04-29T10:07:18.412-0700",
+    "resolution date": "2024-04-08T02:23:22.811-0700",
+    "affects versions": "24w13a",
+    "fix versions": "1.20.5 Pre-Release 1",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-270020:Bad omen does not disappear when entering the village | Relates:outward:MC-270026:Raid omen of lower level is displayed in the GUI indefinitely after a raid has started with a higher omen level",
+    "_title": "Bad Omen is not removed when experimental features are disabled"
+  },
+  "stor": {
+    "bug_id": "MC-269963",
+    "affected_versions": [
+      "24w13a"
+    ],
+    "recommended_version": "24w13a",
+    "environment": "Minecraft: Java Edition snapshot 24w13a in a new single-player Superflat world using the integrated server. Use Creative mode with commands enabled, Easy difficulty, raids enabled, and the \"Update 1.21\" experimental feature disabled.",
+    "preconditions": [
+      "Use snapshot 24w13a exactly; do not use the listed fix version, 1.20.5 Pre-Release 1.",
+      "Create a new disposable test world rather than opening an important existing world.",
+      "Leave the \"Update 1.21\" experiment disabled. The experiment must not be enabled at any point for this reproduction.",
+      "Enable commands so the deterministic setup commands can be executed through in-game chat.",
+      "Use Easy difficulty rather than Peaceful so a raid can start while minimizing unnecessary raid waves.",
+      "The reproduction requires a village. This plan creates a minimal village using one villager and one bed claimed by that villager.",
+      "No world seed or coordinates are specified by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, open the Installations page, enable the option that displays snapshot versions, and create or select an installation whose version is exactly snapshot 24w13a.",
+        "exact_input": "snapshot 24w13a",
+        "success_cue": "An installation explicitly labeled 24w13a is available in the launcher.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Launch the 24w13a installation and wait for Minecraft to reach the title screen.",
+        "exact_input": null,
+        "success_cue": "The title screen is responsive and identifies the running version as Minecraft 24w13a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, then Create New World. Set Game Mode to Creative, enable commands or cheats, and set Difficulty to Easy. A suitable optional world name is \"MC-269963\".",
+        "exact_input": "Game Mode: Creative; Allow Commands: ON; Difficulty: Easy",
+        "success_cue": "The world-creation screen shows Creative mode, commands enabled, and Easy difficulty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the More tab, select Experiments, and inspect the \"Update 1.21\" toggle. Leave it OFF; if it is ON, click it once to turn it OFF. Select Done to return to world creation. Do not enable any experiment.",
+        "exact_input": "Update 1.21: OFF",
+        "success_cue": "The world is configured without the Update 1.21 experimental data pack enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Open the World tab, set World Type to Superflat, and create the world. Wait until the terrain has rendered and player movement responds normally.",
+        "exact_input": "World Type: Superflat",
+        "success_cue": "The player is standing in a fully loaded, flat Overworld and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Ensure raids are enabled. Press T to open in-game chat, type the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/gamerule disableRaids false",
+        "success_cue": "Chat reports that the disableRaids game rule is set to false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to find a bed, place one bed such as a White Bed into an empty hotbar slot, and press E again to close the inventory. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "White Bed",
+        "success_cue": "A bed is present in one of the nine hotbar slots and the inventory screen is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the bed's hotbar slot using its number key or the mouse wheel. Aim at the top face of the flat ground and right-click once to place the bed. Make sure both halves of the bed appear and that open ground surrounds it.",
+        "exact_input": null,
+        "success_cue": "A complete two-block-long bed is visible on the flat ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Stand immediately beside the bed. Press T, enter the following command including the leading slash, and press Enter to summon a villager nearby.",
+        "exact_input": "/summon minecraft:villager ~2 ~ ~",
+        "success_cue": "Chat reports that a villager was summoned, and one villager is visible within a few blocks of the bed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T, enter the following command including the leading slash, and press Enter to make it nighttime so the villager can visibly claim and use the bed.",
+        "exact_input": "/time set night",
+        "success_cue": "The world changes to nighttime while the villager and bed remain loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Move several blocks away from the bed without leaving the area, and wait until the villager reaches and lies in the bed. Keep the path to the bed unobstructed. If the villager cannot reach it, remove any obstruction and wait again; do not continue until the villager is sleeping.",
+        "exact_input": null,
+        "success_cue": "The villager is visibly lying in the bed, confirming that the bed has been claimed and the minimal village exists.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Press T, enter the following command including the leading slash, and press Enter. Wait for the villager to leave the bed, but do not break the bed or remove the villager.",
+        "exact_input": "/time set day",
+        "success_cue": "It is daytime, the villager is awake, and both the villager and its claimed bed remain present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Stand within two or three blocks of the claimed bed. Press T, enter the following relative teleport command including the leading slash, and press Enter. After teleporting, do not move horizontally; remaining at the destination is necessary so the inverse teleport returns to the same village position.",
+        "exact_input": "/tp @s ~160 ~ ~",
+        "success_cue": "The player is now 160 blocks along the positive X direction from the claimed bed, the teleport command has completed, and the player has not moved horizontally afterward.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "While still at the distant position, press T, enter the following command including the leading slash, and press Enter. This grants Bad Omen level I for 600 seconds without requiring a randomly generated raid captain.",
+        "exact_input": "/effect give @s minecraft:bad_omen 600 0 false",
+        "success_cue": "Chat reports that Bad Omen was applied to the player, and the Bad Omen status-effect icon is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Press E and verify that Bad Omen is listed among the player's active effects. Close the inventory with E. Do not drink milk, clear effects, die, change dimensions, or move horizontally before the next step.",
+        "exact_input": "Bad Omen",
+        "success_cue": "Bad Omen is confirmed active, the inventory is closed, and the player remains at the teleport destination.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Trigger the test by returning directly to the minimal village. Press T, enter the inverse relative teleport command including the leading slash, and press Enter. Make no further input after the teleport; hand control to the observation subsystem as soon as the player arrives and raid initiation begins.",
+        "exact_input": "/tp @s ~-160 ~ ~",
+        "success_cue": "The player has arrived back within a few blocks of the villager and its claimed bed after entering with Bad Omen active; raid initiation has been triggered and no effect-clearing action has been performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has just returned to the claimed-bed village while Bad Omen level I was active, causing raid initiation under 24w13a with the Update 1.21 experiment disabled. Immediately hand off to the observation subsystem before using any command, consuming milk, dying, changing dimensions, leaving the village, or completing the raid.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce section, game mode, seed, coordinates, world type, or Bad Omen acquisition method. The plan reconstructs the minimum deterministic path supported by the description.",
+      "Creative mode, a Superflat world, Easy difficulty, an artificial one-villager village, and command-based effect application are practical execution choices rather than requirements explicitly stated by the report.",
+      "The plan grants Bad Omen directly with /effect instead of locating and killing a raid captain. This avoids random exploration while preserving the report's required pre-trigger state: the player has Bad Omen outside a village and then enters the village.",
+      "The report describes endlessly restarting raids as a consequence, but reproducing that consequence would require completing a full raid. The handoff occurs at the first raid initiation because that is the earliest point at which the reported Bad Omen removal failure can be inspected."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0dadb49ce21ec8b5016aa71ad7c66c87d0a9ac2346fdfbf161",
+    "elapsed_seconds": 105.63,
+    "usage": {
+      "input_tokens": 34016,
+      "output_tokens": 7830,
+      "reasoning_tokens": 5908,
+      "total_tokens": 41846
+    },
+    "timestamp": "2026-09-13T21:53:05.279974+00:00"
+  }
+}

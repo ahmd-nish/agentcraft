@@ -1,0 +1,142 @@
+{
+  "bug_id": "MC-278182",
+  "category": "Redstone",
+  "source_md": "[Redstone] - MC-278182.md",
+  "source_meta": {
+    "mojira categories": "Entities; Redstone",
+    "project": "MC",
+    "issue key": "MC-278182",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2024-11-07T17:36:00.329-0800",
+    "updated": "2025-10-02T04:33:54.946-0700",
+    "resolution date": "2025-10-02T04:33:54.867-0700",
+    "affects versions": "Minecraft 1.14; 24w45a",
+    "fix versions": "1.21.10 Release Candidate 1",
+    "area": "Platform",
+    "labels": "item; piston",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "image-2024-11-08-02-26-10-600.png; image-2024-11-08-02-26-38-321.png; Item glitch bug world download.zip; Java_versions 2024.11.08 - 02.28.18.01.mp4",
+    "issue links": "Relates:outward:MC-11293:Pistons push items the wrong way",
+    "_title": "Items glitch inside the piston head when pushed through powder snow or cobwebs"
+  },
+  "stor": {
+    "bug_id": "MC-278182",
+    "affected_versions": [
+      "Minecraft 1.14",
+      "24w45a"
+    ],
+    "recommended_version": "Minecraft 1.14",
+    "environment": "Minecraft Java Edition 1.14 in single-player, using a fresh copy of the attached prebuilt world \"Item glitch bug world download.zip\". Use the cobweb-based apparatus provided in that world; powder snow does not exist in Minecraft 1.14. Do not use the listed fix version, 1.21.10 Release Candidate 1.",
+    "preconditions": [
+      "Obtain the report attachment named \"Item glitch bug world download.zip\"; the report does not provide enough coordinates, commands, or construction details to recreate its special piston setup independently.",
+      "Install and launch the exact affected release Minecraft Java Edition 1.14, corresponding to the first listed affected version \"Minecraft 1.14\".",
+      "Extract the attached ZIP into the Java Edition saves directory. The extracted world folder must directly contain level.dat rather than containing an extra nested folder above level.dat.",
+      "Use a fresh copy of the attached world so the piston begins in the state intended by the reporter and no item entities remain from an earlier attempt.",
+      "Leave the command blocks, cobweb, piston, redstone wiring, and item path in their supplied positions. Do not substitute powder snow in this 1.14 reproduction.",
+      "Use the world's prebuilt redstone controls where available. The report does not supply the commands stored in the command blocks, so do not clear or edit their contents."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "With Minecraft closed, extract \"Item glitch bug world download.zip\" into the Minecraft Java Edition saves directory. If extraction creates an outer folder containing a second world folder, move the inner folder—the one containing level.dat—directly into the saves directory.",
+        "exact_input": "Item glitch bug world download.zip",
+        "success_cue": "A single world folder is present under the saves directory, and level.dat is directly inside that world folder.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open the Minecraft Launcher and select or create a Java Edition installation that runs the exact release 1.14. Do not select 1.14.1 or another nearby release.",
+        "exact_input": "1.14",
+        "success_cue": "The launcher installation selected for play explicitly shows version 1.14.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Launch Minecraft Java Edition using the 1.14 installation and wait for the title screen to finish loading.",
+        "exact_input": "Play",
+        "success_cue": "The lower-left title-screen version label identifies Minecraft 1.14.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Singleplayer, choose the imported world from the attachment, and open it. If several similarly named copies exist, choose the fresh, unused copy extracted for this attempt.",
+        "exact_input": "Singleplayer -> imported attached world -> Play Selected World",
+        "success_cue": "The player has entered the attached test world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Wait without operating any redstone until the surrounding chunks and the test apparatus have rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The nearby blocks are fully rendered, movement is responsive, and the test apparatus can be inspected without additional terrain loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Locate the prebuilt test apparatus in the attached world. Identify its command blocks, the area containing cobweb, the piston aimed toward or through that area, and the separate redstone controls used to power the command blocks and the piston. Inspect the controls without activating them yet.",
+        "exact_input": null,
+        "success_cue": "The command-block power control and piston power control have both been identified, and the cobweb is visible in the piston's item path.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Confirm that this is an unused initial setup: the piston must be retracted and there must not already be leftover item entities from an earlier attempt in the apparatus. If the setup is not fresh, exit without saving and restore another fresh copy from the ZIP rather than attempting an undocumented manual reset.",
+        "exact_input": null,
+        "success_cue": "The piston is retracted, the cobweb apparatus is intact, and no leftover test items are present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Supply redstone power to the prebuilt command blocks using the world’s provided command-block control. For a button or lever, aim at it and use the Use/Place Block action, which is right-click by default. Activate the supplied control only once unless the world clearly provides one separate control for each command block; in that case, activate each intended command-block control once. Do not open or edit the command blocks.",
+        "exact_input": "Use/Place Block (default: right-click) on the command-block power control",
+        "success_cue": "The command blocks have run and multiple dropped-item entities are visible in the cobweb portion of the apparatus.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Allow the newly summoned item entities to enter or remain inside the cobweb in front of the retracted piston. Continue as soon as the multiple items are visibly present in the intended cobweb position; do not repeatedly summon additional batches.",
+        "exact_input": null,
+        "success_cue": "Multiple dropped-item entities are simultaneously inside the cobweb in the piston's path, and the piston remains retracted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Aim at the separate control that powers the piston and activate it once with the Use/Place Block action. Do not repeatedly cycle the piston. Hand control to the observation subsystem immediately after the piston extends and pushes the item entities through or from the cobweb.",
+        "exact_input": "Use/Place Block (default: right-click) on the piston power control",
+        "success_cue": "The piston has just extended once, its head has entered the item path, and the item entities have just been acted upon by the moving piston.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The piston has just been powered for one extension while multiple summoned item entities occupy the cobweb in its path. Begin observation immediately, without cycling the piston again or disturbing the items.",
+    "uncertainties": [
+      "The attached world file itself was not supplied with the report text. Execution therefore depends on separately obtaining \"Item glitch bug world download.zip\" from the Mojira attachment.",
+      "The report does not provide the world seed, coordinates, stored command text, command-block arrangement, redstone-control type, or a manual construction schematic. Those details must be taken unchanged from the attached world.",
+      "The phrase \"under some special conditions\" is not expanded in the written report. This plan preserves those conditions by requiring the supplied prebuilt world rather than attempting to infer or rebuild the apparatus.",
+      "The report says to \"Power the command blocks\" and then \"Power the piston\" but does not identify the exact buttons, levers, pressure plates, or other redstone inputs. The executor must distinguish the controls by inspecting their wiring and must activate the command-block control before the piston control.",
+      "Although 24w45a is also listed as affected, Minecraft 1.14 is selected because it is the first affected version listed, as required. The 1.14 reproduction must use cobweb rather than powder snow."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_02cc225a5e49b32d016aa718787bac87d0bd24313d25d93153",
+    "elapsed_seconds": 54.5,
+    "usage": {
+      "input_tokens": 8547,
+      "output_tokens": 3370,
+      "reasoning_tokens": 1854,
+      "total_tokens": 11917
+    },
+    "timestamp": "2026-09-13T21:42:06.851696+00:00"
+  }
+}

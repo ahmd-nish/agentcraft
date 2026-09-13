@@ -1,0 +1,224 @@
+{
+  "bug_id": "MC-270540",
+  "category": "Save Data",
+  "source_md": "[Save Data] - MC-270540.md",
+  "source_meta": {
+    "mojira categories": "Player; Save Data",
+    "project": "MC",
+    "issue key": "MC-270540",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-04-08T11:08:26.332-0700",
+    "updated": "2025-04-10T12:36:27.464-0700",
+    "resolution date": "2024-06-07T05:10:02.382-0700",
+    "affects versions": "24w14a",
+    "fix versions": "1.21 Pre-Release 4",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "fall damage after reloading world.mp4; reproduction step 5.mp4",
+    "issue links": "Relates:outward:MC-59626:Arrows lose their Punch enchantment property when unloaded",
+    "_title": "The prevention of fall damage from wind charges is not retained upon reloading the world"
+  },
+  "stor": {
+    "bug_id": "MC-270540",
+    "affected_versions": [
+      "24w14a"
+    ],
+    "recommended_version": "24w14a",
+    "environment": "Minecraft Java Edition snapshot 24w14a in a single-player world (integrated server), with commands/cheats available. Use a temporary Creative-mode setup, then perform both trials in Survival mode. The test site should have a level, solid landing surface and unobstructed open sky above it.",
+    "preconditions": [
+      "Launch the world specifically in Minecraft Java Edition snapshot 24w14a, not the listed fix version.",
+      "Use a single-player world in which commands are permitted so that command blocks can be obtained and the player can be switched to Survival mode.",
+      "Only one player should be present, ensuring that both @p selectors target the reproducing player.",
+      "Prepare a level, solid landing surface with open sky and no overhead blocks that could interrupt the launch or descent.",
+      "The player must have full health before the control trial and again before the reload trial.",
+      "Use the same world and the same command-block apparatus for the control trial and the reload trial."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the 24w14a installation and open or create a single-player test world. For the simplest setup, create the world in Creative mode with commands allowed; the player will be switched to Survival before testing.",
+        "exact_input": "24w14a",
+        "success_cue": "The player is inside a world whose active game version is 24w14a and can execute commands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Move to a level area made of solid blocks with unobstructed open sky. Leave enough horizontal room for two adjacent command blocks and enough space beside them for the player to stand and reach a button.",
+        "exact_input": null,
+        "success_cue": "A flat landing surface and a clear vertical launch path are available at the test site.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press T to open chat, enter the command exactly as shown including the leading slash, and press Enter to obtain an impulse command block.",
+        "exact_input": "/give @s minecraft:command_block",
+        "success_cue": "An orange impulse command block is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T, enter the command exactly as shown including the leading slash, and press Enter to obtain a chain command block.",
+        "exact_input": "/give @s minecraft:chain_command_block",
+        "success_cue": "A green chain command block is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, enter the command exactly as shown including the leading slash, and press Enter to obtain a button for activating the impulse command block.",
+        "exact_input": "/give @s minecraft:stone_button",
+        "success_cue": "A stone button is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the impulse command block in the hotbar and right-click the landing surface to place it. Orient it so that its arrow texture points horizontally toward an adjacent empty block position. If necessary, break and replace it until the arrow has the required direction.",
+        "exact_input": null,
+        "success_cue": "The impulse command block is placed, and its arrow points into an empty adjacent position where the chain command block can be placed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select the chain command block and place it directly in the adjacent position into which the impulse command block's arrow points. Orient the chain block along the same line, with its arrow pointing away from the impulse block.",
+        "exact_input": null,
+        "success_cue": "The two command blocks are adjacent, and the impulse block's arrow points directly into the chain block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Right-click the impulse command block to open its configuration screen. Set its block type to Impulse, condition to Unconditional, and redstone mode to Needs Redstone. Enter the report's command in the command input without a leading slash, then select Done.",
+        "exact_input": "execute at @p run summon minecraft:wind_charge ~ ~ ~ {Motion:[0.0,-1.0,0.0]}",
+        "success_cue": "The impulse command block is configured as Impulse, Unconditional, Needs Redstone, and displays the exact wind-charge summon command.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Right-click the chain command block to open its configuration screen. Set its block type to Chain, condition to Unconditional, and redstone mode to Always Active. Enter the report's command in the command input without a leading slash, then select Done.",
+        "exact_input": "effect give @p minecraft:levitation 3 40 true",
+        "success_cue": "The chain command block is configured as Chain, Unconditional, Always Active, and displays the exact levitation command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the stone button and right-click an accessible face of the impulse command block to attach it. Do not place the button between the impulse and chain command blocks.",
+        "exact_input": null,
+        "success_cue": "A reachable button is attached to the impulse command block while the impulse block still points directly into the chain block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Stand on the level landing surface next to the apparatus, close enough to right-click the button. Ensure the player is the only player in the world, has open sky above, and will land on the same level surface from which the wind charge is summoned.",
+        "exact_input": null,
+        "success_cue": "The player is within reach of the button, is the nearest and only player for both @p selectors, and has an unobstructed vertical path above the level landing area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T, enter the command exactly as shown including the leading slash, and press Enter to switch the player to Survival mode.",
+        "exact_input": "/gamemode survival @s",
+        "success_cue": "The Survival HUD is visible, including hearts and hunger icons, and the player can take normal fall damage.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Before the control trial, verify that all ten hearts are filled, the Levitation status icon is absent, and the player is standing on the prepared landing surface. If health is not full, remain at full hunger and wait for natural regeneration before continuing.",
+        "exact_input": null,
+        "success_cue": "The player is in Survival mode at full health, has no active Levitation effect, and is standing at the test point.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Perform the no-reload control trial by right-clicking the button once. Keep the game open and do not exit the world during this trial.",
+        "exact_input": null,
+        "success_cue": "The player is propelled upward and receives the short Levitation effect, confirming that the impulse command and its chained command both executed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Do not deliberately move onto a different-height landing surface. Allow the Levitation effect to expire and wait until the player has landed back on the prepared level surface.",
+        "exact_input": null,
+        "success_cue": "The player is standing on the level landing surface again and the Levitation status icon has disappeared.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Use the first launch only as the report's control check. Confirm that this no-reload trial completed without reducing the player's health. If health was reduced, discard that trial because the report notes an intermittent unrelated failure; regenerate to full health, return to the same test point, and repeat steps 14 through 16 before proceeding.",
+        "exact_input": null,
+        "success_cue": "A no-reload control launch has completed without health loss, and the player is ready to reset for the reload trial.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Return to the exact test position within reach of the button. Wait until all ten hearts are filled and the Levitation effect is absent. Do not change the command-block configuration or the landing surface between trials.",
+        "exact_input": null,
+        "success_cue": "The player is again in Survival mode at full health, standing at the same test point with no Levitation effect active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Begin the reload trial by right-clicking the button a second time. Do not wait for the player to reach the top of the launch.",
+        "exact_input": null,
+        "success_cue": "The player has started moving upward and the Levitation effect is active.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "As soon as upward movement is visibly underway, press Esc to pause the single-player world. Do this promptly while the player is still rising, rather than near the apex or during the descent.",
+        "exact_input": "Esc",
+        "success_cue": "The pause menu is open while the player is still airborne early in the launch.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "From the pause menu, select Save and Quit to Title. Because the integrated single-player world is paused while the menu is open, select this after confirming that the pause menu was opened early in the ascent.",
+        "exact_input": "Save and Quit to Title",
+        "success_cue": "The world has closed and the Minecraft title screen is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "From the title screen, select Singleplayer and highlight the same saved world used for the command-block setup. Do not create a new world.",
+        "exact_input": "Singleplayer",
+        "success_cue": "The original 24w14a test world is selected in the world list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Select Play Selected World to re-enter the same world. As soon as the playable world view appears, provide no movement input and immediately hand control to the observation subsystem. The player must still be airborne with enough descent time remaining for the approximately two-second login damage-immunity period mentioned by the report to expire before landing.",
+        "exact_input": "Play Selected World",
+        "success_cue": "The same world has finished loading to a playable view, and the Survival player is still airborne above the prepared landing surface rather than already standing on it.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "The player has just re-entered the same 24w14a world and is still airborne above the original level landing surface after the second wind-charge launch. The game is unpaused, no movement input is being supplied, and sufficient airborne time should remain for the post-login damage-immunity period to expire before landing. Begin observation immediately and continue through the landing.",
+    "uncertainties": [
+      "The report does not specify the command blocks' redstone modes. Setting the impulse block to Needs Redstone and the chain block to Always Active is a practical configuration that allows one button press to execute both supplied commands in sequence.",
+      "The report does not specify exact block coordinates or apparatus geometry. A level solid surface with open sky is used so that the player can return to the same Y-level as the wind-charge explosion without obstruction.",
+      "The report provides no exact maximum delay between pressing the second button and exiting. The executor must pause and save very early in the ascent; if the player has already reached the apex or begun descending, reset to full health and repeat the reload trial.",
+      "The report warns that another unidentified issue can sometimes cause damage even during the no-reload control trial. A trial that fails this control must be discarded rather than used as the reload reproduction.",
+      "The remaining airborne time after re-entry cannot be guaranteed from a fixed delay because world-loading duration and the precise exit moment can vary. The required readiness cue is that the player is still clearly airborne when the playable view returns."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e6b964566611f41016aa712c2d7e487d090b113e7b6ec2b5d",
+    "elapsed_seconds": 114.52,
+    "usage": {
+      "input_tokens": 8511,
+      "output_tokens": 7435,
+      "reasoning_tokens": 5008,
+      "total_tokens": 15946
+    },
+    "timestamp": "2026-09-13T21:18:45.220869+00:00"
+  }
+}

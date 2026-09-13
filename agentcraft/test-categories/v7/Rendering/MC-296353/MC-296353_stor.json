@@ -1,0 +1,138 @@
+{
+  "bug_id": "MC-296353",
+  "category": "Rendering",
+  "source_md": "[Rendering] - MC-296353.md",
+  "source_meta": {
+    "mojira categories": "Rendering",
+    "project": "MC",
+    "issue key": "MC-296353",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2025-04-08T07:17:56.426-0700",
+    "updated": "2026-03-11T03:50:48.342-0700",
+    "resolution date": "2025-04-09T02:28:17.687-0700",
+    "affects versions": "25w15a",
+    "fix versions": "25w16a",
+    "area": "Platform G",
+    "votes": "21",
+    "watchers": "1",
+    "attachments": "25",
+    "attachment filenames": "2025-04-08_22.05.17.png; 2025-04-08_22.05.18.png; 2025-04-08_22.05.19.png; 2025-04-08_22.05.24.png; 2025-04-08_22.05.25.png; 2025-04-08_22.09.50.png; 2025-04-08_22.18.50.png; image-20250408-155723.png; image-20250408-210225.png; image-20250408-210446.png; image-20250408-210603.png; image-20250408-210632.png; image-20250408-211120.png; image-20250408-211215.png; image-20250408-211308.png; image-20250408-211820.png; image-20250408-211911.png; image-20250409-000440.png; image-20250409-000546.png; image-20250409-000622.png; MC-296353.png; Screenshot 2025-04-08 172107.png; Screenshotinvispink 2025-04-08 172341.png; Screenshot purplepots2025-04-08 172317.png; Screenshot resourpack 2025-04-08 172157.png",
+    "issue links": "Duplicate:inward:MC-296379:Potions are not displayed correctly in the creative menu | Duplicate:inward:MC-296384:Potions colors are not displayed correctly in the creative menu | Duplicate:inward:MC-296396:Potions are decolored | Duplicate:inward:MC-296402:potions look like water potions and arrows are just water tipped arrows | Duplicate:inward:MC-296413:The texture of the arrows is broken | Duplicate:inward:MC-296416:Tipped arrows all have the same colour | Duplicate:inward:MC-296425:Leather armor color and enchanting stay when making new | Duplicate:inward:MC-296435:All Potions are Randomly changing colors in Creative Mode | Duplicate:inward:MC-296436:All Potions and Tipped Arrows are the same colour | Relates:inward:MC-296367:The enchantment glint in the inventory appears on all items of the same type | Duplicate:inward:MC-296457:tipped arrows look wrong | Duplicate:inward:MC-296455:Potions are miscolored in the 25w15a snapshot | Duplicate:inward:MC-296454:All potions have the water bottle texture. | Duplicate:inward:MC-296452:All potions have either the slowness or speed potions texture. | Duplicate:inward:MC-296481:All Potions are shown in the same texture (25w15a) | Duplicate:inward:MC-296493:All potions are the same colour | Duplicate:inward:MC-296525:Potion item models do not have unique colors | Duplicate:inward:MC-296529:Dyed Leather Items show up Incorrectly in the Inventory | Duplicate:inward:MC-296534:potion and tipped arror have no colour | Duplicate:inward:MC-296540:Potions and arrows are all blue | Duplicate:inward:MC-296549:Why are the appearance of the tipped arrows and potions all the same? | Duplicate:inward:MC-296555:Potions miscolored | Duplicate:inward:MC-296572:Enchanted and almost all Potion items all inheriting the same color and visual effects. | Duplicate:inward:MC-296594:Potion Arrows Do Not Display Properly In The Inventory | Duplicate:inward:MC-296597:The icon of potion is not displayed correctly in the item column. | Duplicate:inward:MC-296616:All potions and tipped arrows look the same | Duplicate:inward:MC-296619:Potion textures are incorrect | Duplicate:inward:MC-296626:Potions' colors are same | Duplicate:inward:MC-296632:Potion textures are all the same | Duplicate:inward:MC-296636:Tipped Arrows Are Only One Color | Duplicate:inward:MC-296648:Problem with potions appearance in Minecraft creative mode | Duplicate:inward:MC-296650:Textures | Duplicate:inward:MC-296665:Bugged Potions | Duplicate:inward:MC-296660:Potions of the Wrong Color | Duplicate:inward:MC-296659:Potions incorrect color | Duplicate:inward:MC-296656:potions load in correct texture in inventory  | Duplicate:inward:MC-296676:Night Vision potions texture | Duplicate:inward:MC-296712:Potions are the wrong Color | Duplicate:inward:MC-296732:Potions texture bug | Duplicate:inward:MC-296738:Potion colors get randomized | Duplicate:inward:MC-296739:Potion colors are not the same when held on hand and thrown",
+    "_title": "Potions, tipped arrows, and dyed leather armor render with missing or incorrect colors in the inventory"
+  },
+  "stor": {
+    "bug_id": "MC-296353",
+    "affected_versions": [
+      "25w15a"
+    ],
+    "recommended_version": "25w15a",
+    "environment": "Minecraft Java Edition snapshot 25w15a in a local single-player world, with the player in Creative mode and the Creative inventory's Search Items interface available.",
+    "preconditions": [
+      "Use the exact affected snapshot 25w15a; do not use fix version 25w16a.",
+      "The Minecraft Launcher must be able to start Minecraft Java Edition 25w15a.",
+      "No particular world seed, coordinates, dimension, biome, structure, item possession, resource pack, graphics setting, or multiplayer server is specified by the report.",
+      "A newly created Creative-mode world is the simplest deterministic way to establish the required game mode.",
+      "If controls have been rebound, use the control assigned to the Inventory action instead of the default E key."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create a Java Edition installation that uses the exact snapshot version 25w15a, and launch it. Do not select 25w16a because that is listed as the fix version rather than an affected version.",
+        "exact_input": "Select version 25w15a, then activate Play",
+        "success_cue": "The Minecraft Java Edition title screen is open and identifies the running version as 25w15a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open the local-world selection menu.",
+        "exact_input": "Left-click Singleplayer",
+        "success_cue": "The Select World screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Start creating a new test world. An existing world may be used instead, but creating a new one avoids unrelated inventory state.",
+        "exact_input": "Left-click Create New World",
+        "success_cue": "The Create New World configuration screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set the new world's game mode to Creative. If the game-mode control currently shows another mode, activate it until Creative is displayed.",
+        "exact_input": "Left-click the Game Mode control until it displays Creative",
+        "success_cue": "The world configuration screen explicitly shows Creative as the selected game mode.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Create and enter the world. Leave the seed and other world-generation options at any values because the report does not require particular terrain.",
+        "exact_input": "Left-click Create New World",
+        "success_cue": "The player has spawned into the world and the normal gameplay view and hotbar are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait before interacting until initial world loading has settled.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading overlay is gone, and player input responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the player inventory. Because the player is in Creative mode, this opens the Creative inventory rather than the Survival inventory interface.",
+        "exact_input": "Press E (default Inventory key)",
+        "success_cue": "The Creative inventory interface is open and its category tabs and item grid are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Creative inventory tab labeled Search Items. If tab labels are hidden, move the pointer over the tabs until the Search Items tooltip identifies the correct one, then select it.",
+        "exact_input": "Left-click the Search Items tab",
+        "success_cue": "The Search Items tab is selected and a text search field is visible above the item grid.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Focus the search field and remove any text that may already be present so the query will contain only the report's specified word.",
+        "exact_input": "Left-click the search field, press Ctrl+A, then press Backspace",
+        "success_cue": "The insertion cursor is active in an empty Creative inventory search field.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's exact search term in lowercase. No Enter key is needed; allow the item grid to refresh after the final character is typed. Do not close the inventory or take an item before handing off.",
+        "exact_input": "potion",
+        "success_cue": "The search field contains exactly “potion”, the Creative inventory remains open, and the filtered item grid has finished populating.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The player is in Creative mode in Minecraft Java Edition 25w15a, the Creative inventory is open on the Search Items tab, and the exact query “potion” has just populated the filtered item grid. Hand control to the observation subsystem before changing the query, selecting an item, reloading resources, or closing the inventory.",
+    "uncertainties": [
+      "The formal Steps to Reproduce directly exercise potion icons only. Although the title and comments also identify tipped arrows and dyed leather armor, the report does not provide separate acquisition, dyeing, or inventory procedures for those item classes, so they are not added as unsupported mandatory steps.",
+      "Comments mention resource reloading with F3+T, restarting the game, hotbar ordering, and color inheritance among item categories, but none of those actions is required by the report's formal reproduction steps and they are therefore omitted.",
+      "The report does not specify whether to use a new or existing world. A new Creative-mode single-player world is selected as the simplest practical way to establish the stated Creative-mode precondition."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a42a67e12aabd0b016aa717a2bf8887d0993aaafdb65e412d",
+    "elapsed_seconds": 39.37,
+    "usage": {
+      "input_tokens": 9883,
+      "output_tokens": 2677,
+      "reasoning_tokens": 1552,
+      "total_tokens": 12560
+    },
+    "timestamp": "2026-09-13T21:38:17.621807+00:00"
+  }
+}

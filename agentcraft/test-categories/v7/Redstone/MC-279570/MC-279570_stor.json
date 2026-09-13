@@ -1,0 +1,167 @@
+{
+  "bug_id": "MC-279570",
+  "category": "Redstone",
+  "source_md": "[Redstone] - MC-279570.md",
+  "source_meta": {
+    "mojira categories": "Redstone",
+    "project": "MC",
+    "issue key": "MC-279570",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-01-16T06:10:51.661-0800",
+    "updated": "2025-04-10T15:04:36.857-0700",
+    "resolution date": "2025-01-22T03:00:42.035-0800",
+    "affects versions": "25w03a",
+    "fix versions": "25w04a",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "missing_neighbor_updates_on_piston_breaking_lever.mp4",
+    "issue links": "Relates:inward:MC-279326:Lit observers no longer send block updates when moved by a piston",
+    "_title": "Some piston operations don't send neighbor updates"
+  },
+  "stor": {
+    "bug_id": "MC-279570",
+    "affected_versions": [
+      "25w03a"
+    ],
+    "recommended_version": "25w03a",
+    "environment": "Minecraft: Java Edition snapshot 25w03a in a vanilla single-player Creative Mode superflat world. Use default controls unless an action binding has been changed. No seed, coordinates, server, datapack, resource pack, mod, or command is specified by the report.",
+    "preconditions": [
+      "Install and launch the exact affected snapshot 25w03a, not a later snapshot.",
+      "Use a newly created Creative Mode world so the required redstone components can be obtained without crafting.",
+      "Find a clear, level area at least 5 blocks long and 3 blocks wide, with no nearby redstone components that could update the test circuit.",
+      "The reproduction uses one regular piston, two levers, and one redstone dust. A regular piston is selected as the simplest interpretation because the attachment itself is not available in the supplied report.",
+      "Identify two roles for the levers: the target lever will be destroyed by the piston, while the rear activation lever will trigger the piston.",
+      "All circuit components must be placed on top of the same level floor. The target lever must occupy the block space immediately in front of the piston, and the redstone dust must be horizontally adjacent to that target lever."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select or create an installation for the exact Java Edition snapshot listed by the report, and start the game with that installation.",
+        "exact_input": "Minecraft Launcher -> Installations -> New installation (if needed) -> Version: snapshot 25w03a -> Create/Save -> Play",
+        "success_cue": "The title screen displays Minecraft Java Edition 25w03a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a disposable single-player Creative Mode superflat world. No particular seed is required. Superflat is an execution convenience and is not stated as a bug requirement.",
+        "exact_input": "Singleplayer -> Create New World -> set Game Mode to Creative -> World settings/options -> World Type: Superflat -> Create New World",
+        "success_cue": "The player spawns in a Creative Mode world with a broad, level surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building until world loading has finished.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the player can move and look around normally, and opening the inventory responds without loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory and place one regular Piston, two Levers, and Redstone Dust into separate hotbar slots. The hotbar is the row of nine item slots along the bottom of the screen; selecting a slot makes that item the active held item.",
+        "exact_input": "Press E -> use the Search Items tab if necessary -> search for and move \"Piston\", \"Lever\", and \"Redstone Dust\" to the hotbar -> press E to close the inventory",
+        "success_cue": "The hotbar contains a regular piston, at least two levers, and redstone dust.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Choose a clear section of the flat floor at least 5 blocks long and 3 blocks wide. Remove any grass, flowers, or other non-floor blocks from the area so they cannot interfere with placement or updates.",
+        "exact_input": "Select an empty hotbar slot and left-click any obstructing plants or blocks in the chosen area.",
+        "success_cue": "A clear, level test area with no existing redstone components is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Place the regular piston horizontally on top of the floor. Stand on the side that will become the front of the circuit and place the piston so its wooden pushing face points toward the player and into an empty block space. Leave at least two empty floor positions both in front of and behind it.",
+        "exact_input": "Select the Piston hotbar slot -> stand in the intended front direction -> right-click the top of the floor block where the piston base should be placed",
+        "success_cue": "A horizontal piston is present, and its wooden face points into an empty space above the neighboring floor block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Designate the empty block space directly in front of the piston's wooden face as the target position. The piston must be able to extend into this exact position without encountering a solid block.",
+        "exact_input": null,
+        "success_cue": "The block directly in front of the piston is empty and has a solid floor block beneath it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Place the target lever on top of the floor block directly in front of the piston. Approach from the side if necessary so the player does not occupy the target position while placing it. This must be a floor-mounted lever occupying the block space into which the piston will extend.",
+        "exact_input": "Select the Lever hotbar slot -> right-click the top face of the floor block immediately in front of the piston",
+        "success_cue": "A floor-mounted lever occupies the single block immediately in front of the piston face, while the piston remains retracted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Place one redstone dust on the floor block immediately to either horizontal side of the target lever, at the same height. Do not place the dust in front of or behind the piston, and do not create a longer redstone line.",
+        "exact_input": "Select Redstone Dust in the hotbar -> right-click the top of either floor block directly beside the target lever",
+        "success_cue": "One unpowered redstone dust is horizontally adjacent to the target lever and is not adjacent to the back of the piston.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Place the rear activation lever on top of the floor block immediately behind the piston, centered with the piston and target lever. Leave this newly placed lever in its default off position. The resulting top-down center line must be: rear activation lever, piston facing forward, target lever. The redstone dust must be one block to the side of the target lever.",
+        "exact_input": "Select the Lever hotbar slot -> right-click the top face of the floor block immediately behind the piston",
+        "success_cue": "The rear activation lever is directly behind the piston and is off; the piston is still retracted; the target lever and adjacent dust remain in place.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Right-click the target lever directly in front of the piston once to switch that lever on. Do not operate the rear activation lever yet.",
+        "exact_input": "Aim at the target lever -> right-click once",
+        "success_cue": "The target lever is visibly switched on, the adjacent redstone dust is brightly powered, and the piston remains retracted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Pause briefly without placing, breaking, or operating anything. Confirm that the initial powered state is stable before triggering the piston.",
+        "exact_input": "Wait approximately 1 second without input.",
+        "success_cue": "The target lever remains present and on, the neighboring redstone dust remains powered, the rear activation lever remains off, and the piston remains retracted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Move to a position where the rear activation lever can be operated without clicking the piston or disturbing the target lever or redstone dust. Aim the crosshair at the rear activation lever.",
+        "exact_input": "Use W/A/S/D as needed -> position the crosshair over the rear activation lever behind the piston",
+        "success_cue": "The crosshair targets the rear activation lever while the target lever is still on and its adjacent redstone dust is powered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Trigger the reproduction by right-clicking the rear activation lever exactly once. Allow the piston to complete its first extension into the target lever's block space. Do not toggle the rear lever again and do not touch any other block after the extension.",
+        "exact_input": "Right-click once on the rear activation lever.",
+        "success_cue": "The rear activation lever is on, the piston has completed its extension, and the target lever directly in front of it has been destroyed. No additional player action has occurred.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The rear activation lever has just been switched on, the piston has completed its first extension into the former target-lever position, and the target lever has been destroyed. Leave the circuit untouched and immediately transfer control to the observation subsystem without evaluating or changing the redstone dust.",
+    "uncertainties": [
+      "The formal report provides no textual construction sequence and instead refers to the attached video, missing_neighbor_updates_on_piston_breaking_lever.mp4. The attachment's visual instructions were not accessible, so its exact orientation and block layout could not be recovered.",
+      "The use of a regular piston, a floor-mounted target lever directly in front of it, adjacent redstone dust, and a separate rear activation lever is a minimum deterministic reconstruction supported by the description and attachment filename, but may not exactly match the video.",
+      "The report does not specify game mode, world type, seed, coordinates, or multiplayer requirements. Creative Mode, a superflat world, and single-player are practical execution choices rather than reported requirements.",
+      "If the inaccessible video uses a sticky piston, wall-mounted lever, different activation source, or another precise orientation, this plan may need to be adjusted to match that attachment before execution."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0e14bdebe38d3878016aa718aef7a087d0ab00bc116cb70da1",
+    "elapsed_seconds": 102.75,
+    "usage": {
+      "input_tokens": 22136,
+      "output_tokens": 6010,
+      "reasoning_tokens": 4109,
+      "total_tokens": 28146
+    },
+    "timestamp": "2026-09-13T21:43:49.612098+00:00"
+  }
+}

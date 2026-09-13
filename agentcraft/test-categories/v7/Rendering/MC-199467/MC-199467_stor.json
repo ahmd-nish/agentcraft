@@ -1,0 +1,138 @@
+{
+  "bug_id": "MC-199467",
+  "category": "Rendering",
+  "source_md": "[Rendering] - MC-199467.md",
+  "source_meta": {
+    "mojira categories": "Rendering",
+    "project": "MC",
+    "issue key": "MC-199467",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-09-01T19:27:11.262-0700",
+    "updated": "2025-10-30T06:36:35.201-0700",
+    "resolution date": "2025-10-30T06:36:35.138-0700",
+    "affects versions": "1.16.2; 1.18.1; 22w11a; 22w13a; 1.19 Pre-release 1; 1.19.2; 22w43a; 1.19.3; 23w03a; 1.20.1; 1.20.2; 23w44a; 1.20.4",
+    "fix versions": "25w45a",
+    "area": "Platform",
+    "labels": "animation; overflow",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2020-09-01_23.59.05.png; 2023-07-11 16-24-36.mp4; bat_wings.mp4; bee_wings.mp4",
+    "issue links": "Relates:inward:MC-130960:Phantom is often not animated (only Multiplayer?) | Relates:outward:MC-245895:View Bobbing stops working after long elytra flight | Duplicate:inward:MC-264170:Walking animation breaks after walking for too long",
+    "_title": "Certain entity animations stop after they've existed in world for too long"
+  },
+  "stor": {
+    "bug_id": "MC-199467",
+    "affected_versions": [
+      "1.16.2",
+      "1.18.1",
+      "22w11a",
+      "22w13a",
+      "1.19 Pre-release 1",
+      "1.19.2",
+      "22w43a",
+      "1.19.3",
+      "23w03a",
+      "1.20.1",
+      "1.20.2",
+      "23w44a",
+      "1.20.4"
+    ],
+    "recommended_version": "1.16.2",
+    "environment": "Unmodified vanilla Minecraft: Java Edition 1.16.2 in a new single-player Creative-mode world. The test uses one bee in a transparent enclosure near the player so that the entity remains loaded throughout the required continuous waiting period. No multiplayer server, special seed, resource pack, or mod is required.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start the exact affected version 1.16.2, which is the first version listed in the report.",
+      "Use an unmodified vanilla installation; disable Forge, Fabric, OptiFine, and other client or server mods for this reproduction.",
+      "Allow at least 82 minutes of uninterrupted in-world test time after the bee is spawned.",
+      "The single-player world must remain actively running during the wait. Do not open the Esc pause menu, return to the title screen, close the game, or allow the game to pause when it loses focus.",
+      "Keep the bee's chunk loaded for the entire wait by remaining near the bee. Do not teleport away, change dimensions, kill the bee, or replace it with another bee.",
+      "Creative mode is selected as a practical setup method so commands can create a controlled enclosure and spawn the bee deterministically."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the 1.16.2 installation. On the title screen, confirm that the displayed version is exactly 1.16.2 before continuing.",
+        "exact_input": "Minecraft: Java Edition 1.16.2",
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 1.16.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a disposable single-player Creative-mode world. From the title screen, select Singleplayer, select Create New World, change Game Mode to Creative, and select Create New World. No particular seed or world-generation option is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "A new world begins loading with the player configured for Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for world generation and chunk loading to finish. Do not begin the timed portion while the loading screen is visible or while nearby terrain is still appearing. Confirm that normal movement and camera controls respond.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the world, nearby terrain is rendered, movement responds normally, and the Creative-mode inventory is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Without moving during command entry, create a transparent 7-by-7-by-7 glass enclosure centered around the player. Press T to open in-game chat, type the command exactly with its leading slash, and press Enter. The hollow enclosure supplies a glass floor, walls, and roof while leaving enough interior air for the bee to move.",
+        "exact_input": "/fill ~-3 ~-1 ~-3 ~3 ~5 ~3 minecraft:glass hollow",
+        "success_cue": "A closed transparent glass enclosure surrounds the player, with an approximately 5-by-5-by-5-block air space inside and no opening through which the bee can escape.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Spawn one bee inside the enclosure. Press T to open in-game chat, type the command exactly with its leading slash, and press Enter. Do not attack or otherwise replace the bee after it is summoned.",
+        "exact_input": "/summon minecraft:bee ~ ~1 ~",
+        "success_cue": "Exactly one live bee is visible inside the glass enclosure near the player, and the chat command reports a successful summon.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Treat completion of the summon command as the beginning of the bee's existence time and immediately start an external elapsed-time timer. Leave the player inside the enclosure and within several blocks of the bee.",
+        "exact_input": "Start timer at 00:00 immediately after the successful summon",
+        "success_cue": "The elapsed-time timer is running, the bee remains nearby, and both the player and bee are inside the same enclosure.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Keep the world continuously active while the timer runs. Stay inside or immediately beside the enclosure so the bee's chunk remains loaded. Keep Minecraft focused, do not open the Esc pause menu, do not leave the world, do not change dimensions, and do not execute any command that kills, reloads, or replaces the bee. It is acceptable to adjust the camera without interacting with the bee.",
+        "exact_input": null,
+        "success_cue": "The world remains unpaused and responsive, the original bee is still alive inside the enclosure, and the elapsed-time timer continues increasing.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Continue the uninterrupted wait until at least 82 minutes have elapsed since the bee was summoned. This exceeds the report's approximately 98,000-to-98,200-tick bee threshold at the normal rate of 20 game ticks per second. As the timer reaches 82 minutes, keep the original bee rendered nearby and aim the camera so its body and wings are clearly visible, without evaluating the animation yourself.",
+        "exact_input": "Wait until elapsed time is at least 01:22:00",
+        "success_cue": "At least 82 minutes of continuous, unpaused in-world time have elapsed since the summon; the original bee is still loaded, alive, nearby, and clearly framed for visual inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "At least 82 minutes of continuous active world time have elapsed since the original bee was summoned, and that bee remains loaded and clearly visible inside the glass enclosure. Hand control to the observation subsystem immediately without pausing, reloading, leaving the world, or spawning a replacement bee.",
+    "uncertainties": [
+      "The original reproduction text says to wait about 81 minutes, while the report's detailed analysis places the bee threshold at approximately 98,040 to 98,200 ticks, or roughly 81 minutes 42 seconds to 81 minutes 50 seconds at 20 ticks per second. The plan therefore uses at least 82 minutes.",
+      "Wall-clock time assumes the world sustains approximately 20 ticks per second. If the game runs below 20 ticks per second, more than 82 minutes of wall-clock time may be required to accumulate the reported entity age.",
+      "The report also describes an optional bat reproduction at approximately 158,400 to 158,600 ticks, about 132 minutes. That branch is omitted because the report explicitly makes the bat optional and the bee provides the shorter deterministic reproduction.",
+      "The glass enclosure and commands are practical setup choices rather than requirements stated by the report. They are used to prevent the bee from leaving the loaded area during the long wait."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_00e3975f11074646016aa7163cf3bc87d0b816f1f9f78e4082",
+    "elapsed_seconds": 81.62,
+    "usage": {
+      "input_tokens": 9785,
+      "output_tokens": 5199,
+      "reasoning_tokens": 3695,
+      "total_tokens": 14984
+    },
+    "timestamp": "2026-09-13T21:33:02.032114+00:00"
+  }
+}

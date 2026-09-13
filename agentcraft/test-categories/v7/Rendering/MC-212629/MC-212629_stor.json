@@ -1,0 +1,168 @@
+{
+  "bug_id": "MC-212629",
+  "category": "Rendering",
+  "source_md": "[Rendering] - MC-212629.md",
+  "source_meta": {
+    "mojira categories": "Rendering",
+    "project": "MC",
+    "issue key": "MC-212629",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-01-23T12:05:30.532-0800",
+    "updated": "2025-04-30T08:45:58.188-0700",
+    "resolution date": "2022-04-08T05:00:52.933-0700",
+    "affects versions": "21w03a; 21w05b; 21w06a; 21w07a; 21w08b; 21w11a; 21w13a; 21w14a; 21w17a; 21w18a; 1.17; 1.17.1 Release Candidate 1; 1.17.1; 21w42a; 1.18.1; 22w12a",
+    "fix versions": "22w15a",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2021-01-28_12.00.03.png; 2021-06-30_14.59.30.png; 2022-03-29_09.14.27.png; Buged Leash.png; image-2022-02-22-22-52-08-057.png; MC-212629.mp4; MC-212629.png",
+    "_title": "Leashes from two or more invisible entities connect to each other"
+  },
+  "stor": {
+    "bug_id": "MC-212629",
+    "affected_versions": [
+      "21w03a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w17a",
+      "21w18a",
+      "1.17",
+      "1.17.1 Release Candidate 1",
+      "1.17.1",
+      "21w42a",
+      "1.18.1",
+      "22w12a"
+    ],
+    "recommended_version": "21w03a",
+    "environment": "Minecraft Java Edition snapshot 21w03a running an unmodified vanilla client. Use a single-player world on the integrated server, Creative mode, cheats enabled, a first-person non-Spectator viewpoint, and no active third-party resource packs or shader modifications. A new Superflat world is recommended as a practical way to provide an unobstructed test area, but Superflat is not a report requirement.",
+    "preconditions": [
+      "Install and select the exact Java Edition snapshot 21w03a in the Minecraft Launcher; do not use the fix version 22w15a.",
+      "Disable non-default resource packs, shader replacements, and client mods, because a comment reports that a patched leash shader can conceal the rendering issue.",
+      "Use a keyboard and mouse with the normal action mappings or their rebound equivalents: T for chat, E for inventory, right-click for Use Item/Place Block, and number keys or the mouse wheel for hotbar selection.",
+      "Ensure the test world permits commands. The recommended setup is a new Creative-mode single-player world with Allow Cheats enabled.",
+      "Perform the test in Creative mode or another normal player mode, not Spectator mode; a report comment states that the relevant rendering is not visible while viewing in Spectator mode.",
+      "Use an open location where both summoned cows and their leash paths can be viewed without blocks obscuring them."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the installation profile for snapshot 21w03a. At the title screen, confirm that the displayed version is 21w03a before opening a world.",
+        "exact_input": null,
+        "success_cue": "The 21w03a title screen is loaded and the version label identifies the running game as 21w03a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a single-player test world. Select Creative as the game mode, open More World Options, ensure Allow Cheats is ON, and optionally select Superflat to obtain an unobstructed area. Create the world and wait until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a fully loaded world in Creative mode and commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to an open, level area. To make the report's relative summon coordinates place the cows directly in front of the camera, open the F3 debug screen and rotate until the Facing line says north, toward negative Z; then close the debug screen. Stand still at this position while executing both summon commands.",
+        "exact_input": "F3; rotate until facing north (toward negative Z); F3",
+        "success_cue": "The player is stationary in an unobstructed area and is facing toward negative Z, with room approximately three blocks ahead and one block to each side.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open in-game chat, enter the report's first summon command exactly with the leading slash, and submit it. Execute the command from in-game chat rather than a server console.",
+        "exact_input": "T; /summon minecraft:cow ~1 ~ ~-2.5 {NoAI:1b}; Enter",
+        "success_cue": "The command succeeds and a cow is visible approximately one block to the player's right and 2.5 blocks ahead. It remains stationary because NoAI is enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Without changing the player's position, open chat again, enter the report's second summon command exactly with the leading slash, and submit it.",
+        "exact_input": "T; /summon minecraft:cow ~-1 ~ ~-2.5 {NoAI:1b}; Enter",
+        "success_cue": "A second stationary cow appears approximately one block to the player's left and 2.5 blocks ahead; exactly two newly summoned cows are positioned side by side in front of the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Open the Creative inventory with E. Select the Search Items tab, search for Lead, and place a stack containing at least two leads into one of the nine hotbar slots along the bottom of the inventory. Close the inventory with E.",
+        "exact_input": "E; search for \"Lead\"; move leads to a hotbar slot; E",
+        "success_cue": "At least two leads are available in one of the player's nine hotbar slots and the world view is open again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the hotbar slot containing the leads by pressing its corresponding number key from 1 through 9 or by scrolling the mouse wheel until that slot is highlighted.",
+        "exact_input": "Corresponding hotbar number key, or mouse wheel",
+        "success_cue": "The lead slot has the hotbar selection outline and a lead is shown as the held item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Aim the crosshair directly at the first cow and use the held lead on it with right-click. Do not right-click a fence, because the selected reproduction keeps the leads attached to the player.",
+        "exact_input": "Right-click the first cow while holding a lead",
+        "success_cue": "A normal leash line runs from the first cow to the player, confirming that the first cow is leashed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Keep the leads selected, aim directly at the second cow, and right-click it once to attach another lead.",
+        "exact_input": "Right-click the second cow while holding a lead",
+        "success_cue": "Both visible cows are independently leashed to the player, with one normal leash line leading from each cow to the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Return to or remain near the original position between the two cows. Face both cows so that the cows and both complete leash paths are simultaneously inside the camera view. Do not enter Spectator mode.",
+        "exact_input": null,
+        "success_cue": "Both cows and both player-to-cow leash lines are visible together in the same first-person view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "While both cows remain leashed to the player, open in-game chat and execute the report's invisibility command exactly with the leading slash. Do not move far enough to break either lead while entering the command.",
+        "exact_input": "T; /effect give @e[type=minecraft:cow,sort=nearest,limit=2] minecraft:invisibility 999 0; Enter",
+        "success_cue": "The command reports successful application to the two nearest cows, both cow bodies become invisible, and both leads remain attached to the player and to the cows' fixed locations.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "After chat closes, aim at the area containing both invisible cows and their leash endpoints. Keep both leash paths in frame. If necessary, make small camera rotations or take a small step without exceeding lead range so the full rendered geometry of both leads is unobstructed; do not continue until both leash paths can be inspected together.",
+        "exact_input": "Move mouse slowly to adjust the camera; optionally tap a movement key for a small viewpoint adjustment",
+        "success_cue": "The player remains in a non-Spectator mode, both invisible cows are still leashed to the player, and the complete visible leash geometry for both entities is framed for immediate inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "Both stationary cows have just received the invisibility effect while independently leashed to the player, and the non-Spectator camera is positioned so both leash paths and both invisible-cow endpoint locations can be inspected together. Hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The report does not specify a world seed, world type, game difficulty, or single-player versus dedicated-server environment. A new single-player Creative world with cheats is selected as the simplest deterministic execution environment.",
+      "Creative mode and the Creative inventory are practical choices for obtaining the leads; the report requires two leads but does not require a particular acquisition method or game mode.",
+      "The description mentions placing the cows in glass boxes, but the formal Steps to Reproduce instead summon them with NoAI:1b. Glass boxes are omitted because the supplied commands already keep the cows stationary.",
+      "The report does not specify an exact viewing angle. A comment notes that the result can be hidden from certain angles, so the plan frames both leash paths and permits small camera adjustments without defining the rendering outcome to look for.",
+      "The reproduction uses leads attached to the player. The description says the condition can also occur with leads tied to a fence, but the formal steps do not require a fence.",
+      "The command selector has no distance restriction. The two summoned cows should be the nearest cows because they are placed approximately 2.7 blocks from the player; using a new open test world further reduces the possibility of selecting unrelated cows."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_07faf312127b3e43016aa7168e56f887d0b737b618a6241a2d",
+    "elapsed_seconds": 78.23,
+    "usage": {
+      "input_tokens": 9577,
+      "output_tokens": 5061,
+      "reasoning_tokens": 3139,
+      "total_tokens": 14638
+    },
+    "timestamp": "2026-09-13T21:34:20.265203+00:00"
+  }
+}

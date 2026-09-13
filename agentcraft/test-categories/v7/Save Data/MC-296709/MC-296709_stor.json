@@ -1,0 +1,182 @@
+{
+  "bug_id": "MC-296709",
+  "category": "Save Data",
+  "source_md": "[Save Data] - MC-296709.md",
+  "source_meta": {
+    "mojira categories": "Commands; Save Data",
+    "project": "MC",
+    "issue key": "MC-296709",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2025-04-13T20:31:22.639-0700",
+    "updated": "2025-05-05T04:05:20.780-0700",
+    "resolution date": "2025-05-05T04:05:20.715-0700",
+    "affects versions": "1.21.5; 25w15a",
+    "fix versions": "25w19a",
+    "area": "Platform",
+    "votes": "5",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-296708:Data from the 'jukebox_playable' component doesn't carry over from older versions.",
+    "_title": "All non-default jukebox_playable components are deleted from existing items when updating past 1.21.4"
+  },
+  "stor": {
+    "bug_id": "MC-296709",
+    "affected_versions": [
+      "1.21.5",
+      "25w15a"
+    ],
+    "recommended_version": "1.21.5",
+    "environment": "Minecraft Java Edition, local single-player world created and saved in 1.21.4, then opened from the same saves directory in release 1.21.5. Use an unmodified client and a disposable Creative-mode test world with commands enabled. The report does not require a particular seed, coordinates, multiplayer server, datapack, resource pack, or graphics setting.",
+    "preconditions": [
+      "Install or configure launcher profiles for Minecraft Java Edition 1.21.4 and 1.21.5.",
+      "Ensure both launcher profiles use the same game directory so the world created in 1.21.4 is visible to 1.21.5.",
+      "Use a disposable test world because opening it in 1.21.5 upgrades its saved data. Do not later reopen the upgraded copy in 1.21.4.",
+      "Enable commands when creating the 1.21.4 world. Creative mode is selected for operational simplicity; the report does not state that a particular game mode is required.",
+      "Keep the command-created gravel item in the player's inventory throughout saving, closing, and upgrading the world. Do not place, drop, destroy, or otherwise replace it.",
+      "Do not use fix version 25w19a for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the exact Java Edition installation for release 1.21.4 and start the game. Do not start 1.21.5 yet.",
+        "exact_input": "1.21.4",
+        "success_cue": "The Minecraft main menu is visible and identifies the running version as 1.21.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer and then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Name the world so it can be identified after changing versions. Set Game Mode to Creative and enable Allow Commands. No specific world seed is required, so leave the seed unset unless the execution environment requires one.",
+        "exact_input": "MC-296709-1.21.4-source",
+        "success_cue": "The configured world is named MC-296709-1.21.4-source, Creative mode is selected, and commands are enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World and wait for world generation and player entry to finish. Do not continue while a loading screen is present.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly created 1.21.4 world, nearby terrain has rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is active and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's give command exactly as written, including the leading slash, and press Enter. Execute it in the in-game chat as the current player; do not modernize or otherwise alter the item or component syntax.",
+        "exact_input": "/give @s gravel[jukebox_playable={song:\"13\"}]",
+        "success_cue": "The command is accepted without a syntax or permission error, command feedback reports that gravel was given to the current player, and a gravel item appears in the inventory or hotbar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press E, or the currently bound Inventory control, and locate the newly given gravel item in the player's inventory or nine-slot hotbar. Leave the item there without moving it outside the inventory, dropping it, or placing it as a block. Close the inventory with E or Esc after confirming its presence.",
+        "exact_input": "E",
+        "success_cue": "A gravel item from the command is present in the player's saved inventory and has not been used, dropped, placed, or destroyed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press Esc to open the pause menu, select Save and Quit to Title, and wait for saving to complete. Do not terminate the game process while the world is saving.",
+        "exact_input": null,
+        "success_cue": "The 1.21.4 main menu is visible again, indicating that the world was closed through the normal save-and-quit path.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select Singleplayer, select MC-296709-1.21.4-source once in the world list, and select Edit. Do not load the world again.",
+        "exact_input": "MC-296709-1.21.4-source",
+        "success_cue": "The edit screen for the correct 1.21.4 source world is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select Make Backup and wait until Minecraft reports that the backup has been created. This backup is only a safety copy; continue testing with the original world listed in Singleplayer.",
+        "exact_input": null,
+        "success_cue": "Minecraft confirms that a backup of MC-296709-1.21.4-source was created and the backup operation has completed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Return to the main menu and select Quit Game. Wait until the 1.21.4 game process has closed completely before changing installations.",
+        "exact_input": null,
+        "success_cue": "Minecraft 1.21.4 is no longer running and the launcher or desktop is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "In the Minecraft Launcher, select the exact Java Edition installation for release 1.21.5. Confirm that this installation uses the same game directory as the 1.21.4 installation, and then select Play.",
+        "exact_input": "1.21.5",
+        "success_cue": "Minecraft 1.21.5 begins launching from the game directory containing the saved test world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Wait for startup to finish and verify the version shown on the Minecraft main menu before opening any world.",
+        "exact_input": null,
+        "success_cue": "The main menu is visible and identifies the running version as 1.21.5.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Select Singleplayer and select the original world named MC-296709-1.21.4-source. Do not select a newly generated world or the external backup copy.",
+        "exact_input": "MC-296709-1.21.4-source",
+        "success_cue": "The original world created and saved in 1.21.4 is highlighted in the 1.21.5 world list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Open the selected world in 1.21.5 by selecting Play Selected World or double-clicking the world entry. If Minecraft presents an upgrade or backup confirmation, choose the option that creates a backup if offered and then continues loading; do not cancel the opening operation. This opening operation is the data-version transition under test.",
+        "exact_input": null,
+        "success_cue": "Minecraft proceeds past the world list or any upgrade confirmation and displays the world-loading screen for MC-296709-1.21.4-source.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Wait until the upgraded world has fully loaded. Do not move, use, drop, place, clear, or replace the pre-existing gravel item after entry, and do not save and quit again before the observation subsystem takes control.",
+        "exact_input": null,
+        "success_cue": "The player is back in the same world under Minecraft 1.21.5, surrounding terrain is rendered, the loading screen is gone, and controls or menus respond normally.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The world originally saved in 1.21.4 has just been opened and allowed to finish loading in 1.21.5. The player is stationary, and the pre-upgrade gravel item has not been used, dropped, placed, cleared, or replaced. Hand control to the observation subsystem to inspect the saved item's components.",
+    "uncertainties": [
+      "The report does not specify a world seed, game mode, inventory slot, or item-inspection method. A fresh Creative-mode world with commands enabled and an identifiable world name is used only to make the supplied command and cross-version world selection deterministic.",
+      "The report says that 1.21.5 or a newer snapshot can be used, but the formal affected-version list contains only 1.21.5 and 25w15a, while 25w19a is listed as the fix version. This plan therefore uses the first listed affected version, 1.21.5, and does not generalize the reproduction to later snapshots.",
+      "The safety-backup operation is not stated by the report; it is included because opening the world in 1.21.5 permanently upgrades saved data. The original selected world, not the backup archive, remains the test target.",
+      "No component-inspection command is added because the report does not prescribe one and inspection of the post-upgrade state belongs to the separate observation subsystem."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0f2b1d6ec6ba4b76016aa713ad744087d0b860210f910cd8eb",
+    "elapsed_seconds": 70.92,
+    "usage": {
+      "input_tokens": 8484,
+      "output_tokens": 4972,
+      "reasoning_tokens": 3030,
+      "total_tokens": 13456
+    },
+    "timestamp": "2026-09-13T21:21:56.095629+00:00"
+  }
+}

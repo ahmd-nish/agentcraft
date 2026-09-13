@@ -1,0 +1,249 @@
+{
+  "bug_id": "MC-86918",
+  "category": "Redstone",
+  "source_md": "[Redstone] - MC-86918.md",
+  "source_meta": {
+    "mojira categories": "Redstone",
+    "project": "MC",
+    "issue key": "MC-86918",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2015-08-21T09:04:25.847-0700",
+    "updated": "2025-04-30T03:37:13.002-0700",
+    "resolution date": "2023-08-31T12:53:29.821-0700",
+    "affects versions": "Minecraft 15w34c; Minecraft 15w34d; Minecraft 15w44b; Minecraft 1.10.2; Minecraft 16w41a; Minecraft 16w42a; Minecraft 1.11.2; Minecraft 1.12.2; Minecraft 17w45b; Minecraft 17w46a; Minecraft 17w47a; Minecraft 17w47b; Minecraft 17w48a; Minecraft 1.13.1; Minecraft 1.13.2-pre2; Minecraft 1.13.2; Minecraft 18w45a; Minecraft 18w46a; Minecraft 18w48a; Minecraft 18w48b; Minecraft 18w49a; Minecraft 18w50a; Minecraft 19w02a; Minecraft 19w03a; Minecraft 19w03b; Minecraft 19w03c; 1.16 Pre-release 5; 1.16.1; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Pre-release 2; 1.16.2 Pre-release 3; 1.16.2 Release Candidate 1; 1.16.2 Release Candidate 2; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 21w05b; 21w06a; 21w07a; 21w08b; 21w10a; 21w11a; 21w13a; 21w14a; 1.17.1; 21w38a; 21w39a; 21w43a; 1.18 Pre-release 5; 1.18; 1.18.1; 22w05a; 22w07a; 1.18.2 Release Candidate 1; 1.18.2; 1.19; 1.19.1; 1.19.2; 22w43a; 22w46a; 1.19.3; 1.19.4; 1.20; 1.20.1",
+    "fix versions": "23w35a",
+    "labels": "dragon_head; piglin_head",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2015-08-21_17.59.14.png; MC-86918.mp4; setup.png",
+    "issue links": "Relates:outward:MC-9194:A Comparator can lock a Repeater, but the Repeater doesn't look like it is locked",
+    "_title": "Ender dragon and piglin heads are not activated when powered by comparators"
+  },
+  "stor": {
+    "bug_id": "MC-86918",
+    "affected_versions": [
+      "Minecraft 15w34c",
+      "Minecraft 15w34d",
+      "Minecraft 15w44b",
+      "Minecraft 1.10.2",
+      "Minecraft 16w41a",
+      "Minecraft 16w42a",
+      "Minecraft 1.11.2",
+      "Minecraft 1.12.2",
+      "Minecraft 17w45b",
+      "Minecraft 17w46a",
+      "Minecraft 17w47a",
+      "Minecraft 17w47b",
+      "Minecraft 17w48a",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2-pre2",
+      "Minecraft 1.13.2",
+      "Minecraft 18w45a",
+      "Minecraft 18w46a",
+      "Minecraft 18w48a",
+      "Minecraft 18w48b",
+      "Minecraft 18w49a",
+      "Minecraft 18w50a",
+      "Minecraft 19w02a",
+      "Minecraft 19w03a",
+      "Minecraft 19w03b",
+      "Minecraft 19w03c",
+      "1.16 Pre-release 5",
+      "1.16.1",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.2 Pre-release 2",
+      "1.16.2 Pre-release 3",
+      "1.16.2 Release Candidate 1",
+      "1.16.2 Release Candidate 2",
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "1.16.4 Pre-release 1",
+      "1.16.4 Pre-release 2",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "1.17.1",
+      "21w38a",
+      "21w39a",
+      "21w43a",
+      "1.18 Pre-release 5",
+      "1.18",
+      "1.18.1",
+      "22w05a",
+      "22w07a",
+      "1.18.2 Release Candidate 1",
+      "1.18.2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "22w43a",
+      "22w46a",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1"
+    ],
+    "recommended_version": "Minecraft 15w34c",
+    "environment": "Minecraft Java Edition client running the exact snapshot Minecraft 15w34c in a single-player Creative-mode world, preferably Superflat for an unobstructed building area. Use an unmodified client without mods or resource packs. Keyboard and mouse instructions assume default controls.",
+    "preconditions": [
+      "Launch the first version listed as affected, Minecraft 15w34c; do not use the fix version 23w35a.",
+      "Use a Creative-mode world so the required building materials can be obtained without crafting or exploration.",
+      "Prepare one Lever, one Redstone Dust, one Redstone Comparator, one Dragon Head, and at least four full solid support blocks such as Stone.",
+      "The comparator must begin in its default comparison mode and must not be right-clicked to toggle its mode after it has been powered.",
+      "The circuit must be initially unpowered before the trigger action: the lever is off, the redstone dust is dark, and the comparator is not outputting a signal.",
+      "Minecraft 15w34c predates the piglin head, so this primary reproduction tests the dragon-head case. The piglin-head case requires repeating the same comparator-output arrangement in an affected version that contains piglin heads, such as 22w46a."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact Java Edition snapshot listed as “Minecraft 15w34c,” then launch that installation. Do not select 23w35a or a newer fixed version.",
+        "exact_input": "Minecraft 15w34c",
+        "success_cue": "The game reaches the title screen and the displayed version is 15w34c.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, and set the game mode to Creative. For a simple unobstructed build area, open More World Options and select the Superflat world type, then create the world.",
+        "exact_input": "Game Mode: Creative; World Type: Superflat",
+        "success_cue": "The player spawns in a Creative-mode world with a clear area available for building.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building until nearby terrain has rendered and normal movement and camera input respond without world-loading pauses.",
+        "exact_input": null,
+        "success_cue": "The nearby ground is rendered, the player can move normally, and no terrain-loading screen is present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press the inventory action key, which is E by default, to open the Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open and includes item-category or item-search controls.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Use the Creative inventory search field to locate the required items. Search for “lever” and place a Lever in the hotbar; search for “redstone” and place Redstone Dust in the hotbar; search for “comparator” and place a Redstone Comparator in the hotbar; search for “dragon” and place the Dragon Head in the hotbar; then obtain at least four Stone blocks or another full solid block. To move an item, left-click its Creative-inventory entry and then left-click an empty hotbar slot. When searching “redstone,” select the dust item rather than a torch or redstone block.",
+        "exact_input": "lever; redstone; comparator; dragon; stone",
+        "success_cue": "The hotbar contains a Lever, Redstone Dust, a Redstone Comparator, a Dragon Head, and at least four full solid blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press E or Esc to close the inventory and return control to the player.",
+        "exact_input": "E or Esc",
+        "success_cue": "The inventory is closed and the crosshair is visible in the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the solid blocks in the hotbar. On the open ground, place four support blocks in one straight horizontal row, with all four top surfaces at the same height. Treat the blocks in order as A, B, C, and D, where power will travel from A toward D.",
+        "exact_input": "right-click four times while targeting consecutive placement positions",
+        "success_cue": "Four solid blocks form a gapless straight row labeled conceptually A-B-C-D, with no height changes between them.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Lever and right-click the top surface of support block A to place it. Do not activate it after placement; if it was accidentally switched on, right-click it once to return it to the off position before continuing.",
+        "exact_input": "right-click the top of block A",
+        "success_cue": "A lever is attached to the top of block A and is in its off position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select Redstone Dust and right-click the top surface of support block B, directly adjacent to the lever, to place one piece of dust.",
+        "exact_input": "right-click the top of block B",
+        "success_cue": "One unpowered, dark piece of redstone dust is present on block B between the lever position and the future comparator position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Redstone Comparator. Stand on the A/B input side of the row, face along the row toward blocks C and D, and right-click the top surface of block C. The comparator must carry power from B toward D: its rear/input end is beside the redstone dust on B, and its front/output end points toward D. The side with the comparator’s single front torch should be closest to D. A powered comparator facing a mechanism component is the relevant direct-output arrangement. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AQuasi-connectivity?utm_source=openai))",
+        "exact_input": "right-click the top of block C while facing from B toward D",
+        "success_cue": "The comparator sits on block C with its rear beside the redstone dust and its front/output end aimed directly at block D.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Do not right-click the comparator after placing it. Confirm it remains in its default comparison mode; the mode-indicator/front torch should not be raised and continuously glowing as it would be in subtraction mode. If its mode was accidentally changed, break and replace the comparator in the same orientation while the lever remains off.",
+        "exact_input": null,
+        "success_cue": "The comparator is correctly oriented, remains in default comparison mode, and is unpowered.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the Dragon Head and right-click the top surface of support block D to place it immediately in front of the comparator. There must be no empty block between the comparator and the head.",
+        "exact_input": "right-click the top of block D",
+        "success_cue": "A floor-mounted Dragon Head is directly adjacent to the comparator’s front/output end.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Check the complete circuit before triggering it. From input to output, it must be Lever on A, Redstone Dust on B, Redstone Comparator on C, and Dragon Head on D. Confirm the lever is off and the dust and comparator are unpowered. Do not test the circuit yet and do not toggle the comparator’s mode.",
+        "exact_input": null,
+        "success_cue": "The four-part circuit is complete, correctly ordered, and still entirely unpowered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Move to the side of the circuit and aim the camera so the Dragon Head is clearly visible while the lever remains within right-click reach. Do not block the comparator-to-head connection and do not interact with the comparator.",
+        "exact_input": "W/A/S/D and mouse movement as needed",
+        "success_cue": "The player can clearly see the Dragon Head and can activate the lever without changing the comparator mode.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Right-click the lever exactly once to switch it on. Do not right-click the comparator afterward. Immediately hand control to the observation subsystem while keeping the Dragon Head in view.",
+        "exact_input": "right-click the lever once",
+        "success_cue": "The lever is in its on position, the redstone dust is brightly powered, and the comparator is receiving and outputting power toward the adjacent Dragon Head.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The lever has just been switched on once, and the powered comparator is directly outputting into the adjacent Dragon Head while the comparator remains in its original comparison mode. The Dragon Head is visible on screen; begin observing its activation animation without further player interaction.",
+    "uncertainties": [
+      "The report’s setup is supplied only through an attachment that was not available in the provided report text. The minimal straight-line circuit was reconstructed from the stated requirement that a lever activate a head through a comparator.",
+      "The report does not specify a game mode, world seed, coordinates, support-block material, or world type. Creative mode, Superflat terrain, and Stone supports are practical choices that do not replace the stated comparator-to-head condition.",
+      "The recommended first affected version, Minecraft 15w34c, contains the Dragon Head but predates the piglin head. Therefore the primary execution plan covers the dragon-head reproduction. To test the piglin-head addition separately, repeat steps 1-15 in 22w46a or another listed affected version containing Piglin Heads, substituting a Piglin Head for the Dragon Head.",
+      "The attachment may contain a different physical layout, but the reconstructed setup retains the essential reported signal path: an off-to-on lever transition powers redstone dust, the dust supplies the comparator’s rear input, and the comparator’s front output directly faces the head.",
+      "Do not use the report’s workaround of toggling the comparator mode while powered, because that is not part of the primary trigger and changes the state being tested."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0b64c078a782b98f016aa7196d123c87d0899e40a03fdc8def",
+    "elapsed_seconds": 100.89,
+    "usage": {
+      "input_tokens": 18238,
+      "output_tokens": 7405,
+      "reasoning_tokens": 4844,
+      "total_tokens": 25643
+    },
+    "timestamp": "2026-09-13T21:46:57.842716+00:00"
+  }
+}
