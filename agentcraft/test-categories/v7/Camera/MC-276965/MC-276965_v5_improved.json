@@ -1,0 +1,36 @@
+{
+  "key": "MC-276965",
+  "created_date": "2024-09-25T14:27:34.497-0700",
+  "updated_date": "2025-05-29T09:04:30.300-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "24w39a"
+  ],
+  "fix_versions": [
+    "1.21.2 Pre-Release 1"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 2,
+  "labels": [],
+  "resolution_date": "2024-10-08T01:36:45.772-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Post shader ColorModulate uniform not reset properly after spectating spiders",
+  "environment_raw": "",
+  "description": "## The Issue\n\npost/spider.json changes post/blit ColorModulate uniform from [1,1,1,1] to [1,0.8,0.8,1], making it red. Previously when using that program again elsewhere it would use the default value in post/x.json, but now it keeps whatever post effect overrides were done previously until they're overridden again by another post effect.\n\nThis means post/blit in post/invert.json for spectating endermen or post/transparency.json for Fabulous Graphics has the same red ColorModulate uniform applied after spectating a spider.\n\nSee postshaderuniformbug.png for a visual comparison of the enderman shader before and after spectating a spider.\n\nSee javaw_9GgvnisUf3.gif for a demonstration of the spider tint persisting with Fabulous Graphics.\n\nNote: This happens with all post shader uniforms, but the spider shader is the only place where it can be observed without resource packs.\n\n## Steps to Reproduce\n\n - Open a creative world in an affected version (e.g. 24w39a).\n\n - Set graphics quality to Fabulous Graphics.\n\n - Spawn an enderman and a spider.\n\n - Enter spectator mode.\n\n - Spectate the enderman. Notice that the screen colors are precisely inverted while spectating the enderman.\n\n - Stop spectating the enderman. Notice that the screen is returned to normal.\n\n - Spectate the spider. Notice that the screen is tinted red and distorted while spectating the spider.\n\n - Stop spectating the spider. Notice that the screen remains tinted red. This is because the ColorModulate uniform has not been properly reset from spectating the spider and it is applied in the transparency post shader.\n\n - Set graphics quality to Fast Graphics. Notice that the screen is no longer tinted red. This is because no post shader is applied anymore.\n\n - Spectate the enderman again. Notice that the screen colors are inverted once again, but with a red tint applied which makes it subtly different from before. This is because the ColorModulate uniform has not been properly reset from spectating the spider and it is applied in the enderman's post shader.\n\n - Repeat these same steps in Minecraft Java Edition 1.21.1. Notice that the observed behavior does not occur.",
+  "Steps to Reproduce": "1. Launch Minecraft Java Edition 24w39a and open a Creative world.\n2. Open Options -> Video Settings and set the graphics quality to Fabulous Graphics.\n3. Spawn an enderman and a spider.\n4. Enter spectator mode.\n5. Spectate the enderman and observe that the screen colors are precisely inverted.\n6. Stop spectating the enderman and observe that the screen returns to normal.\n7. Spectate the spider and observe that the screen is tinted red and distorted.\n8. Stop spectating the spider and observe that the screen remains tinted red.\n9. Open Options -> Video Settings and set the graphics quality to Fast Graphics, then observe that the red tint is no longer present.\n10. Spectate the enderman again and observe that the screen is inverted with a red tint applied.",
+  "Environment": "Minecraft Java Edition Version 24w39a (snapshot)",
+  "Observed Behavior": "After the spider post effect is removed, the `ColorModulate` uniform in `post/blit` remains set to `[1, 0.8, 0.8, 1]` instead of being restored to its default value of `[1, 1, 1, 1]`. The modified uniform state is retained when `post/blit` is used by another post-processing effect.\n\nAs a result:\n\n- After stopping spectation of a spider with Fabulous Graphics enabled, the red tint remains in the `post/transparency.json` effect.\n- Spectating an enderman afterward applies the same red tint to the inverted image through `post/invert.json`.\n- Switching to Fast Graphics hides the issue because no post-processing shader is active.\n- The issue affects post-shader uniforms generally, although the spider effect provides the only reproducible vanilla case without a resource pack.\n\nThis behavior occurs in affected versions such as 24w39a and does not occur in Minecraft Java Edition 1.21.1.",
+  "Expected Behavior": "After stopping spectating a spider, the red tint from its post effect should be cleared, restoring the normal screen appearance with Fabulous Graphics. When spectating an enderman afterward, the screen should display the precise inverted colors without any lingering red tint. Post effects should consistently use their intended settings each time they are applied, as in Minecraft Java Edition 1.21.1.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Camera/MC-276965",
+  "improvement_metadata": {
+    "original_key": "MC-276965"
+  }
+}
