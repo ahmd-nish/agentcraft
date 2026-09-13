@@ -76,7 +76,42 @@ This is what lets an enhanced STOR explain *where each added detail came from* �
 
 ## Corpus and ordering
 
-Source: `test-bug-panel-five-year-refresh` — 51 categories, 255 bugs, disjoint from the corpus used in v5 (different bug IDs throughout).
+Source: `test-bug-panel-five-year-refresh` — 51 categories, 255 bugs.
+
+### Overlap with the v5 corpus
+
+The two corpora are **not** disjoint. 33 bug IDs appear in both `test-bug-panel` (v5) and
+`test-bug-panel-five-year-refresh` (v7), concentrated in whole carried-over categories
+rather than scattered:
+
+| category | shared bugs |
+|---|---|
+| Accessibility, Advancements, Camera, Commands, Maps, Raids | 5 each — the entire category |
+| Beacon | 3 |
+
+Combined, v5 (255) and v7 (255) cover **477 distinct bugs**, not 510.
+
+Five of the 33 — all in Raids — are already processed by v7, giving a same-bug v5-vs-v7
+comparison today: `MC-158389`, `MC-266289`, `MC-269963`, `MC-274911`, `MC-275279`.
+
+### v5 baselines for the other 28
+
+The remaining 28 shared bugs sit in categories v7 has not reached yet. Each is present
+with its original report plus v5's enhanced output, named so it cannot be confused with
+v7 output:
+
+```
+v7/<Category>/<MC-XXX>/
+├── [Category] - MC-XXX.json / .md    original report
+├── attachments/                      text attachments only
+├── MC-XXX_v5_improved.json           v5 — gpt-5.6-luna, full report
+└── MC-XXX_v5_improved.pdf            v5 worksheet
+```
+
+These directories contain **no `_stor.json`** — they are a stand-in, not v7 results. The
+resume check keys on `_stor.json`, so v7 will still process every one of them when it
+reaches those categories; the STOR record and worksheet will land alongside the baseline.
+Each affected category carries a `_V5_BASELINE.md` saying so.
 
 Categories are processed in **reverse alphabetical order**, starting at `World generation` and ending at `Accessibility`.
 
