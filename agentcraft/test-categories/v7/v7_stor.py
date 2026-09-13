@@ -9,7 +9,7 @@ Implements minecraft_stor_enhancement_agent_setup.md:
 
 Usage:  python v7_stor.py "<Category>"
 """
-import os, sys, json, time, shutil, re
+import os, sys, json, time, shutil, re, signal
 from pathlib import Path
 from datetime import datetime, timezone
 
@@ -38,7 +38,7 @@ if not _KEY_RING:
     sys.exit("no OpenAI key found (OPENAI_API_KEY / _ALT1 / _ALT2 / _V6)")
 
 _key_idx = 0
-client = OpenAI(api_key=_KEY_RING[0][1], timeout=900.0, max_retries=2)
+client = OpenAI(api_key=_KEY_RING[0][1], timeout=300.0, max_retries=2)
 
 
 def _is_quota_error(e) -> bool:
@@ -60,7 +60,7 @@ def _rotate_key() -> bool:
     _key_idx += 1
     name, key = _KEY_RING[_key_idx]
     print(f"  !! credits exhausted -> rotating to {name}", flush=True)
-    client = OpenAI(api_key=key, timeout=900.0, max_retries=2)
+    client = OpenAI(api_key=key, timeout=300.0, max_retries=2)
     return True
 
 SRC_ROOT = Path("/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel-five-year-refresh")
@@ -775,11 +775,40 @@ class CreditsExhausted(RuntimeError):
     """Every key in the ring is out of credit; the run must stop, not continue."""
 
 
+class CallTimeout(RuntimeError):
+    """Hard wall-clock deadline hit for one API call."""
+
+
+# The SDK/httpx timeout only measures silence between bytes, so a connection the
+# server holds open without finishing never trips it -- that is how a single call
+# sat at 0% CPU for nearly three hours. SIGALRM measures real elapsed time and
+# interrupts the blocking call regardless of socket state.
+_CALL_DEADLINE_S = 420
+_MAX_CALL_ATTEMPTS = 3
+
+
+def _alarm_handler(signum, frame):
+    raise CallTimeout(f"no response within {_CALL_DEADLINE_S}s")
+
+
 def enhance_stor(bug_report: str) -> tuple[dict, dict]:
     """Returns (parsed_stor, call_metadata)."""
+    attempts = 0
     while True:
         try:
-            return _enhance_stor_once(bug_report)
+            prev = signal.signal(signal.SIGALRM, _alarm_handler)
+            signal.alarm(_CALL_DEADLINE_S)
+            try:
+                return _enhance_stor_once(bug_report)
+            finally:
+                signal.alarm(0)
+                signal.signal(signal.SIGALRM, prev)
+        except CallTimeout as e:
+            attempts += 1
+            if attempts >= _MAX_CALL_ATTEMPTS:
+                raise
+            print(f"  !! {e} — retry {attempts}/{_MAX_CALL_ATTEMPTS - 1}", flush=True)
+            continue
         except Exception as e:
             if _is_quota_error(e):
                 if _rotate_key():
