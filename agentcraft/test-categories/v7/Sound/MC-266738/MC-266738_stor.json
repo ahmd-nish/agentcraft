@@ -1,0 +1,194 @@
+{
+  "bug_id": "MC-266738",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-266738.md",
+  "source_meta": {
+    "mojira categories": "Accessibility; Sound; Text",
+    "project": "MC",
+    "issue key": "MC-266738",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-11-16T13:44:20.662-0800",
+    "updated": "2025-03-25T13:22:48.120-0700",
+    "resolution date": "2023-12-08T02:21:30.243-0800",
+    "affects versions": "23w45a; 23w46a; 1.20.3 Pre-Release 1; 1.20.3 Pre-Release 2; 1.20.3 Pre-Release 3; 1.20.3 Pre-Release 4; 1.20.3 Release Candidate 1; 1.20.3; 1.20.4 Release Candidate 1; 1.20.4",
+    "fix versions": "23w51a",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Subtitles string \"subtitles.block.trial_spawner.spawn_mob\" is misleading and inconsistent"
+  },
+  "stor": {
+    "bug_id": "MC-266738",
+    "affected_versions": [
+      "23w45a",
+      "23w46a",
+      "1.20.3 Pre-Release 1",
+      "1.20.3 Pre-Release 2",
+      "1.20.3 Pre-Release 3",
+      "1.20.3 Pre-Release 4",
+      "1.20.3 Release Candidate 1",
+      "1.20.3",
+      "1.20.4 Release Candidate 1",
+      "1.20.4"
+    ],
+    "recommended_version": "23w45a",
+    "environment": "Minecraft Java Edition, single-player integrated world, version 23w45a, English (US) language, Update 1.21 experimental features enabled, Creative mode used only to construct and configure the test fixture, Survival mode used for the trigger, and subtitles enabled. Use an unmodified client without resource packs that replace English language strings.",
+    "preconditions": [
+      "The Minecraft Launcher must be able to install and launch the historical Java Edition snapshot 23w45a.",
+      "Use a new disposable test world rather than an important existing world because 23w45a is a snapshot and the Update 1.21 experiment marks the world as experimental.",
+      "Use the vanilla English (US) language resources; disable resource packs that alter translations or subtitle text.",
+      "The report supplies no seed, coordinates, world type, difficulty, or required Trial Spawner mob. This plan uses a Superflat world and a Zombie Spawn Egg to produce the reported Trial Spawner spawn event deterministically.",
+      "Default controls are assumed: E opens the inventory, Esc opens the pause menu, T opens chat, number keys select hotbar slots, W moves forward, and right-click uses or places the selected item. Use the equivalent bound controls if these have been changed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, open Installations, enable access to snapshots if necessary, create or edit an installation, select historical version 23w45a, and launch it.",
+        "exact_input": "23w45a",
+        "success_cue": "The Java Edition title screen is open and identifies the running version as 23w45a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Options, then Language, and select English (US). Confirm the selection and return to the title screen.",
+        "exact_input": "English (US)",
+        "success_cue": "The menus are displayed using English (US).",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, then Create New World. Enter a recognizable disposable world name.",
+        "exact_input": "MC-266738 reproduction",
+        "success_cue": "The Create New World screen is open with the test-world name entered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "On the Create New World screen, open More, select Experiments, turn on the Update 1.21 experiment, confirm any experimental-feature warning, and return to the world-creation screen.",
+        "exact_input": "Update 1.21: ON",
+        "success_cue": "The Update 1.21 experiment is enabled for the new world.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "On the Game tab, set Game Mode to Creative and set Difficulty to Easy. Creative mode is only being used to obtain and configure the Trial Spawner; the actual trigger will occur after changing to Survival mode.",
+        "exact_input": "Game Mode: Creative; Difficulty: Easy",
+        "success_cue": "The world-creation screen shows Creative mode and Easy difficulty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the World tab and set World Type to Superflat so the Trial Spawner will have a level, unobstructed spawning area.",
+        "exact_input": "World Type: Superflat",
+        "success_cue": "The selected world type is Superflat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select Create New World, accept the experimental-world confirmation if it appears, and wait for world generation and chunk loading to finish.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the new world, nearby terrain is rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press Esc, select Options, then Accessibility Settings, set Show Subtitles to ON, and use Done until gameplay resumes.",
+        "exact_input": "Show Subtitles: ON",
+        "success_cue": "Gameplay has resumed with the Show Subtitles accessibility option enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Move to an open patch of level ground with several unobstructed blocks on every side. Avoid placing the test fixture immediately beside a village building, animal pen, or other source of frequent unrelated sounds.",
+        "exact_input": null,
+        "success_cue": "There is a clear, level area around the intended placement position, with enough open floor for a mob to appear near the Trial Spawner.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, search for Trial Spawner, and place one Trial Spawner item into an empty hotbar slot. Then replace the search text with Zombie Spawn Egg and place one Zombie Spawn Egg into another hotbar slot.",
+        "exact_input": "trial spawner; zombie spawn egg",
+        "success_cue": "The hotbar contains both a Trial Spawner and a Zombie Spawn Egg.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Close the inventory with E. Select the hotbar slot containing the Trial Spawner, aim at the top surface of the ground near the center of the open area, and right-click once to place it.",
+        "exact_input": null,
+        "success_cue": "One Trial Spawner block is placed on the ground with open floor around it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select the Zombie Spawn Egg in the hotbar, aim directly at the placed Trial Spawner, and right-click the Trial Spawner once. Do not right-click an adjacent ground block. A Creative-placed Trial Spawner initially has no mob type, and using a spawn egg on it configures its mob type.",
+        "exact_input": null,
+        "success_cue": "The Trial Spawner is configured for zombies; its internal mob display indicates a zombie rather than remaining unconfigured.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "While still in Creative mode, move at least 20 blocks horizontally away from the Trial Spawner so that changing game mode will not activate it prematurely. Keep the block within view or record its direction before moving.",
+        "exact_input": "At least 20 blocks of horizontal separation",
+        "success_cue": "The Trial Spawner remains located and loaded, but the player is well away from it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press T to open in-game chat, type the exact game-mode command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The command succeeds, the Creative inventory is no longer available, and the normal Survival health and hunger bars are visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Face the Trial Spawner and walk toward it using the forward movement control, W by default. Continue until the Trial Spawner notices the Survival player and begins its activation sequence, then stop moving.",
+        "exact_input": null,
+        "success_cue": "The player remains in Survival mode near the Trial Spawner, and the block has entered its active state with its activation animation or particles visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "Stand a few blocks from the active Trial Spawner, keep the camera aimed toward the block and its surrounding spawn area, and leave the subtitle overlay area on the right side of the screen unobstructed by menus. Do not attack the spawner or leave its vicinity.",
+        "exact_input": null,
+        "success_cue": "The active Trial Spawner and its nearby open spawning area are visible while subtitles remain enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Remain beside the active Trial Spawner and wait only until it completes its first mob-spawning action. Do not attack the spawned mob before handing control to the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "A zombie spawned by the Trial Spawner has just materialized near the block.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The player is in Survival mode beside the configured and active Trial Spawner, subtitles remain enabled, and the Trial Spawner has just spawned its first zombie. Begin observing the subtitle produced by that spawn event immediately, before performing any further action.",
+    "uncertainties": [
+      "The report does not specify a seed, coordinates, world type, difficulty, or mob type. Superflat terrain, Easy difficulty, and a zombie were selected as practical deterministic setup choices and are not claimed as bug requirements.",
+      "The report instructs the player to stand next to a Trial Spawner but does not require a naturally generated Trial Chamber. This plan uses a Creative-placed Trial Spawner configured with a Zombie Spawn Egg, then changes the player to Survival before activation. Official version information confirms that Creative-placed Trial Spawners can be configured with spawn eggs and that Creative players are not detected by them.",
+      "Trial Spawners were experimental in 23w45a, so the Update 1.21 experiment must be enabled when creating the world. Experimental features cannot normally be enabled afterward for an existing world.",
+      "The report comment provides `/tellraw @s {\"translate\":\"subtitles.block.trial_spawner.spawn_mob\"}` as an alternative way to inspect the translation string. The primary plan does not use that shortcut because it would display translated text in chat instead of exercising the Trial Spawner sound and subtitle event described by the formal reproduction steps."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0380901cc6decb5f016aa7111b85d487d0822208b39703e6c3",
+    "elapsed_seconds": 110.95,
+    "usage": {
+      "input_tokens": 43056,
+      "output_tokens": 6939,
+      "reasoning_tokens": 4937,
+      "total_tokens": 49995
+    },
+    "timestamp": "2026-09-13T21:11:38.268241+00:00"
+  }
+}

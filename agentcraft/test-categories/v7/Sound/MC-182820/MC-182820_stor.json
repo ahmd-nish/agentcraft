@@ -1,0 +1,226 @@
+{
+  "bug_id": "MC-182820",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-182820.md",
+  "source_meta": {
+    "mojira categories": "Sound",
+    "project": "MC",
+    "issue key": "MC-182820",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-05-06T14:33:04.358-0700",
+    "updated": "2025-04-29T12:15:32.012-0700",
+    "resolution date": "2023-09-22T09:48:54.602-0700",
+    "affects versions": "Minecraft 16w44a; 1.15.2; 20w19a; 20w21a; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16 Pre-release 4; 1.16 Pre-release 5; 1.16 Pre-release 7; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.4; 20w46a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w11a; 21w15a; 21w18a; 21w20a; 1.17 Pre-release 1; 1.17; 1.17.1; 21w42a; 1.18 Pre-release 8; 1.18; 1.18.2; 22w13a; 1.19.2; 1.19.3; 23w05a; 23w06a; 1.19.4; 23w16a; 1.20 Pre-release 6",
+    "fix versions": "23w33a",
+    "area": "Gameplay",
+    "labels": "incorrect-block-sound",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2020-05-06_22.32.39.png; 2020-05-06_22.32.40.png; 2020-05-06_22.32.41.png; 2020-05-06_22.32.42.png",
+    "issue links": "Relates:outward:MC-200484:Jukeboxes use stone sounds despite being composed predominantly of wood | Duplicate:inward:MC-109755:Jumping on Repeaters and Comparators Gives a Wooden Sound | Duplicate:inward:MC-242781:Repeaters and comparators use wood block sound despite being made of stone | Duplicate:inward:MC-262973:Redstone Comparator and Repeater use Wood Sound Set instead of Stone Sound Set, in addition to missing walking sounds.",
+    "_title": "Repeaters and comparators use wood sounds for placing/breaking despite being made mostly of stone"
+  },
+  "stor": {
+    "bug_id": "MC-182820",
+    "affected_versions": [
+      "Minecraft 16w44a",
+      "1.15.2",
+      "20w19a",
+      "20w21a",
+      "1.16 Pre-release 2",
+      "1.16 Pre-release 3",
+      "1.16 Pre-release 4",
+      "1.16 Pre-release 5",
+      "1.16 Pre-release 7",
+      "20w28a",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.4",
+      "20w46a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w11a",
+      "21w15a",
+      "21w18a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "21w42a",
+      "1.18 Pre-release 8",
+      "1.18",
+      "1.18.2",
+      "22w13a",
+      "1.19.2",
+      "1.19.3",
+      "23w05a",
+      "23w06a",
+      "1.19.4",
+      "23w16a",
+      "1.20 Pre-release 6"
+    ],
+    "recommended_version": "Minecraft 16w44a",
+    "environment": "Minecraft Java Edition client running snapshot 16w44a in a vanilla single-player Creative-mode world. Use the default resource pack and functional audio output, preferably headphones or speakers in a quiet environment. No dedicated server, commands, seed, coordinates, or additional players are required.",
+    "preconditions": [
+      "Create or select a launcher installation whose version is snapshot 16w44a, the first version in the report's Affects Versions field.",
+      "Ensure the operating system and Minecraft client are not muted and that the selected headphones or speakers are working.",
+      "Use the default Minecraft resource pack and disable any mod or resource pack that replaces block sounds.",
+      "Use a single-player world in Creative mode so a repeater and comparator can be obtained without unrelated crafting or resource gathering.",
+      "Locate a clear area containing the exposed top face of a solid full block, such as an ordinary grass, dirt, or stone ground block, on which redstone components can be placed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation configured for snapshot 16w44a and start the game with that installation.",
+        "exact_input": "Select version 16w44a, then choose Play.",
+        "success_cue": "The Minecraft 16w44a title screen is displayed and the client is responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Singleplayer and create a new world. Set Game Mode to Creative before creating it. Leave the seed and other world-generation settings at their defaults because the report specifies none.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has spawned in a Creative-mode world and can fly or open the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for the initial terrain around the player to finish rendering before performing the sound test.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, movement responds normally, and no world-loading pause is occurring.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the pause menu and configure sound so block interactions are clearly audible. Open Options, then Music & Sounds. Set Master Volume and the Blocks sound category above zero; a high value such as 100% is suitable. Reduce Music to 0% if necessary so it cannot mask the short placement and breaking sounds, then return to the world.",
+        "exact_input": "Esc -> Options -> Music & Sounds -> Master Volume: above 0% -> Blocks: above 0% -> Music: 0% -> Done",
+        "success_cue": "The game is unpaused, Minecraft audio is audible, and background music is not masking block sounds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E, and open the Search Items tab.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open and a searchable item list is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Click the Creative inventory search field, enter the search term \"repeater\", locate the repeater item, and place one repeater into an empty hotbar slot. The hotbar is the row of nine item slots at the bottom of the inventory and game screen.",
+        "exact_input": "repeater",
+        "success_cue": "A repeater icon is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Clear the search field, enter the search term \"comparator\", locate the comparator item, and place one comparator into a different hotbar slot next to the repeater.",
+        "exact_input": "comparator",
+        "success_cue": "The hotbar contains both a repeater and a comparator in separate slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory using E or Esc and select the repeater's hotbar slot using its number key or the mouse wheel.",
+        "exact_input": "E, then the repeater slot's number key",
+        "success_cue": "The inventory is closed, the repeater's hotbar slot is highlighted, and a repeater is shown in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move to a quiet, clear area and aim the crosshair at the exposed top face of a solid full ground block. Do not aim at the side of the block or at tall grass, because the repeater must be placed on a suitable upper surface.",
+        "exact_input": null,
+        "success_cue": "The crosshair is resting on an unobstructed horizontal block surface within placement range, with the repeater still selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Pause briefly without placing anything, allowing any unrelated ambient or movement sound to finish before beginning the controlled interaction sequence.",
+        "exact_input": null,
+        "success_cue": "The repeater remains selected, the target surface is unobstructed, and no immediately preceding player-generated sound is still playing.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Place the repeater once on the targeted top surface using the Use Item/Place Block action, whose default input is right-click. Perform only one click so that the placement sound is isolated.",
+        "exact_input": "right-click once",
+        "success_cue": "A repeater is visibly positioned on top of the targeted block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Remain still for approximately one second so the repeater's placement sound can finish before the next interaction. Keep the crosshair aimed directly at the placed repeater.",
+        "exact_input": null,
+        "success_cue": "The repeater remains in place, the crosshair targets it, and enough time has passed to prevent the next sound from overlapping its placement sound.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Break the placed repeater once using the Attack/Destroy action, whose default input is left-click. In Creative mode, a single click should remove it immediately. Ensure the crosshair targets the repeater rather than its supporting block.",
+        "exact_input": "left-click once",
+        "success_cue": "The repeater has disappeared while the supporting ground block remains intact.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Wait approximately one second for the repeater's breaking sound to finish, then select the comparator's hotbar slot using its number key or the mouse wheel.",
+        "exact_input": "Comparator slot's number key",
+        "success_cue": "The comparator's hotbar slot is highlighted, a comparator is shown in the player's hand, and the previous interaction sound has had time to finish.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Aim at the same unobstructed top surface and place the comparator once using the Use Item/Place Block action, whose default input is right-click. Perform only one click.",
+        "exact_input": "right-click once",
+        "success_cue": "A comparator is visibly positioned on top of the targeted block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Remain still for approximately one second so the comparator's placement sound can finish. Keep the crosshair aimed directly at the comparator.",
+        "exact_input": null,
+        "success_cue": "The comparator remains in place, the crosshair targets it, and enough time has passed to prevent the next sound from overlapping its placement sound.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Break the placed comparator once using the Attack/Destroy action, whose default input is left-click. Ensure the crosshair targets the comparator rather than the supporting block.",
+        "exact_input": "left-click once",
+        "success_cue": "The comparator has disappeared while the supporting ground block remains intact; both component types have now each been placed and broken once.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "Hand off to audio observation immediately before step 11, when the repeater is selected, the crosshair is aimed at a suitable solid top surface, audio is enabled, and the comparator is available in another hotbar slot. Continue observation through step 17 so the four isolated interactions—repeater placement, repeater breaking, comparator placement, and comparator breaking—are captured without overlapping player-generated sounds.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, difficulty, or server environment. A new single-player Creative-mode world is selected as the simplest deterministic way to obtain and test the two components.",
+      "The report does not specify exact audio volume values or listening hardware. Audible Master and Blocks volume levels, optional headphones, and disabled background music are practical choices for isolating the interaction sounds.",
+      "The report lists many affected versions. Snapshot 16w44a is recommended solely because it is the first entry in the supplied Affects Versions field, as required by the version-selection policy.",
+      "Launcher and menu wording can vary by launcher release and operating system, but the required game version remains snapshot 16w44a."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_04ce734c06a7b3c3016aa71068f56487d08d623878939898d0",
+    "elapsed_seconds": 71.36,
+    "usage": {
+      "input_tokens": 9692,
+      "output_tokens": 4881,
+      "reasoning_tokens": 2788,
+      "total_tokens": 14573
+    },
+    "timestamp": "2026-09-13T21:08:00.049485+00:00"
+  }
+}

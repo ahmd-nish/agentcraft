@@ -1,0 +1,143 @@
+{
+  "bug_id": "MC-244948",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-244948.md",
+  "source_meta": {
+    "mojira categories": "Sound",
+    "project": "MC",
+    "issue key": "MC-244948",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-12-06T06:06:42.421-0800",
+    "updated": "2025-04-26T14:08:21.003-0700",
+    "resolution date": "2024-10-09T02:52:17.575-0700",
+    "affects versions": "1.18; 1.18.1; 22w03a; 22w05a; 22w06a; 1.18.2 Pre-release 1; 1.18.2; 22w12a; 22w15a; 1.19; 1.19.1; 1.19.2; 22w44a; 1.19.3; 1.19.4; 1.20.1; 1.20.5; 1.20.6 Release Candidate 1; 1.21",
+    "fix versions": "24w33a",
+    "area": "Gameplay",
+    "labels": "bundle",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-244948.mp4; MC-244948.png",
+    "issue links": "Duplicate:inward:MC-271257:Empty bundle plays sound \"Item unpacked\" when right-clicked over an empty slot",
+    "_title": "The \"minecraft:item.bundle.remove_one\" sound plays even when no items are unpacked from bundles"
+  },
+  "stor": {
+    "bug_id": "MC-244948",
+    "affected_versions": [
+      "1.18",
+      "1.18.1",
+      "22w03a",
+      "22w05a",
+      "22w06a",
+      "1.18.2 Pre-release 1",
+      "1.18.2",
+      "22w12a",
+      "22w15a",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "22w44a",
+      "1.19.3",
+      "1.19.4",
+      "1.20.1",
+      "1.20.5",
+      "1.20.6 Release Candidate 1",
+      "1.21"
+    ],
+    "recommended_version": "1.18",
+    "environment": "Unmodified Minecraft Java Edition 1.18 in a single-player world with commands enabled. Use a fresh Survival-mode world for a simple, standard player-inventory layout. Game and operating-system audio must be audible.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.18, the first version listed as affected in the report; do not use fix version 24w33a.",
+      "Use a world in which cheats are enabled so the in-game /give command can be executed.",
+      "Use the standard player inventory interface, with at least one inventory or hotbar slot available for the bundle.",
+      "Do not place any items inside the bundle after obtaining it; the trigger requires the bundle to be empty.",
+      "Ensure Minecraft is not muted, the operating-system output device is audible, and relevant sound-volume sliders are above 0%.",
+      "Default controls are assumed: T opens chat, E opens the inventory, left-click picks up an item stack, and right-click performs the secondary inventory-slot action. If controls are rebound, use the bindings for those actions instead."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start an installation using Java Edition version 1.18. Wait for the main menu to finish loading.",
+        "exact_input": "1.18",
+        "success_cue": "The lower-left area of the main menu identifies the running game version as Minecraft 1.18.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer, create a fresh world, set Game Mode to Survival, set Allow Cheats to ON, and create the world. Wait until terrain has rendered and player movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Survival -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player is standing in a loaded single-player world and commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Confirm that sound can be heard. If necessary, press Esc, open Options and then Music & Sounds, set Master Volume above 0%, and make sure the operating-system audio output is not muted. Return to the world afterward.",
+        "exact_input": "Esc -> Options -> Music & Sounds -> Master Volume: above 0%",
+        "success_cue": "Minecraft and the operating-system audio output are unmuted, with Minecraft sound volume above 0%.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Type the report's command exactly, including the leading slash, and press Enter to execute it.",
+        "exact_input": "/give @s minecraft:bundle",
+        "success_cue": "Command feedback reports that a bundle was given, and a bundle icon appears in an available hotbar or inventory slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the player inventory. Locate the newly granted bundle in the hotbar or main inventory grid. Do not put any items into it.",
+        "exact_input": "E",
+        "success_cue": "The player inventory is open, the empty bundle is visible in one of its slots, and at least one inventory slot is empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Move the pointer over the bundle and left-click it once to pick it up from its slot, so the bundle stack is held by the mouse cursor rather than stored in a slot.",
+        "exact_input": "left-click the bundle",
+        "success_cue": "The bundle icon follows the mouse cursor, and the inventory slot from which it was picked up is now empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Without left-clicking or placing the bundle, move the cursor over an empty slot in the player's inventory or hotbar. The now-empty source slot may be used as the target.",
+        "exact_input": "move cursor over an empty inventory slot",
+        "success_cue": "The empty bundle remains attached to the cursor, and the cursor is positioned over a slot containing no item.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Right-click the empty inventory slot exactly once while continuing to hold the empty bundle on the cursor. Do not perform any additional inventory interactions after this click.",
+        "exact_input": "right-click once",
+        "success_cue": "The secondary-click interaction has just been applied to an empty inventory slot while the empty bundle remains held by the cursor; the inventory is still open and the test is ready for immediate sound observation.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The player has just right-clicked an empty inventory slot exactly once while holding a freshly granted, empty bundle on the mouse cursor. Keep the inventory open, make no further inputs, and immediately hand off to the observation subsystem to inspect the sound event produced by that single interaction.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer or a game mode. A fresh single-player Survival world with cheats enabled is selected as the simplest deterministic environment with the standard player-inventory interface.",
+      "The report does not name a required sound-category slider. The plan therefore requires Minecraft audio generally to be unmuted rather than assigning the sound to an unverified category.",
+      "The formal reproduction step says to right-click while holding the bundle but does not explicitly name the target slot there. The report's accompanying code analysis specifies that the relevant interaction is right-clicking an empty inventory slot, so the execution plan uses that target."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0800a93b2b5f0ce7016aa710b0571887d0904f7810c94e9147",
+    "elapsed_seconds": 50.6,
+    "usage": {
+      "input_tokens": 8795,
+      "output_tokens": 3201,
+      "reasoning_tokens": 1965,
+      "total_tokens": 11996
+    },
+    "timestamp": "2026-09-13T21:08:50.655571+00:00"
+  }
+}

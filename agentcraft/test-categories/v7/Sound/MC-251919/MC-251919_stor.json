@@ -1,0 +1,155 @@
+{
+  "bug_id": "MC-251919",
+  "category": "Sound",
+  "source_md": "[Sound] - MC-251919.md",
+  "source_meta": {
+    "mojira categories": "Sound",
+    "project": "MC",
+    "issue key": "MC-251919",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-05-19T07:28:40.273-0700",
+    "updated": "2025-04-11T12:51:41.471-0700",
+    "resolution date": "2023-02-08T09:19:12.466-0800",
+    "affects versions": "1.19 Pre-release 1",
+    "fix versions": "1.19 Pre-release 2",
+    "labels": "reused-sound-event; subtitles",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2022-05-19_15.18.57.png; 2022-05-19_15.19.15.png; MC-251919.mp4; MC-251919.png",
+    "issue links": "Relates:inward:MC-259789:Subtitle for equipping a shield in the offhand is generic | Relates:outward:MC-98316:Wrong subtitles caused by missing distinction",
+    "_title": "Equipping a player head, skull or carved pumpkin displays the generic \"Gear equips\" subtitle"
+  },
+  "stor": {
+    "bug_id": "MC-251919",
+    "affected_versions": [
+      "1.19 Pre-release 1"
+    ],
+    "recommended_version": "1.19 Pre-release 1",
+    "environment": "Minecraft Java Edition 1.19 Pre-release 1 in a new single-player Creative-mode world. Use the default integrated server. Enable subtitles and keep the Master Volume and Players sound-category volumes above 0%. Default controls are assumed: E for inventory, Esc for the pause menu, number keys for hotbar selection, and right-click for Use Item/Place Block.",
+    "preconditions": [
+      "Launch the exact affected version, Minecraft Java Edition 1.19 Pre-release 1; do not use the fix version 1.19 Pre-release 2.",
+      "Use a newly created Creative-mode world so the comparison armor item and carved pumpkin can be obtained without crafting or commands.",
+      "The player's chest and head armor slots must be empty before the respective items are equipped.",
+      "Subtitles must be enabled through Options -> Music & Sounds -> Show Subtitles: ON.",
+      "Keep the Master Volume and Players sound-category sliders above 0% so equipment sound events are not suppressed.",
+      "Use an iron chestplate as the report's ordinary armor comparison item and a carved pumpkin as the report's head-slot test item.",
+      "Avoid other actions, entities, or environmental sources that produce sounds while performing the two equipment actions."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that uses the exact version \"1.19 Pre-release 1\", launch it, and wait for the main menu to finish loading.",
+        "exact_input": "1.19 Pre-release 1",
+        "success_cue": "The Minecraft main menu is responsive and identifies the running version as 1.19 Pre-release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and create the world. No particular seed is required. Wait after spawning until nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded single-player world in Creative mode and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press Esc, open Options, then Music & Sounds. Set Show Subtitles to ON. Also ensure that Master Volume and the Players sound-category volume are above 0%, then select Done until gameplay resumes.",
+        "exact_input": null,
+        "success_cue": "Gameplay has resumed with Show Subtitles enabled and the relevant sound-volume controls set above 0%.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory, open the Search Items tab, activate the search field, and search for an iron chestplate.",
+        "exact_input": "iron chestplate",
+        "success_cue": "An iron chestplate is visible among the Creative inventory search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Move one iron chestplate from the search results into hotbar slot 1. The hotbar is the row of nine item slots at the bottom of the inventory screen.",
+        "exact_input": null,
+        "success_cue": "Hotbar slot 1 contains one iron chestplate.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Clear the Creative inventory search field and search for a carved pumpkin.",
+        "exact_input": "carved pumpkin",
+        "success_cue": "A carved pumpkin is visible among the Creative inventory search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Move one carved pumpkin from the search results into hotbar slot 2, then press E to close the inventory and return to gameplay.",
+        "exact_input": null,
+        "success_cue": "Hotbar slot 1 contains the iron chestplate, hotbar slot 2 contains the carved pumpkin, and no inventory or pause menu is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press 1, or otherwise select hotbar slot 1, to place the iron chestplate in the active hotbar slot.",
+        "exact_input": "1",
+        "success_cue": "The iron chestplate is visibly held by the player and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Aim the crosshair into unobstructed open air rather than at an interactive block or entity, then right-click once to use and equip the iron chestplate. Do not perform another action immediately afterward.",
+        "exact_input": "right-click",
+        "success_cue": "The iron chestplate is no longer held in the active hotbar slot, indicating that it has moved into the empty chest armor slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Wait without moving, opening a menu, changing items, or producing additional sounds until the temporary subtitle generated by the chestplate-equipping action is no longer displayed.",
+        "exact_input": null,
+        "success_cue": "The subtitle display area is clear and ready for the separate carved-pumpkin equipment event.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press 2, or otherwise select hotbar slot 2, to place the carved pumpkin in the active hotbar slot. Aim into unobstructed open air, preferably upward into the sky, so the carved pumpkin will not be placed as a block.",
+        "exact_input": "2",
+        "success_cue": "The carved pumpkin is visibly held, its hotbar slot is highlighted, and the crosshair is not targeting a surface on which it could be placed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Right-click exactly once to use and equip the carved pumpkin in the empty head armor slot. Do not open a menu, change items, move, or produce another sound after this input; immediately hand control to the observation subsystem.",
+        "exact_input": "right-click",
+        "success_cue": "The equipment input has just completed and the carved-pumpkin first-person overlay confirms that the pumpkin is being worn.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The carved pumpkin has just been equipped in the player's head armor slot with subtitles enabled, after the earlier iron-chestplate equipment subtitle was allowed to clear. Begin observing the subtitle generated by this single equipment event before it disappears.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, or multiplayer requirement. A new single-player Creative-mode world is selected as the simplest deterministic way to obtain the required items.",
+      "The report allows any armor piece or elytra for the comparison action and any head or carved pumpkin for the test action. This plan selects an iron chestplate and carved pumpkin as concrete representative items without changing the reported reproduction logic.",
+      "The report does not specify whether equipment is moved through the inventory or equipped with the Use Item control. This plan uses one right-click in open air for each item as a practical, repeatable equipment method.",
+      "The exact volume levels are not provided by the report. Nonzero Master Volume and Players volume are used only to avoid suppressing the equipment sound events involved in the subtitle test.",
+      "Default key bindings are assumed. If controls are rebound, use the bindings assigned to Inventory, Pause Menu, Hotbar Slot 1, Hotbar Slot 2, and Use Item/Place Block."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a0f0f267c4112ec016aa710e2f7c087d09311286fd664cb0d",
+    "elapsed_seconds": 56.65,
+    "usage": {
+      "input_tokens": 8446,
+      "output_tokens": 3555,
+      "reasoning_tokens": 2070,
+      "total_tokens": 12001
+    },
+    "timestamp": "2026-09-13T21:09:47.309895+00:00"
+  }
+}
