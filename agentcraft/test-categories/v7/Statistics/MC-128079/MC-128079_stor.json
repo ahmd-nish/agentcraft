@@ -1,0 +1,223 @@
+{
+  "bug_id": "MC-128079",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-128079.md",
+  "source_meta": {
+    "mojira categories": "Statistics",
+    "project": "MC",
+    "issue key": "MC-128079",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2018-04-06T14:49:15.703-0700",
+    "updated": "2025-04-26T06:28:52.513-0700",
+    "resolution date": "2025-01-07T06:21:24.148-0800",
+    "affects versions": "Minecraft 18w14b; Minecraft 18w15a; Minecraft 18w16a; Minecraft 18w20c; Minecraft 18w21a; Minecraft 18w22c; Minecraft 1.13-pre1; Minecraft 1.13; Minecraft 18w30b; Minecraft 18w31a; Minecraft 18w32a; Minecraft 18w33a; Minecraft 1.13.1-pre1; Minecraft 1.13.1-pre2; Minecraft 1.13.1; Minecraft 1.13.2; Minecraft 18w43b; Minecraft 18w43c; Minecraft 18w44a; Minecraft 18w45a; Minecraft 18w48a; Minecraft 18w48b; Minecraft 18w49a; Minecraft 18w50a; Minecraft 19w12b; Minecraft 19w13b; Minecraft 19w14a; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14 Pre-Release 4; Minecraft 1.14 Pre-Release 5; Minecraft 1.14; Minecraft 1.14.1; Minecraft 1.14.2 Pre-Release 2; Minecraft 1.14.2 Pre-Release 3; Minecraft 1.14.2; Minecraft 1.14.3 Pre-Release 1; Minecraft 1.14.3 Pre-Release 3; Minecraft 1.14.3; Minecraft 1.14.4 Pre-Release 3; Minecraft 1.14.4 Pre-Release 4; Minecraft 1.14.4 Pre-Release 5; Minecraft 1.14.4 Pre-Release 6; 1.14.4; 1.15.2; 20w18a; 1.16.4; 20w48a; 1.16.5; 21w05b; 21w06a; 21w14a; 21w18a; 21w20a; 1.17.1; 1.18.2; 1.19; 1.19.3; 1.20.1; 1.20.4; 1.20.6; 24w21b",
+    "fix versions": "25w02a",
+    "area": "Platform",
+    "game mode": "Survival",
+    "labels": "carpet; durability; shears; statistics; tool",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-128079.mp4; MC-128079.png",
+    "issue links": "Duplicate:inward:MC-272521:Shears item use statistic ignores tool component",
+    "_title": "Statistic for using shears doesn't increase when mining certain blocks"
+  },
+  "stor": {
+    "bug_id": "MC-128079",
+    "affected_versions": [
+      "Minecraft 18w14b",
+      "Minecraft 18w15a",
+      "Minecraft 18w16a",
+      "Minecraft 18w20c",
+      "Minecraft 18w21a",
+      "Minecraft 18w22c",
+      "Minecraft 1.13-pre1",
+      "Minecraft 1.13",
+      "Minecraft 18w30b",
+      "Minecraft 18w31a",
+      "Minecraft 18w32a",
+      "Minecraft 18w33a",
+      "Minecraft 1.13.1-pre1",
+      "Minecraft 1.13.1-pre2",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2",
+      "Minecraft 18w43b",
+      "Minecraft 18w43c",
+      "Minecraft 18w44a",
+      "Minecraft 18w45a",
+      "Minecraft 18w48a",
+      "Minecraft 18w48b",
+      "Minecraft 18w49a",
+      "Minecraft 18w50a",
+      "Minecraft 19w12b",
+      "Minecraft 19w13b",
+      "Minecraft 19w14a",
+      "Minecraft 1.14 Pre-Release 2",
+      "Minecraft 1.14 Pre-Release 3",
+      "Minecraft 1.14 Pre-Release 4",
+      "Minecraft 1.14 Pre-Release 5",
+      "Minecraft 1.14",
+      "Minecraft 1.14.1",
+      "Minecraft 1.14.2 Pre-Release 2",
+      "Minecraft 1.14.2 Pre-Release 3",
+      "Minecraft 1.14.2",
+      "Minecraft 1.14.3 Pre-Release 1",
+      "Minecraft 1.14.3 Pre-Release 3",
+      "Minecraft 1.14.3",
+      "Minecraft 1.14.4 Pre-Release 3",
+      "Minecraft 1.14.4 Pre-Release 4",
+      "Minecraft 1.14.4 Pre-Release 5",
+      "Minecraft 1.14.4 Pre-Release 6",
+      "1.14.4",
+      "1.15.2",
+      "20w18a",
+      "1.16.4",
+      "20w48a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w14a",
+      "21w18a",
+      "21w20a",
+      "1.17.1",
+      "1.18.2",
+      "1.19",
+      "1.19.3",
+      "1.20.1",
+      "1.20.4",
+      "1.20.6",
+      "24w21b"
+    ],
+    "recommended_version": "Minecraft 18w14b",
+    "environment": "Minecraft Java Edition snapshot 18w14b in a separate launcher installation or game directory; new single-player Survival world with cheats enabled. Use an ordinary generated Overworld with enough clear ground to place one carpet block. No particular seed, coordinates, difficulty, server, or additional player is specified by the report.",
+    "preconditions": [
+      "The launcher can start the exact Java Edition snapshot Minecraft 18w14b.",
+      "Use a new world rather than opening an important existing world in this historical snapshot.",
+      "The world must be in Survival mode when the carpet is mined.",
+      "Cheats must be enabled because the report's scoreboard setup requires commands; this plan also uses commands to obtain deterministic test items.",
+      "Use the default attack/mine control of left-click and use/place control of right-click, or the corresponding rebound controls.",
+      "The test uses white carpet as a deterministic representative of the report's unspecified carpet color."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher profile configured for Java Edition snapshot 18w14b. At the main menu, verify that the displayed game version is 18w14b before continuing.",
+        "exact_input": "Launch Minecraft 18w14b",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 18w14b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world. From the main menu select Singleplayer, select Create New World, leave Game Mode set to Survival, open More World Options, set Allow Cheats to ON, then create the world. The world name and seed may be arbitrary.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Survival -> More World Options -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player has spawned in a new world with the Survival HUD visible, including hearts and hunger icons.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before issuing commands or placing the test block. Continue only after nearby terrain has rendered and movement and camera controls respond normally.",
+        "exact_input": null,
+        "success_cue": "The spawn-area chunks are rendered and the player can move and turn without world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Create the shears-use scoreboard objective exactly as specified in the report. Press T to open in-game chat, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives add shear minecraft.used:minecraft.shears",
+        "success_cue": "Chat reports that the objective named \"shear\" was created; no red command error is shown.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Display the new objective in the right-side scoreboard slot. Press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar shear",
+        "success_cue": "A sidebar headed \"shear\" appears on the right side of the game display, although the player's entry may not appear until a score is initialized.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Initialize the current player's score to a visible baseline so that a before-trigger value is available. Press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/scoreboard players set @s shear 0",
+        "success_cue": "The sidebar lists the current player's name with a score of 0 under the \"shear\" objective.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Obtain one fresh pair of shears without changing out of Survival mode. Press T, enter the version-compatible give command including its leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:shears 1",
+        "success_cue": "A new shears item appears in the player's inventory or hotbar and the command reports that one shears item was given.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Obtain one white carpet for the deterministic carpet test. Press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:white_carpet 1",
+        "success_cue": "A white carpet item appears in the player's inventory or hotbar and the command reports that one white carpet was given.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Put the white carpet into the hotbar if it is not already there. Press E to open the inventory, identify the white carpet, and move it into one of the nine bottom hotbar slots. Close the inventory with E, then select that slot using its number key or the mouse wheel.",
+        "exact_input": "E; move White Carpet to a hotbar slot; E; select that hotbar slot",
+        "success_cue": "The item name \"White Carpet\" appears above the hotbar and the player's hand holds the carpet.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim at the top face of a nearby full solid ground block, such as a grass block, dirt block, or stone block, and right-click once to place the white carpet on it.",
+        "exact_input": "right-click",
+        "success_cue": "A thin white carpet block is visibly placed on top of the selected solid block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the fresh shears. If they are not in the hotbar, press E, move the shears into a bottom hotbar slot, close the inventory with E, and select that slot using its number key or the mouse wheel.",
+        "exact_input": "Select the hotbar slot containing Shears",
+        "success_cue": "The item name \"Shears\" appears above the hotbar and the shears are visible in the player's hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Verify the final pre-trigger state without mining the carpet yet: the player is in Survival mode, the placed white carpet is within reach, the fresh shears are selected, and the \"shear\" sidebar still shows the initialized pre-trigger score.",
+        "exact_input": null,
+        "success_cue": "The Survival hearts and hunger HUD are visible, the crosshair can be placed on the carpet, shears are held, and the \"shear\" objective remains displayed in the sidebar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Aim the crosshair directly at the placed white carpet and use the attack/mine control while continuing to hold the shears. With default controls, left-click or briefly hold left-click until that single carpet block is completely mined. Do not mine another block afterward.",
+        "exact_input": "left-click the white carpet while holding Shears",
+        "success_cue": "The placed carpet has been removed and its dropped carpet item is visible on the ground or has been collected; no second block has been mined.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The single white carpet block has just been mined once in Survival mode while the fresh shears were selected, and the \"shear\" scoreboard objective is still displayed. Hand control immediately to the observation subsystem before using the shears or mining any additional block.",
+    "uncertainties": [
+      "The report says \"carpet\" without specifying a color. White carpet is selected only as a deterministic representative; no color-specific condition is stated.",
+      "The report lists tall_grass, large_fern, seagrass, tall_seagrass, and nether_sprouts as additional affected blocks, but reproducing every listed variant is not required for the minimum path. This plan uses carpet because the report explicitly describes mining carpet with shears.",
+      "The command that sets the player's score to 0 is an added baseline-initialization step and is not part of the report's original command list. It is used so the sidebar has a visible pre-trigger value.",
+      "No seed, coordinates, biome, difficulty setting, dedicated-server requirement, or multiplayer requirement is supplied by the report."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0535bca707688a7c016aa70e9afe3887d0806adae8e088daaa",
+    "elapsed_seconds": 92.19,
+    "usage": {
+      "input_tokens": 41005,
+      "output_tokens": 6695,
+      "reasoning_tokens": 4571,
+      "total_tokens": 47700
+    },
+    "timestamp": "2026-09-13T21:00:38.295778+00:00"
+  }
+}

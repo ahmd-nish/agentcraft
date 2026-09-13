@@ -1,0 +1,179 @@
+{
+  "bug_id": "MC-249205",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-249205.md",
+  "source_meta": {
+    "mojira categories": "Statistics",
+    "project": "MC",
+    "issue key": "MC-249205",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-03-17T12:29:57.077-0700",
+    "updated": "2025-09-02T01:23:53.387-0700",
+    "resolution date": "2025-09-02T01:23:53.333-0700",
+    "affects versions": "22w11a; 22w12a; 22w13a; 22w14a; 22w15a; 22w17a; 22w18a; 1.19 Pre-release 1; 1.19 Release Candidate 2; 1.19; 1.19.1; 1.19.2; 22w45a; 1.19.3; 1.19.4; 1.20.1; 1.21; 1.21.3; 24w45a; 1.21.4",
+    "fix versions": "25w36a",
+    "area": "Platform",
+    "game mode": "Creative",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-249205.mp4; MC-249205 - Creative Mode Behavior.png; MC-249205 - Survival Mode Behavior.png",
+    "issue links": "Duplicate:inward:MC-273932:\"Times Used\" statistic for watter bottles increases by 2 when converting dirt to mud in creative",
+    "_title": "\"minecraft.used:minecraft.potion\" increases by a value of two when using water bottles to create mud in creative mode"
+  },
+  "stor": {
+    "bug_id": "MC-249205",
+    "affected_versions": [
+      "22w11a",
+      "22w12a",
+      "22w13a",
+      "22w14a",
+      "22w15a",
+      "22w17a",
+      "22w18a",
+      "1.19 Pre-release 1",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "22w45a",
+      "1.19.3",
+      "1.19.4",
+      "1.20.1",
+      "1.21",
+      "1.21.3",
+      "24w45a",
+      "1.21.4"
+    ],
+    "recommended_version": "22w11a",
+    "environment": "Minecraft Java Edition 22w11a in a fresh single-player world with commands available. The statistic-triggering interaction must be performed in Creative mode. Default keyboard and mouse controls are assumed; use the equivalent bound controls if they have been changed.",
+    "preconditions": [
+      "Launch the exact recommended affected version, Java Edition 22w11a.",
+      "Use a fresh single-player world so that the scoreboard objective does not already exist and earlier potion use cannot complicate the baseline.",
+      "Enable commands when creating the world. One deterministic option is to create the world in Survival mode with Allow Cheats set to ON, then switch to Creative mode during the procedure.",
+      "Wait until the world and surrounding chunks have loaded and movement responds normally.",
+      "Ensure there is an ordinary solid surface on which a standard Dirt block can be placed.",
+      "After creating the objective, do not use any potion item until the single water-bottle interaction specified by the trigger step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition 22w11a, create or open the prepared fresh single-player world, and wait for loading to finish.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded world, nearby terrain is rendered, movement responds normally, and commands are available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open in-game chat by pressing T. Enter the report's objective-creation command exactly as provided, including the leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives add UseWaterBottle minecraft.used:minecraft.potion",
+        "success_cue": "Chat displays a command-success message indicating that the scoreboard objective named UseWaterBottle was created. There is no message saying that the objective already exists or that the command is invalid.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Open chat again with T. Enter the report's sidebar-display command exactly as provided, including the leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar UseWaterBottle",
+        "success_cue": "The scoreboard sidebar for UseWaterBottle is visible on the right side of the game screen. The player may have no displayed score yet because the tracked item has not been used.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Switch the player to Creative mode. Open chat with T, enter the game-mode command, and press Enter.",
+        "exact_input": "/gamemode creative",
+        "success_cue": "A game-mode update message confirms Creative mode. The player has the Creative inventory and can fly by double-tapping Space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory using the inventory control, which is E by default, and select the Search Items tab—the tab containing a text search field.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open and its item search field is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Click the Creative inventory search field, clear any existing text, and type \"dirt\". Locate the item whose tooltip is exactly \"Dirt\", excluding Coarse Dirt, Rooted Dirt, Grass Block, and other variants. Left-click Dirt to pick up a stack, then left-click an empty hotbar slot in the bottom row to place it there.",
+        "exact_input": "dirt",
+        "success_cue": "A standard Dirt stack is present in one of the nine hotbar slots at the bottom of the inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Return to the search field, clear the previous search text, and type \"water bottle\". Locate the ordinary drinkable item whose tooltip is \"Water Bottle\". Do not select a Splash Water Bottle, Lingering Water Bottle, or another potion. Left-click the Water Bottle, then left-click a different empty hotbar slot to place it there.",
+        "exact_input": "water bottle",
+        "success_cue": "An ordinary Water Bottle is present in the hotbar in a slot different from the Dirt stack.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the Creative inventory by pressing E or Escape.",
+        "exact_input": "E",
+        "success_cue": "The world view is visible again, with both Dirt and the Water Bottle shown in separate hotbar slots and the UseWaterBottle sidebar still displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the hotbar slot containing Dirt by pressing its corresponding number key, 1 through 9, or by scrolling until the Dirt slot is highlighted.",
+        "exact_input": "Hotbar key 1-9 corresponding to the Dirt slot",
+        "success_cue": "Dirt is shown in the player's main hand and its hotbar slot has the active-slot highlight.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim the crosshair at an exposed face of an existing solid block with enough empty space beside it, then right-click once to place one Dirt block.",
+        "exact_input": "right-click once",
+        "success_cue": "One standard Dirt block is placed in the world, is within interaction reach, and has at least one exposed face that can be targeted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select the hotbar slot containing the ordinary Water Bottle using its corresponding number key, 1 through 9, or by scrolling until that slot is highlighted.",
+        "exact_input": "Hotbar key 1-9 corresponding to the Water Bottle slot",
+        "success_cue": "The Water Bottle is visible in the player's main hand and its hotbar slot has the active-slot highlight.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Position the crosshair directly over an exposed face of the placed Dirt block. Do not right-click yet. Confirm that the UseWaterBottle objective remains displayed in the sidebar; if no player score is listed yet, leave it uninitialized rather than issuing any additional scoreboard command.",
+        "exact_input": null,
+        "success_cue": "The player is in Creative mode, the Water Bottle is selected, the crosshair targets the placed Dirt block, and the UseWaterBottle sidebar is visible immediately before the only tracked use action.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "With the crosshair still targeting the placed Dirt block, use the selected Water Bottle on that block exactly once by pressing the use-item control, which is right-click by default. Do not perform a second click.",
+        "exact_input": "right-click once",
+        "success_cue": "The single water-bottle use interaction has completed and the targeted Dirt block has converted into Mud; no additional potion-use interaction has been made.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The player has just right-clicked exactly once with an ordinary Water Bottle on the placed Dirt block in Creative mode, the block has converted into Mud, and the UseWaterBottle objective remains displayed in the sidebar. Hand control to the observation subsystem immediately, before any further use-item action.",
+    "uncertainties": [
+      "The report supplies no world seed, coordinates, world type, or server requirement. A fresh single-player world and any convenient buildable location are therefore used as deterministic practical choices.",
+      "The report says to switch into Creative mode but does not prescribe a method or starting game mode. Starting with commands enabled and executing /gamemode creative is used as the operational method.",
+      "The report does not require an explicit pre-trigger score value. In a fresh world, the sidebar may contain only the objective title until the first tracked use; the plan intentionally avoids modifying the statistic with an extra scoreboard command."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01f3f0279c688490016aa70ef6978c87d0ba7a6ba0c4e22877",
+    "elapsed_seconds": 66.65,
+    "usage": {
+      "input_tokens": 8486,
+      "output_tokens": 4548,
+      "reasoning_tokens": 2875,
+      "total_tokens": 13034
+    },
+    "timestamp": "2026-09-13T21:01:44.960031+00:00"
+  }
+}

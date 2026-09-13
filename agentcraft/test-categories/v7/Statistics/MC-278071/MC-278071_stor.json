@@ -1,0 +1,159 @@
+{
+  "bug_id": "MC-278071",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-278071.md",
+  "source_meta": {
+    "mojira categories": "Items; Statistics",
+    "project": "MC",
+    "issue key": "MC-278071",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-11-03T01:51:57.474-0700",
+    "updated": "2025-02-11T06:46:17.012-0800",
+    "resolution date": "2024-11-06T01:34:12.513-0800",
+    "affects versions": "24w44a; 1.21.3",
+    "fix versions": "24w45a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "1730623827775.jpg",
+    "_title": "\"minecraft.used:minecraft.trident\" doesn't increase when throwing a trident"
+  },
+  "stor": {
+    "bug_id": "MC-278071",
+    "affected_versions": [
+      "24w44a",
+      "1.21.3"
+    ],
+    "recommended_version": "24w44a",
+    "environment": "Minecraft: Java Edition 24w44a in a single-player world. Use Creative mode for deterministic item acquisition and enable commands/cheats so the two scoreboard commands from the report can be executed. No dedicated server or additional players are required.",
+    "preconditions": [
+      "Launch the exact affected version 24w44a rather than the fixed version 24w45a.",
+      "Create or open a single-player world with commands/cheats enabled.",
+      "Use Creative mode as a practical way to obtain an ordinary trident without adding enchantments.",
+      "The test trident must not have the Riptide enchantment.",
+      "Use a newly created scoreboard objective named exactly MC-278071 so prior scores do not affect the test.",
+      "Use the commands from the report exactly and in the listed order."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft: Java Edition 24w44a from the Minecraft Launcher, then create or open a single-player world with commands enabled. For the simplest setup, select Creative mode when creating the world; if using an existing world without cheats, open the pause menu, select Open to LAN, set Allow Cheats to ON, and start the LAN world.",
+        "exact_input": null,
+        "success_cue": "The player is loaded into a responsive world in version 24w44a and can execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Press T to open the in-game chat and command input.",
+        "exact_input": null,
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Enter the report's first command, including the leading slash, and press Enter to create the scoreboard objective that tracks uses of a trident.",
+        "exact_input": "/scoreboard objectives add MC-278071 minecraft.used:minecraft.trident",
+        "success_cue": "Command feedback confirms that the scoreboard objective MC-278071 was created. If the game says the objective already exists, remove the old objective or use a fresh world, then execute this exact command again before continuing.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open chat again, enter the report's second command including the leading slash, and press Enter to display the objective in the scoreboard sidebar.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar MC-278071",
+        "success_cue": "The MC-278071 objective is assigned to the sidebar display. The player's name may not yet be listed because no score has been recorded for the new objective.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory by pressing E. Use the Search Items tab or locate the Combat items, find Trident, and place one ordinary trident into any hotbar slot. The hotbar is the row of nine item slots along the bottom of the inventory and gameplay screen.",
+        "exact_input": null,
+        "success_cue": "An ordinary trident is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Hover the pointer over the trident and inspect its tooltip. Ensure that the trident is not enchanted with Riptide; a newly obtained ordinary Creative inventory trident should have no enchantment text. Close the inventory by pressing E.",
+        "exact_input": null,
+        "success_cue": "The inventory is closed and the available test trident has no Riptide enchantment.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select the hotbar slot containing the trident by pressing its number key, 1 through 9, or by scrolling the mouse wheel until that slot is highlighted.",
+        "exact_input": null,
+        "success_cue": "The trident is visible in the player's hand and its hotbar slot is highlighted as the active slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Aim toward an unobstructed patch of ground or a nearby solid wall so the trident can be thrown safely without requiring combat or a target entity.",
+        "exact_input": null,
+        "success_cue": "The crosshair points at a clear destination where the thrown trident can visibly travel and land.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press and hold the Use Item control, which is right-click by default, long enough to fully charge the trident throw. Do not release the control yet.",
+        "exact_input": null,
+        "success_cue": "The player is holding the trident in its charged throwing pose.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Release the Use Item control, right-click by default, once the trident is charged. Perform this throw only once.",
+        "exact_input": null,
+        "success_cue": "The trident leaves the player's hand as a projectile and travels toward the aimed location. The throw action is complete.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait only until the thrown trident has visibly landed or stopped moving and normal player input remains responsive. Do not throw another trident or pick up and reuse it before observation.",
+        "exact_input": null,
+        "success_cue": "Exactly one non-Riptide trident throw has been completed, and the game is ready for the scoreboard and statistics values to be inspected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Leave the scoreboard sidebar visible and pause the game by pressing Esc. Select Statistics from the pause menu and wait for the statistics screen to load.",
+        "exact_input": null,
+        "success_cue": "The Statistics screen is open after the single trident throw.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select the Items tab in the Statistics screen. Locate the Trident entry in the item statistics list, using the list's scrolling or filtering controls if necessary, but do not interpret or report its value yet.",
+        "exact_input": null,
+        "success_cue": "The Items statistics tab is open and the Trident statistics entry is available for the observation subsystem to inspect; the MC-278071 sidebar can also be inspected after closing the menu.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "One ordinary trident without Riptide has just been thrown exactly once while the MC-278071 scoreboard objective tracks minecraft.used:minecraft.trident. The Items tab of the Statistics screen is open at the Trident entry. Hand control to the observation subsystem to inspect the statistic, then close the menu if needed to inspect the MC-278071 sidebar value.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode is selected only as a deterministic way to obtain an unenchanted trident; it is not asserted as a required condition of the bug.",
+      "The report does not specify whether the world is single-player or multiplayer. A command-enabled single-player world is used because no server-only or multi-player condition is described.",
+      "A newly created objective may omit the player's name from the sidebar until the player has a recorded score; absence of a pre-trigger row should not prevent execution of the trident throw."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e88c086bef88685016aa7100323a887d090cab12f6f8b9250",
+    "elapsed_seconds": 29.13,
+    "usage": {
+      "input_tokens": 8306,
+      "output_tokens": 1985,
+      "reasoning_tokens": 516,
+      "total_tokens": 10291
+    },
+    "timestamp": "2026-09-13T21:05:35.929199+00:00"
+  }
+}

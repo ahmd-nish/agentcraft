@@ -1,0 +1,211 @@
+{
+  "bug_id": "MC-277140",
+  "category": "Statistics",
+  "source_md": "[Statistics] - MC-277140.md",
+  "source_meta": {
+    "mojira categories": "Statistics",
+    "project": "MC",
+    "issue key": "MC-277140",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-10-02T13:35:03.176-0700",
+    "updated": "2025-04-26T16:59:03.278-0700",
+    "resolution date": "2024-11-10T15:05:12.405-0800",
+    "affects versions": "24w40a; 1.21.3",
+    "fix versions": "24w46a",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2024-10-02_22.13.37.png",
+    "issue links": "Relates:outward:MC-277152:The statistic for killing a creaking doesn't increment when breaking a creaking heart",
+    "_title": "The statistics screen does not visually differentiate the creaking and creaking_transient entities"
+  },
+  "stor": {
+    "bug_id": "MC-277140",
+    "affected_versions": [
+      "24w40a",
+      "1.21.3"
+    ],
+    "recommended_version": "24w40a",
+    "environment": "Vanilla Minecraft: Java Edition 24w40a in a new single-player Creative-mode world using the integrated server, with commands permitted, the Winter Drop experiment enabled, a non-Peaceful difficulty, mob spawning enabled, and no gameplay-altering mods or resource packs.",
+    "preconditions": [
+      "Install and launch the exact affected snapshot 24w40a rather than the fixed version 24w46a.",
+      "Use a newly created world so that the player's mob statistics begin without pre-existing Creaking records.",
+      "Enable the Winter Drop experiment on the Experiments screen while creating the world; this experiment supplies the Pale Oak, Creaking, and Creaking Heart content in 24w40a. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/30738932967053-Minecraft-Java-Edition-Snapshot-24w40a?utm_source=openai))",
+      "Permit in-game commands. Creative mode is selected as a practical setup choice because the report does not specify a game mode and the required blocks can then be obtained without exploration.",
+      "Keep the difficulty above Peaceful and keep the doMobSpawning gamerule enabled so the Creaking Heart can create its associated entity.",
+      "Use the default mouse bindings unless controls were intentionally rebound: left-click attacks or breaks, right-click uses or places, E opens inventory, T opens chat, and Esc opens the pause menu."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation for snapshot 24w40a, launch it, and wait for the title screen to finish loading.",
+        "exact_input": "24w40a",
+        "success_cue": "The title screen identifies the running Java Edition version as 24w40a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then Create New World. Set Game Mode to Creative. Ensure commands are allowed if the creation screen exposes a separate command-permission option.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is configured for Creative mode with command access.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Before creating the world, open the Experiments screen, switch Winter Drop to ON, and confirm any experimental-feature warning without leaving the creation process.",
+        "exact_input": "Winter Drop: ON",
+        "success_cue": "Winter Drop is shown as enabled on the world-creation screen. The experiment is required to expose the Creaking content in 24w40a. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/30738932967053-Minecraft-Java-Edition-Snapshot-24w40a?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Create the world. Do not begin setup until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded world, nearby chunks are rendered, and normal movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat, type the difficulty command including the leading slash, and press Enter.",
+        "exact_input": "/difficulty normal",
+        "success_cue": "Command feedback confirms that the difficulty is Normal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the gamerule command including the leading slash, and press Enter.",
+        "exact_input": "/gamerule doMobSpawning true",
+        "success_cue": "Command feedback reports that doMobSpawning is now true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Move to a reasonably flat, open construction site with several blocks of unobstructed ground around it. Avoid building under a low ceiling or directly beside unrelated mobs. Keep this area loaded for the remainder of the reproduction.",
+        "exact_input": null,
+        "success_cue": "There is clear ground for a three-block-tall column and open nearby space in which a Creaking can appear.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to obtain one Netherite Sword, at least two Pale Oak Logs, and one Creaking Heart. Place all three item types into hotbar slots; the hotbar is the row of nine slots at the bottom of the inventory.",
+        "exact_input": "Netherite Sword; Pale Oak Log; Creaking Heart",
+        "success_cue": "The hotbar contains a sword, at least two Pale Oak Logs, and one Creaking Heart.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Close the inventory. Stand at the open test site, press T, type the report's summon command exactly with the leading slash, and press Enter.",
+        "exact_input": "/summon creaking",
+        "success_cue": "Command feedback indicates a successful summon and an artificial Creaking is visible near the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select the Netherite Sword in the active hotbar slot using its number key or the mouse wheel. Approach within attack range, center the crosshair on the summoned Creaking, and left-click to kill it. Wait for its death animation to finish; attack again only if the first attack did not remove it.",
+        "exact_input": null,
+        "success_cue": "The command-summoned Creaking has completed its death animation and is no longer present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select a Pale Oak Log in the hotbar. Aim at the top surface of a flat ground block and right-click once to place the lower log upright.",
+        "exact_input": null,
+        "success_cue": "One upright Pale Oak Log is present on the ground at the construction site.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select the Creaking Heart. Aim at the center of the lower log's top face and right-click once, placing the heart directly on top of that log.",
+        "exact_input": null,
+        "success_cue": "A Creaking Heart occupies the block immediately above the lower Pale Oak Log.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select the second Pale Oak Log. Aim at the Creaking Heart's top face and right-click once so the second log is directly above the heart. Placing both logs through their top or bottom faces keeps their axes vertical and aligned with the heart.",
+        "exact_input": null,
+        "success_cue": "A vertical three-block column exists in this order from bottom to top: Pale Oak Log, Creaking Heart, Pale Oak Log. The two logs are aligned along the same vertical axis, satisfying the reported heart arrangement. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/30738932967053-Minecraft-Java-Edition-Snapshot-24w40a?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Move approximately 8 to 12 blocks away from the column while keeping it and the surrounding ground within render distance. Do not leave or unload the area.",
+        "exact_input": null,
+        "success_cue": "The player is no longer touching the structure, but the column and nearby spawning area remain loaded and visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Press T, type the report's time command exactly with the leading slash, and press Enter.",
+        "exact_input": "/time set night",
+        "success_cue": "Command feedback confirms the time change and the world is visibly at night.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Remain near the column and scan the open ground around it. Wait without changing the time or breaking the structure until the Creaking Heart creates a Creaking. Do not continue merely because the heart is present; continue only after the entity itself appears.",
+        "exact_input": null,
+        "success_cue": "A living, wooden humanoid Creaking associated with the heart is visible near the column. Creaking Hearts activate at night when positioned between correctly aligned Pale Oak Logs. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/30738932967053-Minecraft-Java-Edition-Snapshot-24w40a?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "While the heart-spawned Creaking remains loaded, press T and enter the report's damage command exactly, including the leading slash, selector, entity identifier, damage type, amount, and attribution to @s. Press Enter once. If the command reports that no entity was found, do not proceed to statistics; return to the previous wait condition and execute the command once after the entity is present.",
+        "exact_input": "/damage @n[type=minecraft:creaking_transient] 1 minecraft:out_of_world by @s",
+        "success_cue": "The command is accepted, reports that damage was applied to the selected creaking_transient, and the targeted heart-spawned Creaking begins its removal or death sequence.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Wait until the targeted Creaking has finished its removal or death sequence and normal player input remains responsive. Do not damage additional Creakings.",
+        "exact_input": null,
+        "success_cue": "The targeted heart-spawned Creaking is no longer present and both report-specified kill actions have been completed exactly once.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Press Esc to open the pause menu, then click Statistics. Wait for the Statistics screen to load.",
+        "exact_input": null,
+        "success_cue": "The Statistics screen is open and its category controls are responsive. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AMenu_screen/Java_Edition?utm_source=openai))",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "Select the Mobs statistics category, represented by the Mobs tab or mob-face icon, and scroll as needed until the Creaking-related statistics entries produced by the two completed kills are in the visible portion of the list. Stop interacting as soon as that section is visible.",
+        "exact_input": null,
+        "success_cue": "The Mobs statistics section containing the Creaking-related records is on screen and ready for visual inspection by the Observation Agent; no conclusion about the entries has been made.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The player has completed one player-attributed kill of the command-summoned creaking and one player-attributed out-of-world damage removal of the heart-spawned creaking_transient, then opened the Mobs statistics category and brought the Creaking-related entries into view. Begin visual observation of those entries without further player input.",
+    "uncertainties": [
+      "The report does not specify a seed, coordinates, world preset, game mode, or server type. This plan uses a new single-player Creative world and an arbitrary open construction site as the minimum deterministic setup.",
+      "The report says only that the Creaking Heart must be between two correctly aligned Pale Oak Logs. The plan implements this as a vertical log-heart-log column, with all three blocks aligned on the Y axis.",
+      "The report does not state a required difficulty or gamerule value. Normal difficulty and doMobSpawning=true are practical safeguards against preventing the heart-created entity from appearing.",
+      "The exact position of the Mobs category control and Creaking entries can vary with window dimensions and GUI scale, so scrolling may be required.",
+      "External snapshot documentation describes the experiment and heart activation conditions, but the report remains the source of truth for the exact summon, time, and damage commands."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_06f1cd8535c8faa6016aa70f958be887d09a433c0eec0bf3a4",
+    "elapsed_seconds": 109.53,
+    "usage": {
+      "input_tokens": 33806,
+      "output_tokens": 7951,
+      "reasoning_tokens": 5638,
+      "total_tokens": 41757
+    },
+    "timestamp": "2026-09-13T21:05:06.792040+00:00"
+  }
+}
