@@ -1,0 +1,192 @@
+{
+  "bug_id": "MC-272062",
+  "category": "Structures",
+  "source_md": "[Structures] - MC-272062.md",
+  "source_meta": {
+    "mojira categories": "Structures",
+    "project": "MC",
+    "issue key": "MC-272062",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-05-15T19:12:45.111-0700",
+    "updated": "2025-05-29T09:06:21.466-0700",
+    "resolution date": "2024-10-30T01:31:39.281-0700",
+    "affects versions": "24w20a; 1.21 Pre-Release 2; 1.21 Pre-Release 3; 1.21; 1.21 Release Candidate 1",
+    "fix versions": "24w44a",
+    "area": "Expansion B",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "dimension_padding_bug_report.zip; image-2024-05-15-19-11-51-257.png",
+    "_title": "Dimension padding doesn't affect the start piece"
+  },
+  "stor": {
+    "bug_id": "MC-272062",
+    "affected_versions": [
+      "24w20a",
+      "1.21 Pre-Release 2",
+      "1.21 Pre-Release 3",
+      "1.21",
+      "1.21 Release Candidate 1"
+    ],
+    "recommended_version": "24w20a",
+    "environment": "Minecraft: Java Edition snapshot 24w20a; new singleplayer Overworld; Creative mode; commands enabled; the unmodified attached data pack dimension_padding_bug_report.zip enabled before world creation. The data pack replaces/modifies the plains-village structure definition so that dimension_padding is 158.",
+    "preconditions": [
+      "The Minecraft Launcher is available and configured to show snapshot installations.",
+      "Minecraft: Java Edition 24w20a is installed or can be selected in the launcher.",
+      "The exact Mojira attachment dimension_padding_bug_report.zip has been downloaded and remains available as a ZIP file; do not reconstruct, rename internally, or replace it with a different data pack.",
+      "Use a newly created world so that the data pack's world-generation changes are active before any candidate village chunks generate.",
+      "No world seed or village coordinates were supplied, so the procedure may require searching several plains villages.",
+      "Do not use fix version 24w44a for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation using version 24w20a, then start the game with that installation.",
+        "exact_input": "24w20a",
+        "success_cue": "The Minecraft main menu opens and identifies the running version as 24w20a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer, then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "On the world configuration screen, set Game Mode to Creative and make sure Allow Commands is On. Leave the world type as the normal/default Overworld generator; the report does not supply a seed, so the seed field may remain empty.",
+        "exact_input": null,
+        "success_cue": "Creative mode is selected, commands are allowed, and the world has not yet been created.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the More tab, select Data Packs, and add dimension_padding_bug_report.zip by dragging the ZIP into the Minecraft window or by selecting Open Pack Folder and copying the ZIP into the opened folder. Accept the confirmation prompt if Minecraft asks whether to add the pack. Data packs can be enabled during creation of a singleplayer world. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AInstalling_a_data_pack?utm_source=openai))",
+        "exact_input": "dimension_padding_bug_report.zip",
+        "success_cue": "An entry corresponding to dimension_padding_bug_report.zip appears in the Available data packs list or is already shown in the Selected list.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "If the data pack is in the Available list, select the arrow on its icon to move it to the Selected/enabled side. Do not enable unrelated third-party data packs. Select Done to return to world configuration.",
+        "exact_input": null,
+        "success_cue": "dimension_padding_bug_report.zip is on the Selected side before leaving the Data Packs screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World. If an experimental-settings or data-pack warning appears, acknowledge it and continue because this is a disposable reproduction world created specifically with the supplied world-generation pack.",
+        "exact_input": null,
+        "success_cue": "Minecraft begins creating the new world with the supplied data pack enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait until the player appears in the Overworld, surrounding terrain has rendered, and movement responds normally. Do not travel extensively before verifying the data pack.",
+        "exact_input": null,
+        "success_cue": "The player is controllable in a newly generated Overworld.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open in-game chat, enter the data-pack listing command including the leading slash, and press Enter. This is a verification step; no /reload is needed because the pack was enabled before world creation. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AInstalling_a_data_pack?utm_source=openai))",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "The enabled-pack output includes an entry corresponding to file/dimension_padding_bug_report.zip. If it does not, stop and recreate the world after correctly enabling the attachment.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Press T, enter the locate command including the leading slash, and press Enter. The command targets the plains-village configured structure specifically, rather than the tag containing all village types. The Java Edition locate syntax uses the structure subcommand and accepts a configured structure identifier. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.18.2_Pre-release_1?utm_source=openai))",
+        "exact_input": "/locate structure minecraft:village_plains",
+        "success_cue": "Chat reports coordinates for the nearest minecraft:village_plains structure.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Record the X and Z coordinates returned by the locate command. In a coordinate triplet, use the first number as X and the third number as Z; the search result's displayed Y value is not used for the safe arrival command.",
+        "exact_input": null,
+        "success_cue": "The located plains village's X and Z values are available for substitution into the next command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T and enter the teleport command below, replacing <X_FROM_LOCATE> and <Z_FROM_LOCATE> with the exact integers reported in step 9. Keep Y set to 200 so the player arrives above ordinary terrain rather than inside blocks. Press Enter. Absolute X, Y, and Z coordinates are valid with /tp. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACommand_blocks_and_functions?utm_source=openai))",
+        "exact_input": "/tp @s <X_FROM_LOCATE> 200 <Z_FROM_LOCATE>",
+        "success_cue": "The player teleports to Y=200 above the located plains-village area.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Do not issue another command immediately. Wait until the terrain below has rendered, nearby chunks stop visibly appearing, and movement responds normally. Loading these previously ungenerated chunks is the generation trigger for this candidate village.",
+        "exact_input": null,
+        "success_cue": "The candidate village area and its surrounding terrain are fully rendered and responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "If not already flying, double-tap Space to enable Creative flight. Look downward, hold the Sneak/descend control (default Left Shift) to reduce altitude, and use movement controls such as W to approach the located structure without breaking or placing blocks.",
+        "exact_input": "Double-tap Space; hold Left Shift to descend",
+        "success_cue": "The player is close enough to inspect the candidate plains village while remaining in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Identify the village's start piece by locating its town-center or meeting-point piece near the locate coordinates, rather than selecting an outlying house, farm, or path. Plains-village town-center templates can use gathering features such as a fountain/well, market stalls, a tree plaza, and bells. ([minecraft.wiki](https://minecraft.wiki/w/Village/Structure?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The player has identified the candidate village's central meeting-point/start-piece area.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Press F3 to open the debug overlay. Stand beside the town-center piece and aim the crosshair at a floor, base, or foundation block belonging to that central piece. Read the Y coordinate for the targeted block. Do not break blocks. Accept the candidate only when that town-center block has Y=93 or lower, which is below Y94; a value of Y=90 or lower is preferable to avoid ambiguity at the boundary.",
+        "exact_input": "F3",
+        "success_cue": "Either the town-center/start-piece area has been confirmed below Y94, or the candidate has been classified as too high and must be rejected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "If the town-center block checked in step 15 is below Y94, leave the candidate village loaded and proceed directly to handoff. Do not enter a command, place blocks, break blocks, or travel away before handoff.",
+        "exact_input": null,
+        "success_cue": "An enabled-pack plains-village candidate whose town-center/start-piece area is below Y94 remains fully loaded for observation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Only if the candidate's town center is at Y94 or higher, press T and teleport 5000 blocks along the positive X axis while returning to Y=200. Press Enter, wait for movement to respond normally, and then return to step 9 to locate the nearest plains village from the new search area. Repeat steps 9 through 17 until a candidate below Y94 is found.",
+        "exact_input": "/tp @s ~5000 200 ~",
+        "success_cue": "The player is approximately 5000 blocks away from the rejected candidate and is ready to perform a new plains-village locate search.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The final candidate's previously ungenerated chunks have just been loaded after the teleport in step 11, the supplied dimension-padding data pack is confirmed enabled, and the identified plains-village town-center/start-piece area is below Y94. The player remains beside or above that center area without modifying it; begin observation of the generated structure layout.",
+    "uncertainties": [
+      "The raw report does not include the contents of dimension_padding_bug_report.zip. This plan therefore requires the exact Mojira attachment and does not attempt to recreate its JSON files.",
+      "No deterministic world seed or coordinates were supplied. Finding a plains village below Y94 may require multiple locate-and-teleport iterations, as the report itself notes.",
+      "The report says the village must 'start below y94' but does not define an in-game measurement procedure. Step 15 uses a block belonging to the town-center/start-piece base or floor as the practical height check and recommends selecting a candidate clearly below the threshold.",
+      "The report lists 24w20a first, so it is the required recommended reproduction version even though later affected versions are also listed.",
+      "External verification was limited to allowed Minecraft Wiki material for world-creation data-pack installation, historical locate syntax, teleport syntax, and identification of plains-village town-center templates."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_05b0852a2ea0d44f016aa70e11944487d0a633f8c703001dcc",
+    "elapsed_seconds": 112.29,
+    "usage": {
+      "input_tokens": 25539,
+      "output_tokens": 7245,
+      "reasoning_tokens": 5052,
+      "total_tokens": 32784
+    },
+    "timestamp": "2026-09-13T20:58:41.738057+00:00"
+  }
+}

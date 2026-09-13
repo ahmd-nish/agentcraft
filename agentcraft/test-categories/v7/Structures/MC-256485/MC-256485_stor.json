@@ -1,0 +1,166 @@
+{
+  "bug_id": "MC-256485",
+  "category": "Structures",
+  "source_md": "[Structures] - MC-256485.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning; Structures",
+    "project": "MC",
+    "issue key": "MC-256485",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-10-19T06:52:17.790-0700",
+    "updated": "2025-04-30T04:18:44.808-0700",
+    "resolution date": "2023-06-08T01:51:24.479-0700",
+    "affects versions": "22w42a; 22w43a; 22w44a; 1.19.3; 23w03a; 23w04a; 23w05a; 1.19.4 Pre-release 4; 1.19.4; 23w12a; 23w13a; 23w14a; 23w16a; 23w17a; 23w18a; 1.20 Pre-release 2; 1.20 Pre-release 6; 1.20 Release Candidate 1; 1.20",
+    "fix versions": "23w31a",
+    "area": "Expansion A",
+    "labels": "camel",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2022-10-19_09.41.48.png; MC-256485.png",
+    "issue links": "Relates:inward:MC-253396:Iron golems and cats that spawn within villages can spawn inside of trees",
+    "_title": "Camels that spawn within villages can spawn inside blocks"
+  },
+  "stor": {
+    "bug_id": "MC-256485",
+    "affected_versions": [
+      "22w42a",
+      "22w43a",
+      "22w44a",
+      "1.19.3",
+      "23w03a",
+      "23w04a",
+      "23w05a",
+      "1.19.4 Pre-release 4",
+      "1.19.4",
+      "23w12a",
+      "23w13a",
+      "23w14a",
+      "23w16a",
+      "23w17a",
+      "23w18a",
+      "1.20 Pre-release 2",
+      "1.20 Pre-release 6",
+      "1.20 Release Candidate 1",
+      "1.20"
+    ],
+    "recommended_version": "22w42a",
+    "environment": "Minecraft: Java Edition snapshot 22w42a in a new singleplayer world using the integrated server. Use seed -381051283335009767, enable the built-in Update 1.20 experimental data pack during world creation, and enable cheats. Creative mode is selected as a practical convenience because the report does not specify a game mode.",
+    "preconditions": [
+      "The Minecraft Launcher can install and run historical Java Edition snapshot 22w42a.",
+      "Use an unmodified client without gameplay-changing mods or external data packs.",
+      "Create a new world; do not reuse an existing world because 22w42a experimental feature flags must be selected during world creation.",
+      "Enable the built-in Update 1.20 experimental data pack so that camels are available in 22w42a.",
+      "Enable cheats so the report's teleport command can be executed in in-game chat.",
+      "Do not preload or manually visit the target coordinates before executing the specified teleport; the target village and its camel should be allowed to load through the reproduction sequence."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation that uses the historical snapshot 22w42a, then launch that installation.",
+        "exact_input": "22w42a",
+        "success_cue": "Minecraft reaches the main menu and the displayed version text identifies the running client as 22w42a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer, then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Ensure Allow Cheats is set to ON; if selecting Creative turns cheats on automatically, leave them enabled.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows Creative mode and Allow Cheats: ON.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open More World Options and enter the report's seed into the Seed for the World Generator field. Preserve the leading minus sign and all digits exactly.",
+        "exact_input": "-381051283335009767",
+        "success_cue": "The seed field contains exactly -381051283335009767.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "From the world-creation options, open Data Packs. In the Available list, locate the built-in pack labeled Update 1.20, internally associated with update_1_20, and use its arrow control to move it to the Selected list.",
+        "exact_input": "update_1_20",
+        "success_cue": "The Update 1.20 built-in data pack appears in the Selected or enabled data-pack list.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select Done to return from the Data Packs screen. If an experimental-features warning or confirmation dialog appears, confirm that the world should use the selected experimental settings.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is restored with the Update 1.20 experimental features retained.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Select Create New World and accept any final experimental-world warning. Do not change the seed or data-pack selection before creating the world.",
+        "exact_input": null,
+        "success_cue": "The new world opens and the player appears at the initial Overworld spawn location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Wait only until the initial spawn terrain has rendered and the player responds normally to input. Do not explore toward the target village.",
+        "exact_input": null,
+        "success_cue": "Nearby spawn chunks are visible and the game responds normally to movement or camera input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible and ready to receive a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's command exactly as written, including the leading slash, coordinates, yaw, and pitch, then press Enter once. Executing this command is the trigger because it moves the player into the target village area and causes the destination chunks to load or generate.",
+        "exact_input": "/execute in minecraft:overworld run tp @s -446.99 72.00 2502.34 -23.39 6.11",
+        "success_cue": "The command is accepted and the player is teleported to approximately X=-446.99, Y=72.00, Z=2502.34 in the Overworld with yaw -23.39 and pitch 6.11.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Keep the supplied position and viewing direction unchanged. Wait only until the destination terrain and nearby desert-village blocks have rendered and the client responds normally; do not walk, turn away, break or place blocks, interact with the camel, or allow additional unnecessary time to pass.",
+        "exact_input": null,
+        "success_cue": "The desert-village area around the teleport destination is rendered, the game is responsive, and the player remains at the supplied coordinates and orientation.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The player has just teleported to X=-446.99, Y=72.00, Z=2502.34 in the Overworld, the nearby desert-village terrain has finished rendering, and the supplied position and viewing direction have been preserved. Immediately hand control to the observation subsystem to inspect the village camel and the blocks directly around it.",
+    "uncertainties": [
+      "The deterministic seed and coordinates in the description are explicitly labeled as an example for version 1.19.3, while the first listed affected version and therefore the required recommended version is 22w42a. The report does not explicitly confirm that this exact location produces the same arrangement in 22w42a. If it does not, the same procedure can be rerun in the explicitly documented example version 1.19.3, with the Update 1.20 experimental features still enabled.",
+      "The report does not specify a game mode or multiplayer requirement. Singleplayer Creative mode with cheats enabled is used as the simplest execution path and is not asserted as a condition of the bug.",
+      "Depending on the exact 22w42a interface text, the built-in experimental pack may be displayed as Update 1.20 rather than its internal-style identifier update_1_20.",
+      "Comment 9 says 22w14a, but the formal Affects versions field lists 23w14a. The affected_versions output preserves the formal field exactly as required.",
+      "The report does not identify a particular village component for the original seed beyond the blocks surrounding the camel; the separate comment mentioning a fountain refers to a different seed and coordinates and was therefore not substituted into this plan."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0d763911b3e92766016aa70dc9956087d0b345fb10afc20fc9",
+    "elapsed_seconds": 72.32,
+    "usage": {
+      "input_tokens": 25715,
+      "output_tokens": 4942,
+      "reasoning_tokens": 3390,
+      "total_tokens": 30657
+    },
+    "timestamp": "2026-09-13T20:56:49.430201+00:00"
+  }
+}

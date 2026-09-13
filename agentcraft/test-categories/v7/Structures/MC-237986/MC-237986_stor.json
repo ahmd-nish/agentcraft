@@ -1,0 +1,192 @@
+{
+  "bug_id": "MC-237986",
+  "category": "Structures",
+  "source_md": "[Structures] - MC-237986.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning; Structures",
+    "project": "MC",
+    "issue key": "MC-237986",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2021-09-30T00:38:25.834-0700",
+    "updated": "2025-04-30T06:41:35.747-0700",
+    "resolution date": "2022-10-17T13:42:22.606-0700",
+    "affects versions": "21w39a; 21w40a; 21w41a; 21w42a; 21w43a",
+    "fix versions": "21w44a",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2021-11-04_11.23.03.png; Screenshot (35).png; Screenshot (36).png",
+    "issue links": "Duplicate:inward:MC-238260:Pillagers not spawning at outpost, guardians not spawning in monuments, mob heads twitching",
+    "_title": "Mobs specific to structures aren't spawning in their structures"
+  },
+  "stor": {
+    "bug_id": "MC-237986",
+    "affected_versions": [
+      "21w39a",
+      "21w40a",
+      "21w41a",
+      "21w42a",
+      "21w43a"
+    ],
+    "recommended_version": "21w39a",
+    "environment": "Unmodified Minecraft Java Edition snapshot 21w39a in a single-player, newly generated Default world. Use Creative mode with commands available, Generate Structures enabled, Normal difficulty, natural mob spawning enabled for the final observation interval, and render/simulation distances of at least 8 chunks. The selected reproduction variant uses an Ocean Monument and tests post-generation spawning of ordinary Guardians, not the Elder Guardians placed during monument generation.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start Java Edition snapshot 21w39a, not the fixing snapshot 21w44a or a later release.",
+      "Use a separate game directory if possible so the historical snapshot does not open or modify unrelated modern worlds.",
+      "Do not use mods, server plugins, or datapacks that alter structures, entity spawning, difficulty, or dimensions.",
+      "Create the test world directly in 21w39a; do not upgrade an existing 1.17 or other-version world for this reproduction.",
+      "The executor must distinguish an ordinary Guardian from the larger Elder Guardian. Elder Guardians are not the target entity for this test.",
+      "Keep the single-player game unpaused during the final natural-spawning interval; opening the Esc pause menu stops the integrated server."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select or create an installation whose version is exactly snapshot 21w39a, and launch it. If snapshots are hidden in the launcher, enable snapshot versions from the Installations screen first.",
+        "exact_input": null,
+        "success_cue": "The lower-left or title-screen version text identifies the running game as Minecraft Java Edition 21w39a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer and then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Enter any convenient world name; the name does not affect the reproduction.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen displays Game Mode: Creative.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Open More World Options. Leave World Type set to Default, ensure Generate Structures is ON, and ensure Allow Cheats is ON. The report supplies no seed for 21w39a, so leave the seed field empty to generate an arbitrary seed.",
+        "exact_input": null,
+        "success_cue": "The world is configured as a fresh Default world with structures and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select Create New World and wait for world generation to finish. Do not continue while a loading screen is visible.",
+        "exact_input": null,
+        "success_cue": "The player is in the new Overworld, surrounding terrain has rendered, and movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Press Esc, open Options, then Video Settings. Set Render Distance to at least 8 chunks and Simulation Distance to at least 8 chunks. Select Done as needed to return to the live game.",
+        "exact_input": null,
+        "success_cue": "Normal gameplay is visible again, the pause menu is closed, and both distance settings are at least 8 chunks.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open in-game chat, type the difficulty command exactly with the leading slash, and press Enter.",
+        "exact_input": "/difficulty normal",
+        "success_cue": "Chat confirms that the difficulty has been set to Normal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Temporarily prevent natural mob spawning while the monument is located and loaded. Press T, type the gamerule command exactly with the leading slash, and press Enter.",
+        "exact_input": "/gamerule doMobSpawning false",
+        "success_cue": "Chat confirms that the doMobSpawning game rule is now false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Locate the nearest Ocean Monument using the command syntax appropriate to 21w39a. Press T, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/locate monument",
+        "success_cue": "Chat reports the coordinates of the nearest Monument rather than displaying an unknown-command or unknown-structure error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Record the horizontal coordinates from the locate result. Treat the first number as X and the last number as Z; if the middle coordinate is displayed as a tilde, it is not needed for the teleport command below.",
+        "exact_input": null,
+        "success_cue": "The executor has retained a signed integer X coordinate and a signed integer Z coordinate for the located monument.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "While in Creative mode, double-tap the default Jump key, Space, to enable Creative flight before teleporting into the air.",
+        "exact_input": null,
+        "success_cue": "The player remains suspended when no movement key is held, indicating that Creative flight is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T and teleport above the located monument. Replace <located_X> and <located_Z> with the exact signed coordinates recorded from the locate result; retain Y=100. Include the leading slash and press Enter.",
+        "exact_input": "/tp @s <located_X> 100 <located_Z>",
+        "success_cue": "The teleport succeeds and the player is flying at approximately Y=100 above the located ocean area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Do not issue further setup commands until destination loading finishes. Look downward and allow the ocean and monument chunks to render. The relevant structure is the large prismarine-and-sea-lantern building under the ocean. Wait until the terrain no longer appears incomplete and controls and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "The located Ocean Monument area is loaded below the player, the player remains airborne near Y=100, and the game responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Establish a clean baseline for post-generation ordinary Guardian spawning without removing Elder Guardians. Press T, enter the command exactly, and press Enter. A message saying that Guardians were killed or that no matching entity was found is acceptable.",
+        "exact_input": "/kill @e[type=minecraft:guardian]",
+        "success_cue": "No ordinary Guardian that loaded before the observation interval remains; Elder Guardians, whose entity type is different, have not been targeted by the command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Verify that the player has not drifted from the observation position. If necessary, repeat the teleport using the same recorded X and Z values so the player is again flying at Y=100 over the monument.",
+        "exact_input": "/tp @s <located_X> 100 <located_Z>",
+        "success_cue": "The player is stationary in Creative flight at the located monument's X and Z coordinates and approximately Y=100.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Re-enable natural mob spawning. Press T, enter the gamerule command exactly with the leading slash, and press Enter.",
+        "exact_input": "/gamerule doMobSpawning true",
+        "success_cue": "Chat confirms that the doMobSpawning game rule is true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Immediately begin the natural-spawning interval: leave the normal game view open, release all movement controls, remain stationary above the monument for at least five real-time minutes, and do not open the Esc pause menu. Hand control to the observation subsystem at the start of this interval so it can track ordinary Guardian entities separately from Elder Guardians.",
+        "exact_input": null,
+        "success_cue": "The world is unpaused, natural spawning is enabled, the monument remains loaded, and the stationary observation interval has started.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "Natural mob spawning has been re-enabled, the freshly generated Ocean Monument is fully loaded, any pre-interval ordinary Guardians have been cleared, and the Creative-mode player is stationary at approximately Y=100 over the monument with the game unpaused. Begin observing entity spawning during the five-minute interval, distinguishing ordinary Guardians from Elder Guardians.",
+    "uncertainties": [
+      "The report does not provide a seed confirmed specifically for 21w39a, so this plan uses /locate monument in a randomly generated fresh world.",
+      "The report permits any of Monuments, Witch Huts, or Pillager Outposts. This plan selects one supported deterministic variant—an Ocean Monument—and does not separately exercise the other two structures.",
+      "The Y=100 waiting position, temporary doMobSpawning=false setup control, ordinary-Guardian reset command, distance settings, and five-minute interval are operational controls added for deterministic execution; they were not specified by the reporter.",
+      "Natural mob spawning is randomized. The five-minute interval provides repeated spawning cycles without requiring excessive repetition, but the report itself specifies no exact waiting duration.",
+      "Current launcher screens may label snapshot-selection controls differently from the launcher interface available when 21w39a was released; regardless of UI wording, the launched game version must be exactly 21w39a."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0a5e4def88cf00ae016aa70d39516087d09fd3afce5291dbd2",
+    "elapsed_seconds": 144.24,
+    "usage": {
+      "input_tokens": 44487,
+      "output_tokens": 7350,
+      "reasoning_tokens": 7065,
+      "total_tokens": 51837
+    },
+    "timestamp": "2026-09-13T20:55:37.020369+00:00"
+  }
+}

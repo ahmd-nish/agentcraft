@@ -1,0 +1,264 @@
+{
+  "bug_id": "MC-104231",
+  "category": "Structures",
+  "source_md": "[Structures] - MC-104231.md",
+  "source_meta": {
+    "mojira categories": "Structures",
+    "project": "MC",
+    "issue key": "MC-104231",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2016-06-22T12:45:18.323-0700",
+    "updated": "2025-04-26T05:08:29.041-0700",
+    "resolution date": "2025-04-11T09:25:19.310-0700",
+    "affects versions": "Minecraft 1.10; Minecraft 1.10.1; Minecraft 1.10.2; Minecraft 16w33a; Minecraft 1.12.2; Minecraft 1.13-pre3; 1.16.1; 20w28a; 1.16.3; 1.17.1; 1.18; 1.19; 1.20.1; 1.20.4; 1.21",
+    "fix versions": "25w16a",
+    "area": "Platform",
+    "game mode": "Creative",
+    "labels": "rails; structure_block",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "180 degree rotation rail bug.png; NBTData.jpg; Step1.png; Step2.png",
+    "issue links": "Relates:inward:MC-148191:Rails don't generate properly in mansion rooms | Relates:outward:MC-248855:Structure blocks do not rotate item frames correctly when loading in certain cases | Duplicate:inward:MC-268435:Rails sometimes generate in the wrong orientation in custom structures | Relates:outward:MC-42375:DataValue of Rail ignored when using /setblock /clone /fill | Duplicate:inward:MC-196102:Rails Rotation is missing two cases. | Duplicate:inward:MC-196041:Structure blocks sometimes break powered rails | Duplicate:inward:MC-132023:Structure blocks mess up rails | Duplicate:inward:MC-105242:Structure block error with rails",
+    "_title": "Loading a custom structure doesn't load rails correctly"
+  },
+  "stor": {
+    "bug_id": "MC-104231",
+    "affected_versions": [
+      "Minecraft 1.10",
+      "Minecraft 1.10.1",
+      "Minecraft 1.10.2",
+      "Minecraft 16w33a",
+      "Minecraft 1.12.2",
+      "Minecraft 1.13-pre3",
+      "1.16.1",
+      "20w28a",
+      "1.16.3",
+      "1.17.1",
+      "1.18",
+      "1.19",
+      "1.20.1",
+      "1.20.4",
+      "1.21"
+    ],
+    "recommended_version": "Minecraft 1.10",
+    "environment": "Vanilla Minecraft Java Edition in the first listed affected version, Minecraft 1.10. Use a fresh single-player world as a deterministic practical choice, with Creative mode and cheats enabled. A flat, unobstructed building area is recommended but is not a report requirement. The original Step1.png attachment must be available because the report makes the rail pattern and its cardinal orientation dependent on that screenshot.",
+    "preconditions": [
+      "Install and select the unmodified Minecraft Java Edition 1.10 profile; do not use the fixed version 25w16a.",
+      "Make the report attachment Step1.png available to the executor. It is required to reconstruct the source rail art and its world-relative orientation. Step2.png depicts post-trigger material and must not be used as the source layout.",
+      "Use Creative mode, as specified by the report.",
+      "Enable cheats so that the unobtainable-from-normal-inventory structure block can be acquired with a command.",
+      "Use a fresh world or a structure name that has not already been loaded in the current test world, so the eventual placement is the first actual load of this saved structure.",
+      "Do not apply a mirror or rotation during the primary reproduction. A later report comment documents rotation-related variants, but the original procedure and another confirmation state that the problem can occur with no rotation.",
+      "Do not continue if Step1.png cannot be retrieved or its cardinal orientation cannot be determined; substituting invented rail geometry would not faithfully reproduce the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the exact Java Edition profile named Minecraft 1.10 and start the game without mods.",
+        "exact_input": "Minecraft 1.10",
+        "success_cue": "The main menu displays Minecraft 1.10 as the running version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world. Set Game Mode to Creative and ensure cheats are allowed. A Superflat world may be selected to provide an unobstructed test area, but Superflat is only a practical execution choice.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON",
+        "success_cue": "The world-generation process begins with Creative mode and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for the player to enter the world. Do not begin building until nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player can move and look around normally, and the nearby terrain is fully visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press F3 to display the debug overlay. Use its facing direction and X/Y/Z coordinates to select an unobstructed building location and to preserve the exact north/south/east/west orientation shown in Step1.png. Record the lowest and highest coordinates that will contain the copied structure as Xmin, Ymin, Zmin and Xmax, Ymax, Zmax.",
+        "exact_input": "F3",
+        "success_cue": "The debug overlay is visible, the cardinal directions can be determined, and an unobstructed source location has been selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat command-entry field is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the structure-block acquisition command exactly as shown, including the leading slash, and press Enter. The quantity of 2 supplies one block for saving and one for loading.",
+        "exact_input": "/give @p structure_block 2",
+        "success_cue": "Two structure block items are added to the player's inventory or hotbar, and no command-syntax error is shown.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory with E. Obtain ordinary rails and every solid support block needed to reproduce Step1.png. Move the rails, support blocks, and structure blocks into hotbar slots; the hotbar is the row of nine immediately selectable slots at the bottom of the inventory.",
+        "exact_input": "E",
+        "success_cue": "Rails, all required support blocks, and two structure blocks are available in the hotbar or inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Study Step1.png before placing blocks. Identify every support-block and rail position, including any elevation changes, curves, adjacent tracks, and straight sections. Relate the screenshot's indicated world directions to the cardinal directions shown by F3. Do not rotate or mirror the pattern for convenience.",
+        "exact_input": "Use Step1.png from MC-104231",
+        "success_cue": "Each block position and the required north/south/east/west orientation of the source build have been mapped to the chosen location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Close the inventory with E or Esc. Select the required support block from the hotbar and place the complete support foundation shown in Step1.png. Use right-click to place each block. Keep the entire build within the structure-block size limits exposed by Minecraft 1.10.",
+        "exact_input": null,
+        "success_cue": "A complete solid foundation matching Step1.png is present, with an exposed upper surface at every location where a rail must be placed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select the ordinary rail item in the hotbar. Place rails with right-click on the prepared support blocks until the layout matches Step1.png exactly. Preserve the screenshot's world-relative orientation; in particular, do not interchange north-south and east-west sections.",
+        "exact_input": null,
+        "success_cue": "From above, the source rail layout, its curves or neighboring lines, and its cardinal orientation match Step1.png.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Stop placing or removing blocks and allow all rail neighbor updates to finish. Walk or fly around the source once and verify that every rail remains supported and that the source has reached a stable shape before saving it.",
+        "exact_input": null,
+        "success_cue": "No rails are dropping as items or continuing to change shape, and the intact source still matches Step1.png.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Using the F3 coordinates, determine the inclusive bounding box containing all blocks that must be saved: Xmin through Xmax, Ymin through Ymax, and Zmin through Zmax. Include the supporting blocks as well as the rails. Do not include either structure block in this bounding box.",
+        "exact_input": "Size X = Xmax-Xmin+1; Size Y = Ymax-Ymin+1; Size Z = Zmax-Zmin+1",
+        "success_cue": "The minimum and maximum coordinates and all three positive structure dimensions have been recorded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select a structure block in the hotbar and place it one block west and one block north of the bounding box's minimum corner, at the same Y level as Ymin. In coordinate form, place it at Xmin-1, Ymin, Zmin-1.",
+        "exact_input": "Save structure block position: (Xmin-1, Ymin, Zmin-1)",
+        "success_cue": "A structure block is adjacent to but outside the source structure's bounding box.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Right-click the placed structure block to open its interface. Click the mode button in the lower-left until the interface is in SAVE mode. In Minecraft 1.10 this button may initially display DATA.",
+        "exact_input": "DATA -> SAVE",
+        "success_cue": "The structure-block interface visibly indicates SAVE mode and exposes structure name, relative position, and size fields.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Enter a unique structure name in the structure-name field. Use the same spelling and capitalization during loading.",
+        "exact_input": "rail_art_mc104231",
+        "success_cue": "The structure-name field contains rail_art_mc104231.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Set the save block's relative-position fields so the saved region begins one block east and one block south of the structure block, at the same height.",
+        "exact_input": "Relative Position: X=1, Y=0, Z=1",
+        "success_cue": "The save interface shows relative position 1, 0, 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Enter the inclusive bounding-box dimensions calculated in step 12 into the structure-size X, Y, and Z fields. If the interface provides a bounding-box display option, enable it and confirm visually that the outline contains every support block and rail but excludes the structure block.",
+        "exact_input": "Size: X=Xmax-Xmin+1, Y=Ymax-Ymin+1, Z=Zmax-Zmin+1",
+        "success_cue": "The displayed or calculated save volume encloses the complete rail build and its supports, without enclosing the save structure block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Leave entity inclusion disabled unless Step1.png unexpectedly contains an entity that is explicitly part of the rail art. Click the SAVE button on the right side of the interface once.",
+        "exact_input": "Structure name: rail_art_mc104231; Include Entities: OFF; press SAVE",
+        "success_cue": "Minecraft reports that rail_art_mc104231 was saved, and the source build remains intact.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 19,
+        "action": "Move to another unobstructed location far enough away that a copy of the entire saved bounding box cannot overlap the source build or its structure block. Wait until the destination chunks have rendered. Designate the intended minimum corner of the loaded structure as TX, TY, TZ, with enough empty space above it for the full saved height.",
+        "exact_input": null,
+        "success_cue": "The destination chunks are rendered, movement is responsive, and the complete saved structure can fit without overlapping the source.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Select the second structure block and place it one block west and one block north of the destination minimum corner, at TX-1, TY, TZ-1.",
+        "exact_input": "Load structure block position: (TX-1, TY, TZ-1)",
+        "success_cue": "A second structure block is present next to the empty destination volume.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Right-click the destination structure block. Click its lower-left mode button until the interface is in LOAD mode.",
+        "exact_input": "DATA -> LOAD",
+        "success_cue": "The structure-block interface visibly indicates LOAD mode.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 22,
+        "action": "Enter the exact saved structure name and set the relative load position to one block east and one block south of the load structure block, at the same Y level. Keep mirroring disabled and select the unrotated 0-degree setting.",
+        "exact_input": "Name: rail_art_mc104231; Relative Position: X=1, Y=0, Z=1; Mirror: NONE; Rotation: 0 degrees",
+        "success_cue": "The LOAD interface contains the matching name and position, with no mirror and no rotation selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Click LOAD once to prepare or locate the saved structure. This preparatory click is not the first actual structure placement. Do not press LOAD again until the saved dimensions have been accepted and the destination outline is available.",
+        "exact_input": "Press LOAD once",
+        "success_cue": "The interface accepts the saved name and dimensions, and a destination bounding box is displayed or the interface is ready to perform the actual load.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 24,
+        "action": "Close the interface temporarily if necessary and inspect only the bounding box, not any rail result. Confirm that the box is entirely within the intended unobstructed destination and that it has the same dimensions as the source. Reopen the load structure block afterward if the interface was closed.",
+        "exact_input": null,
+        "success_cue": "The prepared destination volume has the correct size, does not overlap the source, and the LOAD control is ready for the first actual placement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 25,
+        "action": "Trigger the reproduction by clicking LOAD again. This is the first actual placement of rail_art_mc104231 at the destination. Do not click LOAD a further time, place or remove blocks, or otherwise cause additional rail updates before handing control to the observation subsystem.",
+        "exact_input": "Press LOAD once for the first actual structure placement",
+        "success_cue": "The structure placement operation has completed at the destination and the game is ready for immediate inspection without a second load having been performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 25,
+    "handoff_condition": "The saved rail structure has just been placed at the unobstructed destination for the first actual time, using 0-degree rotation and no mirror. No second load or manual block update has occurred. Begin observation immediately.",
+    "uncertainties": [
+      "The supplied text does not include the pixels of Step1.png, even though the report states that both the rail geometry and its world directions matter. The exact rail coordinates therefore cannot be encoded from the text alone. Retrieval of Step1.png is an execution-blocking prerequisite; the executor must halt rather than invent a substitute layout if it is unavailable.",
+      "The identification of Step1.png as the source-layout image is inferred from its filename and the report's ordering. The attachment should be checked before execution to confirm that it is the pre-load build rather than a post-load result.",
+      "The report provides no seed, coordinates, world type, structure dimensions, or rail-placement order. A fresh single-player Superflat world, arbitrary non-overlapping coordinates, and saving all supports with the rails are practical choices rather than asserted requirements.",
+      "Single-player is not stated as mandatory. It is selected because no dedicated-server or multiplayer condition appears in the report.",
+      "The exact visual wording and arrangement of the Minecraft 1.10 structure-block interface may differ from later interfaces. The operationally important states are SAVE mode, LOAD mode, matching structure name, relative position, stored size, no mirror, and 0-degree rotation.",
+      "The command /give @p structure_block 2 is a historically appropriate practical command choice for obtaining two structure blocks in Minecraft 1.10, but the raw report itself does not provide an acquisition command.",
+      "Comment 5 documents a separate 180-degree-rotation variant, while Comment 6 confirms that incorrect rails can occur without rotation. This plan follows the original no-rotation first-load procedure and does not substitute the later rotation variant."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_03ae12011d4c35e4016aa70c41d89087d095494c51805a57fa",
+    "elapsed_seconds": 123.9,
+    "usage": {
+      "input_tokens": 19905,
+      "output_tokens": 7196,
+      "reasoning_tokens": 4211,
+      "total_tokens": 27101
+    },
+    "timestamp": "2026-09-13T20:51:08.798238+00:00"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "bug_id": "MC-151828",
+  "category": "Structures",
+  "source_md": "[Structures] - MC-151828.md",
+  "source_meta": {
+    "mojira categories": "Structures; World generation",
+    "project": "MC",
+    "issue key": "MC-151828",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2019-05-14T02:24:14.228-0700",
+    "updated": "2025-04-29T08:11:17.029-0700",
+    "resolution date": "2024-07-23T01:18:46.603-0700",
+    "affects versions": "Minecraft 1.14.1; Minecraft 1.14.2 Pre-Release 1; Minecraft 1.14.2 Pre-Release 2; 1.14.4; 19w45b; 1.15.1; 1.15.2; 20w12a; 20w51a; 1.16.5; 21w06a; 21w08b; 1.17.1; 1.18 Pre-release 5; 1.18.2; 1.19 Release Candidate 1; 1.19 Release Candidate 2; 1.19; 22w24a; 1.19.1; 1.19.2; 1.19.4; 1.20.1",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2019-05-14_17.22.08.png; MC-151828.mp4",
+    "issue links": "Duplicate:inward:MC-152610:woodland mansion shortage the \"dark oak leaves \" on the fence in 1x1_b3 (\"Single bed bedroom\") | Relates:inward:MC-271137:Leaves from the Trial Chamber entrance room tree won't decay",
+    "_title": "Woodland mansion structure '1x1_b3' has dark oak leaf block with persistent tag set to 'false'"
+  },
+  "stor": {
+    "bug_id": "MC-151828",
+    "affected_versions": [
+      "Minecraft 1.14.1",
+      "Minecraft 1.14.2 Pre-Release 1",
+      "Minecraft 1.14.2 Pre-Release 2",
+      "1.14.4",
+      "19w45b",
+      "1.15.1",
+      "1.15.2",
+      "20w12a",
+      "20w51a",
+      "1.16.5",
+      "21w06a",
+      "21w08b",
+      "1.17.1",
+      "1.18 Pre-release 5",
+      "1.18.2",
+      "1.19 Release Candidate 1",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "22w24a",
+      "1.19.1",
+      "1.19.2",
+      "1.19.4",
+      "1.20.1"
+    ],
+    "recommended_version": "Minecraft 1.14.1",
+    "environment": "Vanilla Minecraft Java Edition 1.14.1 in a single-player Creative-mode world with cheats enabled. Use an open, flat area with enough empty space for a small woodland-mansion bedroom template; a new Superflat world is suitable but is not required.",
+    "preconditions": [
+      "Launch the exact Java Edition version Minecraft 1.14.1, which is the first version in the report's affected-version list.",
+      "Use a vanilla world without mods or datapacks that replace woodland-mansion structure templates or alter leaf block states.",
+      "Create or open a single-player world in Creative mode with cheats enabled. No particular world seed, biome, coordinates, or difficulty is specified by the report.",
+      "Move to a flat, unobstructed area with approximately 12 blocks of horizontal clearance and 10 blocks of vertical clearance. Ensure there are no powered redstone components next to the intended command-execution position.",
+      "Use default controls where possible. If controls are rebound, use the bindings for Open Chat, Inventory, Sneak, Use Item/Place Block, and Debug Screen.",
+      "Do not break or otherwise update the decorative dark oak leaves block after the structure is loaded."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Disable reduced debug information so the F3 overlay can display the targeted block's state properties. Press T to open in-game chat, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamerule reducedDebugInfo false",
+        "success_cue": "Chat confirms that the reducedDebugInfo game rule is set to false.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Obtain one Block of Redstone for powering the structure block. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:redstone_block 1",
+        "success_cue": "A Block of Redstone is added to the player's inventory, and command feedback confirms that the item was given.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the inventory. If the Block of Redstone is not already in the hotbar—the nine slots along the bottom of the inventory—move it into any hotbar slot. Close the inventory with E, then press the corresponding number key from 1 through 9 so the Block of Redstone is the selected item.",
+        "exact_input": null,
+        "success_cue": "The player's hand displays a Block of Redstone and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Stand still at the center of the prepared open area on a solid, flat surface. Confirm that the block space occupied by the player's feet is air and that no nearby redstone source can power a block placed there.",
+        "exact_input": null,
+        "success_cue": "The player is stationary in a clear location, with sufficient empty space around and above the execution point.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Place the report's load-mode structure block at the player's current position. Press T, enter the report command exactly as supplied—including the leading slash, capitalization, quotation marks, comma, and structure name—and press Enter. Do not substitute the later /place command because it is unavailable in Minecraft 1.14.1.",
+        "exact_input": "/setblock ~ ~ ~ structure_block{mode:\"LOAD\", name:\"woodland_mansion/1x1_b3\"}",
+        "success_cue": "Command feedback reports that the block was changed. A load-mode structure block is now at the command-execution position; because it was placed at the player's feet, the player may have been moved upward onto its top.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Power the newly placed structure block. Keep the Block of Redstone selected, look diagonally downward at one exposed side face of the structure block, hold the Sneak control—Left Shift by default—and right-click the side face once. Sneaking is required so right-click places the Block of Redstone against the structure block instead of opening the structure-block interface.",
+        "exact_input": null,
+        "success_cue": "A Block of Redstone is placed directly adjacent to the structure block, providing a new redstone signal to it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Allow the structure load to finish. Do not place or break additional blocks while it loads. Wait until the room blocks have appeared, rendering is complete, and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "A small woodland-mansion bedroom template is present, with a birch-plank floor and furnishings that include a bed, fireplace, and decorative indoor plant.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Locate the decorative indoor plant within the loaded bedroom. Identify the single dark oak fence used as its stem or stand and the single dark oak leaves block directly on top of that fence. Walk or fly within the room as needed, but do not touch, break, place against, or otherwise update the leaves block.",
+        "exact_input": null,
+        "success_cue": "The player has an unobstructed view of the room's only dark oak leaves block, positioned above the dark oak fence.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Enable the debug overlay by pressing F3. On keyboards that reserve function keys for hardware controls, press Fn+F3 instead. Confirm that the full debug overlay appears and that reduced debug information is not hiding targeted-block details.",
+        "exact_input": "F3",
+        "success_cue": "The full debug overlay is visible, including a section labeled \"Looking at block\" when the crosshair is aimed at a block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Move the crosshair precisely onto the decorative leaves block above the dark oak fence. Adjust position or camera angle without interacting with the block until the debug overlay's \"Looking at block\" section identifies the target as minecraft:dark_oak_leaves and displays its block-state property lines. Stop all input and hand off immediately; do not wait for decay and do not evaluate any property value.",
+        "exact_input": null,
+        "success_cue": "The F3 overlay is open, the crosshair is targeting minecraft:dark_oak_leaves, and the targeted block's state-property lines are visible for the observation subsystem.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The woodland_mansion/1x1_b3 bedroom has been loaded, the F3 debug overlay is enabled, and the crosshair has just targeted the single minecraft:dark_oak_leaves block on top of the dark oak fence. The \"Looking at block\" state lines are visible, and no blocks have been changed after loading. Begin observation at this point.",
+    "uncertainties": [
+      "The report specifies no world seed, coordinates, world type, biome, difficulty, or server requirement. A single-player Creative world and an open flat test area are practical execution choices rather than report requirements.",
+      "The original reproduction command creates a configured structure block but does not itself load the template. A later report comment explicitly says to power the structure block; this plan uses one adjacent Block of Redstone as the simplest deterministic power source.",
+      "The report's command is preserved exactly for the recommended Minecraft 1.14.1 version. The later /place template reproduction is not used because /place was introduced after this recommended affected version.",
+      "The template's rotation and relative-position fields are left at the defaults produced by the supplied command because the report does not specify alternatives. Consequently, the plant's compass direction relative to the player is not fixed.",
+      "Creative mode is not explicitly required by the report, but it avoids survival hazards and provides the permissions and movement needed for deterministic command-based reproduction."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0caa63a8ff43d6db016aa70cbcfb7487d0829882816e05166d",
+    "elapsed_seconds": 123.94,
+    "usage": {
+      "input_tokens": 45155,
+      "output_tokens": 5496,
+      "reasoning_tokens": 5496,
+      "total_tokens": 50651
+    },
+    "timestamp": "2026-09-13T20:53:12.752857+00:00"
+  }
+}
