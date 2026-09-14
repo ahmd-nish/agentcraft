@@ -1,0 +1,228 @@
+{
+  "bug_id": "MC-249355",
+  "category": "Internationalisation",
+  "panel": "low-interaction-54",
+  "reproduction_method": "outside-game inspection",
+  "source_md": "[Internationalisation] - MC-249355.md",
+  "source_meta": {
+    "mojira categories": "Internationalisation",
+    "project": "MC",
+    "issue key": "MC-249355",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-03-23T11:48:27.754-0700",
+    "updated": "2025-03-25T12:56:45.749-0700",
+    "resolution date": "2023-09-01T04:26:34.754-0700",
+    "affects versions": "1.18.2; 1.19 Pre-release 1; 1.19; 1.19.1; 1.19.2; 22w43a; 22w45a; 1.19.3; 1.19.4; 1.20.1",
+    "fix versions": "1.20.2 Pre-release 1",
+    "area": "Platform",
+    "labels": "translatability",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-249355 - Context.png",
+    "_title": "The hyphen used within the statistics menu to show a null value is untranslatable"
+  },
+  "stor": {
+    "bug_id": "MC-249355",
+    "affected_versions": [
+      "1.18.2",
+      "1.19 Pre-release 1",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "22w43a",
+      "22w45a",
+      "1.19.3",
+      "1.19.4",
+      "1.20.1"
+    ],
+    "recommended_version": "1.18.2",
+    "environment": "Minecraft Java Edition 1.18.2, unmodified vanilla client, fresh single-player world using the integrated server. Create the world in Creative mode so that an appropriate non-block item can be obtained deterministically and commands are available. The procedure then changes the player to Survival mode before recording item interaction statistics. No particular seed, coordinates, resource pack, or server configuration is specified by the report.",
+    "preconditions": [
+      "Install and select an exact Minecraft Java Edition 1.18.2 launcher installation; do not use the fixed version 1.20.2 Pre-release 1 or any later version for this reproduction.",
+      "Disable mods, custom clients, and resource packs that replace or alter the Statistics screen.",
+      "Use a fresh disposable world so the Items statistics list contains as few unrelated rows as possible.",
+      "Use keyboard and mouse controls. The steps name the default keys; if controls have been rebound, use the control bound to the named action instead.",
+      "Ensure commands are available. A world created in Creative mode normally enables commands, which are used only to switch to Survival mode after obtaining the test item.",
+      "The original report does not provide the referenced official Crowdin search filter. This plan therefore prepares the in-game Statistics screen and the null statistics cell described by the report rather than attempting the incomplete Crowdin search procedure."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation that runs Minecraft Java Edition 1.18.2 and start the game.",
+        "exact_input": "Select the 1.18.2 installation, then click Play.",
+        "success_cue": "The main menu has loaded and the lower-left version label identifies the running game as Minecraft 1.18.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world list from the main menu.",
+        "exact_input": "Click Singleplayer.",
+        "success_cue": "The Select World screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Begin creating a fresh world.",
+        "exact_input": "Click Create New World.",
+        "success_cue": "The Create New World configuration screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set the new world's game mode to Creative so a test item can be obtained without crafting or exploration.",
+        "exact_input": "Click the Game Mode button until it reads Game Mode: Creative.",
+        "success_cue": "The world-creation screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Create the world without changing the seed or other world-generation options.",
+        "exact_input": "Click Create New World.",
+        "success_cue": "World generation begins.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait for the world and surrounding chunks to finish loading before interacting with the inventory.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the world, nearby terrain is rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory.",
+        "exact_input": "Press E.",
+        "success_cue": "The Creative inventory interface is open and category tabs are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the Creative inventory's Search Items tab.",
+        "exact_input": "Click the Search Items tab, represented by the compass icon.",
+        "success_cue": "The Search Items tab is selected and its text-search field is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Search for a Diamond Sword. This non-block item is used to create an Items statistics row containing a statistic that is not applicable to the item.",
+        "exact_input": "Click the search field and type: diamond sword",
+        "success_cue": "A Diamond Sword appears among the filtered Creative inventory results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Place one Diamond Sword into an empty hotbar slot. The hotbar is the row of nine item slots at the bottom of the inventory.",
+        "exact_input": "Click or drag the Diamond Sword result into an empty slot in the bottom hotbar row.",
+        "success_cue": "A Diamond Sword icon is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Close the inventory and return to gameplay.",
+        "exact_input": "Press E or Esc.",
+        "success_cue": "The inventory closes and the world view is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Open in-game chat in preparation for changing to Survival mode.",
+        "exact_input": "Press T.",
+        "success_cue": "The chat input field is open and ready for a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Change the player to Survival mode so dropping and collecting the sword occurs through ordinary inventory behavior. Enter the command in in-game chat with the leading slash, then submit it.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The command succeeds, the player is in Survival mode, and the health and hunger indicators are visible above the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Select the hotbar slot containing the Diamond Sword so it becomes the active item.",
+        "exact_input": "Press the number key from 1 through 9 corresponding to the Diamond Sword's hotbar slot, or use the mouse wheel until that slot is highlighted.",
+        "success_cue": "The slot containing the Diamond Sword has the selection outline and the sword is visible in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Drop the selected Diamond Sword once to record interaction with that item.",
+        "exact_input": "Press Q once, using the default Drop Selected Item control.",
+        "success_cue": "A dropped Diamond Sword item entity is visible on the ground near the player, and the previously selected hotbar slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Collect the dropped Diamond Sword by moving the player over it.",
+        "exact_input": "Use W, A, S, and/or D to walk into the dropped item.",
+        "success_cue": "The dropped item entity disappears from the ground and a Diamond Sword is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Open the pause menu after the item has been collected.",
+        "exact_input": "Press Esc.",
+        "success_cue": "The Game Menu is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Open the Statistics screen from the pause menu.",
+        "exact_input": "Click Statistics.",
+        "success_cue": "The Statistics screen opens and its category buttons are visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Select the Items statistics category to render the table containing per-item statistics and null-value cells.",
+        "exact_input": "Click the Items category button near the top of the Statistics screen.",
+        "success_cue": "The Items statistics table replaces the General statistics view.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Wait until the Items statistics table has completely loaded before navigating the list.",
+        "exact_input": null,
+        "success_cue": "The table headers and item rows are rendered, scrolling responds normally, and the screen is no longer visibly updating.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Locate the Diamond Sword row, scrolling vertically if necessary, and leave the table positioned so both that row and its statistic columns—including the blocks-mined statistic cell—are visible. Use the Diamond Sword icon to identify the row if the item name is not continuously displayed.",
+        "exact_input": "Use the mouse wheel to scroll only if the Diamond Sword row is not already visible.",
+        "success_cue": "The Diamond Sword row is visible in the Items statistics table, and the cell corresponding to the blocks-mined statistic is on screen and ready for inspection.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The Items category has been opened in Minecraft Java Edition 1.18.2, the table has finished rendering, and the Diamond Sword row and its blocks-mined statistic cell are visible. Hand control to the observation subsystem now, before closing or changing the Statistics screen.",
+    "uncertainties": [
+      "The report's first reproduction step refers to \"this search filter\" on the official Minecraft Crowdin project, but the raw report contains neither the filter text nor a usable Crowdin URL. The original external search procedure therefore cannot be reproduced exactly from the supplied evidence.",
+      "The report does not specify a world, game mode, language, item, or exact in-game navigation procedure. The fresh Creative world, temporary switch to Survival mode, and Diamond Sword interaction are practical choices used to expose the in-game Items statistics table deterministically.",
+      "The Diamond Sword is selected as a representative non-block item because a blocks-mined statistic is not applicable to it. The report identifies null cells in the item statistics renderer but does not name a particular item row.",
+      "Opening the in-game null-value cell provides the visual surface described by the report, but visual inspection alone may not establish whether the displayed placeholder has an underlying translation key. The report's omitted Crowdin filter or separate source inspection would be required for that distinct verification.",
+      "No built-in language is required by the report. Changing languages was deliberately omitted because the report specifically concerns the absence of a translation key, and it does not identify a language whose visible placeholder should differ."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0d8e790a0f1cb667016aa7bb110ba887d0b397e2282bdc2e98",
+    "elapsed_seconds": 117.72,
+    "usage": {
+      "input_tokens": 8671,
+      "output_tokens": 6908,
+      "reasoning_tokens": 4925,
+      "total_tokens": 15579
+    },
+    "timestamp": "2026-09-14T09:16:54.513616+00:00"
+  }
+}
