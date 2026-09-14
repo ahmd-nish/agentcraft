@@ -1,0 +1,131 @@
+{
+  "bug_id": "MC-265238",
+  "category": "Loot tables",
+  "panel": "low-interaction-54",
+  "reproduction_method": "outside-game inspection",
+  "source_md": "[Loot tables] - MC-265238.md",
+  "source_meta": {
+    "mojira categories": "Loot tables",
+    "project": "MC",
+    "issue key": "MC-265238",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-09-05T09:21:28.347-0700",
+    "updated": "2025-04-29T12:19:41.918-0700",
+    "resolution date": "2023-09-14T02:09:50.093-0700",
+    "affects versions": "1.20.2 Pre-release 1",
+    "fix versions": "1.20.2 Release Candidate 1",
+    "area": "Gameplay",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "image-2023-09-07-12-45-10-035.png; image-2023-09-07-12-45-46-229.png",
+    "_title": "trade_rebalance loot tables have a wrong type"
+  },
+  "stor": {
+    "bug_id": "MC-265238",
+    "affected_versions": [
+      "1.20.2 Pre-release 1"
+    ],
+    "recommended_version": "1.20.2 Pre-release 1",
+    "environment": "Minecraft: Java Edition client files on a desktop operating system. This reproduction is performed by inspecting the affected version's JAR archive; no world, game mode, seed, server, player permissions, or in-game commands are required.",
+    "preconditions": [
+      "Use the affected version exactly as listed in the report: 1.20.2 Pre-release 1.",
+      "Do not use the fix version, 1.20.2 Release Candidate 1, for this reproduction.",
+      "Have access to the Minecraft game directory used by the selected launcher installation.",
+      "Have a ZIP/JAR-compatible archive viewer and a text editor or archive tool capable of displaying JSON files as plain text.",
+      "Ensure the affected version's files have been downloaded. If they are not already present, launch that version once and close the game after the title screen appears."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select Java Edition, and open the Installations screen. If pre-release versions are hidden, enable the launcher option or version filter that makes snapshot and pre-release installations available.",
+        "exact_input": null,
+        "success_cue": "The Installations screen can display or create an installation for the report's affected pre-release version.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Create or select an installation whose selected Minecraft version corresponds exactly to 1.20.2 Pre-release 1. Do not select 1.20.2 Release Candidate 1 or a later release.",
+        "exact_input": "1.20.2 Pre-release 1",
+        "success_cue": "The selected installation is configured for 1.20.2 Pre-release 1 rather than the listed fix version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "If this installation has not already been downloaded, start it from the launcher. Wait until the Minecraft title screen has fully loaded and confirms that the selected pre-release is running, then use Quit Game to close Minecraft.",
+        "exact_input": null,
+        "success_cue": "Minecraft has closed normally and the local files for 1.20.2 Pre-release 1 are present in the installation's game directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Determine the game directory used by this launcher installation. Open that directory in the operating system's file manager, then open its versions directory. Locate the version subdirectory associated with the selected 1.20.2 Pre-release 1 installation and identify the JAR file inside it whose base filename matches that version directory.",
+        "exact_input": "<selected game directory>/versions/<1.20.2 Pre-release 1 version directory>/<matching version JAR>",
+        "success_cue": "The JAR belonging to the affected version has been located; it is not a JAR belonging to the release candidate or another Minecraft version.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the affected version's JAR with the ZIP/JAR-compatible archive viewer. Treat the JAR as an archive; do not attempt to run it as an application and do not edit its contents.",
+        "exact_input": "<JAR for 1.20.2 Pre-release 1>",
+        "success_cue": "The archive viewer displays top-level JAR entries such as directories and metadata rather than launching Minecraft.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Starting at the root of the JAR archive, navigate through the bundled trade_rebalance datapack to the exact chest loot-table directory supplied by the report.",
+        "exact_input": "/data/minecraft/datapacks/trade_rebalance/data/minecraft/loot_tables/chests/",
+        "success_cue": "The archive viewer is inside data/minecraft/datapacks/trade_rebalance/data/minecraft/loot_tables/chests and displays JSON loot-table files or subdirectories containing them.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select any one JSON file located under this exact chests directory. If the archive viewer shows subdirectories instead of a JSON file at the current level, descend into one of them until a .json file is available. Record or retain the selected file's full internal archive path so that it is clear the file came from the bundled trade_rebalance datapack rather than from another loot-table directory.",
+        "exact_input": "Any single .json file under /data/minecraft/datapacks/trade_rebalance/data/minecraft/loot_tables/chests/",
+        "success_cue": "One specific .json loot-table file from the required trade_rebalance chests directory is selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Open the selected JSON file as plain text, either directly through the archive viewer or by extracting only that file to a temporary location and opening the extracted copy in a text editor. Do not modify or save changes to the file.",
+        "exact_input": "<selected trade_rebalance chest loot-table .json file>",
+        "success_cue": "The selected file is visible as a readable JSON document with a root object delimited by opening and closing braces.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Within the JSON root object, locate the direct root-level property whose key is exactly \"type\". If using text search, search for the exact quoted key and confirm that the matching property is a direct member of the outermost JSON object rather than a nested property. Stop before evaluating or classifying the property's value.",
+        "exact_input": "\"type\"",
+        "success_cue": "The root-level \"type\" key and its associated JSON string value are visible and ready for inspection by the observation subsystem.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "A JSON loot table from /data/minecraft/datapacks/trade_rebalance/data/minecraft/loot_tables/chests/ inside the 1.20.2 Pre-release 1 JAR is open as text, and its direct root-level \"type\" property is visible. Begin observing and recording that property's value.",
+    "uncertainties": [
+      "The report does not name a particular JSON file because it states that any file under the specified chests directory may be checked; this plan therefore permits any single JSON file from that directory.",
+      "The launcher installation directory and physical JAR filename can vary when a custom game directory or third-party-compatible launcher layout is used. The selected JAR must be verified as belonging to 1.20.2 Pre-release 1.",
+      "Archive-viewer controls differ by operating system and tool, so the plan permits either read-only viewing inside the JAR or extraction of only the selected JSON file to a temporary location."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_06a27fc0b5ec89e4016aa7bd0a26d087d088423237bd693359",
+    "elapsed_seconds": 62.22,
+    "usage": {
+      "input_tokens": 8373,
+      "output_tokens": 3700,
+      "reasoning_tokens": 2324,
+      "total_tokens": 12073
+    },
+    "timestamp": "2026-09-14T09:24:24.197784+00:00"
+  }
+}
