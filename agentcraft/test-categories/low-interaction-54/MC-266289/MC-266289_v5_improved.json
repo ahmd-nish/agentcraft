@@ -1,0 +1,36 @@
+{
+  "key": "MC-266289",
+  "created_date": "2023-11-01T09:46:33.658-0700",
+  "updated_date": "2026-08-20T04:32:37.530-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "23w44a"
+  ],
+  "fix_versions": [
+    "23w45a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2023-11-02T02:17:37.000-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Could not save data raids.dat and random_sequences.dat",
+  "environment_raw": "",
+  "description": "## How to reproduce (output log)\n\n - Open a world, pause the game and look in the output log\n\n - Notice there are error messages about saving raids.dat and random_sequences.dat\n\n## How to reproduce (raids not saving)\n\n - Find a village and give yourself the bad omen effect\n\n/locate structure #minecraft:village\n/effect give @s minecraft:bad_omen\n\n - The raid boss bar appears\n\n - Leave and reopen the world\n\n - Notice that the raid has vanished\n\n## Error message in the log\n\nCould not save data cfi@342b30ad\njava.nio.file.NoSuchFileException: C:\\Users\\Username\\AppData\\Roaming\\.minecraft\\saves\\23w44a\\DIM-1\\data\\raids.dat\n at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85)\n at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)\n at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)\n at java.base/sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:236)\n at java.base/java.nio.file.spi.FileSystemProvider.newOutputStream(FileSystemProvider.java:484)\n at java.base/java.nio.file.Files.newOutputStream(Files.java:228)\n at sq.a(SourceFile:73)\n at eec.a(SourceFile:45)\n at een.b(SourceFile:122)\n at java.base/java.util.HashMap.forEach(HashMap.java:1421)\n at een.a(SourceFile:120)\n at ami.au(SourceFile:822)\n at ami.a(SourceFile:804)\n at net.minecraft.server.MinecraftServer.a(SourceFile:541)\n at net.minecraft.server.MinecraftServer.b(SourceFile:565)\n at gfy.a(SourceFile:92)\n at net.minecraft.server.MinecraftServer.w(SourceFile:682)\n at net.minecraft.server.MinecraftServer.a(SourceFile:269)\n at java.base/java.lang.Thread.run(Thread.java:833)",
+  "Steps to Reproduce": "1. Launch Minecraft version 23w44a.\n2. Open a world.\n3. Pause the game and inspect the output log.\n4. Observe error messages about saving `raids.dat` and `random_sequences.dat`.\n5. Run `/locate structure #minecraft:village` and travel to a village.\n6. Run `/effect give @s minecraft:bad_omen`.\n7. Observe that the raid boss bar appears.\n8. Select \"Esc menu -> Save and Quit to Title\".\n9. Reopen the same world.\n10. Observe that the raid has vanished.",
+  "Environment": "Minecraft Java Edition Version 23w44a (snapshot)",
+  "Observed Behavior": "## Actual behavior\n\nThe game logs errors when attempting to save persistent world data for raids and random sequences. The save operation attempts to write `raids.dat` under the Nether dimension\u2019s data directory:\n\n```text\n.minecraft\\saves\\<world>\\DIM-1\\data\\raids.dat\n```\n\nbut fails with a `java.nio.file.NoSuchFileException`, indicating that the target path does not exist. A similar error is reported for `random_sequences.dat`.\n\nWhen a raid is active, its raid state is therefore not written to the world save. After leaving and reopening the world, the raid is no longer present: the raid boss bar and active raid state have been lost instead of being restored.",
+  "Expected Behavior": "The game should save raids.dat and random_sequences.dat successfully without reporting file-saving errors in the output log. After a raid begins, its state should be preserved when the world is closed and reopened, so the raid should remain active rather than disappearing. This behavior should work consistently for the affected world.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Raids/MC-266289",
+  "improvement_metadata": {
+    "original_key": "MC-266289"
+  }
+}

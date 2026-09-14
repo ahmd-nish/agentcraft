@@ -1,0 +1,139 @@
+{
+  "bug_id": "MC-249513",
+  "category": "UI",
+  "source_md": "[UI] - MC-249513.md",
+  "source_meta": {
+    "mojira categories": "UI",
+    "project": "MC",
+    "issue key": "MC-249513",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-03-25T13:42:03.627-0700",
+    "updated": "2025-04-30T06:44:21.044-0700",
+    "resolution date": "2022-10-11T07:20:35.157-0700",
+    "affects versions": "22w12a; 22w15a; 22w17a; 1.19",
+    "fix versions": "22w42a",
+    "game mode": "Creative",
+    "labels": "creative-inventory-contents",
+    "watchers": "1",
+    "attachments": "5",
+    "attachment filenames": "2022-03-25_20.39.42_2.png; 2022-03-25_20.39.42.png; 2022-03-25_20.39.47_2.png; 2022-03-25_20.39.47.png; MC-249513.mp4",
+    "_title": "Frogspawn is not grouped with turtle eggs in the Creative inventory"
+  },
+  "stor": {
+    "bug_id": "MC-249513",
+    "affected_versions": [
+      "22w12a",
+      "22w15a",
+      "22w17a",
+      "1.19"
+    ],
+    "recommended_version": "22w12a",
+    "environment": "Minecraft: Java Edition snapshot 22w12a, running as a client with keyboard-and-mouse UI. Use a newly created single-player world in Creative mode as the simplest execution context; the report does not require a particular seed, coordinates, server, command permissions, datapack, or multiplayer configuration.",
+    "preconditions": [
+      "The Minecraft Launcher is installed and can launch the historical Java Edition snapshot 22w12a.",
+      "Use snapshot 22w12a, the first version listed as affected. Do not use fix version 22w42a for this reproduction.",
+      "The executor can create a new single-player world. No existing world data is required.",
+      "If controls have been rebound, use the key assigned to the Inventory action instead of the default E key."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation configured to use the exact version snapshot 22w12a.",
+        "exact_input": "22w12a",
+        "success_cue": "The selected launcher installation lists its Minecraft version as 22w12a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Launch the selected 22w12a installation and wait for the Minecraft title screen to finish loading.",
+        "exact_input": null,
+        "success_cue": "The main menu is responsive and the displayed version information identifies the running game as 22w12a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Select the Singleplayer button on the main menu.",
+        "exact_input": "Singleplayer",
+        "success_cue": "The Select World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World. An existing world is unnecessary because this reproduction only requires access to the Creative inventory.",
+        "exact_input": "Create New World",
+        "success_cue": "The world-creation screen is open and displays the game-mode setting.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select the game-mode control until it reads Game Mode: Creative. Leave the world seed and other settings at their defaults because the report specifies none.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen explicitly shows that Creative mode is selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World to generate the world, then wait until terrain has rendered and player movement responds normally.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the loaded world, nearby terrain is rendered, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the player inventory by pressing the key assigned to the Inventory action; the default keyboard key is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is visible with category tabs and a grid of items, rather than the Survival crafting-only inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Move the pointer over the Creative inventory category tabs one at a time until the tab tooltip or label reads Miscellaneous. Do not use the Search Items tab, because the report specifically tests ordering within the Miscellaneous category.",
+        "exact_input": "Miscellaneous",
+        "success_cue": "The pointer is over the category tab identified as Miscellaneous.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Left-click the Miscellaneous category tab once.",
+        "exact_input": "Miscellaneous",
+        "success_cue": "The Miscellaneous tab is selected and its item grid is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Prepare the category for a complete top-to-bottom inspection by moving its scrollbar to the top. With the pointer over the item grid, scroll upward until no further upward movement occurs, or drag the scrollbar thumb to its highest position if necessary.",
+        "exact_input": null,
+        "success_cue": "The Miscellaneous tab remains selected and its scrollbar is at the top of the category contents.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "Snapshot 22w12a is running in a Creative-mode world, the Creative inventory is open, the Miscellaneous category is selected, and its contents are positioned at the top. Begin inspecting the category's item ordering for the Turtle Egg and Frogspawn entries without changing to the Search Items tab.",
+    "uncertainties": [
+      "The report does not specify single-player or multiplayer. Single-player is selected as the simplest practical context because the reported reproduction concerns the client-side Creative inventory and lists no server requirement.",
+      "The report only says to look through the Miscellaneous tab and does not specify an initial scroll position. Resetting the category to the top is an execution aid for deterministic inspection and is not claimed as a report requirement.",
+      "Current Minecraft Launcher navigation may differ by launcher build, but the game version selected for reproduction must remain exactly 22w12a."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0d496357de162dd4016aa5e113de5887d093d37201ca3e6c96",
+    "elapsed_seconds": 56.65,
+    "usage": {
+      "input_tokens": 8596,
+      "output_tokens": 3615,
+      "reasoning_tokens": 2588,
+      "total_tokens": 12211
+    },
+    "timestamp": "2026-09-12T23:33:32.246169+00:00"
+  }
+}

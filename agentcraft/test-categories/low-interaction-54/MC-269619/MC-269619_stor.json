@@ -1,0 +1,178 @@
+{
+  "bug_id": "MC-269619",
+  "category": "Resource Packs",
+  "source_md": "[Resource Packs] - MC-269619.md",
+  "source_meta": {
+    "mojira categories": "Rendering; Resource Packs; Textures and models",
+    "project": "MC",
+    "issue key": "MC-269619",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2024-03-20T08:34:35.804-0700",
+    "updated": "2025-04-29T10:00:31.641-0700",
+    "resolution date": "2024-04-15T01:36:39.604-0700",
+    "affects versions": "24w11a; 24w12a; 24w13a; 24w14a",
+    "fix versions": "1.20.5 Pre-Release 2",
+    "area": "Platform",
+    "labels": "translucency-nonfunctional",
+    "watchers": "1",
+    "attachments": "11",
+    "attachment filenames": "2024-03-20_15.23.20.png; 2024-03-20_15.23.27.png; 2024-03-20_15.23.31.png; 2024-03-20_15.23.35.png; 2024-03-20_15.23.37.png; 2024-03-20_15.23.42.png; 2024-03-20_15.23.45.png; 2024-03-20_15.23.55.png; 2024-03-20_15.23.56.png; 2024-03-20_15.23.57.png; transparent-scroller-test-24w11a-v1.0.zip",
+    "issue links": "Relates:outward:MC-109447:Inconsistency in transparency of GUI PNG files - only some can be transparent + hover-bugs",
+    "_title": "Scroller in Telemetry Data screen renders translucent pixels as opaque, unlike elsewhere"
+  },
+  "stor": {
+    "bug_id": "MC-269619",
+    "affected_versions": [
+      "24w11a",
+      "24w12a",
+      "24w13a",
+      "24w14a"
+    ],
+    "recommended_version": "24w11a",
+    "environment": "Vanilla Minecraft: Java Edition client running snapshot 24w11a. Perform the reproduction from the title-screen menus; no world, server, game mode, commands, cheats, or operator permissions are required. Use the exact attached resource-pack archive transparent-scroller-test-24w11a-v1.0.zip and avoid other enabled resource packs that could override the same GUI texture.",
+    "preconditions": [
+      "Install or create a Minecraft Launcher installation for Java Edition snapshot 24w11a.",
+      "Obtain the unchanged Mojira attachment named transparent-scroller-test-24w11a-v1.0.zip. Do not substitute a manually recreated texture pack unless the attachment is unavailable.",
+      "Keep the ZIP archive available to the operating system so it can be copied into the resource-pack folder.",
+      "Begin at the Minecraft Java Edition title screen.",
+      "Use a game window and GUI scale at which the Telemetry Data screen displays a vertical scroll bar. If the bar is not visible later, increase the GUI scale or reduce the game-window height and repeat the menu-navigation steps."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft: Java Edition installation configured for the first affected version. Wait for the title screen to finish loading.",
+        "exact_input": "24w11a",
+        "success_cue": "The title screen is responsive and the displayed version text identifies the running version as 24w11a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "On the title screen, click Options to open the game-options screen.",
+        "exact_input": "Options",
+        "success_cue": "The Options screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Click Resource Packs to open the resource-pack selection screen.",
+        "exact_input": "Resource Packs",
+        "success_cue": "The resource-pack screen shows Available and Selected pack lists.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Click Open Pack Folder. Wait for the operating system's file manager to open the resourcepacks directory used by this 24w11a installation.",
+        "exact_input": "Open Pack Folder",
+        "success_cue": "A file-manager window is open at the active Minecraft installation's resourcepacks directory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Copy the attached ZIP archive directly into the open resourcepacks directory. Leave it as a ZIP archive rather than placing it inside another folder.",
+        "exact_input": "transparent-scroller-test-24w11a-v1.0.zip",
+        "success_cue": "transparent-scroller-test-24w11a-v1.0.zip is present directly inside the resourcepacks directory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Return to Minecraft. If the newly copied pack does not appear immediately, click Done to leave the resource-pack screen, reopen Resource Packs from Options, and wait for the pack list to refresh.",
+        "exact_input": null,
+        "success_cue": "An entry corresponding to transparent-scroller-test-24w11a-v1.0.zip is visible in the Available list or is already present in the Selected list.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "If any unrelated custom resource packs are in the Selected list, move them back to Available by hovering over each pack icon and clicking its left-pointing removal arrow. Do not remove the built-in Default resources.",
+        "exact_input": null,
+        "success_cue": "No unrelated custom pack remains enabled that could override the scroller texture.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "If the attached test pack is under Available, hover over its icon and click the right-pointing arrow to move it to Selected. Ensure the test pack is above Default in the Selected list.",
+        "exact_input": "transparent-scroller-test-24w11a-v1.0.zip",
+        "success_cue": "The attached test pack's entry is in Selected above Default.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Click Done to apply the selected resource pack. Do not continue while the resource-reload screen is active; wait until menu rendering has returned and mouse input responds normally.",
+        "exact_input": "Done",
+        "success_cue": "Resource loading has completed and the Options screen is visible and responsive with the test pack enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "From Options, click Language to open a deterministic comparison menu containing a scrollable list.",
+        "exact_input": "Language",
+        "success_cue": "The Language screen is visible, with a list of languages and a vertical scroll control on the right side.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Place the pointer over the language list and rotate the mouse wheel down by one notch, or drag the right-side scroll handle slightly downward. This establishes that a normal menu scroll control is present and usable without requiring selection of a different language.",
+        "exact_input": "Mouse wheel down one notch",
+        "success_cue": "The language list has moved slightly and the vertical scroll handle remains visible; the selected game language has not been changed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Click Done to return from the Language screen to Options.",
+        "exact_input": "Done",
+        "success_cue": "The Options screen is visible again and remains responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Locate the button labeled Telemetry Data on the Options screen. Do not click it until the menu is fully responsive.",
+        "exact_input": "Telemetry Data",
+        "success_cue": "The Telemetry Data button is visible and ready to be activated.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Click Telemetry Data once to open the Telemetry Data screen.",
+        "exact_input": "Telemetry Data",
+        "success_cue": "The game has begun displaying the Telemetry Data screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait until the Telemetry Data title, data entries, and right-side vertical scroll control have all rendered. Do not leave the screen, change resource packs, or open another menu. If no vertical scroll control is present because the entire list fits, return to Options, increase GUI Scale under Video Settings or reduce the game-window height, and then reopen Telemetry Data.",
+        "exact_input": null,
+        "success_cue": "The Telemetry Data screen is fully rendered and responsive, and its right-side vertical scroll control is visible with the attached test pack still enabled.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The attached translucent-scroller resource pack is active, and the Telemetry Data screen has just been opened and has finished rendering with its vertical scroll control visible. Begin visual observation without navigating away from this screen.",
+    "uncertainties": [
+      "The contents and pack metadata of transparent-scroller-test-24w11a-v1.0.zip were not included in the supplied report text and could not be inspected directly; the reproduction depends on using the unchanged Mojira attachment.",
+      "The report does not identify which non-Telemetry scrollable menus were used for comparison. The Language screen is selected as a deterministic comparison because its list normally requires a vertical scroll control.",
+      "The report does not specify window dimensions or GUI Scale. These can determine whether a list requires scrolling, so the plan includes a conditional display adjustment only if the Telemetry Data scroll control is absent.",
+      "The report names the Telemetry Data menu but does not explicitly provide its parent-menu path. The plan uses the Options-screen Telemetry Data button available in the affected Java Edition UI.",
+      "Although a comment says the issue also affects '1.20.5 pre-release,' that version is not listed in the report's Affects versions field and is therefore not added to affected_versions."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0b5b1473bbe31255016aa714b8768887d092db9640a83c26fc",
+    "elapsed_seconds": 79.97,
+    "usage": {
+      "input_tokens": 32851,
+      "output_tokens": 5291,
+      "reasoning_tokens": 3704,
+      "total_tokens": 38142
+    },
+    "timestamp": "2026-09-13T21:26:31.738182+00:00"
+  }
+}

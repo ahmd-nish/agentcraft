@@ -1,0 +1,173 @@
+{
+  "bug_id": "MC-270692",
+  "category": "Resource Packs",
+  "source_md": "[Resource Packs] - MC-270692.md",
+  "source_meta": {
+    "mojira categories": "Rendering; Resource Packs; Textures and models",
+    "project": "MC",
+    "issue key": "MC-270692",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2024-04-12T12:26:16.100-0700",
+    "updated": "2025-04-10T14:59:23.558-0700",
+    "resolution date": "2024-09-21T17:22:12.312-0700",
+    "affects versions": "1.20.4; 1.20.5 Pre-Release 1; 1.20.5 Pre-Release 2; 24w19b",
+    "fix versions": "24w33a",
+    "labels": "translucency-nonfunctional",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "2024-04-12_19.52.38.png; 2024-04-12_19.52.50.png; 2024-04-12_20.02.57.png; 2024-04-12_20.20.48.png; 2024-04-12_20.20.59.png; empty-slot-translucency-1.20.5pre1-v1.0.zip",
+    "issue links": "Relates:outward:MC-109447:Inconsistency in transparency of GUI PNG files - only some can be transparent + hover-bugs | Relates:outward:MC-270765:Bundle background does not handle translucent pixels correctly",
+    "_title": "Textures for empty slots do not support translucent pixels"
+  },
+  "stor": {
+    "bug_id": "MC-270692",
+    "affected_versions": [
+      "1.20.4",
+      "1.20.5 Pre-Release 1",
+      "1.20.5 Pre-Release 2",
+      "24w19b"
+    ],
+    "recommended_version": "1.20.4",
+    "environment": "Minecraft: Java Edition 1.20.4 client, using the attached resource pack in the single-player world-creation interface. No world, server, game mode, seed, coordinates, commands, or operator permissions are required for the selected superflat-customization reproduction path.",
+    "preconditions": [
+      "Install or create a Minecraft Launcher installation for Minecraft: Java Edition 1.20.4, the first version listed as affected.",
+      "Obtain the Mojira attachment named \"empty-slot-translucency-1.20.5pre1-v1.0.zip\".",
+      "Keep the resource pack available as a ZIP file; do not manually edit its textures, metadata, or directory structure.",
+      "Ensure the test resource pack will have priority over any other custom resource pack that changes GUI or empty-slot textures. The simplest arrangement is to disable all other non-default resource packs."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation that uses Java Edition version 1.20.4 and start the game. Do not substitute the listed fix version 24w33a.",
+        "exact_input": "1.20.4",
+        "success_cue": "The Minecraft main menu has loaded, and the displayed version is 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select the Options button.",
+        "exact_input": null,
+        "success_cue": "The Options screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select Resource Packs to open the resource-pack selection screen.",
+        "exact_input": null,
+        "success_cue": "The Resource Packs screen is visible, with available packs and selected packs shown in separate areas.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Open Pack Folder. Wait for the operating system's file manager to open the resourcepacks directory used by this 1.20.4 game installation.",
+        "exact_input": null,
+        "success_cue": "A file-manager window showing the active Minecraft resourcepacks directory is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Copy the downloaded attachment ZIP into the open resourcepacks directory without changing its filename or contents. Return focus to Minecraft. If the pack does not appear automatically, leave and reopen the Resource Packs screen once to refresh it.",
+        "exact_input": "empty-slot-translucency-1.20.5pre1-v1.0.zip",
+        "success_cue": "The pack from \"empty-slot-translucency-1.20.5pre1-v1.0.zip\" is displayed in the Available resource packs area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Activate the attached pack by hovering over or selecting its pack entry and clicking the right-pointing activation arrow, moving it from Available to Selected.",
+        "exact_input": "empty-slot-translucency-1.20.5pre1-v1.0.zip",
+        "success_cue": "The attached pack is listed in the Selected resource packs area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "If Minecraft displays a warning that the resource pack was made for a different game version, confirm that you want to use the pack. If no warning appears, continue without making another selection.",
+        "exact_input": null,
+        "success_cue": "The warning, if presented, has been accepted and the test pack remains in the Selected area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "If other custom packs are selected, disable them or use the pack-order controls to place the attached test pack above any pack that could override GUI textures.",
+        "exact_input": null,
+        "success_cue": "The attached test pack is selected with no higher-priority custom pack capable of replacing its GUI or empty-slot textures.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select Done to apply the selected resource packs. Wait until resource reloading finishes; do not continue while the reload screen is displayed or the interface is unresponsive.",
+        "exact_input": null,
+        "success_cue": "Resource reloading has completed and the responsive Options screen is visible again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select Done on the Options screen to return to the main menu.",
+        "exact_input": null,
+        "success_cue": "The main menu is visible and responds normally with the test resource pack active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select Singleplayer.",
+        "exact_input": null,
+        "success_cue": "The Select World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select Create New World. No existing world needs to be loaded or modified for this reproduction path.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select the World tab in the Create New World screen.",
+        "exact_input": null,
+        "success_cue": "World-generation settings, including the World Type control, are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Use the World Type control until its selected value is Superflat. Do not create the world.",
+        "exact_input": "Superflat",
+        "success_cue": "The World Type control displays Superflat and the Customize button for superflat settings is available.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Select the Customize button for the Superflat world type and wait until the Superflat Customization screen has completely rendered.",
+        "exact_input": null,
+        "success_cue": "The Superflat Customization screen is fully visible, including its layer-list entries and their slot graphics, and the interface is responsive.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The attached resource pack is active, and the Superflat Customization screen has just finished rendering with its layer-list slot graphics visible. Hand control to the observation subsystem before closing the screen or changing resource packs.",
+    "uncertainties": [
+      "The report provides several alternative viewing contexts: the Statistics item menu, the superflat customization menu, donkey/mule/llama inventory screens, and hovering over a bundle. This plan selects the superflat customization menu because it is explicitly supported by the report and requires no world creation, entity acquisition, inventory setup, or random exploration.",
+      "The attachment filename identifies 1.20.5 Pre-Release 1 even though 1.20.4 is the first affected version and therefore the required recommended version. The report instructs use of the attached pack and lists 1.20.4 as affected; Minecraft may consequently display a resource-pack compatibility warning when the attachment is selected in 1.20.4.",
+      "The report does not specify an operating system, launcher profile directory, UI language, GUI scale, graphics mode, seed, game mode, or server type. None is treated as a reproduction requirement for the selected menu-based path."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_018148673da89151016aa71507ddd087d0bb734b5a9fec9462",
+    "elapsed_seconds": 60.03,
+    "usage": {
+      "input_tokens": 8503,
+      "output_tokens": 4389,
+      "reasoning_tokens": 2931,
+      "total_tokens": 12892
+    },
+    "timestamp": "2026-09-13T21:27:31.777626+00:00"
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "bug_id": "MC-250571",
+  "category": "Text",
+  "source_md": "[Text] - MC-250571.md",
+  "source_meta": {
+    "mojira categories": "Text",
+    "project": "MC",
+    "issue key": "MC-250571",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-04-23T04:32:24.928-0700",
+    "updated": "2025-04-30T04:37:39.208-0700",
+    "resolution date": "2023-05-08T02:22:17.898-0700",
+    "affects versions": "1.18.2; 22w16b; 22w17a; 22w18a; 22w19a; 1.19 Pre-release 1; 1.19 Release Candidate 2; 1.19; 1.19.1 Pre-release 2; 1.19.1 Pre-release 5; 1.19.1; 1.19.2; 22w45a; 1.19.3; 1.19.4",
+    "fix versions": "1.20 Pre-release 1",
+    "labels": "punctuation",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Gamerule description strings within the world creation menu consist of inconsistent concluding punctuation"
+  },
+  "stor": {
+    "bug_id": "MC-250571",
+    "affected_versions": [
+      "1.18.2",
+      "22w16b",
+      "22w17a",
+      "22w18a",
+      "22w19a",
+      "1.19 Pre-release 1",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "1.19.1 Pre-release 2",
+      "1.19.1 Pre-release 5",
+      "1.19.1",
+      "1.19.2",
+      "22w45a",
+      "1.19.3",
+      "1.19.4"
+    ],
+    "recommended_version": "1.18.2",
+    "environment": "Minecraft: Java Edition 1.18.2 client in a local single-player world, with the client language set to English (US) and commands enabled. Use the unmodified built-in English translations; disable any resource pack that replaces language strings.",
+    "preconditions": [
+      "A Minecraft: Java Edition installation profile for version 1.18.2 is available.",
+      "The client language is set to English (US), matching the English descriptions supplied in the report.",
+      "No enabled resource pack modifies the gamerule description translation strings.",
+      "The executor can create a single-player world with commands enabled."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft: Java Edition using the installation profile for version 1.18.2. At the title screen, confirm that the lower-left version label identifies the running version as Minecraft 1.18.2.",
+        "exact_input": null,
+        "success_cue": "The Minecraft 1.18.2 title screen is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Set the client language to English (US): from the title screen, open Options, select Language, select English (US), and press Done until you return to the title screen.",
+        "exact_input": null,
+        "success_cue": "The title-screen interface is displayed in English.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open Singleplayer and select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set Game Mode to Creative. This is an execution convenience; the report does not require a particular game mode.",
+        "exact_input": null,
+        "success_cue": "The world creation screen shows Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open More World Options and make sure Allow Cheats is set to ON so that the supplied /tellraw commands can be executed. Return to the main world creation screen when configured.",
+        "exact_input": null,
+        "success_cue": "Allow Cheats is ON and the Create New World button is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World, then wait until world generation and terrain loading finish. Do not continue while the loading screen is visible.",
+        "exact_input": null,
+        "success_cue": "The player is inside the world, surrounding terrain is rendered, and normal movement responds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, the default Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "A chat input field is visible at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter the report's /tellraw command using the supplied translation key gamerule.forgiveDeadPlayers.description. Include the leading slash, preserve the JSON punctuation and capitalization exactly, and press Enter to execute it as the current player.",
+        "exact_input": "/tellraw @s {\"translate\":\"gamerule.forgiveDeadPlayers.description\"}",
+        "success_cue": "A translated gamerule description beginning with “Angered neutral mobs” is rendered in the player's chat output.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Immediately press T again to reopen chat before the first translated line leaves the recent chat display.",
+        "exact_input": "T",
+        "success_cue": "The chat input is open and the previously rendered translated description remains visible in chat history.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the same supplied /tellraw command with the supplied translation key gamerule.doMobLoot.description. Include the leading slash, preserve the JSON punctuation and capitalization exactly, and press Enter to execute it.",
+        "exact_input": "/tellraw @s {\"translate\":\"gamerule.doMobLoot.description\"}",
+        "success_cue": "A translated gamerule description beginning with “Controls resource drops from mobs” has just been rendered, with the earlier “Angered neutral mobs” description still available in recent chat history for comparison.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The two supplied gamerule-description translation keys have been rendered in the same player's recent chat history, and the second line has just appeared. Hand control to the observation subsystem to inspect and compare the concluding characters of the two displayed strings.",
+    "uncertainties": [
+      "The report does not specify the client language. English (US) is selected because the report supplies and discusses the built-in English descriptions.",
+      "The report permits any listed affected translation key. This plan uses gamerule.forgiveDeadPlayers.description and gamerule.doMobLoot.description, both listed in the report, to provide a deterministic two-string comparison in the recommended affected version.",
+      "The report does not specify a game mode or world type. A local Creative-mode world with cheats enabled is selected only as the simplest way to execute the supplied /tellraw commands.",
+      "The report's title refers to the world creation menu, but its stated reproduction method displays the underlying translation strings with /tellraw. This plan preserves that command-based method rather than introducing a different UI-based reproduction."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_024eea9bc2c98416016aa5e021545887d0ae0d8ad45b405e96",
+    "elapsed_seconds": 47.05,
+    "usage": {
+      "input_tokens": 9278,
+      "output_tokens": 3179,
+      "reasoning_tokens": 2000,
+      "total_tokens": 12457
+    },
+    "timestamp": "2026-09-12T23:29:20.270542+00:00"
+  }
+}

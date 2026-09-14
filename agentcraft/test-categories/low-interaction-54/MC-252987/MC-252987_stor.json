@@ -1,0 +1,128 @@
+{
+  "bug_id": "MC-252987",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-252987.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-252987",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-06-13T10:39:48.251-0700",
+    "updated": "2025-03-08T11:10:36.244-0800",
+    "resolution date": "2022-06-29T06:56:23.213-0700",
+    "affects versions": "1.19; 22w24a",
+    "fix versions": "1.19.1 Release Candidate 1",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "Click me text.png; Illegal Chars Screen.png",
+    "_title": "Illegal character '\\n' in text component clickEvent"
+  },
+  "stor": {
+    "bug_id": "MC-252987",
+    "affected_versions": [
+      "1.19",
+      "22w24a"
+    ],
+    "recommended_version": "1.19",
+    "environment": "Minecraft Java Edition 1.19 in a singleplayer world with cheats enabled. The report does not require a dedicated server, multiple players, a particular seed, or a particular game mode.",
+    "preconditions": [
+      "Install and launch the exact Minecraft Java Edition 1.19 release.",
+      "Use a singleplayer world in which commands are permitted by enabling Allow Cheats during world creation.",
+      "Preserve the report's command exactly. In the embedded run_command value, the text after Players: must contain exactly one backslash followed by the letter n; do not change it to the double-escaped variant.",
+      "If controls have been rebound, use the bindings for Open Chat, Submit Command, and primary/left-click instead of the default inputs stated below."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using a launcher installation configured for the exact release version 1.19. Wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The lower-left portion of the main menu identifies the running version as Minecraft 1.19, and the menu responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer and then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Locate the Allow Cheats setting and toggle it until it reads Allow Cheats: ON. Leave the seed, game mode, difficulty, and other world settings at any desired values because the report does not specify them.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen visibly shows Allow Cheats: ON.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World and wait for world generation and loading to complete. Do not continue while a loading screen is visible.",
+        "exact_input": null,
+        "success_cue": "The player is in the singleplayer world, surrounding terrain is rendered, and normal movement and input respond.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Open the in-game chat/command input using the Open Chat control; the default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat interface is open with an editable input field.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Paste the report's command into the chat input exactly as supplied. Include the leading slash. Confirm that the embedded text after Players: contains one literal backslash followed by n, not two backslashes.",
+        "exact_input": "/tellraw @s [{\"text\":\"Click me!\",\"clickEvent\": {\"action\":\"run_command\",\"value\": \"/tellraw @s [{\\\"text\\\":\\\"Players:\\n\\\"},{\\\"color\\\":\\\"gray\\\",\\\"selector\\\":\\\"@a\\\"}]\"} }]",
+        "success_cue": "The complete command is present in the chat input, including the leading /tellraw and the embedded Players: followed by exactly one backslash and n.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Submit the command by pressing Enter once.",
+        "exact_input": "Enter",
+        "success_cue": "The command input closes and a chat component reading Click me! appears in the player's chat output.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Open the full chat interface again using the Open Chat control so that its mouse cursor is available. If the Click me! message is not in the currently visible portion of the chat history, scroll until it is visible.",
+        "exact_input": "T",
+        "success_cue": "The full chat interface is open, the mouse cursor is available, and the Click me! text is visible in the chat history.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Move the chat cursor directly over the Click me! text and activate it once with the primary mouse button; by default, left-click. Do not click elsewhere or issue additional input afterward.",
+        "exact_input": "left-click on \"Click me!\"",
+        "success_cue": "A single left-click has just been issued on the clickable Click me! chat component, and no subsequent input has been performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The player has just left-clicked the Click me! chat component once while the full chat interface was open. Immediately hand off to the observation subsystem before providing any further player input or dismissing any resulting screen.",
+    "uncertainties": [
+      "The report does not specify a world seed, game mode, difficulty, or other world-generation settings; the plan leaves them at arbitrary or default values.",
+      "The report does not state whether controls were rebound. The plan uses the default T key for opening chat, Enter for submission, and the primary/left mouse button for activating the chat component.",
+      "The command is preserved exactly from the report rather than replaced with either of the alternative commands discussed in its results section."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_08fa02ea5caeaaa3016aa711da731087d09052d1a54d130ac6",
+    "elapsed_seconds": 45.04,
+    "usage": {
+      "input_tokens": 8395,
+      "output_tokens": 3115,
+      "reasoning_tokens": 2070,
+      "total_tokens": 11510
+    },
+    "timestamp": "2026-09-13T21:13:43.362925+00:00"
+  }
+}

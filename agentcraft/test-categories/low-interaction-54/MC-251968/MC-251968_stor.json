@@ -1,0 +1,158 @@
+{
+  "bug_id": "MC-251968",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-251968.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-251968",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-05-20T03:26:58.985-0700",
+    "updated": "2025-04-30T07:45:50.339-0700",
+    "resolution date": "2022-06-29T06:56:23.098-0700",
+    "affects versions": "1.19 Pre-release 1",
+    "fix versions": "1.19 Pre-release 3",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-251968.png",
+    "_title": "/execute running chat related commands logs \"Received chat packet without valid signature\" warning"
+  },
+  "stor": {
+    "bug_id": "MC-251968",
+    "affected_versions": [
+      "1.19 Pre-release 1"
+    ],
+    "recommended_version": "1.19 Pre-release 1",
+    "environment": "Unmodified Minecraft Java Edition client running 1.19 Pre-release 1; new single-player Creative-mode Superflat world with cheats enabled; access to the active client game directory and its logs/latest.log file.",
+    "preconditions": [
+      "Use Minecraft Java Edition 1.19 Pre-release 1, which is the first and only affected version listed in the report.",
+      "Use an unmodified client without mods, plugins, or datapacks that alter commands, entities, or chat handling.",
+      "The selected launcher installation must use a known game directory so that the current session's client log can be found at <game directory>/logs/latest.log.",
+      "Create a new throwaway single-player world. Creative mode and a Superflat world are practical choices that keep the creeper visible and prevent it from attacking the player; they are not stated requirements of the report.",
+      "Enable cheats so the player can execute /summon and /execute from the in-game chat screen.",
+      "Do not execute the trigger command from a command block, a dedicated-server console, or the launcher; the report specifically requires running it from the player's in-game chat screen."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation for exactly Minecraft Java Edition 1.19 Pre-release 1, then launch that installation. Do not substitute a later pre-release or release.",
+        "exact_input": null,
+        "success_cue": "The main-menu version text identifies the running game as Minecraft 1.19 Pre-release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer and then Create New World.",
+        "exact_input": null,
+        "success_cue": "The new-world configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Configure the throwaway world for Creative mode, set Allow Cheats to ON, and select the Superflat world type through the world-options screen. Leave the seed unspecified.",
+        "exact_input": null,
+        "success_cue": "The world configuration shows Creative mode, commands/cheats enabled, and Superflat terrain selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World to generate and enter the world.",
+        "exact_input": null,
+        "success_cue": "The player has spawned into the new world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Wait before issuing commands until the nearby flat terrain is rendered and normal player movement responds without loading pauses.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, movement is responsive, and the client is no longer displaying a world-loading screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, or the currently bound Open Chat control, to open the player's in-game chat screen.",
+        "exact_input": null,
+        "success_cue": "The chat input field is visible and accepts keyboard input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the following deterministic summon command in the chat input. Include the leading slash, but do not press Enter until the complete command is visible.",
+        "exact_input": "/summon minecraft:creeper ~ ~ ~3",
+        "success_cue": "The complete summon command is visible in the chat input field without alterations.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press Enter once to execute the summon command.",
+        "exact_input": null,
+        "success_cue": "The chat screen closes and a creeper appears approximately three blocks from the player on the open terrain.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Visually confirm that the summoned entity is a creeper and remains loaded near the player. Do not kill it, leave the area, or exit the world.",
+        "exact_input": null,
+        "success_cue": "A living creeper is visible near the Creative-mode player and is available for the @e[type=creeper] selector.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Locate the current client's <game directory>/logs/latest.log file. Confirm that it belongs to this running session by checking that its modification time is current, then record its present end position, modification time, or final few lines as a pre-trigger baseline. Leave the game running.",
+        "exact_input": null,
+        "success_cue": "The current session's client latest.log has been identified and a baseline has been recorded so newly appended lines can be isolated after the trigger.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Return input focus to Minecraft without closing the world, then press T, or the currently bound Open Chat control. Use the player's chat screen rather than any console or command block.",
+        "exact_input": null,
+        "success_cue": "The in-game chat input field is open while the creeper remains loaded nearby.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Type the report's command exactly as follows, including the leading slash and the capital H in Hi. Do not press Enter until the entire command has been entered.",
+        "exact_input": "/execute as @e[type=creeper] run say Hi",
+        "success_cue": "The exact command `/execute as @e[type=creeper] run say Hi` is visible in the chat input field and has not yet been submitted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press Enter exactly once to submit the command from the in-game chat screen. Do not issue additional commands or repeat the trigger.",
+        "exact_input": null,
+        "success_cue": "The chat input closes, the command has been submitted with the creeper selected as its execution entity, and the client log is ready for immediate post-trigger inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The command `/execute as @e[type=creeper] run say Hi` has just been submitted once from the player's in-game chat screen while a loaded creeper exists, and the pre-trigger position of the current client logs/latest.log file is known. Hand off immediately for inspection of newly written client-log entries.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer or a dedicated server. This plan uses the simplest supported topology: a single-player world with an integrated server.",
+      "The report does not specify game mode, terrain type, difficulty, seed, or a method for summoning the creeper. Creative mode, cheats, Superflat terrain, and `/summon minecraft:creeper ~ ~ ~3` are practical execution choices intended to create one accessible creeper without introducing combat or exploration.",
+      "The operating system and launcher game-directory configuration are not specified. The client log should therefore be resolved relative to the active installation's game directory rather than assuming a platform-specific absolute path.",
+      "The report does not require that only one creeper exist. A fresh daylight Superflat world is used to make the deliberately summoned creeper the only likely match, but the trigger command must remain exactly as reported and therefore still targets every loaded creeper."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_02af0993aba3f417016aa7119fc0c487d086125f3143f8db7c",
+    "elapsed_seconds": 59.52,
+    "usage": {
+      "input_tokens": 8542,
+      "output_tokens": 4035,
+      "reasoning_tokens": 2588,
+      "total_tokens": 12577
+    },
+    "timestamp": "2026-09-13T21:12:58.322918+00:00"
+  }
+}

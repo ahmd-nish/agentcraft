@@ -1,0 +1,125 @@
+{
+  "bug_id": "MC-250113",
+  "category": "UI",
+  "source_md": "[UI] - MC-250113.md",
+  "source_meta": {
+    "mojira categories": "UI",
+    "project": "MC",
+    "issue key": "MC-250113",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-04-11T10:24:21.408-0700",
+    "updated": "2025-04-30T06:40:07.178-0700",
+    "resolution date": "2022-10-19T07:05:03.143-0700",
+    "affects versions": "22w14a; 1.19; 1.19.1; 1.19.2",
+    "fix versions": "22w42a",
+    "labels": "creative-inventory-contents",
+    "watchers": "1",
+    "attachments": "9",
+    "attachment filenames": "2022-04-11_18.16.55.png; 2022-04-11_18.16.56.png; 2022-04-11_18.16.57.png; 2022-04-11_18.16.58.png; 2022-04-11_18.17.06.png; 2022-04-11_18.17.07.png; 2022-04-11_18.17.09.png; 2022-04-11_18.17.10_2.png; 2022-04-11_18.17.10.png",
+    "_title": "Muddy mangrove roots are not grouped with mud in the Creative inventory"
+  },
+  "stor": {
+    "bug_id": "MC-250113",
+    "affected_versions": [
+      "22w14a",
+      "1.19",
+      "1.19.1",
+      "1.19.2"
+    ],
+    "recommended_version": "22w14a",
+    "environment": "Minecraft Java Edition snapshot 22w14a in a single-player Creative-mode world. No particular world seed, coordinates, dimension, difficulty, commands, server, or additional players are required.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start Java Edition version 22w14a, the first version listed as affected in the report.",
+      "Use the Creative inventory as it appears in 22w14a; do not use the fixed version 22w42a, whose inventory categories and ordering differ.",
+      "Create or load a world in Creative mode so the category-based Creative inventory is available.",
+      "Use the Building Blocks tab itself when locating the items. Do not substitute the Search Items tab, because the category ordering under test must remain visible.",
+      "If controls have been rebound, use the control assigned to Open/Close Inventory instead of the default E key."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using a launcher installation configured for snapshot 22w14a. Wait for the main menu to finish loading.",
+        "exact_input": "Launch version 22w14a",
+        "success_cue": "The Minecraft main menu is displayed and the on-screen version text identifies the running version as 22w14a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a single-player world in Creative mode. From the main menu, select Singleplayer, select Create New World, change the game mode until it reads Creative, and then create the world. No specific seed or other world option is needed.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The world has loaded, terrain is rendered, normal input responds, and the player is in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Creative inventory using the Open/Close Inventory control. The default keyboard input is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory window is open and category tabs are visible around the item grid.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Select the Building Blocks category. Move the pointer across the category tabs until the tooltip reads Building Blocks, then left-click that tab. In this inventory layout, the tab can also be recognized by its building-block icon.",
+        "exact_input": "Left-click the tab whose tooltip reads \"Building Blocks\"",
+        "success_cue": "The Building Blocks tab is selected and its category-specific item grid and vertical scroll control are visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Locate Dirt within the Building Blocks tab. Browse only this tab by rotating the mouse wheel while the pointer is over the item grid, or by dragging the vertical scrollbar. Hover candidate items without clicking them until a tooltip reading Dirt appears. Note its position in the category sequence so it can later be compared with the other named items.",
+        "exact_input": "Mouse wheel or vertical scrollbar; hover until tooltip reads \"Dirt\"",
+        "success_cue": "An item in the Building Blocks grid has been unambiguously identified by the tooltip Dirt.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Locate Rooted Dirt in the same Building Blocks category. Continue browsing the category grid and hover candidate items until the tooltip reads Rooted Dirt. Note its position relative to the previously located Dirt item. Do not switch to the Search Items tab.",
+        "exact_input": "Mouse wheel or vertical scrollbar; hover until tooltip reads \"Rooted Dirt\"",
+        "success_cue": "An item in the Building Blocks grid has been unambiguously identified by the tooltip Rooted Dirt, with the earlier Dirt position retained for comparison.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Locate Mud in the same Building Blocks category. Continue browsing with the mouse wheel or scrollbar and hover candidate items until the tooltip reads Mud. Note its position in the category sequence.",
+        "exact_input": "Mouse wheel or vertical scrollbar; hover until tooltip reads \"Mud\"",
+        "success_cue": "An item in the Building Blocks grid has been unambiguously identified by the tooltip Mud.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Locate Muddy Mangrove Roots in the same Building Blocks category. Continue browsing the category grid and hover candidate items until the tooltip reads Muddy Mangrove Roots. Keep the Creative inventory open after identifying it, with the prior locations of Dirt, Rooted Dirt, and Mud retained for comparison.",
+        "exact_input": "Mouse wheel or vertical scrollbar; hover until tooltip reads \"Muddy Mangrove Roots\"",
+        "success_cue": "The Muddy Mangrove Roots item has been identified by its tooltip while the Building Blocks category remains selected.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The Creative inventory is still open on the Building Blocks tab in Java Edition 22w14a, and Dirt, Rooted Dirt, Mud, and Muddy Mangrove Roots have all been located in that category sequence. Hand off now for inspection of their relative inventory placement.",
+    "uncertainties": [
+      "The report does not provide a world seed, coordinates, GUI scale, language setting, or resource-pack configuration; none appears necessary to reach the inventory ordering under test.",
+      "The exact row and scroll position of each item are intentionally not supplied because those positions constitute what the separate observation subsystem must inspect.",
+      "Creating a new single-player Creative world is a practical execution choice; the report only requires access to the Creative inventory and does not state that a new world or single-player mode is mandatory."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_07acf86a7795ccd5016aa5e14c634887d0aebadd70984ee00d",
+    "elapsed_seconds": 40.48,
+    "usage": {
+      "input_tokens": 8589,
+      "output_tokens": 2708,
+      "reasoning_tokens": 1552,
+      "total_tokens": 11297
+    },
+    "timestamp": "2026-09-12T23:34:12.729841+00:00"
+  }
+}

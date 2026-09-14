@@ -1,0 +1,114 @@
+{
+  "bug_id": "MC-254417",
+  "category": "Social Interactions",
+  "source_md": "[Social Interactions] - MC-254417.md",
+  "source_meta": {
+    "mojira categories": "Social Interactions",
+    "project": "MC",
+    "issue key": "MC-254417",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2022-07-21T05:05:06.161-0700",
+    "updated": "2025-03-08T10:38:19.722-0800",
+    "resolution date": "2022-07-21T13:27:57.091-0700",
+    "affects versions": "1.19.1 Pre-release 6",
+    "fix versions": "1.19.1 Release Candidate 2",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-254417.png; MC-254417 - Analysis.png",
+    "_title": "Screenshot messages aren't prefixed with gray color indicators"
+  },
+  "stor": {
+    "bug_id": "MC-254417",
+    "affected_versions": [
+      "1.19.1 Pre-release 6"
+    ],
+    "recommended_version": "1.19.1 Pre-release 6",
+    "environment": "Minecraft: Java Edition graphical client running 1.19.1 Pre-release 6. Use a fresh single-player world in Creative mode with cheats enabled and normal command feedback visible. No dedicated server, additional players, seed, resource pack, or datapack is required by the report.",
+    "preconditions": [
+      "Install and launch the exact affected Java Edition version listed by the report: 1.19.1 Pre-release 6. Do not use the fix version, 1.19.1 Release Candidate 2.",
+      "Use the standard graphical game client because the reproduction requires the Take Screenshot control and an on-screen chat overlay.",
+      "Create or load a world in which the player has permission to execute /tag. For a deterministic single-player setup, create a Creative-mode world with Allow Cheats enabled.",
+      "Leave command feedback enabled so the /tag command produces the system-message control line required by the report.",
+      "Ensure chat is not hidden. The chat overlay must be capable of displaying both command feedback and the screenshot-saved message.",
+      "If controls have been rebound, identify the key assigned to the Take Screenshot action. Its default key is F2."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select an installation that runs Minecraft: Java Edition 1.19.1 Pre-release 6, and launch the game.",
+        "exact_input": null,
+        "success_cue": "The main menu identifies the running game as 1.19.1 Pre-release 6.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a fresh world. Set Game Mode to Creative and ensure Allow Cheats is enabled, then select Create New World. A specific world seed is not required.",
+        "exact_input": null,
+        "success_cue": "The player has spawned in the world and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until nearby terrain has rendered and player movement and controls respond normally.",
+        "exact_input": null,
+        "success_cue": "Surrounding chunks are visible and the client responds normally to movement input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press the Open Chat control, which is T by default, to place the cursor in the chat input field.",
+        "exact_input": "T",
+        "success_cue": "The chat interface is open and an input field is ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Enter the report's tag command into in-game chat exactly as shown, including the leading slash, and press Enter to execute it.",
+        "exact_input": "/tag @s add test",
+        "success_cue": "The command is accepted and the chat overlay displays feedback confirming that the tag named test was added to the executing player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Use the visible /tag command-feedback line as the control system message. Confirm that its gray color indicator is visible, and do not clear or hide the chat overlay before proceeding.",
+        "exact_input": null,
+        "success_cue": "The command-feedback system message remains visible with its gray color indicator, providing a nearby visual reference for the next message.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Without leaving the world, invoke the Take Screenshot control once. Press F2 if the default key binding is still in use; otherwise press the key currently bound to Take Screenshot.",
+        "exact_input": "F2",
+        "success_cue": "A screenshot is taken and a screenshot-saved message appears in the in-game chat overlay. Do not assess that message's color indicator yet.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The Take Screenshot control has just been pressed once, and the resulting screenshot-saved message is visible in the chat overlay near the earlier /tag command-feedback control message. Hand off immediately for visual inspection of the screenshot message.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer, game mode, or world seed. A fresh Creative-mode single-player world with cheats enabled is selected as the simplest deterministic setup that permits the supplied command without adding unrelated server conditions.",
+      "The report names F2 as the default Take Screenshot control but does not require the binding to remain unchanged; the bound Take Screenshot action is authoritative if controls were remapped.",
+      "No web verification was needed because the report supplies the affected version, exact command, trigger action, default screenshot key, and required comparison message."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0d0b915c060087ec016aa71227234087d0bcf419de30a5cde8",
+    "elapsed_seconds": 30.63,
+    "usage": {
+      "input_tokens": 8362,
+      "output_tokens": 1977,
+      "reasoning_tokens": 1034,
+      "total_tokens": 10339
+    },
+    "timestamp": "2026-09-13T21:14:45.648333+00:00"
+  }
+}

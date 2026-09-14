@@ -1,0 +1,51 @@
+{
+  "key": "MC-299196",
+  "created_date": "2025-06-27T09:28:19.377-0700",
+  "updated_date": "2025-10-06T15:15:13.305-0700",
+  "status": "Resolved",
+  "resolution": "Fixed",
+  "affected_versions": [
+    "1.21.6",
+    "1.21.7 Release Candidate 2",
+    "1.21.7",
+    "1.21.8",
+    "25w31a",
+    "25w32a",
+    "25w33a",
+    "25w34b",
+    "25w35a",
+    "25w36b",
+    "25w37a",
+    "1.21.9 Pre-Release 2",
+    "1.21.9 Pre-Release 4",
+    "1.21.9 Release Candidate 1",
+    "1.21.9",
+    "1.21.10 Release Candidate 1"
+  ],
+  "fix_versions": [
+    "25w41a"
+  ],
+  "confirmation_status": "",
+  "category": "",
+  "os_version": "",
+  "watch_count": 1,
+  "labels": [],
+  "resolution_date": "2025-10-06T05:05:22.706-0700",
+  "reporter": "",
+  "assignee": "",
+  "votes": 0,
+  "priority": "",
+  "components": [],
+  "summary": "Waypoints fade out when an advancement is granted",
+  "environment_raw": "",
+  "description": "This happens in Survival or Adventure mode.\n\nWaypoints will fade out when unlocking advancements that don't have XP associated with them.\n\n - Steps to reproduce the issue\n\n - Viewing Waypoints.\n\n{{/summon armor_stand ~ ~ ~ \n\nUnknown macro: {attributes} \n\n}}\n\n - Unlock advancements in Survival or Adventure mode.\n\n/advancement grant @s only minecraft:recipes/brewing/blaze_powder\n\n/advancement grant @s only minecraft:husbandry/plant_seed\n\netc.\n\n - Expected result\n\nWaypoints remain visible.\n\n - Actual result\n\nThe waypoint fades out and the experience bar appears.",
+  "Steps to Reproduce": "1. Launch Minecraft and create a new world in Survival mode.\n2. In the world, run `/summon armor_stand ~ ~ ~`.\n3. View the waypoint.\n4. Run `/advancement grant @s only minecraft:recipes/brewing/blaze_powder`.\n5. Observe that the waypoint fades out and the experience bar appears.\n6. Repeat steps 1\u20135 in Adventure mode to confirm the same behavior.",
+  "Environment": "Minecraft Java Edition Versions: 1.21.6, 1.21.7 Release Candidate 2, 1.21.7, 1.21.8, 25w31a, 25w32a, 25w33a, 25w34b, 25w35a, 25w36b, 25w37a, 1.21.9 Pre-Release 2, 1.21.9 Pre-Release 4, 1.21.9 Release Candidate 1, 1.21.9, 1.21.10 Release Candidate 1 (includes snapshots)",
+  "Observed Behavior": "### Actual behavior\n\nWhen an advancement with no experience reward is granted in Survival or Adventure mode, the currently visible waypoint fades out. The experience bar also appears, even though the advancement grants no experience.",
+  "Expected Behavior": "When an advancement without an experience reward is granted in Survival or Adventure mode, any currently visible waypoints should remain visible and unchanged. Granting the advancement should not cause the waypoint to fade out or make the experience bar appear unexpectedly. Waypoint visibility should remain consistent while viewing them, regardless of which advancement is unlocked.",
+  "comments": [],
+  "_source_dir": "/Users/nish/Documents/Research - Minecraft/data_collection/test-bug-panel/Advancements/MC-299196",
+  "improvement_metadata": {
+    "original_key": "MC-299196"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "bug_id": "MC-301424",
+  "category": "Resource Packs",
+  "source_md": "[Resource Packs] - MC-301424.md",
+  "source_meta": {
+    "mojira categories": "Resource Packs",
+    "project": "MC",
+    "issue key": "MC-301424",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2025-08-23T01:10:23.913-0700",
+    "updated": "2025-11-04T03:24:35.951-0800",
+    "resolution date": "2025-11-04T03:24:35.904-0800",
+    "affects versions": "25w34b; 25w35a; 25w36b; 1.21.10; 25w44a",
+    "fix versions": "1.21.9 Pre-Release 1; 25w45a",
+    "area": "Platform",
+    "votes": "2",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "BrokenEntityDataExample.zip; WithPack1218.png; With Resource Pack.png",
+    "_title": "entity_data item component detection is broken in resource packs"
+  },
+  "stor": {
+    "bug_id": "MC-301424",
+    "affected_versions": [
+      "25w34b",
+      "25w35a",
+      "25w36b",
+      "1.21.10",
+      "25w44a"
+    ],
+    "recommended_version": "25w34b",
+    "environment": "Minecraft Java Edition client. Use 1.21.8 for the report's comparison run, followed by the first listed affected version, 25w34b, for the final reproduction. Use separate new single-player Creative-mode worlds with commands enabled. Enable the attached BrokenEntityDataExample.zip resource pack unchanged in both versions.",
+    "preconditions": [
+      "The exact attachment BrokenEntityDataExample.zip has been downloaded and is available to the Minecraft client. Keep it as a ZIP file unless Minecraft fails to recognize it in that form.",
+      "Do not edit the resource pack's entity_data selector or apply the alternative selector syntax described in Mojira Comment 3; the attached pack must be tested unchanged.",
+      "The Minecraft Launcher can start the release 1.21.8 and the snapshot 25w34b. Snapshot versions are enabled in the launcher's installation-version filter if necessary.",
+      "Create a separate disposable world for each version. Do not open the 1.21.8 comparison world in 25w34b.",
+      "Use Creative mode and ensure commands are allowed so the supplied /give command can be executed from in-game chat.",
+      "The comparison run is performed first so the final trigger and handoff occur in the affected version 25w34b. This reverses the report's presentation order without changing either test condition."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Java Edition installation configured for version 1.21.8 and wait at the main menu. This is the comparison version named by the report, not an affected version.",
+        "exact_input": "1.21.8",
+        "success_cue": "The lower-left corner of the main menu identifies the running version as 1.21.8.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open the resource-pack screen by selecting Options, then Resource Packs, then Open Pack Folder.",
+        "exact_input": "Options -> Resource Packs -> Open Pack Folder",
+        "success_cue": "The operating system opens the resourcepacks directory used by this Minecraft installation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Copy BrokenEntityDataExample.zip into the opened resourcepacks directory without changing the archive's contents or selector syntax, then return to Minecraft.",
+        "exact_input": "BrokenEntityDataExample.zip",
+        "success_cue": "BrokenEntityDataExample.zip remains in the resourcepacks directory and Minecraft's Resource Packs screen is visible again.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "If the pack is under Available Resource Packs, use its arrow control to move it to Selected Resource Packs. Select Done and wait for resource reloading to finish. If it was already selected, leave it selected and choose Done.",
+        "exact_input": "BrokenEntityDataExample.zip",
+        "success_cue": "The resource-pack screen closes, the main menu responds normally, and BrokenEntityDataExample.zip is enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select Singleplayer, choose Create New World, configure the new world for Creative mode, ensure commands are allowed, and create the world. Give it a name that identifies it as the 1.21.8 comparison world.",
+        "exact_input": "MC-301424 comparison 1.21.8",
+        "success_cue": "A new 1.21.8 world begins loading in Creative mode with command access available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait until the player has entered the world, nearby terrain has rendered, and movement and input respond normally.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in the loaded 1.21.8 world without a loading overlay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open and displays item-category tabs and the player's hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the Search Items tab, focus its search field, and search for item frame. Locate the ordinary item named Item Frame; do not substitute Glow Item Frame. Leave the search results visible briefly for the comparison setup, without evaluating the model result as part of this plan.",
+        "exact_input": "item frame",
+        "success_cue": "The Creative inventory search results include the ordinary Item Frame entry.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Close the inventory using E or Esc so that in-game chat can be opened.",
+        "exact_input": "E",
+        "success_cue": "The inventory interface is closed and the normal world view is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Open in-game chat using the chat action, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Enter the report's command exactly as written, including the leading slash, and press Enter. Do not rewrite its entity identifier, component syntax, capitalization, or NBT.",
+        "exact_input": "/give @s item_frame[entity_data={id:\"minecraft:item_frame\",Invisible:1b}] 1",
+        "success_cue": "The command is accepted and one command-created Item Frame item is added to the player's inventory or hotbar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Open the Creative inventory again. Return to the Search Items tab and re-enter item frame if the previous search is no longer displayed. Keep the standard Item Frame search entry and the command-created item available as the completed 1.21.8 comparison state, but do not evaluate their model appearance in this setup plan.",
+        "exact_input": "E; item frame",
+        "success_cue": "The inventory is open, the ordinary Item Frame entry is present in the search results, and the command-created Item Frame is present in the player inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Close the inventory, open the pause menu, select Save and Quit to Title, and leave the 1.21.8 comparison world. Do not later load this world in the snapshot.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The client has returned to the 1.21.8 main menu and the comparison world is no longer loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Exit Minecraft, select the launcher installation configured for snapshot 25w34b, and start it.",
+        "exact_input": "25w34b",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 25w34b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Open Options, then Resource Packs. Verify that BrokenEntityDataExample.zip is under Selected Resource Packs. If it is only under Available Resource Packs, move it to Selected Resource Packs. Select Done and wait until resource reloading and menu responsiveness are complete.",
+        "exact_input": "Options -> Resource Packs -> BrokenEntityDataExample.zip -> Done",
+        "success_cue": "BrokenEntityDataExample.zip is enabled unchanged in 25w34b and the main menu responds normally after resource reloading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select Singleplayer, choose Create New World, configure a separate new world for Creative mode, ensure commands are allowed, and create it. Do not select or convert the previously created 1.21.8 comparison world.",
+        "exact_input": "MC-301424 affected 25w34b",
+        "success_cue": "A separate new world begins loading under 25w34b in Creative mode with command access available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Wait until the player has entered the 25w34b world, nearby chunks have rendered, and movement and controls respond normally.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in the loaded 25w34b world without a loading overlay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Open the Search Items tab, focus the search field, and search for item frame. Locate the ordinary Item Frame entry rather than Glow Item Frame. Do not evaluate its texture or model yet.",
+        "exact_input": "item frame",
+        "success_cue": "The ordinary Item Frame entry is visible in the Creative inventory search results in 25w34b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Close the Creative inventory using E or Esc.",
+        "exact_input": "E",
+        "success_cue": "The normal world view is visible and the player remains in the 25w34b Creative world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Open in-game chat using the chat action, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept the supplied command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Enter the report's command exactly as written, including the leading slash, and press Enter. Do not replace the SNBT form, apply the workaround from Mojira Comment 3, or otherwise modify the command.",
+        "exact_input": "/give @s item_frame[entity_data={id:\"minecraft:item_frame\",Invisible:1b}] 1",
+        "success_cue": "The command is accepted and one Item Frame carrying the supplied entity_data component is added to the player's inventory or hotbar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Immediately open the Creative inventory with E. Return to the Search Items tab and enter item frame again if the earlier query was cleared. Stop once the standard Item Frame search entry and the command-created Item Frame are available on the same inventory screen or between the search results and visible hotbar; do not evaluate their rendering.",
+        "exact_input": "E; item frame",
+        "success_cue": "The 25w34b inventory is open, the ordinary Item Frame entry is present in the Creative search results, and the command-created entity_data Item Frame is present in the player inventory or hotbar.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "In the 25w34b Creative world, the unchanged BrokenEntityDataExample.zip pack is enabled, the supplied /give command has just created the entity_data Item Frame, and the Creative inventory is open with the ordinary Item Frame search entry and command-created Item Frame available for visual inspection. Hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The binary contents of BrokenEntityDataExample.zip were not included in the supplied text. This plan assumes the autonomous agent has access to the exact Mojira attachment and that the archive is not corrupted or renamed internally.",
+      "The report does not specify single-player versus dedicated server, a world seed, coordinates, or pre-existing world requirements. Separate new single-player Creative worlds are used as the minimum deterministic setup supporting Creative inventory access and the /give command.",
+      "The report presents the affected-version run before the 1.21.8 comparison. The plan performs the 1.21.8 comparison setup first so that the final trigger and handoff occur in the recommended affected version, 25w34b.",
+      "Resource-pack menu navigation and world-creation details are practical operational expansions and were not externally verified for these exact versions. No version-sensitive command or pack syntax from the report was changed."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_099ad6cf53dfc63a016aa715ce8d5087d0b68bc13bb9675b25",
+    "elapsed_seconds": 98.03,
+    "usage": {
+      "input_tokens": 8506,
+      "output_tokens": 6718,
+      "reasoning_tokens": 4301,
+      "total_tokens": 15224
+    },
+    "timestamp": "2026-09-13T21:31:28.464887+00:00"
+  }
+}
