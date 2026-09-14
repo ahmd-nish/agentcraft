@@ -1,0 +1,71 @@
+{
+  "bonus_chest": false,
+  "dimensions": {
+    "minecraft:overworld": {
+      "generator": {
+        "type": "minecraft:flat",
+        "settings": {
+          "layers": [
+            {
+              "height": 2,
+              "block": "minecraft:bedrock"
+            },
+            {
+              "height": 60,
+              "block": "minecraft:dirt"
+            },
+            {
+              "height": 1,
+              "block": "minecraft:grass_block"
+            }
+          ],
+          "biome": "minecraft:birch_forest",
+          "lakes": true,
+          "features": true,
+          "structures": {
+            "stronghold": {
+              "distance": 32,
+              "count": 128,
+              "spread": 3
+            },
+            "structures": {
+              "minecraft:stronghold": {
+                "spacing": 1,
+                "separation": 0,
+                "salt": 0
+              }
+            }
+          }
+        }
+      },
+      "type": "minecraft:overworld"
+    },
+    "minecraft:the_nether": {
+      "generator": {
+        "biome_source": {
+          "seed": 1,
+          "preset": "minecraft:nether",
+          "type": "minecraft:multi_noise"
+        },
+        "seed": 1,
+        "settings": "minecraft:nether",
+        "type": "minecraft:noise"
+      },
+      "type": "minecraft:the_nether"
+    },
+    "minecraft:the_end": {
+      "generator": {
+        "biome_source": {
+          "seed": 1,
+          "type": "minecraft:the_end"
+        },
+        "seed": 1,
+        "settings": "minecraft:end",
+        "type": "minecraft:noise"
+      },
+      "type": "minecraft:the_end"
+    }
+  },
+  "seed": 1,
+  "generate_features": true
+}

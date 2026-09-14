@@ -1,0 +1,78 @@
+    protected void setSize(float width, float height)
+    {
+        if (width != this.width || height != this.height)
+        {
+            float f = this.width;
+            this.width = width;
+            this.height = height;
+            AxisAlignedBB oldAABB = this.getEntityBoundingBox();
+
+//          if (this.width < f)
+//           {
+                double d0 = (double)width / 2.0D;
+                this.setEntityBoundingBox(new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double)this.height, this.posZ + d0));
+//              return;
+//          }
+
+//          AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
+//          this.setEntityBoundingBox(new AxisAlignedBB(axisalignedbb.minX, axisalignedbb.minY, axisalignedbb.minZ, axisalignedbb.minX + (double)this.width, axisalignedbb.minY + (double)this.height, axisalignedbb.minZ + (double)this.width));
+
+            if (this.width > f && !this.firstUpdate && !this.world.isRemote)
+            {
+                this.pushEntityOutOfBlocks(oldAABB); // new code proposed for fixing MC-9568
+//              this.move(MoverType.SELF, (double)(f - this.width), 0.0D, (double)(f - this.width));
+            }
+        }
+    }
+
+    // new code for MC-9568 added from here
+    private void pushEntityOutOfBlocks(AxisAlignedBB oldHitbox){
+        // Pass "null" in first argument to only get _possible_ block collisions
+        List<AxisAlignedBB> list1 = this.world.getCollisionBoxes(null, this.getEntityBoundingBox());
+        AxisAlignedBB axisalignedbb = this.getEntityBoundingBox();
+        
+        for(AxisAlignedBB i : list1)
+        {
+            if(!oldHitbox.intersects(i) && axisalignedbb.intersects(i))
+            {
+                double minX = axisalignedbb.minX;
+                double maxX = axisalignedbb.maxX;
+                double minZ = axisalignedbb.minZ;
+                double maxZ = axisalignedbb.maxZ;
+                
+                // Check for collisions on the X and Z axis, and only push the new AABB if the colliding blocks AABB
+                // is completely to the opposite side of the original AABB
+                if (i.maxX > axisalignedbb.minX && i.minX < axisalignedbb.maxX)
+                {
+                    if(i.maxX >= oldHitbox.maxX && i.minX >= oldHitbox.maxX)
+                    {
+                        minX = i.minX - this.width;
+                        maxX = i.minX;
+                    }
+                    else if(i.maxX <= oldHitbox.minX && i.minX <= oldHitbox.minX)
+                    {
+                        minX = i.maxX;
+                        maxX = i.maxX + this.width;
+                    }
+                }
+
+                if (i.maxZ > axisalignedbb.minZ && i.minZ < axisalignedbb.maxZ)
+                {
+                    if(i.minZ >= oldHitbox.maxZ && i.maxZ >= oldHitbox.maxZ)
+                    {
+                        minZ = i.minZ - this.width;
+                        maxZ = i.minZ;
+                    }
+                    else if(i.maxZ <= oldHitbox.minZ && i.minZ <= oldHitbox.minZ)
+                    {
+                        minZ = i.maxZ;
+                        maxZ = i.maxZ + this.width;
+                    }
+                }
+                
+                axisalignedbb = new AxisAlignedBB(minX, axisalignedbb.minY, minZ, maxX, axisalignedbb.maxY, maxZ);
+            }
+        }
+
+        this.setEntityBoundingBox(axisalignedbb);
+    }

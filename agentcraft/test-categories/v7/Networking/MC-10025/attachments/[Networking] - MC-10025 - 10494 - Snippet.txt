@@ -1,0 +1,20 @@
+    public void readFromNBT(NBTTagCompound par1NBTTagCompound)
+    {
+        super.readFromNBT(par1NBTTagCompound);
+        NBTTagList var2 = par1NBTTagCompound.getTagList("Items");
+        this.boilerItemStacks = new ItemStack[this.getSizeInventory()];
+
+        for (int var3 = 0; var3 < var2.tagCount(); ++var3)
+        {
+            NBTTagCompound var4 = (NBTTagCompound)var2.tagAt(var3);
+            byte var5 = var4.getByte("Slot");
+
+            if (var5 >= 0 && var5 < this.boilerItemStacks.length)
+            {
+                this.boilerItemStacks[var5] = ItemStack.loadItemStackFromNBT(var4);
+            }
+        }
+
+        this.boilerBurnTime = par1NBTTagCompound.getShort("BurnTime");
+        this.currentItemBurnTime = getItemBurnTime(this.boilerItemStacks[1]); //This is where the problem lies.
+    }
