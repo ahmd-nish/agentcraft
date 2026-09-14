@@ -1,0 +1,194 @@
+{
+  "bug_id": "MC-299196",
+  "category": "Advancements",
+  "panel": "low-interaction-54",
+  "reproduction_method": "commands",
+  "source_md": "[Advancements] - MC-299196.md",
+  "source_meta": {
+    "mojira categories": "Advancements; UI",
+    "project": "MC",
+    "issue key": "MC-299196",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2025-06-27T09:28:19.377-0700",
+    "updated": "2025-10-06T15:15:13.305-0700",
+    "resolution date": "2025-10-06T05:05:22.706-0700",
+    "affects versions": "1.21.6; 1.21.7 Release Candidate 2; 1.21.7; 1.21.8; 25w31a; 25w32a; 25w33a; 25w34b; 25w35a; 25w36b; 25w37a; 1.21.9 Pre-Release 2; 1.21.9 Pre-Release 4; 1.21.9 Release Candidate 1; 1.21.9; 1.21.10 Release Candidate 1",
+    "fix versions": "25w41a",
+    "area": "Expansion A",
+    "votes": "7",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "Waypoint bug.mp4",
+    "_title": "Waypoints fade out when an advancement is granted"
+  },
+  "stor": {
+    "bug_id": "MC-299196",
+    "affected_versions": [
+      "1.21.6",
+      "1.21.7 Release Candidate 2",
+      "1.21.7",
+      "1.21.8",
+      "25w31a",
+      "25w32a",
+      "25w33a",
+      "25w34b",
+      "25w35a",
+      "25w36b",
+      "25w37a",
+      "1.21.9 Pre-Release 2",
+      "1.21.9 Pre-Release 4",
+      "1.21.9 Release Candidate 1",
+      "1.21.9",
+      "1.21.10 Release Candidate 1"
+    ],
+    "recommended_version": "1.21.6",
+    "environment": "Minecraft Java Edition 1.21.6 in a fresh single-player world, using Survival mode with commands/cheats enabled. Use the normal in-game HUD with the locator bar enabled. A dedicated server, multiple players, specific seed, coordinates, resource pack, or non-default graphics setting is not specified by the report.",
+    "preconditions": [
+      "Use exactly Minecraft Java Edition 1.21.6, the first version listed as affected.",
+      "Create a fresh world so that minecraft:recipes/brewing/blaze_powder has not already been granted to the test player.",
+      "The player must be in Survival mode. Adventure mode is also reported as affected, but Survival is used for this plan.",
+      "Enable commands/cheats when creating the world so the player can execute /gamerule, /summon, and /advancement commands.",
+      "Keep the normal HUD visible; the hotbar, hearts, and hunger bar should not be hidden by the Hide GUI control.",
+      "Do not gain or lose experience immediately before the trigger. Continue only after the locator bar has replaced the experience bar and its waypoint is steadily visible.",
+      "Do not grant the target advancement until the designated trigger step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation for Java Edition 1.21.6, launch it, and verify the version shown on the title screen before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 1.21.6.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world, set Game Mode to Survival, and enable commands/cheats. No particular seed or world type is required by the report; a fresh world is used to prevent the target advancement from already being granted.",
+        "exact_input": null,
+        "success_cue": "The new world begins loading with the player configured for Survival mode and permitted to execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without performing advancement- or experience-granting activities until the terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are rendered, the player can move normally, and no loading screen is present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Confirm that the normal HUD is visible. If the hotbar, hearts, and hunger bar are hidden, press the bound Hide GUI control once; its default key is F1. Do not press F1 if the HUD is already visible.",
+        "exact_input": null,
+        "success_cue": "The hotbar is visible at the bottom of the screen, with the Survival health and hunger indicators visible above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, the default Open Chat control, to open the in-game chat and command input.",
+        "exact_input": "T",
+        "success_cue": "A text input line is open at the bottom of the screen and accepts keyboard input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the command exactly as shown, including the leading slash, to ensure that the locator bar game rule is enabled. Do not submit it until the complete command has been entered.",
+        "exact_input": "/gamerule locatorBar true",
+        "success_cue": "The unsent chat input reads exactly: /gamerule locatorBar true",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Press Enter to execute the locator-bar game-rule command. The locatorBar game rule is available in Java Edition 1.21.6 and enables waypoint display. ([minecraft.net](https://www.minecraft.net/de-de/article/minecraft-java-edition-1-21-6?utm_source=openai))",
+        "exact_input": "Enter",
+        "success_cue": "The command is accepted without a syntax or permission error, and command feedback indicates that locatorBar is true.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Press T again to open the in-game chat and command input.",
+        "exact_input": "T",
+        "success_cue": "The chat input line is open and ready for another command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's armor-stand summon command exactly as written, including the leading slash, lowercase identifiers, braces, quotation marks, attribute ID, and base value. Do not submit it until the entire command is present.",
+        "exact_input": "/summon armor_stand ~ ~ ~ {attributes:[{id:\"minecraft:waypoint_transmit_range\",base:100}]}",
+        "success_cue": "The unsent chat input exactly matches the supplied armor-stand summon command.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press Enter to execute the summon command at the player's current coordinates.",
+        "exact_input": "Enter",
+        "success_cue": "The command succeeds without a syntax error, and an armor stand exists at or immediately beside the position where the player executed the command.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Walk approximately 10 to 20 blocks horizontally away from the armor stand, remaining well inside its configured 100-block transmission range. Turn the camera back toward the armor stand; keeping the armor stand itself in view is the simplest way to ensure the camera faces its waypoint.",
+        "exact_input": "Use the movement controls, normally W/A/S/D, and mouse movement to face the armor stand.",
+        "success_cue": "The player is 10 to 20 blocks from the armor stand, the armor stand's chunk remains loaded, and the camera is facing toward it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Stop moving and wait until the locator bar is displayed in the HUD area normally occupied by the experience bar. Keep facing the armor stand and do not collect experience, use an anvil or enchanting table, or execute an advancement command during this wait. Entities with waypoint_transmit_range above zero can transmit waypoints to players within range. ([minecraft.wiki](https://minecraft.wiki/w/Player_Locator_Bar?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "A colored waypoint indicator for the armor stand is steadily visible on the locator bar, and the normal experience bar is not currently occupying that HUD area.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Without changing position or turning away from the armor stand, press T to open chat while preserving the visible-waypoint setup.",
+        "exact_input": "T",
+        "success_cue": "The command input is open, and the player remains within 100 blocks of and oriented toward the armor stand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Enter the report's first advancement command exactly as shown, including the leading slash. Do not press Enter yet.",
+        "exact_input": "/advancement grant @s only minecraft:recipes/brewing/blaze_powder",
+        "success_cue": "The complete unsent command /advancement grant @s only minecraft:recipes/brewing/blaze_powder is visible in the chat input.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press Enter once to submit the advancement grant command. This is the trigger action; do not grant additional advancements or perform another action before handing off to HUD observation.",
+        "exact_input": "Enter",
+        "success_cue": "The command has been submitted without a syntax or permission error, and command feedback confirms that the specified advancement was granted to the current player.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The armor stand's waypoint was steadily visible immediately before the player submitted /advancement grant @s only minecraft:recipes/brewing/blaze_powder, and that command has just been executed. Hand off immediately for observation of the HUD beginning at the Enter keypress; do not execute the report's alternative plant_seed command unless a separate clean trial is requested.",
+    "uncertainties": [
+      "The report does not specify whether the test was performed in single-player, on an integrated multiplayer world, or on a dedicated server. This plan uses a fresh single-player world because the supplied commands and waypoint-transmitting armor stand allow the stated setup without another player.",
+      "The report does not provide a world seed, coordinates, or world type. None are introduced as requirements.",
+      "The phrase \"Viewing Waypoints\" does not specify the player's distance or camera orientation. The plan uses a 10-to-20-block separation and faces the armor stand so its waypoint can be visibly confirmed while remaining inside the supplied 100-block transmission range.",
+      "The report supplies both minecraft:recipes/brewing/blaze_powder and minecraft:husbandry/plant_seed as examples. The plan uses only the first command so one advancement grant provides a single, clean trigger.",
+      "The report does not state whether the target recipe advancement had previously been granted. A fresh world is used to avoid that ambiguity rather than adding an unreported advancement-revoke command.",
+      "The exact armor-stand summon and advancement commands are preserved from the report and are not modernized or replaced."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_07d3b2a123cb0e86016aa7b4432da087d0a8fbe46068ddff43",
+    "elapsed_seconds": 88.03,
+    "usage": {
+      "input_tokens": 16857,
+      "output_tokens": 5793,
+      "reasoning_tokens": 3829,
+      "total_tokens": 22650
+    },
+    "timestamp": "2026-09-14T08:47:23.004337+00:00"
+  }
+}

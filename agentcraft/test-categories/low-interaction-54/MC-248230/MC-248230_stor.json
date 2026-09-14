@@ -1,0 +1,157 @@
+{
+  "bug_id": "MC-248230",
+  "category": "Chunk loading",
+  "panel": "low-interaction-54",
+  "reproduction_method": "commands",
+  "source_md": "[Chunk loading] - MC-248230.md",
+  "source_meta": {
+    "mojira categories": "Chunk loading",
+    "project": "MC",
+    "issue key": "MC-248230",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2022-01-23T06:47:14.044-0800",
+    "updated": "2025-04-30T07:31:57.017-0700",
+    "resolution date": "2022-07-14T15:12:36.627-0700",
+    "affects versions": "22w03a",
+    "fix versions": "22w05a",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-248230.mp4; MC-248230.png",
+    "_title": "Players get stuck on the \"Loading terrain...\" screen after rejoining the world whilst above or below the build limit"
+  },
+  "stor": {
+    "bug_id": "MC-248230",
+    "affected_versions": [
+      "22w03a"
+    ],
+    "recommended_version": "22w03a",
+    "environment": "Minecraft Java Edition snapshot 22w03a; single-player integrated-server world; newly created Overworld save with cheats enabled. The report does not require a dedicated server, multiplayer, a specific seed, or a specific game mode.",
+    "preconditions": [
+      "Configure the Minecraft Launcher so that Minecraft Java Edition snapshot 22w03a can be launched.",
+      "Use a disposable new world; the reproduction requires leaving and reopening the same save.",
+      "Be prepared to pause and leave the world immediately after teleporting, before the falling player descends to Y=320.",
+      "If controls have been rebound, use the bindings for Open Chat and Game Menu instead of the default T and Esc keys."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation/profile that runs Java Edition snapshot 22w03a, and launch the game.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is visible and identifies the running version as 22w03a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open the single-player world list and start creating a new world by selecting Singleplayer and then Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Set Allow Cheats to ON. The report does not specify a seed, difficulty, or game mode, so leave those settings at their existing defaults.",
+        "exact_input": "Allow Cheats: ON",
+        "success_cue": "The world-creation screen visibly shows that cheats are enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World and wait for world generation and initial loading to finish.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly created Overworld and the loading screen has disappeared.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Before continuing, wait until nearby terrain has rendered and normal player input responds. Do not leave and reopen the world yet.",
+        "exact_input": null,
+        "success_cue": "Surrounding chunks are visible and the player can look or move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open in-game chat using the Open Chat control; its default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the report's teleport command exactly as written, including the leading slash, and press Enter. This keeps the current X and Z coordinates and sets the player's Y coordinate to 1000.",
+        "exact_input": "/tp @s ~ 1000 ~",
+        "success_cue": "The command executes without an error and the player is teleported high into the air at Y=1000.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Immediately open the Game Menu using the default Esc key. Do this promptly and do not wait to inspect the terrain, because the player may be falling and must not descend to Y=320 before leaving.",
+        "exact_input": "Esc",
+        "success_cue": "The Game Menu is visible almost immediately after the teleport, with the single-player simulation paused before the intended above-build-limit state is lost.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select Save and Quit to Title to save the player's above-build-limit position and close the integrated world session.",
+        "exact_input": "Save and Quit to Title",
+        "success_cue": "The main title screen appears, indicating that the world has been saved and closed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select Singleplayer to return to the saved-world list.",
+        "exact_input": "Singleplayer",
+        "success_cue": "The newly created world is present in the world list.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Single-click the same world that was created and exited in the preceding steps so that it is selected. Do not create a second world.",
+        "exact_input": null,
+        "success_cue": "The correct existing world is highlighted in the world list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Initiate reloading of the selected world by clicking Play Selected World or by double-clicking the selected world entry.",
+        "exact_input": "Play Selected World",
+        "success_cue": "The world-loading sequence begins and the Loading terrain... screen is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Leave the loading attempt uninterrupted for approximately thirty seconds. Do not press Esc, close the client, switch worlds, or provide movement input during this interval.",
+        "exact_input": "Wait approximately 30 seconds",
+        "success_cue": "Approximately thirty seconds have elapsed since the same saved world began reloading, with no user action interrupting the attempt.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The same world has been reopened after the player was saved above Y=320, and the resulting loading attempt has been left uninterrupted for approximately thirty seconds. The observation subsystem should now evaluate the client's current state.",
+    "uncertainties": [
+      "The report does not specify a game mode, difficulty, or world seed. This plan leaves those settings at their world-creation defaults and changes only Allow Cheats to ON.",
+      "The report states that the issue can occur above Y=320 or below Y=-64 and in any dimension. This plan uses the report's primary and simplest deterministic variant: teleporting to Y=1000 in the newly created Overworld.",
+      "The report gives no exact maximum delay between teleporting and leaving the world. The player must open the Game Menu promptly after teleportation so that the save is closed before the player falls to Y=320 or lower."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_028466306f005a4c016aa7b49b26fc87d0acef78af2df4b5da",
+    "elapsed_seconds": 61.41,
+    "usage": {
+      "input_tokens": 8796,
+      "output_tokens": 3505,
+      "reasoning_tokens": 2314,
+      "total_tokens": 12301
+    },
+    "timestamp": "2026-09-14T08:48:24.417264+00:00"
+  }
+}
