@@ -1,0 +1,155 @@
+{
+  "bug_id": "MC-240534",
+  "category": "Dedicated Server",
+  "panel": "low-interaction-54",
+  "reproduction_method": "commands",
+  "source_md": "[Dedicated Server] - MC-240534.md",
+  "source_meta": {
+    "mojira categories": "Commands; Dedicated Server",
+    "project": "MC",
+    "issue key": "MC-240534",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2021-11-03T15:07:17.802-0700",
+    "updated": "2025-04-29T21:34:04.390-0700",
+    "resolution date": "2021-11-05T03:37:40.931-0700",
+    "affects versions": "21w44a",
+    "fix versions": "1.18 Pre-release 1",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Bonfire Testing:inward:MC-240502:JFR links copy the path to the report when clicked, inconsistent with other functions",
+    "_title": "Clicking a JFR link copies full server-side path to clipboard"
+  },
+  "stor": {
+    "bug_id": "MC-240534",
+    "affected_versions": [
+      "21w44a"
+    ],
+    "recommended_version": "21w44a",
+    "environment": "Vanilla Minecraft Java Edition snapshot 21w44a using a dedicated server and a matching 21w44a client. Run the dedicated server on an Ubuntu host or virtual machine that is separate from the client device, mirroring the reporter's setup. The client must connect over the network and use a player account authorized to run /jfr start and /jfr stop. Use a private test server and a sanitized server working-directory path because the reproduction concerns disclosure of that absolute path.",
+    "preconditions": [
+      "Obtain the official cross-platform dedicated-server jar for Minecraft Java Edition snapshot 21w44a and the matching 21w44a client installation.",
+      "Provide a Java runtime that successfully launches the unmodified 21w44a dedicated-server jar.",
+      "Use two distinct environments: one machine or virtual machine for the dedicated server and another device or environment for the Minecraft client. Do not run the test solely through an integrated single-player server.",
+      "The client can reach the dedicated server's address and port. If using the default server configuration, allow TCP port 25565 through the test network and host firewall.",
+      "Know the Minecraft Java Edition profile name of the client player so that operator permission can be granted from the server console.",
+      "Use a controlled server directory whose absolute path is recognizable but contains no real secrets or personal information; record that absolute path before testing.",
+      "Have a harmless local text field available on the client device, such as an unsaved plain-text editor document, for the Observation Agent to inspect the clipboard after the trigger."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "On the dedicated Ubuntu server host, create or select a dedicated test directory for snapshot 21w44a. Place the official 21w44a server jar in this directory and rename that jar to server.jar. Record the directory's absolute path so it can later be distinguished from any path on the client device.",
+        "exact_input": null,
+        "success_cue": "The dedicated server host contains server.jar in a known, sanitized absolute directory reserved for this test.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open a terminal on the dedicated server host, change the terminal's working directory to the directory containing server.jar, and perform the initial server launch. The command must be run from that directory so generated files, including the debug directory, are associated with its absolute server-side path.",
+        "exact_input": "java -jar server.jar nogui",
+        "success_cue": "The 21w44a server process starts far enough to create its configuration files; on a first launch it may stop and request EULA acceptance.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "If the first launch stopped because the EULA was not accepted, open eula.txt in the server directory, change the eula setting from false to true after reviewing the EULA, save the file, and close the editor.",
+        "exact_input": "eula=true",
+        "success_cue": "The saved eula.txt file contains eula=true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "From the same server-directory terminal, start the dedicated server again using the 21w44a jar. Leave this terminal and server process running throughout the reproduction.",
+        "exact_input": "java -jar server.jar nogui",
+        "success_cue": "The server console reaches its normal ready state, reports that startup is done, accepts console input, and shows no fatal startup error.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "On the separate client device, configure the Minecraft Launcher to show snapshot installations, create or select an installation for exactly 21w44a, and launch it. Do not use the fix version 1.18 Pre-release 1 or any newer release.",
+        "exact_input": "21w44a",
+        "success_cue": "The Minecraft Java Edition main menu is open and identifies the running version as 21w44a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "From the 21w44a client main menu, select Multiplayer, then use Direct Connection or Add Server. Enter the network address of the separate dedicated server, including its port if it is not using the default port, and join it.",
+        "exact_input": "<dedicated-server-address>[:<port>]",
+        "success_cue": "The client finishes joining the dedicated server; terrain is rendered, player movement responds normally, and the server console shows the player's connection.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "In the dedicated server console, grant operator permission to the connected client player so the player can execute the required JFR commands. Enter the command without a leading slash because it is being entered in the server console.",
+        "exact_input": "op <client-player-name>",
+        "success_cue": "The server console confirms that the named player was made a server operator, or confirms that the player is already an operator.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Return to the connected Minecraft client. Press T to open in-game chat, type the JFR start command exactly with its leading slash, and press Enter.",
+        "exact_input": "/jfr start",
+        "success_cue": "The client receives a successful command response indicating that Java Flight Recorder profiling has started; no unknown-command or insufficient-permission error is shown.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Allow the profiler to run briefly without disconnecting or stopping the server. Continue only while the client and dedicated server remain responsive; a few seconds is sufficient because the report does not require a particular recording duration.",
+        "exact_input": null,
+        "success_cue": "The profiling session remains active, the player is still connected, and the server continues accepting input normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "On the connected client, press T to open in-game chat, type the JFR stop command exactly with its leading slash, and press Enter.",
+        "exact_input": "/jfr stop",
+        "success_cue": "The command completes and a new JFR stop response appears in the client's chat, containing clickable text associated with the generated .jfr report path.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "If chat closed after the command was submitted, press T again to reopen the chat history and display the mouse pointer. If necessary, scroll within chat until the most recent /jfr stop response is visible. Identify the clickable link or path component in that response; do not click unrelated chat text.",
+        "exact_input": null,
+        "success_cue": "The /jfr stop response is visible in open chat, and its clickable JFR report link or path text can be targeted with the mouse pointer.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Using the client device's primary mouse button, left-click once on the clickable JFR report link or path text in the /jfr stop chat response. Do not click repeatedly, and do not run another command afterward.",
+        "exact_input": "left-click the clickable text in the /jfr stop response",
+        "success_cue": "A single click has just been issued on the clickable JFR report component; the client remains connected and is ready for immediate clipboard inspection by the Observation Agent.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The player on the separate 21w44a client has just left-clicked the clickable JFR report component produced in chat by /jfr stop. Hand control to the Observation Agent immediately so it can paste the current client-device clipboard into the prepared non-executing plain-text field and inspect it; do not evaluate or alter the pasted content within this reproduction plan.",
+    "uncertainties": [
+      "The report does not provide the original server jar filename, Java launch command, RAM flags, server address, port, or server.properties contents. The plan renames the official 21w44a jar to server.jar and uses a minimal nogui launch command as a practical execution choice.",
+      "The reporter used an Ubuntu server, but the report does not establish that Ubuntu itself is required. The essential reported condition is a dedicated external server running on a machine separate from the client; Ubuntu is retained to mirror the confirmed test environment.",
+      "The report says the user must have the ability to run /jfr stop but does not state the precise required operator permission level. Granting the test player operator status is used to deterministically satisfy that requirement.",
+      "The report does not state how long JFR profiling must run. The brief wait is only intended to ensure an active recording exists before /jfr stop; it is not asserted as a bug requirement.",
+      "The official 21w44a snapshot information confirms that a cross-platform server jar was distributed and that 21w44a included a clickable /jfr stop output link, but it does not specify the Java runtime version required for a manually hosted server. Use a runtime with which the official jar launches successfully."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0fdb95481858055f016aa7b74c52c487d0bae966c5310aec51",
+    "elapsed_seconds": 81.08,
+    "usage": {
+      "input_tokens": 34103,
+      "output_tokens": 4551,
+      "reasoning_tokens": 2723,
+      "total_tokens": 38654
+    },
+    "timestamp": "2026-09-14T09:00:12.645799+00:00"
+  }
+}
