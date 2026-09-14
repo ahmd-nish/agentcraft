@@ -1,0 +1,180 @@
+{
+  "bug_id": "MC-185379",
+  "category": "Accessibility",
+  "panel": "low-interaction-54",
+  "reproduction_method": "commands",
+  "source_md": "[Accessibility] - MC-185379.md",
+  "source_meta": {
+    "mojira categories": "Accessibility",
+    "project": "MC",
+    "issue key": "MC-185379",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-05-23T15:07:02.054-0700",
+    "updated": "2025-04-29T11:21:52.210-0700",
+    "resolution date": "2023-12-18T08:46:50.519-0800",
+    "affects versions": "1.15.2; 20w21a; 20w22a; 1.16 Pre-release 1; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16 Pre-release 4; 1.16 Pre-release 5; 1.16 Pre-release 7; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.3 Release Candidate 1; 1.16.3; 20w45a; 20w46a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w10a; 21w15a; 21w20a; 1.17 Pre-release 1; 1.17; 1.17.1; 1.18 Pre-release 1; 1.18.1; 1.18.2; 22w11a; 1.19; 1.19.2; 1.19.3; 23w03a; 1.19.4; 23w14a; 1.20.1; 23w32a; 1.20.3 Release Candidate 1",
+    "fix versions": "23w51a",
+    "area": "Gameplay",
+    "labels": "incorrect-subtitle; polar_bear",
+    "watchers": "1",
+    "attachments": "5",
+    "attachment filenames": "2020-05-23_23.04.06.png; 2020-05-23_23.04.31.png; 2023-12-18_16.45.25.png; 2023-12-18_16.46.07.png; MC-185379.mp4",
+    "issue links": "Relates:outward:MC-167375:Baby turtle subtitles are grammatically incorrect",
+    "_title": "Baby polar bear subtitle does not explicitly mention it comes from a baby polar bear"
+  },
+  "stor": {
+    "bug_id": "MC-185379",
+    "affected_versions": [
+      "1.15.2",
+      "20w21a",
+      "20w22a",
+      "1.16 Pre-release 1",
+      "1.16 Pre-release 2",
+      "1.16 Pre-release 3",
+      "1.16 Pre-release 4",
+      "1.16 Pre-release 5",
+      "1.16 Pre-release 7",
+      "20w28a",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "20w45a",
+      "20w46a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w10a",
+      "21w15a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "1.18 Pre-release 1",
+      "1.18.1",
+      "1.18.2",
+      "22w11a",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "23w03a",
+      "1.19.4",
+      "23w14a",
+      "1.20.1",
+      "23w32a",
+      "1.20.3 Release Candidate 1"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Vanilla Minecraft: Java Edition 1.15.2 in a single-player Creative-mode world with commands enabled. Use the English (US) language, enable subtitles, and keep Master Volume above 0%. No polar bear entity is required because the supplied /playsound command directly invokes the relevant sound event.",
+    "preconditions": [
+      "The Minecraft Launcher can install and start the exact Java Edition release 1.15.2.",
+      "Use an unmodified client without mods or resource packs that replace sounds, subtitle text, or English language files.",
+      "A keyboard or equivalent input is available for opening chat and submitting the command.",
+      "The test world must permit the player to execute permission-level-2 commands; the procedure establishes this by enabling cheats."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation that uses release 1.15.2, launch it, and wait for the title screen to finish loading.",
+        "exact_input": "1.15.2",
+        "success_cue": "The Minecraft title screen is responsive and identifies the running version as 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Set the client language to English (US). From the title screen, select Options..., select Language..., choose English (US), and select Done. Wait for any font or resource reload to finish.",
+        "exact_input": "English (US)",
+        "success_cue": "The title-screen interface is displayed in English.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Create a command-enabled test world. Select Singleplayer, select Create New World, set Game Mode to Creative, open More World Options..., ensure Allow Cheats is ON, and then select Create New World. The world name, seed, and world type may remain at their defaults.",
+        "exact_input": null,
+        "success_cue": "The player enters a newly created world in Creative mode, and the HUD and terrain are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Do not continue until world loading is complete. Wait for nearby terrain to render, then briefly move the player using the movement controls to confirm that the game responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are rendered and player movement responds without a loading pause.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Enable the subtitle overlay. Press Esc, select Options..., select Music & Sounds..., and click Show Subtitles until its value is ON.",
+        "exact_input": "Show Subtitles: ON",
+        "success_cue": "The Music & Sounds menu displays Show Subtitles: ON.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "In the same Music & Sounds menu, ensure the Master Volume slider is set above 0%. A clearly audible value such as 100% may be used.",
+        "exact_input": "Master Volume: 100%",
+        "success_cue": "The Master Volume setting is visibly greater than 0%.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Return to active gameplay by selecting Done to leave Music & Sounds, selecting Done to leave Options if necessary, and selecting Back to Game from the pause menu.",
+        "exact_input": null,
+        "success_cue": "The world view is active again and the player can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the in-game chat/command entry using the Open Chat control, whose default key is T. If controls have been rebound, use the key assigned to Open Chat.",
+        "exact_input": "T",
+        "success_cue": "A chat input line is visible at the bottom of the screen and accepts keyboard input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's command exactly as written, including the leading slash. Do not add coordinates, volume, pitch, or other optional arguments.",
+        "exact_input": "/playsound minecraft:entity.polar_bear.ambient_baby master @a",
+        "success_cue": "The complete command is visible in the chat input line with the sound identifier, master source, and @a target unchanged.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press Enter once to execute the command. Do not repeat the command; hand control to the observation subsystem immediately after this single execution.",
+        "exact_input": "Enter",
+        "success_cue": "The command closes the chat input without a red syntax or permission error, command feedback indicates successful sound playback, and the baby-polar-bear ambient sound event has just been emitted to the player.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The supplied /playsound command has just completed successfully once while English (US) and Show Subtitles: ON remain active. Begin observing the lower-right subtitle overlay immediately, without executing the command again.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, or multiplayer requirement. A new single-player Creative world with cheats enabled is used as the minimum deterministic environment needed to run the supplied command.",
+      "The report does not explicitly specify the client language. English (US) is selected because the reported issue concerns the wording of an English subtitle.",
+      "The report does not specify audio levels or resource-pack state. Master Volume above 0% and unmodified vanilla resources are practical controls intended to ensure the supplied sound event is dispatched without customized subtitle text.",
+      "The historical menu path and /playsound command structure were externally checked for Java Edition compatibility; the exact command itself remains unchanged from the report."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0ed3d258865896db016aa7b311a49487d09d2b296d1df83649",
+    "elapsed_seconds": 62.35,
+    "usage": {
+      "input_tokens": 17413,
+      "output_tokens": 4172,
+      "reasoning_tokens": 2767,
+      "total_tokens": 21585
+    },
+    "timestamp": "2026-09-14T08:41:51.540362+00:00"
+  }
+}

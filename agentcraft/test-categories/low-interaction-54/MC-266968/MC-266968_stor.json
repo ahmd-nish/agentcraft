@@ -1,0 +1,146 @@
+{
+  "bug_id": "MC-266968",
+  "category": "Advancements",
+  "panel": "low-interaction-54",
+  "reproduction_method": "commands",
+  "source_md": "[Advancements] - MC-266968.md",
+  "source_meta": {
+    "mojira categories": "Advancements; Commands; Data Packs",
+    "project": "MC",
+    "issue key": "MC-266968",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-11-24T00:11:08.943-0800",
+    "updated": "2025-03-07T21:35:42.279-0800",
+    "resolution date": "2023-11-28T05:13:12.237-0800",
+    "affects versions": "1.20.3 Pre-Release 2",
+    "fix versions": "1.20.3 Pre-Release 4",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "mc-266968.zip",
+    "_title": "/return executed within an advancement reward function globally discards all subsequent commands"
+  },
+  "stor": {
+    "bug_id": "MC-266968",
+    "affected_versions": [
+      "1.20.3 Pre-Release 2"
+    ],
+    "recommended_version": "1.20.3 Pre-Release 2",
+    "environment": "Minecraft Java Edition 1.20.3 Pre-Release 2 in a fresh single-player world using the integrated server, with commands enabled and the attached mc-266968.zip data pack installed. Execute the reproduction command from in-game chat as the player, not from a server console, because the data pack commands use @s.",
+    "preconditions": [
+      "Obtain the report attachment named mc-266968.zip; keep it as a ZIP file and do not edit its functions or advancement files.",
+      "Configure the Minecraft Launcher to run exactly Minecraft Java Edition 1.20.3 Pre-Release 2, not the fixed version 1.20.3 Pre-Release 4.",
+      "Use a fresh, disposable world so that no unrelated data packs, functions, or advancement state can affect the reproduction.",
+      "Ensure commands are enabled for the world. The single-player procedure below uses Creative mode with Allow Commands enabled.",
+      "Use the default chat control T where stated, or the player's rebound Open Chat control if T has been changed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for exactly Java Edition 1.20.3 Pre-Release 2, launch it, and wait for the main menu to finish loading. Do not select 1.20.3 Pre-Release 4, because that is listed as the fix version rather than an affected version.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is visible and its version label identifies 1.20.3 Pre-Release 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then Create New World. Give the world the unique name MC-266968-repro, select Creative game mode, set Allow Commands to ON, and create the world.",
+        "exact_input": "MC-266968-repro",
+        "success_cue": "The new world begins loading with Creative mode and command access configured.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait after entering the world until the surrounding terrain has rendered and normal player movement responds without world-loading delay.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in the loaded world and the nearby terrain is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press Esc, select Save and Quit to Title, and wait until the main menu reappears. This closes the world before its data-pack directory is modified.",
+        "exact_input": null,
+        "success_cue": "The main menu is visible and the MC-266968-repro world is no longer open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Using the operating system's file manager, open the game directory used by this launcher installation. Open saves, then the folder for MC-266968-repro, then datapacks. Copy the attached mc-266968.zip file directly into that datapacks directory without changing its filename or contents. If the launcher profile specifies a custom Game Directory, use that directory instead of the operating system's default .minecraft directory.",
+        "exact_input": "<active game directory>/saves/MC-266968-repro/datapacks/mc-266968.zip",
+        "success_cue": "mc-266968.zip is present directly inside the MC-266968-repro world's datapacks directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Return to Minecraft, select Singleplayer, select MC-266968-repro, and choose Play Selected World. Wait until terrain is rendered and player movement and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is back in MC-266968-repro and the world has completed its initial loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open in-game chat. Type the data-pack status command exactly as shown, including the leading slash, and press Enter. This is only a setup verification and must be executed from in-game chat.",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "The enabled data-pack list includes the attached pack, normally identified by an entry containing file/mc-266968.zip. If it is absent or reported as invalid, stop before the trigger and correct the installation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Ensure the world has returned to normal player control after the verification command. Keep the player inside the world; do not switch to a server console, command block, or other execution context, because the reproduction function operates on the executing player through @s.",
+        "exact_input": null,
+        "success_cue": "The player is active in the world with command permission, and mc-266968.zip has been confirmed as enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press T to open in-game chat again.",
+        "exact_input": null,
+        "success_cue": "The chat input field is open at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's function command exactly as written, including the leading slash. Do not press Enter yet.",
+        "exact_input": "/function mc-266968:a",
+        "success_cue": "The complete text /function mc-266968:a is present in the in-game chat input field and is ready to be submitted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Press Enter once to submit and execute /function mc-266968:a as the player. Do not run it repeatedly; immediately hand control to the observation subsystem after this single execution.",
+        "exact_input": "/function mc-266968:a",
+        "success_cue": "The command has been submitted, function execution has completed or returned control to the player, and the resulting chat output is available for immediate inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The player has just executed /function mc-266968:a once from in-game chat in the affected version, with mc-266968.zip enabled. Begin observing the resulting command-generated chat output before executing any additional command.",
+    "uncertainties": [
+      "The report does not specify single-player versus dedicated-server execution, game mode, world seed, or coordinates. This plan uses a fresh Creative single-player world with commands enabled because it supplies a player execution context for @s without adding unrelated server conditions.",
+      "The attachment contents themselves were not included as an accessible file in the supplied report text. The plan assumes the attachment named mc-266968.zip is the directly installable data pack referenced by the report and should be placed unchanged in the world's datapacks directory.",
+      "The displayed enabled-pack identifier can vary slightly in formatting, but it should clearly correspond to mc-266968.zip.",
+      "No external web verification was needed because the supplied report provides the affected version, attachment name, namespace, function command, and relevant data-pack resources."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_034e7e7f4a13d6a2016aa7b403bac487d09c6d5bafdac65e7a",
+    "elapsed_seconds": 63.39,
+    "usage": {
+      "input_tokens": 8477,
+      "output_tokens": 3807,
+      "reasoning_tokens": 2366,
+      "total_tokens": 12284
+    },
+    "timestamp": "2026-09-14T08:45:54.970049+00:00"
+  }
+}
