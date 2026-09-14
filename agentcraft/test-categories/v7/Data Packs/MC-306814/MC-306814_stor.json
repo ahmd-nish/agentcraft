@@ -1,0 +1,170 @@
+{
+  "bug_id": "MC-306814",
+  "category": "Data Packs",
+  "reproduction_method": "commands",
+  "source_md": "[Data Packs] - MC-306814.md",
+  "source_meta": {
+    "mojira categories": "Data Packs",
+    "project": "MC",
+    "issue key": "MC-306814",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2026-03-11T11:43:28.775-0700",
+    "updated": "2026-03-12T06:47:19.567-0700",
+    "resolution date": "2026-03-12T06:47:19.502-0700",
+    "affects versions": "26.1 Pre-Release 1",
+    "fix versions": "26.1 Pre-Release 2",
+    "area": "Platform EC",
+    "votes": "4",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "Bugreport Datapack.zip",
+    "_title": "`environment_attribute` value providers give incorrect results on subsequent accesses within a tick"
+  },
+  "stor": {
+    "bug_id": "MC-306814",
+    "affected_versions": [
+      "26.1 Pre-Release 1"
+    ],
+    "recommended_version": "26.1 Pre-Release 1",
+    "environment": "Minecraft: Java Edition 26.1 Pre-Release 1 in a new single-player world, with the attached \"Bugreport Datapack.zip\" enabled and commands/cheats permitted. Remain in the Overworld while executing the test functions. The report does not require a particular world seed, coordinate, difficulty, or game mode.",
+    "preconditions": [
+      "Download the report attachment named \"Bugreport Datapack.zip\" without modifying its functions or data files.",
+      "Configure the official Minecraft Launcher to make snapshot and pre-release installations available, then select exactly 26.1 Pre-Release 1. Do not use the fixed version, 26.1 Pre-Release 2.",
+      "Use a new single-player world rather than an existing test world, so the datapack timeline begins from a clean world state.",
+      "Enable commands/cheats during world creation so that /datapack and /function commands can be executed.",
+      "Enable the attached datapack during world creation and avoid adding unrelated third-party datapacks.",
+      "Keep the player in the Overworld for the entire procedure because the datapack modifies the Overworld cloud-height environment attribute."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the official Minecraft Launcher, select or create a Java Edition installation using exactly 26.1 Pre-Release 1, and start the game. If old pre-releases are hidden, enable snapshots in the launcher's Installations settings before selecting the version.",
+        "exact_input": null,
+        "success_cue": "The Java Edition main menu is open and identifies the running version as 26.1 Pre-Release 1.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, and configure a new test world. Any game mode and seed may be used, but set Allow Commands to ON so the required commands are available.",
+        "exact_input": null,
+        "success_cue": "The new-world configuration screen shows that commands are allowed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Before creating the world, open the world-creation Data Packs screen, normally through More and then Data Packs.",
+        "exact_input": null,
+        "success_cue": "The Data Packs screen is open and shows the available and selected/enabled datapack lists.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Import the downloaded attachment \"Bugreport Datapack.zip\" by dragging the ZIP file into the Data Packs screen or by using Open Pack Folder and copying the ZIP into the opened folder. Keep the datapack as supplied; do not edit its contents.",
+        "exact_input": "Bugreport Datapack.zip",
+        "success_cue": "An entry corresponding to \"Bugreport Datapack.zip\" appears in the available datapack list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Enable the imported datapack by selecting its arrow so that it moves to the selected/enabled side of the Data Packs screen. Accept the import confirmation if one is displayed, and then choose Done.",
+        "exact_input": null,
+        "success_cue": "The Bugreport datapack is on the selected/enabled side, and the world-creation screen can be resumed without a datapack validation error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Create the world and wait without entering commands until terrain around the player has rendered and normal movement responds. Do not travel through a portal or otherwise leave the Overworld.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded Overworld, surrounding chunks are rendered, and movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Open in-game chat using the Open Chat control, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter the datapack-list command exactly as shown, including the leading slash, and press Enter. This verifies that the attachment was loaded before running its functions.",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "The command completes without a permission or syntax error, and the enabled-pack list contains an entry corresponding to the Bugreport datapack.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Wait until chat has closed after command execution and gameplay is responsive. If the datapack is not listed, stop instead of continuing; correct the installation or recreate the new world with the pack enabled.",
+        "exact_input": null,
+        "success_cue": "The Bugreport datapack has been confirmed as enabled and the player can move normally in the Overworld.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Open in-game chat again using the Open Chat control, default T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Run the report's first control function by entering the command exactly as shown, including the leading slash, and pressing Enter.",
+        "exact_input": "/function bugreport:test/1",
+        "success_cue": "The command is accepted without an unknown-function or permission error, the function completes, and its chat output is present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "After bugreport:test/1 completes, wait at least one second before entering the next command. This ensures the separate control invocation is not being executed in the same game tick as the actual trigger invocation.",
+        "exact_input": null,
+        "success_cue": "At least one second has elapsed, gameplay remains responsive, and the player is still in the Overworld.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Open in-game chat again using the Open Chat control, default T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible and ready for the trigger command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Run the report's second function by entering the command exactly as shown, including the leading slash, and pressing Enter. Do not insert any additional command between its internal operations: this function sets the bugreport:test timeline to 0, reads and prints the environment attribute, and then invokes bugreport:test/1 within the same function execution.",
+        "exact_input": "/function bugreport:test/2",
+        "success_cue": "The command is accepted without an unknown-function or permission error and bugreport:test/2 completes, producing its chat output.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The /function bugreport:test/2 invocation has just completed in the Overworld, including its internal call to bugreport:test/1, and the resulting chat output is available. Hand control to the observation subsystem now, before running any additional command or function.",
+    "uncertainties": [
+      "The raw report does not expose the attachment's internal archive structure. The plan assumes \"Bugreport Datapack.zip\" is directly importable. If Minecraft does not recognize it, inspect the archive only to locate the contained datapack whose root contains pack.mcmeta and data, then install that contained datapack without changing its files.",
+      "The report specifies no seed, coordinates, difficulty, or game mode. These are intentionally left unrestricted; allowing commands is added only because the reproduction requires /function commands.",
+      "The report does not explicitly state whether the first function invocation must be separated from the second by a particular delay. Waiting at least one second is a practical safeguard ensuring that the two manually issued commands occur in different ticks; the same-tick accesses relevant to the trigger remain internal to bugreport:test/2.",
+      "Exact printed cloud-height values are deliberately not used as setup success criteria because evaluating those values belongs to the observation subsystem.",
+      "Web verification was limited to confirming availability/launch guidance for 26.1 Pre-Release 1 and the normal Java Edition datapack installation and verification procedure; the supplied Mojira report remains the source of truth for the function order and identifiers."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_06e8f60541184ef5016aa7b681282087d08075d20e9b2a9d1a",
+    "elapsed_seconds": 73.09,
+    "usage": {
+      "input_tokens": 16766,
+      "output_tokens": 4436,
+      "reasoning_tokens": 2779,
+      "total_tokens": 21202
+    },
+    "timestamp": "2026-09-14T08:56:42.103434+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

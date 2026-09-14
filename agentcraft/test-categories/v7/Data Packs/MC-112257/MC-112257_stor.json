@@ -1,0 +1,177 @@
+{
+  "bug_id": "MC-112257",
+  "category": "Data Packs",
+  "source_md": "[Data Packs] - MC-112257.md",
+  "source_meta": {
+    "mojira categories": "Commands; Data Packs",
+    "project": "MC",
+    "issue key": "MC-112257",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2017-01-04T17:18:57.616-0800",
+    "updated": "2025-05-29T09:20:38.490-0700",
+    "resolution date": "2024-07-23T01:18:47.157-0700",
+    "affects versions": "Minecraft 1.11.2; Minecraft 17w15a; Minecraft 17w16a; Minecraft 1.12.2; Minecraft 1.13-pre5; 1.15.1; 1.15.2; 20w10a; 1.16.3; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w08b; 1.17 Pre-release 3; 1.17.1; 1.18.1; 1.18.2; 22w19a; 1.19.2; 1.20.1; 1.21",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "labels": "NBT",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "MC-112257.mp4; MC-112257.png",
+    "issue links": "Duplicate:inward:MC-227156:\"CanPickUpLoot\" is inconsistent with other boolean tags | Relates:outward:MC-112253:Primitive NBT Lists that are not of type int need a type suffix | Relates:inward:MC-120371:Data types and formatting are not corrected within items' tag NBT",
+    "_title": "Some NBT tags require the correct suffix"
+  },
+  "stor": {
+    "bug_id": "MC-112257",
+    "affected_versions": [
+      "Minecraft 1.11.2",
+      "Minecraft 17w15a",
+      "Minecraft 17w16a",
+      "Minecraft 1.12.2",
+      "Minecraft 1.13-pre5",
+      "1.15.1",
+      "1.15.2",
+      "20w10a",
+      "1.16.3",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w08b",
+      "1.17 Pre-release 3",
+      "1.17.1",
+      "1.18.1",
+      "1.18.2",
+      "22w19a",
+      "1.19.2",
+      "1.20.1",
+      "1.21"
+    ],
+    "recommended_version": "Minecraft 1.11.2",
+    "environment": "Unmodified Minecraft Java Edition 1.11.2 in single-player on the integrated server. Use a fresh Creative-mode world with cheats enabled, difficulty set to Easy, nighttime, and the default mobGriefing=true gamerule. A Superflat world is selected as a practical convenience so the target zombie and dropped item are easy to see. Default keyboard and mouse controls are assumed.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.11.2, the first version listed as affected.",
+      "Use a fresh world so that unrelated entities and changed gamerules do not interfere with the test.",
+      "Cheats must be enabled because the report's reproduction uses the /summon command.",
+      "Difficulty must not be Peaceful, because the summoned zombie must remain present.",
+      "Leave the mobGriefing gamerule at its fresh-world default value of true.",
+      "Perform the test at night so the zombie does not ignite in direct sunlight.",
+      "Do not add the byte suffix b to the CanPickUpLoot value in the target summon command; the target command must contain exactly CanPickUpLoot:1."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that uses release 1.11.2, start it, and verify that the title screen identifies the running version as Minecraft 1.11.2.",
+        "exact_input": null,
+        "success_cue": "The Minecraft 1.11.2 main menu is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World to open the world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Open More World Options, set Allow Cheats to ON, and cycle World Type to Superflat. Return to the main world-creation screen after configuring those options.",
+        "exact_input": null,
+        "success_cue": "The new world is configured for Creative mode with cheats enabled and the Superflat world type selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World. After the world opens, wait until the terrain has rendered and movement and inventory input respond normally.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in a fully loaded Creative-mode world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Set the difficulty to Easy so the zombie will not be removed as it would be on Peaceful. Press T to open chat, enter the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/difficulty easy",
+        "success_cue": "Chat confirms that the difficulty was changed to Easy.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Prevent the target zombie from burning in daylight. Press T, enter the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/time set night",
+        "success_cue": "The world is visibly at night and the sky is dark.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Obtain one Diamond Sword as a clear equippable test item. Press E to open the Creative inventory, open the Search Items tab identified by the compass icon, search for Diamond Sword, and click or drag a Diamond Sword into an empty hotbar slot. The hotbar is the row of nine slots along the bottom of the inventory. Close the inventory with E or Esc.",
+        "exact_input": "E; search text: Diamond Sword",
+        "success_cue": "A Diamond Sword is present in one of the nine hotbar slots and the inventory screen is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the hotbar slot containing the Diamond Sword by pressing that slot's number key, 1 through 9, or by scrolling the mouse wheel until the slot is highlighted.",
+        "exact_input": "1-9 corresponding to the Diamond Sword hotbar slot",
+        "success_cue": "The Diamond Sword's hotbar slot is highlighted and the sword is visible in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Summon the target zombie using the report's command. Press T to open chat, type the command exactly as shown including the leading slash, and press Enter. Preserve the capitalization of CanPickUpLoot and use the unsuffixed value 1; do not change it to 1b.",
+        "exact_input": "/summon zombie ~ ~ ~ {CanPickUpLoot:1}",
+        "success_cue": "One zombie appears at or immediately adjacent to the player's current position, and the submitted command contains CanPickUpLoot:1 rather than CanPickUpLoot:1b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Use the movement controls, normally W, A, S, and D, to separate from the newly summoned zombie without attacking it. Keep the Diamond Sword selected and position the player approximately one to two blocks from that specific zombie.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The target zombie is alive, clearly visible, and approximately one to two blocks in front of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Aim toward the target zombie's lower body or feet so that an item dropped forward from the player's active slot will land immediately beside the zombie rather than several blocks away.",
+        "exact_input": "Mouse look",
+        "success_cue": "The crosshair is aimed at the ground or lower body directly beside the target zombie, with no wall or obstacle between the player and zombie.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press the Drop Selected Item control once—Q by default—to throw the selected Diamond Sword toward the target zombie. Do not press Q repeatedly, attack the zombie, enter another command, or summon a replacement zombie after this action.",
+        "exact_input": "Q",
+        "success_cue": "The Diamond Sword has left the player's hotbar and has been thrown to a landing point within immediate item-pickup range of the zombie summoned with CanPickUpLoot:1.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The Diamond Sword has just been dropped within immediate pickup range of the living zombie summoned by /summon zombie ~ ~ ~ {CanPickUpLoot:1}. Begin observation now without providing additional player input or replacing the target zombie.",
+    "uncertainties": [
+      "The report does not specify a game mode, seed, world type, difficulty, time of day, or test item. Creative mode, a fresh Superflat world, Easy difficulty, nighttime, and a Diamond Sword are practical choices intended to make the supplied reproduction deterministic without changing its NBT condition.",
+      "The report says only to throw an item at the zombie. A Diamond Sword is selected because it is visually distinct, cannot stack, and is an equippable item for a zombie with an empty main hand.",
+      "The command summons the zombie at the player's exact relative coordinates (~ ~ ~), so the zombie may initially overlap the player. The plan therefore includes moving a short distance away before dropping the item.",
+      "The suffixed CanPickUpLoot:1b command mentioned by the report is not executed in this primary reproduction path because the handoff must occur immediately after triggering the unsuffixed test case, before evaluating behavior."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0257f73fccebe275016aa8193ec7e487d0ae90abf5cc8380c5",
+    "elapsed_seconds": 90.46,
+    "usage": {
+      "input_tokens": 9724,
+      "output_tokens": 6546,
+      "reasoning_tokens": 4874,
+      "total_tokens": 16270
+    },
+    "timestamp": "2026-09-14T15:58:16.685549+00:00"
+  }
+}

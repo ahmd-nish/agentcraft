@@ -1,0 +1,208 @@
+{
+  "bug_id": "MC-206074",
+  "category": "Data Packs",
+  "source_md": "[Data Packs] - MC-206074.md",
+  "source_meta": {
+    "mojira categories": "Data Packs",
+    "project": "MC",
+    "issue key": "MC-206074",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-11-19T06:23:19.661-0800",
+    "updated": "2025-05-29T09:14:53.602-0700",
+    "resolution date": "2024-08-15T14:55:01.865-0700",
+    "affects versions": "20w46a; 21w10a; 21w14a; 1.17 Release Candidate 1; 1.17 Release Candidate 2; 1.17; 1.20.2; 23w40a; 1.20.4; 24w05a; 24w05b; 1.21",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "backpacksdatapack_withbug.zip; image-2020-11-19-15-09-45-202.png; image-2020-11-19-15-13-34-609.png",
+    "issue links": "Duplicate:inward:MC-273675:Debug Stick Duplicate Bug | Duplicate:inward:MC-273673:When item is focused in hotbar, dropping the item while opening the creative menu duplicates the item. | Relates:outward:MC-273377:No debug stick in hand, but I can still edit blocks | Duplicate:inward:MC-268178:Item desync / duplication when dropping items in creative mode | Relates:inward:MC-219018:Ghost items can be created using /item (server doesn't update client inventory correctly)",
+    "_title": "Survival tab of Creative inventory desyncs if changed manually after an external change"
+  },
+  "stor": {
+    "bug_id": "MC-206074",
+    "affected_versions": [
+      "20w46a",
+      "21w10a",
+      "21w14a",
+      "1.17 Release Candidate 1",
+      "1.17 Release Candidate 2",
+      "1.17",
+      "1.20.2",
+      "23w40a",
+      "1.20.4",
+      "24w05a",
+      "24w05b",
+      "1.21"
+    ],
+    "recommended_version": "20w46a",
+    "environment": "Minecraft Java Edition 20w46a in a single-player world using the integrated server. Use Creative mode with commands enabled. Default controls are assumed: T for chat, E for inventory, Q for Drop Selected Item, number key 1 for Hotbar Slot 1, and right-click for Use Item/Place Block. No datapack or resource pack is required for the updated formal reproduction steps.",
+    "preconditions": [
+      "Install and launch the exact affected version 20w46a rather than the fix version 24w33a.",
+      "Use a Creative-mode player that is not in Spectator mode.",
+      "Commands must be available for the deterministic inventory-clearing and item-acquisition steps; a newly created single-player Creative world normally satisfies this condition.",
+      "Use a flat, solid area with air above the ground and no nearby lava, fire, water currents, hoppers, or other players that could remove the dropped Stone item.",
+      "The player inventory, hotbar, armor slots, and offhand must be empty before obtaining the single Stone item.",
+      "Complete the drop-to-inventory-opening transition promptly so that the Survival Inventory tab is open before the dropped Stone is picked up."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the historical installation for version 20w46a.",
+        "exact_input": null,
+        "success_cue": "The title screen visibly identifies the running game version as 20w46a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world with Game Mode set to Creative and commands/cheats enabled, or load an existing world that already provides those conditions.",
+        "exact_input": null,
+        "success_cue": "The player is inside a world in Creative mode and can open chat commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for world loading to finish before manipulating the inventory.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, player movement responds normally, and the player is standing rather than still viewing a loading screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move onto a flat, solid ground surface. Ensure there is room for a dropped item to remain near the player's feet and at least one exposed ground block nearby on which a block could normally be placed.",
+        "exact_input": "Use the bound movement controls; defaults are W, A, S, and D.",
+        "success_cue": "The player is standing on solid ground in a clear area, with no hazard or collection mechanism next to the player's feet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Clear the player's inventory deterministically. Press T to open chat, enter the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/clear @s",
+        "success_cue": "The hotbar, main inventory, armor slots, and offhand contain no items. If any slot was not cleared, remove its contents before continuing.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Give the player exactly one Stone item. Press T, enter the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:stone 1",
+        "success_cue": "Exactly one Stone item is present in the otherwise empty inventory; because the inventory was empty, it should occupy the first hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the first hotbar slot using the Hotbar Slot 1 control.",
+        "exact_input": "1",
+        "success_cue": "The first hotbar slot is highlighted, it contains exactly one Stone, and the Stone is visible in the player's main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Prime the required Creative inventory tab before performing the timing-sensitive drop. Press E, locate the tab whose hover tooltip reads \"Survival Inventory,\" and left-click that tab.",
+        "exact_input": "E, then left-click the tab labeled \"Survival Inventory\"",
+        "success_cue": "The Creative inventory is open on the Survival Inventory tab, showing the player's armor slots, main inventory, and hotbar rather than a Creative item-category grid.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Close the inventory while leaving the Survival Inventory tab selected so that it can be reopened quickly after dropping the item.",
+        "exact_input": "E",
+        "success_cue": "The world view is visible again, the first hotbar slot remains selected, and the single Stone remains in the player's main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim the camera nearly straight downward so that dropping the selected item sends it directly toward the solid ground at the player's feet.",
+        "exact_input": "Move the mouse until the crosshair points at the ground immediately below the player.",
+        "success_cue": "The crosshair is aimed at the ground at the player's feet and the selected Stone is still in hotbar slot 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Drop the single selected Stone item once using the Drop Selected Item control. Do not hold the control or use the drop-stack modifier.",
+        "exact_input": "Q",
+        "success_cue": "The first hotbar slot is visibly empty and a rotating Stone item entity is on the ground very close to the player's feet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Immediately reopen the Creative inventory before the dropped Stone is automatically picked up.",
+        "exact_input": "E",
+        "success_cue": "An inventory screen is open while the Stone item entity is still awaiting pickup or while its pickup is just being processed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Confirm that the open screen is the Survival Inventory tab. If another Creative tab opened, immediately left-click the tab whose hover tooltip reads \"Survival Inventory.\" If the Stone was already picked up before this tab became active, clear the inventory and restart from the single-Stone setup.",
+        "exact_input": "If required, left-click the tab labeled \"Survival Inventory\".",
+        "success_cue": "The Survival Inventory tab is active before the pickup update is handled, and the player's hotbar and main inventory slots are visible and directly editable.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Keep the Survival Inventory tab open and wait without moving the player or clicking an inventory slot until the player picks up the dropped Stone.",
+        "exact_input": null,
+        "success_cue": "The ground item is collected and one Stone appears in the first hotbar slot while the Survival Inventory tab remains open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Without closing the inventory, manually move the newly collected Stone out of the first hotbar slot. Left-click the Stone in hotbar slot 1 to attach it to the cursor, then left-click the upper-left empty slot of the 3-by-9 main inventory grid to deposit it there.",
+        "exact_input": "Left-click hotbar slot 1, then left-click the upper-left slot of the main inventory grid.",
+        "success_cue": "The visible Stone is in the chosen main-inventory slot, hotbar slot 1 visibly contains no item, and the inventory screen has remained open throughout the move.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Close the inventory after completing the manual slot move.",
+        "exact_input": "E",
+        "success_cue": "The world view is visible, the Stone is no longer shown in hotbar slot 1, and no inventory interface remains open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Explicitly select the first hotbar slot using the Hotbar Slot 1 control, even if it already appears selected.",
+        "exact_input": "1",
+        "success_cue": "Hotbar slot 1 is highlighted as the active main-hand slot, and the client visibly shows the main hand as empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Aim at the exposed top face of a nearby solid ground block with empty air above it and enough distance that a newly placed block would not intersect the player's body. Press the Use Item/Place Block control exactly once.",
+        "exact_input": "Right-click once",
+        "success_cue": "The right-click use/place input has just been performed on a valid ground face while the visibly empty first hotbar slot is active.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The player has just right-clicked once on a valid exposed ground face while hotbar slot 1 is active and visibly empty, after the externally picked-up Stone was manually moved to the main inventory without closing the Survival Inventory tab. Begin observation immediately after that input.",
+    "uncertainties": [
+      "The report does not state that a dedicated server or multiple players are required. This plan uses single-player as the simplest environment preserving Creative-mode inventory synchronization behavior.",
+      "The report allows moving the collected Stone to any different hotbar or inventory slot but does not prescribe a specific destination. The upper-left slot of the main 3-by-9 inventory grid is selected as a deterministic destination.",
+      "The /clear and /give commands are execution conveniences and are not commands supplied by the report. They are used only to create the reported initial state of an otherwise empty inventory containing one Stone in the first hotbar slot.",
+      "The pickup timing can vary. If the Stone enters the inventory before the Survival Inventory tab is open, the attempt does not satisfy the reported ordering and must be restarted from the clear-inventory state.",
+      "The original description discusses an uploaded backpack datapack, but the later formal Steps to Reproduce describe a standalone Creative-inventory procedure. This plan follows those formal steps and does not install the datapack.",
+      "No external web verification was used because the report supplies the required affected versions and reproduction sequence, and the added operational details do not replace the report's instructions."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0d07b827f174d544016aa81998fb4c87d093222f122863f11b",
+    "elapsed_seconds": 98.19,
+    "usage": {
+      "input_tokens": 9179,
+      "output_tokens": 6514,
+      "reasoning_tokens": 4452,
+      "total_tokens": 15693
+    },
+    "timestamp": "2026-09-14T15:59:54.877366+00:00"
+  }
+}
