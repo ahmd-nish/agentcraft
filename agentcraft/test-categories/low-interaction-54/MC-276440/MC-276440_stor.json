@@ -1,0 +1,158 @@
+{
+  "bug_id": "MC-276440",
+  "category": "Input",
+  "panel": "low-interaction-54",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Input] - MC-276440.md",
+  "source_meta": {
+    "mojira categories": "Input; Items",
+    "project": "MC",
+    "issue key": "MC-276440",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-09-06T07:28:37.759-0700",
+    "updated": "2025-02-24T12:38:33.936-0800",
+    "resolution date": "2024-09-26T06:33:36.046-0700",
+    "affects versions": "24w36a",
+    "fix versions": "24w40a",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-276440.mp4; MC-276440 - Selected.png; MC-276440 - Unselected.png",
+    "_title": "Items within bundle tooltips can be unselected by scrolling despite only one item being present"
+  },
+  "stor": {
+    "bug_id": "MC-276440",
+    "affected_versions": [
+      "24w36a"
+    ],
+    "recommended_version": "24w36a",
+    "environment": "Minecraft: Java Edition snapshot 24w36a; single-player world; Survival mode with commands enabled for deterministic item acquisition; Bundles experiment enabled during world creation; mouse with a functioning scroll wheel.",
+    "preconditions": [
+      "Install or create a Minecraft Launcher installation that uses the exact Java Edition snapshot 24w36a.",
+      "Do not substitute fix version 24w40a or a later release.",
+      "Use a mouse whose wheel generates discrete scrolling input in Minecraft.",
+      "Use default vanilla bundle behavior; do not install datapacks or mods that alter inventories, item tooltips, bundles, or mouse-wheel input."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for snapshot 24w36a and start the game. Confirm the version shown on the title screen before proceeding.",
+        "exact_input": "Play",
+        "success_cue": "The Minecraft: Java Edition title screen is open and displays version 24w36a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world list and begin creating a new world. A new world is used because the Bundles experiment must be selected during world creation in this snapshot.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Leave or set the game mode to Survival, then enable commands so the two required items can be obtained without crafting or exploration. The report does not require a particular game mode; Survival provides the standard player inventory interface.",
+        "exact_input": "Game Mode: Survival; Allow Commands: ON",
+        "success_cue": "The world is configured for Survival mode and commands are allowed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the additional world options, enter the Experiments screen, and turn on the Bundles experiment. Accept the experimental-feature warning if one appears, then return to the world-creation screen.",
+        "exact_input": "More -> Experiments -> Bundles: ON -> Done",
+        "success_cue": "The Bundles experiment is shown as enabled for the new world.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Create the world and wait without opening any menus until terrain has rendered and normal movement responds.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the loaded world and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open in-game chat with T, enter the exact command including the leading slash, and press Enter to obtain one empty bundle.",
+        "exact_input": "/give @s minecraft:bundle 1",
+        "success_cue": "One Bundle is added to the player's inventory; command feedback may state that one Bundle was given.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open chat again, enter the exact command including the leading slash, and press Enter to obtain exactly one Stone item.",
+        "exact_input": "/give @s minecraft:stone 1",
+        "success_cue": "Exactly one Stone is added to the player's inventory; command feedback may state that one Stone was given.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the player's inventory using the inventory control, whose default key is E.",
+        "exact_input": "E",
+        "success_cue": "The standard Survival inventory screen is open and the inventory slots and hotbar are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Locate the Bundle and Stone in the inventory or hotbar. Confirm that the Bundle is empty and that the Stone stack count is exactly 1 before filling the Bundle.",
+        "exact_input": null,
+        "success_cue": "One empty Bundle and a separate stack containing exactly one Stone are visible in the open inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Move the mouse cursor onto the one-item Stone stack and left-click once to pick that Stone up onto the cursor.",
+        "exact_input": "left-click the Stone stack",
+        "success_cue": "The Stone icon follows the mouse cursor, and its former inventory slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "While the single Stone is attached to the cursor, move the cursor onto the empty Bundle and left-click once to insert the Stone into it.",
+        "exact_input": "left-click the Bundle while carrying the Stone on the cursor",
+        "success_cue": "The cursor is empty, the separate Stone stack is gone, and the Bundle remains in its inventory slot with one item stored inside.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Move the mouse cursor away from the Bundle briefly, then place it directly over the Bundle without clicking. Keep the inventory open and hold the cursor stationary until the Bundle tooltip appears.",
+        "exact_input": "hover the mouse cursor over the Bundle",
+        "success_cue": "The Bundle tooltip is visible beside the cursor and contains exactly one Stone icon with no other item types shown.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Without moving the cursor off the Bundle and without clicking, begin rolling the mouse wheel downward continuously through multiple scroll detents. Keep the inventory and Bundle tooltip open while the scrolling input continues, then immediately hand control to the observation subsystem.",
+        "exact_input": "mouse wheel down continuously while hovering over the Bundle",
+        "success_cue": "Mouse-wheel input is being delivered while the stationary cursor remains over the Bundle and its one-Stone tooltip remains open.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The Survival inventory is open, the cursor is stationary over a Bundle containing exactly one Stone, the Bundle tooltip is visible, and continuous mouse-wheel scrolling has just begun. Begin observing the tooltip's item-selection state without moving the cursor or closing the inventory.",
+    "uncertainties": [
+      "The report does not specify a game mode or item-acquisition method. Survival mode with commands enabled is selected as a deterministic way to obtain exactly one Bundle and one Stone while using the standard inventory screen.",
+      "The report does not specify a scroll direction or duration. The plan uses continuous downward scrolling through multiple wheel detents; the essential reported condition is repeated scrolling while the cursor remains over the Bundle.",
+      "Enabling the Bundles experiment is not stated in the report, but it is required for Bundles in snapshot 24w36a according to the version's official experimental-feature information."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_097fd8058079ab63016aa7b95285c887d090f1aace0e7f6ee5",
+    "elapsed_seconds": 85.71,
+    "usage": {
+      "input_tokens": 33843,
+      "output_tokens": 4996,
+      "reasoning_tokens": 3678,
+      "total_tokens": 38839
+    },
+    "timestamp": "2026-09-14T09:08:56.100909+00:00"
+  }
+}
