@@ -115,6 +115,49 @@ Each affected category carries a `_V5_BASELINE.md` saying so.
 
 Categories are processed in **reverse alphabetical order**, starting at `World generation` and ending at `Accessibility`.
 
+## Index: `v7_bug_index.csv`
+
+One row per bug for all **255** bugs in the corpus — the manual-testing worklist while
+STOR generation is blocked.
+
+| column | notes |
+|---|---|
+| `bug_id`, `category`, `url` | `url` is the canonical Mojira permalink |
+| `summary` | issue title |
+| `affected_versions` | every version listed, in report order |
+| `first_affected_version` | what v7 selects as `recommended_version` |
+| `fix_versions`, `status`, `resolution`, `created` | Jira metadata |
+| `watch_count`, `attachment_count`, `comment_count` | signal for triage |
+| `state` | `v7_stor` (79) · `v5_baseline` (28) · `raw_only` (148) |
+| `stor_step_count`, `trigger_step`, `recommended_version` | populated for `v7_stor` rows |
+| `repo_path` | folder holding that bug |
+
+Sort or filter by `state` to see what still needs enhancement, and by `category` to pick
+up a testing batch.
+
+### Mojira URL form
+
+```
+https://bugs.mojang.com/browse/MC/issues/MC-54532
+```
+
+Note the `/browse/<PROJECT>/issues/<KEY>` shape — the bare `/browse/<KEY>` used by the
+source `.md` files is the old layout. Do **not** try to validate these with `curl`:
+bugs.mojang.com renders client-side and returns the same ~750-byte shell for every path,
+valid key or not. Response size proves nothing; check in a browser.
+
+## Full corpus mirror
+
+All 51 categories and 255 bug folders are present. Bugs v7 has not enhanced carry the
+original report only — the Jira dump, the rendered `.md`, and text attachments. No
+`_stor.json` is written for them, so the resume check still processes every one.
+
+| state | bugs | contents |
+|---|---|---|
+| `v7_stor` | 79 | `MC-XXX_stor.json` + `MC-XXX.pdf` worksheet |
+| `v5_baseline` | 28 | `MC-XXX_v5_improved.json` + `.pdf` (shared with the v5 corpus) |
+| `raw_only` | 148 | original report only |
+
 ## Contents
 
 ```
