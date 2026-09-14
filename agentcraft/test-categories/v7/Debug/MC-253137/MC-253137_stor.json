@@ -1,0 +1,182 @@
+{
+  "bug_id": "MC-253137",
+  "category": "Debug",
+  "source_md": "[Debug] - MC-253137.md",
+  "source_meta": {
+    "mojira categories": "Debug",
+    "project": "MC",
+    "issue key": "MC-253137",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-06-15T14:49:23.838-0700",
+    "updated": "2025-04-29T11:42:24.768-0700",
+    "resolution date": "2023-11-07T11:43:39.187-0800",
+    "affects versions": "22w24a; 1.19.1 Pre-release 1; 1.19.1 Release Candidate 1; 1.19.1 Pre-release 2; 1.19.1 Pre-release 5; 22w43a; 22w46a; 1.20 Pre-release 6; 23w31a",
+    "fix versions": "23w32a",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "latest.log; MC-253137.png; screenshot-1.png",
+    "issue links": "Cloners:inward:MC-264966:\"Signature is missing from Property textures\" appears in the logs of some Minecraft worlds due to player heads",
+    "_title": "The game output console is logged with errors regarding missing signatures from property textures when joining LAN worlds"
+  },
+  "stor": {
+    "bug_id": "MC-253137",
+    "affected_versions": [
+      "22w24a",
+      "1.19.1 Pre-release 1",
+      "1.19.1 Release Candidate 1",
+      "1.19.1 Pre-release 2",
+      "1.19.1 Pre-release 5",
+      "22w43a",
+      "22w46a",
+      "1.20 Pre-release 6",
+      "23w31a"
+    ],
+    "recommended_version": "22w24a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 22w24a using two simultaneously running clients on the same local network. One client hosts an ordinary singleplayer world through the integrated server's Open to LAN feature; the second client joins that LAN world. Use two distinct authenticated Minecraft accounts. This is not a dedicated-server reproduction. The joining client's external Minecraft Launcher Game Output window must be open so its output can be captured during connection.",
+    "preconditions": [
+      "Two computers, or equivalent isolated client environments, can run Minecraft: Java Edition simultaneously and communicate over the same local network.",
+      "The host client and joining client are signed in with two different authenticated Minecraft accounts; using the same account for both clients may prevent simultaneous play.",
+      "Both clients have an unmodified snapshot 22w24a installation available and selected.",
+      "Local firewall and network settings permit Minecraft LAN discovery and connections between the two clients.",
+      "The joining player's Minecraft Launcher is configured to open the external Game Output window when Java Edition starts.",
+      "Do not substitute an ordinary singleplayer-only session or a dedicated multiplayer server for the Open to LAN integrated-server session."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "On the host computer, open Minecraft Launcher and sign in with the first Minecraft account. On the joining computer, open Minecraft Launcher and sign in with a different Minecraft account.",
+        "exact_input": null,
+        "success_cue": "The two launchers display different signed-in player profiles and can be used at the same time.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "On each launcher, open the Java Edition Installations page. Enable display of snapshot versions if necessary, then create or edit an installation whose version is snapshot 22w24a. Save and select that installation on both clients.",
+        "exact_input": "snapshot 22w24a",
+        "success_cue": "Both launchers have snapshot 22w24a selected as the installation that will start when Play is pressed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "On the joining player's launcher, open Settings, locate the Minecraft: Java Edition settings, and enable the option that opens the output log when the game starts. This Launcher option is documented as \"Open the output log when the game starts.\" ([minecraft.wiki](https://minecraft.wiki/w/Launcher?utm_source=openai))",
+        "exact_input": "Open the output log when the game starts",
+        "success_cue": "The output-log option is enabled for the joining player's launcher.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "On the host client, launch the selected 22w24a installation and wait for the Minecraft main menu to become responsive.",
+        "exact_input": null,
+        "success_cue": "The host is at the Minecraft main menu and the displayed game version is 22w24a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "On the host client, click Singleplayer.",
+        "exact_input": null,
+        "success_cue": "The Select World screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Create a disposable test world by clicking Create New World, leaving all settings not specified by the report at their defaults, and clicking Create New World again. If an ordinary test world already exists, it may instead be selected and opened.",
+        "exact_input": null,
+        "success_cue": "The host player is inside a singleplayer world, surrounding terrain has rendered, and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "On the host client, press Esc to open the pause menu.",
+        "exact_input": "Esc",
+        "success_cue": "The Game Menu is displayed over the host's world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Click Open to LAN in the host's pause menu.",
+        "exact_input": null,
+        "success_cue": "The LAN World configuration screen is displayed, including the Start LAN World button.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Do not impose a particular game mode or Allow Cheats value because the report specifies neither. Click Start LAN World using the currently displayed values.",
+        "exact_input": null,
+        "success_cue": "The host returns to the world and an in-game confirmation states that the local game was hosted, normally including a dynamically assigned port number.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Leave the host client running inside the LAN-opened world. Do not return to the title screen, close the world, or close the host game.",
+        "exact_input": null,
+        "success_cue": "The host remains connected to the world and the LAN session remains available to other local clients.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "On the joining computer, launch the selected 22w24a installation. Confirm that a separate Game Output window opens alongside the game, and leave that window open. If it does not open, close the joining game, re-enable the launcher setting from step 3, and relaunch before continuing.",
+        "exact_input": null,
+        "success_cue": "The joining client is at the 22w24a main menu and its external Game Output window is open and receiving startup log lines.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "On the joining client's main menu, click Multiplayer. If a one-time multiplayer warning screen is shown, acknowledge it using its Proceed button.",
+        "exact_input": null,
+        "success_cue": "The joining client is on the Play Multiplayer screen and is scanning the local network for games.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Wait without closing the host world until the host's session appears in the joining client's multiplayer list under the LAN-games area.",
+        "exact_input": null,
+        "success_cue": "A LAN world entry associated with the host player or hosted world is visible and selectable in the multiplayer list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Keep the joining client's Game Output window open and ensure its contents are being retained or captured. If possible, arrange the game and output windows so the output remains visible during connection; do not evaluate any particular log message yet.",
+        "exact_input": null,
+        "success_cue": "The LAN world is visible in the multiplayer list and the joining client's Game Output console is ready to capture the complete connection period.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "On the joining client, select the host's LAN world entry and click Join Server, or double-click the LAN world entry once. Do not repeatedly activate the entry.",
+        "exact_input": null,
+        "success_cue": "The joining client leaves the multiplayer list and begins the connection/world-loading sequence for the host's LAN world.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The joining player has just activated the host's LAN world entry, connection or terrain loading has begun, and the joining client's Game Output window remains open and is capturing output. Hand control to the observation subsystem immediately so it can monitor the console throughout the join and until the world finishes loading.",
+    "uncertainties": [
+      "The report does not specify an operating system, world seed, world game mode, difficulty, Allow Cheats setting, coordinates, graphics settings, resource packs, or a required player skin. This plan leaves those unspecified values at ordinary defaults.",
+      "The precise wording and placement of the launcher's output-log option can vary between launcher builds or platforms. The externally verified launcher documentation identifies it under the Minecraft: Java Edition settings as \"Open the output log when the game starts.\"",
+      "The report does not supply a direct-connect IP address or port. This plan therefore uses automatic LAN discovery as described by the report; the dynamically assigned port is only known after the host opens the world to LAN.",
+      "Later comments mention intermittent occurrences in singleplayer worlds on newer versions, which conflicts with the report description's LAN-only characterization. This plan preserves the formal report's deterministic Open to LAN reproduction and uses the first formally listed affected version.",
+      "No repetition count is specified. The plan performs one LAN join so the observation subsystem can inspect that single trigger without intentionally generating repeated log output."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_022657d443ddb05e016aa818b8149c87d09abae2226dfde6cf",
+    "elapsed_seconds": 74.92,
+    "usage": {
+      "input_tokens": 17885,
+      "output_tokens": 5556,
+      "reasoning_tokens": 3838,
+      "total_tokens": 23441
+    },
+    "timestamp": "2026-09-14T15:55:46.799266+00:00"
+  }
+}

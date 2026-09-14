@@ -1,0 +1,167 @@
+{
+  "bug_id": "MC-243489",
+  "category": "Debug",
+  "source_md": "[Debug] - MC-243489.md",
+  "source_meta": {
+    "mojira categories": "Debug",
+    "project": "MC",
+    "issue key": "MC-243489",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-11-30T20:48:37.707-0800",
+    "updated": "2025-03-21T00:14:14.655-0700",
+    "resolution date": "2022-01-17T07:37:30.282-0800",
+    "affects versions": "1.18; 1.18.1 Release Candidate 1; 1.18.1",
+    "fix versions": "22w03a",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Console spam: Skipping update for removed player"
+  },
+  "stor": {
+    "bug_id": "MC-243489",
+    "affected_versions": [
+      "1.18",
+      "1.18.1 Release Candidate 1",
+      "1.18.1"
+    ],
+    "recommended_version": "1.18",
+    "environment": "Minecraft Java Edition 1.18, using a clean dedicated server and a matching 1.18 client. Run one connected player while retaining direct access to the dedicated-server console and latest.log. Use server view-distance 16. The report does not specify a world seed, coordinates, game mode, or required network impairment; use a fresh default Survival world and a local or otherwise high-speed connection as practical controls.",
+    "preconditions": [
+      "The dedicated server and client must both run exactly Minecraft Java Edition 1.18, the first version listed as affected.",
+      "Use an isolated server directory so settings and logs from another server do not interfere with the reproduction.",
+      "The server operator must be able to edit eula.txt and server.properties, start and stop the server, enter commands in the server console, and watch its live log output.",
+      "At least one valid Java Edition player account must be able to connect to the server. No in-game operator permission is required because the trigger command is issued from the server console.",
+      "Use a fresh default world when practical so the player can move into terrain that has not already been loaded. No seed or coordinates are specified in the report.",
+      "Do not artificially throttle the connection for the primary attempt. One comment associated the issue with a slow connection, but another explicitly confirmed it on high-speed connections.",
+      "Do not reduce view-distance to 6; the report states that reducing it from 24 to 6 stopped the issue for one reporter."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Place the official Minecraft Java Edition 1.18 dedicated-server executable JAR in the isolated server directory. Confirm that the executable is for release 1.18, not 1.18.1 or a later version.",
+        "exact_input": null,
+        "success_cue": "The isolated directory contains the Java Edition 1.18 server JAR that will be used for this run.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Launch the dedicated server once using a Java runtime capable of running the 1.18 server. Allow it to create its initial configuration files. If it stops because the EULA has not been accepted, leave it stopped.",
+        "exact_input": null,
+        "success_cue": "The server directory contains eula.txt and server.properties; the server process is stopped before either file is edited.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open eula.txt in a plain-text editor. After reviewing the EULA, change the EULA property to the acceptance value and save the file. Do not add spaces or additional copies of the property.",
+        "exact_input": "eula=true",
+        "success_cue": "eula.txt contains one active line reading eula=true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open server.properties while the server is stopped. Locate the view-distance property, set it to 16, ensure only one active view-distance line remains, and save the file. Leave simulation-distance and all other properties at their generated defaults because the report does not specify changes to them.",
+        "exact_input": "view-distance=16",
+        "success_cue": "server.properties is saved with one active view-distance=16 line.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Start the Java Edition 1.18 dedicated server again and keep its console visible. Wait for world preparation to finish; do not connect the client while the console still reports spawn preparation or initial world generation.",
+        "exact_input": null,
+        "success_cue": "The console has printed the server-ready message beginning with “Done”, and the server accepts connections.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Launch Minecraft Java Edition using a client installation configured for exact release 1.18. From the main menu, open Options -> Video Settings and set the client Render Distance to at least 16 chunks so the client does not request less terrain than the server's configured view-distance. Apply the setting and return to the main menu.",
+        "exact_input": "Render Distance: 16 chunks or higher",
+        "success_cue": "The running client identifies itself as version 1.18 and its Render Distance is at least 16 chunks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open Multiplayer, add or directly connect to the dedicated server, and join with exactly one player for the initial attempt. If the client and server are on the same computer, use localhost; otherwise enter the server's actual address.",
+        "exact_input": "localhost",
+        "success_cue": "The player is present in the server world, and the server console has logged that the player's login and join completed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Do not begin the trigger sequence immediately after joining. Wait until the terrain around the player has rendered, the loading overlay is gone, movement responds normally, and the server console is no longer reporting initial login or world-loading work.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in a fully rendered area and remains connected to the server.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Keep the live server console or the live tail of logs/latest.log visible beside the client. Note the current final log line or timestamp so messages generated after the trigger can be separated from earlier startup output.",
+        "exact_input": null,
+        "success_cue": "The client remains connected while new server log lines can be observed in real time.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "On the client, face away from the initially explored area and move continuously toward terrain that has not previously been visited in this fresh world. Use the Move Forward control, default W, and use Sprint, default Left Ctrl, when terrain permits. Avoid pausing the game or disconnecting.",
+        "exact_input": "Hold W; hold Left Ctrl while sprinting is possible",
+        "success_cue": "New terrain is repeatedly appearing at the edge of the player's view while the player remains connected and moving.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Continue moving until chunks are visibly still being streamed or generated around the outer edge of the 16-chunk view. While this chunk-loading activity is still occurring, leave the client connected and immediately switch control to the dedicated-server console without stopping the server.",
+        "exact_input": null,
+        "success_cue": "The player is connected in or beside newly loaded terrain, and the server console is ready to receive a command while chunk updates may still be pending.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "In the dedicated-server console, enter the kill command targeting all online players and press Enter. Because this is the server console, enter the command without a leading slash. There should be exactly one connected player, so only the test player is targeted. Execute this only once; repeated kills are unnecessary.",
+        "exact_input": "kill @a",
+        "success_cue": "The console confirms that one player was killed, and the connected client reaches its death screen or equivalent dead-player state.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Do not press Respawn, do not reconnect, do not issue another kill command, and do not stop the server. Immediately transfer control to the observation subsystem while both the client death screen and live server console remain available.",
+        "exact_input": null,
+        "success_cue": "The player has just been killed during or immediately after active chunk streaming, remains in the resulting dead-player state, and the server log is still updating live.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The sole connected player has just been killed from the dedicated-server console while using server view-distance 16 after moving into newly loaded terrain. The client remains on the resulting death screen, no respawn or disconnect action has been taken, and the live server console is visible for immediate observation.",
+    "uncertainties": [
+      "The report contains no formal setup or Steps to Reproduce and does not explicitly identify the player action that starts the console messages.",
+      "Using player death as the trigger is reconstructed from every supplied log example showing the affected player entity with removed=KILLED. The report does not state whether the players died naturally, were killed by a command, or reached this state through another sequence.",
+      "The kill @a console command is a deterministic practical substitute for the unspecified way the reported players entered the KILLED removal state; it was not supplied by the report.",
+      "Moving into unvisited terrain immediately before killing the player is a practical inference intended to create pending player/chunk updates. It is based on comments associating the issue with high server view-distance and, in one case, connection speed, but the report does not explicitly state that movement or new chunk generation is required.",
+      "The report provides evidence from dedicated servers and server.properties settings, so this plan uses a dedicated server. It does not conclusively establish that an integrated single-player server cannot exhibit the issue.",
+      "The report gives examples at unrelated coordinates and in differently named worlds, so no specific seed, dimension, location, or coordinate can be treated as required.",
+      "The report does not specify game mode. The plan retains the server's default Survival mode, but the externally verified Java Edition kill command can target a player without requiring the player to be an operator.",
+      "Network conditions are inconsistent across comments: one reporter mentioned a slow connection, while another confirmed the issue with high-speed connections. No network throttling is included in the primary plan.",
+      "One reporter used view-distance 24 and another confirmed the messages at view-distance 16. The plan selects 16 because it is explicitly confirmed and is less resource-intensive; it does not assert that 16 is the minimum required value.",
+      "The issue may be intermittent. The supplied evidence does not provide a guaranteed delay, travel distance, number of pending chunks, or other deterministic threshold, so this single safe trigger attempt may not reproduce the console output.",
+      "Web verification was limited to allowed Minecraft sources and was used only to confirm that view-distance is a server.properties option in Java Edition 1.18 and that the Java Edition kill command accepts an entity selector such as @a. It did not reveal an official missing reproduction procedure for MC-243489."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0e4d26d9e4596b0f016aa81846bf3c87d0a5dab5e7fdb4de8e",
+    "elapsed_seconds": 114.18,
+    "usage": {
+      "input_tokens": 25445,
+      "output_tokens": 7539,
+      "reasoning_tokens": 5435,
+      "total_tokens": 32984
+    },
+    "timestamp": "2026-09-14T15:54:31.871743+00:00"
+  }
+}

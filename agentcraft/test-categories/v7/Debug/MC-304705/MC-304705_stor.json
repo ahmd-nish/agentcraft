@@ -1,0 +1,159 @@
+{
+  "bug_id": "MC-304705",
+  "category": "Debug",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Debug] - MC-304705.md",
+  "source_meta": {
+    "mojira categories": "Debug; UI",
+    "project": "MC",
+    "issue key": "MC-304705",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2025-12-01T23:48:46.851-0800",
+    "updated": "2026-03-11T03:53:02.664-0700",
+    "resolution date": "2026-01-07T01:09:56.999-0800",
+    "affects versions": "1.21.11 Pre-Release 4; 1.21.11 Release Candidate 2; 1.21.11; 26.1 Snapshot 1",
+    "fix versions": "26.1 Snapshot 2",
+    "area": "Platform G",
+    "votes": "24",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "202512021547.mp4",
+    "issue links": "Duplicate:inward:MC-304904:Entity Counter (the number behind E:) in the F3 menu always shows 0 | Duplicate:inward:MC-304953:Entity Scanning isn't working | Duplicate:inward:MC-304996:E-ray stuck at 0 again | Duplicate:inward:MC-305097:Debug screen shows E: 0/x despite visible entities | Duplicate:inward:MC-305256:Entity render stats in 1.21.11 are not working | Duplicate:inward:MC-305325:F3 menu does not display proper entity render stats | Duplicate:inward:MC-305367:Entity Render Stats Not Showing Rendered Entities | Duplicate:inward:MC-305393:The first count in E for the debug screen is displaying 0 even if there are entities in the player's FOV. | Duplicate:inward:MC-305465:F3 Debug entity_render_stats is always 0 | Duplicate:inward:MC-305490:0 entities | Duplicate:inward:MC-305638:The entity render stats does not count the number of entytis on my pov and this happens on other players is like E: 0/97 | Cloners:outward:MC-300235:First number in E counter is always stuck at 0 | Duplicate:inward:MC-305803:MacOS - Debug Option entity_render_stats always shows 0 | Duplicate:inward:MC-305873:1.21.11 - Entity counter broken in the f3 menu | Duplicate:inward:MC-306026:The “E” value in the F3 debug screen (Entity count) is not showing correctly.",
+    "_title": "The E value in entity_render_stats in the debug overlay doesn't work"
+  },
+  "stor": {
+    "bug_id": "MC-304705",
+    "affected_versions": [
+      "1.21.11 Pre-Release 4",
+      "1.21.11 Release Candidate 2",
+      "1.21.11",
+      "26.1 Snapshot 1"
+    ],
+    "recommended_version": "1.21.11 Pre-Release 4",
+    "environment": "Vanilla Minecraft: Java Edition running the exact affected version 1.21.11 Pre-Release 4. Use a fresh single-player Creative-mode Superflat world as a simple, unobstructed test environment. No dedicated server, multiple players, seed, coordinates, commands, mods, resource packs, or datapacks are required by the report.",
+    "preconditions": [
+      "Use 1.21.11 Pre-Release 4, the first formally listed affected version; do not use the fix version 26.1 Snapshot 2.",
+      "Use a physical keyboard or keyboard input method capable of sending the F3 and F6 function keys. On a laptop or macOS keyboard, the Fn key may also be required.",
+      "Keep the game window focused while using debug-key combinations.",
+      "Use the normal, full debug overlay. A server or world configuration that enforces reduced debug information must not hide the entity_render_stats entry.",
+      "Have at least one clearly visible entity available in front of the player. This plan uses a Pig Spawn Egg in Creative mode to create one deterministically."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, go to Installations, enable access to snapshots or historical development versions if necessary, and create or select an installation whose version is exactly 1.21.11 Pre-Release 4. Launch that installation. Using a separate game directory is recommended so the pre-release does not open important worlds.",
+        "exact_input": "1.21.11 Pre-Release 4",
+        "success_cue": "The Java Edition title screen is loaded and identifies the running version as 1.21.11 Pre-Release 4.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set the game mode to Creative, select the Superflat world type for a clear line of sight, and create the world. The report does not require a particular seed, so leave the seed unspecified.",
+        "exact_input": null,
+        "success_cue": "The player has entered a Creative-mode world with a flat, unobstructed area nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until the nearby terrain has rendered, the loading overlay is gone, and camera movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The world is fully interactive and nearby chunks are visibly loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E. Select the Search Items tab if it is not already active, click the search field, and search for Pig Spawn Egg.",
+        "exact_input": "Pig Spawn Egg",
+        "success_cue": "A Pig Spawn Egg is visible in the Creative inventory search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Move one Pig Spawn Egg from the Creative inventory into any hotbar slot. The hotbar is the row of nine item slots at the bottom of the gameplay screen. Close the inventory with E or Esc.",
+        "exact_input": null,
+        "success_cue": "The world view is visible again and a Pig Spawn Egg appears in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the hotbar slot containing the Pig Spawn Egg by pressing its corresponding number key, 1 through 9, or by scrolling the mouse wheel until that slot is highlighted.",
+        "exact_input": null,
+        "success_cue": "The Pig Spawn Egg is shown in the player's hand and its hotbar slot has the active-slot highlight.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Aim the crosshair at the top surface of a ground block approximately 3 to 5 blocks in front of the player, then use the item once with right-click to spawn a pig. Do not repeatedly spawn entities; one pig is sufficient.",
+        "exact_input": "right-click",
+        "success_cue": "One pig is visible a short distance in front of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "While controlling the player in the world, hold F3 and press F6 once to open the Debug Options screen. Release both keys afterward. If the keyboard assigns media functions to the function-key row, hold Fn as well.",
+        "exact_input": "F3 + F6",
+        "success_cue": "The Debug Options screen is open and displays configurable debug entries.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Locate the debug entry named exactly entity_render_stats. Activate its visibility control until it is enabled for display when the main debug overlay is active. If the interface offers multiple enabled states, choose the state that displays the entry with the F3 overlay; an always-visible state is also operationally acceptable. Do not change unrelated debug entries.",
+        "exact_input": "entity_render_stats",
+        "success_cue": "The entity_render_stats row indicates that the entry is enabled rather than hidden.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Close the Debug Options screen using its completion or back control, or press Esc, to return to the world. Keep the pig nearby and visible.",
+        "exact_input": "Esc",
+        "success_cue": "The player is back in the world, can move the camera, and the pig remains nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Open the main debug overlay. If it is not already displayed, press F3 once; on keyboards that require it, press Fn+F3. Confirm that the entity_render_stats information is present by locating the line containing an E value formatted as two counts separated by a slash.",
+        "exact_input": "F3",
+        "success_cue": "The main debug overlay is visible and includes the entity-render-statistics E line with a count/count format.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Rotate the camera until the pig is clearly within the field of view, then place the crosshair directly on the pig and hold the camera still. Ensure the pig is not hidden behind blocks and remains within normal render distance.",
+        "exact_input": null,
+        "success_cue": "The debug overlay remains open and the pig is fully rendered near the center of the screen under the crosshair.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The entity_render_stats entry is enabled, the F3 debug overlay is open, and the camera has just been aimed directly at a clearly visible pig. Hand control to the observation subsystem to inspect the E line without changing the camera direction or closing the overlay.",
+    "uncertainties": [
+      "The report does not specify a world seed, world type, game mode, entity type, operating system, graphics settings, or multiplayer requirement. A fresh single-player Creative Superflat world and one pig are practical choices used only to produce a clear, deterministic visible entity.",
+      "The exact labels or icons used for the visibility states in the Debug Options screen are not supplied. The essential condition is that entity_render_stats is configured to appear when the F3 overlay is active.",
+      "The description notes that the issue occurs since 25w45a, but 25w45a is not included in the formal Affects versions field. It has therefore not been added to affected_versions.",
+      "Function-key behavior varies by keyboard and operating system; Fn may need to be held with F3 and F6.",
+      "The Debug Options configuration is saved between game launches, so entity_render_stats may already be enabled. The executor should still inspect and confirm its state."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0ed9d69f385132ff016aa7b70a82c487d0b57e60589f01d738",
+    "elapsed_seconds": 65.19,
+    "usage": {
+      "input_tokens": 25491,
+      "output_tokens": 3940,
+      "reasoning_tokens": 2357,
+      "total_tokens": 29431
+    },
+    "timestamp": "2026-09-14T08:58:51.556990+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
