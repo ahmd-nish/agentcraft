@@ -1,0 +1,146 @@
+{
+  "bug_id": "MC-217644",
+  "category": "Inventory",
+  "panel": "low-interaction-54",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Inventory] - MC-217644.md",
+  "source_meta": {
+    "mojira categories": "Inventory",
+    "project": "MC",
+    "issue key": "MC-217644",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2021-03-03T10:45:50.467-0800",
+    "updated": "2025-04-30T06:44:15.041-0700",
+    "resolution date": "2022-10-11T07:57:32.986-0700",
+    "affects versions": "1.16.5; 21w08b; 21w11a; 21w13a; 21w14a; 21w15a; 1.17; 1.18.1; 1.18.2; 1.19; 1.19.2",
+    "fix versions": "22w42a",
+    "game mode": "Creative",
+    "labels": "creative-inventory-contents",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2021-03-03_18.45.02_2.png; 2021-03-03_18.45.02.png; 2021-03-03_18.45.09.png",
+    "_title": "Wart blocks and shroomlights are in different Creative tabs"
+  },
+  "stor": {
+    "bug_id": "MC-217644",
+    "affected_versions": [
+      "1.16.5",
+      "21w08b",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "1.17",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.2"
+    ],
+    "recommended_version": "1.16.5",
+    "environment": "Minecraft Java Edition 1.16.5 in a Creative-mode world. A new single-player world is sufficient because the report specifies no seed, coordinates, multiplayer, dedicated-server, permission, or world-conversion requirements.",
+    "preconditions": [
+      "The Minecraft launcher can start the exact Java Edition version 1.16.5.",
+      "A mouse and keyboard are available. The default key for opening the inventory is E; if controls have been rebound, use the key assigned to the Inventory action.",
+      "No preexisting world, items, commands, cheats, structures, or specific player location are required."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft launcher, select an installation that uses the exact affected Java Edition version 1.16.5, and start the game. Do not use fix version 22w42a for this reproduction.",
+        "exact_input": "1.16.5",
+        "success_cue": "The Minecraft main menu is displayed and identifies the running version as 1.16.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open the single-player world list and begin creating a new world by selecting Singleplayer and then Create New World.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the world's game mode to Creative. If the Game Mode button displays another mode, click it until it displays Creative.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen explicitly displays Game Mode: Creative.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World. Wait until the world has finished loading, surrounding terrain is rendered, and player movement responds normally.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the loaded world with the Creative-mode hotbar visible and normal input response.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory using the Inventory action; with default controls, press E once.",
+        "exact_input": "E",
+        "success_cue": "The tabbed Creative inventory interface and its item grid are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Find the Decoration Blocks category among the Creative inventory tabs. Because tabs are primarily represented by icons, move the pointer over candidate tab icons until the tooltip reads Decoration Blocks, then left-click that tab.",
+        "exact_input": "Decoration Blocks",
+        "success_cue": "The Decoration Blocks tab is selected and its item grid is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Locate Shroomlight within the Decoration Blocks tab. Systematically scan the item grid from left to right and top to bottom. Use the mouse wheel while the pointer is over the grid, or drag the scrollbar at the right edge of the item grid, to inspect additional rows. Hover over the Shroomlight item so its tooltip confirms the name; do not move the item to another tab or inventory slot.",
+        "exact_input": "Shroomlight",
+        "success_cue": "The tooltip Shroomlight is visible while the Decoration Blocks tab remains selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Find the Building Blocks category by moving the pointer over the Creative inventory tab icons until the tooltip reads Building Blocks, then left-click that tab.",
+        "exact_input": "Building Blocks",
+        "success_cue": "The Building Blocks tab is selected and its item grid is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Locate Nether Wart Block within the Building Blocks tab. Scan the grid systematically and use the mouse wheel or the grid's right-hand scrollbar as needed. Hover over the item to confirm its tooltip; do not remove it from the tab.",
+        "exact_input": "Nether Wart Block",
+        "success_cue": "The tooltip Nether Wart Block is visible while the Building Blocks tab remains selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Continue scanning the Building Blocks tab until Warped Wart Block is located. Hover over the item so its tooltip confirms the exact name, and leave the Creative inventory open on this tab.",
+        "exact_input": "Warped Wart Block",
+        "success_cue": "The tooltip Warped Wart Block is visible, the Building Blocks tab remains selected, and the Creative inventory is still open.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The Creative inventory remains open on the Building Blocks tab immediately after Warped Wart Block has been identified. During the same uninterrupted inventory inspection, Shroomlight was previously identified in Decoration Blocks and Nether Wart Block was identified in Building Blocks. Hand control to the observation subsystem without closing the inventory or changing versions.",
+    "uncertainties": [
+      "The report provides no world seed, coordinates, world type, server requirement, or special graphics setting. A newly created single-player Creative world is therefore used as the minimum practical environment.",
+      "The report does not provide fixed item-slot coordinates or tab-icon descriptions. The executor should identify tabs and items by their displayed tooltips rather than relying on assumed icons or grid positions.",
+      "Version 1.16.5 is selected because it is the first affected version listed in the report. The listed fix version 22w42a is intentionally not used."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0b82e0013e31daa5016aa7bc3b8a2887d08ae240a0bbb25694",
+    "elapsed_seconds": 52.24,
+    "usage": {
+      "input_tokens": 8777,
+      "output_tokens": 3058,
+      "reasoning_tokens": 1905,
+      "total_tokens": 11835
+    },
+    "timestamp": "2026-09-14T09:20:47.645522+00:00"
+  }
+}

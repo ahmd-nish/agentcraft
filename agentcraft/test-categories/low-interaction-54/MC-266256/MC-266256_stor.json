@@ -1,0 +1,172 @@
+{
+  "bug_id": "MC-266256",
+  "category": "Internationalisation",
+  "panel": "low-interaction-54",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Internationalisation] - MC-266256.md",
+  "source_meta": {
+    "mojira categories": "Internationalisation",
+    "project": "MC",
+    "issue key": "MC-266256",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-10-30T08:27:20.928-0700",
+    "updated": "2025-04-16T13:02:32.804-0700",
+    "resolution date": "2023-11-13T07:27:00.284-0800",
+    "affects versions": "1.20.2; 23w43b; 23w44a",
+    "fix versions": "23w45a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "cy_gb + nl_nl + el_gr + sv_se + tl_ph.png; Options menu.png; String_Bug1.png; String_Bug2.png; String_Bug3.png; Welcome screen.png",
+    "issue links": "Cloners:outward:MC-261119:Accessibility button in the Welcome screen needs its own string",
+    "_title": "Accessibility button in the Welcome screen still needs its own string"
+  },
+  "stor": {
+    "bug_id": "MC-266256",
+    "affected_versions": [
+      "1.20.2",
+      "23w43b",
+      "23w44a"
+    ],
+    "recommended_version": "1.20.2",
+    "environment": "Vanilla Minecraft: Java Edition client, version 1.20.2, launched through a profile with a dedicated writable game directory. No world, server, commands, cheats, or multiplayer connection are required. Use the built-in language resources without third-party resource packs that replace translations or menus.",
+    "preconditions": [
+      "The Minecraft Launcher can install and start Minecraft: Java Edition 1.20.2.",
+      "Create or select an empty, dedicated game directory so this test does not alter the executor's normal options.txt or onboarding state.",
+      "The game directory must remain writable because the procedure changes the client language and the onboardAccessibility entry in options.txt.",
+      "Use an unmodified client and disable third-party resource packs or mods that replace language strings or menu layouts.",
+      "Keep the same dedicated game directory for both launches so the language selection and edited onboarding state are reused."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create an installation for the first listed affected version, Minecraft: Java Edition 1.20.2. Configure this installation to use the dedicated empty game directory prepared for the test; do not select the fix version 23w45a.",
+        "exact_input": "1.20.2",
+        "success_cue": "The launcher installation shows version 1.20.2 and points to the dedicated game directory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Start the 1.20.2 installation and wait until Minecraft has finished loading. Continue only after either the accessibility Welcome screen or the normal title screen is fully rendered and menu input responds.",
+        "exact_input": null,
+        "success_cue": "A stable Minecraft menu screen is visible and responds to mouse or keyboard input.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "If the accessibility Welcome screen is shown during this initial launch, activate its bottom confirmation/continue control to finish onboarding and reach the normal title screen. If the title screen was already displayed, perform no action in this step.",
+        "exact_input": null,
+        "success_cue": "The normal title screen containing Singleplayer, Multiplayer, Options, and Quit Game controls is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "On the title screen, open the Language menu by clicking the globe-icon button near the lower-left portion of the screen.",
+        "exact_input": null,
+        "success_cue": "The scrollable language-selection screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Locate and select the language named Cymraeg, whose language identifier is cy_gb, and then activate the Done button. This language is chosen because cy_gb is the first language code named in the report's combined language-example attachment filename.",
+        "exact_input": "cy_gb",
+        "success_cue": "The title screen returns and its menu text is rendered in Cymraeg.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the title-screen Options menu by clicking the localized Options button. Identify it by its usual position below the Multiplayer button if the translated label is unfamiliar.",
+        "exact_input": null,
+        "success_cue": "The general Options menu is visible, including its Accessibility Settings control.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Return from the Options menu to the title screen using the bottom Done/back control. Do not change the language or activate a resource pack.",
+        "exact_input": null,
+        "success_cue": "The Cymraeg title screen is visible again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Click Quit Game and wait until the Minecraft game window and Java client process have completely closed. Do not edit options.txt while the client is still running, because the game could overwrite the edit while shutting down.",
+        "exact_input": null,
+        "success_cue": "Minecraft is closed and only the launcher or desktop remains visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open the file named options.txt from the root of the dedicated game directory in a plain-text editor.",
+        "exact_input": "options.txt",
+        "success_cue": "options.txt is open as editable plain text and contains one setting per line in name:value form.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Find the language entry and verify that it is exactly lang:cy_gb. If the value differs, replace that entire line with the supplied text; if the entry is absent, add the supplied text as a new line.",
+        "exact_input": "lang:cy_gb",
+        "success_cue": "options.txt contains exactly one active line reading lang:cy_gb.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Find the onboardAccessibility entry. Replace its entire line with onboardAccessibility:true. If no such entry exists, add the supplied text on a new line. Preserve the capitalization of onboardAccessibility and use the lowercase Boolean value true exactly as shown.",
+        "exact_input": "onboardAccessibility:true",
+        "success_cue": "options.txt contains exactly one active line reading onboardAccessibility:true.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Save options.txt as plain text without changing its filename or adding an extension, then close the text editor.",
+        "exact_input": null,
+        "success_cue": "The saved options.txt in the dedicated game directory still contains lang:cy_gb and onboardAccessibility:true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "In the Minecraft Launcher, start the same 1.20.2 installation using the same dedicated game directory. Do not switch profiles or versions.",
+        "exact_input": "1.20.2",
+        "success_cue": "The Minecraft 1.20.2 client window opens and begins loading with the edited options file.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Wait without clicking through onboarding until the accessibility Welcome screen has fully rendered in Cymraeg. Continue only when the panorama and all controls are visible and menu input is responsive. Leave the screen open with its Accessibility Settings button, including the accessibility icon, visible.",
+        "exact_input": null,
+        "success_cue": "The Cymraeg accessibility Welcome screen is fully rendered, and its icon-bearing Accessibility Settings button is visible and ready for inspection.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The Minecraft: Java Edition 1.20.2 accessibility Welcome screen has just loaded in Cymraeg from a game directory whose options.txt contains lang:cy_gb and onboardAccessibility:true. The icon-bearing Accessibility Settings button is visible, no onboarding control has been activated, and the observation subsystem should now inspect this screen.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce section, so the minimum launch, language-selection, and onboarding-reset sequence was reconstructed from the description and attachment filenames.",
+      "Cymraeg (cy_gb) is selected because it is the first code in the attachment filename \"cy_gb + nl_nl + el_gr + sv_se + tl_ph.png\". The supplied report does not state that one of these example languages is mandatory or identify which gives the clearest presentation at a particular resolution.",
+      "The six attachment images were not included in the supplied report content, so their exact window resolution, GUI scale, translated button text, and visual examples cannot be preserved.",
+      "Localized button labels may differ from the English action names used in this plan; icon, menu position, and screen context are provided to make navigation possible.",
+      "The report concerns reuse of a translation string. Rendering the localized Welcome screen provides the reported UI context, but rendered text alone may not conclusively expose the internal translation-key identifier without a separate asset or code inspection.",
+      "Version 23w45a is intentionally excluded from affected_versions and is not recommended because the report lists it as a fix version, despite a comment noting that translations for the newly separated string would not be applied until the following snapshot."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_00edc02d8a0b2fe2016aa7bbb5881c87d0b3d6fd0b03368734",
+    "elapsed_seconds": 91.25,
+    "usage": {
+      "input_tokens": 33939,
+      "output_tokens": 5243,
+      "reasoning_tokens": 3620,
+      "total_tokens": 39182
+    },
+    "timestamp": "2026-09-14T09:19:12.633159+00:00"
+  }
+}
