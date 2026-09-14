@@ -1,0 +1,175 @@
+{
+  "bug_id": "MC-260118",
+  "category": "Data Packs",
+  "panel": "low-interaction-54",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Data Packs] - MC-260118.md",
+  "source_meta": {
+    "mojira categories": "Data Packs; UI",
+    "project": "MC",
+    "issue key": "MC-260118",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-02-15T12:05:44.146-0800",
+    "updated": "2025-03-20T23:15:48.244-0700",
+    "resolution date": "2023-02-22T03:00:53.751-0800",
+    "affects versions": "23w07a",
+    "fix versions": "1.19.4 Pre-release 1",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2023-02-15_21.10.05.png; Minecraft 23w07a 2023-02-15 21-19-50.mp4",
+    "_title": "Disabling experimental features on the world creation screen causes pack validation to fail"
+  },
+  "stor": {
+    "bug_id": "MC-260118",
+    "affected_versions": [
+      "23w07a"
+    ],
+    "recommended_version": "23w07a",
+    "environment": "Minecraft: Java Edition client snapshot 23w07a, using the single-player Create New World interface. Remain in world-creation configuration throughout the test; do not actually create or enter a world. The report does not require a particular world name, game mode, difficulty, seed, commands, server, custom data pack, or graphics setting.",
+    "preconditions": [
+      "Install or configure a Minecraft Launcher installation that launches exactly snapshot 23w07a. Do not use the fix version 1.19.4 Pre-release 1.",
+      "Launch Minecraft: Java Edition 23w07a and wait until the main title menu is fully visible and responsive.",
+      "Use the normal single-player new-world workflow. No existing world is needed.",
+      "Do not click the final \"Create New World\" button at any point; the trigger occurs while configuring the uncreated world.",
+      "When the Experiments screen is opened for the first time, both experimental-feature toggles must begin in their disabled state. If either is already enabled, cancel out of world creation and start a fresh Create New World configuration before continuing.",
+      "Use left-click for button and toggle activation unless the client is being operated through keyboard UI navigation."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for snapshot 23w07a and launch it. Wait through loading and any first-launch screens until the Minecraft main title menu is responsive.",
+        "exact_input": "23w07a",
+        "success_cue": "The Minecraft title menu is visible, and the running game version is 23w07a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "On the title menu, left-click \"Singleplayer\".",
+        "exact_input": "Singleplayer",
+        "success_cue": "The Select World screen is open. It does not matter whether existing worlds are listed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "On the Select World screen, left-click \"Create New World\". This opens configuration for a new world but does not create it yet.",
+        "exact_input": "Create New World",
+        "success_cue": "The Create New World screen is visible with its world-configuration tabs and the final Create New World button.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Select the \"More\" tab on the Create New World screen. Use this path rather than creating the world or opening an existing world.",
+        "exact_input": "More",
+        "success_cue": "The More tab is selected and its configuration buttons are visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Left-click the \"Experiments\" button or entry under the More tab to open the experimental-feature selection screen.",
+        "exact_input": "Experiments",
+        "success_cue": "The Experiments screen is open and displays exactly two experimental-feature toggle rows.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Inspect both experiment toggles and confirm that each is currently disabled. If a toggle is already enabled, stop this attempt and restart from a fresh Create New World configuration rather than toggling it off here.",
+        "exact_input": null,
+        "success_cue": "Both experiment toggles are visibly in their disabled state before either is changed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Left-click the first experiment toggle once so that it changes from disabled to enabled. Do not click it again.",
+        "exact_input": null,
+        "success_cue": "The first experiment toggle is visibly enabled, while the second remains disabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Left-click the second experiment toggle once so that it also changes from disabled to enabled.",
+        "exact_input": null,
+        "success_cue": "Both experiment toggles are visibly enabled at the same time.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Left-click \"Done\" at the bottom of the Experiments screen to save the enabled experiment selections and return toward the Create New World screen. Do not click the final Create New World button.",
+        "exact_input": "Done",
+        "success_cue": "The enabled selections have been submitted, and the client either returns to Create New World or presents an experimental-feature confirmation dialog.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "If a warning or confirmation dialog about using experimental features appears, choose the affirmative option that proceeds with the enabled experiments. If no such dialog appears, perform no extra action. Wait until the Create New World configuration screen is responsive again.",
+        "exact_input": null,
+        "success_cue": "The client is back on the Create New World configuration screen, and no world has been created.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the \"More\" tab again, if it is not already selected.",
+        "exact_input": "More",
+        "success_cue": "The More tab is selected and the Experiments entry is available again.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Left-click the \"Experiments\" button or entry again.",
+        "exact_input": "Experiments",
+        "success_cue": "The Experiments screen is open for the second time, with both toggles still visibly enabled from the earlier selection.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Left-click the first enabled experiment toggle once so that it changes to disabled.",
+        "exact_input": null,
+        "success_cue": "The first experiment toggle is visibly disabled, while the second remains enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Left-click the second enabled experiment toggle once so that it also changes to disabled.",
+        "exact_input": null,
+        "success_cue": "Both experiment toggles are visibly disabled after having previously been enabled in this same new-world configuration session.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Left-click \"Done\" once to submit the state in which both previously enabled experiments have now been disabled. Do not click Reset to Default, Create New World, Back, or any other control after this activation; immediately hand control to the observation subsystem.",
+        "exact_input": "Done",
+        "success_cue": "The second Done activation has just been issued after both experiment toggles were changed through the sequence disabled to enabled to disabled, with no subsequent UI input.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "Both experimental-feature toggles were enabled, saved with Done, reopened, disabled, and the second Done button has just been activated. No world has been created and no subsequent dialog button has been pressed. Begin observing the client UI, world-creation state, and client log.",
+    "uncertainties": [
+      "The report refers to an Experiments tab. Version-specific UI documentation describes Experiments as a screen accessible from the More tab, with an additional shortcut under the Game tab in snapshots. This plan uses the documented More-tab path.",
+      "The report does not state the displayed names of the two experiment toggles. The plan therefore identifies them by their two visible rows and preserves the instruction to operate both, rather than assigning potentially incorrect labels.",
+      "The report does not specify whether 23w07a presents an experimental-feature warning after the first Done activation. A conditional confirmation step is included so the executor can return to Create New World without creating the world.",
+      "No operating system or rebound UI controls are specified. Left-click is used as the default activation input; equivalent keyboard UI activation is acceptable."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0c2a73e4f88acb28016aa7b638fd2487d0b636ae5ff3a6c0d6",
+    "elapsed_seconds": 72.2,
+    "usage": {
+      "input_tokens": 38389,
+      "output_tokens": 4323,
+      "reasoning_tokens": 2827,
+      "total_tokens": 42712
+    },
+    "timestamp": "2026-09-14T08:55:29.008593+00:00"
+  }
+}

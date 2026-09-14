@@ -1,0 +1,161 @@
+{
+  "bug_id": "MC-236136",
+  "category": "Debug",
+  "panel": "low-interaction-54",
+  "reproduction_method": "commands",
+  "source_md": "[Debug] - MC-236136.md",
+  "source_meta": {
+    "mojira categories": "Debug; Rendering",
+    "project": "MC",
+    "issue key": "MC-236136",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-09-08T04:56:39.733-0700",
+    "updated": "2025-04-11T10:36:44.296-0700",
+    "resolution date": "2023-08-04T05:42:00.387-0700",
+    "affects versions": "1.17.1; 21w37a; 21w40a; 1.18; 1.18.1; 22w05a; 22w06a; 1.18.2 Pre-release 1; 1.18.2; 22w13a; 22w15a; 22w17a; 1.19; 1.19.1; 1.19.2",
+    "fix versions": "1.19.3 Release Candidate 1",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "MC-236136.mp4; MC-236136.png; MC-236136-1.png; MC-236136-2.png; MC-236136 - Behavior in 1.19.3-pre3.png; MC-236136 - Behavior in 1.19.3-rc1 (Fixed).png",
+    "issue links": "Relates:outward:MC-264597:F3 debug menu underlined text renders over subtitles | Relates:inward:MC-193511:Title text renders in front of narrator text",
+    "_title": "Strikethrough and underlined text in the F3 debug menu renders over subtitles"
+  },
+  "stor": {
+    "bug_id": "MC-236136",
+    "affected_versions": [
+      "1.17.1",
+      "21w37a",
+      "21w40a",
+      "1.18",
+      "1.18.1",
+      "22w05a",
+      "22w06a",
+      "1.18.2 Pre-release 1",
+      "1.18.2",
+      "22w13a",
+      "22w15a",
+      "22w17a",
+      "1.19",
+      "1.19.1",
+      "1.19.2"
+    ],
+    "recommended_version": "1.17.1",
+    "environment": "Minecraft Java Edition 1.17.1 in a newly created single-player Overworld. Cheats must be enabled so the supplied /tp command can be executed. The report does not specify a required game mode, difficulty, seed, or audio-volume setting; leave these at their new-world defaults unless the local installation requires otherwise.",
+    "preconditions": [
+      "A playable Minecraft Java Edition 1.17.1 installation or launcher profile is available.",
+      "The executor can use in-game keyboard controls, including chat and the F3 debug-screen action. On keyboards where function keys control hardware features, Fn may need to be held with F3.",
+      "Controls may be rebound; if T or F3 does not perform the described action, use the currently bound key for Open Chat or Toggle Debug Screen respectively.",
+      "Run the reproduction in the first listed affected version, 1.17.1, rather than the fix version 1.19.3 Release Candidate 1.",
+      "Use the supplied command exactly as an in-game chat command with its leading slash; do not execute it from a dedicated-server console."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the Java Edition profile for version 1.17.1, and launch the game. Do not select a later fixed version.",
+        "exact_input": "Minecraft Java Edition 1.17.1",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 1.17.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open the single-player world-creation screen.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the additional world options and enable commands for the new world. Leave the world seed unspecified because the report provides no seed. The report also provides no special game-mode or difficulty requirement, so leave those settings at their defaults.",
+        "exact_input": "More World Options... -> Allow Cheats: ON",
+        "success_cue": "The world-creation screen shows that Allow Cheats is ON.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Create the new world.",
+        "exact_input": "Create New World",
+        "success_cue": "The player has spawned in the new Overworld.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Wait for initial world generation and chunk loading to finish before configuring or triggering the test. Do not continue while a loading screen is visible or player controls are unresponsive.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading screen is gone, and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the pause menu, navigate to Accessibility Settings, change Show Subtitles to ON, return through the menus, and resume the world. If subtitles are already ON, leave them ON.",
+        "exact_input": "Esc -> Options... -> Accessibility Settings... -> Show Subtitles: ON -> Done -> Done -> Back to Game",
+        "success_cue": "The world is active again and the Show Subtitles accessibility setting is enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Allow non-player entities to become loaded before running the supplied selector command. Look around the loaded area for animals or other mobs; if none are present, move through nearby terrain until at least several non-player entities are visible or otherwise loaded. Do not substitute a summon command, because the report supplies only the teleport command.",
+        "exact_input": null,
+        "success_cue": "Several non-player entities are loaded near the player, providing targets in addition to the player for @e.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Toggle on the F3 debug screen. Press F3; on a keyboard that reserves function keys for hardware controls, use Fn+F3. If the control has been rebound, use the bound Toggle Debug Screen input.",
+        "exact_input": "F3",
+        "success_cue": "The world remains visible while dense debug information is displayed along the left and right sides of the screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "With the debug screen still enabled, open in-game chat using the Open Chat control, which is T by default. Do not press F3 again.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and the F3 debug information remains enabled behind or alongside it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's command exactly, including the leading slash, and press Enter once. The @e selector targets all currently loaded entities, and @s uses the command executor's current position as the teleport destination.",
+        "exact_input": "/tp @e @s",
+        "success_cue": "Chat closes after submission, command feedback indicates that one or more entities were teleported, and loaded entities are now gathered at the player's position while the F3 debug screen remains enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Do not open another menu, disable F3, or move away. Wait only until sounds generated by the gathered entities cause one or more subtitle labels and directional indicators to appear in the subtitles overlay, normally near the lower-right portion of the screen.",
+        "exact_input": null,
+        "success_cue": "At least one subtitle event is visible at the same time as the F3 debug overlay; the screen is ready for visual inspection by the observation subsystem.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The /tp @e @s command has just gathered the loaded entities at the player's position, the F3 debug screen remains enabled, and entity sounds have begun populating the subtitles overlay. Hand control to the observation subsystem as soon as both overlays are simultaneously visible.",
+    "uncertainties": [
+      "The report provides no world seed, so the number and type of naturally loaded entities are not deterministic.",
+      "The report does not specify a game mode or difficulty. The plan leaves the new world at its default settings rather than inventing a required mode.",
+      "The report does not supply summon commands or a minimum entity count. Loading several nearby mobs is a practical execution measure derived from the report's stated purpose of producing lots of sounds and subtitles.",
+      "The report does not specify whether system audio must be audible or a particular Minecraft volume level must be used. Subtitles must be enabled, but no unsupported volume requirement has been added.",
+      "Menu punctuation and the need to hold Fn with F3 can vary by operating system, keyboard, and control bindings."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01bad0dc8f7c5628016aa7b6ca44bc87d0851c84df6488fb88",
+    "elapsed_seconds": 64.25,
+    "usage": {
+      "input_tokens": 8608,
+      "output_tokens": 4033,
+      "reasoning_tokens": 2588,
+      "total_tokens": 12641
+    },
+    "timestamp": "2026-09-14T08:57:46.361809+00:00"
+  }
+}
