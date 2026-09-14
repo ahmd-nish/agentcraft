@@ -86,15 +86,14 @@ def build_html(rec: dict) -> str:
                 f"{'es' if call.get('web_call_count', 0) != 1 else ''})"
                 if call.get("web_used") else "no web verification")
 
-    # Mojira permalink.
+    # Mojira permalink. Canonical form is /browse/<PROJECT>/issues/<KEY>; the
+    # bare /browse/<KEY> shape the source .md files use is the old layout.
     #
-    # The source .md files point at bugs.mojang.com/browse/<id>, but that host
-    # now answers every issue path with the same ~750-byte "Mojira Public Bug
-    # Tracker" landing shell -- it carries no issue data, so the link is dead
-    # for a specific bug. The tracker itself moved to Atlassian cloud, which is
-    # what the raw Jira payload agrees with: issues[0].self is
-    # https://mojira.atlassian.net/rest/api/3/issue/<numeric-id>.
-    mojira_url = f"https://mojira.atlassian.net/browse/{bug_id}"
+    # Do not "verify" this with curl: bugs.mojang.com renders client-side, so
+    # every issue path returns the same ~750-byte shell regardless of whether
+    # the key exists. Byte-size tells you nothing here -- check in a browser.
+    project = bug_id.split("-")[0] if "-" in bug_id else "MC"
+    mojira_url = f"https://bugs.mojang.com/browse/{project}/issues/{bug_id}"
 
     # Every affected version the report listed, with the selected one marked.
     # Selection should be the first entry; showing the whole list lets a tester
@@ -219,7 +218,7 @@ def build_html(rec: dict) -> str:
 
 <div class="foot">
   <span>{esc(bug_id)} &nbsp;|&nbsp; {esc(category)} &nbsp;|&nbsp; v7 STOR &nbsp;|&nbsp; {esc(web_note)}</span>
-  <a href="{mojira_url}">mojira.atlassian.net/browse/{esc(bug_id)}</a>
+  <a href="{mojira_url}">bugs.mojang.com/browse/{esc(project)}/issues/{esc(bug_id)}</a>
 </div>
 
 </body></html>"""
