@@ -1,0 +1,289 @@
+{
+  "bug_id": "MC-270871",
+  "category": "Datafixer",
+  "source_md": "[Datafixer] - MC-270871.md",
+  "source_meta": {
+    "mojira categories": "Datafixer",
+    "project": "MC",
+    "issue key": "MC-270871",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-04-17T11:13:45.582-0700",
+    "updated": "2025-04-11T10:14:33.058-0700",
+    "resolution date": "2024-04-18T03:02:37.158-0700",
+    "affects versions": "1.20.5 Pre-Release 4",
+    "fix versions": "1.20.5 Release Candidate 1",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "image-2024-04-17-21-04-45-510.png; MC-270871.zip",
+    "issue links": "Relates:outward:MC-270767:Leather horse armor no longer prevents horses from freezing in powder snow",
+    "_title": "Upgrading a world with horses wearing leather horse armor makes the horse immune to freezing forever"
+  },
+  "stor": {
+    "bug_id": "MC-270871",
+    "affected_versions": [
+      "1.20.5 Pre-Release 4"
+    ],
+    "recommended_version": "1.20.5 Pre-Release 4",
+    "environment": "Minecraft: Java Edition, single-player integrated server. Create and save the source world in version 1.20.4, then open that same world in the affected version 1.20.5 Pre-Release 4 (launcher version ID 1.20.5-pre4). Creative mode with commands enabled and a Superflat world are used as deterministic setup choices because the report does not specify a game mode, seed, terrain, or server requirement. Default Java Edition controls are assumed unless rebound.",
+    "preconditions": [
+      "Use an unmodified Minecraft: Java Edition client; do not use mods, plugins, or datapacks that alter horses, equipment, freezing, powder snow, commands, or world conversion.",
+      "The launcher must have installations for exactly 1.20.4 and 1.20.5 Pre-Release 4. Enable snapshot versions in the launcher installation list when selecting 1.20.5 Pre-Release 4.",
+      "Both installations must use the same game directory so the affected installation can open the world created in 1.20.4. If separate game directories are required, copy the complete world folder without modifying it.",
+      "Do not create the test world directly in 1.20.5 Pre-Release 4. The horse must be wearing leather horse armor while the world is saved in 1.20.4 and then converted by the affected version.",
+      "Do not open the test world in 24w05a or another intermediary version. Upgrade it directly from 1.20.4 to 1.20.5 Pre-Release 4.",
+      "Do not use the fix version 1.20.5 Release Candidate 1 for reproduction.",
+      "This plan uses manual setup because the attached MC-270871.zip world download was named in the report but its contents were not supplied.",
+      "Default controls referenced below are T for chat, E for inventory, W for forward movement, Left Shift for dismounting, right-click for Use Item/Place Block, and Esc for the pause menu."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or verify two Java Edition installations: one using version 1.20.4 and one using 1.20.5 Pre-Release 4. The latter may be displayed by its launcher ID, 1.20.5-pre4. Configure both to use the same game directory.",
+        "exact_input": null,
+        "success_cue": "The launcher installation list contains separate entries for 1.20.4 and 1.20.5-pre4, and both point to the same game directory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Launch the installation configured for exactly Minecraft: Java Edition 1.20.4. Do not start the pre-release installation yet.",
+        "exact_input": "Launcher installation: 1.20.4",
+        "success_cue": "The Minecraft title screen is open and displays version 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, choose Create New World, name the world MC-270871-repro, set Game Mode to Creative, ensure Allow Commands is ON, and select the Superflat world type. Leave the seed and all other settings at their defaults, then create the world.",
+        "exact_input": "World name: MC-270871-repro; Game Mode: Creative; Allow Commands: ON; World Type: Superflat",
+        "success_cue": "World generation begins for a new Creative Superflat world named MC-270871-repro.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait without issuing commands until the player appears in the world, surrounding terrain is rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing on loaded, flat terrain and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Stand in an open area. Press T to open in-game chat, enter the exact summon command including the leading slash, and press Enter.",
+        "exact_input": "/summon minecraft:horse ~2 ~ ~",
+        "success_cue": "A living adult horse appears approximately two blocks from the player, and chat reports successful entity summoning.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the exact give command including the leading slash, and press Enter to obtain a saddle.",
+        "exact_input": "/give @s minecraft:saddle 1",
+        "success_cue": "One saddle is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, enter the exact give command including the leading slash, and press Enter to obtain leather horse armor.",
+        "exact_input": "/give @s minecraft:leather_horse_armor 1",
+        "success_cue": "One leather horse armor item is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select an empty hotbar slot so that the player's hand contains no item, approach the horse, aim the crosshair at its body, and right-click once to attempt to mount it.",
+        "exact_input": "Select empty hotbar slot; right-click horse",
+        "success_cue": "The player mounts the horse or the horse begins the normal taming attempt and throws the player off.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "If the horse throws the player off, keep the hand empty, approach it again, and right-click to remount. Repeat only until heart particles appear around the horse and the horse accepts the rider without immediately throwing the player off.",
+        "exact_input": "Right-click horse repeatedly while empty-handed",
+        "success_cue": "Heart particles have appeared and the player is seated on the now-tamed horse.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "While mounted on the tamed horse, press E to open the horse inventory. If E has been rebound, use the control assigned to Open/Close Inventory.",
+        "exact_input": "E",
+        "success_cue": "The horse inventory interface is open and shows the horse equipment slots together with the player's inventory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Move the saddle from the player's inventory into the horse equipment slot marked with a saddle icon. Use left-click to pick up the saddle and left-click the saddle slot to place it.",
+        "exact_input": "Left-click saddle; left-click horse saddle slot",
+        "success_cue": "The saddle slot contains the saddle and the horse model in the interface shows a saddle.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Move the leather horse armor from the player's inventory into the horse equipment slot marked with a horse-armor outline. Use left-click to pick up the armor and left-click the armor slot to place it.",
+        "exact_input": "Left-click leather horse armor; left-click horse armor slot",
+        "success_cue": "The horse armor slot contains leather horse armor and the horse model in the interface shows the armor.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press E again to close the horse inventory and return to mounted gameplay.",
+        "exact_input": "E",
+        "success_cue": "The inventory is closed, the player remains mounted, and leather horse armor is visibly rendered on the horse.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Press the Sneak/Dismount control, Left Shift by default, once to dismount onto solid ground.",
+        "exact_input": "Left Shift",
+        "success_cue": "The player is standing beside the saddled horse, and the horse is still visibly wearing leather horse armor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "While standing on flat solid ground near the horse, press T, enter the exact fill command including the leading slash, and press Enter. This replaces a 5-by-5 section of ground, four to eight blocks in the positive-X direction from the player's current position, with one layer of powder snow.",
+        "exact_input": "/fill ~4 ~-1 ~-2 ~8 ~-1 ~2 minecraft:powder_snow",
+        "success_cue": "Chat reports that 25 blocks were filled, and a 5-by-5 white powder-snow patch is visible nearby and flush with the surrounding ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Approach the equipped horse, aim at its body, and right-click once to mount it.",
+        "exact_input": "Right-click horse",
+        "success_cue": "The player is seated on the saddled horse and the horse movement interface is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Use W and mouse movement to position the horse on ordinary solid ground directly beside the powder-snow patch. Do not enter the powder snow yet.",
+        "exact_input": "W and mouse movement",
+        "success_cue": "The mounted horse is adjacent to the powder-snow patch but all four of its legs remain over normal solid ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Press Left Shift once to dismount beside the horse. Confirm visually one final time that the horse is still wearing leather horse armor before saving the 1.20.4 world.",
+        "exact_input": "Left Shift",
+        "success_cue": "The player, the leather-armored horse, and the powder-snow patch are all present in the same loaded area, with the horse standing outside the powder snow.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Press Esc and select Save and Quit to Title. Wait until the Singleplayer world list or title screen has fully returned; do not force-close the game while the world is saving.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The world is closed normally and MC-270871-repro is visible in the saved-world list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Create a safety backup while still running 1.20.4: select MC-270871-repro in the Singleplayer list, choose Edit, then choose Make Backup. Wait for the backup-complete notification before continuing.",
+        "exact_input": "Singleplayer -> MC-270871-repro -> Edit -> Make Backup",
+        "success_cue": "Minecraft reports that a backup of MC-270871-repro was created.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Return to the title screen, choose Quit Game, and wait until the 1.20.4 process has fully closed. In the launcher, select and launch the installation for exactly 1.20.5 Pre-Release 4, identified by launcher version ID 1.20.5-pre4.",
+        "exact_input": "Quit Game; launcher installation: 1.20.5-pre4",
+        "success_cue": "The new Minecraft title screen is open and identifies the running build as 1.20.5 Pre-Release 4 or 1.20.5-pre4.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 22,
+        "action": "Select Singleplayer and open the existing world MC-270871-repro. Do not create a replacement world. If Minecraft displays a warning about opening or upgrading the world in a development version, choose the option that creates a backup and loads the world, or otherwise explicitly confirms loading the existing world.",
+        "exact_input": "Singleplayer -> MC-270871-repro -> Create Backup and Load/confirm load if prompted",
+        "success_cue": "The existing 1.20.4 world begins loading under 1.20.5 Pre-Release 4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Wait until world conversion and loading finish. Do not interact with the horse until surrounding chunks are rendered and player movement and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "The player has loaded near the saved location, the terrain and powder-snow patch are rendered, and movement is responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Locate the same horse beside the powder-snow patch. Confirm that it still has its saddle and that leather horse armor is visibly equipped after conversion. Do not replace, remove, or modify its equipment with commands.",
+        "exact_input": null,
+        "success_cue": "The converted horse from the 1.20.4 world is visible near the test patch, with both its saddle and leather horse armor still equipped.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "Approach the converted horse, aim at its body, and right-click once to mount it.",
+        "exact_input": "Right-click horse",
+        "success_cue": "The player is seated on the converted horse and can control it using the saddle.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 26,
+        "action": "While mounted, press E to open the horse inventory.",
+        "exact_input": "E",
+        "success_cue": "The converted horse's inventory is open, with the saddle and leather horse armor visible in their equipment slots.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 27,
+        "action": "Unequip only the leather horse armor. Left-click the leather horse armor in the horse armor slot, then left-click an empty slot in the player's inventory to store it. Leave the saddle equipped and do not put any other item into the horse armor slot.",
+        "exact_input": "Left-click equipped leather horse armor; left-click empty player inventory slot",
+        "success_cue": "The horse armor slot is visibly empty, the leather horse armor is in the player's inventory, and the saddle remains in the horse's saddle slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 28,
+        "action": "Press E to close the horse inventory. Do not dismount.",
+        "exact_input": "E",
+        "success_cue": "Mounted gameplay resumes, the player remains seated on the horse, and no horse armor is visibly rendered on it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 29,
+        "action": "Use W and mouse movement to ride the horse from the solid ground into the center of the 5-by-5 powder-snow patch. Continue only until the horse is clearly occupying powder snow rather than standing at its edge.",
+        "exact_input": "W and mouse movement",
+        "success_cue": "The mounted horse is inside the powder-snow patch, away from the edge, with its horse armor slot still empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 30,
+        "action": "Release W and all other movement inputs so the mounted horse remains in the powder snow. Do not steer it back onto ordinary ground.",
+        "exact_input": "Release movement controls",
+        "success_cue": "The player remains mounted and the horse is stationary within the powder-snow patch.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 31,
+        "action": "While still mounted on the horse in powder snow, press T to open in-game chat, enter the report's exact command including the leading slash, and press Enter. Do not run it from a server console because the executing player must have the horse as its vehicle.",
+        "exact_input": "/execute on vehicle run data get entity @s",
+        "success_cue": "Chat returns entity-data output for the mounted horse rather than reporting that no vehicle or entity was found; the horse remains mounted and inside the powder snow.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 29,
+    "handoff_condition": "The world has been converted directly from 1.20.4 to 1.20.5 Pre-Release 4; the original horse's visible leather horse armor has been removed while its saddle remains equipped; the player is mounted on that horse; the horse is stationary inside the powder-snow patch; and `/execute on vehicle run data get entity @s` has just returned the mounted horse's entity data. Begin observation without moving the horse out of the powder snow or changing its equipment.",
+    "uncertainties": [
+      "The report says to upgrade to the 'latest version.' This plan resolves that historical wording to 1.20.5 Pre-Release 4 because it is the only listed affected version. The listed fix version, 1.20.5 Release Candidate 1, is intentionally not used.",
+      "The report does not specify a game mode, world seed, terrain type, or whether cheats are enabled. Creative mode, commands, and a Superflat world are practical setup choices used to obtain a deterministic horse and powder-snow test area without exploration.",
+      "The attachment MC-270871.zip is not available in the supplied report contents, so the optional downloaded-world path is not used.",
+      "The report does not specify how long the horse should remain in powder snow before evaluation. The plan hands control to the observation subsystem immediately after the diagnostic command while the horse remains stationary in powder snow.",
+      "The `/summon`, `/give`, and `/fill` commands are setup conveniences not supplied by the report. They are executed only in 1.20.4 and do not replace the required manual taming, equipment, world-conversion, unequipping, or powder-snow entry sequence."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0e3b5ac5c5b4188e016aa81b5a335487d0b1817c19b9af7200",
+    "elapsed_seconds": 164.34,
+    "usage": {
+      "input_tokens": 25981,
+      "output_tokens": 11198,
+      "reasoning_tokens": 7748,
+      "total_tokens": 37179
+    },
+    "timestamp": "2026-09-14T16:08:30.309823+00:00"
+  }
+}

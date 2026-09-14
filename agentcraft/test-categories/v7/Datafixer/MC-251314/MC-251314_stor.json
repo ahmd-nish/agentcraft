@@ -1,0 +1,162 @@
+{
+  "bug_id": "MC-251314",
+  "category": "Datafixer",
+  "source_md": "[Datafixer] - MC-251314.md",
+  "source_meta": {
+    "mojira categories": "Datafixer",
+    "project": "MC",
+    "issue key": "MC-251314",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-05-04T10:21:01.251-0700",
+    "updated": "2025-03-25T13:22:06.798-0700",
+    "resolution date": "2022-06-04T14:11:24.139-0700",
+    "affects versions": "22w17a; 22w18a; 1.19 Pre-release 1",
+    "fix versions": "1.19 Pre-release 2",
+    "labels": "data-fixer; goat; goat-horn",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2022-05-04_12.56.32.png; 2022-05-04_12.56.38.png; 2022-05-04_22.44.16.png; 2022-05-04_22.47.41.png",
+    "_title": "Goats loaded from older worlds lose their horns"
+  },
+  "stor": {
+    "bug_id": "MC-251314",
+    "affected_versions": [
+      "22w17a",
+      "22w18a",
+      "1.19 Pre-release 1"
+    ],
+    "recommended_version": "22w17a",
+    "environment": "Minecraft Java Edition, single-player. Create and save a disposable source world in Java Edition 1.18.2 as the deterministic pre-22w17a version, then open that exact same world in affected snapshot 22w17a. Use Creative mode only to obtain and place a goat deterministically; Creative mode is an execution convenience rather than a reported requirement.",
+    "preconditions": [
+      "The Minecraft Launcher must be able to launch the exact Java Edition versions 1.18.2 and 22w17a. If snapshots are hidden, enable the launcher option that makes historical snapshots available when creating an installation.",
+      "Both installations must use the same game directory so that the 22w17a installation can access the world created in 1.18.2. If separate game directories are necessary, copy the complete source-world folder into the 22w17a game directory before opening it.",
+      "Use a new, disposable test world. Opening it in 22w17a may upgrade its saved data.",
+      "Do not create the source world directly in 22w17a, and do not open it in fix version 1.19 Pre-release 2 before this test.",
+      "The plan assumes default controls: E opens the inventory, number keys select hotbar slots, right-click uses the selected item, and Esc opens the pause menu. Use the equivalent bound controls if they have been changed.",
+      "No world seed, coordinates, dedicated server, additional player, resource pack, or datapack is specified by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation using the exact Java Edition version 1.18.2, then start the game with that installation.",
+        "exact_input": "1.18.2",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as Minecraft Java Edition 1.18.2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, give the disposable test world a recognizable name, and set Game Mode to Creative. Leave the seed and other settings at their defaults, then create the world.",
+        "exact_input": "MC-251314 source world",
+        "success_cue": "A new 1.18.2 single-player world begins loading in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without leaving the world until the terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, the loading overlay is gone, and the player can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a flat, unobstructed patch of ground close to the player's current position so that a goat placed there will be easy to see after reloading the world.",
+        "exact_input": null,
+        "success_cue": "There is a visible solid ground block within right-clicking distance and enough open space for a goat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, enter the item name, and move one Goat Spawn Egg into any hotbar slot at the bottom of the inventory.",
+        "exact_input": "Goat Spawn Egg",
+        "success_cue": "A Goat Spawn Egg is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Close the inventory, select the hotbar slot containing the Goat Spawn Egg using its number key or the mouse wheel, aim at the nearby ground, and right-click once to place one goat.",
+        "exact_input": null,
+        "success_cue": "Exactly one goat is standing near the player, and the Goat Spawn Egg is the selected hotbar item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Keep the goat and its surrounding chunk loaded by remaining close to it. Face the goat and confirm before conversion that this source goat is fully rendered and has its normal visible horns. Do not make it ram a block or otherwise interact with its horns.",
+        "exact_input": null,
+        "success_cue": "The goat is visible close to the player in the 1.18.2 world, its horns are visible, and the player remains near it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "While still close to and facing the goat, press Esc and select Save and Quit to Title. Do not first travel away from the goat.",
+        "exact_input": "Save and Quit to Title",
+        "success_cue": "The single-player world closes and the 1.18.2 main menu appears, indicating that the nearby goat and player position have been saved.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Exit the 1.18.2 game client completely so that the launcher can start a different version without keeping the world open.",
+        "exact_input": null,
+        "success_cue": "The 1.18.2 game window is closed and the Minecraft Launcher is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "In the Minecraft Launcher, create or select an installation using the exact affected snapshot 22w17a, then start the game with that installation.",
+        "exact_input": "22w17a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as snapshot 22w17a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select Singleplayer and select the exact world created and saved in 1.18.2. Verify it is the same world by its name; do not create a new world.",
+        "exact_input": "MC-251314 source world",
+        "success_cue": "The 1.18.2 source world is highlighted in the 22w17a world-selection screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Open the selected source world in 22w17a. If an older-world or experimental-version safety prompt appears, choose the option that backs up and then loads the world, or the equivalent option that confirms opening it. Allow any backup operation to finish and do not cancel world loading.",
+        "exact_input": null,
+        "success_cue": "The world-loading screen starts and 22w17a begins loading or converting the world that was saved in 1.18.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Wait until the upgraded world has completely loaded, nearby terrain is rendered, and player movement responds normally. Without leaving the area, locate the same goat that was saved close to the player. Do not spawn a replacement goat in 22w17a; if the saved goat is absent, reset and repeat from the 1.18.2 source-world setup.",
+        "exact_input": null,
+        "success_cue": "The player is in the same world under 22w17a, the saved area and goat entity are loaded, and the player is positioned close enough for the separate observation agent to inspect the goat.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The pre-22w17a world has just been opened and converted by 22w17a, loading the goat that was created and saved in 1.18.2. The surrounding terrain is rendered, movement is responsive, and the saved goat is visible at close range. Hand control to the observation subsystem before evaluating the goat's appearance.",
+    "uncertainties": [
+      "The report requires a world from before 22w17a but does not identify one exact source version. Java Edition 1.18.2 is selected as a deterministic pre-22w17a release containing goats.",
+      "The report does not specify a game mode or how the source goat was obtained. Creative mode and a Goat Spawn Egg are used to avoid dependence on biome generation, natural spawning, exploration, or commands.",
+      "The phrase 'make sure goats are loaded in' is ambiguous. This plan operationalizes it by placing a goat near the player, waiting for it to render, remaining in its chunk, and saving the world while still beside it.",
+      "The report does not specify whether an upgrade or backup prompt appears when opening the 1.18.2 world in 22w17a, so the prompt-handling instruction is conditional.",
+      "No deterministic seed, coordinates, or method of containing the goat is supplied. The player therefore saves immediately beside the goat and must reset rather than substituting a newly created 22w17a goat if the saved goat cannot be located."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_080e8e0cc2357259016aa81a4a889487d0850789fe1bef29fb",
+    "elapsed_seconds": 76.91,
+    "usage": {
+      "input_tokens": 8305,
+      "output_tokens": 5393,
+      "reasoning_tokens": 3624,
+      "total_tokens": 13698
+    },
+    "timestamp": "2026-09-14T16:02:30.926700+00:00"
+  }
+}

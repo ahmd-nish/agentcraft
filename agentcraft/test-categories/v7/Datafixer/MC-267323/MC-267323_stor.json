@@ -1,0 +1,166 @@
+{
+  "bug_id": "MC-267323",
+  "category": "Datafixer",
+  "source_md": "[Datafixer] - MC-267323.md",
+  "source_meta": {
+    "mojira categories": "Datafixer; Items",
+    "project": "MC",
+    "issue key": "MC-267323",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-12-13T18:23:59.470-0800",
+    "updated": "2025-04-26T15:15:10.296-0700",
+    "resolution date": "2024-12-03T08:23:45.861-0800",
+    "affects versions": "1.20.4",
+    "fix versions": "25w02a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Items fields with old boolean JSON formatting are cleared upon world update"
+  },
+  "stor": {
+    "bug_id": "MC-267323",
+    "affected_versions": [
+      "1.20.4"
+    ],
+    "recommended_version": "1.20.4",
+    "environment": "Unmodified Minecraft: Java Edition in single-player. Create and save the test world in release 1.20.2, then open that exact same save in release 1.20.4. Use Survival mode with commands enabled so the ordinary player-inventory interface is available. Both installations must use the same game directory, or the saved world must be copied unchanged from the 1.20.2 saves directory to the 1.20.4 saves directory.",
+    "preconditions": [
+      "The launcher or test harness can start the exact Java Edition releases 1.20.2 and 1.20.4. If necessary, create separate launcher installations by selecting those releases in the installation version selector. ([minecraft.wiki](https://minecraft.wiki/w/Launcher?utm_source=openai))",
+      "Use a new, disposable test world rather than an important existing world.",
+      "Run a vanilla client without mods, datapacks, or third-party world-conversion tools.",
+      "Ensure the 1.20.2 and 1.20.4 launches can access the same world save; do not recreate the world in 1.20.4.",
+      "Do not open the test world in any intermediate, snapshot, or later version between the 1.20.2 save and the 1.20.4 load.",
+      "Use default controls where available: T opens chat, E opens inventory, Esc opens the pause menu, and left-click picks up or places an inventory stack. If controls are rebound, use the bindings for those same actions."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for the exact release 1.20.2 and start the game.",
+        "exact_input": "1.20.2",
+        "success_cue": "The Java Edition title screen is displayed and identifies the running version as 1.20.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, enter a recognizable disposable world name, set Game Mode to Survival, enable Allow Commands, and create the world. No particular seed is required by the report.",
+        "exact_input": "MC-267323-1.20.2",
+        "success_cue": "World generation begins for a new Survival world with commands available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the world has finished loading. Do not enter the command while the loading or joining screen is still visible.",
+        "exact_input": null,
+        "success_cue": "The normal in-world HUD is visible, nearby terrain has rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the report's command exactly as written, including the leading slash, capitalization, quotation marks, JSON strings, NBT braces, and final item count. Press Enter to execute it.",
+        "exact_input": "/give @p gold_block{display:{Name:'{\"text\":\"Text\",\"color\":\"yellow\",\"bold\":\"true\"}',Lore:['{\"text\":\"Text\",\"color\":\"gold\",\"bold\":\"true\"}']}} 1",
+        "success_cue": "The command succeeds without a syntax or permission error, and one gold block is added to the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Survival inventory. Locate the newly given gold block, normally in the first available hotbar or inventory slot, and move the pointer over it without clicking.",
+        "exact_input": "E",
+        "success_cue": "The gold block's tooltip is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Confirm only the pre-upgrade test-item setup: the tooltip has a custom name line reading \"Text\" in yellow and a lore line reading \"Text\" in gold, with the boolean-formatted bold styling represented by the supplied command. If this input state is not present, stop and repeat the command rather than proceeding with the world update.",
+        "exact_input": null,
+        "success_cue": "Before conversion, the item demonstrably contains both the supplied custom Name and supplied Lore data.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Store the test gold block in a normal player-inventory slot. If it is in the hotbar, left-click the stack to pick it up, then left-click an empty slot in the upper 3-by-9 inventory storage grid to place it there. Do not leave it attached to the mouse pointer, in the crafting grid, or in a crafting output slot.",
+        "exact_input": "left-click gold block; left-click empty main-inventory slot",
+        "success_cue": "The gold block occupies one ordinary slot in the player's main inventory and the mouse pointer is not carrying an item.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press E or Esc to close the inventory without moving or discarding the test item.",
+        "exact_input": "E",
+        "success_cue": "The in-world HUD is visible and the test gold block is stored in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press Esc, select Save and Quit to Title, and wait for saving to complete.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The title screen is visible again, indicating that the 1.20.2 world session has ended and its player inventory has been saved.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Close the 1.20.2 game client completely. Do not leave it running while starting the other version.",
+        "exact_input": "Quit Game",
+        "success_cue": "The 1.20.2 Java process has exited and the launcher is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "In the launcher, select the installation configured for the exact affected release 1.20.4 and start the game.",
+        "exact_input": "1.20.4",
+        "success_cue": "The Java Edition title screen is displayed and identifies the running version as 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select Singleplayer and single-click the same world that was created and saved in 1.20.2. Verify the selected entry has the exact test-world name; do not choose Re-Create and do not create another world.",
+        "exact_input": "MC-267323-1.20.2",
+        "success_cue": "The original 1.20.2 test-world entry is selected in the 1.20.4 world list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Open the selected world to initiate conversion in 1.20.4. If an upgrade confirmation is displayed, choose Create Backup and Load so the backup is created and loading proceeds; do not cancel or open a different save. If this launcher/client configuration begins loading immediately without a confirmation screen, allow that same load to continue. The backup-and-load option is the safe path when the confirmation is shown. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ADowngrading?utm_source=openai))",
+        "exact_input": "Play; if prompted, Create Backup and Load",
+        "success_cue": "The selected world's loading screen is visible and the same save is being opened by version 1.20.4.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Wait until conversion and joining finish. Do not open the inventory or inspect the post-upgrade item yet.",
+        "exact_input": null,
+        "success_cue": "The normal in-world HUD is visible in the converted save, surrounding terrain has rendered, and player movement responds normally in 1.20.4.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The exact world last saved in Java Edition 1.20.2 has just finished loading in Java Edition 1.20.4, including the player inventory containing the test gold block. Hand control to the observation subsystem before opening the inventory or evaluating the item's post-upgrade tooltip.",
+    "uncertainties": [
+      "The report permits creation in \"1.20.2 or below\"; this plan uses 1.20.2 because it is the latest explicitly permitted source version and minimizes unrelated conversion changes.",
+      "The report metadata lists only 1.20.4 as an affected version, so 1.20.4 is the target even though the narrative also mentions 1.20.3 and unspecified future versions.",
+      "The report does not specify a world seed, game mode, or multiplayer requirement. A new arbitrary-seed single-player Survival world with commands enabled is selected as the minimum deterministic environment.",
+      "The report allows either player-inventory or container storage. This plan selects player-inventory storage and does not attempt the alternative container variant.",
+      "The exact presentation of the world-upgrade confirmation can vary by client flow. If no confirmation appears, initiating the load of the selected 1.20.2 save in step 13 remains the conversion trigger."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0fe02c6b3a2073f6016aa81a9721c087d0a2080a4bdd3e7c15",
+    "elapsed_seconds": 111.82,
+    "usage": {
+      "input_tokens": 26595,
+      "output_tokens": 7208,
+      "reasoning_tokens": 5357,
+      "total_tokens": 33803
+    },
+    "timestamp": "2026-09-14T16:04:22.752145+00:00"
+  }
+}

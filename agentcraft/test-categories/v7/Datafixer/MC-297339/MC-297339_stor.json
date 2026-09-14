@@ -1,0 +1,154 @@
+{
+  "bug_id": "MC-297339",
+  "category": "Datafixer",
+  "source_md": "[Datafixer] - MC-297339.md",
+  "source_meta": {
+    "mojira categories": "Block states; Datafixer",
+    "project": "MC",
+    "issue key": "MC-297339",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2025-04-29T07:47:12.007-0700",
+    "updated": "2026-03-11T03:54:11.488-0700",
+    "resolution date": "2025-05-02T01:23:52.125-0700",
+    "affects versions": "25w18a",
+    "fix versions": "25w19a",
+    "area": "Platform G",
+    "votes": "25",
+    "watchers": "0",
+    "attachments": "7",
+    "attachment filenames": "2025-04-29_10.42.02.png; 2025-04-29_10.42.04.png; 2025-04-29_10.44.01.png; 2025-05-02_02.19.05.png; Screenshot 2025-04-12 234217.png; Screenshot 2025-04-29 223242.png; Screenshot 2025-05-02 102330.png",
+    "issue links": "Duplicate:inward:MC-297346:Non-writable sings | Duplicate:inward:MC-297356:Sign dont work | Duplicate:inward:MC-297371:Texts on sign completely disappear, relaunching doesn't work | Duplicate:inward:MC-297386:Sign text not showing up | Duplicate:inward:MC-297390:sign text not appearing | Duplicate:inward:MC-297401:All my Signs/Hanging signs Text (Including Dye color and glow) has been deleted | Duplicate:inward:MC-297399:Signs won't allow typing | Duplicate:inward:MC-297412:Signs do not work in multiplayer | Duplicate:inward:MC-297418:Sign message doesn't work | Duplicate:inward:MC-297430:Editing and creating signs not working | Duplicate:inward:MC-297443:I can't write on any sign | Duplicate:inward:MC-297451:Sign Texts Are Invisible or Blurred When Colored | Duplicate:inward:MC-297450:Sign issues | Duplicate:inward:MC-297444:when adding text to a sign it wont show up | Duplicate:inward:MC-297441:Glow ink sign only | Duplicate:inward:MC-297463:you can't write on the signs | Duplicate:inward:MC-297457:Signs | Duplicate:inward:MC-297468: Wooden Signs Problem | Duplicate:inward:MC-297478:Signs Not Working | Duplicate:inward:MC-297472:Somethings wrong with my signs | Duplicate:inward:MC-297500:Snapshot Sign Bug | Duplicate:inward:MC-297509:Cannot type on signs/text wont appear | Duplicate:inward:MC-297506:I will open sign GUI try to type, but nothing happens | Duplicate:inward:MC-297486:Text on signs will not render | Duplicate:inward:MC-297520:broken signs | Duplicate:inward:MC-297518:No Text On Signs | Duplicate:inward:MC-297522:Cannot write on signs | Duplicate:inward:MC-297523:Cannot write on signs",
+    "_title": "Sign text is non-functional"
+  },
+  "stor": {
+    "bug_id": "MC-297339",
+    "affected_versions": [
+      "25w18a"
+    ],
+    "recommended_version": "25w18a",
+    "environment": "Minecraft: Java Edition snapshot 25w18a in a single-player integrated-server world. Use a newly created Creative-mode test world for deterministic item access. No particular seed, coordinates, sign wood type, graphics setting, GPU, dedicated server, or multiplayer client is required by the report. The instructions assume the default keyboard-and-mouse controls and an English-language item search.",
+    "preconditions": [
+      "The Minecraft Launcher must be able to start the exact affected snapshot, 25w18a. Enable historical snapshot versions in the launcher's installation/profile settings if 25w18a is not initially available.",
+      "Use a disposable test world. The minimal procedure tests a newly placed sign, so no existing or upgraded world is required.",
+      "Keep the game window focused so keyboard input is sent to Minecraft.",
+      "Do not use the fixed version 25w19a for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher and navigate to the installation/profile management screen. Enable snapshot versions if the version selector does not currently show historical snapshots.",
+        "exact_input": null,
+        "success_cue": "The launcher permits snapshot versions to be selected when creating or editing an installation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Create or edit an installation and select the exact game version named \"snapshot 25w18a\". Save the installation without substituting another snapshot or release.",
+        "exact_input": "25w18a",
+        "success_cue": "The saved launcher installation identifies 25w18a as its selected version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Start the 25w18a installation and wait for Minecraft to reach the title screen.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is responsive and displays 25w18a as the running version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "From the title screen, select \"Singleplayer\", then select \"Create New World\" to open the world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Optionally name the test world \"MC-297339 reproduction\", set Game Mode to Creative, leave the seed unspecified, and select \"Create New World\".",
+        "exact_input": "MC-297339 reproduction",
+        "success_cue": "World generation begins for a new Creative-mode world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait until world generation and initial chunk loading finish. Do not continue while a loading screen is present or terrain is still failing to render.",
+        "exact_input": null,
+        "success_cue": "The player is in the world, nearby terrain is rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press the inventory action key, which is E by default, to open the Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open and includes item-selection tabs and the player hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the Creative inventory's Search Items tab, focus its search field, and enter \"oak sign\". If the inventory is already on the searchable item tab, use its visible search field directly.",
+        "exact_input": "oak sign",
+        "success_cue": "The filtered item results include the regular item named Oak Sign.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move one Oak Sign stack from the search results into any empty hotbar slot. The hotbar is the row of nine quick-access slots at the bottom of the inventory.",
+        "exact_input": null,
+        "success_cue": "An Oak Sign is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Close the inventory with E or Escape, then select the hotbar slot containing the Oak Sign by pressing its corresponding number key or scrolling the mouse wheel.",
+        "exact_input": "E, then the Oak Sign hotbar slot number",
+        "success_cue": "The world view is visible and the Oak Sign is shown as the currently held item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Aim the crosshair at the top face of a nearby solid block, such as a grass or stone block with empty space above it. Press the Use Item/Place Block control, which is the right mouse button by default, once to place a regular standing oak sign.",
+        "exact_input": "Right mouse button",
+        "success_cue": "A standing oak sign has been placed and the sign-editing interface is open with its confirmation button available. Keep this interface open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Without closing the sign-editing interface or changing focus to another window, type the test string \"TEST123\" once. Do not select the confirmation button yet and do not press Escape.",
+        "exact_input": "TEST123",
+        "success_cue": "The TEST123 keystrokes have been sent while the newly placed sign's editing interface remains open; no additional player or UI action has been taken.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The player has just entered the test keystrokes TEST123 into the active editing interface of a newly placed regular oak sign in 25w18a. The sign-editing interface remains open and no confirmation or cancellation action has been performed; begin observation in this state.",
+    "uncertainties": [
+      "The report does not provide a formal numbered Steps to Reproduce section. This plan reconstructs the minimum new-sign procedure directly supported by the description.",
+      "The report does not specify a required game mode. Creative mode is selected only as a deterministic way to obtain a sign without crafting or commands.",
+      "The report states that all regular and hanging sign types are affected but does not require a particular wood type. A regular Oak Sign placed on the top of a solid block is used as the simplest deterministic representative.",
+      "The report does not specify the text to enter. TEST123 is a practical test string chosen to provide unmistakable keyboard input.",
+      "The description also reports a separate world-upgrade variant involving pre-existing signs placed before updating to 25w18a. That variant is not included because the same report explicitly states that newly placed signs reproduce the issue, allowing a shorter deterministic procedure.",
+      "The report mentions both single-player and a third-party hosted server. This plan uses single-player because the report confirms that a dedicated or third-party server is not necessary for the new-sign reproduction."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0136259735972e11016aa81bfe72ac87d0b7c7c2ce77d77090",
+    "elapsed_seconds": 62.43,
+    "usage": {
+      "input_tokens": 9408,
+      "output_tokens": 4144,
+      "reasoning_tokens": 2785,
+      "total_tokens": 13552
+    },
+    "timestamp": "2026-09-14T16:09:32.751683+00:00"
+  }
+}

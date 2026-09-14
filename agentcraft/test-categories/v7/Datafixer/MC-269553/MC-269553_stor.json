@@ -1,0 +1,183 @@
+{
+  "bug_id": "MC-269553",
+  "category": "Datafixer",
+  "source_md": "[Datafixer] - MC-269553.md",
+  "source_meta": {
+    "mojira categories": "Commands; Datafixer",
+    "project": "MC",
+    "issue key": "MC-269553",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-03-18T00:16:50.923-0700",
+    "updated": "2025-04-11T10:08:25.888-0700",
+    "resolution date": "2024-04-21T14:04:17.489-0700",
+    "affects versions": "24w11a",
+    "fix versions": "24w14a",
+    "area": "Platform",
+    "labels": "data-fixer",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2024-03-18_07.05.50.png; 2024-03-18_07.10.53.png; 2024-03-18_07.10.55.png; phantomenchantmentupgradetest.zip",
+    "issue links": "Relates:outward:MC-271020:enchantment_glint_override=true does not cause pick block to avoid replacing that item",
+    "_title": "Items with empty enchantments NBT tag do not upgrade as expected"
+  },
+  "stor": {
+    "bug_id": "MC-269553",
+    "affected_versions": [
+      "24w11a"
+    ],
+    "recommended_version": "24w11a",
+    "environment": "Minecraft: Java Edition, local singleplayer. Use the attached prebuilt world in an isolated Java Edition game directory that can be launched first with release 1.10.2 and then with snapshot 24w11a. The same saved-world folder must be preserved between launches. No dedicated server, additional players, commands, cheats, seed, coordinates, datapack, or specific game mode are stated as required.",
+    "preconditions": [
+      "The Mojira attachment named \"phantomenchantmentupgradetest.zip\" is available to the reproduction agent.",
+      "The Minecraft Launcher can launch the exact Java Edition versions 1.10.2 and 24w11a.",
+      "Both installations are configured to use the same isolated game directory, or the agent can copy the same world folder between their respective \"saves\" directories.",
+      "The attached archive has been copied to a safe working location and enough disk space is available for at least two backup copies.",
+      "The test must begin with an unconverted copy of the attached world; do not begin from a copy that has already been opened in 24w11a or a newer version.",
+      "Do not substitute newly generated items for the items supplied in the attached world, because their legacy empty \"Enchantments:[]\" data is the subject of the conversion test."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Obtain the attached test-world archive from the Mojira report and place it in a local working directory.",
+        "exact_input": "phantomenchantmentupgradetest.zip",
+        "success_cue": "A local, readable copy of \"phantomenchantmentupgradetest.zip\" is present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a pristine backup copy of the downloaded ZIP before extracting or launching the world. Keep this backup outside every Minecraft \"saves\" directory.",
+        "exact_input": null,
+        "success_cue": "An untouched backup of \"phantomenchantmentupgradetest.zip\" exists and can be used to restart the reproduction from the original legacy data.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Extract the working copy of the ZIP. Open the extracted directories until reaching the actual Java world folder—the folder that directly contains \"level.dat\" rather than another wrapper folder.",
+        "exact_input": "phantomenchantmentupgradetest.zip",
+        "success_cue": "The selected extracted world folder directly contains \"level.dat\" and the other world-save contents.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Copy the extracted world folder into the isolated Java Edition game directory's \"saves\" folder. Typical default game-directory locations are \"%APPDATA%\\.minecraft\" on Windows, \"~/Library/Application Support/minecraft\" on macOS, and \"~/.minecraft\" on Linux; use the configured launcher game directory instead if it was customized.",
+        "exact_input": "<Java game directory>/saves/<extracted world folder>",
+        "success_cue": "The folder containing \"level.dat\" is exactly one directory below the selected game directory's \"saves\" folder.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Launch Minecraft: Java Edition 1.10.2 using the game directory containing the imported save. Do not use 1.11 through 1.20.4 for the baseline visual check, because the report states that those versions can hide the glint even though the legacy NBT remains.",
+        "exact_input": "1.10.2",
+        "success_cue": "The main menu identifies the running client as Minecraft 1.10.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "From the 1.10.2 main menu, select \"Singleplayer\". Locate the imported attached world by its displayed world name or by the world-folder name shown in the world list, select it, and choose \"Play Selected World\" or double-click it.",
+        "exact_input": null,
+        "success_cue": "The attached world begins loading in Minecraft 1.10.2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait for the attached world to finish loading. Do not continue while a loading screen is displayed.",
+        "exact_input": null,
+        "success_cue": "The player is in the world, nearby terrain or the prepared test area has rendered, and normal camera and movement input responds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Locate the legacy test items already supplied by the attached world without replacing, enchanting, crafting, moving, or otherwise modifying them. First inspect the visible hotbar at the bottom of the screen and press the inventory action—default key \"E\"—to inspect the player inventory. If the prepared items are instead presented in an obvious nearby container or display, use that existing presentation. Record whether they were viewed in the hotbar, player inventory, a specific container, or another display so the identical context can be reopened after upgrading.",
+        "exact_input": "E",
+        "success_cue": "The supplied group of \"phantom enchanted\" test items is visible, and its exact viewing location or container has been recorded for the second launch.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "While still in 1.10.2, visually confirm that the supplied test items display an enchantment glint. This is only the required pre-upgrade baseline. Do not alter the items after confirming it.",
+        "exact_input": null,
+        "success_cue": "At least one supplied test item visibly has the animated enchantment-glint appearance in 1.10.2, and the item remains in its original slot or display location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Close any inventory or container interface with the inventory key or Escape, then open the pause menu with Escape and select \"Save and Quit to Title\" so the 1.10.2 session is saved normally.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The client has returned to the 1.10.2 title screen and the world is no longer open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Exit the 1.10.2 client completely. In the game directory's \"saves\" folder, make a backup copy of the just-closed world folder and store that copy outside \"saves\". Leave the original world folder in \"saves\" for the upgrade test.",
+        "exact_input": "<Java game directory>/saves/<attached world folder>",
+        "success_cue": "Minecraft 1.10.2 is closed, one backup of the post-baseline world exists outside \"saves\", and the original world remains available in \"saves\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Launch the exact affected snapshot, Minecraft: Java Edition 24w11a, using the same isolated game directory and the same world folder that was opened in 1.10.2. Do not select the fix version 24w14a.",
+        "exact_input": "24w11a",
+        "success_cue": "The main menu identifies the running client as snapshot 24w11a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select \"Singleplayer\", locate the same attached world that was previously opened in 1.10.2, and select it in the world list. Do not select a newly generated world or the backup copy stored outside \"saves\".",
+        "exact_input": null,
+        "success_cue": "The same attached world is highlighted in the 24w11a Singleplayer world list and is ready to be opened.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Open the selected world by choosing \"Play Selected World\" or double-clicking it. If 24w11a displays a version-upgrade or backup warning, proceed with opening the world only after confirming that the external backups from earlier steps exist; use the normal option that continues into the world without canceling.",
+        "exact_input": null,
+        "success_cue": "24w11a has accepted the world-open action and displays the world-loading screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Wait until conversion and world loading finish. Do not interact during the loading screen, and do not continue until the prepared area has rendered and input responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is inside the same saved world in 24w11a, the surrounding area is rendered, and camera or movement input responds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Reopen the exact item-viewing context recorded in step 8 without modifying the items: press \"E\" if they were in the player inventory, select the same hotbar slot if they were viewed there, right-click the same nearby container if they were stored in one, or face the same existing display if that was where they were presented. Stop as soon as the supplied test items are visible and do not evaluate their appearance or data.",
+        "exact_input": "Use the same access input recorded in step 8; default inventory key: E; default container interaction: right-click",
+        "success_cue": "The same supplied legacy test items have just been presented in 24w11a and are ready for the separate observation subsystem to inspect.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The same attached world has been opened and fully loaded in 24w11a, and the supplied test items are visible in the same inventory, hotbar, container, or display context used for the 1.10.2 baseline. Hand control to the observation subsystem before moving, replacing, editing, or otherwise modifying any test item.",
+    "uncertainties": [
+      "The report does not state the attached world's displayed name, folder structure, game mode, player position, or the exact item types, item count, slots, container, or display in which the test items are located.",
+      "The attachment itself could not be inspected during web verification, so the plan cannot provide a world name or a single predetermined UI action for locating the items. The executor must record and reuse the presentation found in the attached world.",
+      "The reproduction text says to use the \"latest 1.20.5 snapshot\" but does not name it in that sentence. The report's sole affected-version entry is 24w11a, so 24w11a is used as the affected snapshot and 24w14a is excluded because it is listed only as a fix version.",
+      "The precise wording and buttons of any world-upgrade warning shown by 24w11a are not supplied by the report; the plan therefore identifies the required outcome—continue opening the backed-up world—rather than asserting an exact warning label.",
+      "The Mojira report does not specify whether merely opening the world, loading the chunk or player data containing the items, or opening their inventory/container is the narrowest internal conversion event. Step 14 is treated as the report-supported trigger action, with loading and item presentation completed before handoff."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_04051ae4fedd4607016aa81b07554487d09050cf938b5fb87b",
+    "elapsed_seconds": 83.2,
+    "usage": {
+      "input_tokens": 18123,
+      "output_tokens": 4726,
+      "reasoning_tokens": 2480,
+      "total_tokens": 22849
+    },
+    "timestamp": "2026-09-14T16:05:45.961670+00:00"
+  }
+}
