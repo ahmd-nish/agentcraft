@@ -1,0 +1,148 @@
+{
+  "bug_id": "MC-226430",
+  "category": "Advancements",
+  "reproduction_method": "commands",
+  "source_md": "[Advancements] - MC-226430.md",
+  "source_meta": {
+    "mojira categories": "Advancements; Text",
+    "project": "MC",
+    "issue key": "MC-226430",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-05-27T06:55:48.049-0700",
+    "updated": "2025-04-30T08:41:32.583-0700",
+    "resolution date": "2022-04-16T05:29:06.515-0700",
+    "affects versions": "1.17 Pre-release 1; 1.17 Pre-release 3; 1.17 Pre-release 4; 1.17 Pre-release 5; 1.17 Release Candidate 1; 1.17 Release Candidate 2; 1.17; 1.17.1 Pre-release 1; 1.17.1 Pre-release 2; 1.17.1 Pre-release 3; 1.17.1 Release Candidate 1; 1.17.1; 21w38a; 1.18 Pre-release 1; 1.18 Pre-release 8; 1.18 Release Candidate 3; 1.18; 1.18.1; 22w05a; 1.18.2; 22w14a",
+    "fix versions": "22w15a",
+    "labels": "capitalization",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "MC-226430.png; MC-226430-1.png; MC-226430-2.png; MC-226430-3.png; MC-226430-4.png; MC-226430-5.png; MC-226430-6.png; MC-226430-7.png",
+    "issue links": "Relates:inward:MC-226484:Advancement description for \"Wax On\" & \"Wax Off\" are a bit misleading",
+    "_title": "Several 1.17 advancement strings are improperly capitalized"
+  },
+  "stor": {
+    "bug_id": "MC-226430",
+    "affected_versions": [
+      "1.17 Pre-release 1",
+      "1.17 Pre-release 3",
+      "1.17 Pre-release 4",
+      "1.17 Pre-release 5",
+      "1.17 Release Candidate 1",
+      "1.17 Release Candidate 2",
+      "1.17",
+      "1.17.1 Pre-release 1",
+      "1.17.1 Pre-release 2",
+      "1.17.1 Pre-release 3",
+      "1.17.1 Release Candidate 1",
+      "1.17.1",
+      "21w38a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 8",
+      "1.18 Release Candidate 3",
+      "1.18",
+      "1.18.1",
+      "22w05a",
+      "1.18.2",
+      "22w14a"
+    ],
+    "recommended_version": "1.17 Pre-release 1",
+    "environment": "Minecraft Java Edition 1.17 Pre-release 1 in a fresh vanilla single-player world, using the English (US) language, with commands permitted. Creative mode with cheats enabled is used as the simplest deterministic environment. Do not use the fix version 22w15a or a resource pack that replaces English advancement text.",
+    "preconditions": [
+      "The launcher can start the exact affected version 1.17 Pre-release 1; some launcher interfaces identify this version as 1.17-pre1.",
+      "The client language is English (US), because the report identifies English translation strings and capitalization.",
+      "No resource pack or data pack is installed that changes vanilla advancement titles or descriptions.",
+      "Use a fresh single-player world so the selected target advancement has not already been granted.",
+      "The player has permission to execute commands; the practical setup below uses Creative mode with cheats enabled.",
+      "The report permits granting any listed affected advancement. This plan selects the first listed advancement, minecraft:adventure/lightning_rod_with_villager_no_fire, as the deterministic representative case."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the installation configured for 1.17 Pre-release 1. At the title screen, verify the displayed version before continuing; do not continue if a different release, pre-release, release candidate, or snapshot is running.",
+        "exact_input": "Launch Minecraft Java Edition 1.17 Pre-release 1",
+        "success_cue": "The Minecraft title screen is loaded and its version label identifies 1.17 Pre-release 1, potentially using the shorter form 1.17-pre1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Set the game language to English (US). From the title screen, open Options, open Language, select English (US), and confirm with Done until you return to the title screen.",
+        "exact_input": "Options... -> Language... -> English (US) -> Done -> Done",
+        "success_cue": "The title-screen buttons and other interface text are displayed in English.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Create a fresh single-player world. Select Creative game mode and ensure commands are permitted by setting Allow Cheats to ON, then create the world. The world name, seed, difficulty, and world type are not specified by the report and may remain at their defaults.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player enters a newly created world in Creative mode, with the hotbar and crosshair visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait for initial world loading to finish before executing the advancement command. Do not continue while the loading screen is present or while nearby terrain is still failing to render.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the player can look or move normally, and opening interfaces responds without loading delay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat. Enter the report's first affected advancement command exactly as supplied, including the leading slash, and press Enter. Execute it as the local player, not from a server console, so @s selects the player whose advancement screen will be inspected.",
+        "exact_input": "/advancement grant @s only minecraft:adventure/lightning_rod_with_villager_no_fire",
+        "success_cue": "Chat confirms that the advancement was granted to the player, and a completion notification for the advancement titled “Surge Protector” may appear.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Open the Advancements interface by pressing the default Advancements key, L. If that control has been rebound or does not open the interface, press Esc and click Advancements from the pause menu instead.",
+        "exact_input": "L; fallback: Esc -> Advancements",
+        "success_cue": "The full-screen Advancements interface is open and at least the Adventure advancement tab is available.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Select the Adventure tab. If the interface opened on another tab, click the tab whose root advancement is titled “Adventure.”",
+        "exact_input": "Left-click the Adventure tab",
+        "success_cue": "The Adventure advancement tree is displayed, with the completed advancement path containing “Surge Protector” available in the tree.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Locate the completed advancement titled “Surge Protector.” It is a direct child of the Adventure root. If necessary, hold the left mouse button on an empty part of the advancement background and drag to pan the tree. Move the pointer over advancement tiles until the title “Surge Protector” is shown, then leave the pointer stationary over that tile so its title-and-description tooltip remains open. Do not evaluate or rewrite the description.",
+        "exact_input": "Left-click-drag to pan if needed, then mouse-hover over “Surge Protector”",
+        "success_cue": "The “Surge Protector” tooltip is fully visible and includes its advancement description beneath the title.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The English (US) Advancements interface is open on the Adventure tab, and the pointer is stationary over the completed “Surge Protector” advancement with its description tooltip fully visible. The observation subsystem should take control at this point.",
+    "uncertainties": [
+      "The report does not explicitly name the client language. English (US) is selected because the reported translation keys are paired with English strings whose capitalization is under test.",
+      "The report allows any of nine affected advancements to be granted. To avoid unnecessary repetition, this plan uses the first supplied command and the corresponding “Surge Protector” advancement as a deterministic representative.",
+      "The report does not require a particular game mode, seed, coordinates, or server type. A fresh Creative single-player world with cheats enabled is a practical execution choice rather than a reported requirement.",
+      "The exact launcher-facing label may be shortened to 1.17-pre1 even though the affected-version string in the report is 1.17 Pre-release 1.",
+      "Advancement tile positions can vary with window dimensions and GUI scale, so no fixed screen coordinates are supplied; the executor must identify the tile by its “Surge Protector” title."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_055aa1bf52a63e62016aa7b39c51a087d08ff69c4e57bb4d0b",
+    "elapsed_seconds": 103.43,
+    "usage": {
+      "input_tokens": 27298,
+      "output_tokens": 6061,
+      "reasoning_tokens": 4600,
+      "total_tokens": 33359
+    },
+    "timestamp": "2026-09-14T08:44:51.577387+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
