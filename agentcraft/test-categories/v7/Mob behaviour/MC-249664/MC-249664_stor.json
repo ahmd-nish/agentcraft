@@ -1,0 +1,168 @@
+{
+  "bug_id": "MC-249664",
+  "category": "Mob behaviour",
+  "source_md": "[Mob behaviour] - MC-249664.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-249664",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-03-28T12:37:01.031-0700",
+    "updated": "2025-04-30T08:08:15.835-0700",
+    "resolution date": "2022-05-23T01:39:23.187-0700",
+    "affects versions": "22w12a; 22w13a; 22w14a; 22w15a; 22w16a; 22w17a; 22w18a",
+    "fix versions": "22w15a; 22w19a",
+    "labels": "warden",
+    "watchers": "1",
+    "attachments": "5",
+    "attachment filenames": "Minecraft 22w12a Warden Despawning.mp4; Minecraft 22w15a - Multiplayer Warden Despawning.mp4; Minecraft 22w18a - Singleplayer 2022-05-06 09-11-57_Trim.mp4; Minecraft 22w18a Warden Despawns.mp4; screenshot-1.png",
+    "_title": "Warden despawns when far away"
+  },
+  "stor": {
+    "bug_id": "MC-249664",
+    "affected_versions": [
+      "22w12a",
+      "22w13a",
+      "22w14a",
+      "22w15a",
+      "22w16a",
+      "22w17a",
+      "22w18a"
+    ],
+    "recommended_version": "22w12a",
+    "environment": "Minecraft Java Edition snapshot 22w12a in a new single-player world. Use Creative mode with commands enabled, a non-Peaceful difficulty such as Normal, and an open area with solid level ground. A Superflat world is recommended as a practical way to provide unobstructed terrain. Set Simulation Distance to at least 10 chunks so the Warden's chunk can continue ticking when the player is 130 blocks away.",
+    "preconditions": [
+      "Launch the game using Java Edition snapshot 22w12a, the first version listed as affected.",
+      "Use a new single-player world so no second player remains close enough to affect distance-based mob despawning.",
+      "Enable commands when creating the world. Creative mode is recommended so the Warden cannot interrupt command entry by killing the player.",
+      "Set the difficulty to Normal or another non-Peaceful difficulty.",
+      "Set Simulation Distance to 10 chunks or greater before summoning the Warden.",
+      "Use an open location with solid, level ground and at least three blocks of vertical clearance.",
+      "Ensure there is no existing Warden near the test location.",
+      "Perform the summon and teleport sequence promptly; do not intentionally wait for the Warden's ordinary inactivity-based digging sequence."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for snapshot 22w12a, start it, and wait for the main menu.",
+        "exact_input": null,
+        "success_cue": "The Minecraft Java Edition main menu is displayed and identifies the running version as 22w12a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, enable commands or Allow Cheats, and create the world. A Superflat world may be selected under More World Options to provide a simple open test area.",
+        "exact_input": null,
+        "success_cue": "The player is in a new single-player Creative world and can open chat and execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the pause menu with Esc, open Options, and set Difficulty to Normal if the world is currently on Peaceful.",
+        "exact_input": null,
+        "success_cue": "The displayed difficulty is Normal or another non-Peaceful setting.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "From Options, open Video Settings and set Simulation Distance to at least 10 chunks. Return to the game after applying the setting.",
+        "exact_input": null,
+        "success_cue": "Simulation Distance is 10 chunks or greater and the player has returned to normal gameplay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Wait until the world finishes loading, then stand on solid, level ground in an open area. Do not stand in water, over a drop, or beside a hazard that could move or damage the Warden while the player is away.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are rendered, movement responds normally, and there is sufficient unobstructed space for a Warden at the player's position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, or the rebound Open Chat control, to open in-game chat.",
+        "exact_input": null,
+        "success_cue": "The chat command-entry field is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the summon command exactly as shown, including the leading slash, and press Enter. Do not add NBT such as PersistenceRequired, NoAI, or a custom name.",
+        "exact_input": "/summon minecraft:warden ~ ~ ~",
+        "success_cue": "The command is accepted without a red syntax error and one Warden is present at the player's current location.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "As soon as the Warden has appeared, press T to open chat again. Avoid walking away manually or spending time interacting with the Warden.",
+        "exact_input": null,
+        "success_cue": "Chat is open while the player is still at the location where the Warden was summoned.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's first teleport command exactly as shown, including the leading slash, and press Enter. The relative X coordinate moves the player 130 blocks in the negative X direction; the final two arguments set yaw to -90 and pitch to 0.",
+        "exact_input": "/tp @s ~-130 ~ ~ -90 0",
+        "success_cue": "The command succeeds and the player is now 130 blocks west of the Warden's summon location, facing at yaw -90 with level pitch.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Allow approximately one second of normal game time to pass so the teleport completes and entities receive game ticks. Do not remain away for an extended period.",
+        "exact_input": null,
+        "success_cue": "Player movement and commands respond normally at the distant location; no more than a brief interval has elapsed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T to open chat while remaining at the distant location.",
+        "exact_input": null,
+        "success_cue": "The chat command-entry field is active and the player has not moved manually from the teleported position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Enter the report's return teleport command exactly as shown, including the leading slash, and press Enter. This reverses the earlier relative X displacement and returns the player to the Warden's summon location.",
+        "exact_input": "/tp @s ~130 ~ ~ -90 0",
+        "success_cue": "The command succeeds and the player is back at the original summon coordinates, facing at yaw -90 with level pitch.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Close chat if it remains visible and wait only until the chunks around the original location have rendered and camera movement responds normally. Do not perform any additional commands, summon another Warden, or leave the location.",
+        "exact_input": null,
+        "success_cue": "The player is at the original Warden summon location, surrounding terrain is rendered, and the scene is ready for immediate inspection without yet evaluating the bug outcome.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The player has crossed to 130 blocks from the summoned Warden in step 9, briefly allowed entity ticking, and has now returned to the exact summon location in step 12. The original area is rendered and ready for the observation subsystem to inspect the Warden's state.",
+    "uncertainties": [
+      "The report does not specify a world seed, terrain type, game mode, difficulty, or single-player versus multiplayer requirement. A new single-player Creative Superflat world on Normal difficulty is selected as the simplest controlled implementation.",
+      "The report says only “Summon a warden” and does not provide an exact summon command. The plan uses `/summon minecraft:warden ~ ~ ~` without NBT as the deterministic implementation; adding persistence-related NBT would alter the reported test condition.",
+      "The report does not specify Simulation Distance. At least 10 chunks is selected as a practical safeguard so the original location can remain entity-ticking at a 130-block separation.",
+      "The report also describes a randomized variant at a distance of 48 blocks. That variant is not used because the supplied 130-block path is shorter and intended to reproduce immediately rather than depend on random despawn timing.",
+      "22w15a appears in both the report's affected-version list and fix-version list. It is retained in affected_versions exactly as supplied, while 22w12a remains the recommended version because it is the first listed affected version."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0fea95a492ad50c7016aa8a858d31887d0b5e4bb7580e47bf0",
+    "elapsed_seconds": 87.41,
+    "usage": {
+      "input_tokens": 24427,
+      "output_tokens": 5772,
+      "reasoning_tokens": 4152,
+      "total_tokens": 30199
+    },
+    "timestamp": "2026-09-15T02:08:47.875203+00:00"
+  }
+}

@@ -1,0 +1,232 @@
+{
+  "bug_id": "MC-97423",
+  "category": "Mob behaviour",
+  "source_md": "[Mob behaviour] - MC-97423.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-97423",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2016-02-17T18:05:32.977-0800",
+    "updated": "2025-05-20T02:11:32.401-0700",
+    "resolution date": "2025-05-13T03:08:44.888-0700",
+    "affects versions": "Minecraft 1.9 Pre-Release 1; Minecraft 1.9 Pre-Release 2; Minecraft 1.9.1 Pre-Release 3; Minecraft 1.9.2; Minecraft 16w15b; Minecraft 1.9.3 Pre-Release 1; Minecraft 1.9.3 Pre-Release 2; Minecraft 1.9.3 Pre-Release 3; Minecraft 1.10; Minecraft 1.10.1; Minecraft 1.10.2; Minecraft 16w32a; Minecraft 16w32b; Minecraft 16w33a; Minecraft 16w35a; Minecraft 16w36a; Minecraft 16w39b; Minecraft 16w39c; Minecraft 16w41a; Minecraft 16w43a; Minecraft 16w44a; Minecraft 1.11 Pre-Release 1; Minecraft 1.11; Minecraft 1.11.2; Minecraft 17w06a; Minecraft 1.12; Minecraft 1.12.1; Minecraft 1.12.2 Pre-Release 1; Minecraft 1.12.2 Pre-Release 2; Minecraft 1.12.2; Minecraft 17w43a; Minecraft 17w43b; Minecraft 17w45a; Minecraft 17w45b; Minecraft 17w46a; Minecraft 17w47a; Minecraft 17w47b; Minecraft 17w48a; Minecraft 17w49a; Minecraft 17w49b; Minecraft 18w10d; Minecraft 18w16a; Minecraft 1.13.1; Minecraft 1.14.2; 1.14.4; 19w37a; 1.15.2; 20w10a; 1.16 Pre-release 6; 1.16.2; 1.16.4; 20w48a; 21w03a; 21w05b; 1.17.1; 1.19.2; 25w09b; 1.21.5",
+    "fix versions": "Minecraft 1.13; 25w20a",
+    "area": "Gameplay",
+    "labels": "animation; horse; jump",
+    "votes": "5",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "2016-02-17_18.53.02.png; 2022-09-29_13.53.04.png; Minecraft 16w35a horse jump animation bug video.mp4",
+    "issue links": "Duplicate:inward:MC-280364:Jumping with a horse and then dismounting mid-air keeps playing the jumping animation after landing. | Duplicate:inward:MC-295712:Horses keep jump animation when dismounted in the jump sequence   | Duplicate:inward:MC-295875:Horse stuck in jump animation after dismount in air | Duplicate:inward:MC-295911:If you exit a horse, donkey or a mule in jumping animation, it won't stop playing the animation. | Duplicate:inward:MC-295995:Horse Rearing Stuck | Relates:inward:MC-256464:If a horse is not on the ground while the player jumps, it will still play the jump animation | Duplicate:inward:MC-296588:Horse remains in jump animation after dismounting immediately | Duplicate:inward:MC-175155:Horse animations | Duplicate:inward:MC-170428:Horse stays in the air after jumping and getting off | Duplicate:inward:MC-128782:Horse bug in the last snapshot | Duplicate:inward:MC-127222:When I get off the horse during the jump, the horse blocks the animation | Duplicate:inward:MC-123343:Horse stuck in mid air when dismounting | Duplicate:inward:MC-123261:dancing horse bug | Duplicate:inward:MC-123035:Exit horse while jumping in water pauses state until ai change | Duplicate:inward:MC-121894:Horse model becoming frozen in jump pose | Duplicate:inward:MC-121869:Horses are still in the jumping animation when players stop riding horses when the horse is jumping. | Duplicate:inward:MC-121761:Horse Bug 1.13 | Duplicate:inward:MC-121626:Riding and dismounting a horse will remain it to stay on its hind legs | Duplicate:inward:MC-108687:Horse Animation bug / Stored horse jump bug | Duplicate:inward:MC-106754:Horse jump animation bug | Duplicate:inward:MC-99365:Dismounting horse while jumping causes horse to stay on hind legs | Duplicate:inward:MC-296752:2-legged horse & mule | Duplicate:inward:MC-296947:Horse animation gets stuck after jumping into water | Duplicate:inward:MC-297177:Horse animation gets stuck after dismounting mid-air | Duplicate:inward:MC-297253:Horses use swimming animation on land | Duplicate:inward:MC-297349:Wrong animation when dismounting from a horse (all types), mule and donkey | Duplicate:inward:MC-297495:Horse/Donkey/Mule Stuck in Jump animation following Jump and Dismount | Duplicate:inward:MC-298069:Horse rear up for a long time",
+    "_title": "Horse temporarily stuck in jump animation if dismounted"
+  },
+  "stor": {
+    "bug_id": "MC-97423",
+    "affected_versions": [
+      "Minecraft 1.9 Pre-Release 1",
+      "Minecraft 1.9 Pre-Release 2",
+      "Minecraft 1.9.1 Pre-Release 3",
+      "Minecraft 1.9.2",
+      "Minecraft 16w15b",
+      "Minecraft 1.9.3 Pre-Release 1",
+      "Minecraft 1.9.3 Pre-Release 2",
+      "Minecraft 1.9.3 Pre-Release 3",
+      "Minecraft 1.10",
+      "Minecraft 1.10.1",
+      "Minecraft 1.10.2",
+      "Minecraft 16w32a",
+      "Minecraft 16w32b",
+      "Minecraft 16w33a",
+      "Minecraft 16w35a",
+      "Minecraft 16w36a",
+      "Minecraft 16w39b",
+      "Minecraft 16w39c",
+      "Minecraft 16w41a",
+      "Minecraft 16w43a",
+      "Minecraft 16w44a",
+      "Minecraft 1.11 Pre-Release 1",
+      "Minecraft 1.11",
+      "Minecraft 1.11.2",
+      "Minecraft 17w06a",
+      "Minecraft 1.12",
+      "Minecraft 1.12.1",
+      "Minecraft 1.12.2 Pre-Release 1",
+      "Minecraft 1.12.2 Pre-Release 2",
+      "Minecraft 1.12.2",
+      "Minecraft 17w43a",
+      "Minecraft 17w43b",
+      "Minecraft 17w45a",
+      "Minecraft 17w45b",
+      "Minecraft 17w46a",
+      "Minecraft 17w47a",
+      "Minecraft 17w47b",
+      "Minecraft 17w48a",
+      "Minecraft 17w49a",
+      "Minecraft 17w49b",
+      "Minecraft 18w10d",
+      "Minecraft 18w16a",
+      "Minecraft 1.13.1",
+      "Minecraft 1.14.2",
+      "1.14.4",
+      "19w37a",
+      "1.15.2",
+      "20w10a",
+      "1.16 Pre-release 6",
+      "1.16.2",
+      "1.16.4",
+      "20w48a",
+      "21w03a",
+      "21w05b",
+      "1.17.1",
+      "1.19.2",
+      "25w09b",
+      "1.21.5"
+    ],
+    "recommended_version": "Minecraft 1.9 Pre-Release 1",
+    "environment": "Minecraft Java Edition using the exact affected version Minecraft 1.9 Pre-Release 1. Use a single-player Creative-mode world as a deterministic way to obtain a horse and saddle. Perform the trigger on unobstructed, level ground with enough room for the horse to jump and land. The report does not require multiplayer, a particular seed, commands, or cheats.",
+    "preconditions": [
+      "The exact Minecraft Java Edition version Minecraft 1.9 Pre-Release 1 is installed and launchable.",
+      "Default controls are assumed: E opens the inventory, Space is Jump, and Left Shift is Sneak/Dismount. If controls are rebound, use the keys assigned to those actions instead.",
+      "A mouse or equivalent input is available for right-click interactions.",
+      "The world contains an unobstructed patch of level, solid ground with no low ceiling or nearby drop that could interfere with the horse's jump or landing.",
+      "The reproduction requires an adult horse that has been tamed and equipped with a saddle before the timing-sensitive trigger is attempted."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Java Edition installation for the first listed affected version. Do not use either listed fix version for this reproduction.",
+        "exact_input": "Select and launch \"Minecraft 1.9 Pre-Release 1\" in the Minecraft Launcher.",
+        "success_cue": "The Minecraft main menu has loaded and displays the selected affected version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a single-player Creative-mode world. No particular seed or world-generation setting is required. After entering the world, wait for nearby terrain to render and for movement and inventory input to respond normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is standing in a loaded Creative-mode world and can move without chunk-loading interruption.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Locate an unobstructed area of level, solid ground. Move away from trees, walls, pits, water, and low overhead blocks so the horse will have room to jump and land normally.",
+        "exact_input": "Use W/A/S/D and the mouse to move to and inspect a clear area.",
+        "success_cue": "Several blocks of flat, solid ground are clear around the player, including open air above the intended horse position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory and obtain a Horse Spawn Egg. Use the Search Items tab if necessary, then place the spawn egg into an available hotbar slot. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "Press E; select Search Items; search for \"horse\"; move the Horse Spawn Egg to the hotbar.",
+        "success_cue": "A Horse Spawn Egg is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "While the Creative inventory is still open, obtain a Saddle and place it into another available hotbar slot.",
+        "exact_input": "In Search Items, search for \"saddle\"; move the Saddle to the hotbar.",
+        "success_cue": "Both a Horse Spawn Egg and a Saddle are present in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Close the inventory, select the Horse Spawn Egg in the hotbar, aim at the clear ground, and use the egg to spawn a horse. Use an adult horse; if the spawned entity is not a suitable adult horse, spawn another on the clear ground and use the adult horse.",
+        "exact_input": "Press E to close the inventory; select the Horse Spawn Egg with the corresponding number key or mouse wheel; right-click the ground.",
+        "success_cue": "An adult horse is standing on the unobstructed ground near the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Prepare to tame the horse without accidentally using an item on it. Select an empty hotbar slot so the player's hand is empty.",
+        "exact_input": "Press the number key for an empty hotbar slot or scroll to one.",
+        "success_cue": "The active hotbar slot is empty and the player's hand contains no item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Mount the adult horse by aiming the crosshair at its body and using the interaction control.",
+        "exact_input": "Right-click the horse with an empty hand.",
+        "success_cue": "The viewpoint is positioned on the horse, indicating that the player has mounted it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Complete the taming process. If the untamed horse throws the player off, approach it and right-click it with an empty hand again. Repeat only until the horse accepts the rider and the taming heart particles appear.",
+        "exact_input": "After each forced dismount, right-click the horse again with an empty hand.",
+        "success_cue": "Heart particles have appeared and the horse no longer immediately throws the player off, confirming that it is tamed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "While mounted on the tamed horse, open the horse inventory. This interface includes the player's inventory and the horse's equipment slots.",
+        "exact_input": "Press E while mounted.",
+        "success_cue": "The horse inventory interface is open and its saddle equipment slot is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Equip the horse with the Saddle obtained earlier. Move the Saddle from the hotbar or player inventory into the horse's saddle equipment slot.",
+        "exact_input": "Left-click the Saddle, then left-click the horse's saddle slot.",
+        "success_cue": "The Saddle is displayed in the horse's saddle slot and appears on the horse model.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Close the horse inventory. If closing the interface leaves the player mounted, remain mounted. If the player is not mounted, aim at the saddled horse and right-click it to start riding.",
+        "exact_input": "Press E to close the interface; if necessary, right-click the saddled horse.",
+        "success_cue": "The player is riding the tamed, saddled horse and the horse can be controlled by the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Position the mounted horse on the prepared level ground and bring it to a complete stop. Ensure there is still open space above and around it.",
+        "exact_input": "Use W/A/S/D as needed, then release all movement keys.",
+        "success_cue": "The mounted horse is stationary on level, solid ground with an unobstructed landing area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Begin charging a horse jump by pressing and holding the Jump control. Continue holding until the horse jump-charge meter has visibly risen; a maximum-strength charge is not required.",
+        "exact_input": "Press and hold Space.",
+        "success_cue": "The horse jump-charge meter is visible and has accumulated charge while the player remains mounted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Trigger the test by releasing the Jump control and pressing the Dismount control at the same moment. For automated input, issue the Space key-up event and Left Shift key-down event in the same client frame or simulation tick. Release Left Shift after the player has dismounted.",
+        "exact_input": "Release Space and press Left Shift simultaneously; then release Left Shift once dismounted.",
+        "success_cue": "The charged jump has been released and the player has dismounted at the start of the horse's jump, with the horse beginning the jump or already airborne.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player has just released the charged horse jump and dismounted in the same moment, while the horse is beginning the jump or is airborne above the prepared level ground. Hand control to the observation subsystem immediately so it can watch the horse through its landing and subsequent movement.",
+    "uncertainties": [
+      "The report does not specify a required game mode, world seed, world type, or multiplayer environment. Creative-mode single player is used only as a practical, deterministic resource-acquisition setup.",
+      "Manual horse taming can require a variable number of mounting attempts. Continue only until heart particles confirm that the adult horse is tamed.",
+      "The trigger is timing-sensitive. The report requires releasing Space and pressing Shift at the same time; inputs separated across multiple client frames may not reproduce the intended condition.",
+      "The plan uses a Horse Spawn Egg because the report does not provide a seed, coordinates, or command for locating a horse. This is a setup convenience rather than a reported reproduction requirement."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0ef6af3aac521a6d016aa8a92f883087d0a1a4abc551f3c348",
+    "elapsed_seconds": 76.35,
+    "usage": {
+      "input_tokens": 10541,
+      "output_tokens": 5427,
+      "reasoning_tokens": 3206,
+      "total_tokens": 15968
+    },
+    "timestamp": "2026-09-15T02:12:11.725680+00:00"
+  }
+}

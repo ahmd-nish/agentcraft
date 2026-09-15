@@ -1,0 +1,172 @@
+{
+  "bug_id": "MC-208528",
+  "category": "Mob behaviour",
+  "source_md": "[Mob behaviour] - MC-208528.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-208528",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-12-15T14:27:42.414-0800",
+    "updated": "2025-04-11T10:21:40.383-0700",
+    "resolution date": "2024-03-08T00:21:45.852-0800",
+    "affects versions": "20w49a; 20w51a; 21w03a; 1.16.5; 21w06a; 1.17.1; 1.18.1; 1.18.2; 1.19; 1.19.3; 23w05a; 1.20.1",
+    "fix versions": "24w11a",
+    "area": "Gameplay",
+    "labels": "cat; wolf",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-208528.mp4; MC-208528 - Baby Cat.png; MC-208528 - Baby Wolf.png",
+    "issue links": "Duplicate:inward:MC-217524:Baby cat sits and stand up if I just feed her",
+    "_title": "Feeding tamed baby wolves and cats causes them to sit down/stand up"
+  },
+  "stor": {
+    "bug_id": "MC-208528",
+    "affected_versions": [
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w06a",
+      "1.17.1",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.3",
+      "23w05a",
+      "1.20.1"
+    ],
+    "recommended_version": "20w49a",
+    "environment": "Minecraft Java Edition 20w49a in a new single-player world. Use Creative mode with cheats enabled for deterministic setup, then switch to Survival mode before taming and feeding the kitten so the interaction consumes items normally. No particular seed, coordinates, world type, or multiplayer server is specified by the report.",
+    "preconditions": [
+      "The Minecraft Launcher has a Java Edition installation for snapshot 20w49a.",
+      "A mouse or equivalent control is available for the Use Item/Place Block action, which is right-click by default.",
+      "The test world permits commands. In a Creative single-player world, commands are available by default.",
+      "Use a baby cat, not an adult cat. The report comments explicitly state that the cat variant is reproducible only with a kitten.",
+      "Keep at least one Raw Cod after taming so a separate, single feeding interaction can be used as the trigger."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the Java Edition installation for snapshot 20w49a and start the game. Do not select the listed fix version 24w11a.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 20w49a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and create the world. No specific seed is required because none is provided in the report.",
+        "exact_input": null,
+        "success_cue": "The player has spawned in a new Creative-mode single-player world and can fly or access the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move onto an unobstructed solid surface with several blocks of open space around the player. Wait until the nearby terrain has rendered and movement and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing on loaded terrain with enough clear space for a kitten to appear two blocks away.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the summon command exactly as shown, including the leading slash, and press Enter. The negative Age value creates a baby cat rather than an adult cat.",
+        "exact_input": "/summon minecraft:cat ~2 ~ ~ {Age:-24000}",
+        "success_cue": "A visibly small, untamed cat is present approximately two blocks from the player, and no command syntax error is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, enter the give command exactly as shown, including the leading slash, and press Enter. This supplies enough Raw Cod for the probabilistic taming attempts and leaves fish available for the final feeding interaction.",
+        "exact_input": "/give @s minecraft:cod 64",
+        "success_cue": "A stack of 64 Raw Cod is present in the player's inventory, normally in the first hotbar slot because the inventory was empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the game-mode command exactly as shown, including the leading slash, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The player is in Survival mode; the Survival health and hunger HUD is visible above the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the hotbar slot containing Raw Cod by pressing its corresponding number key, normally 1, or by scrolling until Raw Cod is shown in the player's hand.",
+        "exact_input": "1",
+        "success_cue": "Raw Cod is visible in the player's main hand and its item name appears briefly above the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Face the untamed kitten while continuing to hold Raw Cod. Stop moving and avoid sharply turning the camera so the kitten can approach. When it is within interaction reach, place the crosshair on its body and press the Use Item action once, right-click by default. If it remains untamed, allow it to approach again and repeat one right-click at a time until it is tamed. Raw Cod and Raw Salmon are valid cat-taming items. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Turkish_translation/Kedi?utm_source=openai))",
+        "exact_input": "Right-click, repeating only until taming succeeds",
+        "success_cue": "Taming heart particles have appeared and the kitten now wears a collar, confirming that it belongs to the player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Visually confirm that the tamed cat is still a baby: its body and head should be noticeably smaller than those of an adult cat. If it has become an adult before taming completed, return to step 4 and prepare a fresh kitten; do not continue with an adult cat.",
+        "exact_input": null,
+        "success_cue": "A collar-wearing tamed kitten, rather than an adult cat, is present near the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Put the tamed kitten into a known standing pose without holding fish. Press 2 to select the empty second hotbar slot. Inspect the kitten: if it is sitting, aim at it and right-click once with the empty hand to make it stand; if it is already standing, do not interact with it.",
+        "exact_input": "2; if the kitten is sitting, right-click once",
+        "success_cue": "The selected hand is empty and the tamed kitten is visibly standing on all four legs rather than sitting.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Re-select the hotbar slot containing the remaining Raw Cod, normally slot 1. Do not right-click yet.",
+        "exact_input": "1",
+        "success_cue": "At least one Raw Cod is selected in the player's main hand while the tamed kitten remains standing.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Move within normal interaction reach of the tamed kitten and place the crosshair directly over its body. Stop moving and ensure no other cat, mob, or block is under the crosshair.",
+        "exact_input": null,
+        "success_cue": "The standing, collar-wearing kitten is directly under the crosshair, Raw Cod is selected, and the player is close enough to use the fish on it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press the Use Item action exactly once while aiming at the tamed standing kitten, right-click by default. Do not issue a second interaction or change the kitten's pose afterward; immediately hand control to the observation subsystem.",
+        "exact_input": "Right-click once",
+        "success_cue": "A single feeding/use interaction has just been issued to the tamed baby cat while Raw Cod was selected.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The player has just right-clicked the standing, tamed kitten exactly once with Raw Cod in the main hand. No follow-up interaction has been performed; begin observing the kitten's state and the immediate interaction feedback.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode with cheats is used only to make setup deterministic, followed by Survival mode for taming and the trigger interaction.",
+      "The kitten summon command and Raw Cod give command are operational additions; neither exact command appears in the Mojira report.",
+      "The web source confirms Raw Cod or Raw Salmon as appropriate cat-taming and feeding items, but an archival page explicitly documenting the full 20w49a summon command was not available. The supplied summon syntax is a practical version-compatible implementation choice.",
+      "The report title and description also identify tamed baby wolves fed meat, but the formal Steps to Reproduce describe only a kitten. This plan follows that formal kitten path and does not add a second wolf trigger.",
+      "Comment 11 mentions confirmation in 23w42a, but 23w42a is not present in the report's Affects versions field and therefore has not been added to affected_versions."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_08e364b0e0e6b70d016aa8a7e8b90c87d0b23799154c48d4d5",
+    "elapsed_seconds": 112.19,
+    "usage": {
+      "input_tokens": 25880,
+      "output_tokens": 7062,
+      "reasoning_tokens": 5351,
+      "total_tokens": 32942
+    },
+    "timestamp": "2026-09-15T02:07:20.454778+00:00"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "bug_id": "MC-250261",
+  "category": "Mob behaviour",
+  "source_md": "[Mob behaviour] - MC-250261.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-250261",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-04-17T03:48:07.697-0700",
+    "updated": "2025-04-16T17:34:02.801-0700",
+    "resolution date": "2022-08-16T09:25:18.843-0700",
+    "affects versions": "22w15a; 22w16b; 22w17a; 22w19a; 1.19 Pre-release 1; 1.19 Pre-release 5; 1.19 Release Candidate 2; 1.19",
+    "fix versions": "22w24a",
+    "labels": "frog; frog-spawn",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-250261.mp4; MC-250261.png; setup.png",
+    "issue links": "Relates:inward:MCPE-152559:Frogs lay eggs on Flowing Water",
+    "_title": "Frogs can lay spawn on flowing water"
+  },
+  "stor": {
+    "bug_id": "MC-250261",
+    "affected_versions": [
+      "22w15a",
+      "22w16b",
+      "22w17a",
+      "22w19a",
+      "1.19 Pre-release 1",
+      "1.19 Pre-release 5",
+      "1.19 Release Candidate 2",
+      "1.19"
+    ],
+    "recommended_version": "22w15a",
+    "environment": "Vanilla Minecraft: Java Edition 22w15a in a single-player Creative-mode world with commands/cheats enabled. A flat, open building area is recommended; the report does not require a particular seed, biome, coordinate, difficulty, server, or multiplayer configuration.",
+    "preconditions": [
+      "Launch the exact affected version 22w15a rather than the listed fix version 22w24a.",
+      "Create or load a Creative-mode world with commands enabled so the two frogs can be summoned deterministically.",
+      "Have solid building blocks, transparent blocks such as glass, one Water Bucket, and at least two Slimeballs available from the Creative inventory.",
+      "The test structure must expose exactly one flowing-water cell with air directly above it and dry land directly adjacent to it.",
+      "The water source feeding the flowing-water cell must have a solid block directly above it so that the source itself is not another eligible frogspawn location.",
+      "The frog enclosure must be closed, including a roof, because frogs can jump high enough to escape ordinary short walls."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation using the exact Java Edition snapshot 22w15a, then launch it. Do not use 22w24a because that is listed as a fix version rather than an affected version.",
+        "exact_input": "Version: 22w15a",
+        "success_cue": "The lower-left portion of the Minecraft title screen identifies the running version as 22w15a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, create a new single-player test world. Set Game Mode to Creative, enable commands/cheats, and use a Superflat world if available to provide an unobstructed building area. The Superflat choice is only an execution convenience and is not asserted by the report.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> World Type: Superflat -> Create New World",
+        "success_cue": "The player loads into a Creative-mode world, can fly, and has access to commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Creative inventory using the Inventory action, whose default key is E. Obtain a stack of solid blocks, a stack of glass or another transparent building block, one Water Bucket, and at least two Slimeballs. Place the water bucket and slimeballs in hotbar slots; the hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "E; collect solid blocks, glass, Water Bucket, and at least 2 Slimeballs",
+        "success_cue": "The required building materials, Water Bucket, and Slimeballs are visible in the inventory or hotbar.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Choose a flat, unobstructed location and define a floor level. Build a solid horizontal floor at least 5 blocks by 5 blocks. Keep the area above the floor clear for the enclosure.",
+        "exact_input": "Build a 5x5 solid floor",
+        "success_cue": "A continuous 5x5 floor exists with open space above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Choose one side of the floor as the north side. At the middle of that side, remove the edge floor block. Designate the resulting empty floor-level cell as the target cell. Leave the next floor block toward the center of the enclosure intact so a frog can stand on that dry block directly adjacent to the target cell.",
+        "exact_input": "Remove the center block of the chosen floor edge",
+        "success_cue": "The target cell is empty at floor level, has a solid support block beneath it, and is directly adjacent to an intact dry floor block on its interior side.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Remove or leave empty one additional floor-level cell immediately outward from the target cell, in a straight line away from the enclosure. Designate this outer cell as the source cell. Ensure both the target cell and source cell have solid blocks directly beneath them.",
+        "exact_input": "Create a second empty floor-level cell directly outside the target cell",
+        "success_cue": "The source and target form a straight two-cell channel at floor level, with the target adjacent to the dry enclosure floor and the source immediately beyond the target.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "At floor level, place solid containment blocks along both sides of the two-cell channel and beyond the outer end of the source cell. These blocks must prevent water from spreading sideways or farther outward. Do not place a block between the source and target cells.",
+        "exact_input": "Contain both sides and the outer end of the 1x2 channel with solid blocks",
+        "success_cue": "The only open horizontal path out of the source cell leads into the target cell, and the target's interior neighbor is the intact dry floor block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Place a solid block exactly one block above the source cell. Leave the block exactly one block above the target cell as air. This prevents the covered source from being an eligible laying location while preserving the exposed flowing-water target.",
+        "exact_input": "Cover source cell at source Y+1; leave target Y+1 empty",
+        "success_cue": "The source cell is directly covered by a solid block, while the target cell has unobstructed air directly above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Build transparent perimeter walls around the 5x5 test floor and connect them to the channel containment blocks. Make the interior walls at least two blocks tall above floor level. Leave one temporary opening large enough for the player to enter.",
+        "exact_input": "Build enclosure walls 2 blocks above floor level, leaving one temporary entrance",
+        "success_cue": "The land area and target cell are surrounded by walls except for the temporary player entrance.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Add a complete roof at least three blocks above floor level, using glass where visibility is useful. The roof must leave two blocks of interior air above the dry floor and must not fill the air block directly above the target water cell. Enter the enclosure through the temporary opening and then close that opening with the same wall material.",
+        "exact_input": "Roof at floor Y+3; enter enclosure; close temporary entrance",
+        "success_cue": "The player is inside a fully closed chamber, the dry floor has usable headroom, and the target cell still has air immediately above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the Water Bucket in the active hotbar slot. Use the bucket once on the source cell, using the Use Item action whose default input is right-click. Do not place water directly into the target cell.",
+        "exact_input": "Right-click the source cell once with the Water Bucket",
+        "success_cue": "One source block occupies the covered source cell and water has spread from it into the exposed target cell.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Verify the water configuration before introducing frogs. The outer source cell must be the only cell where a bucket was emptied; the exposed target cell must contain water solely because water spread into it from the source. Confirm that the target has air directly above it and dry land immediately beside it.",
+        "exact_input": null,
+        "success_cue": "The uncovered target is a flowing-water cell fed by the covered source, with an adjacent dry floor block available for a frog to stand on.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Stand near the center of the enclosed dry floor. Open chat with the default T key, enter the exact summon command including the leading slash, and press Enter to summon the first frog one block to one side of the player.",
+        "exact_input": "/summon minecraft:frog ~1 ~ ~",
+        "success_cue": "A living frog is visible inside the enclosure and the command does not report a syntax or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Open chat again, enter the second exact summon command including the leading slash, and press Enter to summon another frog on the other side of the player.",
+        "exact_input": "/summon minecraft:frog ~-1 ~ ~",
+        "success_cue": "Exactly two living frogs are present inside the closed enclosure.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Select the Slimeball in the active hotbar slot. Aim the crosshair at the first frog and use the Slimeball once with the Use Item action, whose default input is right-click. Avoid clicking the same frog a second time.",
+        "exact_input": "Right-click the first frog once with a Slimeball",
+        "success_cue": "Heart particles appear above the first frog, indicating that it has entered love mode.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "While still holding the Slimeball, aim at the second frog and use the Slimeball once with right-click.",
+        "exact_input": "Right-click the second frog once with a Slimeball",
+        "success_cue": "Heart particles appear above the second frog and the two frogs begin moving toward each other to mate.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "Wait without damaging or separating the frogs until the mating interaction completes. Keep the chamber closed and do not place, remove, or update blocks around the water channel.",
+        "exact_input": null,
+        "success_cue": "The mating heart-particle sequence ends, both frogs remain inside the chamber, and one frog is ready to perform its post-mating lay-spawn behavior.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Stop holding the Slimeball so the frogs are not tempted toward the player. Select an empty hotbar slot or a non-slimeball item, move away from the target-water side, and remain still while keeping the target area visible.",
+        "exact_input": "Select an empty or non-Slimeball hotbar slot",
+        "success_cue": "No Slimeball is held in the player's hand, and the frogs can navigate toward the water without following the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Wait for the post-mating frog to approach the dry floor block adjacent to the uncovered flowing-water target and complete its lay-spawn action. Do not interact with the frog, water, or nearby blocks during this wait. As soon as the laying action and associated sound complete, stop all player input and hand control to the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "The frog has just completed its lay-spawn action beside the uncovered flowing-water target; no subsequent block update has been intentionally caused.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The post-mating frog has just completed its lay-spawn action beside the single exposed flowing-water cell. Begin observation of the target cell immediately, before the player places, removes, touches, or otherwise updates any nearby block.",
+    "uncertainties": [
+      "The supplied report refers to setup.png, but the attachment image itself is not included in the supplied report text. The described 5x5 enclosure and covered-source/flowing-target channel are a functional reconstruction rather than a claim that they exactly match the attachment's dimensions or materials.",
+      "The report does not specify a world seed, coordinates, biome, world type, game mode, or difficulty. Creative mode with commands and an optional Superflat world was selected solely to make the reproduction deterministic and quick.",
+      "The report says to summon two frogs but does not provide an exact command. The namespaced Java Edition command '/summon minecraft:frog' is used as the deterministic operational implementation.",
+      "The report provides no fixed amount of time for the pregnant frog to approach water. Step 19 therefore uses the frog's completed lay-spawn action and sound as the observable readiness condition rather than prescribing an unsupported timer.",
+      "The reconstruction deliberately covers the water source and exposes only the flowing target so that the frog cannot select an uncovered source-water cell instead. This isolation detail is inferred from the behavior being tested rather than explicitly stated in the written report."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_04546eb1d700be32016aa8a8b0215487d08c748f8fcb9364d5",
+    "elapsed_seconds": 127.48,
+    "usage": {
+      "input_tokens": 25400,
+      "output_tokens": 8140,
+      "reasoning_tokens": 5591,
+      "total_tokens": 33540
+    },
+    "timestamp": "2026-09-15T02:10:55.367731+00:00"
+  }
+}

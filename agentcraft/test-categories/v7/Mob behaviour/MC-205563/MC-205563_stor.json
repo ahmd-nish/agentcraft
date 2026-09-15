@@ -1,0 +1,162 @@
+{
+  "bug_id": "MC-205563",
+  "category": "Mob behaviour",
+  "source_md": "[Mob behaviour] - MC-205563.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-205563",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-11-13T15:20:56.892-0800",
+    "updated": "2025-04-30T06:17:12.076-0700",
+    "resolution date": "2022-11-16T12:01:16.733-0800",
+    "affects versions": "20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 21w05b; 21w06a; 21w07a; 21w08b; 21w10a; 21w11a; 21w14a; 21w15a; 21w16a; 21w17a; 1.17 Pre-release 1; 1.17; 1.17.1; 21w39a; 1.18; 1.18.1; 1.18.2; 22w19a; 1.19; 1.19.1; 1.19.2",
+    "fix versions": "22w46a",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2021-04-09_13.49.00.png; MC-205563.mp4",
+    "_title": "Endermen holding powder snow drop a powder snow bucket when killed"
+  },
+  "stor": {
+    "bug_id": "MC-205563",
+    "affected_versions": [
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w10a",
+      "21w11a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "21w39a",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "22w19a",
+      "1.19",
+      "1.19.1",
+      "1.19.2"
+    ],
+    "recommended_version": "20w46a",
+    "environment": "Minecraft Java Edition snapshot 20w46a in a newly created vanilla single-player Creative-mode world. Commands/cheats must be enabled, difficulty must not be Peaceful, and the default doMobLoot game rule must remain enabled. Default keyboard and mouse inputs are referenced; use the equivalent configured controls if bindings have been changed.",
+    "preconditions": [
+      "Minecraft Java Edition snapshot 20w46a is installed and can be launched from the Minecraft Launcher.",
+      "Use a new or disposable world so that unrelated entities and previously dropped items cannot be confused with the summoned Enderman's death drops.",
+      "Create the world in Creative mode with commands/cheats enabled.",
+      "Set the difficulty to Easy, Normal, or Hard; do not use Peaceful, because hostile entities may be removed.",
+      "Leave the doMobLoot game rule at its default value of true so that entity death drops are generated.",
+      "Do not load mods, plugins, or datapacks that alter Endermen, entity equipment, combat, or mob drops."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the affected snapshot selected for this reproduction.",
+        "exact_input": "20w46a",
+        "success_cue": "The title screen displays Minecraft Java Edition snapshot 20w46a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer, choose Create New World, set Game Mode to Creative, ensure Allow Cheats is ON, and select a non-Peaceful difficulty such as Normal. Create the world.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON; Difficulty: Normal",
+        "success_cue": "The player loads into a new Creative-mode world and can open chat commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until the nearby terrain has rendered and movement, inventory input, and chat input respond normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are visible and the player can move without world-loading interruption.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Obtain an unenchanted diamond sword for the manual kill. Press E to open the Creative inventory, select the Search Items tab (normally marked by a compass), enter the item name in the search field, and place one Diamond Sword into an empty hotbar slot. Close the inventory with E.",
+        "exact_input": "diamond sword",
+        "success_cue": "An unenchanted Diamond Sword is present in one of the nine hotbar slots at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Move to a level, open location and confirm there are no other Endermen or loose item entities immediately around the player. This keeps the summoned entity and its later drops unambiguous.",
+        "exact_input": null,
+        "success_cue": "There is clear ground beside the player where one Enderman can be summoned and visually tracked.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, or the configured Open Chat control, to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat command entry field is open and ready for text input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the report's summon command exactly as supplied, including the leading slash, capitalization, braces, quotation marks, and NBT, and then press Enter.",
+        "exact_input": "/summon minecraft:enderman ~ ~ ~ {NoAI:1b,carriedBlockState:{Name:\"minecraft:powder_snow\"}}",
+        "success_cue": "The command executes without a syntax error and an Enderman appears at or immediately beside the player's position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Visually identify the newly summoned Enderman. Confirm that it is stationary because of the NoAI tag and that it is visibly carrying a powder snow block. If it spawned inside the player's position, move a few blocks away so the full entity can be targeted.",
+        "exact_input": null,
+        "success_cue": "Exactly one stationary Enderman carrying a light-colored powder snow block is visible and reachable by melee attacks.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select the Diamond Sword by pressing the number key corresponding to its hotbar slot or by scrolling to that slot. Approach until the Enderman is within melee range, keep the crosshair centered on its body, and remain on the ground rather than jumping so accidental critical hits do not make the lethal strike less predictable.",
+        "exact_input": "Select the Diamond Sword hotbar slot",
+        "success_cue": "The Diamond Sword is visible in the player's hand and the crosshair is aimed at the Enderman from melee range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Kill the Enderman with direct sword attacks. Left-click once, wait for the attack-cooldown indicator to refill fully, and repeat. Keep the crosshair on this Enderman, do not jump, and do not use commands, fire, environmental damage, or another entity to finish it. As soon as the Enderman receives the lethal hit and begins disappearing, stop attacking and do not move away.",
+        "exact_input": "Repeated fully charged left-click attacks with the unenchanted Diamond Sword",
+        "success_cue": "The summoned Enderman has completed its death animation following the final sword hit, and no additional player action has been taken after its death.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The summoned Enderman carrying powder snow has just been killed by the player's final melee attack. The player has stopped attacking and remains beside the death location; begin observing the generated death drops and any immediate item pickup without performing another command or action.",
+    "uncertainties": [
+      "The report does not specify a game mode, world type, difficulty, or kill weapon. A new Creative-mode world with cheats, a non-Peaceful difficulty, and an unenchanted Diamond Sword are practical execution choices rather than stated reproduction requirements.",
+      "The report says only to kill the Enderman. Manual fully charged sword attacks are used to preserve an ordinary player-caused mob death without introducing an additional kill command or environmental damage source.",
+      "The exact number of sword attacks is intentionally not fixed because partially charged or accidental critical attacks can change the count; the trigger is the final attack that actually kills the Enderman.",
+      "The summon command is preserved exactly from the report and is used directly in the first listed affected version, 20w46a."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_074fed43efb396ec016aa8a7ab762c87d0a1697747c6e36784",
+    "elapsed_seconds": 61.09,
+    "usage": {
+      "input_tokens": 9171,
+      "output_tokens": 4063,
+      "reasoning_tokens": 2588,
+      "total_tokens": 13234
+    },
+    "timestamp": "2026-09-15T02:05:28.257292+00:00"
+  }
+}
