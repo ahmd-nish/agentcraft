@@ -1,0 +1,250 @@
+{
+  "bug_id": "MC-233604",
+  "category": "Performance",
+  "source_md": "[Performance] - MC-233604.md",
+  "source_meta": {
+    "mojira categories": "Performance",
+    "project": "MC",
+    "issue key": "MC-233604",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2021-08-01T23:03:20.681-0700",
+    "updated": "2026-04-11T10:16:33.037-0700",
+    "resolution date": "2025-09-19T12:07:30.211-0700",
+    "affects versions": "1.17.1; 21w37a; 21w42a; 21w44a; 1.18 Pre-release 1; 1.18 Pre-release 2; 1.18; 1.18.1 Pre-release 1; 1.18.1; 22w06a; 1.18.2; 22w12a; 22w16b; 22w19a; 1.19 Pre-release 4; 1.19; 1.19.2; 1.19.3 Pre-release 2; 1.19.3; 23w03a; 23w04a; 23w05a; 23w06a; 1.19.4 Pre-release 1; 1.19.4 Pre-release 3; 1.19.4; 23w16a; 23w18a; 1.20.1; 23w31a; 23w32a; 1.21.1; 24w33a; 1.21.4",
+    "fix versions": "25w16a",
+    "votes": "1",
+    "watchers": "2",
+    "attachments": "23",
+    "attachment filenames": "2021-08-01_21.10.57.png; 2021-08-01_21.11.33.png; 2021-08-01_21.19.00.png; 2021-08-01_21.19.14.png; 2021-08-02_16.52.13.png; 2021-08-02_16.53.38.png; 2022-06-07_21.14.56.png; 2022-06-07_21.15.57.png; 2025-04-18_02.41.12.png; 2025-04-18_02.41.30.png; benchmark1.jpg; benchmark2.jpg; benchmark3.jpg; benchmark4.jpg; benchmark5.jpg; benchmark6.jpg; container_1.png; container_2.png; MC-233604.png; obraz-20250417-185549.png; obraz-20250417-185556.png; recipe_1.png; recipe_2.png",
+    "issue links": "Relates:inward:MC-226966:Signs increase lots of lag when using glowing ink sac | Relates:inward:MC-233605:Enchantment glint rendering can impact frame rate performance | Relates:inward:MC-253502:Obfuscated text has a significant impact on performance",
+    "_title": "GUI / Item rendering can heavily impact frame rate performance"
+  },
+  "stor": {
+    "bug_id": "MC-233604",
+    "affected_versions": [
+      "1.17.1",
+      "21w37a",
+      "21w42a",
+      "21w44a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 2",
+      "1.18",
+      "1.18.1 Pre-release 1",
+      "1.18.1",
+      "22w06a",
+      "1.18.2",
+      "22w12a",
+      "22w16b",
+      "22w19a",
+      "1.19 Pre-release 4",
+      "1.19",
+      "1.19.2",
+      "1.19.3 Pre-release 2",
+      "1.19.3",
+      "23w03a",
+      "23w04a",
+      "23w05a",
+      "23w06a",
+      "1.19.4 Pre-release 1",
+      "1.19.4 Pre-release 3",
+      "1.19.4",
+      "23w16a",
+      "23w18a",
+      "1.20.1",
+      "23w31a",
+      "23w32a",
+      "1.21.1",
+      "24w33a",
+      "1.21.4"
+    ],
+    "recommended_version": "1.17.1",
+    "environment": "Minecraft Java Edition 1.17.1 in an unmodified single-player client; a Superflat world using the \"The Void\" preset; Creative mode as a practical setup choice; one completely empty double chest and one double chest with all 54 storage slots occupied; the Alt+F3 frame-time graph enabled during the comparison.",
+    "preconditions": [
+      "Install and launch Minecraft Java Edition 1.17.1, the first version listed as affected in the report. Do not use fix version 25w16a for the reproduction.",
+      "Use the vanilla client without rendering or performance mods so that a third-party renderer does not alter the GUI-rendering workload.",
+      "Use Creative mode to make chest placement and deterministic filling possible without crafting or gathering resources. Creative mode is not specified by the report and is only an execution choice.",
+      "Keep the same game window size, GUI scale, resource packs, video settings, frame-rate limit, VSync state, and camera conditions for the empty- and full-chest trials.",
+      "Ensure the keyboard can send F3-key combinations. On keyboards where F3 is assigned a hardware function, the Fn key may also be necessary.",
+      "The report does not identify a particular item. This plan uses full stacks of Diamonds as a consistent, stackable, non-block item available in 1.17.1.",
+      "Keep the mouse pointer over the same non-slot portion of the chest GUI during both trials so that item tooltips are not introduced into only one measurement."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the installation for Java Edition 1.17.1, start the game, and wait for the main title screen to become responsive.",
+        "exact_input": "Minecraft Java Edition 1.17.1",
+        "success_cue": "The lower-left corner of the title screen identifies the running version as Minecraft 1.17.1, and the menu buttons respond normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world creation screen by selecting \"Singleplayer\" and then \"Create New World\".",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Set the new world's game mode to Creative. Leave cheats enabled if the world-creation screen enables them automatically for Creative mode; no commands are required by this plan.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen displays \"Game Mode: Creative\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Configure the world as a void world: select \"More World Options...\", cycle \"World Type\" until it reads \"Superflat\", select \"Customize\", select \"Presets\", choose \"The Void\", select \"Use Preset\", and return with \"Done\". The Void preset and its spawn platform are available in the selected Java Edition version. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_15w37a?utm_source=openai))",
+        "exact_input": "More World Options... -> World Type: Superflat -> Customize -> Presets -> The Void -> Use Preset -> Done",
+        "success_cue": "The world-creation screen shows the Superflat world type configured with the \"The Void\" preset.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Select \"Create New World\". After the world opens, do not begin chest setup until the spawn platform and surrounding void have rendered and movement, inventory input, and camera movement respond normally.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing or flying above a small solid spawn platform surrounded by empty void, and game input is responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Obtain chests from the Creative inventory. Press E, open the \"Search Items\" tab if it is not already selected, click the search field, enter \"chest\", and place a stack of the ordinary Chest item into a hotbar slot. Press E again to close the inventory. The hotbar is the row of nine item slots at the bottom of the gameplay screen.",
+        "exact_input": "E; search text: chest; item: Chest",
+        "success_cue": "A Chest stack is visible in one of the nine hotbar slots and normal gameplay view is restored.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Create the double chest that will be filled. Select the Chest hotbar slot, aim at the top of the spawn platform, and right-click once to place a chest. Aim at the top of the immediately adjacent platform block and right-click again while facing the same direction so the two chests join. Keep open platform space around the pair.",
+        "exact_input": "Select Chest; right-click twice on two horizontally adjacent platform blocks",
+        "success_cue": "Two adjacent chest blocks have joined into one double-width chest.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Create the empty control double chest. Leave at least one non-chest block between it and the first double chest, then place two adjacent chests in the same manner. Do not put any item into this second double chest.",
+        "exact_input": "Right-click twice on another pair of horizontally adjacent platform blocks, with at least one block separating the two chest pairs",
+        "success_cue": "There are two separate double chests on the platform; neither pair has joined to the other pair.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Designate the first double chest as the full test chest and the second as the empty control chest. Open the Creative inventory with E, remove the remaining Chest stack from the hotbar using the Creative inventory's destroy-item slot, select \"Search Items\", enter \"diamond\", and locate the Diamond item.",
+        "exact_input": "E; search text: diamond; item: Diamond",
+        "success_cue": "The Diamond item is visible in the Creative item catalog, and no Chest stack remains in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Prepare the first batch of item stacks. For each of the nine hotbar slots, take a full Diamond stack from the Creative item catalog and place it into that hotbar slot. Close the inventory with E when all nine hotbar slots contain 64 Diamonds.",
+        "exact_input": "9 hotbar slots, each containing Diamond ×64",
+        "success_cue": "All nine hotbar slots contain full stacks of 64 Diamonds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Transfer the first batch into the full test chest. Aim at that double chest and right-click to open it. Hold Shift and left-click each of the nine Diamond stacks in the hotbar so each stack moves into the chest. Do not transfer anything into the empty control chest.",
+        "exact_input": "Right-click full test chest; Shift+left-click each of 9 Diamond stacks",
+        "success_cue": "Nine of the double chest's 54 storage slots contain Diamond stacks, and the player's hotbar is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press Esc to close the chest. Repeat the following batch cycle five more times: press E, search for Diamond if necessary, load all nine hotbar slots with full Diamond stacks, close the inventory, right-click the designated full test chest, and Shift+left-click all nine stacks into it. After the fifth additional batch, keep the chest GUI open and inspect only the slot occupancy.",
+        "exact_input": "Repeat 5 times: E -> Diamond ×64 in all 9 hotbar slots -> E -> right-click full test chest -> Shift+left-click all 9 stacks",
+        "success_cue": "The full test chest GUI shows six rows of nine storage slots, and every one of its 54 slots contains a Diamond stack. The player inventory and hotbar contain no remaining Diamond stacks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Close the full test chest with Esc. Confirm that the other double chest has never been used for storage. If its state is uncertain, briefly open it, verify that all 54 slots are empty, and close it before enabling performance graphs.",
+        "exact_input": "Esc",
+        "success_cue": "Both chest GUIs are closed; one double chest is known to contain 54 Diamond stacks and the control double chest is known to contain no items.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Prepare consistent comparison conditions. Stand directly in front of the empty control chest at normal interaction distance. Allow all visible terrain to finish rendering, stop moving, and avoid changing the window, video settings, GUI scale, or resource packs for the remainder of the test.",
+        "exact_input": null,
+        "success_cue": "The player is stationary, the empty control chest is within right-click range, surrounding rendering is stable, and game input is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Enable the 1.17.1 frame-time graph by holding Alt and pressing F3 once. On a keyboard that reserves F3 for a hardware function, use Fn+Alt+F3. In this version, Alt+F3 opens the debug screen with the frame-time graph; the shortcut changed in later versions. ([ja.minecraft.wiki](https://ja.minecraft.wiki/w/%E3%83%87%E3%83%90%E3%83%83%E3%82%B0%E7%94%BB%E9%9D%A2?utm_source=openai))",
+        "exact_input": "Alt+F3 (or Fn+Alt+F3 when required by the keyboard)",
+        "success_cue": "The debug overlay is visible and a scrolling frame-time graph is displayed at the bottom of the screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "Place the mouse pointer over a neutral part of the screen where it will not cover a chest storage slot after the GUI opens, such as the future chest-title or GUI-background area. Keep the pointer at that corresponding location during both chest trials.",
+        "exact_input": null,
+        "success_cue": "The pointer is positioned away from the 54 chest slots and will not produce an item tooltip.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Aim at the empty control double chest and right-click it once to open its container GUI. Do not move items or change any settings.",
+        "exact_input": "Right-click empty control double chest",
+        "success_cue": "A \"Large Chest\" GUI with six rows of nine empty chest slots is open, and the debug/frame-time display remains visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Keep the empty chest GUI open and remain idle until the scrolling graph has accumulated a stable control sample, preferably until bars created before opening the chest have scrolled out of the graph. Retain the displayed FPS or frame-time level as the empty-chest baseline. Do not hover over slots.",
+        "exact_input": null,
+        "success_cue": "A stable empty-chest baseline reading has been retained while the empty Large Chest GUI remains open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Press Esc to close the empty control chest. Wait until the gameplay view has returned, the chest lid has closed, and movement and camera input respond normally.",
+        "exact_input": "Esc",
+        "success_cue": "The empty chest GUI is closed, normal gameplay view is visible, and the Alt+F3 debug/frame-time display remains enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Move to the full test double chest and stop at approximately the same interaction distance and viewing angle used for the empty chest. Keep the same window, graphics settings, and pointer placement. Wait until movement has stopped and rendering is stable.",
+        "exact_input": null,
+        "success_cue": "The player is stationary with the full test chest within right-click range, and the debug/frame-time graph is still visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Aim at the full test double chest and right-click it exactly once to open the container. Do not move the mouse onto an item slot, transfer items, close the GUI, or repeatedly reopen the chest.",
+        "exact_input": "Right-click full test double chest once",
+        "success_cue": "The \"Large Chest\" GUI is open with all 54 chest slots displaying Diamond stacks, while the debug/frame-time graph remains enabled.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The full 54-slot Diamond-filled double chest has just been opened once under the same client and rendering conditions used for the empty-chest baseline, with the Alt+F3 frame-time graph still enabled and no item tooltip displayed. Begin observing and comparing frame-rate or frame-time performance without closing or modifying the GUI.",
+    "uncertainties": [
+      "The report requires a double chest \"full of items\" but does not specify item identity, stack size, or whether all 54 slots must contain distinct items. This plan uses Diamond ×64 in every slot as a deterministic practical interpretation.",
+      "The report does not specify a game mode. Creative mode is selected only to eliminate crafting and resource-gathering variability.",
+      "The report does not prescribe whether the empty or full chest should be opened first. This plan opens the empty chest first to establish a control baseline immediately before the full-chest trigger.",
+      "The report does not specify a sampling duration or an FPS-recording method. The plan uses the observable condition that the scrolling graph has replaced its pre-opening history rather than imposing a hardware-dependent number of seconds.",
+      "This execution plan is tailored to recommended version 1.17.1. Alt+F3 is the correct graph shortcut there, but the shortcut was changed to F3+2 beginning in the 1.20.2 development cycle; an executor intentionally testing later affected versions may need that later shortcut. ([minecraft.wiki](https://minecraft.wiki/rest.php/v1/page/Debug_screen/html?utm_source=openai))"
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0fea23620f0b14d5016aa88c455f4087d098d976b4625915d9",
+    "elapsed_seconds": 152.23,
+    "usage": {
+      "input_tokens": 17748,
+      "output_tokens": 10529,
+      "reasoning_tokens": 7510,
+      "total_tokens": 28277
+    },
+    "timestamp": "2026-09-15T00:10:05.239441+00:00"
+  }
+}

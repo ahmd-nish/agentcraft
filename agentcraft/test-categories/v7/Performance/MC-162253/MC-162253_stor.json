@@ -1,0 +1,273 @@
+{
+  "bug_id": "MC-162253",
+  "category": "Performance",
+  "source_md": "[Performance] - MC-162253.md",
+  "source_meta": {
+    "mojira categories": "Performance",
+    "project": "MC",
+    "issue key": "MC-162253",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2019-09-29T10:31:08.934-0700",
+    "updated": "2025-05-29T09:20:56.086-0700",
+    "resolution date": "2024-03-09T20:30:16.542-0800",
+    "affects versions": "1.14.4; 19w39a; 19w40a; 19w41a; 1.15 Pre-release 1; 1.15.1; 1.15.2; 20w06a; 20w12a; 20w17a; 20w18a; 1.16 Pre-release 2; 1.16 Pre-release 4; 1.16 Pre-release 5; 1.16 Pre-release 8; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.2; 1.16.3; 1.16.4 Pre-release 2; 1.16.4; 20w45a; 20w46a; 20w49a; 1.16.5; 21w06a; 21w08b; 21w11a; 21w15a; 21w16a; 21w18a; 21w20a; 1.17 Pre-release 4; 1.17 Pre-release 5; 1.17 Release Candidate 1; 1.17 Release Candidate 2; 1.17; 1.17.1 Pre-release 1; 1.17.1 Release Candidate 1; 1.17.1; 21w40a; 21w44a; 1.18 Pre-release 1; 1.18 Pre-release 5; 1.18 Release Candidate 3; 1.18; 1.18.1 Pre-release 1; 1.18.1; 22w07a; 1.18.2 Pre-release 1; 1.18.2; 22w12a; 22w17a; 22w18a; 1.19; 1.19.2; 1.19.3; 23w07a; 1.19.4",
+    "fix versions": "23w16a",
+    "watchers": "2",
+    "attachments": "7",
+    "attachment filenames": "2020-03-31_12.25.37.png; 2023-01-21_01_24_55-What A Crowded World!-1_19_3.zip; Danielps1818.zip; MC-162253.mp4; MC-162253.png; Minecraft 2023.01.21 - 01.23.46.04_Trim.mp4; projet-sans-nom_pWthAUOB.compressed-1.mp4",
+    "issue links": "Relates:inward:MC-166005:Stuttering when crossing chunk borders/loading chunks | Duplicate:inward:MC-167553:Lag Spike if you go trough specific chunks in Amplified | Duplicate:inward:MC-168419:Massive frame drops caused by light update while crossing certain chunks | Duplicate:inward:MC-168904:FPS is drops unless i hold down a mouse button | Duplicate:inward:MC-168956:Moving across specific chunk borders causes a lag spike | Duplicate:inward:MC-169580:Lag spikes, between chunks | Duplicate:inward:MC-170809:When playing anything above 1.13, crossing a chunk border causes scheduled executable to jump up in use, causing fps drops | Duplicate:inward:MC-175907:Lag spike when moving between chunks | Duplicate:inward:MC-187877:Game Freezes For a Few Seconds when Crossing Chunk Borders | Duplicate:inward:MC-191436:When walking through chunks, cause lag spikes. | Duplicate:inward:MC-197794:Lag Spikes | Duplicate:inward:MC-199123:Chunk lag | Duplicate:inward:MC-205013:Chunk border fps freeze | Duplicate:inward:MC-207183:Chunk borders cause severe lag upon crossing them. | Duplicate:inward:MC-213646:Noticable freeze frame when walking through one specific chunk border | Duplicate:inward:MC-214826:Frame drops when switching chunk | Duplicate:inward:MC-217171:Lag spikes when going to a new chunk on the positive X or Z axis. | Duplicate:inward:MC-217175:sometimes entering new chunks causes frames to plummet | Duplicate:inward:MC-220227:Lag spike when crossing 2 loaded chunks | Duplicate:inward:MC-222997:Chunk Lag-Spikes | Duplicate:inward:MC-224176:FPS drop on specific coordinates. | Duplicate:inward:MC-224935:crossing chunkborders near worldspawn and in proximity to worldspawn in its direction cause severe server lag spikes when using caves and cliffs data pack | Duplicate:inward:MC-233172:Big frame drops while entering random sets of chunks (1.17-optifine) | Duplicate:inward:MC-241711:Weird Swamp Lag Spike | Duplicate:inward:MC-243095:Freeze lag for certain chunk | Duplicate:inward:MC-247637:Chunk Lag Spike | Duplicate:inward:MC-250587:Lag spike when entering in some chunks | Duplicate:inward:MC-251184:Versions above 1.8 stutter even with high FPS | Duplicate:inward:MC-251275:Huge frame rate drop after going from chunk to another chunk (it doesn't happen in all the chunks) | Duplicate:inward:MC-252805:lag peak | Duplicate:inward:MC-254750:Lag spike when entering some chunks | Duplicate:inward:MC-255037:i get extreme lag spikes when crossing chunk borders (1.19 java) | Duplicate:inward:MC-256397:FPS Drops entering certain chunks | Duplicate:inward:MC-261759:Lag spike when entering a new chunk | Duplicate:inward:MC-262423:Massive lagspike when crossing chunk borders | Relates:outward:MC-158672:Entering certain chunks causes FPS drops | Relates:inward:MC-188295:Placing fallling blocks using /setblock can cause a client-side lag spike in some circumstances",
+    "_title": "Lag spike when crossing certain chunk borders"
+  },
+  "stor": {
+    "bug_id": "MC-162253",
+    "affected_versions": [
+      "1.14.4",
+      "19w39a",
+      "19w40a",
+      "19w41a",
+      "1.15 Pre-release 1",
+      "1.15.1",
+      "1.15.2",
+      "20w06a",
+      "20w12a",
+      "20w17a",
+      "20w18a",
+      "1.16 Pre-release 2",
+      "1.16 Pre-release 4",
+      "1.16 Pre-release 5",
+      "1.16 Pre-release 8",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w27a",
+      "20w28a",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4 Pre-release 2",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w49a",
+      "1.16.5",
+      "21w06a",
+      "21w08b",
+      "21w11a",
+      "21w15a",
+      "21w16a",
+      "21w18a",
+      "21w20a",
+      "1.17 Pre-release 4",
+      "1.17 Pre-release 5",
+      "1.17 Release Candidate 1",
+      "1.17 Release Candidate 2",
+      "1.17",
+      "1.17.1 Pre-release 1",
+      "1.17.1 Release Candidate 1",
+      "1.17.1",
+      "21w40a",
+      "21w44a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 5",
+      "1.18 Release Candidate 3",
+      "1.18",
+      "1.18.1 Pre-release 1",
+      "1.18.1",
+      "22w07a",
+      "1.18.2 Pre-release 1",
+      "1.18.2",
+      "22w12a",
+      "22w17a",
+      "22w18a",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "23w07a",
+      "1.19.4"
+    ],
+    "recommended_version": "1.14.4",
+    "environment": "Minecraft Java Edition 1.14.4 using an unmodified vanilla dedicated server and a matching unmodified vanilla client. Generate a fresh default Overworld from seed -4952361208952771886. Use one test player with access to the dedicated-server console or operator permission. Do not use Paper, Spigot, Fabric, Forge, OptiFine, or other modifications for this reproduction.",
+    "preconditions": [
+      "The official Minecraft Java Edition 1.14.4 client and dedicated-server software are available.",
+      "A fresh server directory is available, its EULA has been accepted, and no existing world data will be reused.",
+      "The test player can connect to the dedicated server.",
+      "The executor can use the dedicated-server console to grant the test player operator permission.",
+      "Keyboard and mouse controls are available; where controls have been rebound, use the bindings corresponding to chat, jump/fly, forward movement, debug screen, and chunk-border display.",
+      "The trigger must be performed while walking on the ground, not while flying or teleporting."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Prepare a clean, unmodified Minecraft Java Edition 1.14.4 dedicated server and launch the matching unmodified 1.14.4 client. Do not install server plugins, client mods, optimization mods, or bug-fix mods.",
+        "exact_input": null,
+        "success_cue": "Both client and server identify their version as Minecraft Java Edition 1.14.4, and the server contains no mods or plugins.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Before the server generates its world for the first time, open server.properties and configure the supplied seed and the default world type. If a world was already generated under the configured level-name, stop the server and move or delete that world directory before continuing so the seed is actually applied.",
+        "exact_input": "level-seed=-4952361208952771886\nlevel-type=default",
+        "success_cue": "server.properties contains the exact negative seed -4952361208952771886 and specifies the default world type, with no previously generated world remaining under the selected level-name.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "For this deterministic run, set the dedicated server's chunk view distance to 10 in server.properties. This fixes a concrete view-distance value because the report states that the location of the lag-producing border is relative to server view-distance.",
+        "exact_input": "view-distance=10",
+        "success_cue": "server.properties contains view-distance=10.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Start the dedicated server and wait for initial world generation to finish. Do not let the test player connect until the server console reports that startup is complete.",
+        "exact_input": null,
+        "success_cue": "The server console displays its normal completion message containing \"Done\", and it accepts console input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "In the dedicated-server console, grant operator permission to the test player's Minecraft username. Enter the command without a leading slash, replacing the placeholder with the actual username.",
+        "exact_input": "op <player_name>",
+        "success_cue": "The server console confirms that the named player has been made a server operator.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "From the matching 1.14.4 client, connect the operator player to the dedicated server. Wait until the Overworld terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in the server's Overworld, nearby terrain is visible, and movement is responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Set the client's Render Distance to 10 chunks: press Esc, select Options, select Video Settings, adjust Render Distance to 10 chunks, and return to the game.",
+        "exact_input": null,
+        "success_cue": "The Video Settings screen shows Render Distance: 10 chunks, and the player has returned to gameplay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Put the player in Creative mode for deterministic setup. Press T to open chat, enter the exact command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode creative @s",
+        "success_cue": "The game confirms Creative mode, and the player has Creative abilities.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Double-tap the Jump control, which is Space by default, to begin Creative flight. Ascend slightly if necessary and verify that releasing Space does not make the player fall.",
+        "exact_input": null,
+        "success_cue": "The player is flying and can remain suspended safely while the setup commands are executed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Load the test location before placing its two marker blocks. Press T, enter the exact teleport command including the leading slash, press Enter, and wait until the surrounding chunks render. The elevated Y coordinate keeps the flying player clear of terrain during setup.",
+        "exact_input": "/tp @s 143.5 80 -370.5",
+        "success_cue": "The player is flying above the area around X=143, Z=-371, and the surrounding terrain has finished rendering.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Place a solid marker block at the first exact test coordinate. Press T, enter the command including the leading slash, and press Enter. Stone is used because the report does not specify a block type.",
+        "exact_input": "/setblock 143 63 -371 minecraft:stone",
+        "success_cue": "A stone block occupies block coordinate X=143, Y=63, Z=-371, and command feedback does not report an unloaded-position error.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Place the adjacent solid marker block at the second exact test coordinate. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/setblock 144 63 -371 minecraft:stone",
+        "success_cue": "A stone block occupies block coordinate X=144, Y=63, Z=-371, directly adjacent to the first marker block across the X=144 chunk boundary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Load the location where the elevated block must be installed. Press T, enter the exact teleport command including the leading slash, press Enter, and wait for the destination chunks to render.",
+        "exact_input": "/tp @s 307.5 100 -301.5",
+        "success_cue": "The flying player is above the area containing block coordinate X=307, Y=96, Z=-302, and the destination terrain has rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Place the single elevated block that the report identifies as creating the test condition. Press T, enter the exact command including the leading slash, and press Enter. Do not remove or replace this block before the trigger step.",
+        "exact_input": "/setblock 307 96 -302 minecraft:stone",
+        "success_cue": "A stone block occupies exact block coordinate X=307, Y=96, Z=-302, and command feedback does not report an unloaded-position error.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Set the world's spawn point to the report's exact coordinates. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/setworldspawn 227 66 -376",
+        "success_cue": "The game confirms that world spawn has been set to X=227, Y=66, Z=-376.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Teleport to the center of the western test block. Press T, enter the exact command including the leading slash, and press Enter. Wait until all nearby terrain has rendered and player movement responds normally before continuing.",
+        "exact_input": "/tp @s 143.5 64 -370.5",
+        "success_cue": "The player's feet are at approximately X=143.5, Y=64, Z=-370.5, directly on top of the block at 143 63 -371; the player is west of the X=144 chunk boundary and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Return to grounded movement. If Creative flight is still active, double-tap the Jump control, Space by default, once to disable flight. Do not move horizontally while doing this.",
+        "exact_input": null,
+        "success_cue": "The player is standing on the X=143 marker block and no longer remains suspended when stepping off an edge or pressing movement controls.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Enable the chunk-border overlay by holding F3 and pressing G. On keyboards where function keys require an Fn modifier, use the equivalent input. Keep the overlay enabled for the trigger.",
+        "exact_input": "F3+G",
+        "success_cue": "Colored chunk-border lines are visible, including the vertical boundary at X=144 between the two marker blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Open the debug screen with F3 if necessary, then turn with the mouse until the player faces east, toward increasing X and the block at X=144. Do not cross the border yet.",
+        "exact_input": "F3",
+        "success_cue": "The debug screen reports that the player is facing east, toward positive X; the player remains centered near X=143.5 on the western marker block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Begin the report's back-and-forth movement by walking normally east across the visible X=144 chunk boundary. Hold the Forward control, W by default, only until the player is centered on the adjacent marker block at approximately X=144.5, then release it. Do not sprint, jump, fly, or teleport during this crossing. This west-to-east crossing toward the configured spawn area is the trigger action; hand control to the observation subsystem immediately after it.",
+        "exact_input": "W",
+        "success_cue": "The grounded player has crossed from the block at 143 63 -371 to the block at 144 63 -371, is now in the chunk immediately east of the X=144 boundary, and the elevated block and configured world spawn remain unchanged.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The player has just walked east across the X=144 chunk boundary from the marker block at 143 63 -371 onto the marker block at 144 63 -371. World spawn remains at 227 66 -376, the elevated block remains at 307 96 -302, the player is grounded, and the chunk-border overlay remains visible. Begin observation immediately; if the observation subsystem requires additional samples, it may direct the player to walk back and forth over the same two blocks without changing any setup state.",
+    "uncertainties": [
+      "The report does not specify an exact server view-distance or client Render Distance for the supplied coordinates. This plan uses 10 chunks for both as a fixed practical configuration; the report warns that changing server type or view-distance can move the affected border.",
+      "The report does not specify the material of any of the three placed blocks. This plan uses minecraft:stone as a simple solid full block while preserving every supplied coordinate.",
+      "The report specifies a vanilla 1.14.4 server but comments contain differing results for dedicated servers, Realms, and singleplayer. This plan follows the primary description and uses a vanilla dedicated server.",
+      "The report says to walk back and forth but does not explicitly identify the first direction. This plan begins west of X=144 and crosses east toward the configured spawn point, then hands off immediately so a brief performance event can be observed; subsequent reverse and repeat crossings may be performed by the observation subsystem.",
+      "The report does not specify a game mode. Creative mode and flight are used only to install the deterministic setup; flight is disabled and the trigger itself is performed as grounded normal walking."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0081edef7dca533d016aa88ad44ddc87d09636503c8dd63a93",
+    "elapsed_seconds": 184.59,
+    "usage": {
+      "input_tokens": 21173,
+      "output_tokens": 12872,
+      "reasoning_tokens": 9983,
+      "total_tokens": 34045
+    },
+    "timestamp": "2026-09-15T00:04:27.290999+00:00"
+  }
+}

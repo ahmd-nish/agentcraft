@@ -1,0 +1,161 @@
+{
+  "bug_id": "MC-218167",
+  "category": "Performance",
+  "source_md": "[Performance] - MC-218167.md",
+  "source_meta": {
+    "mojira categories": "Performance",
+    "project": "MC",
+    "issue key": "MC-218167",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-03-08T23:58:19.065-0800",
+    "updated": "2025-04-29T20:24:56.547-0700",
+    "resolution date": "2022-01-06T17:47:57.854-0800",
+    "affects versions": "1.16.5; 21w08b; 21w11a; 21w15a; 21w16a; 21w17a; 21w18a; 1.17 Pre-release 1; 1.17; 1.17.1; 21w37a; 21w38a",
+    "fix versions": "21w39a",
+    "labels": "chat; lag-spike; singleplayer",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2021-03-09_15.28.22.png; image-2021-07-23-12-10-44-165.png; image-2021-07-23-12-10-53-823.png; MC-218167.mp4; profiling_chat.zip; profiling_prompt.zip; VisualVMSampling.png",
+    "issue links": "Cloners:inward:WEB-5587:Chat causing subtle freezing after no activity in chat",
+    "_title": "Chatting causes lag to occur"
+  },
+  "stor": {
+    "bug_id": "MC-218167",
+    "affected_versions": [
+      "1.16.5",
+      "21w08b",
+      "21w11a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "21w18a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "21w37a",
+      "21w38a"
+    ],
+    "recommended_version": "1.16.5",
+    "environment": "Minecraft Java Edition 1.16.5 in a fresh client session; authenticated account with working internet connectivity; unmodified singleplayer world running on the integrated server and not opened to LAN. Use the first player-authored chat message of the session for the trigger attempt.",
+    "preconditions": [
+      "Use Minecraft Java Edition, not Bedrock Edition.",
+      "Configure the launcher to start the exact affected release 1.16.5.",
+      "Remain signed in to an authenticated Minecraft account and keep internet connectivity available. A report comment states that the issue did not reproduce in offline mode.",
+      "Completely restart the Minecraft client before the attempt. Supplied comments indicate that later messages may not trigger the event again until the client is restarted.",
+      "Do not submit any chat messages or commands before the designated trigger step. Command feedback and some other generated messages were also reported as related triggers and could invalidate the first-message condition.",
+      "Use a singleplayer world loaded through the Singleplayer menu. Do not select the Open to LAN option during the session.",
+      "If performance recording or frame-time monitoring will be used by the observation subsystem, start it before submitting the message because the trigger is a short, immediate event."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "If Minecraft is already running, use the title-screen Quit Game button or close the game window, then wait until the Minecraft client has completely exited before continuing.",
+        "exact_input": null,
+        "success_cue": "No Minecraft game window remains open and the previous client session has ended.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the Minecraft Launcher while signed in and connected to the internet. Create or select an installation whose version is the exact Java Edition release listed below; do not select the fixed snapshot 21w39a or a newer release.",
+        "exact_input": "1.16.5",
+        "success_cue": "The selected launcher installation identifies its game version as 1.16.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Launch the selected 1.16.5 installation and wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The Minecraft Java Edition main menu is responsive and displays version 1.16.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "From the main menu, click Singleplayer.",
+        "exact_input": "Singleplayer",
+        "success_cue": "The Select World screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Select an available singleplayer world and click Play Selected. If no world exists, click Create New World, leave the world-generation and game-mode settings at their defaults, optionally name it \"MC-218167 Test\", and click Create New World.",
+        "exact_input": "MC-218167 Test",
+        "success_cue": "The game begins loading a singleplayer world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait until the player has entered the world, nearby terrain has rendered, and normal movement and camera input respond without chunk-loading pauses.",
+        "exact_input": null,
+        "success_cue": "The world is fully visible, the player can move normally, and no loading screen is present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Keep the world as a private singleplayer session. Do not use Esc -> Open to LAN, and do not join or start a multiplayer server.",
+        "exact_input": null,
+        "success_cue": "The current world was entered from the Singleplayer menu and no Open to LAN action has been performed during this session.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Confirm that no player-authored chat message or command has been submitted since the client was launched. If any message or command was already submitted, abort this attempt, completely exit Minecraft, and restart from step 1.",
+        "exact_input": null,
+        "success_cue": "This is still a fresh client session with no previously submitted chat messages or commands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Open the chat input using the Open Chat control, which is T by default. Wait until the chat overlay and its input field are visible and responsive before continuing.",
+        "exact_input": "T",
+        "success_cue": "The chat overlay is open with an empty text-entry field at the bottom of the screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Type the sample non-command message below into the chat field. Do not include a leading slash, and do not press Enter yet.",
+        "exact_input": "MC-218167 test message",
+        "success_cue": "The complete text \"MC-218167 test message\" is visible in the chat input field and has not yet been submitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press Enter once to submit the message. Do not send a second message during this attempt, and immediately hand control to the performance observation subsystem.",
+        "exact_input": "Enter",
+        "success_cue": "The first player-authored chat message of the fresh client session has been submitted and no second message has been entered.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The first non-command chat message of the fresh Minecraft 1.16.5 client session has just been submitted by pressing Enter while the player remains in a singleplayer world that has not been opened to LAN. Begin observing client responsiveness immediately and do not submit another message during this attempt.",
+    "uncertainties": [
+      "The report does not specify a required world seed, coordinates, dimension, game mode, difficulty, graphics setting, or world-generation setting; default settings are used only as a practical execution choice.",
+      "The issue is explicitly described as intermittent, so one correctly prepared attempt may not reproduce it.",
+      "The report states that the issue generally does not occur twice in a row. Supplied comments further describe it as affecting the first message and not recurring until the client is restarted; the fresh-client and first-message conditions are therefore used to improve reproducibility.",
+      "A supplied comment reports that the issue no longer occurred in offline mode, so authenticated online operation with internet connectivity is included even though it is not present in the formal two-step reproduction section.",
+      "Comments disagree about whether graphics hardware affects reproducibility; no GPU vendor or model is imposed as a requirement.",
+      "The exact chat text is not specified. \"MC-218167 test message\" is a harmless practical substitute for the report's instruction to type something.",
+      "Although later comments mention multiplayer and later versions such as 1.18.1, the formal report specifically requests a singleplayer world not opened to LAN, and only the versions in the report's Affects versions field are included here."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0318ecc85d392518016aa88bfe37a087d080295636a8519428",
+    "elapsed_seconds": 71.12,
+    "usage": {
+      "input_tokens": 10063,
+      "output_tokens": 4531,
+      "reasoning_tokens": 3106,
+      "total_tokens": 14594
+    },
+    "timestamp": "2026-09-15T00:07:32.993569+00:00"
+  }
+}

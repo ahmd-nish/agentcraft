@@ -1,0 +1,235 @@
+{
+  "bug_id": "MC-186075",
+  "category": "Performance",
+  "source_md": "[Performance] - MC-186075.md",
+  "source_meta": {
+    "mojira categories": "Performance",
+    "project": "MC",
+    "issue key": "MC-186075",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-05-29T06:12:01.047-0700",
+    "updated": "2025-05-29T09:16:29.660-0700",
+    "resolution date": "2022-11-13T13:26:41.092-0800",
+    "affects versions": "20w22a",
+    "fix versions": "1.16 Pre-release 1",
+    "watchers": "2",
+    "attachments": "22",
+    "attachment filenames": "2020-05-29_11.49.34.png; 2020-05-29_15.24.42.png; 2020-05-29_20.00.31.png; 2020-05-30_01.18.36.png; 2020-05-30_16.31.45.png; 2020-05-30_17.08.06.png; 2020-05-31_14.21.09.png; 2020-05-31_14.32.59.png; 2020-05-31_14.34.47.png; 2020-05-31_14.41.48.png; 2020-06-01_18.46.30.png; 2020-06-01_18.47.38.png; debug-report-2020-05-29_16.10.31.zip; image-2020-05-30-00-54-12-004.png; image-2020-05-30-01-17-36-203.png; lag-20w22a.png; MC-186075 Shader Patch r2.zip; MC-186075 Shader Patch r3.zip; MC-186075 Shader Patch r4.zip; profile-results-2020-05-29_16.10.27.txt; Screenshot 2020-05-29 at 15.36.25.png; Screenshot 2020-05-29 at 15.42.29.png",
+    "issue links": "Duplicate:inward:MC-186411:Horrible performance using Intel HD Graphics 3000 on Ubuntu 20.04 and several other issues",
+    "_title": "GPU usage in latest snapshot significantly higher than before, causing lag or crash for some users"
+  },
+  "stor": {
+    "bug_id": "MC-186075",
+    "affected_versions": [
+      "20w22a"
+    ],
+    "recommended_version": "20w22a",
+    "environment": "Minecraft Java Edition using an unmodified vanilla client. Use snapshot 20w21a only to collect a reference interval, then reproduce in affected snapshot 20w22a on the same computer, graphics driver, display, launcher game directory, world copy, camera position, and video settings. Prefer a fixed 1920×1080 fullscreen display mode, 16-chunk render distance, VSync disabled, and an unlimited maximum frame rate, matching the detailed comparison in the report. Use an operating-system or GPU-vendor monitoring utility capable of recording GPU utilization over time. Keep the computer connected to external power, use a fixed power/performance mode, and close unrelated GPU-intensive programs.",
+    "preconditions": [
+      "The launcher must be able to install and start the historical snapshots 20w21a and 20w22a.",
+      "Use 20w22a as the affected test version. Do not substitute the fix version, 1.16 Pre-release 1.",
+      "Use the same physical computer, GPU, graphics-driver installation, monitor, display resolution, power mode, and launcher JVM configuration for both version runs.",
+      "Use a clean vanilla game directory with no mods, third-party shader system, or custom resource packs enabled.",
+      "Do not install or enable any of the attached MC-186075 Shader Patch resource packs; those packs are workarounds intended to reduce the condition being reproduced.",
+      "An OS-level or GPU-vendor monitoring utility must be ready to record or graph Minecraft's GPU utilization. Configure it so data continues to be captured while Minecraft is fullscreen.",
+      "Close unrelated games, video playback, screen effects, and other GPU-intensive applications before collecting either interval.",
+      "Use only one affected-version sampling interval unless repetition is specifically requested. The report includes isolated reports of freezes, crashes, high temperatures, and system restarts, so do not repeatedly relaunch 20w22a to exaggerate the condition.",
+      "Ensure there is enough free storage to make a separate backup copy of the reference world before it is opened in 20w22a."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Close unrelated GPU-intensive applications, connect the computer to external power if it is a laptop, and select a fixed operating-system power mode that will remain unchanged for both runs.",
+        "exact_input": null,
+        "success_cue": "No unrelated GPU-intensive workload is running, and the computer's power source and power mode are fixed for the comparison.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Set the display to a fixed 1920×1080 mode if the hardware supports it. If 1920×1080 is unavailable, select one supported resolution and record it so exactly the same resolution is used in both snapshots.",
+        "exact_input": "1920×1080",
+        "success_cue": "The operating system is using the recorded fixed display resolution.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Create or select a clean launcher game directory dedicated to this test. Both snapshot installations must use this same directory so they share the same options and saves, but it must not contain mods or test-altering resource packs.",
+        "exact_input": null,
+        "success_cue": "A dedicated vanilla game directory exists and can be selected by both launcher installations.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "In the Minecraft Launcher, enable snapshot or historical version visibility if required, create a baseline installation that selects exactly version 20w21a, and point it at the dedicated test directory.",
+        "exact_input": "20w21a",
+        "success_cue": "The launcher shows an installation whose selected version is exactly 20w21a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Create a second launcher installation that selects exactly affected version 20w22a and points it at the same dedicated test directory.",
+        "exact_input": "20w22a",
+        "success_cue": "The launcher shows a separate installation whose selected version is exactly 20w22a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Open the OS-level or GPU-vendor monitoring utility. Select the GPU used by Minecraft and enable a utilization graph or logging mode that can distinguish the baseline and affected sampling intervals.",
+        "exact_input": null,
+        "success_cue": "The monitor is displaying or logging GPU utilization and will continue recording when Minecraft is fullscreen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Launch the 20w21a baseline installation. At the main menu, verify that the displayed version text is 20w21a before continuing.",
+        "exact_input": "Play 20w21a",
+        "success_cue": "Minecraft has reached its main menu and the menu identifies the running version as 20w21a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Open the resource-pack menu and ensure that only Minecraft's built-in default resources are active. Disable every custom pack, especially any attachment named MC-186075 Shader Patch.",
+        "exact_input": "Options -> Resource Packs",
+        "success_cue": "No custom resource pack or shader patch is listed as active.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Open Video Settings. Set Render Distance to 16 chunks, turn VSync off, and set Max Framerate to Unlimited. Leave all other graphics options at stable chosen values and record them; those values must not be changed between runs.",
+        "exact_input": "Options -> Video Settings; Render Distance: 16 chunks; Use VSync: OFF; Max Framerate: Unlimited",
+        "success_cue": "Render Distance is 16 chunks, VSync is disabled, Max Framerate is Unlimited, and the remaining video-option values have been recorded.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Enter fullscreen mode using the Fullscreen option or the default F11 fullscreen control. Confirm that Minecraft is rendering at the fixed display resolution selected earlier.",
+        "exact_input": "F11",
+        "success_cue": "Minecraft occupies the fullscreen display at the recorded fixed resolution.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Return to the main menu and create a new single-player world named MC-186075-baseline. Use Creative mode and default world generation, leave the seed field blank because the report supplies no seed, and use Peaceful difficulty to prevent unrelated hostile-mob interruptions.",
+        "exact_input": "Singleplayer -> Create New World; World Name: MC-186075-baseline; Game Mode: Creative; Difficulty: Peaceful; Seed: blank; World Type: Default",
+        "success_cue": "The new world begins loading under 20w21a with the specified test name and settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "After entering the world, wait without starting the measurement until surrounding terrain has rendered, newly appearing chunk boundaries have stopped filling the view, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The spawn-area terrain is visible, chunk loading has settled, and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Choose a stationary outdoor view at or near the current spawn position. Do not build, explore, spawn entities, or add blocks. Press F3 to display the debug screen and record the player's X, Y, and Z coordinates plus the facing direction and camera angles shown there.",
+        "exact_input": "F3",
+        "success_cue": "The F3 debug overlay is visible, and the exact player position and view direction have been recorded for matching in 20w22a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "With the F3 overlay still visible, release all movement controls and keep the camera completely still. In the GPU monitor, place a marker or start a new baseline capture interval.",
+        "exact_input": "Release W, A, S, D, Space, Left Shift, and mouse movement; mark interval as 20w21a-baseline",
+        "success_cue": "The player is motionless in the recorded view and the GPU utility is recording a clearly identified 20w21a baseline interval.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Leave 20w21a rendering the unchanged scene for 60 seconds. Do not move the player or camera, open menus, change focus, or modify any graphics setting during this interval.",
+        "exact_input": "60 seconds",
+        "success_cue": "A continuous 60-second 20w21a reference interval has been captured with the same scene and no player input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press Escape, choose Save and Quit to Title, and then close Minecraft completely. Wait until the Java game process has ended before modifying the save.",
+        "exact_input": "Esc -> Save and Quit to Title -> Quit Game",
+        "success_cue": "Minecraft 20w21a is closed and its Java process is no longer running.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "In the dedicated game directory's saves folder, make a complete copy of the MC-186075-baseline world folder. Preserve the original as a backup and name the copy MC-186075-20w22a. The copied world retains the player position and camera direction used for the baseline.",
+        "exact_input": "Copy MC-186075-baseline -> MC-186075-20w22a",
+        "success_cue": "Two separate save folders exist: an untouched baseline backup and a copy designated for opening in 20w22a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Launch the affected 20w22a installation. At the main menu, verify that the displayed version text is exactly 20w22a.",
+        "exact_input": "Play 20w22a",
+        "success_cue": "Minecraft has reached its main menu and the menu identifies the running version as 20w22a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Before entering the world, verify that no custom resource pack is active and that Render Distance remains 16 chunks, VSync remains off, Max Framerate remains Unlimited, all other recorded video options are unchanged, and fullscreen uses the same fixed resolution as the baseline.",
+        "exact_input": "Options -> Resource Packs; Options -> Video Settings; F11 if fullscreen is not active",
+        "success_cue": "20w22a is using default resources and exactly the same recorded display and video configuration as 20w21a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Open Singleplayer, select the copied MC-186075-20w22a world, and choose Play Selected World. If Minecraft displays a version-upgrade or backup warning, confirm opening only the copied world; do not open or overwrite the preserved baseline backup.",
+        "exact_input": "Singleplayer -> MC-186075-20w22a -> Play Selected World; confirm any warning for the copied world",
+        "success_cue": "The copied reference world is loading in affected snapshot 20w22a while the original baseline save remains untouched.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Wait until the saved scene has rendered, surrounding chunks have stopped visibly filling in, and movement responds normally. Do not explore or rotate the camera while waiting.",
+        "exact_input": null,
+        "success_cue": "The copied world is fully responsive and the saved scene is rendered without intentional player or camera movement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Press F3 to show the debug overlay. Verify that it identifies version 20w22a and compare the displayed X, Y, Z coordinates and facing values with the baseline record. If the copied save did not preserve the view exactly, use minimal movement and mouse input to restore the recorded position and facing, then release all controls.",
+        "exact_input": "F3",
+        "success_cue": "The debug overlay identifies 20w22a, and the player is stationary at the baseline coordinates with the baseline camera direction restored.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "In the GPU monitoring utility, place a new marker or begin a fresh interval labeled 20w22a-affected. Immediately return focus to Minecraft if necessary, leave the F3 overlay visible, and keep the player and camera completely still.",
+        "exact_input": "Mark interval as 20w22a-affected; release W, A, S, D, Space, Left Shift, and mouse movement",
+        "success_cue": "The monitor is capturing a clearly identified affected-version interval while 20w22a continuously renders the same stationary scene and settings used for the baseline.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 23,
+    "handoff_condition": "The GPU monitor has just begun the marked 20w22a-affected interval. Minecraft 20w22a is fullscreen and focused, default resources are active, the copied baseline world and surrounding chunks are fully loaded, the F3 overlay is visible, and the player is stationary at the recorded baseline coordinates and camera direction. Begin observing GPU utilization, frame rate, responsiveness, and process stability without changing the scene or settings.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce section, deterministic seed, coordinates, world download, exact scene, or required game mode. The clean Creative-mode world and stationary spawn-area scene are practical choices for obtaining a repeatable comparison.",
+      "20w21a is used only as the comparison baseline because many report comments directly compare it with 20w22a. It is not added to affected_versions because the report lists only 20w22a as affected.",
+      "The 1920×1080 fullscreen resolution, 16-chunk render distance, and uncapped frame rate are taken from a detailed comparison in the report and are not stated as universal requirements. If the machine cannot use 1920×1080, one fixed supported resolution must be used unchanged for both runs.",
+      "The 60-second reference interval is not specified by the report; it is a practical measurement duration selected to obtain a stable baseline.",
+      "The exact GPU-monitoring interface is operating-system and hardware-vendor dependent. The report demonstrates GPU utilization measurements but does not prescribe a particular monitoring program.",
+      "The issue was reported across many different GPUs and operating systems, with substantially different magnitudes. Reproduction strength therefore depends on the available GPU, driver, display resolution, and whether the system is CPU- or GPU-limited.",
+      "Opening a copied 20w21a world in 20w22a is a practical method for preserving the same scene. The report also states that the condition occurred in both existing saves and newly generated worlds, so world conversion is not asserted to be a bug requirement.",
+      "Some comments report freezes, crashes, high temperatures, or system restarts, but these outcomes were intermittent and are not made reproduction requirements."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0754cdd949b705fb016aa88b8b976c87d0bc17ae23e47e07e8",
+    "elapsed_seconds": 114.55,
+    "usage": {
+      "input_tokens": 18347,
+      "output_tokens": 7665,
+      "reasoning_tokens": 4660,
+      "total_tokens": 26012
+    },
+    "timestamp": "2026-09-15T00:06:21.851455+00:00"
+  }
+}

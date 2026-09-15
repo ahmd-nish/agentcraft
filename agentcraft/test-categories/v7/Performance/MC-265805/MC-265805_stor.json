@@ -1,0 +1,137 @@
+{
+  "bug_id": "MC-265805",
+  "category": "Performance",
+  "reproduction_method": "commands",
+  "source_md": "[Performance] - MC-265805.md",
+  "source_meta": {
+    "mojira categories": "Commands; Performance",
+    "project": "MC",
+    "issue key": "MC-265805",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-10-13T03:04:30.169-0700",
+    "updated": "2025-03-25T12:25:59.617-0700",
+    "resolution date": "2023-10-30T02:25:17.279-0700",
+    "affects versions": "23w41a; 23w42a; 23w43a",
+    "fix versions": "23w44a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "crash-2023-10-13_18.43.29-server.txt; deobf_crash-2023-10-13_18.43.29-server.txt; mc-265805.zip",
+    "_title": "Executing a tail-recursive function consumes memory resources linearly with recursion depth"
+  },
+  "stor": {
+    "bug_id": "MC-265805",
+    "affected_versions": [
+      "23w41a",
+      "23w42a",
+      "23w43a"
+    ],
+    "recommended_version": "23w41a",
+    "environment": "Minecraft: Java Edition snapshot 23w41a in an isolated, disposable test installation. Use a single-player world running its integrated server, with commands/cheats enabled. This is the simplest selected environment; the report does not state that a dedicated server, particular game mode, seed, coordinates, or graphics settings are required.",
+    "preconditions": [
+      "The Minecraft Launcher can install and launch the historical Java Edition snapshot 23w41a.",
+      "Use a separate game directory or otherwise ensure that no valuable worlds are open in this installation.",
+      "The report attachment mc-265805.zip is available. It must contain the reported function at data/mc-265805/functions/f.mcfunction, whose entire command content is exactly: function mc-265805:f",
+      "The test world must permit the player to execute commands. Enable commands/cheats while creating the world; operator-level access would be required if the same procedure is instead performed on a dedicated server.",
+      "Use a disposable test session and be prepared to terminate or restart the Java process. The final command starts intentionally unbounded recursive function execution, so do not perform this test alongside unsaved work.",
+      "Do not use the fixed snapshot 23w44a for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, enable snapshot versions in the Java Edition Installations screen if they are hidden. Create or select an installation whose version is exactly 23w41a, preferably assign it a separate game directory, and launch it. Do not substitute 23w44a or a current release.",
+        "exact_input": "23w41a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 23w41a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, and create a new disposable world. No particular seed or game mode is required by the report. Enable the world-creation option that permits commands, commonly labeled Allow Cheats or Allow Commands, before creating the world.",
+        "exact_input": null,
+        "success_cue": "The player has entered the new world, surrounding terrain has rendered, movement responds normally, and command use is enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press Esc, select Save and Quit to Title, and wait until the main menu returns. This closes the world so its datapacks directory can be modified safely.",
+        "exact_input": null,
+        "success_cue": "The main menu is visible and the test world is no longer open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Outside Minecraft, locate the test world's save directory inside the installation's saves directory. Open that world's datapacks directory and copy the supplied mc-265805.zip attachment directly into it as a data pack. Preserve the attachment unchanged. The resulting location should be <game directory>/saves/<test world>/datapacks/mc-265805.zip.",
+        "exact_input": "mc-265805.zip",
+        "success_cue": "The file mc-265805.zip exists directly inside the selected test world's datapacks directory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Return to Minecraft, select Singleplayer, open the same test world, and wait for world loading to finish. Do not proceed while the loading screen is visible or while player input is unresponsive.",
+        "exact_input": null,
+        "success_cue": "The same test world is open, nearby chunks are rendered, and normal player movement responds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat. Enter the reload command exactly as shown, including the leading slash, and press Enter once. Wait for data-pack reloading to complete before continuing.",
+        "exact_input": "/reload",
+        "success_cue": "The reload command has completed, player input responds normally again, and no data-pack parsing or loading error is displayed in chat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Verify that the function is available without executing it: press T, type the exact function command shown, but do not press Enter. Confirm that the command is not marked invalid and that the function identifier mc-265805:f is recognized by command suggestions. Press Esc to close chat and discard the unexecuted command.",
+        "exact_input": "/function mc-265805:f",
+        "success_cue": "The identifier mc-265805:f is recognized as an available function, and chat has been closed without running it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open in-game chat. Enter the report's gamerule command exactly as shown, including the leading slash and the value 2147483647, then press Enter once. Do not shorten or replace the integer value.",
+        "exact_input": "/gamerule maxCommandChainLength 2147483647",
+        "success_cue": "Command feedback confirms that maxCommandChainLength is set to 2147483647, and the world is still responsive before the recursive function is started.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press T to open in-game chat. Enter the report's function command exactly as shown, including the leading slash, and press Enter exactly once. This is the trigger action. Do not invoke the function repeatedly and do not attempt additional in-game actions after submission; immediately hand control to the observation subsystem.",
+        "exact_input": "/function mc-265805:f",
+        "success_cue": "The function command has just been submitted once; no further player commands or interactions have been attempted.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The 23w41a test world has the mc-265805 data pack loaded, maxCommandChainLength is set to 2147483647, and /function mc-265805:f has just been submitted exactly once. The observation subsystem should now take control and monitor the Java process, integrated server, memory use, responsiveness, and logs without issuing another trigger command.",
+    "uncertainties": [
+      "The report does not specify single-player versus dedicated server. This plan selects a disposable single-player world and its integrated server because no multiplayer-only condition is stated.",
+      "The raw report lists mc-265805.zip but does not expose its internal archive structure. The plan assumes the attachment is a ready-to-install data pack containing the reported path data/mc-265805/functions/f.mcfunction and exact line function mc-265805:f.",
+      "If the supplied attachment is unavailable, an equivalent minimal data pack would have to be reconstructed. For 23w41a, externally verified data-pack format 20 applies, but using the supplied attachment is preferred for report fidelity.",
+      "The report does not specify a game mode, world seed, coordinates, JVM maximum heap size, render settings, or a required recursion duration. None has been added as a reproduction requirement.",
+      "The amount of time and recursion depth reached after the trigger can vary with the JVM heap allocation and host resources. The setup agent should not impose an arbitrary waiting duration; observation begins immediately after the trigger.",
+      "The fixed version 23w44a is intentionally excluded from affected_versions and is not selected for reproduction."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_018e20906210e73f016aa7bdc68db487d0b5ef6e62ee2137bb",
+    "elapsed_seconds": 100.66,
+    "usage": {
+      "input_tokens": 17079,
+      "output_tokens": 5935,
+      "reasoning_tokens": 4440,
+      "total_tokens": 23014
+    },
+    "timestamp": "2026-09-14T09:28:11.023467+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
