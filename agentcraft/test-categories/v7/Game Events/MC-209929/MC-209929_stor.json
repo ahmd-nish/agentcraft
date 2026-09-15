@@ -1,0 +1,179 @@
+{
+  "bug_id": "MC-209929",
+  "category": "Game Events",
+  "source_md": "[Game Events] - MC-209929.md",
+  "source_meta": {
+    "mojira categories": "Game Events",
+    "project": "MC",
+    "issue key": "MC-209929",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-12-29T08:11:00.400-0800",
+    "updated": "2025-04-16T15:21:47.784-0700",
+    "resolution date": "2023-02-08T04:26:42.440-0800",
+    "affects versions": "20w51a; 21w03a; 21w05a; 21w05b; 21w06a; 21w07a; 21w08b; 21w10a; 21w14a; 21w15a; 21w17a; 21w19a; 21w20a; 1.17 Pre-release 1; 1.17 Release Candidate 1; 1.17 Release Candidate 2; 1.17; 1.17.1 Pre-release 1; 1.17.1; 21w38a; 21w40a; 1.18; 1.18.1; 1.18.2; 22w14a; 22w17a; 22w18a; 1.19 Pre-release 1; 1.19 Pre-release 3; 1.19 Pre-release 5; 1.19 Release Candidate 2; 1.19; 1.19.2; 22w45a; 1.19.3",
+    "fix versions": "23w06a",
+    "labels": "composter; sculk_sensor",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-209929.mp4; MC-209929.png",
+    "issue links": "Duplicate:inward:MC-251352:Sculk Sensor doesn't detect composter changes | Relates:inward:MCPE-155371:Sculk Sensor doesn't detect composter changes",
+    "_title": "Sculk sensors are not activated upon filling composters"
+  },
+  "stor": {
+    "bug_id": "MC-209929",
+    "affected_versions": [
+      "20w51a",
+      "21w03a",
+      "21w05a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w10a",
+      "21w14a",
+      "21w15a",
+      "21w17a",
+      "21w19a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17 Release Candidate 1",
+      "1.17 Release Candidate 2",
+      "1.17",
+      "1.17.1 Pre-release 1",
+      "1.17.1",
+      "21w38a",
+      "21w40a",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "22w14a",
+      "22w17a",
+      "22w18a",
+      "1.19 Pre-release 1",
+      "1.19 Pre-release 3",
+      "1.19 Pre-release 5",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "1.19.2",
+      "22w45a",
+      "1.19.3"
+    ],
+    "recommended_version": "20w51a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 20w51a in a new single-player Creative-mode world. A Superflat world is recommended only to provide a clear, level test surface; no seed or coordinates are specified by the report.",
+    "preconditions": [
+      "The Minecraft Launcher is able to install and run historical Java Edition snapshot 20w51a; enable snapshots in the launcher's Installations settings if necessary.",
+      "Use an unmodified world without behavior-changing mods or data packs.",
+      "Use Creative mode so the Composter, Sculk Sensor, and Cake can be obtained without unrelated crafting or exploration.",
+      "Perform the test on dry, level ground with no wool blocks between the composter and sculk sensor.",
+      "Choose a test location without moving entities or other vibration-producing activity near the sculk sensor.",
+      "The instructions use the default E inventory key and right mouse button for Use Item/Place Block; use the equivalent bound controls if they have been changed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Java Edition snapshot 20w51a and launch it. Do not select the fix version 23w06a.",
+        "exact_input": "Version: snapshot 20w51a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 20w51a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world, and set Game Mode to Creative. For the simplest test area, open More World Options and select the Superflat world type, then create the world. The Superflat choice is optional and is not a report requirement.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> World Type: Superflat -> Done -> Create New World",
+        "success_cue": "The player has loaded into a Creative-mode world and surrounding terrain is fully rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Find a dry, level area with at least two adjacent ground blocks. Ensure no wool blocks, water, moving mobs, pistons, doors, or other repeatedly active objects are close to the intended test blocks. Stand on the ground within placement and interaction reach of both target blocks.",
+        "exact_input": null,
+        "success_cue": "Two adjacent ground positions are available, no moving entity is visible nearby, and the player can use both positions without needing to walk after setup.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, select the search field, enter \"composter\", and move one Composter into an empty hotbar slot. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "composter",
+        "success_cue": "A Composter is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "While still using the Creative inventory Search Items tab, replace the search text with \"sculk sensor\" and move one Sculk Sensor into a different empty hotbar slot.",
+        "exact_input": "sculk sensor",
+        "success_cue": "A Sculk Sensor is present in the hotbar alongside the Composter.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Replace the Creative inventory search text with \"cake\" and move one Cake item into another empty hotbar slot. Close the inventory by pressing E or Esc.",
+        "exact_input": "cake",
+        "success_cue": "The inventory is closed, and the hotbar contains a Composter, a Sculk Sensor, and a Cake.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the Composter hotbar slot using its number key or the mouse wheel. Aim at the top face of the first chosen ground block and press the Use Item/Place Block control once; by default, this is the right mouse button.",
+        "exact_input": "Right-click once with Composter selected",
+        "success_cue": "An empty upright composter is placed on the test surface, with its open side facing upward.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Select the Sculk Sensor hotbar slot. Aim at the top face of the ground block directly adjacent to the composter and right-click once. Keep the sensor dry and do not put wool between it and the composter. Direct adjacency is a deterministic interpretation of the report's requirement that the sensor be nearby and places the composter well inside the sensor's detection radius.",
+        "exact_input": "Right-click once with Sculk Sensor selected",
+        "success_cue": "A dry sculk sensor is positioned directly beside the empty composter on the same surface level.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Without walking if both blocks are already within reach, select the Cake hotbar slot using its number key or the mouse wheel. Aim the crosshair at the open top or inner face of the composter, but do not use the cake yet. If repositioning is unavoidable, hold the Sneak control, Left Shift by default, while moving, then stop completely.",
+        "exact_input": "Select Cake; hold Left Shift while repositioning if movement is required",
+        "success_cue": "Cake is visible in the player's hand, the composter is targeted by the crosshair, and the player is stationary within interaction range.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Remain completely stationary and do not interact with either block for at least three seconds. Continue only after any vibration particle from setup activity has disappeared and the sculk sensor's tendrils have returned to their resting state. This prevents block placement, footsteps, or the sensor's activation period from masking the test interaction.",
+        "exact_input": "Wait at least 3 seconds without moving or interacting",
+        "success_cue": "The sculk sensor is visibly idle, no vibration particle is traveling toward it, and the empty composter remains targeted or within immediate reach.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "With Cake still selected, aim at the composter's open top or inner face and press the Use Item control exactly once; by default, right-click once. Do not walk, jump, place another block, or perform another interaction immediately afterward.",
+        "exact_input": "Right-click once on the composter with Cake selected",
+        "success_cue": "The composter has just accepted the cake and its visible compost contents have increased from the empty state; no additional action has yet been performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The cake has just been inserted into the previously empty composter while the adjacent sculk sensor was idle. The player is stationary and has performed no subsequent action; begin observing the sculk sensor immediately.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, world type, or exact distance between the two blocks. Creative mode, a new Superflat world, and direct horizontal adjacency were selected as minimal deterministic setup choices.",
+      "The report says to \"fill the composter with a cake.\" This plan interprets that as inserting one Cake into an empty composter so that its compost level increases, rather than repeatedly inserting cakes until the composter reaches its final full state.",
+      "If reproducing in later affected versions where the Sculk Sensor is not available in the Creative inventory, a version-compatible item acquisition method may be required. The recommended reproduction version, 20w51a, is used here according to the affected-version selection rule."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_08d67705b94fbb70016aa88d7d4d2487d09884632bbc30b73e",
+    "elapsed_seconds": 102.22,
+    "usage": {
+      "input_tokens": 32933,
+      "output_tokens": 6108,
+      "reasoning_tokens": 4339,
+      "total_tokens": 39041
+    },
+    "timestamp": "2026-09-15T00:14:27.222757+00:00"
+  }
+}

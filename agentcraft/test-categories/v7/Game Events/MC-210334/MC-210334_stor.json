@@ -1,0 +1,202 @@
+{
+  "bug_id": "MC-210334",
+  "category": "Game Events",
+  "source_md": "[Game Events] - MC-210334.md",
+  "source_meta": {
+    "mojira categories": "Game Events",
+    "project": "MC",
+    "issue key": "MC-210334",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-01-02T12:43:35.219-0800",
+    "updated": "2025-04-30T05:37:57.229-0700",
+    "resolution date": "2023-02-07T06:18:25.855-0800",
+    "affects versions": "20w51a; 21w03a; 21w08b; 21w10a; 21w14a; 21w15a; 21w17a; 21w19a; 21w20a; 1.17 Pre-release 1; 1.17 Release Candidate 1; 1.17; 1.17.1 Pre-release 1; 1.17.1; 21w37a; 21w38a; 21w40a; 1.18 Pre-release 5; 1.18; 1.18.1; 1.18.2; 22w14a; 1.19 Pre-release 1; 1.19 Pre-release 3; 1.19 Pre-release 5; 1.19 Release Candidate 2; 1.19; 1.19.2; 22w45a; 1.19.3",
+    "fix versions": "23w06a",
+    "labels": "sculk_sensor; sheep",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-210334.mp4; MC-210334.png",
+    "issue links": "Relates:inward:MC-214619:Sculk sensors cannot detect application of ink sacs to signs | Relates:inward:MC-212278:Sculk sensors do not detect signs being dyed | Relates:outward:MC-210484:Sculk sensors are not activated upon a sheep changing from blue to red, through the use of an evoker",
+    "_title": "Sculk sensors are not activated upon sheep being dyed"
+  },
+  "stor": {
+    "bug_id": "MC-210334",
+    "affected_versions": [
+      "20w51a",
+      "21w03a",
+      "21w08b",
+      "21w10a",
+      "21w14a",
+      "21w15a",
+      "21w17a",
+      "21w19a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17 Release Candidate 1",
+      "1.17",
+      "1.17.1 Pre-release 1",
+      "1.17.1",
+      "21w37a",
+      "21w38a",
+      "21w40a",
+      "1.18 Pre-release 5",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "22w14a",
+      "1.19 Pre-release 1",
+      "1.19 Pre-release 3",
+      "1.19 Pre-release 5",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "1.19.2",
+      "22w45a",
+      "1.19.3"
+    ],
+    "recommended_version": "20w51a",
+    "environment": "Minecraft Java Edition 20w51a in a single-player Creative-mode world with cheats enabled. A flat world, Peaceful difficulty, default controls, and no mods or datapacks are recommended to reduce unrelated movement and vibrations, but the report does not explicitly require them.",
+    "preconditions": [
+      "Launch Minecraft Java Edition 20w51a, the first version listed as affected; do not use fix version 23w06a for this reproduction.",
+      "Create or load a Creative-mode world with cheats enabled so the supplied /summon command can be executed and the required items can be obtained without crafting.",
+      "Use an open area with solid, level ground and enough room to place a sculk sensor and stand a few blocks away from it.",
+      "Keep unrelated moving entities away from the immediate test area so their movement does not activate the sculk sensor during setup.",
+      "Use a dye color different from the sheep's current wool color. This plan uses red dye and verifies that the summoned sheep is not already red before applying it."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Enter the Creative-mode test world and wait for world loading to finish before interacting with anything.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is fully rendered, the player can move normally, and commands or inventory actions respond without loading delay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open and displays item-category tabs.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Creative inventory's Search Items tab, identified by its compass icon, and select its search field.",
+        "exact_input": "Click the compass-shaped Search Items tab",
+        "success_cue": "A searchable list of Creative inventory items and a text search field are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Search for a sculk sensor, then place one Sculk Sensor into hotbar slot 1. The hotbar is the nine-slot row at the bottom of the inventory.",
+        "exact_input": "sculk sensor",
+        "success_cue": "A Sculk Sensor is visible in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Clear the inventory search field, search for red dye, and place Red Dye into hotbar slot 2.",
+        "exact_input": "red dye",
+        "success_cue": "Red Dye is visible in hotbar slot 2 while the Sculk Sensor remains in slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Close the inventory using E or Escape, then select hotbar slot 1 using the corresponding hotbar control.",
+        "exact_input": "E, then 1",
+        "success_cue": "The world view is visible and the player is holding a Sculk Sensor as the active item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Aim at the top surface of a solid ground block in the open test area and use the place/use-item action, whose default input is right-click, to place the sculk sensor.",
+        "exact_input": "Right-click",
+        "success_cue": "One Sculk Sensor block is placed upright on the ground with open space around it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Move to a position approximately two horizontal blocks from the placed sensor, remaining on the same ground level. Stop moving while still able to see the sensor clearly.",
+        "exact_input": "Use movement keys such as W, A, S, or D",
+        "success_cue": "The player is about two blocks from the sensor, the sensor is clearly visible, and there is room at the player's position for the sheep to be summoned.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open in-game chat using the chat action, whose default key is T. The command must be run in the game world rather than a dedicated-server console.",
+        "exact_input": "T",
+        "success_cue": "The in-game chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's summon command exactly as written, including the leading slash and NBT, then press Enter. The sheep will be summoned at the player's current coordinates.",
+        "exact_input": "/summon minecraft:sheep ~ ~ ~ {NoAI:1b}",
+        "success_cue": "A living, unsheared sheep appears at the player's position and remains stationary because NoAI is enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Move approximately one block away from the sheep so that the player is no longer occupying the same space, then turn to face the sheep. Keep both the sheep and the sculk sensor visible if possible.",
+        "exact_input": "Use a movement key briefly, then move the mouse to face the sheep",
+        "success_cue": "The stationary sheep is within right-click interaction reach, and the sheep remains only a few blocks from the sculk sensor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Confirm visually that the sheep's wool is not red. If it is already red, choose another dye from the Creative inventory whose color differs from the sheep; otherwise continue with the prepared red dye.",
+        "exact_input": null,
+        "success_cue": "The selected dye color is different from the sheep's current wool color, allowing the dye interaction to change the sheep's color.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select hotbar slot 2 using the corresponding hotbar control so that Red Dye is the active held item.",
+        "exact_input": "2",
+        "success_cue": "Red Dye is visible in the player's hand and its hotbar slot is highlighted as active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Without walking or performing other interactions, wait until the sculk sensor has finished reacting to all setup movement and is visibly inactive. Also ensure that no unrelated entity is currently moving near it.",
+        "exact_input": null,
+        "success_cue": "The sensor is in its resting state rather than displaying an active vibration response, the NoAI sheep is stationary, and the player is standing still within interaction reach of the sheep.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Keep the Red Dye selected, aim directly at the sheep, and apply the dye once using the use-item/interact action, whose default input is right-click. Do not move or perform a second interaction afterward.",
+        "exact_input": "Right-click once on the sheep",
+        "success_cue": "The sheep's wool changes to the selected dye color, confirming that the dye interaction was successfully completed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The sheep has just been dyed once while stationary near the placed sculk sensor, and the player has performed no subsequent movement or interaction. Begin observing the sculk sensor immediately.",
+    "uncertainties": [
+      "The report does not specify a game mode, world type, difficulty, or whether the test must be performed in single-player or multiplayer. Creative-mode single-player with cheats is selected as the simplest way to obtain the sensor and execute the supplied command.",
+      "The report says only that the sheep should be summoned 'nearby' and gives no exact sensor-to-sheep distance. This plan uses approximately two blocks, which keeps the sheep visibly adjacent to the sensor without altering the supplied summon command.",
+      "The report permits any kind of dye but does not identify a specific color. Red Dye is selected as a deterministic example, with an explicit check that it differs from the sheep's existing color.",
+      "The Creative inventory navigation details and the recommendation to wait for the sensor to return to its resting state are practical execution choices rather than explicit requirements from the report."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0520a9900b19670d016aa88de37bb887d0b094639e05dac584",
+    "elapsed_seconds": 61.07,
+    "usage": {
+      "input_tokens": 8940,
+      "output_tokens": 3866,
+      "reasoning_tokens": 2070,
+      "total_tokens": 12806
+    },
+    "timestamp": "2026-09-15T00:15:28.303192+00:00"
+  }
+}

@@ -1,0 +1,241 @@
+{
+  "bug_id": "MC-209622",
+  "category": "Game Events",
+  "source_md": "[Game Events] - MC-209622.md",
+  "source_meta": {
+    "mojira categories": "Game Events",
+    "project": "MC",
+    "issue key": "MC-209622",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-12-26T06:39:01.295-0800",
+    "updated": "2025-04-11T12:51:45.384-0700",
+    "resolution date": "2023-02-07T04:42:54.270-0800",
+    "affects versions": "20w51a; 21w03a; 21w05b; 21w06a; 21w08b; 21w14a; 1.17; 1.17.1; 21w42a; 1.18.1; 1.18.2; 1.19 Pre-release 1; 1.19 Pre-release 2; 1.19 Pre-release 3; 1.19 Pre-release 5; 1.19; 1.19.2; 22w45a",
+    "fix versions": "23w06a",
+    "labels": "sculk_sensor",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2020-12-26_14.37.50.png; 2020-12-26_14.37.56.png; 2020-12-26_14.38.00.png; MC-209622.mp4",
+    "issue links": "Relates:outward:MC-207418:Breaking paintings/item frames/glow item frames does not alert sculk sensors, even though placing them does",
+    "_title": "Sculk sensors do not detect item frame / glow item frame interactions"
+  },
+  "stor": {
+    "bug_id": "MC-209622",
+    "affected_versions": [
+      "20w51a",
+      "21w03a",
+      "21w05b",
+      "21w06a",
+      "21w08b",
+      "21w14a",
+      "1.17",
+      "1.17.1",
+      "21w42a",
+      "1.18.1",
+      "1.18.2",
+      "1.19 Pre-release 1",
+      "1.19 Pre-release 2",
+      "1.19 Pre-release 3",
+      "1.19 Pre-release 5",
+      "1.19",
+      "1.19.2",
+      "22w45a"
+    ],
+    "recommended_version": "20w51a",
+    "environment": "Minecraft Java Edition snapshot 20w51a in a single-player Creative-mode world. Use keyboard and mouse terminology below; if controls are rebound, use the bindings for Inventory, Use Item/Place Block, Attack/Destroy, and hotbar-slot selection. No commands, coordinates, seed, dedicated server, or additional players are required by the report.",
+    "preconditions": [
+      "A launcher installation or profile for the exact Java Edition snapshot 20w51a is available.",
+      "Use a new or disposable single-player world so the setup can be placed in a quiet, uncluttered area.",
+      "Create the world in Creative mode. Creative mode is an execution convenience because the report does not prescribe a game mode and the required objects can be obtained without crafting or exploration.",
+      "Reserve four hotbar slots for a solid support block, an Item Frame, a Sculk Sensor, and one visibly directional test item such as an Iron Sword.",
+      "Choose an open area with a solid floor and enough space to see both the item frame and the sculk sensor simultaneously.",
+      "The observation subsystem must be ready before the first item-frame interaction because placing the item, rotating it, and removing it are three separate trigger actions."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft using the installation configured for the exact snapshot 20w51a. Do not substitute the fixed version 23w06a or another release.",
+        "exact_input": null,
+        "success_cue": "The main menu identifies the running game as Minecraft Java Edition 20w51a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer, select Create New World, set Game Mode to Creative, and create the world. Leave all unrelated world settings at their defaults.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has spawned in a Creative-mode world and the surrounding terrain has rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until nearby chunks are fully visible and movement responds normally before constructing the test setup.",
+        "exact_input": null,
+        "success_cue": "Terrain is no longer visibly loading around the player and movement responds without loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the Inventory control, whose default keyboard binding is E, and select the Search Items tab. ([minecraft.wiki](https://minecraft.wiki/w/Template%3AControl/doc?utm_source=openai))",
+        "exact_input": "E, then left-click the Search Items tab",
+        "success_cue": "The Creative inventory is open and its item-search field is available.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Search for Stone and place one stack into hotbar slot 1. Stone is only the solid support block for mounting the frame; another full solid block may be used if necessary.",
+        "exact_input": "Type \"stone\" in the search field; move Stone to hotbar slot 1",
+        "success_cue": "Stone is visible in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Clear or replace the search text, search for Item Frame, and place the ordinary Item Frame into hotbar slot 2.",
+        "exact_input": "Type \"item frame\" in the search field; move Item Frame to hotbar slot 2",
+        "success_cue": "An ordinary Item Frame is visible in hotbar slot 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Clear or replace the search text, search for Sculk Sensor, and place it into hotbar slot 3.",
+        "exact_input": "Type \"sculk sensor\" in the search field; move Sculk Sensor to hotbar slot 3",
+        "success_cue": "A Sculk Sensor is visible in hotbar slot 3.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Clear or replace the search text, search for Iron Sword, and place it into hotbar slot 4. The report permits any item; a sword is chosen because its displayed orientation is easy to distinguish after rotation.",
+        "exact_input": "Type \"iron sword\" in the search field; move Iron Sword to hotbar slot 4",
+        "success_cue": "An Iron Sword is visible in hotbar slot 4, and at least one additional hotbar slot remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Close the inventory and return to first-person world control.",
+        "exact_input": "E",
+        "success_cue": "The inventory is closed and the crosshair is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Stone in hotbar slot 1, aim at an open patch of ground, and place one Stone block. Ensure at least one vertical side face of the block remains exposed and reachable.",
+        "exact_input": "Press 1; aim at the ground; right-click once",
+        "success_cue": "One Stone block stands above the ground with an exposed vertical face.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the Item Frame in hotbar slot 2, center the crosshair on the exposed vertical side of the Stone block, and use the item once to attach the frame.",
+        "exact_input": "Press 2; aim at the Stone block's vertical face; right-click once",
+        "success_cue": "An empty Item Frame is visibly attached to the side of the Stone block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the Sculk Sensor in hotbar slot 3 and place it upright on the ground directly beside the Stone support block. Do not put wool or another block between the sensor and frame.",
+        "exact_input": "Press 3; aim at the top of the adjacent ground block; right-click once",
+        "success_cue": "The Sculk Sensor is standing on the ground adjacent to the support block, with unobstructed space between it and the Item Frame.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Move to a position in front of the frame from which the crosshair can reach its center while the entire Sculk Sensor also remains visible. Then release all movement controls.",
+        "exact_input": "Use movement controls as needed, then release them",
+        "success_cue": "The centers of both the Item Frame and Sculk Sensor are visible, the frame is within interaction reach, and the player is stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Without moving, wait at least 4 seconds so vibrations and sensor activity caused by constructing or approaching the setup have time to finish before the tested interactions begin.",
+        "exact_input": "Wait at least 4 seconds without movement, jumping, attacking, or placing blocks",
+        "success_cue": "No setup-generated vibration particle is traveling toward the sensor, and the sensor has returned to its resting visual state.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Select the Iron Sword in hotbar slot 4 and keep the crosshair centered on the empty Item Frame. Do not move closer after this point.",
+        "exact_input": "Press 4",
+        "success_cue": "The Iron Sword is held in the active hotbar slot, the frame remains empty, and the player is stationary within interaction reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Use the Iron Sword on the empty Item Frame exactly once to place it inside the frame. This is the first interaction that the observation subsystem must monitor.",
+        "exact_input": "Right-click once",
+        "success_cue": "The Iron Sword is visibly displayed inside the Item Frame.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Remain completely stationary for at least 4 seconds before performing the rotation interaction. Do not place blocks, jump, attack, or click the frame during this interval.",
+        "exact_input": "Wait at least 4 seconds without input",
+        "success_cue": "The Iron Sword remains displayed in its initial orientation and the setup is ready for an independently observable rotation interaction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "With the crosshair still centered on the displayed Iron Sword, use the Item Frame exactly once to rotate the displayed item by one increment.",
+        "exact_input": "Right-click once",
+        "success_cue": "The Iron Sword remains in the frame but is visibly angled differently from its initial orientation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Remain completely stationary for at least 4 seconds so the rotation interaction is temporally separated from the removal interaction.",
+        "exact_input": "Wait at least 4 seconds without input",
+        "success_cue": "The rotated Iron Sword remains displayed and the setup is ready for the removal interaction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Select an empty hotbar slot so the player's hand is empty. Keep the crosshair centered on the displayed item.",
+        "exact_input": "Press the number key corresponding to an empty hotbar slot",
+        "success_cue": "The player's main hand is empty, and the rotated Iron Sword remains displayed in the Item Frame.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Briefly use the Attack/Destroy control exactly once on the displayed item to remove it from the Item Frame. Do not hold the button and do not click a second time, because an additional attack could break the now-empty frame.",
+        "exact_input": "Left-click once, then immediately release",
+        "success_cue": "The Iron Sword is no longer displayed, while the empty Item Frame remains attached to the Stone block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "After the removal click, remain stationary and make no further interactions until the observation subsystem has completed its inspection.",
+        "exact_input": "Release all controls and wait",
+        "success_cue": "The player is stationary, the Item Frame is empty and still mounted, and the adjacent Sculk Sensor remains visible to the observer.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "Immediately after step 16 has inserted the Iron Sword into the frame, begin observing the adjacent Sculk Sensor. Keep the observation subsystem active while the executor performs the separated rotation at step 18 and removal at step 21, ending with the player stationary beside the still-mounted empty frame.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode is selected only to obtain and arrange the required objects deterministically without crafting or commands.",
+      "The report says only that the Sculk Sensor should be \"nearby\" and does not provide an exact distance. Placing it on the ground directly beside the frame's support block is a practical deterministic interpretation.",
+      "The report permits \"any item.\" An Iron Sword is selected because its orientation is visually unambiguous when the item is rotated.",
+      "The issue title includes Glow Item Frames, but the formal Steps to Reproduce explicitly use an ordinary Item Frame. Glow Item Frames were introduced in snapshot 21w03a, after the recommended first affected version 20w51a, so this primary plan tests the ordinary Item Frame only. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Java%E7%89%881.17/%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC?variant=zh-tw&utm_source=openai))",
+      "There are three distinct trigger actions in the report. The trigger_step field identifies the first one, item insertion at step 16; rotation at step 18 and removal at step 21 are additional trigger actions that must be monitored during the same handoff."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0c718945e1d3861a016aa88cf6f1bc87d082dd23ec9e6b6972",
+    "elapsed_seconds": 134.27,
+    "usage": {
+      "input_tokens": 36098,
+      "output_tokens": 8963,
+      "reasoning_tokens": 6539,
+      "total_tokens": 45061
+    },
+    "timestamp": "2026-09-15T00:12:44.995488+00:00"
+  }
+}

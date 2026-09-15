@@ -1,0 +1,193 @@
+{
+  "bug_id": "MC-214622",
+  "category": "Game Events",
+  "source_md": "[Game Events] - MC-214622.md",
+  "source_meta": {
+    "mojira categories": "Game Events",
+    "project": "MC",
+    "issue key": "MC-214622",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-02-09T04:27:42.979-0800",
+    "updated": "2025-03-20T23:51:53.126-0700",
+    "resolution date": "2022-05-24T05:28:23.391-0700",
+    "affects versions": "21w05b; 21w06a; 21w07a; 21w08b; 21w11a; 21w14a; 21w17a; 1.17; 1.17.1; 21w43a; 1.18.1; 1.18.2; 22w18a; 1.19 Pre-release 1",
+    "fix versions": "1.19 Pre-release 3",
+    "labels": "sculk_sensor",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2021-02-09_12.26.16.png; 2021-02-09_12.26.17.png; MC-214622.mp4",
+    "_title": "Sculk sensors do not detect daylight detector mode switching"
+  },
+  "stor": {
+    "bug_id": "MC-214622",
+    "affected_versions": [
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w11a",
+      "21w14a",
+      "21w17a",
+      "1.17",
+      "1.17.1",
+      "21w43a",
+      "1.18.1",
+      "1.18.2",
+      "22w18a",
+      "1.19 Pre-release 1"
+    ],
+    "recommended_version": "21w05b",
+    "environment": "Vanilla Minecraft Java Edition 21w05b in a single-player Creative-mode world. The instructions use the English (US) item names and default controls. No dedicated server or additional player is required.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition snapshot 21w05b, the first version listed as affected. Do not use the fix version 1.19 Pre-release 3.",
+      "Use a Creative-mode world so the required blocks can be obtained without unrelated crafting or exploration.",
+      "Find a quiet, level test area with two horizontally adjacent ground blocks and unobstructed air above them.",
+      "Keep moving entities and other vibration-producing activity away from the test area during the final interaction.",
+      "Do not place wool between the daylight detector and sculk sensor.",
+      "Use an empty hand for the final interaction so right-clicking cannot place or use an unrelated item."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the 21w05b installation or launcher profile.",
+        "exact_input": null,
+        "success_cue": "The main menu displays Minecraft Java Edition snapshot 21w05b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode, or open an existing Creative-mode test world in this version. No specific seed or world type is required by the report.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is in a loaded world and can fly and access the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish before building the test. Do not continue while nearby terrain is still appearing or player controls are unresponsive.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered and movement and inventory controls respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Locate a level test location containing two horizontally adjacent ground-block top surfaces. Ensure there is no wool or other block occupying the space between the positions where the two test blocks will be placed.",
+        "exact_input": null,
+        "success_cue": "Two adjacent placement positions are visible and both have empty air above them.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Use the Creative inventory search to obtain a Daylight Detector and put it in hotbar slot 1. The hotbar is the row of nine item slots at the bottom of the inventory.",
+        "exact_input": "Open the Search Items tab, enter \"daylight detector\", select the Daylight Detector result, and place it in hotbar slot 1.",
+        "success_cue": "A Daylight Detector is visible in the first hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Use the Creative inventory search to obtain a Sculk Sensor and put it in hotbar slot 2. Leave hotbar slot 3 empty for the final interaction.",
+        "exact_input": "Replace the search text with \"sculk sensor\", select the Sculk Sensor result, and place it in hotbar slot 2.",
+        "success_cue": "A Sculk Sensor is in hotbar slot 2, and hotbar slot 3 contains no item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory and return to normal first-person control.",
+        "exact_input": "E or Esc",
+        "success_cue": "The world view and crosshair are visible, with the prepared hotbar displayed at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the Daylight Detector in hotbar slot 1.",
+        "exact_input": "1",
+        "success_cue": "The Daylight Detector is outlined as the active hotbar item and is shown in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim at the top face of the first chosen ground block and place the Daylight Detector.",
+        "exact_input": "Right Mouse Button (Use Item/Place Block)",
+        "success_cue": "A Daylight Detector is placed on top of the ground at the test location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select the Sculk Sensor in hotbar slot 2.",
+        "exact_input": "2",
+        "success_cue": "The Sculk Sensor is outlined as the active hotbar item and is shown in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Place the Sculk Sensor on the top face of the horizontally adjacent ground block, at the same vertical level as the Daylight Detector. The two placed blocks should directly border each other with no intervening block.",
+        "exact_input": "Right Mouse Button (Use Item/Place Block)",
+        "success_cue": "The Daylight Detector and Sculk Sensor are placed side by side and both are visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select the empty hotbar slot 3 so the player's main hand contains no item.",
+        "exact_input": "3",
+        "success_cue": "Hotbar slot 3 is selected and the player's hand is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Stop walking, jumping, placing blocks, or performing other actions. Wait until any response caused during setup has completely ended before testing the mode switch.",
+        "exact_input": null,
+        "success_cue": "The player is stationary and the Sculk Sensor has returned to its resting, inactive visual state.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Without changing position if the block is already within reach, move only the camera until the crosshair points directly at the Daylight Detector. If repositioning is necessary, move into reach and then wait again until the Sculk Sensor is inactive.",
+        "exact_input": "Move the mouse to aim; use movement controls only if the detector is out of reach.",
+        "success_cue": "The Daylight Detector is targeted by the crosshair, the player's hand remains empty, and the adjacent Sculk Sensor is inactive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Right-click the Daylight Detector exactly once with the empty hand to switch it between its normal and inverted modes. Do not perform another action after the click before handing off to observation.",
+        "exact_input": "Right Mouse Button (Use Item/Place Block), once",
+        "success_cue": "The Daylight Detector's top appearance changes, confirming that its mode was switched once while the Sculk Sensor was adjacent and inactive immediately before the interaction.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has just right-clicked the Daylight Detector once with an empty hand, its mode has changed, and the adjacent Sculk Sensor was in its resting inactive state immediately before the click. Begin observation immediately without moving, clicking again, or placing another block.",
+    "uncertainties": [
+      "The report specifies only that the Sculk Sensor should be \"nearby\" and gives no exact distance or orientation. This plan places it horizontally adjacent to the Daylight Detector as the simplest deterministic interpretation.",
+      "The report does not specify a world seed, coordinates, dimension, world type, or game mode. A single-player Creative-mode world and an arbitrary level location are used only to make block acquisition and placement deterministic.",
+      "The report does not prescribe how to obtain the blocks. Creative inventory acquisition is an operational choice and is not asserted to be a condition of the bug.",
+      "The report does not specify whether controls or language settings are customized. The listed inputs assume default controls and English (US) item names."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0cdaaa222c55245e016aa88e20a51087d08fce76d603cb364d",
+    "elapsed_seconds": 65.95,
+    "usage": {
+      "input_tokens": 9377,
+      "output_tokens": 4110,
+      "reasoning_tokens": 2432,
+      "total_tokens": 13487
+    },
+    "timestamp": "2026-09-15T00:16:34.264407+00:00"
+  }
+}

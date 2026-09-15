@@ -1,0 +1,190 @@
+{
+  "bug_id": "MC-251934",
+  "category": "Game Events",
+  "source_md": "[Game Events] - MC-251934.md",
+  "source_meta": {
+    "mojira categories": "Game Events",
+    "project": "MC",
+    "issue key": "MC-251934",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-05-19T09:17:27.024-0700",
+    "updated": "2025-04-30T05:38:05.190-0700",
+    "resolution date": "2023-02-07T00:32:29.371-0800",
+    "affects versions": "1.19 Pre-release 1; 1.19 Pre-release 2; 1.19 Pre-release 5; 1.19 Release Candidate 2; 1.19; 1.19.1 Pre-release 2; 1.19.1; 1.19.2; 1.19.3",
+    "fix versions": "23w06a",
+    "labels": "sculk_sensor",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-251934.mp4; MC-251934.png",
+    "issue links": "Relates:inward:MC-215767:Sculk sensors do not detect turtles laying an egg",
+    "_title": "Sculk sensors are not activated upon frogs laying frogspawn"
+  },
+  "stor": {
+    "bug_id": "MC-251934",
+    "affected_versions": [
+      "1.19 Pre-release 1",
+      "1.19 Pre-release 2",
+      "1.19 Pre-release 5",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "1.19.1 Pre-release 2",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3"
+    ],
+    "recommended_version": "1.19 Pre-release 1",
+    "environment": "Minecraft: Java Edition 1.19 Pre-release 1 in a fresh single-player Creative, Peaceful, Superflat world with cheats enabled. Use a stationary player-relative command anchor to create a small water-and-land test area, two adult frogs, and one nearby sculk sensor. A dedicated server and multiple players are not required by the report.",
+    "preconditions": [
+      "Install and select the exact affected version \"1.19 Pre-release 1\" in the Minecraft Launcher; do not use the fix version 23w06a.",
+      "The test world must permit commands. Creative mode with cheats enabled is used so the setup can be created without exploration or crafting.",
+      "Use an open, level area with enough room for a 5×5 water pool and a sculk sensor approximately 2 blocks beyond one edge of the pool.",
+      "Keep wool blocks and wool carpets out of the test area and out of the space between the pool and the sculk sensor, because wool can interfere with vibration transmission.",
+      "Use two newly summoned adult frogs so neither frog is subject to a previous breeding cooldown.",
+      "Use the bound control for Use Item/Place Block when the steps say to right-click; the default control is the right mouse button."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the installation for Java Edition 1.19 Pre-release 1, and launch the game. Do not substitute a later affected version or the fix version.",
+        "exact_input": null,
+        "success_cue": "The main menu is loaded and displays \"Minecraft 1.19 Pre-release 1\" as the running version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a fresh single-player test world. From the main menu choose Singleplayer, choose Create New World, set Game Mode to Creative, ensure commands or cheats are enabled, set Difficulty to Peaceful, open More World Options, select the Superflat world type, confirm the settings, and create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> Difficulty: Peaceful -> More World Options -> World Type: Superflat -> Done -> Create New World",
+        "success_cue": "The player has spawned in a new Creative-mode Superflat world and can execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish before building the test area.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is fully rendered, the loading overlay is gone, and player input responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Stand normally on a level grass block in an open area. Treat this position as the command anchor. Do not change the player's position until both frogs have been fed, because the following commands use coordinates relative to this position. Rotating the camera without walking is allowed.",
+        "exact_input": null,
+        "success_cue": "The player is stationary on solid level ground with at least 10 blocks of unobstructed space around the anchor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open in-game chat with T, enter the exact command including the leading slash, and press Enter. This replaces a 5×5 section of the ground east of the anchor with water source blocks.",
+        "exact_input": "/fill ~2 ~-1 ~-2 ~6 ~-1 ~2 minecraft:water",
+        "success_cue": "A 5×5 pool of still water is visible. Its surface is level with the surrounding ground, it has land around its edges, and the blocks directly above the water are air.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Without moving from the anchor, open chat, enter the exact command including the leading slash, and press Enter to place the sculk sensor on the ground beyond the pool.",
+        "exact_input": "/setblock ~8 ~ ~ minecraft:sculk_sensor",
+        "success_cue": "One sculk sensor is visible approximately 2 blocks beyond the pool's east edge. Every part of the 5×5 pool is within approximately 6.4 blocks of the sensor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Without moving, open chat, enter the exact command including the leading slash, and press Enter to obtain the two slimeballs needed to breed the frogs.",
+        "exact_input": "/give @s minecraft:slime_ball 2",
+        "success_cue": "The command reports that two slimeballs were given, and a stack of two slimeballs is present in the player's inventory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Place the slimeballs in the hotbar and select their slot. The hotbar is the row of nine item slots at the bottom of the screen. In a fresh inventory, the command will normally put the slimeballs directly into an available hotbar slot; press that slot's number from 1 through 9. If they are elsewhere, press E, drag them into a hotbar slot, close the inventory with E, and press the corresponding number.",
+        "exact_input": "1-9; if necessary, E to open and close the inventory",
+        "success_cue": "A slimeball is shown in the player's hand and the slimeball hotbar slot has the active-slot outline.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Without changing the player's position, open chat, enter the exact command including the leading slash, and press Enter to summon the first adult frog on the land beside the pool.",
+        "exact_input": "/summon minecraft:frog ~1 ~ ~-1",
+        "success_cue": "One adult frog is visible on the land immediately beside the pool.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Without changing the player's position, open chat, enter the exact command including the leading slash, and press Enter to summon the second adult frog at a separate position beside the same pool.",
+        "exact_input": "/summon minecraft:frog ~1 ~ ~1",
+        "success_cue": "Two distinct adult frogs are visible near the pool.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Close chat and rotate the camera with the mouse until both frogs can be individually targeted. Do not press W, A, S, or D. Confirm that the slimeball remains selected.",
+        "exact_input": "Mouse movement only",
+        "success_cue": "Both frogs can be seen near the pool, and the player is still holding a slimeball at the original anchor position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Aim the crosshair at the first frog and press the Use Item control once; by default, right-click once. Do not repeatedly click.",
+        "exact_input": "right-click once",
+        "success_cue": "Heart particles appear above the first frog, confirming that it accepted the slimeball.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Aim the crosshair at the other frog and press the Use Item control once; by default, right-click once. Make sure this is the second frog rather than feeding the first frog again.",
+        "exact_input": "right-click once",
+        "success_cue": "Heart particles appear above the second frog, and the two frogs enter their breeding interaction.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Stop all player movement and item use. Allow the frogs to finish their breeding interaction without feeding them again or modifying the pool, sensor, or surrounding blocks.",
+        "exact_input": null,
+        "success_cue": "The frogs have completed the mating interaction, remain near the prepared water, and no further player input is required to make one of them search for a frogspawn-laying position.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Using camera rotation only, frame the water surface and the nearby sculk sensor in the same view if possible. Do not walk, jump, place blocks, break blocks, use items, or issue further commands.",
+        "exact_input": "Mouse movement only",
+        "success_cue": "The pool and sculk sensor are visible or can be checked with minimal camera rotation while the player remains stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Remain stationary and wait for the bred frog to select a valid water block and lay frogspawn. Watch for a frogspawn block to appear on the surface of the prepared pool. The instant the frogspawn appears is the reproduction trigger; do not perform another action afterward.",
+        "exact_input": null,
+        "success_cue": "A frogspawn block has just appeared on top of a water block in the prepared pool, with the nearby sculk sensor still in place.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The bred frog has just placed frogspawn on the surface of the prepared 5×5 pool, the sculk sensor remains positioned nearby, and the player has not performed any follow-up action. Begin observation immediately at this state.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, difficulty, world type, or whether it was tested in single-player or on a dedicated server. A fresh single-player Creative, Peaceful, Superflat world is selected as a deterministic practical setup rather than as a claimed requirement of the bug.",
+      "The report describes the sculk sensor only as \"nearby\" and gives no exact distance. The plan uses a fixed geometry in which every possible frogspawn position in the prepared pool is within the sculk sensor's documented 1.19 detection range.",
+      "The report supplies no exact commands. The /fill, /setblock, /give, and /summon commands are operational setup choices using Java Edition 1.19 identifiers; they are not commands copied from the report.",
+      "Frog movement and the time required for a bred frog to select a water block are controlled by entity AI, so the exact waiting duration cannot be made deterministic. The observable continuation condition is the appearance of frogspawn on the water surface.",
+      "The frogs may move and generate unrelated vibrations before frogspawn is laid. The player is therefore instructed to remain stationary and keep both the pool and sensor visible so the autonomous laying moment can be identified precisely."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_026f3a901fc9279d016aa88e6289f487d098464654bae46e42",
+    "elapsed_seconds": 177.06,
+    "usage": {
+      "input_tokens": 28390,
+      "output_tokens": 10527,
+      "reasoning_tokens": 8369,
+      "total_tokens": 38917
+    },
+    "timestamp": "2026-09-15T00:19:31.341932+00:00"
+  }
+}
