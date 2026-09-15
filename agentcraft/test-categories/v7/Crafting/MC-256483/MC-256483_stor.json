@@ -1,0 +1,194 @@
+{
+  "bug_id": "MC-256483",
+  "category": "Crafting",
+  "source_md": "[Crafting] - MC-256483.md",
+  "source_meta": {
+    "mojira categories": "Crafting",
+    "project": "MC",
+    "issue key": "MC-256483",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-10-19T06:49:13.632-0700",
+    "updated": "2025-05-29T09:10:27.204-0700",
+    "resolution date": "2022-10-24T14:17:15.234-0700",
+    "affects versions": "22w42a",
+    "fix versions": "22w43a",
+    "area": "Expansion A",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "2022-10-19_14.33.24.png; 2022-10-19_14.40.17.png",
+    "_title": "Acacia hanging signs cannot be crafted"
+  },
+  "stor": {
+    "bug_id": "MC-256483",
+    "affected_versions": [
+      "22w42a"
+    ],
+    "recommended_version": "22w42a",
+    "environment": "Minecraft: Java Edition snapshot 22w42a in an unmodded single-player Creative-mode world with cheats enabled and the built-in Update 1.20 experimental data pack enabled during world creation. Use the standard crafting-table interface. The instructions assume default keyboard and mouse controls and English item names.",
+    "preconditions": [
+      "Install and launch the exact Java Edition snapshot 22w42a, not the fixed snapshot 22w43a or a later version.",
+      "Create a new disposable world; the Update 1.20 experimental features must be enabled during world creation and cannot be added to an already-created 22w42a world.",
+      "Do not load additional data packs, mods, or server plugins that replace recipes.",
+      "Use Creative mode for deterministic item acquisition. This is an execution choice; the report does not require a particular game mode.",
+      "Have at least one Crafting Table, two Chains, and six Stripped Acacia Logs available before beginning the manual crafting attempt."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the launcher installation configured for snapshot 22w42a. At the title screen, verify that the displayed version is 22w42a before proceeding.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running version as Minecraft Java Edition 22w42a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and set Allow Cheats to ON. The single-player Creative configuration is used only to obtain the required items reliably.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON",
+        "success_cue": "The world-creation screen shows Creative mode and cheats enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "While still creating the new world, open the Data Packs screen. Find the built-in Update 1.20 experimental pack, which may be displayed as “Update 1.20” or by its internal-style name “update_1_20”, and move it from Available to Selected using its arrow button. Select Done afterward.",
+        "exact_input": "Create New World -> Data Packs -> enable Update 1.20/update_1_20 -> Done",
+        "success_cue": "The Update 1.20 experimental data pack is in the selected/enabled data-pack list.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "If an experimental-feature warning appears, accept the warning and continue. Select Create New World.",
+        "exact_input": "Proceed, if prompted -> Create New World",
+        "success_cue": "The new world begins loading with the experimental pack enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Wait until the player is in the world, surrounding terrain has rendered, and movement responds normally. Do not begin the crafting test while the world is still loading.",
+        "exact_input": null,
+        "success_cue": "The player can move normally in the loaded Creative world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the Creative inventory using the inventory control, whose default key is E, and select the Search Items tab.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open and a text search field is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Click the search field and enter “Acacia Hanging Sign” to verify that the Update 1.20 experimental content is active. Do not take the hanging sign item; this search is only a setup check.",
+        "exact_input": "Acacia Hanging Sign",
+        "success_cue": "An Acacia Hanging Sign item appears among the Creative search results, confirming that the experimental content is enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Replace the search text with “Crafting Table”. Left-click the Crafting Table item in the results to pick up a stack, then left-click an empty hotbar slot—the hotbar is the nine-slot row at the bottom of the screen—to place it there.",
+        "exact_input": "Crafting Table",
+        "success_cue": "A Crafting Table is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Replace the search text with “Chain”. Pick up the Chain item and place its stack into a different hotbar or player-inventory slot. At least two Chains are required.",
+        "exact_input": "Chain",
+        "success_cue": "The player inventory contains at least two Chains.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Replace the search text with “Stripped Acacia Log”. Pick up the Stripped Acacia Log item and place its stack into another hotbar or player-inventory slot. At least six logs are required. Do not substitute Acacia Logs, Acacia Wood, Stripped Acacia Wood, planks, or another tree species.",
+        "exact_input": "Stripped Acacia Log",
+        "success_cue": "The player inventory contains at least six items named Stripped Acacia Log.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Close the inventory with E. Select the hotbar slot containing the Crafting Table using the corresponding number key or the mouse wheel. Aim at a clear ground block within reach and use the selected table with right-click to place it.",
+        "exact_input": "E; select the Crafting Table hotbar slot; right-click a clear ground block",
+        "success_cue": "A Crafting Table block is placed in the world within the player's reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Optional diagnostic from the report: press T to open in-game chat, enter the report's command exactly as written with the leading slash, and press Enter. Cheats must be enabled for this command.",
+        "exact_input": "/recipe give @a *",
+        "success_cue": "Command feedback indicates that recipes were granted to the player or players. If this optional diagnostic is skipped, continue to the next step.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Aim at the placed Crafting Table and right-click it to open the 3-by-3 crafting interface.",
+        "exact_input": "right-click the Crafting Table",
+        "success_cue": "The Crafting Table interface is open, showing a 3-by-3 input grid and an output slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Optional diagnostic, only if step 12 was performed: click the recipe-book button in the Crafting Table interface, select its search field, and type “Hanging Sign”. Locate the Acacia Hanging Sign entry. Do not rely on recipe auto-fill for the primary reproduction and do not take anything from the output slot.",
+        "exact_input": "Click Recipe Book -> click search field -> type Hanging Sign",
+        "success_cue": "The recipe-book search is filtered to hanging-sign recipes and the Acacia Hanging Sign entry can be located. The crafting interface remains open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Prepare for the manual crafting attempt. Close the recipe-book panel if it obstructs the grid. Remove any items or ghost-filled ingredients from the 3-by-3 crafting input grid so that all nine input cells are visibly empty before manually arranging the ingredients.",
+        "exact_input": "Click the Recipe Book button if necessary; clear all nine crafting-grid cells",
+        "success_cue": "All nine input cells in the Crafting Table grid are empty, and the Chain and Stripped Acacia Log stacks remain accessible in the player inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Place one Chain in the top-left crafting-grid cell and one Chain in the top-right cell, leaving the top-center cell empty. To place single items from a stack, left-click the Chain stack to hold it on the cursor, right-click each required grid cell once, and return the remaining stack to its inventory slot.",
+        "exact_input": "Chain layout: top-left = 1 Chain; top-center = empty; top-right = 1 Chain",
+        "success_cue": "The top crafting row contains Chain, empty cell, Chain in that order, with exactly one Chain in each occupied cell.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "Place one Stripped Acacia Log into each of the three cells in the middle row. Then place one Stripped Acacia Log in the bottom-left cell and one in the bottom-center cell. Deliberately leave the bottom-right cell empty so that the final placement can be isolated as the trigger action.",
+        "exact_input": "Middle row: Stripped Acacia Log, Stripped Acacia Log, Stripped Acacia Log; bottom row: Stripped Acacia Log, Stripped Acacia Log, empty",
+        "success_cue": "The grid contains two Chains in the top corners and five Stripped Acacia Logs across the full middle row and the first two cells of the bottom row; only the bottom-right intended ingredient cell remains empty.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 18,
+        "action": "Trigger the reproduction by placing exactly one Stripped Acacia Log into the bottom-right crafting-grid cell. Do not remove ingredients, substitute oak logs, click a recipe-book entry, or interact with the output slot after this placement. Hand control to the observation subsystem immediately.",
+        "exact_input": "right-click the bottom-right crafting-grid cell once while holding Stripped Acacia Log",
+        "success_cue": "The intended hanging-sign pattern is complete: Chains occupy the two top corners, the top-center cell is empty, and all six cells in the middle and bottom rows contain one Stripped Acacia Log each. No output-slot interaction has occurred.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The sixth Stripped Acacia Log has just been placed in the bottom-right cell, completing the intended two-Chain and six-Stripped-Acacia-Log recipe pattern in the 22w42a Crafting Table. The crafting interface is still open and the output slot has not been clicked; begin observation now.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer, game mode, seed, coordinates, or difficulty. An unmodded single-player Creative world is selected as the simplest deterministic environment because none of those omitted conditions appears necessary for the crafting action.",
+      "The report does not explicitly mention enabling experimental features. External version documentation confirms that hanging signs in 22w42a require the Update 1.20 built-in experimental data pack to be enabled while creating the world.",
+      "The exact visible label of the built-in pack may differ by language or UI presentation; it is referred to as the Update 1.20 experimental pack and is associated with the internal name update_1_20.",
+      "The /recipe command and recipe-book search are explicitly optional in the report. They are preserved as an optional diagnostic, while the manual ingredient placement is used as the primary trigger.",
+      "The report supplies the ingredient types and quantities but not the cell-by-cell layout. The layout with Chains in the top corners and six matching stripped logs filling the bottom two rows was externally verified."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0a389c31db4cb42f016aa8d11b612c87d08cee7dd0014a1c58",
+    "elapsed_seconds": 100.77,
+    "usage": {
+      "input_tokens": 32946,
+      "output_tokens": 6833,
+      "reasoning_tokens": 4561,
+      "total_tokens": 39779
+    },
+    "timestamp": "2026-09-15T05:02:55.991890+00:00"
+  }
+}

@@ -1,0 +1,172 @@
+{
+  "bug_id": "MC-276825",
+  "category": "Crafting",
+  "source_md": "[Crafting] - MC-276825.md",
+  "source_meta": {
+    "mojira categories": "Crafting; Data Packs",
+    "project": "MC",
+    "issue key": "MC-276825",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2024-09-18T11:32:42.416-0700",
+    "updated": "2025-02-11T06:09:49.071-0800",
+    "resolution date": "2024-10-09T04:16:40.909-0700",
+    "affects versions": "24w38a",
+    "fix versions": "1.21.2 Pre-Release 2",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "Minecraft 24w38a - Singleplayer 2024-09-19 03-24-40.mp4; transmute_pack.zip",
+    "_title": "Transmute recipes allow air as output"
+  },
+  "stor": {
+    "bug_id": "MC-276825",
+    "affected_versions": [
+      "24w38a"
+    ],
+    "recommended_version": "24w38a",
+    "environment": "Minecraft Java Edition snapshot 24w38a in a clean singleplayer world. Use Creative mode with commands enabled as a practical deterministic setup. Enable the attached transmute_pack.zip data pack during world creation.",
+    "preconditions": [
+      "Install and launch Minecraft Java Edition snapshot 24w38a, not the listed fix version 1.21.2 Pre-Release 2 or any later version.",
+      "Obtain the report attachment named transmute_pack.zip and keep it available as a ZIP file.",
+      "Use a clean test world to avoid recipes or data packs from unrelated sources.",
+      "Use the default controls described below, or the corresponding rebound controls.",
+      "The player must have permission to execute /recipe; creating the test world in Creative mode provides commands in a singleplayer world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation for snapshot 24w38a and start the game. Confirm the lower-left corner or title screen identifies the running version as 24w38a before continuing.",
+        "exact_input": "24w38a",
+        "success_cue": "The Minecraft title screen is open and displays version 24w38a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then choose Create New World. Set the game mode to Creative so that commands can be executed and a crafting table can be obtained without unrelated resource gathering.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative",
+        "success_cue": "The Create New World screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Before creating the world, open the data-pack configuration screen using the More tab and then Data Packs. Select Open Pack Folder to open the operating-system folder into which world-creation data packs can be placed.",
+        "exact_input": "More -> Data Packs -> Open Pack Folder",
+        "success_cue": "The operating system displays the data-pack folder associated with the world being created.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Copy the attached transmute_pack.zip file into the opened data-pack folder. Do not rename it, edit its recipe files, or extract it unless the game cannot recognize the supplied ZIP as a pack.",
+        "exact_input": "transmute_pack.zip",
+        "success_cue": "transmute_pack.zip is present directly inside the opened data-pack folder.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Return to Minecraft. In the Data Packs screen, locate the newly detected pack in the Available list and activate it so that it moves to the Selected list. Confirm any prompt required to enable the pack, then select Done.",
+        "exact_input": "Available -> transmute_pack -> activate arrow -> Done",
+        "success_cue": "The attached pack is shown in the Selected data-packs list and Minecraft has returned to the world-creation screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Create the world. If Minecraft displays a warning associated with loading a snapshot or experimental data, acknowledge it without changing or removing the attached pack.",
+        "exact_input": "Create New World",
+        "success_cue": "The player enters the newly created world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait before issuing commands. Continue only after nearby terrain has rendered, the player can look and move normally, and the world is no longer showing a loading screen.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded world and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Obtain a crafting table deterministically. Press T to open in-game chat, enter the exact command below with its leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:crafting_table",
+        "success_cue": "A crafting table is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Place the crafting table into the hotbar if it is not already there. Press E to open the inventory, move the crafting table to one of the nine slots along the bottom, close the inventory with E or Esc, and select that slot using its number key or the mouse wheel.",
+        "exact_input": "E -> move Crafting Table to hotbar -> E or Esc -> select its hotbar slot",
+        "success_cue": "The crafting table is visible in the selected hotbar slot and is shown in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim at a solid, unobstructed block within reach and use the selected crafting table on that block with right-click.",
+        "exact_input": "right-click",
+        "success_cue": "A crafting table block is placed in the world within the player's interaction range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Right-click the placed crafting table to open its crafting interface.",
+        "exact_input": "right-click",
+        "success_cue": "The crafting-table interface is open and shows a 3-by-3 crafting grid.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Prepare the interface so that the recipe book will be visible during the final opening. If the recipe-book pane is collapsed, click the green book button beside the crafting grid once. If the pane is already visible, leave it open.",
+        "exact_input": "left-click the green Recipe Book button if the recipe-book pane is collapsed",
+        "success_cue": "The recipe-book pane is visibly expanded beside the 3-by-3 crafting grid.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Close the crafting-table interface with Esc while leaving the placed crafting table where it is. Do not move far enough away to lose interaction range.",
+        "exact_input": "Esc",
+        "success_cue": "Normal world view is restored, and the same crafting table remains directly within reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press T to open in-game chat. Enter the report's command exactly as written, including the leading slash, and press Enter. Execute it only once and preserve any resulting chat feedback for the observation subsystem.",
+        "exact_input": "/recipe give @s test:test_recipe",
+        "success_cue": "The command has been submitted once, chat has closed, and the player has returned to normal world control; no second attempt has been made.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Immediately aim at the previously placed crafting table and right-click it once to open the crafting-table interface. Do not place ingredients into the grid, select another recipe, run another command, or repeatedly reopen the table.",
+        "exact_input": "right-click",
+        "success_cue": "The crafting-table interface has just opened, with the recipe-book pane expanded beside the 3-by-3 crafting grid.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The command /recipe give @s test:test_recipe has been executed exactly once, and the crafting-table interface has just been opened with its recipe-book pane expanded. Hand control to the observation subsystem now, before clicking recipes, placing ingredients, closing the interface, or repeating the command.",
+    "uncertainties": [
+      "The contents of transmute_pack.zip were not included in the supplied report text, so this plan assumes the attachment is a directly loadable data-pack ZIP containing the recipe identified as test:test_recipe.",
+      "The report does not specify a game mode. Creative mode with commands enabled is selected only as a practical deterministic way to satisfy command permissions and obtain a crafting table; it is not asserted to be a bug requirement.",
+      "The pack's displayed title in the Data Packs screen may differ from the attachment filename transmute_pack.zip. Identify it by adding only that attachment to the clean world's data-pack folder.",
+      "The plan assumes the expanded/collapsed recipe-book state remains selected after closing and reopening the crafting table. If the pane is unexpectedly collapsed at the final opening, expand it once without performing any other crafting action, then hand off immediately."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_049e26e7bad81f18016aa8d1d63e1887d0921a82fd33045b46",
+    "elapsed_seconds": 68.53,
+    "usage": {
+      "input_tokens": 8262,
+      "output_tokens": 4722,
+      "reasoning_tokens": 3078,
+      "total_tokens": 12984
+    },
+    "timestamp": "2026-09-15T05:05:30.613837+00:00"
+  }
+}

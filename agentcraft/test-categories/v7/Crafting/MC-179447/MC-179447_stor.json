@@ -1,0 +1,299 @@
+{
+  "bug_id": "MC-179447",
+  "category": "Crafting",
+  "source_md": "[Crafting] - MC-179447.md",
+  "source_meta": {
+    "mojira categories": "Crafting",
+    "project": "MC",
+    "issue key": "MC-179447",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-04-19T06:08:50.089-0700",
+    "updated": "2025-05-29T09:18:24.314-0700",
+    "resolution date": "2022-07-21T09:58:48.759-0700",
+    "affects versions": "1.15.2; 20w16a; 20w17a; 20w18a; 1.16.4; 20w45a; 20w46a; 1.17.1; 1.18.1; 22w06a",
+    "fix versions": "22w18a",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "Screenshot 2022-07-21 011344.png; Screenshot 2022-07-21 011746.png",
+    "_title": "More than six banner patterns can be added to a banner"
+  },
+  "stor": {
+    "bug_id": "MC-179447",
+    "affected_versions": [
+      "1.15.2",
+      "20w16a",
+      "20w17a",
+      "20w18a",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "1.17.1",
+      "1.18.1",
+      "22w06a"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Vanilla Minecraft Java Edition 1.15.2 in a single-player Creative-mode world. Use one local player, the normal player inventory, and a placed Loom. No seed, coordinates, commands, data packs, server, operator permissions, or special graphics settings are required by the report.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.15.2, the first version listed as affected; do not use fix version 22w18a.",
+      "Use an unmodified vanilla client so that mods do not alter the Loom interface or inventory behavior.",
+      "Create or enter a Creative-mode world where the player can place and interact with blocks.",
+      "Keep at least three player-inventory slots empty so the two banners and displaced dye can be moved without closing the Loom interface.",
+      "The instructions use the default inventory key E and right-click interaction; use the corresponding bound controls if they have been changed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start the installation for Java Edition 1.15.2. Wait for the main menu to finish loading and confirm that the lower-left version label shows 1.15.2.",
+        "exact_input": "1.15.2",
+        "success_cue": "The Minecraft main menu is open and displays version 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world in Creative Mode, and enter it. A default world type and arbitrary seed are sufficient. Wait until nearby terrain is rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded Creative-mode world and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to obtain one Loom, two White Banners, a stack of Red Dye, and at least one Blue Dye. Put the Loom in the hotbar and keep the banners and dyes in accessible inventory slots. The colors are deterministic implementation choices; the report does not require particular colors.",
+        "exact_input": "Loom; White Banner; Red Dye; Blue Dye",
+        "success_cue": "The inventory contains one Loom, two plain White Banners, Red Dye, and Blue Dye.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Close the inventory, select the Loom in the hotbar, aim at the top surface of a nearby solid block, and right-click to place the Loom.",
+        "exact_input": null,
+        "success_cue": "A Loom block is placed within interaction range of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Aim at the placed Loom and right-click to open its interface. Identify the banner input slot and dye input slot on the left, the pattern-selection area in the middle, and the result/output slot on the right.",
+        "exact_input": null,
+        "success_cue": "The Loom interface is open, including the player inventory at the bottom and the Loom output slot on the right.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Move one of the plain White Banners from the player inventory into the Loom's banner input slot. Leave the other White Banner in the player inventory; that untouched item is the second banner used later.",
+        "exact_input": null,
+        "success_cue": "One plain White Banner is in the Loom's banner input slot and another plain White Banner remains in the player inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Move the stack of Red Dye into the Loom's dye input slot. No separate Banner Pattern item is needed for the six simple geometric patterns used below.",
+        "exact_input": null,
+        "success_cue": "The first White Banner and Red Dye are in their respective Loom input slots, and the ordinary pattern buttons are available.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "In the pattern-selection area, left-click the icon depicting a horizontal stripe along the top edge of the banner.",
+        "exact_input": null,
+        "success_cue": "A result banner preview with the selected red top stripe is present in the right-hand output slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Left-click the output slot once to take the patterned banner. Do not shift-click. The input banner and one Red Dye are consumed by this Loom operation.",
+        "exact_input": null,
+        "success_cue": "The once-patterned banner is attached to the cursor, and the Loom's banner input slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Left-click the empty banner input slot to place the once-patterned banner back into the Loom.",
+        "exact_input": null,
+        "success_cue": "The once-patterned banner is in the banner input slot and Red Dye remains in the dye slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Left-click the pattern icon depicting a horizontal stripe along the bottom edge of the banner.",
+        "exact_input": null,
+        "success_cue": "A new result preview is present in the output slot with the selected bottom stripe added after the first layer.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Left-click the output slot once to take the modified banner.",
+        "exact_input": null,
+        "success_cue": "The twice-patterned banner is attached to the cursor, and the Loom's banner input slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Place the twice-patterned banner back into the Loom's banner input slot.",
+        "exact_input": null,
+        "success_cue": "The twice-patterned banner is in the banner input slot and the remaining Red Dye is still available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Left-click the pattern icon depicting a vertical stripe along the left edge of the banner.",
+        "exact_input": null,
+        "success_cue": "A result preview with the selected left-edge stripe as the next layer is present in the output slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Left-click the output slot once to take the modified banner.",
+        "exact_input": null,
+        "success_cue": "The three-pattern banner is attached to the cursor, and the Loom's banner input slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Place the three-pattern banner back into the Loom's banner input slot.",
+        "exact_input": null,
+        "success_cue": "The three-pattern banner is in the banner input slot and Red Dye remains in the dye slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Left-click the pattern icon depicting a vertical stripe along the right edge of the banner.",
+        "exact_input": null,
+        "success_cue": "A result preview with the selected right-edge stripe as the next layer is present in the output slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Left-click the output slot once to take the modified banner.",
+        "exact_input": null,
+        "success_cue": "The four-pattern banner is attached to the cursor, and the Loom's banner input slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Place the four-pattern banner back into the Loom's banner input slot.",
+        "exact_input": null,
+        "success_cue": "The four-pattern banner is in the banner input slot and Red Dye remains in the dye slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Left-click the pattern icon depicting a vertical stripe through the center of the banner.",
+        "exact_input": null,
+        "success_cue": "A result preview with the selected center vertical stripe as the next layer is present in the output slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Left-click the output slot once to take the modified banner.",
+        "exact_input": null,
+        "success_cue": "The five-pattern banner is attached to the cursor, and the Loom's banner input slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Place the five-pattern banner back into the Loom's banner input slot.",
+        "exact_input": null,
+        "success_cue": "The five-pattern banner is in the banner input slot and Red Dye remains in the dye slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Left-click the pattern icon depicting a horizontal stripe through the center of the banner. This is the sixth pattern layer for the first banner.",
+        "exact_input": null,
+        "success_cue": "A result preview with the center horizontal stripe as the sixth layer is present in the output slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Left-click the output slot once to take the modified first banner. Do not place it back into the Loom yet.",
+        "exact_input": null,
+        "success_cue": "The first banner is attached to the cursor after six normal Loom operations, and the banner input slot is empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "Place the first banner into a distinct empty slot in the player inventory. Hover over it and count the pattern-description lines in its tooltip, confirming that it has exactly six pattern layers. Remember this inventory slot because this banner must be swapped into the Loom later.",
+        "exact_input": null,
+        "success_cue": "The six-pattern first banner is stored in a known player-inventory slot, while the separate plain second White Banner remains available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 26,
+        "action": "Replace the Red Dye in the Loom's dye slot with Blue Dye: pick up the remaining Red Dye, place it into an empty player-inventory slot, then pick up the Blue Dye and place it into the dye input slot.",
+        "exact_input": null,
+        "success_cue": "Blue Dye is in the Loom's dye input slot, the Red Dye is outside the Loom, and the banner input slot is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 27,
+        "action": "Move the untouched second White Banner from the player inventory into the Loom's banner input slot.",
+        "exact_input": null,
+        "success_cue": "The plain second White Banner is in the banner input slot, Blue Dye is in the dye slot, and the six-pattern first banner remains in the player inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 28,
+        "action": "In the Loom's pattern-selection area, left-click the icon depicting a centered circle. Leave the resulting second banner in the right-hand output slot: do not click, shift-click, or otherwise remove that output.",
+        "exact_input": null,
+        "success_cue": "The centered-circle pattern remains selected and a blue-circle result for the second banner is waiting in the right-hand output slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 29,
+        "action": "While the second banner's result remains untouched in the output slot, left-click the six-pattern first banner in the player inventory so that it becomes attached to the cursor.",
+        "exact_input": null,
+        "success_cue": "The six-pattern first banner is attached to the cursor; the plain second banner is still in the Loom input slot and its selected result has not been taken.",
+        "source_basis": "report"
+      },
+      {
+        "step": 30,
+        "action": "Left-click the occupied Loom banner input slot while holding the six-pattern first banner. This inventory click must directly swap the held first banner with the second banner already in the input slot; do not remove the right-hand output before making this swap.",
+        "exact_input": null,
+        "success_cue": "The six-pattern first banner is now in the Loom's banner input slot, and the displaced plain second banner is attached to the cursor.",
+        "source_basis": "report"
+      },
+      {
+        "step": 31,
+        "action": "Move the displaced second banner from the cursor into an empty player-inventory slot. Do not change the banner input, dye input, selected centered-circle pattern, or right-hand output slot.",
+        "exact_input": null,
+        "success_cue": "The cursor is empty, the six-pattern first banner remains in the Loom input, Blue Dye remains in the dye input, and no output-slot click has yet been made after the swap.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 32,
+        "action": "Left-click the Loom's right-hand output slot exactly once to take the currently offered result. Make no further Loom or inventory interaction after this click.",
+        "exact_input": null,
+        "success_cue": "The output-slot click has been performed once after the input-banner swap, and the reproduction sequence is paused immediately afterward for observation.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 32,
+    "handoff_condition": "The Loom's right-hand output slot has just been left-clicked once after the six-pattern first banner replaced the second banner in the occupied banner input slot, with Blue Dye and the centered-circle selection retained. Begin observation immediately, before performing any additional inventory, Loom, placement, or pattern actions.",
+    "uncertainties": [
+      "The report does not specify game mode, world seed, server type, banner color, dye colors, or exact pattern designs. Creative-mode single player, White Banners, six simple red stripe patterns, and a blue centered-circle pattern are practical deterministic choices that preserve the reported Loom interaction.",
+      "The report's instruction to 'swap in the first banner' is interpreted as picking up the six-pattern banner and left-clicking the occupied Loom banner input slot so the two banners exchange positions in one inventory click.",
+      "The report explicitly requires leaving the second banner in the right side of the GUI before swapping the input banner, but it does not explicitly state the final click used to collect the result. The final output-slot click is included as a practical execution step to complete the Loom transaction before observation.",
+      "External verification was limited to the general Java Edition Loom slot roles and the use of a banner plus dye to select ordinary patterns; the Mojira report remains the source of truth for the timing-sensitive swap procedure."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_050c1c2344d05741016aa8d0a9a0b087d0a14febed9d06fe04",
+    "elapsed_seconds": 114.32,
+    "usage": {
+      "input_tokens": 25812,
+      "output_tokens": 7896,
+      "reasoning_tokens": 5034,
+      "total_tokens": 33708
+    },
+    "timestamp": "2026-09-15T05:01:15.217027+00:00"
+  }
+}

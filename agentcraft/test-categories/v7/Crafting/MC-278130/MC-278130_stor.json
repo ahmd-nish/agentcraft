@@ -1,0 +1,161 @@
+{
+  "bug_id": "MC-278130",
+  "category": "Crafting",
+  "source_md": "[Crafting] - MC-278130.md",
+  "source_meta": {
+    "mojira categories": "Crafting",
+    "project": "MC",
+    "issue key": "MC-278130",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-11-06T07:21:28.530-0800",
+    "updated": "2025-04-26T17:25:33.842-0700",
+    "resolution date": "2024-11-12T02:10:24.402-0800",
+    "affects versions": "24w45a",
+    "fix versions": "24w46a",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-278130.mp4; MC-278130.png",
+    "issue links": "Duplicate:inward:MC-278138:Can't use resin brick as material for armor trimming | Relates:outward:MC-278131:Resin clumps can be placed inside smithing tables",
+    "_title": "Resin bricks cannot be placed or used inside smithing tables"
+  },
+  "stor": {
+    "bug_id": "MC-278130",
+    "affected_versions": [
+      "24w45a"
+    ],
+    "recommended_version": "24w45a",
+    "environment": "Minecraft: Java Edition snapshot 24w45a in a new vanilla single-player Creative-mode world. No particular seed, coordinates, difficulty, structure, multiplayer server, resource pack, or data pack is required by the report. Instructions assume the English (US) interface and default mouse/keyboard controls.",
+    "preconditions": [
+      "Enable historical snapshots in the Minecraft Launcher and install an installation that launches exactly Java Edition snapshot 24w45a.",
+      "Do not perform this reproduction in fix version 24w46a; the affected version specified by the report is 24w45a.",
+      "Use an unmodified vanilla client unless comparison against a modified environment is separately required.",
+      "The official 24w45a notes identify Resin Brick, rather than Resin Clump, as the intended armor-trim material. ([minecraft.net](https://www.minecraft.net/da-dk/article/minecraft-snapshot-24w45a?utm_source=openai))",
+      "Creative mode is used only as a deterministic way to obtain the report's required items without exploration, crafting, or commands.",
+      "The smithing workflow requires an armor piece, an armor-trim smithing template, and a trim material. ([minecraft.net](https://www.minecraft.net/en-us/article/smithing-table?utm_source=openai))"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for Java Edition snapshot 24w45a and start the game. On the title screen, verify the displayed version before continuing.",
+        "exact_input": "Play — installation/version 24w45a",
+        "success_cue": "The Minecraft Java Edition title screen is open and its version text identifies the running game as 24w45a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and create the world. Leave the seed and other world-generation settings at their defaults because the report supplies no required seed or location.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has entered a new 24w45a world in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Do not begin item setup until the immediate terrain has rendered and normal player movement and inventory input respond without initial world-loading delay.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, the player can move normally, and pressing E opens the inventory without a loading delay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, click its search field, enter the exact item name \"Smithing Table\", and move one Smithing Table result into hotbar slot 1. The hotbar is the row of nine quick-access slots along the bottom of the inventory.",
+        "exact_input": "Smithing Table",
+        "success_cue": "One Smithing Table is present in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "In the Creative inventory's Search Items tab, replace the existing search text with \"Sentry Armor Trim Smithing Template\" and move one matching template into hotbar slot 2. This is the deterministic example used for the report's instruction to obtain any armor trim.",
+        "exact_input": "Sentry Armor Trim Smithing Template",
+        "success_cue": "One Sentry Armor Trim Smithing Template is present in hotbar slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Replace the search text with \"Iron Chestplate\" and move one ordinary, untrimmed Iron Chestplate into hotbar slot 3. This is the deterministic example used for the report's instruction to obtain any chestplate.",
+        "exact_input": "Iron Chestplate",
+        "success_cue": "One untrimmed Iron Chestplate is present in hotbar slot 3.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Replace the search text with \"Resin Brick\" and move one Resin Brick item into hotbar slot 4. Select the singular Resin Brick item, not a Resin Clump and not a Resin Bricks building block.",
+        "exact_input": "Resin Brick",
+        "success_cue": "One Resin Brick item is present in hotbar slot 4 alongside the smithing table, template, and chestplate.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press E to close the Creative inventory. Verify that hotbar slots 1 through 4 contain, in order, the Smithing Table, Sentry Armor Trim Smithing Template, Iron Chestplate, and Resin Brick.",
+        "exact_input": "E",
+        "success_cue": "The inventory is closed and all four required items are visible in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select hotbar slot 1 so that the Smithing Table is the active held item. Aim at the top face of a nearby solid ground block and use the place/use action, which is right-click by default, to place the Smithing Table.",
+        "exact_input": "Hotbar slot 1; right-click a solid ground block",
+        "success_cue": "A Smithing Table block is placed within interaction range of the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Aim at the placed Smithing Table and right-click it once to open its interface.",
+        "exact_input": "Right-click the placed Smithing Table",
+        "success_cue": "The Smithing Table interface is open, showing three input slots to the left of an arrow and an output slot to the right.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "In the inventory section at the bottom of the Smithing Table interface, left-click and drag the Sentry Armor Trim Smithing Template from hotbar slot 2 into the leftmost of the three input slots, then release the mouse button.",
+        "exact_input": "Left-click-drag Sentry Armor Trim Smithing Template -> leftmost template input slot",
+        "success_cue": "The Sentry Armor Trim Smithing Template visibly occupies the leftmost input slot.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Left-click and drag the untrimmed Iron Chestplate from hotbar slot 3 into the middle input slot, then release the mouse button. Do not click the output slot.",
+        "exact_input": "Left-click-drag Iron Chestplate -> middle equipment input slot",
+        "success_cue": "The template remains in the left input slot and the Iron Chestplate visibly occupies the middle input slot.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "With the Smithing Table interface still open, left-click and drag the Resin Brick from hotbar slot 4 onto the rightmost input slot—the material/addition slot immediately to the left of the arrow—and release the mouse button exactly once. Make no further inventory clicks after this placement attempt.",
+        "exact_input": "Left-click-drag Resin Brick -> rightmost material/addition input slot; release once",
+        "success_cue": "The Resin Brick placement attempt has just been completed while the Smithing Table interface remains open for immediate inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The Sentry Armor Trim Smithing Template and Iron Chestplate have been loaded into their smithing input slots, and the Resin Brick has just been released once onto the rightmost material/addition input slot. Begin observation immediately before making any further click, moving items, closing the interface, or repeating the attempt.",
+    "uncertainties": [
+      "The report does not specify a game mode or item-acquisition method. Creative mode and the Creative inventory are used as a deterministic setup choice, not as a claimed requirement of the bug.",
+      "The report permits any armor trim and any chestplate but does not name particular examples. This plan uses a Sentry Armor Trim Smithing Template and an untrimmed Iron Chestplate; these selections are practical examples rather than report-mandated items.",
+      "The phrase \"any armor trim\" is interpreted as any Armor Trim Smithing Template, because a template is the item placed into the Smithing Table to select a trim pattern.",
+      "The report does not state whether the test must be single-player or multiplayer. A single-player world is selected because no server-specific condition is described.",
+      "The report does not specify a seed, coordinates, difficulty, or world-generation settings, so no deterministic location beyond a newly created world is required."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_03d2a606d45bfcf2016aa8d21acf6487d08ac9f72b7c3d7e9e",
+    "elapsed_seconds": 77.85,
+    "usage": {
+      "input_tokens": 16741,
+      "output_tokens": 6101,
+      "reasoning_tokens": 4384,
+      "total_tokens": 22842
+    },
+    "timestamp": "2026-09-15T05:06:48.483464+00:00"
+  }
+}

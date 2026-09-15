@@ -1,0 +1,188 @@
+{
+  "bug_id": "MC-269161",
+  "category": "Crafting",
+  "source_md": "[Crafting] - MC-269161.md",
+  "source_meta": {
+    "mojira categories": "Crafting; UI",
+    "project": "MC",
+    "issue key": "MC-269161",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-03-06T20:12:05.930-0800",
+    "updated": "2025-05-29T09:07:12.233-0700",
+    "resolution date": "2024-04-11T05:57:19.296-0700",
+    "affects versions": "24w10a; 24w12a",
+    "fix versions": "1.20.5 Pre-Release 2",
+    "area": "Platform",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "test_datapack.zip",
+    "issue links": "Duplicate:inward:MC-269823:Stonecutter Items Incorrect with Custom Components",
+    "_title": "Stonecutter does not support multiple recipes with the same result item type"
+  },
+  "stor": {
+    "bug_id": "MC-269161",
+    "affected_versions": [
+      "24w10a",
+      "24w12a"
+    ],
+    "recommended_version": "24w10a",
+    "environment": "Minecraft Java Edition snapshot 24w10a in an unmodified single-player client. Use a newly created Creative-mode world with only the attached test_datapack.zip enabled. Default keyboard and mouse controls are assumed.",
+    "preconditions": [
+      "The Minecraft Launcher is installed and can launch the exact Java Edition snapshot 24w10a.",
+      "The attachment test_datapack.zip from MC-269161 has been downloaded and is available as an intact ZIP file. Do not extract or modify it unless Minecraft rejects the ZIP itself.",
+      "Use a vanilla installation without mods. Do not enable other datapacks that add or modify stonecutting recipes.",
+      "Create a disposable test world; the report does not specify a seed, world type, difficulty, or game mode.",
+      "Creative mode is used only as a practical way to obtain a Stonecutter and Oak Planks without unrelated crafting or exploration."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the exact affected snapshot. In the Minecraft Launcher, select or create a Java Edition installation whose version is snapshot 24w10a, then start the game.",
+        "exact_input": "24w10a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 24w10a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world list and begin creating a new world by selecting Singleplayer, then Create New World.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the new world's game mode to Creative. Leave the seed, world type, difficulty, and other world-generation settings at their defaults.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Navigate to the new world's datapack configuration screen. In the 24w10a world-creation interface, open the More tab and select Data Packs.",
+        "exact_input": "More -> Data Packs",
+        "success_cue": "The Data Packs screen is open and shows sections for available and selected datapacks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select Open Pack Folder. In the operating-system folder that opens, copy test_datapack.zip into that folder without changing its filename. Return to Minecraft after the copy finishes.",
+        "exact_input": "test_datapack.zip",
+        "success_cue": "test_datapack.zip appears as an available datapack in the Minecraft Data Packs screen; refreshing or reopening the screen is acceptable if it does not appear immediately.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Enable test_datapack.zip by selecting its arrow or otherwise moving it from Available to Selected. Do not enable any unrelated datapacks.",
+        "exact_input": "Enable test_datapack.zip",
+        "success_cue": "test_datapack.zip is listed in the Selected datapacks column.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Select Done to return to world creation. If Minecraft displays a datapack validation or confirmation screen, accept only if it allows the attached pack to remain enabled.",
+        "exact_input": "Done",
+        "success_cue": "The world-creation screen is visible again and no message says that test_datapack.zip failed to load.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Create the world by selecting Create New World.",
+        "exact_input": "Create New World",
+        "success_cue": "The player enters the newly generated world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Do not interact until initial world loading is complete. Wait for nearby terrain to render and verify that looking and moving respond normally.",
+        "exact_input": null,
+        "success_cue": "Nearby ground is rendered, the loading overlay is gone, and player movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, search for a Stonecutter, and place one Stonecutter into an empty hotbar slot. The hotbar is the row of nine slots at the bottom of the inventory.",
+        "exact_input": "E; search: stonecutter",
+        "success_cue": "A Stonecutter is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "While the Creative inventory remains open, search for Oak Planks and place a stack into another empty hotbar slot.",
+        "exact_input": "search: oak planks",
+        "success_cue": "Oak Planks are present in a hotbar slot separate from the Stonecutter.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Close the inventory with E or Esc. Select the hotbar slot containing the Stonecutter, aim at the top surface of a nearby solid ground block, and right-click to place it.",
+        "exact_input": "Select Stonecutter hotbar slot; right-click ground",
+        "success_cue": "A Stonecutter block is placed in the world within interaction range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Aim at the placed Stonecutter and right-click it to open its interface.",
+        "exact_input": "Right-click Stonecutter",
+        "success_cue": "The Stonecutter interface is open, showing an input slot, a recipe-selection area, and a result slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Move exactly one Oak Planks item into the Stonecutter input slot. To do this from a stack, left-click the Oak Planks stack to pick it up, right-click the Stonecutter input slot once to deposit one item, then return the remaining stack to its original inventory slot with left-click.",
+        "exact_input": "1 Oak Planks",
+        "success_cue": "The Stonecutter input slot contains exactly one Oak Planks item.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait for the recipe-selection area to populate. Do not remove the Oak Planks or close the interface. Confirm that the datapack has supplied the set of 16 Stonecutter recipe buttons described by the report; use the recipe-area scrollbar if necessary only to count or expose additional entries.",
+        "exact_input": null,
+        "success_cue": "Sixteen selectable datapack recipe entries are available for the Oak Planks input. If the entries do not appear, stop because the attached datapack is not active.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Click the first visible datapack recipe button in the recipe grid once. Do not take the item from the result slot.",
+        "exact_input": "Left-click first visible recipe button",
+        "success_cue": "The first clicked recipe button is selected and the Stonecutter result slot contains a Light block item; the input Oak Planks remains in place.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Click a different recipe button once—preferably the next visible button in grid order or a button displaying a different light-level icon—and then immediately stop interacting. Do not click the result slot, shift-click the result, remove the Oak Planks, or close the interface.",
+        "exact_input": "Left-click a second, different recipe button once",
+        "success_cue": "The second recipe button is now selected, the result slot is populated, and no output item has been taken.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The Stonecutter remains open with one Oak Planks item in its input slot, the datapack's second distinct recipe button has just been clicked, and the resulting Light block item remains untouched in the result slot. Begin observation before any further click or inventory action.",
+    "uncertainties": [
+      "The raw report names the required attachment but does not provide the contents of test_datapack.zip, so this plan assumes the original attachment is intact and compatible with snapshot 24w10a.",
+      "The report does not identify one specific recipe button or light level that is guaranteed to demonstrate the issue. It instructs the tester to click among the various datapack recipes, so the plan uses two distinct buttons and hands off immediately after the second selection.",
+      "Creative mode and a newly created single-player world are practical execution choices; the report does not specify a required game mode, seed, world type, or dedicated-server environment.",
+      "The world-creation menu wording may vary slightly within the snapshot interface, but the datapack must be enabled for the world before testing."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0b7ac554e45315f7016aa8d180294887d0a1cfc870d36a7fc9",
+    "elapsed_seconds": 86.06,
+    "usage": {
+      "input_tokens": 8592,
+      "output_tokens": 5465,
+      "reasoning_tokens": 3704,
+      "total_tokens": 14057
+    },
+    "timestamp": "2026-09-15T05:04:22.070848+00:00"
+  }
+}
