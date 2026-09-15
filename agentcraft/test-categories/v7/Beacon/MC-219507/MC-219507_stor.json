@@ -1,0 +1,263 @@
+{
+  "bug_id": "MC-219507",
+  "category": "Beacon",
+  "source_md": "[Beacon] - MC-219507.md",
+  "source_meta": {
+    "mojira categories": "Beacon",
+    "project": "MC",
+    "issue key": "MC-219507",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2021-03-14T07:01:43.231-0700",
+    "updated": "2025-04-29T20:32:39.050-0700",
+    "resolution date": "2021-12-24T22:14:51.257-0800",
+    "affects versions": "21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w16a; 21w17a; 21w18a; 21w19a; 21w20a; 1.17 Pre-release 1; 1.17 Pre-release 2; 1.17 Pre-release 3; 1.17; 1.17.1; 21w38a; 1.18 Pre-release 5; 1.18 Release Candidate 1; 1.18 Release Candidate 3; 1.18",
+    "fix versions": "1.18.1 Pre-release 1",
+    "labels": "beacon; beacon-pyramid; chunk-border",
+    "watchers": "1",
+    "attachments": "5",
+    "attachment filenames": "0.png; 1.png; 2.png; 20210520.png; 20210609.png",
+    "_title": "Beacon's power reverts back to previous one on world reload"
+  },
+  "stor": {
+    "bug_id": "MC-219507",
+    "affected_versions": [
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "21w18a",
+      "21w19a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17 Pre-release 2",
+      "1.17 Pre-release 3",
+      "1.17",
+      "1.17.1",
+      "21w38a",
+      "1.18 Pre-release 5",
+      "1.18 Release Candidate 1",
+      "1.18 Release Candidate 3",
+      "1.18"
+    ],
+    "recommended_version": "21w10a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 21w10a in a new single-player Creative-mode world. Use the same world for both reloads. Build outdoors with an unobstructed vertical path above the beacon. Default Java Edition controls are assumed unless they have been rebound.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start the exact affected snapshot 21w10a, which is the first version listed in the report's Affects versions field.",
+      "Use a new single-player world. Creative mode is an execution convenience for obtaining the required blocks and payment items; the report does not specify a game mode.",
+      "Have 9 blocks of one beacon-base material permitted by the report. This plan uses 9 iron blocks, but gold, diamond, netherite, or emerald blocks are also listed by the report.",
+      "Have 1 beacon and at least 2 iron ingots. One ingot is used to confirm Speed and the other to confirm Haste.",
+      "Choose an outdoor construction location where no opaque blocks are above the beacon position.",
+      "After placing the beacon, avoid placing or breaking any additional world blocks. In particular, make no block changes between confirming Haste and performing the second reload.",
+      "Do not create a different world for either reload; both reloads must reopen the original test world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher with the installation profile set to the exact snapshot 21w10a, then launch Minecraft: Java Edition.",
+        "exact_input": "21w10a",
+        "success_cue": "The title screen identifies the running game version as snapshot 21w10a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Singleplayer, choose Create New World, set Game Mode to Creative, and create the world. A random seed is acceptable because the report says the issue also occurred in newly created random worlds.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is in a newly generated Creative-mode world and surrounding terrain has finished rendering enough for movement to respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the Creative inventory. Using the Search Items tab, obtain 9 iron blocks, 1 beacon, and at least 2 iron ingots. Put the iron blocks and beacon into accessible hotbar slots and keep the iron ingots in the inventory or hotbar.",
+        "exact_input": "E; search for \"iron block\", \"beacon\", and \"iron ingot\"",
+        "success_cue": "The inventory contains at least 9 iron blocks, 1 beacon, and 2 iron ingots, with the blocks and beacon accessible from the nine-slot hotbar at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a reasonably flat outdoor location. Look upward and verify that the intended beacon position will have a clear vertical path to the sky; remove obstructions now, before placing the beacon.",
+        "exact_input": null,
+        "success_cue": "There is enough room for a 3-by-3 horizontal base and no opaque block will be directly above its center.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Toggle the Java Edition chunk-border visualization using the default debug shortcut F3+G. If function keys require a modifier on the host computer, use that modifier while pressing F3+G.",
+        "exact_input": "F3+G",
+        "success_cue": "Colored vertical lines and grids marking chunk boundaries are visible in the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Choose one visible vertical chunk-boundary plane for the build. Plan a 3-by-3 horizontal footprint so that the boundary runs between one outer column and the center column. This produces three base blocks on one side of the boundary and six base blocks, including the center block, on the other side.",
+        "exact_input": null,
+        "success_cue": "A specific 3-by-3 footprint has been identified that crosses exactly one visible chunk boundary, rather than remaining wholly inside one chunk.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the iron blocks in the active hotbar slot, then right-click the relevant block faces to place all 9 iron blocks as one complete, solid, horizontal 3-by-3 layer in the planned footprint.",
+        "exact_input": "Select iron blocks; right-click to place 9 blocks",
+        "success_cue": "A complete 3-by-3 iron-block platform is present, with the selected chunk boundary passing through the platform between an outer column and the center column.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Select the beacon in the hotbar. Aim at the top face of the center iron block and right-click once to place the beacon directly on top of the center of the 3-by-3 platform.",
+        "exact_input": "Select beacon; right-click the top of the center iron block",
+        "success_cue": "The beacon is centered one block above the 3-by-3 iron base and has unobstructed sky above it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Stop placing and breaking blocks. Remain close to the beacon and wait only until it activates and its vertical beam becomes visible; then continue promptly rather than remaining idle for several minutes.",
+        "exact_input": null,
+        "success_cue": "A vertical beacon beam is visible and the player remains beside the beacon without having made any block changes after its placement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim the crosshair at the beacon and right-click it to open the beacon configuration interface.",
+        "exact_input": "right-click beacon",
+        "success_cue": "The beacon interface is open and shows the primary-power choices, including Speed and Haste, together with the payment slot and confirmation button.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Move one iron ingot from the inventory into the beacon interface's payment slot.",
+        "exact_input": "Place 1 iron ingot in the payment slot",
+        "success_cue": "One iron ingot is displayed in the beacon payment slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Click the Speed icon in the primary-power section of the beacon interface.",
+        "exact_input": "Speed",
+        "success_cue": "Speed is visibly selected as the beacon's primary power and the green confirmation button is available.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Click the green check-mark button to confirm the Speed selection. Do not place or break any blocks after confirming it.",
+        "exact_input": "Click the green check mark",
+        "success_cue": "The beacon interface closes and the Speed selection has been accepted using the first payment ingot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Remain near the active beacon without changing any blocks and wait until the Speed status effect is applied to the player. If necessary, wait through the beacon's next effect update while staying beside it.",
+        "exact_input": null,
+        "success_cue": "The player's HUD or inventory status-effect display shows Speed while the player is near the beacon.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Reload the world for the first time by pressing Esc and selecting Save and Quit to Title. Do not alter any blocks before quitting.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The world has closed and the Minecraft title screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Open Singleplayer, select the same test world created in step 2, and choose Play Selected World. Do not create or select another world.",
+        "exact_input": "Singleplayer -> select the same test world -> Play Selected World",
+        "success_cue": "The player has returned to the original world beside the same beacon and chunk-border platform, and surrounding chunks have rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Wait near the beacon until its beam is visible again and normal movement responds. Do not place or break blocks during this wait.",
+        "exact_input": null,
+        "success_cue": "The reloaded beacon is active, its beam is visible, and the world is responsive enough to continue.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Aim at the same beacon and right-click it to reopen the beacon configuration interface.",
+        "exact_input": "right-click beacon",
+        "success_cue": "The beacon configuration interface is open for the same beacon used before the first reload.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Move a second iron ingot into the beacon interface's payment slot.",
+        "exact_input": "Place 1 iron ingot in the payment slot",
+        "success_cue": "An iron ingot is displayed in the beacon payment slot and is ready to pay for the new selection.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Click the Haste icon in the primary-power section of the beacon interface.",
+        "exact_input": "Haste",
+        "success_cue": "Haste is visibly selected as the beacon's primary power and the green confirmation button is available.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Click the green check-mark button to confirm Haste. From this point until the next world reload, do not place, break, or otherwise replace any blocks in the beacon's chunk or the adjacent chunk.",
+        "exact_input": "Click the green check mark",
+        "success_cue": "The beacon interface closes and the Haste selection has been accepted using the second payment ingot, with no subsequent block changes made.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Remain close to the beacon and wait until the Haste status effect is applied. Do not reopen the beacon interface and do not modify any blocks while waiting.",
+        "exact_input": null,
+        "success_cue": "The player's HUD or inventory status-effect display shows Haste before the second reload, confirming that the new selection was active during the current world session.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Immediately perform the second world reload by pressing Esc and selecting Save and Quit to Title. Make no block changes between the Haste confirmation and this action.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The world has closed for the second time and the title screen is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Open Singleplayer, select the same test world again, and choose Play Selected World. This second reopening is the trigger action for observation.",
+        "exact_input": "Singleplayer -> select the same test world -> Play Selected World",
+        "success_cue": "The player has entered the original world for the second time after confirming Haste.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "Without opening the beacon interface or changing any blocks, wait until the surrounding chunks are rendered, player movement responds normally, and the beacon beam is visible again.",
+        "exact_input": null,
+        "success_cue": "The second reload is complete, the same beacon and cross-border 3-by-3 base are loaded, and the active beacon is ready for the separate observation subsystem to inspect.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 24,
+    "handoff_condition": "The same world has completed its second reload after Haste was confirmed, the player is beside the unchanged cross-border beacon structure, the beacon beam is active, and no beacon-interface interaction or block change has occurred since re-entering. Begin observation at this point.",
+    "uncertainties": [
+      "The report's attachments and externally hosted reproduction video were not supplied, so the exact orientation of the original 3-by-3 base relative to the chunk boundary cannot be recovered. This plan uses a deterministic three-block/six-block split across one boundary while preserving the report's requirement that the pyramid be on a chunk border.",
+      "The report says to \"reload the game\" but does not specify whether the entire client was closed. This plan interprets that instruction as Save and Quit to Title followed by reopening the same single-player world, consistent with the issue title's reference to a world reload.",
+      "Comment 7 states that chunk-border placement is not actually required and that another block change in the beacon's chunk after a power update is relevant. The original chunk-border setup is preserved, while the plan avoids block changes after confirming Haste so that an additional save-causing action does not alter the reported sequence.",
+      "Creative mode is not explicitly required by the report. It is selected only as the simplest deterministic method of obtaining the beacon, nine valid base blocks, and two payment ingots without introducing crafting, mining, or exploration."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a661e9a63a48ebc016aa8d5bd52c487d089ae9da4793cbbe2",
+    "elapsed_seconds": 116.66,
+    "usage": {
+      "input_tokens": 8864,
+      "output_tokens": 8307,
+      "reasoning_tokens": 5598,
+      "total_tokens": 17171
+    },
+    "timestamp": "2026-09-15T05:22:57.781131+00:00"
+  }
+}

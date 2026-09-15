@@ -1,0 +1,204 @@
+{
+  "bug_id": "MC-112730",
+  "category": "Beacon",
+  "source_md": "[Beacon] - MC-112730.md",
+  "source_meta": {
+    "mojira categories": "Beacon; Rendering",
+    "project": "MC",
+    "issue key": "MC-112730",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2017-01-22T12:55:16.770-0800",
+    "updated": "2025-05-19T08:04:25.256-0700",
+    "resolution date": "2025-05-19T08:04:25.180-0700",
+    "affects versions": "Minecraft 1.11.2; Minecraft 1.12 Pre-Release 6; Minecraft 17w47b; 1.15.1; 1.16.3; 1.16.4; 20w48a; 1.19.2; 1.21.1; 1.21.3",
+    "fix versions": "25w21a",
+    "area": "Platform",
+    "labels": "beacon; beam; block-entity; rendering; structure_block",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-278464:Block entities render twice if shouldRenderOffScreen returns true and the block entity is in view | Duplicate:inward:MC-170106:Beacon outlayer loses texture opacity when looking up at high altitude",
+    "_title": "Beacon beam and structure block render twice per frame"
+  },
+  "stor": {
+    "bug_id": "MC-112730",
+    "affected_versions": [
+      "Minecraft 1.11.2",
+      "Minecraft 1.12 Pre-Release 6",
+      "Minecraft 17w47b",
+      "1.15.1",
+      "1.16.3",
+      "1.16.4",
+      "20w48a",
+      "1.19.2",
+      "1.21.1",
+      "1.21.3"
+    ],
+    "recommended_version": "Minecraft 1.11.2",
+    "environment": "Vanilla Minecraft Java Edition 1.11.2 client in a single-player Creative-mode Superflat Overworld. Single-player, Creative mode, and Superflat terrain are practical choices because the report does not require a dedicated server, Survival progression, a specific seed, or naturally generated terrain.",
+    "preconditions": [
+      "Install and select the exact affected release Minecraft 1.11.2; do not conduct the reproduction in the listed fix version 25w21a.",
+      "Use an unmodified client without rendering mods or shaders so that unrelated renderer changes do not interfere with the test.",
+      "Use keyboard-and-mouse controls. Instructions name the default controls; use the equivalent bound control if the keys have been changed.",
+      "The test area must have open sky directly above the beacon. A minimum active beacon consists of a beacon centered on top of a solid 3×3 layer of valid mineral blocks, and its beam requires an unobstructed path upward. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAdvancement_guide/Nether_tab?utm_source=openai))",
+      "Keep the game window large enough that an upper segment of the beacon beam can remain visible while the beacon block itself is moved just outside the bottom of the camera view."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the release identified in the report as Minecraft 1.11.2, launch it, and wait for the main menu to finish loading.",
+        "exact_input": "Minecraft 1.11.2",
+        "success_cue": "The Minecraft 1.11.2 main menu is displayed and its buttons respond normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World. Set Game Mode to Creative so the required blocks can be obtained without crafting or combat.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen shows Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select More World Options, cycle World Type until it reads Superflat, select Done, and then select Create New World. No particular seed is required by the report.",
+        "exact_input": null,
+        "success_cue": "A new Creative Superflat world begins loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait without opening menus until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the Overworld on fully rendered, level terrain and can move without world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Ensure the camera is in first-person view. If the player's body is visible, press the Change Perspective control, default F5, repeatedly until the player model is no longer shown in front of the camera.",
+        "exact_input": "F5, only as needed",
+        "success_cue": "The world is displayed from first-person view with no player model visible in front of the camera.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Move to a level area where there are no solid blocks above the intended beacon position. Superflat terrain is used to make this open-sky condition easy to establish.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "A clear, level 3×3-or-larger building area is available with unobstructed sky above it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Press the inventory control, default E, to open the Creative inventory, and select the Search Items tab. The default Java Edition inventory control is E. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ABeginner%27s_guide?utm_source=openai))",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open and the Search Items text field is available.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Click the search field, enter the item name, then place a stack of Block of Iron into an empty hotbar slot by clicking the search result and then clicking the chosen slot in the nine-slot bar at the bottom of the inventory.",
+        "exact_input": "block of iron",
+        "success_cue": "A Block of Iron stack is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the existing search text, replace it with the new item name, and place a Beacon into a different empty hotbar slot.",
+        "exact_input": "beacon",
+        "success_cue": "The hotbar contains both Block of Iron and Beacon in separate slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press E again to close the Creative inventory and return control to the player.",
+        "exact_input": "E",
+        "success_cue": "The inventory is closed and the crosshair is visible over the world.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Select the hotbar slot containing Block of Iron by pressing its corresponding number key from 1 through 9 or by scrolling to it.",
+        "exact_input": "Number key for the Block of Iron hotbar slot",
+        "success_cue": "Block of Iron is shown as the selected hotbar item and in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "On the level ground, place nine iron blocks using the Place/Use control, default right-click: make one row of three blocks, a parallel adjacent row of three, and a third parallel adjacent row of three. All nine blocks must be at the same height with no gaps.",
+        "exact_input": "Right-click nine times at the required positions",
+        "success_cue": "A complete, solid, horizontal 3×3 square of iron blocks is present.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Select the hotbar slot containing the Beacon.",
+        "exact_input": "Number key for the Beacon hotbar slot",
+        "success_cue": "Beacon is shown as the selected hotbar item and in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Aim at the top face of the center iron block and use the Place/Use control, default right-click, once to place the beacon. Do not place any block above it.",
+        "exact_input": "Right-click once",
+        "success_cue": "The beacon is positioned directly above the center of the 3×3 iron-block layer and has open sky above it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Wait for the placed beacon to finish checking its pyramid and sky access. Do not continue merely because the block has been placed.",
+        "exact_input": null,
+        "success_cue": "A vertical beacon beam is visibly extending upward from the beacon, confirming that the beacon is active.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "Move approximately 6 to 10 blocks horizontally away from the beacon while remaining on the ground. Turn back toward it and adjust the distance if necessary so the beacon block, part of the iron base, and a substantial vertical segment of its beam can all be framed at once.",
+        "exact_input": "W/A/S/D and mouse movement",
+        "success_cue": "From a stationary first-person position, the beacon block, its 3×3 base, and the lower portion of the vertical beam are simultaneously visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Without moving the player, slowly aim upward until the beacon block and the entire iron base pass just below the bottom edge of the screen, but stop before the beam itself leaves the screen. Keep the player at the same position for the next step.",
+        "exact_input": "Move the mouse upward slowly",
+        "success_cue": "The beacon block and iron base are outside the camera frame below its bottom edge, while an upper segment of the beacon beam remains visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "While keeping the player stationary, slowly aim downward until the beacon block and part of its iron base have just re-entered the bottom of the camera view. Keep the beam continuously in view during this camera rotation, and stop moving the camera as soon as the beacon block is visible again.",
+        "exact_input": "Move the mouse downward slowly",
+        "success_cue": "The beacon block and part of its 3×3 base have just re-entered the camera frame, the vertical beam remains visible, and the camera is now stationary.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The stationary player has just tilted the first-person camera downward from the upward-looking configuration, bringing the beacon block and its local rendered chunk sector back into view while the active beacon beam remains visible. Begin frame-rendering observation immediately without moving the player or camera.",
+    "uncertainties": [
+      "The report contains no formal numbered Steps to Reproduce, world seed, coordinates, game mode, graphical settings, or required server type. The plan reconstructs the minimum beacon-based path from the description.",
+      "Creative mode and a Superflat single-player world are practical execution choices, not stated requirements of the report.",
+      "The report also identifies structure blocks as affected, but does not explain the structure-block state or outline configuration needed. The beacon variant is selected because the report explicitly describes its visible camera-dependent comparison and it has a simpler deterministic setup.",
+      "The report refers to the chunk sector containing the block entity being in view but supplies no render-section boundaries or diagnostic method. Bringing the beacon block and its base directly into the camera frame is used as a reliable practical proxy for putting that sector in view.",
+      "The exact viewing distance and pitch are not specified. The executor may adjust the suggested 6-to-10-block distance before the final camera movement, provided the player remains stationary during steps 17 and 18 and the beam stays visible in both camera configurations."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0ef4ec27b237aa59016aa8d47824b887d0ba89db2a42436d63",
+    "elapsed_seconds": 89.79,
+    "usage": {
+      "input_tokens": 25087,
+      "output_tokens": 5983,
+      "reasoning_tokens": 3931,
+      "total_tokens": 31070
+    },
+    "timestamp": "2026-09-15T05:17:05.061402+00:00"
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "bug_id": "MC-267470",
+  "category": "Beacon",
+  "source_md": "[Beacon] - MC-267470.md",
+  "source_meta": {
+    "mojira categories": "Beacon",
+    "project": "MC",
+    "issue key": "MC-267470",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2023-12-20T04:01:59.147-0800",
+    "updated": "2025-05-29T09:08:59.947-0700",
+    "resolution date": "2024-01-18T18:13:47.703-0800",
+    "affects versions": "23w51b",
+    "fix versions": "24w03a",
+    "area": "Platform",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "0.mp4",
+    "issue links": "Duplicate:inward:MC-267494:Regen beacon Doesnt work | Duplicate:inward:MC-267569:Regeneration does not work on beacons | Blocks:outward:MC-30946:Beacon regeneration speed is reduced compared to normal speed",
+    "_title": "The regeneration effect granted from beacons is no longer applied to players"
+  },
+  "stor": {
+    "bug_id": "MC-267470",
+    "affected_versions": [
+      "23w51b"
+    ],
+    "recommended_version": "23w51b",
+    "environment": "Minecraft Java Edition 23w51b, vanilla client, fresh single-player Superflat world using the integrated server. Use Creative mode with commands enabled for deterministic setup, then switch to Survival mode for the health test. Peaceful difficulty and disabled natural regeneration isolate beacon-provided regeneration from unrelated healing.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to permit historical snapshots and install the exact Java Edition snapshot 23w51b.",
+      "Use an unmodified 23w51b client without gameplay-changing mods or datapacks.",
+      "Use the default controls, or the corresponding rebound controls: T for chat, left-click for UI selection, and right-click for Use Item/Place Block.",
+      "Create a new world rather than reusing a world containing existing beacon powers or player effects.",
+      "The player must begin at full health, without armor and without status effects.",
+      "All relative-coordinate construction commands must be executed from the same position; do not walk, jump, fly, or otherwise move until the teleport command in step 12 is executed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select an installation configured for Java Edition snapshot 23w51b, and launch the game. Do not select the fix version 24w03a.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and displays version 23w51b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world, set Game Mode to Creative, set Difficulty to Peaceful, enable commands/cheats, select the Superflat world type, disable structure generation if that option is exposed, and create the world. The world name may be MC-267470.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative; Difficulty: Peaceful; Allow Commands: ON; World Type: Superflat -> Create New World",
+        "success_cue": "The player has spawned in a new, open Superflat world in Creative mode with a visible hotbar and no nearby structure obstructing the sky.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Remain at the spawn position and wait until the surrounding flat terrain has rendered and movement, inventory access, and chat respond normally. From this point through step 11, do not move because the construction commands use coordinates relative to the player's unchanged position.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are fully rendered, the game responds normally, and the player is stationary on open terrain.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the command including the leading slash, and press Enter. This prevents ordinary hunger-based or Peaceful-mode healing from masking the beacon test.",
+        "exact_input": "/gamerule naturalRegeneration false",
+        "success_cue": "Chat confirms that the naturalRegeneration game rule is now false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Without moving, press T, enter the command, and press Enter to create the 9×9 bottom layer of an iron-block beacon pyramid approximately 10 blocks in the positive-X direction. A four-layer pyramid uses 9×9, 7×7, 5×5, and 3×3 layers. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAdvancement_guide/Nether_tab?utm_source=openai))",
+        "exact_input": "/fill ~6 ~ ~-4 ~14 ~ ~4 minecraft:iron_block",
+        "success_cue": "A 9×9 iron-block platform appears nearby and chat reports successful block placement, normally 81 blocks filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Without moving, press T, enter the command, and press Enter to create the centered 7×7 second layer one block above the bottom layer.",
+        "exact_input": "/fill ~7 ~1 ~-3 ~13 ~1 ~3 minecraft:iron_block",
+        "success_cue": "A centered 7×7 iron-block layer appears above the 9×9 layer and chat reports successful block placement, normally 49 blocks filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Without moving, press T, enter the command, and press Enter to create the centered 5×5 third layer.",
+        "exact_input": "/fill ~8 ~2 ~-2 ~12 ~2 ~2 minecraft:iron_block",
+        "success_cue": "A centered 5×5 iron-block layer appears above the 7×7 layer and chat reports successful block placement, normally 25 blocks filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Without moving, press T, enter the command, and press Enter to create the centered 3×3 top layer.",
+        "exact_input": "/fill ~9 ~3 ~-1 ~11 ~3 ~1 minecraft:iron_block",
+        "success_cue": "A centered 3×3 iron-block layer appears at the top and chat reports successful block placement, normally 9 blocks filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Without moving, press T, enter the command, and press Enter to place a beacon on the center block of the 3×3 top layer.",
+        "exact_input": "/setblock ~10 ~4 ~ minecraft:beacon",
+        "success_cue": "A beacon block appears at the exact center of the top layer and chat confirms that the block was placed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Continue standing still and wait until the beacon finishes checking its pyramid and produces a vertical beam. The blocks directly above the beacon must remain unobstructed. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAdvancement_guide/Nether_tab?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "A vertical beacon beam is visible above the completed four-layer pyramid, indicating that the beacon is powered and its interface should expose secondary powers.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Without moving, press T, enter the command, and press Enter to obtain one iron ingot for the beacon's payment slot.",
+        "exact_input": "/give @s minecraft:iron_ingot 1",
+        "success_cue": "One Iron Ingot is present in the player's hotbar or inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T, enter the command, and press Enter. This teleports the player onto the top iron-block layer immediately beside the beacon; movement after this command no longer affects the completed structure.",
+        "exact_input": "/tp @s ~11 ~4 ~",
+        "success_cue": "The player is standing safely on the 3×3 top layer, immediately adjacent to the beacon, with the beacon block and its beam visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press T, enter the command, and press Enter to switch from Creative mode to Survival mode while remaining beside the beacon.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The Survival health and hunger bars are visible, the player has ten full hearts before damage, and the player remains on the top platform beside the beacon.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press T, enter the command including its leading slash, and press Enter to inflict 8 health points, equivalent to four hearts, of generic damage. The /damage command and generic damage type are available by this snapshot. ([de.minecraft.wiki](https://de.minecraft.wiki/w/Befehl/damage?utm_source=openai))",
+        "exact_input": "/damage @s 8 minecraft:generic",
+        "success_cue": "The player remains alive and the health bar falls from ten hearts to approximately six hearts.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Do not eat, leave the platform, or open the beacon yet. Wait at least 5 seconds to confirm that ordinary natural healing is disabled before configuring the beacon.",
+        "exact_input": null,
+        "success_cue": "The player is still beside the active beacon, remains alive, and the health bar is still below full immediately before the beacon is configured.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Aim the crosshair directly at the adjacent beacon block and use the beacon with the Use Item/Place Block control, which is right-click by default.",
+        "exact_input": "right-click the beacon block",
+        "success_cue": "The Beacon configuration interface opens and displays primary and secondary power choices plus the payment slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "In the Beacon interface, move the pointer over the primary-effect icons until the tooltip identifies Speed, then left-click the Speed icon. Speed is chosen only to provide a primary power while keeping Regeneration available as the distinct secondary power.",
+        "exact_input": "left-click the Speed primary-power icon",
+        "success_cue": "Speed is visibly selected as the beacon's primary power.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "In the secondary-power section on the right, move the pointer over the icons until the tooltip identifies Regeneration, then left-click the Regeneration icon. Regeneration is available as the secondary power of a full-height beacon. ([de.minecraft.wiki](https://de.minecraft.wiki/w/Leuchtfeuer?utm_source=openai))",
+        "exact_input": "left-click the Regeneration secondary-power icon",
+        "success_cue": "Regeneration is visibly selected in the secondary-power section while Speed remains selected as the primary power.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 19,
+        "action": "Locate the Iron Ingot in the inventory area of the Beacon interface. Left-click the ingot to pick it up, then left-click the beacon's single payment slot to insert one ingot.",
+        "exact_input": "left-click the Iron Ingot, then left-click the beacon payment slot",
+        "success_cue": "One Iron Ingot is displayed in the payment slot and the green confirmation checkmark is enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "Left-click the enabled green checkmark once to submit the Speed primary power and Regeneration secondary power. Do not move away from the beacon after submitting the selection.",
+        "exact_input": "left-click the green confirmation checkmark",
+        "success_cue": "The payment is accepted, the Beacon interface closes, the player remains damaged and alive immediately beside the powered level-four beacon, and the beacon beam remains visible.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The damaged Survival-mode player has just confirmed a powered level-four beacon configured with Speed as its primary power and Regeneration as its secondary power. The player is stationary immediately beside the beacon, natural regeneration is disabled, and the beacon interface has just closed. Hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The Mojira report supplies no formal setup or Steps to Reproduce, so the minimum execution path was reconstructed from the issue title and description.",
+      "The report does not specify single-player versus dedicated server, game mode, difficulty, world type, seed, coordinates, pyramid material, primary beacon power, or damage method. The selected single-player Superflat environment, iron-block pyramid, Speed primary power, and command-based damage are deterministic practical choices rather than reporter-stated requirements.",
+      "The relative-coordinate /fill, /setblock, /give, /tp, /gamerule, /gamemode, and /damage commands were not present in the report; they are used to avoid crafting, combat, random exploration, and fall-damage variability.",
+      "Disabling naturalRegeneration is an isolation control rather than a condition stated by the reporter. It is intended to prevent unrelated healing from interfering with observation of beacon-provided Regeneration.",
+      "The attached file 0.mp4 was listed in the supplied report but its visual contents were not provided, so no reproduction details were extracted from it."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_06c5ca253da243d2016aa8d63216e487d0b1ae253b9401abac",
+    "elapsed_seconds": 118.68,
+    "usage": {
+      "input_tokens": 25318,
+      "output_tokens": 8180,
+      "reasoning_tokens": 5755,
+      "total_tokens": 33498
+    },
+    "timestamp": "2026-09-15T05:24:56.538334+00:00"
+  }
+}

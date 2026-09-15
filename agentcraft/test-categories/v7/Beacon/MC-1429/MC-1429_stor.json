@@ -1,0 +1,230 @@
+{
+  "bug_id": "MC-1429",
+  "category": "Beacon",
+  "source_md": "[Beacon] - MC-1429.md",
+  "source_meta": {
+    "mojira categories": "Beacon",
+    "project": "MC",
+    "issue key": "MC-1429",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2012-10-31T01:25:20.973-0700",
+    "updated": "2025-04-29T11:47:18.620-0700",
+    "resolution date": "2023-10-31T09:48:46.215-0700",
+    "affects versions": "Minecraft 1.4.2; Snapshot 13w04a; Minecraft 1.6.2; Minecraft 1.7.4; Minecraft 14w02c; Minecraft 1.7.5; Minecraft 14w10c; Minecraft 1.7.10; Minecraft 14w30b; Minecraft 14w30c; Minecraft 14w32a; Minecraft 1.8; Minecraft 1.8.1; Minecraft 1.8.3; Minecraft 1.8.4; Minecraft 1.8.6; Minecraft 15w36d; Minecraft 15w42a; Minecraft 16w02a; Minecraft 1.10; Minecraft 1.10.1; Minecraft 1.10.2; Minecraft 16w32a; Minecraft 16w32b; Minecraft 16w33a; Minecraft 16w35a; Minecraft 17w06a; Minecraft 1.12.2; Minecraft 18w22c; 1.15.2; 20w21a; 1.16.1; 20w29a; 1.16.3; 1.19.3; 23w04a",
+    "fix versions": "21w20a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2012-10-31_01.24.24.png; mc-1429.nbt",
+    "issue links": "Relates:outward:MC-2440:Beacons keep higher level effects when partially destroyed | Relates:inward:MC-44907:Beacon Interface Greyed Out",
+    "_title": "When beacon power level is changed, the GUI doesn't update until closed and reopened"
+  },
+  "stor": {
+    "bug_id": "MC-1429",
+    "affected_versions": [
+      "Minecraft 1.4.2",
+      "Snapshot 13w04a",
+      "Minecraft 1.6.2",
+      "Minecraft 1.7.4",
+      "Minecraft 14w02c",
+      "Minecraft 1.7.5",
+      "Minecraft 14w10c",
+      "Minecraft 1.7.10",
+      "Minecraft 14w30b",
+      "Minecraft 14w30c",
+      "Minecraft 14w32a",
+      "Minecraft 1.8",
+      "Minecraft 1.8.1",
+      "Minecraft 1.8.3",
+      "Minecraft 1.8.4",
+      "Minecraft 1.8.6",
+      "Minecraft 15w36d",
+      "Minecraft 15w42a",
+      "Minecraft 16w02a",
+      "Minecraft 1.10",
+      "Minecraft 1.10.1",
+      "Minecraft 1.10.2",
+      "Minecraft 16w32a",
+      "Minecraft 16w32b",
+      "Minecraft 16w33a",
+      "Minecraft 16w35a",
+      "Minecraft 17w06a",
+      "Minecraft 1.12.2",
+      "Minecraft 18w22c",
+      "1.15.2",
+      "20w21a",
+      "1.16.1",
+      "20w29a",
+      "1.16.3",
+      "1.19.3",
+      "23w04a"
+    ],
+    "recommended_version": "Minecraft 1.4.2",
+    "environment": "Unmodified Minecraft Java Edition 1.4.2 client; newly created single-player Superflat Overworld world running through the integrated server; Creative mode; no mods; an outdoor building location with an unobstructed vertical path to the sky.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to retain and run the historical release profile named exactly \"release 1.4.2\" or \"Minecraft 1.4.2\".",
+      "Use Creative mode so the Beacon, Blocks of Iron, and Iron Ingot can be obtained deterministically without crafting or combat.",
+      "The player must be able to perform two right-clicks in rapid succession: one to place the Beacon and one to open it before its delayed pyramid check completes.",
+      "Do not use the supplied mc-1429.nbt structure or its `/setblock` command for this run. They are from a later structure-block-based reproduction and are not compatible with the selected first affected version.",
+      "Use the report-comment reproduction variant in which the Beacon GUI is opened immediately after the Beacon is placed on an already complete pyramid. This causes the inactive-to-level-1 power transition to occur while the GUI remains open."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Java Edition release 1.4.2, launch it, and wait for the main menu. Confirm the lower-left version label before continuing.",
+        "exact_input": "release 1.4.2",
+        "success_cue": "The Minecraft main menu is visible and its version label identifies Minecraft 1.4.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a disposable Creative Superflat world. From the main menu, select Singleplayer, select Create New World, set Game Mode to Creative, open More World Options, cycle World Type to Superflat, return with Done, and select Create New World. No specific seed is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> World Type: Superflat -> Done -> Create New World",
+        "success_cue": "A new world begins loading with Creative mode and Superflat generation selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without opening menus until the flat terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby ground is fully rendered, the player can look and move without loading pauses, and the hotbar is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory screen is open and includes item-category tabs and the player hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Search Items tab, search for iron, then place a stack of the item named Block of Iron into an empty hotbar slot. At least nine Blocks of Iron are required.",
+        "exact_input": "iron",
+        "success_cue": "A hotbar slot contains at least nine Blocks of Iron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Clear the Creative inventory search field, search for beacon, and place one Beacon into a different hotbar slot.",
+        "exact_input": "beacon",
+        "success_cue": "A Beacon is present in the hotbar separately from the Blocks of Iron.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Clear the search field, search for iron ingot, and place an Iron Ingot stack into another hotbar slot. The test only needs one ingot, but retaining a Creative stack is acceptable.",
+        "exact_input": "iron ingot",
+        "success_cue": "The hotbar contains Blocks of Iron, a Beacon, and at least one Iron Ingot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Close the Creative inventory using the inventory action.",
+        "exact_input": "E",
+        "success_cue": "The world view and hotbar are visible again.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move to a level outdoor area. Look upward and ensure there are no solid blocks above the intended Beacon position; the Beacon requires an unobstructed path to the sky. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAdvancement_guide/Nether_tab?utm_source=openai))",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The player is standing beside a flat building area with open sky directly above it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Select the Blocks of Iron and place nine of them as one solid horizontal 3-by-3 square: three adjacent blocks in each of three adjacent rows, all at the same height. This is the minimum one-level Beacon pyramid. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAdvancement_guide/Nether_tab?utm_source=openai))",
+        "exact_input": "Select the Block of Iron hotbar slot; right-click once for each of the nine positions",
+        "success_cue": "Exactly one complete 3-by-3 layer of Blocks of Iron is visible, with a clearly identifiable center block.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Select the Beacon's hotbar slot, but do not place it yet.",
+        "exact_input": "Press the number key corresponding to the Beacon hotbar slot, or use the mouse wheel until the Beacon is selected",
+        "success_cue": "The Beacon appears in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Aim the crosshair at the top face of the center Block of Iron in the 3-by-3 layer. Position the player close enough to interact with the placed Beacon immediately afterward.",
+        "exact_input": "Move mouse to center the crosshair on the top face of the middle iron block",
+        "success_cue": "The crosshair points at the center block, and the player is within normal placement and interaction reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Place the Beacon on top of the center Block of Iron. Do not pause to watch for its beam; proceed immediately to the next step.",
+        "exact_input": "right-click once",
+        "success_cue": "A Beacon block now occupies the position directly above the center of the 3-by-3 iron layer.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Immediately right-click the newly placed Beacon a second time, before a vertical Beacon beam becomes visible. Keep the interface open. If the beam becomes visible before the interface opens, press Esc, break the Beacon with one left-click in Creative mode, and repeat from step 11 more quickly.",
+        "exact_input": "right-click once immediately after placement",
+        "success_cue": "The Beacon interface is open and was opened immediately after placement, without first waiting for the Beacon beam.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "In the open Beacon interface, locate the Iron Ingot stack in the player inventory or hotbar and left-click it to pick the stack up onto the cursor.",
+        "exact_input": "left-click the Iron Ingot stack",
+        "success_cue": "The cursor is carrying one or more Iron Ingots while the Beacon interface remains open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Locate the Beacon's single payment-item slot near the lower portion of its interface, distinct from the player inventory slots. Right-click that payment slot once to deposit exactly one Iron Ingot.",
+        "exact_input": "right-click the Beacon payment slot once",
+        "success_cue": "One Iron Ingot is displayed in the Beacon payment slot, and the Beacon interface has not been closed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "If additional Iron Ingots remain attached to the cursor, return them to their original inventory or hotbar slot without closing the Beacon interface.",
+        "exact_input": "left-click the original Iron Ingot inventory slot",
+        "success_cue": "The cursor is empty, one Iron Ingot remains in the Beacon payment slot, and the Beacon interface is still continuously open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Do not select a power, confirm a power, press Esc, or close the interface. Leave the Beacon interface continuously open for 10 seconds so the Beacon's delayed pyramid validation can change it from inactive to level 1 while this same interface instance remains open.",
+        "exact_input": "Wait 10 seconds without providing input",
+        "success_cue": "The same Beacon interface has remained continuously open for at least 10 seconds after placement, with an Iron Ingot still in its payment slot.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The same Beacon interface that was opened immediately after placement has remained continuously open for at least 10 seconds while the completed 3-by-3 iron pyramid is under the Beacon and one Iron Ingot is in the payment slot. Begin GUI-state observation now without closing or reopening the interface.",
+    "uncertainties": [
+      "The report's current attachment-driven reproduction requires the unavailable file mc-1429.nbt to be placed under `.minecraft\\saves\\<world_name>\\generated\\minecraft\\structures`. Because the attachment contents were not supplied, the pressure plate, redstone mechanism, and exact structure geometry cannot be reconstructed reliably.",
+      "The report supplies `/setblock ~ ~ ~ structure_block{mode:\"LOAD\",name:\"mc-1429\",showboundingbox:1}`, but recommended_version must be the first listed affected version, Minecraft 1.4.2. Structure blocks were introduced much later, so that command cannot be executed in 1.4.2. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Indonesian_translation/Mode_Kreatif?utm_source=openai))",
+      "The plan therefore uses an alternative explicitly supported by the report comments: construct the pyramid first, place the Beacon, and open its GUI before the Beacon performs its delayed activation check.",
+      "The report does not specify the exact delay before the 1.4.2 Beacon recalculates its pyramid. Ten seconds is a conservative practical waiting interval based on the report comment that the check occurs every few seconds; it is not an exact report-provided timing value.",
+      "Opening the GUI before activation is timing-sensitive. If the Beacon beam is already visible before the GUI opens, the attempt did not establish the intended ordering and the Beacon should be broken, replaced, and opened more quickly."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_08c90d6aeb0252ac016aa8d4d14d5087d0a63bf454948f5343",
+    "elapsed_seconds": 130.86,
+    "usage": {
+      "input_tokens": 36756,
+      "output_tokens": 9108,
+      "reasoning_tokens": 6722,
+      "total_tokens": 45864
+    },
+    "timestamp": "2026-09-15T05:19:15.937783+00:00"
+  }
+}

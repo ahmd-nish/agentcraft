@@ -1,0 +1,236 @@
+{
+  "bug_id": "MC-174630",
+  "category": "Beacon",
+  "source_md": "[Beacon] - MC-174630.md",
+  "source_meta": {
+    "mojira categories": "Beacon",
+    "project": "MC",
+    "issue key": "MC-174630",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-03-12T08:18:59.646-0700",
+    "updated": "2026-06-10T14:09:19.265-0700",
+    "resolution date": "2026-05-27T00:39:30.726-0700",
+    "affects versions": "1.15.2; 20w11a; 20w18a; 20w20b; 20w22a; 20w51a; 1.16.5; 21w06a; 21w08b; 1.18; 1.20.2; 1.20.4; 24w11a; 1.20.6; 1.21",
+    "fix versions": "26.2 Pre-Release 1",
+    "votes": "1",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Relates:inward:MC-2440:Beacons keep higher level effects when partially destroyed | Duplicate:inward:MC-265630:Beacons can give two primary powers at once",
+    "_title": "The secondary beacon effect remains when switching the primary effect"
+  },
+  "stor": {
+    "bug_id": "MC-174630",
+    "affected_versions": [
+      "1.15.2",
+      "20w11a",
+      "20w18a",
+      "20w20b",
+      "20w22a",
+      "20w51a",
+      "1.16.5",
+      "21w06a",
+      "21w08b",
+      "1.18",
+      "1.20.2",
+      "1.20.4",
+      "24w11a",
+      "1.20.6",
+      "1.21"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Unmodified Minecraft Java Edition 1.15.2 in a single-player Creative-mode world with cheats enabled. A Superflat world is recommended as a practical way to provide an unobstructed outdoor test area. Default controls are assumed; use the equivalent bound controls if they have been changed.",
+    "preconditions": [
+      "Launch the exact affected version Minecraft Java Edition 1.15.2, not the listed fix version.",
+      "Use a world in which the player has permission to execute /fill and /setblock commands. Creating the world in Creative mode with cheats enabled satisfies this requirement.",
+      "Choose an outdoor location with clear sky above the intended beacon position. Do not build a roof or place an opaque block above the beacon.",
+      "Keep the player at the same block position between execution of the supplied /fill and /setblock commands because both commands use coordinates relative to the player.",
+      "Have access to at least two valid beacon payment items. This plan uses two iron ingots obtained from the Creative inventory.",
+      "Keep the game unpaused during all effect-application and expiration waiting intervals."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Java Edition 1.15.2, launch it, and verify that the title screen identifies the running version as 1.15.2.",
+        "exact_input": "1.15.2",
+        "success_cue": "Minecraft Java Edition 1.15.2 is running.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode with cheats enabled. For a simple unobstructed setup, select the Superflat world type. Enter the world and wait until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded Creative-mode world and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to an open outdoor position with clear sky. Stop moving and treat the block containing the player's feet as the relative-command origin. Do not move until both supplied commands have been executed.",
+        "exact_input": null,
+        "success_cue": "The player is stationary at a clear-sky test position, with enough open space around and below the position for the beacon base.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Type the report's /fill command exactly as supplied, including the leading slash, and press Enter. Do not reverse or normalize the two Y-coordinate arguments.",
+        "exact_input": "/fill ~-4 ~-1 ~-4 ~4 ~-4 ~4 minecraft:iron_block",
+        "success_cue": "The command completes without a red error message and creates an iron-block volume beneath the command origin.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Remain at exactly the same player position after the /fill command so that the next relative command uses the same origin.",
+        "exact_input": null,
+        "success_cue": "The player has not moved since executing the /fill command.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open chat again.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open while the player remains at the original command position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Type the report's /setblock command exactly as supplied, including the leading slash, and press Enter.",
+        "exact_input": "/setblock ~ ~ ~ minecraft:beacon",
+        "success_cue": "The command completes without a red error message and a beacon is placed at the command origin.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Move out of the beacon block and stand adjacent to it. If necessary in Creative mode, press Space twice to begin flying and move sideways. Do not place or leave any opaque block above the beacon. Wait until the beacon finishes updating.",
+        "exact_input": "Space twice, then a horizontal movement control as needed",
+        "success_cue": "The beacon is visible and accessible from the side, its vertical beam is visible, and surrounding movement remains responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, select the search field, and enter \"iron ingot\". Place a stack of Iron Ingots into an empty hotbar slot, ensuring that at least two are available, then close the inventory with E or Esc.",
+        "exact_input": "iron ingot",
+        "success_cue": "At least two Iron Ingots are present in the player's hotbar and normal world view is restored.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Face the beacon and use the Use Item/Place Block control, right-click by default, to open the beacon interface.",
+        "exact_input": "right-click",
+        "success_cue": "The beacon interface is open and displays the primary-power, secondary-power, payment, confirm, and cancel areas for a complete beacon pyramid.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Move one Iron Ingot from the hotbar into the beacon's payment slot. If carrying the full stack on the cursor, right-click the payment slot once to place one ingot, then return the remaining stack to its hotbar slot.",
+        "exact_input": "1 Iron Ingot",
+        "success_cue": "Exactly one Iron Ingot is visible in the beacon payment slot and the cursor is no longer carrying the remaining stack.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "In the Primary Power section of the beacon interface, left-click the Speed icon.",
+        "exact_input": "Speed",
+        "success_cue": "Speed is selected as the primary power and the level-II Speed option is available in the Secondary Power section.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "In the Secondary Power section, left-click the Speed icon representing the level-II upgrade of the selected primary power.",
+        "exact_input": "Speed II",
+        "success_cue": "The secondary Speed upgrade is selected before the beacon configuration is confirmed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Left-click the green checkmark button to consume the payment item and apply the Speed primary plus Speed II secondary configuration.",
+        "exact_input": "green checkmark",
+        "success_cue": "The payment is accepted and the beacon interface closes.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Remain adjacent to the active beacon and allow at least 6 seconds of unpaused game time for a beacon update cycle.",
+        "exact_input": "6 seconds",
+        "success_cue": "At least 6 seconds of unpaused game time have elapsed while the player remained within the beacon's range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Press E to open the player inventory and inspect the active-effect display. Verify that the current Speed effect is level II, then close the inventory with E or Esc. This check establishes the required initial configuration only.",
+        "exact_input": "E",
+        "success_cue": "The initial Speed II beacon effect has been confirmed, and the player has returned to normal world view beside the beacon.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Face the same beacon and right-click it to reopen its interface.",
+        "exact_input": "right-click",
+        "success_cue": "The beacon interface is open for a second configuration change.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Place one additional Iron Ingot from the hotbar into the beacon payment slot.",
+        "exact_input": "1 Iron Ingot",
+        "success_cue": "One Iron Ingot is visible in the payment slot and the confirm button can accept a new configuration after a primary power is selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "In the Primary Power section, left-click Resistance. Do not click any icon or option in the Secondary Power section during this second configuration.",
+        "exact_input": "Resistance",
+        "success_cue": "Resistance is selected as the primary power, and no secondary-power control has been deliberately changed during this configuration.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Left-click the green checkmark button to consume the second payment item and apply the primary-power change to Resistance.",
+        "exact_input": "green checkmark",
+        "success_cue": "The payment is accepted, the beacon interface closes, and the player remains beside the active beacon.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Remain beside the beacon, within its effect range, without pausing the game. Wait at least 20 seconds of unpaused game time so that the Speed II instance granted before the primary-power change has enough time to expire. Do not evaluate the remaining status effects during this step.",
+        "exact_input": "20 seconds",
+        "success_cue": "At least 20 seconds of unpaused game time have elapsed since the Resistance configuration was confirmed, and the player is ready for status-effect inspection.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The player has confirmed Resistance as the new primary beacon power without interacting with the secondary-power controls, has remained beside the active complete beacon, and at least 20 seconds of unpaused game time have elapsed since confirmation. Hand off now for inspection of the active effects and beacon interface state.",
+    "uncertainties": [
+      "The report does not specify game mode, world type, seed, or single-player versus dedicated server. Creative-mode single player with cheats and a Superflat world are practical choices used only to execute the supplied commands and obtain payment items deterministically.",
+      "The report does not provide an exact duration for waiting for the previously applied Speed II effect to expire. The plan uses 20 seconds of unpaused game time as a conservative operational interval.",
+      "The supplied /fill command is intentionally preserved exactly, including its descending Y-coordinate order and its creation of a solid iron-block volume rather than a minimal stepped pyramid.",
+      "The report does not specify a payment item. Iron Ingots are selected because the beacon interface requires a valid payment for each configuration, and two separate confirmations are performed.",
+      "Default key bindings and the English-language UI labels are assumed; equivalent rebound controls or localized labels may be used without changing the reproduction state."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0eb7e27f0a8f2191016aa8d5541d8487d0ab75934c7f6c1518",
+    "elapsed_seconds": 105.14,
+    "usage": {
+      "input_tokens": 8476,
+      "output_tokens": 7031,
+      "reasoning_tokens": 4841,
+      "total_tokens": 15507
+    },
+    "timestamp": "2026-09-15T05:21:01.097041+00:00"
+  }
+}
