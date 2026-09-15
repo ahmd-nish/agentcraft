@@ -1,0 +1,145 @@
+{
+  "bug_id": "MC-263340",
+  "category": "Chunk loading",
+  "source_md": "[Chunk loading] - MC-263340.md",
+  "source_meta": {
+    "mojira categories": "Chunk loading",
+    "project": "MC",
+    "issue key": "MC-263340",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2023-06-08T21:08:44.016-0700",
+    "updated": "2025-03-25T13:08:48.797-0700",
+    "resolution date": "2023-06-10T12:40:51.366-0700",
+    "affects versions": "1.20",
+    "fix versions": "1.20.1 Release Candidate 1",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Incorrect Protochunk#setStatus call on chunk generate"
+  },
+  "stor": {
+    "bug_id": "MC-263340",
+    "affected_versions": [
+      "1.20"
+    ],
+    "recommended_version": "1.20",
+    "environment": "Minecraft Java Edition 1.20, launched as an unmodified mapped/decompiled development runtime under a Java debugger. Use the integrated server in a disposable single-player world. The corrective ChunkStatusMixin shown in the report, the 1.20.1 Release Candidate 1 fix version, and any other mod that changes chunk generation must not be loaded.",
+    "preconditions": [
+      "Install and select exactly Minecraft Java Edition 1.20, which is the sole affected version listed by the report.",
+      "Have a Java development/debugging environment whose mapped source for ChunkStatus#generate matches the 1.20 implementation quoted in the report. Source line breakpoints and Java step-over operations must work before starting the game.",
+      "Do not install or apply the corrective ChunkStatusMixin included in the report; it changes the target call and prevents reproduction of the reported implementation.",
+      "Use a new disposable world so that normal spawn-area generation exercises the chunk-status generation pipeline. The report does not provide a required seed, world preset, game mode, coordinates, or server configuration.",
+      "Configure the debugger so it does not automatically resume after reaching the target ChunkStatus#generate completion callback.",
+      "Keep the debugger's local-variable/object inspection view available so the Observation Agent can inspect this, the pre-work center ChunkAccess referenced as $$7/$$3x in the quoted source, the result Either referenced as $$2x, and the supplied chunk list $$6 after the trigger."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Select an exact Minecraft Java Edition 1.20 mapped development launch configuration. Confirm that it is not 1.20.1 Release Candidate 1 or any later version.",
+        "exact_input": "Minecraft Java Edition 1.20",
+        "success_cue": "The selected runtime identifies itself as Java Edition 1.20, the first and only affected version listed in the report.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Disable all mods, mixins, patches, or transformed classes that modify ChunkStatus, chunk generation, or chunk conversion. In particular, ensure that the corrective ChunkStatusMixin printed in the report is not present.",
+        "exact_input": null,
+        "success_cue": "The runtime will execute the original 1.20 ChunkStatus#generate implementation quoted in the report.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "In the debugger, open the mapped ChunkStatus class and locate the generate method by matching the method body against the source excerpt in the report. Locate the thenApply completion callback that runs after generationTask.doWork completes.",
+        "exact_input": "return this.generationTask.doWork(...).thenApply(($$2x) -> {",
+        "success_cue": "The debugger displays the completion callback containing the ProtoChunk type check and status assignment from the report.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Within that completion callback, locate the status-assignment statement that operates on the ProtoChunk derived from the pre-work center chunk.",
+        "exact_input": "$$3x.setStatus(this);",
+        "success_cue": "The exact status-assignment line is selected in the original 1.20 implementation, not in the corrective mixin.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Set a source breakpoint on the $$3x.setStatus(this) statement. If the debugger supports conditional breakpoints, condition it on the current ChunkStatus being FULL. A suitable condition for a mapped runtime is this == ChunkStatus.FULL; if that symbol cannot be resolved, use this.toString().equals(\"full\") or manually resume non-FULL hits.",
+        "exact_input": "this == ChunkStatus.FULL",
+        "success_cue": "An enabled breakpoint is visible on the status-assignment line and is configured to stop on the FULL-status invocation, or the executor is prepared to filter hits manually.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Optionally set a second breakpoint on the next executable statement after the status assignment, at the profiler-finish check. This provides a stable pause location after stepping over the trigger.",
+        "exact_input": "if ($$8 != null) {",
+        "success_cue": "The debugger can pause immediately after the target status assignment while the generate callback's local variables remain in scope.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Start Minecraft from the selected development launch configuration in debug mode. Allow startup to continue until the Minecraft main menu is responsive.",
+        "exact_input": null,
+        "success_cue": "The Java Edition main menu is displayed and the debugger remains attached to the game process.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Create a disposable single-player world using the normal new-world path. Leave the seed, world preset, and game mode at their defaults because the report specifies none. Select Singleplayer, select Create New World, enter any recognizable temporary world name, and select Create New World again.",
+        "exact_input": "Singleplayer -> Create New World -> World Name: MC-263340 reproduction -> Create New World",
+        "success_cue": "The integrated server begins preparing the new world and generating its spawn-area chunks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Allow world generation to run until the breakpoint in ChunkStatus#generate is reached. If an unconditional breakpoint stops for a status other than FULL, inspect the current ChunkStatus, resume execution, and repeat until the FULL invocation reaches the $$3x.setStatus(this) line.",
+        "exact_input": null,
+        "success_cue": "Execution is paused before $$3x.setStatus(this), the current ChunkStatus is FULL, and the branch-local target $$3x is a ProtoChunk obtained from the center ChunkAccess captured before generationTask.doWork.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Confirm that the debugger is paused inside the thenApply callback after generationTask.doWork has completed and that the result Either represented by $$2x is already available in the current stack frame. Do not alter any object fields or evaluate methods with side effects.",
+        "exact_input": null,
+        "success_cue": "The callback's pre-work chunk reference and completed result are both available for later inspection, and execution remains paused immediately before the status-assignment call.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Use the debugger's Step Over operation exactly once to execute the original 1.20 status-assignment statement without entering ProtoChunk#setStatus.",
+        "exact_input": "Step Over: $$3x.setStatus(this);",
+        "success_cue": "The status-assignment call has just returned, and execution is paused on the following statement in the same ChunkStatus#generate completion callback.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The original Java Edition 1.20 call $$3x.setStatus(this) has just executed for the FULL ChunkStatus, and the debugger is paused immediately afterward with the callback frame and its pre-work chunk reference, completed result Either, and chunk list still available. Hand control to the Observation Agent before resuming world generation or saving and closing the world.",
+    "uncertainties": [
+      "The report contains no formal player-facing Steps to Reproduce. This plan therefore uses a debugger to execute and expose the exact internal call identified by the report rather than inventing a gameplay symptom.",
+      "The report does not specify a launcher, mod loader, mappings distribution, decompiler, IDE, debugger, or build configuration. An existing mapped 1.20 development runtime is therefore required, but the exact tooling cannot be selected from the supplied evidence.",
+      "The local names $$2x, $$3x, $$6, $$7, and $$8 come from the decompiled source in the report and may differ in another mapped or decompiled environment. The executor must identify variables by their roles and by matching the quoted method body if those names are unavailable.",
+      "The report does not state whether a fresh world, an existing world, or both reliably leave the misidentified chunk in a saved or externally visible state. A fresh world is selected only as the simplest deterministic way to exercise chunk generation.",
+      "A comment identifies chunk saving as a manifestation, but the report supplies no deterministic save/unload timing that guarantees a particular affected chunk will be written while misidentified. The plan stops at the incorrect internal call rather than fabricating a save-based procedure.",
+      "The report's corrective mixin is evidence about the target implementation but is not itself a reproduction prerequisite; loading it would prevent the original call from being exercised."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0ced15b1e14ca249016aa8be7c956c87d0b312ba1cf9963dc7",
+    "elapsed_seconds": 77.8,
+    "usage": {
+      "input_tokens": 9090,
+      "output_tokens": 5136,
+      "reasoning_tokens": 3406,
+      "total_tokens": 14226
+    },
+    "timestamp": "2026-09-15T03:43:05.462518+00:00"
+  }
+}

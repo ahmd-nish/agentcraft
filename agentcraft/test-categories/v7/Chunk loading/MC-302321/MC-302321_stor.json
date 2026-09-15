@@ -1,0 +1,188 @@
+{
+  "bug_id": "MC-302321",
+  "category": "Chunk loading",
+  "source_md": "[Chunk loading] - MC-302321.md",
+  "source_meta": {
+    "mojira categories": "Chunk loading; Commands",
+    "project": "MC",
+    "issue key": "MC-302321",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-09-26T03:12:10.103-0700",
+    "updated": "2026-03-11T03:56:28.494-0700",
+    "resolution date": "2025-10-02T02:59:28.449-0700",
+    "affects versions": "1.21.9 Release Candidate 1; 1.21.9",
+    "fix versions": "1.21.10 Release Candidate 1",
+    "area": "Platform EC",
+    "votes": "2",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2025-09-26 12-07-03.mov",
+    "issue links": "Relates:outward:MC-302405:Repeating/chain command blocks with any form of a '/tp <player>' command doesn't constantly teleport the player to one spot",
+    "_title": "Chunks don't load while the player is being teleported"
+  },
+  "stor": {
+    "bug_id": "MC-302321",
+    "affected_versions": [
+      "1.21.9 Release Candidate 1",
+      "1.21.9"
+    ],
+    "recommended_version": "1.21.9 Release Candidate 1",
+    "environment": "Minecraft Java Edition 1.21.9 Release Candidate 1; a new single-player world using the integrated server; Creative mode with commands/cheats enabled; Superflat world selected as a deterministic unobstructed test area; repeating command block placed beside the world's initial spawn point so it remains in a loaded spawn chunk; Render Distance set to 12 chunks.",
+    "preconditions": [
+      "Use Minecraft Java Edition, not Bedrock Edition.",
+      "Launch exactly 1.21.9 Release Candidate 1, the first version listed as affected. Do not use the listed fix version, 1.21.10 Release Candidate 1.",
+      "Use a disposable single-player world with commands available. Creative mode is selected to simplify command-block acquisition and prevent terrain or survival hazards from interrupting the test.",
+      "Use a Superflat world as a practical deterministic choice because the report supplies no seed, coordinates, terrain type, or world file.",
+      "Perform the setup close to the position where the player initially spawns. Do not travel away before placing the command block.",
+      "Ensure no other player is present. This makes the report's @p[tag=p] selector deterministically target the local player after the p tag is added.",
+      "Do not give the player the p tag until the repeating command block has been completely configured.",
+      "The command block must be configured as Repeat, Unconditional, and Always Active. Because the selector initially finds no player with the p tag, it can safely remain active during setup.",
+      "Keep the report-supplied stop command `/tag @s remove p` available. Do not execute it before the active-teleport observation handoff.",
+      "The controls named below assume the default Java Edition bindings. If controls were rebound, use the binding for the stated action."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact affected version 1.21.9 Release Candidate 1, start it, and wait for the Java Edition title screen.",
+        "exact_input": "1.21.9 Release Candidate 1",
+        "success_cue": "The title screen identifies the running game as Minecraft Java Edition 1.21.9 Release Candidate 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new disposable world. Set Game Mode to Creative, make sure commands are permitted, and select the Superflat world type from the world settings before creating the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative; World Type: Superflat; commands/cheats enabled",
+        "success_cue": "A new Superflat Creative world begins loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without traveling away from the initial spawn area until terrain has rendered and normal movement and UI input respond without world-loading delay.",
+        "exact_input": null,
+        "success_cue": "The player is standing on fully rendered flat terrain near the world's initial spawn position, and controls respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set Render Distance to 12 chunks to establish a known initial loading radius. Pause the game, open Options, open Video Settings, set Render Distance to 12 chunks, apply the setting, and return to the world.",
+        "exact_input": "Esc -> Options -> Video Settings -> Render Distance: 12 chunks -> Done",
+        "success_cue": "The player is back in the world with Render Distance set to 12 chunks and surrounding terrain has finished rendering.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open chat, enter the command that gives the executing player one command block, and submit it. Include the leading slash because this command is being run through in-game chat.",
+        "exact_input": "/give @s minecraft:command_block",
+        "success_cue": "The give command succeeds and a Command Block appears in the inventory, normally in an available hotbar slot.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select the hotbar slot containing the Command Block. The hotbar is the row of nine item slots at the bottom of the screen; press the corresponding number key or scroll the mouse wheel until the Command Block is outlined as the active item.",
+        "exact_input": "Number key 1-9 or mouse wheel, matching the Command Block's hotbar slot",
+        "success_cue": "A Command Block is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "While still beside the world's initial spawn position, aim at the top of a nearby ground block and use the selected Command Block to place it.",
+        "exact_input": "Right-click",
+        "success_cue": "A command block is placed on the ground within a few blocks of the initial spawn position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Aim at the placed command block and use it to open the command-block configuration screen.",
+        "exact_input": "Right-click the placed command block",
+        "success_cue": "The command-block configuration screen is open and contains a command input field plus block-mode controls.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's command exactly into the command-block command field. Do not add a leading slash in the command block.",
+        "exact_input": "execute as @p[tag=p] at @s run tp @s ~ ~ ~1",
+        "success_cue": "The command field contains exactly `execute as @p[tag=p] at @s run tp @s ~ ~ ~1`, including the selector, spaces, tildes, and final 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Change the command block's block type from its default impulse mode to repeating mode by clicking the block-type control until it displays Repeat.",
+        "exact_input": "Block Type: Repeat",
+        "success_cue": "The block-type control displays Repeat.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Ensure the command block's condition setting displays Unconditional. If it displays Conditional, click it once to change it.",
+        "exact_input": "Condition: Unconditional",
+        "success_cue": "The condition control displays Unconditional.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Change the activation setting to Always Active so that the repeating command executes continuously without a lever or other redstone source.",
+        "exact_input": "Redstone: Always Active",
+        "success_cue": "The activation control displays Always Active.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Save the command-block configuration by selecting Done.",
+        "exact_input": "Done",
+        "success_cue": "The configuration screen closes, the command block has the purple repeating-command-block appearance, and the player is not yet being teleported because no player currently has the p tag.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Stand on the flat surface beside the command block. Open the debug overlay and orient the camera toward positive Z so the direction of travel is visible. With default controls, press F3 and turn until the Facing line says south, toward positive Z. Note the current Z coordinate shown in the overlay.",
+        "exact_input": "F3; face south (toward positive Z)",
+        "success_cue": "The F3 overlay is visible, the Facing line indicates south/toward positive Z, and the player's starting Z coordinate can be read.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Open in-game chat, enter the report-supplied command that gives the executing player the p tag, and submit it. Include the leading slash. This activates the repeating command block's selector and is the reproduction trigger.",
+        "exact_input": "/tag @s add p",
+        "success_cue": "The tag command succeeds and the F3 Z coordinate immediately begins increasing repeatedly without the player pressing a movement key.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Release all movement controls and allow the command block to continue teleporting the tagged player. Do not pause, remove the tag, or manually move. Wait until the F3 Z coordinate has increased by at least 224 blocks from the coordinate noted before triggering; at 12-chunk Render Distance, this carries the player beyond the initially rendered radius and requires additional chunks along positive Z.",
+        "exact_input": "Wait with no movement input until current Z >= starting Z + 224",
+        "success_cue": "The player still has the p tag, is still being moved repeatedly in positive Z by the command block, and has traveled at least 224 blocks from the trigger position.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player is still tagged p and the spawn-area repeating command block is continuously executing `execute as @p[tag=p] at @s run tp @s ~ ~ ~1`, moving the player one block in positive Z per execution. The player has traveled at least 224 blocks beyond the trigger position with no manual movement. Begin active-teleport chunk-loading observation now, before executing the report-supplied stop command `/tag @s remove p`.",
+    "uncertainties": [
+      "The report does not specify a world seed, world type, coordinates, game mode, render distance, or whether the test was performed in single-player or on a dedicated server. This plan uses a new single-player Creative Superflat world and Render Distance 12 as deterministic practical choices.",
+      "The report does not state where the repeating command block was placed. This plan places it beside the initial world spawn so that continuous teleportation does not unload the command block and prematurely stop command execution.",
+      "The report calls for a repeating command block but does not explicitly name its condition or redstone settings. Unconditional and Always Active are used so the supplied command executes continuously without adding an unrelated redstone clock.",
+      "The report's `/tag @s remove p` command is a post-observation stop/control action. It is deliberately not executed before handoff because doing so would end the active teleport condition that triggers the reported behavior. After the active state has been captured, that exact command can be entered in chat to stop teleportation.",
+      "The comment describing the same behavior while riding a teleported entity is an additional variant, not part of the primary reproduction path, and is therefore not included."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0e494ed51bdeec5a016aa8c00d236487d0b01173fa8aeaac6f",
+    "elapsed_seconds": 91.05,
+    "usage": {
+      "input_tokens": 16845,
+      "output_tokens": 6767,
+      "reasoning_tokens": 4650,
+      "total_tokens": 23612
+    },
+    "timestamp": "2026-09-15T03:49:59.455497+00:00"
+  }
+}

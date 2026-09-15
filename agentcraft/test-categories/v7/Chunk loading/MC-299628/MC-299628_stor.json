@@ -1,0 +1,209 @@
+{
+  "bug_id": "MC-299628",
+  "category": "Chunk loading",
+  "source_md": "[Chunk loading] - MC-299628.md",
+  "source_meta": {
+    "mojira categories": "Chunk loading; Game Events",
+    "project": "MC",
+    "issue key": "MC-299628",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2025-07-10T21:53:57.992-0700",
+    "updated": "2025-07-23T00:39:42.936-0700",
+    "resolution date": "2025-07-23T00:39:42.853-0700",
+    "affects versions": "1.21.7",
+    "fix versions": "25w31a",
+    "area": "Platform",
+    "votes": "1",
+    "watchers": "0",
+    "attachments": "0",
+    "_title": "Mounted players/mobs trigger sculk sensors on world load"
+  },
+  "stor": {
+    "bug_id": "MC-299628",
+    "affected_versions": [
+      "1.21.7"
+    ],
+    "recommended_version": "1.21.7",
+    "environment": "Minecraft: Java Edition 1.21.7 in a single-player world using the integrated server. Use Creative mode for deterministic access to the required blocks and items; a Superflat world is preferred but not required. Perform the final reload in 1.21.7, not the listed fix version 25w31a.",
+    "preconditions": [
+      "The Minecraft Launcher has an installation configured for Java Edition 1.21.7.",
+      "Use a new or disposable single-player world so saving and reloading cannot affect an important world.",
+      "Use an open, level test area with no wool blocks between the sensors and the minecart, and keep unrelated entities away from the area.",
+      "The calibrated sculk sensor must continuously receive redstone signal strength 6 through its calibration input side.",
+      "The minecart and seated player must remain within range of both sensors throughout the save-and-reload sequence.",
+      "Use the default controls described below or the equivalent controls if key bindings have been changed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start the installation that explicitly shows Java Edition 1.21.7. Do not use 25w31a or a newer version for this reproduction.",
+        "exact_input": "Minecraft: Java Edition 1.21.7",
+        "success_cue": "The main menu displays Minecraft Java Edition 1.21.7.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new world. Set Game Mode to Creative. For a deterministic level building area, open the World settings and select the Superflat world type, then create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> World: Superflat -> Create New World",
+        "success_cue": "The player is in a Creative-mode single-player world on a level surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without performing the test until terrain has rendered and movement responds normally. Move to an open area with enough room for two sensors, a three-block calibration circuit, and a nearby minecart.",
+        "exact_input": null,
+        "success_cue": "The surrounding ground is loaded and there is a clear test area at least 10 blocks across.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab and place the following in the hotbar, which is the nine-slot row at the bottom of the screen: Sculk Sensor, Calibrated Sculk Sensor, Redstone Comparator, Jukebox, the music disc found by searching for “mall”, Rail, and Minecart. Close the inventory with E or Esc.",
+        "exact_input": "E; search for: sculk sensor, calibrated sculk sensor, comparator, jukebox, mall, rail, minecart",
+        "success_cue": "All seven required block/item types are accessible from the hotbar or Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select the regular Sculk Sensor in the hotbar and press the use control, default right-click, on the level ground to place it. Leave the block above it unobstructed.",
+        "exact_input": "Select Sculk Sensor; right-click ground",
+        "success_cue": "One regular sculk sensor is placed with its tendrils visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Select the Calibrated Sculk Sensor and place it on the same ground level, approximately two blocks from the regular sensor. Inspect its sides and leave the amethyst-covered calibration input side facing into open space; if necessary, break and replace it from another direction. A calibrated sensor listens only for the vibration frequency matching the signal supplied to this input side. ([minecraft.wiki](https://minecraft.wiki/w/Category%3ABlock_textures?utm_source=openai))",
+        "exact_input": "Select Calibrated Sculk Sensor; right-click ground",
+        "success_cue": "The regular and calibrated sensors are both present, and the calibrated sensor's amethyst input side is accessible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Select the Redstone Comparator. Stand behind the intended comparator position while facing the calibrated sensor's amethyst input side, then place the comparator directly adjacent to that side. Orient it so its front/output end points into the calibrated sensor and its two-torch rear/input end points away from the sensor.",
+        "exact_input": "Select Redstone Comparator; right-click the block adjacent to the calibrated sensor's amethyst side",
+        "success_cue": "The comparator directly touches the calibrated sensor's input side and points toward the sensor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Jukebox and place it directly behind the comparator, against the comparator's rear/input end. The resulting straight layout must be: jukebox -> comparator -> calibrated sensor input side.",
+        "exact_input": "Select Jukebox; right-click the block directly behind the comparator",
+        "success_cue": "The jukebox is directly behind the comparator, with no gap or intervening block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the music disc named “C418 - mall” or found by searching “mall”, aim at the jukebox, and press the use control, default right-click, once to insert it. A comparator reading this disc supplies signal strength 6, providing the report's required calibration value. The comparator continues reading the stored disc even after its music finishes. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E7%BA%A2%E7%9F%B3%E6%AF%94%E8%BE%83%E5%99%A8?utm_source=openai))",
+        "exact_input": "Select Music Disc C418 - mall; right-click jukebox once",
+        "success_cue": "The disc is stored in the jukebox and the comparator remains directed from the jukebox into the calibrated sensor's input side.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Select the Rail and place one rail on the level ground at a position no more than four horizontal blocks from each sensor. Keep the rail away from the comparator and jukebox so the minecart will not collide with the calibration circuit.",
+        "exact_input": "Select Rail; right-click ground within four blocks of both sensors",
+        "success_cue": "A single rail is visible close to both sensors.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the Minecart and press the use control, default right-click, on the rail to place the minecart. Do not enter it yet.",
+        "exact_input": "Select Minecart; right-click rail",
+        "success_cue": "An empty minecart is stationary on the rail and remains within four blocks of both sensors.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Stop placing or using blocks and remain unmounted. Wait until both sensors have returned to their inactive appearance and no vibration particle is traveling toward either sensor. If their state is difficult to judge, remain still for at least five seconds.",
+        "exact_input": null,
+        "success_cue": "The player is not riding anything, the minecart is empty, and both sensors are idle.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Establish the report's unmounted reload state. Press Esc, click Save and Quit to Title, and wait until the title screen appears.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The title screen is visible and the world has been saved while the player was unmounted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Open Singleplayer, select the same test world, and click Play Selected World. Do not select a different world or recreate the setup.",
+        "exact_input": "Singleplayer -> select the saved test world -> Play Selected World",
+        "success_cue": "The same world has loaded with the player standing near the empty minecart and sensor setup.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Do not move or interact with the setup after loading. Wait until surrounding chunks have rendered, controls respond normally, and both sensors are idle. Confirm that the player is still outside the minecart.",
+        "exact_input": null,
+        "success_cue": "The world is responsive, the player is unmounted, the minecart is empty, and both sensors are ready to receive a new vibration.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Approach only as far as necessary to reach the minecart. Center the crosshair on the minecart and press the use control, default right-click, once to mount it. Do not press the sneak/dismount control, default Left Shift, afterward.",
+        "exact_input": "Right-click the minecart; do not press Left Shift",
+        "success_cue": "The viewpoint is seated in the minecart and the player remains within range of both sensors.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Remain seated and do not move the minecart. Wait until both sensors have completely returned to their inactive appearance after the mounting action. If uncertain, wait at least five seconds while remaining mounted.",
+        "exact_input": null,
+        "success_cue": "The player is still seated in the stationary minecart and both sensors are idle before the world is saved.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "While still seated in the minecart, press Esc and click Save and Quit to Title. Do not dismount before selecting Save and Quit.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The title screen is visible, and the world was saved with the player seated in the minecart near both sensors.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Click Singleplayer once and select the same saved test world, but do not press Play Selected World yet.",
+        "exact_input": "Singleplayer -> select the saved test world",
+        "success_cue": "The correct 1.21.7 test world is highlighted in the world list and is ready to load.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Click Play Selected World once to reload the world containing the already-mounted player. Hand control to the observation subsystem as soon as loading begins; do not wait to perform another player action after terrain appears.",
+        "exact_input": "Play Selected World",
+        "success_cue": "The loading screen for the saved test world has begun, with the saved player-minecart riding relationship still present in the world data.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The same Java Edition 1.21.7 world has just begun loading after being saved while the player was seated in the minecart within range of the regular and signal-6-calibrated sculk sensors. Begin observation during loading and continue through the first seconds after terrain appears, without moving, dismounting, or interacting with the setup.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, or world type. Creative mode and a Superflat world are selected only to make item acquisition and placement deterministic.",
+      "The report permits several mountable entities. This plan uses a stationary minecart as the simplest deterministic player-mount variant supported by the report.",
+      "The report also includes a separate non-player entity variant using /ride. This plan selects the player variant because the instructions direct selection of the simplest deterministic reproduction when multiple variants are available.",
+      "The jukebox, comparator, and “mall” music disc circuit is an externally verified practical method of supplying the required signal strength 6; the report specifies the signal strength but not how it must be generated.",
+      "No exact sensor-to-mount distance is supplied. The plan uses no more than four horizontal blocks from the minecart to each sensor, which conservatively satisfies the report's requirement that the mount remain within both sensors' radii."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_079e2045a8c838de016aa8bf96dc6487d0aa2c8dc51c4b5637",
+    "elapsed_seconds": 117.73,
+    "usage": {
+      "input_tokens": 26486,
+      "output_tokens": 8465,
+      "reasoning_tokens": 6056,
+      "total_tokens": 34951
+    },
+    "timestamp": "2026-09-15T03:48:28.388792+00:00"
+  }
+}

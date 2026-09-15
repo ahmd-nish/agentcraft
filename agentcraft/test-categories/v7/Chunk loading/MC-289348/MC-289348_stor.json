@@ -1,0 +1,314 @@
+{
+  "bug_id": "MC-289348",
+  "category": "Chunk loading",
+  "source_md": "[Chunk loading] - MC-289348.md",
+  "source_meta": {
+    "mojira categories": "Chunk loading",
+    "project": "MC",
+    "issue key": "MC-289348",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-03-10T17:40:02.987-0700",
+    "updated": "2025-07-20T09:19:05.466-0700",
+    "resolution date": "2025-07-17T08:31:38.809-0700",
+    "affects versions": "1.21.4; 1.21.5; 1.21.6 Pre-Release 2",
+    "fix versions": "25w31a",
+    "area": "Platform",
+    "votes": "4",
+    "watchers": "3",
+    "attachments": "1",
+    "attachment filenames": "image-20250605-180000.png",
+    "issue links": "Relates:outward:MC-299770:Chunks loaded by ender pearls permanently unload upon player death even when enderPearlsVanishOnDeath is set to false",
+    "_title": "Ender pearls stop loading chunks in The End after relog, if there are no players in that dimension"
+  },
+  "stor": {
+    "bug_id": "MC-289348",
+    "affected_versions": [
+      "1.21.4",
+      "1.21.5",
+      "1.21.6 Pre-Release 2"
+    ],
+    "recommended_version": "1.21.4",
+    "environment": "Minecraft Java Edition dedicated server running version 1.21.4 with a matching unmodified 1.21.4 client. Use one operator test account in a fresh or disposable world. Command blocks must be enabled, and the dedicated server must remain running and continue ticking normally while the client is disconnected.",
+    "preconditions": [
+      "Install and launch the Minecraft Java Edition 1.21.4 dedicated server and a matching 1.21.4 client.",
+      "Set enable-command-block=true in server.properties before starting the server.",
+      "Grant the test account operator permission so it can use /gamemode, /execute, /tp, /fill, /setblock, /forceload, and /item.",
+      "Use only one connected player. No other player may enter or remain in The End during the reproduction.",
+      "Use a fresh or disposable world with no force-loaded chunks in The End and no unrelated ender pearls there.",
+      "Keep the dedicated server process running throughout the disconnect and reconnect sequence. Ensure it will continue ticking for at least 20 seconds with no connected players.",
+      "Do not use /tick freeze, pause the server, stop the server, or open the test world in a different version during the procedure.",
+      "Use default controls unless rebound. T opens chat, right-click uses an item or opens a command block, and double-tapping Space enables Creative flight.",
+      "The procedure intentionally uses a remote End location and an artificial platform so the Ender Dragon and terrain do not interfere with the chamber."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the dedicated server, open Multiplayer on the matching 1.21.4 client, and join with the operator test account.",
+        "exact_input": "Multiplayer -> select the 1.21.4 test server -> Join Server",
+        "success_cue": "The test account has finished joining and can move normally in the Overworld.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Verify that the test account is the only connected player. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/list",
+        "success_cue": "The command reports exactly one connected player: the test account.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Put the test account in Creative mode for safe construction. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode creative",
+        "success_cue": "The game confirms Creative mode, and the player has the Creative inventory and no Survival health or hunger HUD.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Enable Creative flight by double-tapping the jump control, whose default key is Space.",
+        "exact_input": "Space twice",
+        "success_cue": "The player remains suspended when not standing on a block and can move vertically with Space and Left Shift.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Move to a high Overworld location where a safe logout platform can be prepared. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/tp @s 0.5 305 0.5",
+        "success_cue": "The player is flying near X=0.5, Y=305, Z=0.5 in the Overworld.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Create a 5-by-5 stone platform below the player. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/fill -2 299 -2 2 299 2 minecraft:stone",
+        "success_cue": "A stone platform covering X=-2 through 2 and Z=-2 through 2 is visible at Y=299.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Stand on the center of the prepared Overworld platform. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/tp @s 0.5 300 0.5",
+        "success_cue": "The player is standing safely on the stone platform at approximately X=0.5, Y=300, Z=0.5.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter Spectator mode so the player can be moved safely to an initially empty remote location in The End. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The game confirms Spectator mode, and the player can fly through blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Teleport the player into The End at the remote construction location. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/execute in minecraft:the_end run tp @s 1000.5 96 1000.5",
+        "success_cue": "The player is in The End near X=1000.5, Y=96, Z=1000.5 and is safely hovering in Spectator mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Wait before constructing anything at the remote location.",
+        "exact_input": null,
+        "success_cue": "The surrounding End chunk has rendered, commands respond normally, and the player is no longer waiting on dimension or terrain loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Create a 13-by-13 stone construction platform in the target End chunk. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/fill 994 79 994 1006 79 1006 minecraft:stone",
+        "success_cue": "A stone platform covering X=994 through 1006 and Z=994 through 1006 is visible at Y=79.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Create the glass shell for a vertical 1-by-1 stasis-chamber shaft. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/fill 999 80 999 1001 88 1001 minecraft:glass",
+        "success_cue": "A solid 3-by-3 glass column extends from Y=80 through Y=88, centered on X=1000, Z=1000.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Replace the center-bottom glass block with soul sand. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/setblock 1000 80 1000 minecraft:soul_sand",
+        "success_cue": "Soul sand occupies X=1000, Y=80, Z=1000 and remains surrounded horizontally by glass.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Replace the center of the glass shaft above the soul sand with water source blocks. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/fill 1000 81 1000 1000 88 1000 minecraft:water",
+        "success_cue": "The center shaft contains water from Y=81 through Y=88, with soul sand directly below it and an open top above Y=88.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Allow the soul-sand bubble column to update.",
+        "exact_input": null,
+        "success_cue": "Upward-moving bubble particles are visible throughout the water column, confirming that all eight water blocks form an upward bubble column.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Place a repeating command block in the same chunk as the stasis chamber. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/setblock 1004 80 1000 minecraft:repeating_command_block",
+        "success_cue": "A repeating command block is present at X=1004, Y=80, Z=1000. Both it and the chamber at X=1000, Z=1000 are inside the chunk bounded by X=992 through 1007 and Z=992 through 1007.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Verify that The End has no administratively force-loaded chunks. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/forceload query",
+        "success_cue": "The command reports that no chunks are marked for force loading in The End. Do not continue if any force-loaded End chunk is reported.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Return to Creative mode. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode creative",
+        "success_cue": "The game confirms Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Move beside the repeating command block. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/tp @s 1004.5 80 1002.5",
+        "success_cue": "The player is standing on the End platform within interaction range of the command block at X=1004, Y=80, Z=1000.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Aim the crosshair at the repeating command block and right-click it. In the command field, enter the exact command without a leading slash. Set the block type to Repeat, condition to Unconditional, and redstone mode to Always Active, then click Done.",
+        "exact_input": "say MC-289348_HEARTBEAT",
+        "success_cue": "The command-block interface closes and repeated chat messages containing MC-289348_HEARTBEAT begin appearing.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Allow the command block to run briefly while the player is still in The End.",
+        "exact_input": null,
+        "success_cue": "At least two successive MC-289348_HEARTBEAT messages have appeared, confirming that the repeating command block is configured and ticking before the pearl is thrown.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Place one ender pearl directly into the first hotbar slot. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/item replace entity @s hotbar.0 with minecraft:ender_pearl 1",
+        "success_cue": "An ender pearl is visible in the leftmost hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Select the first hotbar slot using the default number key.",
+        "exact_input": "1",
+        "success_cue": "The ender pearl is shown in the player's hand, and the first hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 24,
+        "action": "Enable Creative flight by double-tapping the jump control before moving above the chamber.",
+        "exact_input": "Space twice",
+        "success_cue": "The player is hovering in Creative flight and will not fall when teleported above the chamber.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 25,
+        "action": "Move directly above the water column and face straight down. Press T, enter the command including the leading slash, and press Enter. The final pitch value of 90 points the view downward.",
+        "exact_input": "/tp @s 1000.5 91 1000.5 0 90",
+        "success_cue": "The player is hovering directly over the open top of the water column with the crosshair aimed straight down into it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 26,
+        "action": "With the ender pearl still selected, right-click exactly once to throw it downward into the water column.",
+        "exact_input": "right-click once",
+        "success_cue": "One ender pearl projectile enters the water column. No second pearl has been thrown.",
+        "source_basis": "report"
+      },
+      {
+        "step": 27,
+        "action": "Wait for the thrown pearl to stabilize in the soul-sand bubble column. Do not continue if the player is teleported or if the pearl escapes the chamber.",
+        "exact_input": null,
+        "success_cue": "The thrown pearl remains visibly suspended or bobbing in the upper part of the bubble column, and the player has not been teleported by a pearl collision.",
+        "source_basis": "report"
+      },
+      {
+        "step": 28,
+        "action": "Leave The End by teleporting back to the prepared Overworld platform. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/execute in minecraft:overworld run tp @s 0.5 300 0.5",
+        "success_cue": "The player is standing on the stone platform at approximately X=0.5, Y=300, Z=0.5 in the Overworld; no player remains in The End.",
+        "source_basis": "report"
+      },
+      {
+        "step": 29,
+        "action": "Wait for the Overworld to finish loading, then use the continuing command-block messages as a setup control before disconnecting.",
+        "exact_input": null,
+        "success_cue": "Overworld terrain has rendered, movement responds normally, and at least two successive MC-289348_HEARTBEAT messages have appeared after the player left The End.",
+        "source_basis": "report"
+      },
+      {
+        "step": 30,
+        "action": "Disconnect the test client without stopping the dedicated server.",
+        "exact_input": "Esc -> Disconnect",
+        "success_cue": "The client has returned to the Multiplayer menu while the dedicated server process remains running.",
+        "source_basis": "report"
+      },
+      {
+        "step": 31,
+        "action": "In the dedicated server console, verify that no players remain connected. Enter the command without a leading slash.",
+        "exact_input": "list",
+        "success_cue": "The server console reports zero connected players.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 32,
+        "action": "Leave the dedicated server running with zero connected players for 20 real-time seconds. Do not pause, freeze, stop, or restart it during this interval.",
+        "exact_input": null,
+        "success_cue": "At least 20 seconds have elapsed while the server continued ticking and no player was connected; this exceeds the 300-gametick interval described in the report comments at normal 20 TPS.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 33,
+        "action": "Reconnect the same test account to the still-running server.",
+        "exact_input": "Multiplayer -> select the same server -> Join Server",
+        "success_cue": "The server accepts the connection and begins loading the test account at its saved Overworld location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 34,
+        "action": "Wait only until login and Overworld loading are complete. Do not enter The End, teleport toward the target coordinates, add a force-load ticket, or otherwise manually load the target End chunk.",
+        "exact_input": null,
+        "success_cue": "The test account is fully connected in the Overworld, surrounding terrain is rendered, and movement responds normally; the target End chunk has not been manually loaded since reconnecting.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 33,
+    "handoff_condition": "The same test account has just reconnected and finished loading in the Overworld after the dedicated server ticked for at least 20 seconds with no connected players. The suspended pearl and repeating command block remain at the remote End target coordinates, and no player or administrative force-load has manually reloaded that End chunk. Hand control to the observation subsystem now, before entering The End or approaching the target chunk.",
+    "uncertainties": [
+      "The report does not provide the requested downloadable setup, a world seed, chamber dimensions, or construction coordinates. The remote platform, eight-block bubble column, and exact coordinates in this plan are deterministic practical choices that preserve the reported conditions.",
+      "The original steps do not explicitly require a dedicated server. A dedicated server is selected because it can continue processing the stated 300-gametick empty-dimension interval while the only client is disconnected; stopping an integrated single-player server would not provide the same controlled interval.",
+      "The report does not specify an exact disconnect duration. The 20-second wait is derived from the comment identifying 300 gameticks, equivalent to 15 seconds at normal 20 TPS, with a five-second execution margin.",
+      "The repeating command block executes the say command every game tick and can produce rapid chat and console output. Keep the pre-trigger portion brief and do not repeat the reproduction unnecessarily.",
+      "The stasis chamber must retain the pearl without causing a collision. If the pearl teleports the player or escapes, the chamber state was not established and the disconnect sequence must not be used."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01023cecd5d74507016aa8bec9a0d887d0bb6916f22c645ec6",
+    "elapsed_seconds": 205.18,
+    "usage": {
+      "input_tokens": 9047,
+      "output_tokens": 14592,
+      "reasoning_tokens": 11199,
+      "total_tokens": 23639
+    },
+    "timestamp": "2026-09-15T03:46:30.645860+00:00"
+  }
+}
