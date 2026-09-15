@@ -1,0 +1,253 @@
+{
+  "bug_id": "MC-264829",
+  "category": "Dedicated Server",
+  "source_md": "[Dedicated Server] - MC-264829.md",
+  "source_meta": {
+    "mojira categories": "Dedicated Server; Text",
+    "project": "MC",
+    "issue key": "MC-264829",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2023-08-13T10:40:32.747-0700",
+    "updated": "2025-04-10T14:59:16.476-0700",
+    "resolution date": "2024-01-31T15:58:41.814-0800",
+    "affects versions": "1.20.1",
+    "fix versions": "23w31a",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "image-2023-08-13-18-36-00-618.png; image-2023-08-13-18-36-54-159.png",
+    "issue links": "Relates:inward:MC-268197:Text Filter on Written Book titles doesn't hide if fully hidden",
+    "_title": "Text Filter on signs doesn't hide if fully filtered"
+  },
+  "stor": {
+    "bug_id": "MC-264829",
+    "affected_versions": [
+      "1.20.1"
+    ],
+    "recommended_version": "1.20.1",
+    "environment": "Minecraft: Java Edition 1.20.1, using an unmodified 1.20.1 dedicated server and two independently authenticated 1.20.1 Java client sessions. Account A must have its account-level text filter disabled; Account B must have its account-level text filter enabled. The dedicated server must run in online mode and must be able to make outbound HTTPS requests to the report-provided text-filter web service. A clean default world is sufficient; no seed or coordinates are specified. Creative mode, an oak sign, and disabled spawn protection are practical setup choices and are not report requirements.",
+    "preconditions": [
+      "Use Minecraft: Java Edition 1.20.1 for both the dedicated server and clients. Do not substitute fix version 23w31a.",
+      "Have a compatible Java runtime available for starting the dedicated server from a terminal or command prompt.",
+      "Have two valid, separately authenticated Minecraft: Java Edition accounts that can join multiplayer servers.",
+      "Configure Account A so its account-level Minecraft text filter is disabled.",
+      "Configure Account B so its account-level Minecraft text filter is enabled. If the account does not permit this setting to be enabled or changed, use another suitable account.",
+      "Ensure the server host can receive inbound client connections and make outbound HTTPS requests to the text-filter service configured by the report.",
+      "The report-provided demonstration service states that requests are logged to Discord. Use only the supplied non-sensitive sign text and accounts approved for this test.",
+      "The server operator must be able to edit eula.txt and server.properties and restart the dedicated server."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create a clean directory for the test server, place the Minecraft: Java Edition 1.20.1 dedicated-server JAR in it, and name the JAR server.jar. Do not use snapshot 23w31a or a newer release for this reproduction.",
+        "exact_input": null,
+        "success_cue": "The clean server directory contains the 1.20.1 file server.jar and no world from a different Minecraft version.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Open a terminal or command prompt in the server directory and start the server once so that it generates its initial configuration files.",
+        "exact_input": "java -jar server.jar nogui",
+        "success_cue": "The process stops or refuses to finish startup because the Minecraft EULA has not yet been accepted, and eula.txt plus server.properties now exist in the server directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "With the server process stopped, open eula.txt and change its eula property to true. Save the file as plain text without changing its filename.",
+        "exact_input": "eula=true",
+        "success_cue": "eula.txt contains the line eula=true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Using a browser or an HTTP client, request the exact example-configuration URL supplied in the report. Copy the complete response without changing its service URLs, identifiers, or other configuration values.",
+        "exact_input": "https://textfilter-server.the456gamer.workers.dev/exampleconfig",
+        "success_cue": "A text-filter configuration response has been obtained from the report-provided endpoint.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Prepare the returned configuration for server.properties. If the response is already a complete line beginning with text-filtering-config=, retain that property name. If it is only a JSON object, prefix it with text-filtering-config=. In the configuration object, ensure that the numeric hashesToDrop value is 0; do not put 0 in quotation marks and do not change the remaining fields.",
+        "exact_input": "\"hashesToDrop\":0",
+        "success_cue": "There is one complete single-line text-filtering-config property whose configuration points to the report's filtering service and whose hashesToDrop value is numeric 0.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Open server.properties while the server is stopped. Replace the existing text-filtering-config property, or add it if absent, using the complete single-line value prepared in the previous step. Do not paste the placeholder text shown here; paste the actual returned configuration.",
+        "exact_input": "text-filtering-config=<COMPLETE_CONFIGURATION_FROM_EXAMPLECONFIG_WITH_hashesToDrop_SET_TO_0>",
+        "success_cue": "server.properties contains exactly one non-empty text-filtering-config property with the demonstration service configuration and hashesToDrop set to 0.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "In server.properties, set the default game mode to Creative so Account A can obtain a sign without crafting or commands.",
+        "exact_input": "gamemode=creative",
+        "success_cue": "server.properties contains gamemode=creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "In server.properties, disable spawn protection so either account can place and approach the test sign near the initial spawn area without operator status.",
+        "exact_input": "spawn-protection=0",
+        "success_cue": "server.properties contains spawn-protection=0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "In server.properties, ensure online mode remains enabled so the two authenticated account identities are used. Save and close server.properties.",
+        "exact_input": "online-mode=true",
+        "success_cue": "server.properties is saved with online-mode=true and all previously configured properties remain present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Start the 1.20.1 dedicated server again from its directory and leave its console running.",
+        "exact_input": "java -jar server.jar nogui",
+        "success_cue": "The server console reports that startup is complete, normally with a line beginning with Done, and remains running without a text-filter configuration parsing error.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Before joining the server, establish Account A's required account state: the account-level Minecraft text filter must be disabled. Use the account-management control for the Java text/profanity filter; the label may refer to the Java Realms Profanity Filter. Confirm the disabled state before launching or reconnecting the client.",
+        "exact_input": "Disabled / Off",
+        "success_cue": "Account A's account-management state visibly indicates that its text filter is disabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Before joining the server, establish Account B's required account state: the account-level Minecraft text filter must be enabled. Confirm the enabled state before launching or reconnecting the client.",
+        "exact_input": "Enabled / On",
+        "success_cue": "Account B's account-management state visibly indicates that its text filter is enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Launch an unmodified Minecraft: Java Edition 1.20.1 client authenticated as Account A. Use a separate game directory or session if necessary to avoid replacing Account B's authentication.",
+        "exact_input": "release 1.20.1",
+        "success_cue": "Account A is at the Java Edition title screen and the displayed game version is 1.20.1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Launch a second unmodified Minecraft: Java Edition 1.20.1 client authenticated as Account B. Keep both clients available for the test.",
+        "exact_input": "release 1.20.1",
+        "success_cue": "Account B is at the Java Edition title screen and the displayed game version is 1.20.1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "On Account A's client, select Multiplayer, connect to the configured dedicated-server address, and wait for terrain loading to finish.",
+        "exact_input": "<DEDICATED_SERVER_HOST>:25565",
+        "success_cue": "Account A is in the server world, surrounding terrain has rendered, movement responds normally, and the player has the Creative-mode inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "On Account B's client, connect to the same dedicated-server address and wait for terrain loading to finish.",
+        "exact_input": "<DEDICATED_SERVER_HOST>:25565",
+        "success_cue": "Account B is in the same server world, surrounding terrain has rendered, and movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Bring Account B near Account A, using ordinary movement or the server console if the players spawned apart. If using the server console, enter the teleport command without a leading slash, replacing the placeholders with the exact profile names. Then have Account B turn its camera away from Account A's intended sign-placement area and remain idle until instructed to view the sign.",
+        "exact_input": "tp <AccountBProfileName> <AccountAProfileName>",
+        "success_cue": "Both players are in the same loaded area, but Account B's camera is directed away from the location where Account A will place the sign.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "On Account A, press E to open the Creative inventory, select the Search Items tab marked with a magnifying-glass icon, and enter oak sign in the search field.",
+        "exact_input": "oak sign",
+        "success_cue": "The Creative inventory search results include an Oak Sign item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Move one Oak Sign from the search results into any hotbar slot. Close the inventory with Esc, then select that hotbar slot using its number key or the mouse wheel. The hotbar is the row of nine item slots at the bottom of the gameplay screen; the selected slot has a highlighted border.",
+        "exact_input": "Oak Sign",
+        "success_cue": "Account A is holding an Oak Sign in the active hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "On Account A, aim at the top surface of a solid ground block in the loaded area and right-click once to place the Oak Sign. Do not right-click an existing sign. Wait for the sign-editing screen to open.",
+        "exact_input": "right-click",
+        "success_cue": "A standing Oak Sign exists in the world and Account A's sign-editing screen is open for its front face.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "With the first sign line selected, type the report's first test line exactly, including the digits, colon, spaces, and lowercase letters. Do not add quotation marks.",
+        "exact_input": "123: filtered line",
+        "success_cue": "The first line in the sign editor reads exactly: 123: filtered line.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Press the Down Arrow key to select the second sign line, then type the report's second test line exactly. Do not add quotation marks.",
+        "exact_input": "abc: unfiltered lin",
+        "success_cue": "The second line in the sign editor reads exactly: abc: unfiltered lin.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Press the Down Arrow key to select the third sign line, then type the report's third test line exactly. Do not add quotation marks.",
+        "exact_input": "semi-filtered line",
+        "success_cue": "The third line in the sign editor reads exactly: semi-filtered line.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Leave the fourth sign line empty and activate the Done button to save the sign. Do not wax, break, edit, or replace the sign afterward.",
+        "exact_input": "Done",
+        "success_cue": "The sign editor closes; the same sign remains placed with the three supplied lines saved on its front face and an empty fourth line.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "Keep the server and both clients running. Wait until Account A can move normally and the server console is responsive, allowing the sign update and text-filter request to finish before Account B views the sign.",
+        "exact_input": null,
+        "success_cue": "The sign remains placed, both clients respond to input, and the server has not reported a text-filter connection or parsing failure.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 26,
+        "action": "On Account B, move to the front side of the exact sign placed by Account A, stand close enough for all four sign rows to be readable, and turn the camera until the sign's front face is centered. Do not interact with or edit the sign.",
+        "exact_input": null,
+        "success_cue": "On Account B's 1.20.1 client, the front face of Account A's saved test sign is centered and readable, ready for the observation subsystem.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 26,
+    "handoff_condition": "Account B, with its account-level text filter enabled before joining, has just centered its camera on the front face of the saved sign that Account A placed while using an account with text filtering disabled. The 1.20.1 dedicated server is still running with the report-provided text-filtering-config and hashesToDrop set to 0. Begin observation now without editing, breaking, or reloading the sign.",
+    "uncertainties": [
+      "The Mojira report does not include the literal contents returned by the external exampleconfig endpoint. The plan therefore preserves the report's instruction to retrieve that response and only requires changing its hashesToDrop value to 0.",
+      "The current availability and behavior of the report-provided text-filter service could not be verified from the permitted Mojang/Minecraft domains. If the endpoint is unavailable or no longer implements the stated rules, the report alone does not provide enough protocol detail to recreate an equivalent service exactly.",
+      "The report states that its demonstration service logs requests to Discord. The autonomous executor should not send sensitive text and must have authorization to expose the selected test accounts' request metadata to that service.",
+      "The exact current account-management UI path and label for enabling or disabling the Java account text filter are not supplied by the report and may have changed. The reproduction requires two accounts whose effective filter states can nevertheless be confirmed as disabled for Account A and enabled for Account B.",
+      "No game mode, world seed, coordinates, sign wood type, or sign orientation is specified. Creative mode, spawn-protection=0, a clean default world, and an Oak Sign are practical choices that minimize unrelated setup while preserving the reported conditions.",
+      "The plan uses all three test lines listed in the report. The first line exercises the service's stated contains-123 fully filtered rule, the second is the contains-abc unfiltered control line, and the third exercises the stated filter-every-character fallback rule."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_01535ecce20098f7016aa8cb3c5e9887d08e6d6da554c3d828",
+    "elapsed_seconds": 172.92,
+    "usage": {
+      "input_tokens": 44683,
+      "output_tokens": 11130,
+      "reasoning_tokens": 8252,
+      "total_tokens": 55813
+    },
+    "timestamp": "2026-09-15T04:39:04.697954+00:00"
+  }
+}
