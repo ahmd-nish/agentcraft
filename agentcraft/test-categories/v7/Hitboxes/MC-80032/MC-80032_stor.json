@@ -1,0 +1,206 @@
+{
+  "bug_id": "MC-80032",
+  "category": "Hitboxes",
+  "source_md": "[Hitboxes] - MC-80032.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes",
+    "project": "MC",
+    "issue key": "MC-80032",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2015-05-02T06:59:37.121-0700",
+    "updated": "2025-04-30T04:43:58.063-0700",
+    "resolution date": "2023-04-26T07:55:35.564-0700",
+    "affects versions": "Minecraft 1.8.4; Minecraft 1.9 Pre-Release 4; Minecraft 1.9; Minecraft 1.9.1 Pre-Release 2; Minecraft 1.9.1; Minecraft 1.9.2; Minecraft 1.9.4; Minecraft 1.10.2; Minecraft 1.11; Minecraft 1.11.2; Minecraft 1.12.1; Minecraft 1.12.2; Minecraft 1.13.1; Minecraft 1.13.2; Minecraft 19w11b; Minecraft 1.14.1; 1.15 Pre-release 1; 1.15.2; 20w07a; 1.16.3; 1.16.5; 22w15a",
+    "fix versions": "20w28a; 22w45a",
+    "area": "Expansion B",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2016-08-10_02.14.08.png; 2016-08-10_02.14.20.png; Minecraft 1.16.2 - Singleplayer 2020-09-02 18-00-00.mp4",
+    "issue links": "Relates:inward:MC-262115:Large hitbox mobs having inconsistent exit position and can suffocate in surrounding blocks depending on some factors | Relates:inward:MC-13734:Horses - Killed With Nether Portal | Duplicate:inward:MC-97868:horses die when traveling through Nether Portals | Duplicate:inward:MC-116939:Horse takes damage from nether portal frame | Duplicate:inward:MC-166314:Entities with big hitbox often die in portals | Duplicate:inward:MC-173224:horses suffocate when going into nether portal | Duplicate:inward:MC-214929:Donkey with chest full of items traveled through portal, suffocated, died, left no items | Duplicate:inward:MC-250230:Horse suffocated when going through a nether portal MC-250228 | Relates:outward:MC-121098:Entering a tall portal that takes you to a short portal from the top causes you to take suffocation damage",
+    "_title": "Horses can suffocate when going through nether portals"
+  },
+  "stor": {
+    "bug_id": "MC-80032",
+    "affected_versions": [
+      "Minecraft 1.8.4",
+      "Minecraft 1.9 Pre-Release 4",
+      "Minecraft 1.9",
+      "Minecraft 1.9.1 Pre-Release 2",
+      "Minecraft 1.9.1",
+      "Minecraft 1.9.2",
+      "Minecraft 1.9.4",
+      "Minecraft 1.10.2",
+      "Minecraft 1.11",
+      "Minecraft 1.11.2",
+      "Minecraft 1.12.1",
+      "Minecraft 1.12.2",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2",
+      "Minecraft 19w11b",
+      "Minecraft 1.14.1",
+      "1.15 Pre-release 1",
+      "1.15.2",
+      "20w07a",
+      "1.16.3",
+      "1.16.5",
+      "22w15a"
+    ],
+    "recommended_version": "Minecraft 1.8.4",
+    "environment": "Minecraft Java Edition Minecraft 1.8.4, preferably an unmodified single-player client. Use a newly created Creative-mode world as a practical setup convenience. The reproduction uses one adult tamed and saddled horse, an Overworld-to-Nether linked portal pair, and standard portals whose active interior is 2 blocks wide by 3 blocks high. No particular world seed or coordinates are specified by the report.",
+    "preconditions": [
+      "Launch the exact affected version Minecraft 1.8.4 rather than a fix version.",
+      "Use a world in which Nether travel is available. Creative mode is selected only to obtain the horse and portal materials deterministically; the report does not require Creative mode.",
+      "Keep the portal approach level and accessible so the horse can be ridden straight into the active portal blocks.",
+      "Use the standard portal dimensions described in the report: a 2-block-wide by 3-block-high active portal opening, surrounded by its obsidian frame.",
+      "The destination portal must already exist and its surrounding terrain must be loaded before transporting the horse. This avoids mixing initial destination generation delays with the final trigger sequence.",
+      "Use an adult horse. If the Spawn Horse item produces a foal, spawn another horse and use an adult.",
+      "Use the default controls described below, or substitute the executor's corresponding rebound controls: E for inventory, W for forward movement, right-click for use/mount, and Left Shift for dismount."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that runs Java Edition version 1.8.4, start it, and wait for the main menu to appear. Confirm that the displayed game version is 1.8.4 before continuing.",
+        "exact_input": "Launcher version/installation: 1.8.4",
+        "success_cue": "The Minecraft 1.8.4 main menu is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer, choose Create New World, set the game mode to Creative, and create the world. The report does not require a particular seed, so leave the seed unspecified. Wait until terrain has rendered and normal movement is responsive.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is standing in a loaded Overworld in Creative mode and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to locate Obsidian, Flint and Steel, Spawn Horse, and Saddle. Place each item in the player inventory or hotbar, then close the inventory with E. The hotbar is the row of nine item slots at the bottom of the screen; an item is selected when its slot has the highlighted outline.",
+        "exact_input": "E; item names: Obsidian, Flint and Steel, Spawn Horse, Saddle; E",
+        "success_cue": "Obsidian, Flint and Steel, Spawn Horse, and Saddle are available in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Find a reasonably flat Overworld location with enough room to ride a horse straight toward the portal. Build a vertical obsidian frame with an active interior cavity exactly 2 blocks wide and 3 blocks high. For an easy full-corner frame, place 4 obsidian blocks across the bottom, construct a 5-block-high pillar at each end, and connect the pillars with 4 obsidian blocks across the top. This produces a 4-by-5 outer frame around the required 2-by-3 interior.",
+        "exact_input": "Portal interior: 2 blocks wide x 3 blocks high; full outer frame: 4 blocks wide x 5 blocks high",
+        "success_cue": "A complete upright obsidian frame surrounds an empty interior that is 2 blocks wide and 3 blocks high.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Select Flint and Steel in the hotbar. Stand facing the inside of the frame and right-click the exposed upper face of either bottom obsidian block inside the opening to ignite the portal.",
+        "exact_input": "Select Flint and Steel; right-click inside the obsidian frame",
+        "success_cue": "The 2-by-3 interior of the frame is filled with animated purple portal blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Before transporting the horse, enter the portal alone to generate or load its Nether destination. Walk into the purple portal field and remain inside it without stepping out until the dimension transition occurs. After arriving, wait until the Nether terrain and destination portal have rendered and player movement responds normally.",
+        "exact_input": "W into the portal; remain in the purple portal field until transported",
+        "success_cue": "The player is in the Nether beside a loaded destination portal and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Inspect the destination portal without changing its width. Confirm that it has the standard active opening of 2 portal blocks wide by 3 portal blocks high. If immediately adjacent terrain prevents the player from entering or leaving through either face, remove only enough non-frame terrain to make the portal usable; do not remove obsidian, widen the opening, or replace the portal with a larger design.",
+        "exact_input": "Confirm active portal opening: 2 blocks wide x 3 blocks high",
+        "success_cue": "The destination portal remains a standard 2-by-3 portal and can be entered from at least one face.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Use the destination portal to return to the Overworld. Enter its purple field and remain there until transported. Wait after arrival until the Overworld terrain has rendered and movement responds normally.",
+        "exact_input": "W into the Nether-side portal; remain inside until transported",
+        "success_cue": "The player is back in the loaded Overworld beside the original standard portal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move several blocks away from the portal so the horse will not touch it prematurely. Select Spawn Horse in the hotbar and right-click the ground to create a horse. Use an adult horse; if a foal appears, spawn another horse until an adult is available.",
+        "exact_input": "Select Spawn Horse; right-click the ground",
+        "success_cue": "An adult horse is standing in the Overworld near, but not inside, the portal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Tame the adult horse. Select an empty hotbar slot so the player is not holding an item, face the horse, and right-click it to mount. If the horse throws the player off, approach and right-click it again. Repeat until the horse accepts the player; the successful taming event is indicated by heart particles and the horse no longer immediately throwing the player off.",
+        "exact_input": "Select an empty hotbar slot; repeatedly right-click the adult horse as needed",
+        "success_cue": "Heart particles have appeared and the player can remain mounted on the tamed horse.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "While mounted on the tamed horse, press E to open the horse inventory. Move the Saddle from the player inventory into the horse's saddle slot beside the horse illustration, then press E to close the interface.",
+        "exact_input": "E; move Saddle to the horse's saddle slot; E",
+        "success_cue": "The horse visibly wears a saddle, the inventory interface is closed, and the player remains mounted with directional control of the horse.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While mounted, position the horse on level ground directly in front of the Overworld portal. Face the center of the 2-block-wide opening so that riding straight forward will place the horse between the two vertical obsidian sides rather than against one side. Stop before the horse touches the purple portal field.",
+        "exact_input": "Movement controls as needed; face the center of the portal opening",
+        "success_cue": "The mounted horse is aligned with the center of the standard portal and has a clear straight path into it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Hold W to ride the horse straight into the active purple portal blocks. Continue only until the horse's body occupies the portal plane; do not turn sideways or deliberately steer into the obsidian frame.",
+        "exact_input": "Hold W",
+        "success_cue": "The horse and rider are positioned within the active portal field while still in the Overworld.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Press the dismount control, Left Shift by default, while the horse is still within the active portal field. After dismounting, avoid walking into or pushing the horse while waiting for its entity transfer.",
+        "exact_input": "Left Shift",
+        "success_cue": "The player is standing beside the portal, is no longer mounted, and the horse remains in contact with the active portal field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait for the horse to pass through the portal, indicated by the horse disappearing from the Overworld. If it walks completely out of the purple field before disappearing, remount it and repeat the alignment, entry, and dismount sequence from steps 12 through 14. Once the horse disappears, do not perform unrelated actions before following it.",
+        "exact_input": null,
+        "success_cue": "The horse has disappeared from the Overworld through the active portal while the player remains beside the portal.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Immediately follow the horse through the same portal. Walk straight into the purple portal field and remain there until the player is transported to the Nether. As soon as the destination terrain renders and controls respond, do not walk, jump, mount, push, strike, or otherwise reposition the horse; hand control to the observation subsystem at that point.",
+        "exact_input": "W into the portal; remain in the portal field until the Nether loads",
+        "success_cue": "The player has just materialized at the loaded Nether-side standard portal immediately after the horse, with no post-arrival movement or interaction performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The horse has been sent through the standard 2-by-3 portal, and the player has just followed it and materialized at the loaded Nether-side portal. Begin observation immediately, before moving the player or interacting with the horse or portal.",
+    "uncertainties": [
+      "The report contains no single formal top-level Steps to Reproduce section. The selected sequence is reconstructed primarily from comment 4: tame a horse, ride into a standard portal, dismount so the horse teleports, and then enter the portal after it.",
+      "Minecraft 1.8.4 is selected because it is the first listed affected version, as required. The strongest explicit claims of near-100-percent reproduction with standard portals are attached to 1.9 pre-releases and later versions, so the exact reproduction frequency in 1.8.4 is not quantified by the supplied text.",
+      "The report does not specify a world seed, coordinates, difficulty, or a required single-player versus dedicated-server environment. A new single-player Creative world is used as a practical deterministic setup.",
+      "Creative mode, Creative inventory acquisition, pre-generating the destination portal, and clearing only terrain that makes the destination portal unusable are practical setup choices rather than explicit report requirements.",
+      "The report discusses more than one possible portal collision path: initial destination placement intersecting a frame or nearby wall, and the following player pushing the horse toward the frame. This plan preserves the reported order that can exercise both paths, but it does not add a surrounding wall or use mismatched portal widths.",
+      "The report says the issue can occur in both Overworld-to-Nether and Nether-to-Overworld travel. This plan uses only Overworld-to-Nether travel as the minimum supported reproduction path.",
+      "Portal transition and chunk-loading times depend on machine performance, so readiness is defined by observable loading and control-response cues rather than fixed delays."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0948c0dba4c52b3f016aa8c82fcd3c87d0a76d71a4fc335b9e",
+    "elapsed_seconds": 117.67,
+    "usage": {
+      "input_tokens": 12129,
+      "output_tokens": 7478,
+      "reasoning_tokens": 4840,
+      "total_tokens": 19607
+    },
+    "timestamp": "2026-09-15T04:25:09.310127+00:00"
+  }
+}

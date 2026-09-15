@@ -1,0 +1,232 @@
+{
+  "bug_id": "MC-9568",
+  "category": "Hitboxes",
+  "source_md": "[Hitboxes] - MC-9568.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes",
+    "project": "MC",
+    "issue key": "MC-9568",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2013-02-10T08:16:25.417-0800",
+    "updated": "2025-04-29T09:27:48.646-0700",
+    "resolution date": "2024-05-13T01:52:51.429-0700",
+    "affects versions": "Snapshot 13w06a; Snapshot 13w07a; Snapshot 13w09a; Snapshot 13w09b; Minecraft 1.5; Minecraft 1.5.1; Minecraft 1.5.2; Snapshot 13w17a; Snapshot 13w19a; Snapshot 13w21a; Minecraft 1.6.1; Minecraft 1.6.2; Minecraft 1.7.9; Minecraft 14w32d; Minecraft 1.8; Minecraft 15w44b; Minecraft 15w45a; Minecraft 15w46a; Minecraft 1.11.2; Minecraft 1.12; Minecraft 1.12.1; Minecraft 1.12.2 Pre-Release 1; Minecraft 1.12.2; Minecraft 18w01a; Minecraft 18w02a; Minecraft 18w03b; Minecraft 1.13-pre2; Minecraft 19w12a; Minecraft 1.14; 1.15.1; 1.15.2; 20w12a; 20w19a; 1.16.2; 1.16.3; 1.16.4; 20w48a; 20w51a; 21w03a; 21w05a; 21w05b; 21w07a; 21w11a; 1.17 Release Candidate 1; 1.17; 1.17.1; 1.18.1; 22w03a; 1.18.2; 1.19; 1.19.1 Pre-release 2; 1.19.1 Pre-release 3; 1.19.2; 1.19.4; 23w14a; 1.20 Pre-release 6; 1.20.6",
+    "fix versions": "21w05a; 24w19a",
+    "area": "Gameplay",
+    "labels": "baby; mob",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2017-10-02_00.11.57.png; DpP41Mf.png; MC-9568 not fixed.mp4; MC-9568 Proposal.txt; MC-9568 Still not fixed.mp4; Minecraft 21w05a - Singleplayer.mp4; Video_2024-05-10_18-58-13.mp4",
+    "issue links": "Duplicate:inward:MC-9435:Adult chicken die when you pushing them on a solid block | Duplicate:inward:MC-9540:Adult chickens eventually die if caged near solid blocks | Duplicate:inward:MC-9626:Glitching mob that kill them | Duplicate:inward:MC-9635:Baby chickens glitching into solid blocks and dying | Duplicate:inward:MC-9742:Mobs suffocating by walking into walls | Duplicate:inward:MC-9776:Chicken Suffocation | Duplicate:inward:MC-9805:Mobs walking into walls and suffocating | Duplicate:inward:MC-9838:Baby sheeps disappear | Duplicate:inward:MC-9976:Breaded animals (babies) are disappearing somehow and rare mob spawning | Duplicate:inward:MC-10012:Hitbox for child mobs error when growing up | Duplicate:inward:MC-10157:Animals suffocate in walls | Duplicate:inward:MC-10181:Dying animals | Duplicate:inward:MC-10229:Mobs suffocate in walls upon growing into adults | Duplicate:inward:MC-10268:Mob's collision boxed don't update when they grow, but their hit boxes do EDIT: sorry, its fixed on 07a | Duplicate:inward:MC-10287:Chickens randomly die. | Duplicate:inward:MC-10370:13w06a: Rare Baby Animal hitbox bug, grows up to die by suffocating itself in a wall | Duplicate:inward:MC-10552:Cows getting damage from blocks | Duplicate:inward:MC-10797:Random animal death | Duplicate:inward:MC-11492:Baby cows used to die in 13w snapshots and sometimes in 1.5 pre | Duplicate:inward:MC-11543:Chickens Phasing through walls or dying upon maturity | Duplicate:inward:MC-11727:Chickens crazy | Duplicate:inward:MC-12208:Animals !! get killd | Duplicate:inward:MC-12481:Chickens die as they grow to adult | Duplicate:inward:MC-13507:Animals glitching through blocks when changing from child stage to adult stage | Duplicate:inward:MC-16239:Horses in Walls | Duplicate:inward:MC-16603:Animals growing up outside of fences. | Duplicate:inward:MC-16950:Baby chickens can be pushed through fences | Duplicate:inward:MC-17096:Baby Chickens Hitboxes seem to be too small | Duplicate:inward:MC-19969:Baby chickens glitch in to blocks and die | Duplicate:inward:MC-22924:Baby chickens die when they grow | Duplicate:inward:MC-27175:Foal died randomly | Duplicate:inward:MC-28116:SHeep not regrowing wool, lambs disappearing | Duplicate:inward:MC-53646:Any nee villager get trapped in wall and die | Duplicate:inward:MC-68433:Animals that grow up near fences get out | Duplicate:inward:MC-72576:Mobs glitch into walls and suffocate | Duplicate:inward:MC-73317:Sheep suffocating in walls or appearing outside them | Duplicate:inward:MC-77304:Villagers Get Stuck In And Suffocate In Walls | Duplicate:inward:MC-92524:Growing up mobs can glitch through fence (south-east corner for most times) | Duplicate:inward:MC-150657:Baby animals suffocate when they grow up | Duplicate:inward:MC-168590:Baby Bees growing up and glitching through blocks | Duplicate:inward:MC-172571:Bee Glitching | Duplicate:inward:MC-183131:Spontaneously vanishing villagers and bees. | Duplicate:inward:MC-183139:Spontaneously vanishing villagers and bees. | Duplicate:inward:MC-183179:Baby Bees despawn when they grow up | Duplicate:inward:MC-185783:Bees clip through blocks when aging. | Duplicate:inward:MC-203318:bee | Duplicate:inward:MC-213951:Villagers teleporting through glass when they grow up | Duplicate:inward:MC-221452:Baby animal NoClip through fences when they grow up when pushed | Duplicate:inward:MC-227605:mobs still glitch out fences when growing | Duplicate:inward:MC-229065:When baby chickens grow up, they pop up outside(raw chicken farm) | Duplicate:inward:MC-230739:Mobs ghosting through solid blocks | Duplicate:inward:MC-232496:Chickens when growing from adults on a slab with a carpet above them no longer stay in origin block | Duplicate:inward:MC-241571:Cows glitching through fences | Duplicate:inward:MC-250012:Baby villagers when grown can grow into blocks and take damage/go through walls | Relates:outward:MC-1524:Baby mob collision boxes are too large. | Relates:inward:MC-212284:Crammed enitities pushed through blocks when growing to adults",
+    "_title": "Mobs suffocate / go through blocks when growing up near a solid block"
+  },
+  "stor": {
+    "bug_id": "MC-9568",
+    "affected_versions": [
+      "Snapshot 13w06a",
+      "Snapshot 13w07a",
+      "Snapshot 13w09a",
+      "Snapshot 13w09b",
+      "Minecraft 1.5",
+      "Minecraft 1.5.1",
+      "Minecraft 1.5.2",
+      "Snapshot 13w17a",
+      "Snapshot 13w19a",
+      "Snapshot 13w21a",
+      "Minecraft 1.6.1",
+      "Minecraft 1.6.2",
+      "Minecraft 1.7.9",
+      "Minecraft 14w32d",
+      "Minecraft 1.8",
+      "Minecraft 15w44b",
+      "Minecraft 15w45a",
+      "Minecraft 15w46a",
+      "Minecraft 1.11.2",
+      "Minecraft 1.12",
+      "Minecraft 1.12.1",
+      "Minecraft 1.12.2 Pre-Release 1",
+      "Minecraft 1.12.2",
+      "Minecraft 18w01a",
+      "Minecraft 18w02a",
+      "Minecraft 18w03b",
+      "Minecraft 1.13-pre2",
+      "Minecraft 19w12a",
+      "Minecraft 1.14",
+      "1.15.1",
+      "1.15.2",
+      "20w12a",
+      "20w19a",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "20w48a",
+      "20w51a",
+      "21w03a",
+      "21w05a",
+      "21w05b",
+      "21w07a",
+      "21w11a",
+      "1.17 Release Candidate 1",
+      "1.17",
+      "1.17.1",
+      "1.18.1",
+      "22w03a",
+      "1.18.2",
+      "1.19",
+      "1.19.1 Pre-release 2",
+      "1.19.1 Pre-release 3",
+      "1.19.2",
+      "1.19.4",
+      "23w14a",
+      "1.20 Pre-release 6",
+      "1.20.6"
+    ],
+    "recommended_version": "Snapshot 13w06a",
+    "environment": "Minecraft Java Edition Snapshot 13w06a in a single-player world. Use Creative mode as a practical way to obtain cobblestone and eggs; the report itself does not require a particular game mode. Keep the enclosure's chunk loaded and the single-player game unpaused while the chickens age.",
+    "preconditions": [
+      "Configure the launcher to run the exact affected version Snapshot 13w06a, not a later release or either listed fix version.",
+      "Use a world where a small level construction area is available and remains loaded for the entire test.",
+      "Use solid cobblestone for the enclosure. Do not substitute transparent or partial barriers such as glass or fences, because the report describes those as a separate pass-through variant.",
+      "Have enough inventory space for Cobblestone and Egg items.",
+      "Use the default interaction control, right-click, to place blocks and throw eggs unless controls have been rebound.",
+      "Once four chicks are present, do not pause the single-player game, leave the area, unload the chunk, replace blocks, push the chickens manually, or add more chickens."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, configure and start the exact historical Java Edition version listed as the first affected version: Snapshot 13w06a.",
+        "exact_input": "Snapshot 13w06a",
+        "success_cue": "Minecraft reaches the title screen and identifies the running version as 13w06a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a fresh world in Creative mode. Creative mode is selected only to make acquiring the required blocks and eggs deterministic; no cheats or commands are needed.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has spawned in a Creative single-player world and can place blocks without collecting resources.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a clear, level area with enough room to build and view a small enclosure. Wait until nearby terrain has rendered and movement responds normally before building.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The player is standing beside a loaded, level construction area with no existing blocks obstructing the enclosure.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory with the inventory control, whose default key is E. Locate Cobblestone and place a stack into one of the nine hotbar slots at the bottom of the screen.",
+        "exact_input": "E",
+        "success_cue": "A Cobblestone stack is visible in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Close the inventory and select the hotbar slot containing Cobblestone, using its number key or the mouse wheel.",
+        "exact_input": "Hotbar number key 1-9 corresponding to Cobblestone",
+        "success_cue": "Cobblestone is shown in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Place one cobblestone block to serve as the floor of the enclosure. Keep track of this block as the single interior floor position.",
+        "exact_input": "Right-click",
+        "success_cue": "One cobblestone floor block is present at the chosen test position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Around the four horizontal sides of the floor position, build solid cobblestone walls. Each side wall must extend two blocks vertically above the floor surface. Leave the central 1-by-1 air column empty and leave the top open so eggs can be thrown into it.",
+        "exact_input": "Right-click to place each Cobblestone block",
+        "success_cue": "The construction has a one-block-wide interior, two blocks of interior height, four solid cobblestone sides, a solid floor, and an open top.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Inspect the enclosure from above and from each accessible side. Confirm there are no gaps in the four walls and that every wall block is full cobblestone rather than glass, fence, slab, or another non-solid substitute.",
+        "exact_input": null,
+        "success_cue": "The only exit from the 1-by-1 interior is through the open top, and all four side walls are solid cobblestone and two blocks high.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Open the Creative inventory again. Locate the item named Egg and place a stack into a hotbar slot.",
+        "exact_input": "E",
+        "success_cue": "An Egg stack is visible in the hotbar while the cobblestone enclosure remains intact.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Close the inventory and select the hotbar slot containing the eggs.",
+        "exact_input": "Hotbar number key 1-9 corresponding to Egg",
+        "success_cue": "An egg is shown in the player's hand and the Egg hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Stand beside or above the enclosure and aim the crosshair downward at the cobblestone floor inside the central 1-by-1 space. Do not enter or alter the enclosure.",
+        "exact_input": null,
+        "success_cue": "The crosshair points into the enclosure so a thrown egg will impact inside it rather than outside it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Throw one egg into the enclosure with the use-item control, whose default input is right-click. Wait for that egg to impact before throwing another.",
+        "exact_input": "Right-click once",
+        "success_cue": "The egg has broken inside the enclosure; either no chick appeared or one or more baby chickens are visibly confined inside.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Count the baby chickens currently inside after each impact. If fewer than four are present, repeat steps 11 and 12 one egg at a time. Stop throwing eggs as soon as exactly four baby chickens are simultaneously present. Because egg hatching is random, many eggs may be required. If a rare multi-chick hatch causes the total to jump above four, discard that attempt and repeat in a fresh enclosure so the aging phase begins with exactly four.",
+        "exact_input": "Right-click once per egg",
+        "success_cue": "Exactly four small, baby-sized chickens are visible inside the enclosure, and no adult chicken is present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Select an empty hotbar slot or a non-egg item so no additional eggs are thrown accidentally. Move to a viewing position immediately outside the enclosure where all four chicks can be monitored without touching or pushing them.",
+        "exact_input": "Select an empty hotbar slot; W/A/S/D as needed",
+        "success_cue": "Exactly four baby chickens remain confined in the 1-by-1 enclosure, and the player can see them without holding an egg.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Allow the four chickens to age naturally. Keep the game running, remain close enough that the enclosure stays loaded, and do not open the pause menu. Watch continuously until the first chick visibly changes from the smaller baby form to the full-size adult form. The growth transition while confined next to the solid cobblestone walls is the trigger action for observation.",
+        "exact_input": null,
+        "success_cue": "At least one of the original four egg-spawned chickens has just completed its visible baby-to-adult size transition while the enclosure remains unchanged and loaded.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The first of the four egg-spawned chicks has just changed to adult size inside the unchanged 1-by-1, two-block-high solid cobblestone enclosure. Keep the world unpaused and the chunk loaded, make no further player interactions with the chickens or enclosure, and hand control to the observation subsystem for the remainder of the chickens' maturation and the report's final count.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode is selected as a practical implementation choice for obtaining cobblestone and enough eggs without adding unrelated resource gathering.",
+      "The phrase \"one block large, two block high enclosure\" is interpreted as a 1-by-1 interior floor space surrounded on all four sides by full solid walls extending two blocks above the floor, with the top left open for throwing eggs.",
+      "Chicken hatching from thrown eggs is random. The plan therefore uses repeated single throws and requires a fresh attempt if a multi-chick hatch causes the initial population to exceed four.",
+      "The report provides no exact natural-growth duration. The plan uses the visible baby-to-adult model transition as the readiness and trigger cue rather than assuming a timer.",
+      "The report lists 21w05a both among affected versions and among fix versions. This plan preserves the affected-version list exactly as supplied and recommends the first listed affected version, Snapshot 13w06a, without evaluating fix status."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_07ebb7fa516fc917016aa8c8a57dc487d0a718c979ec470205",
+    "elapsed_seconds": 102.7,
+    "usage": {
+      "input_tokens": 16249,
+      "output_tokens": 6363,
+      "reasoning_tokens": 4142,
+      "total_tokens": 22612
+    },
+    "timestamp": "2026-09-15T04:26:52.021050+00:00"
+  }
+}
