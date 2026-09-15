@@ -1,0 +1,219 @@
+{
+  "bug_id": "MC-236501",
+  "category": "Parity",
+  "source_md": "[Parity] - MC-236501.md",
+  "source_meta": {
+    "mojira categories": "Parity",
+    "project": "MC",
+    "issue key": "MC-236501",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-09-13T04:04:33.233-0700",
+    "updated": "2025-04-29T12:07:38.121-0700",
+    "resolution date": "2023-10-10T04:28:59.685-0700",
+    "affects versions": "1.17.1; 21w37a; 21w38a; 21w39a; 21w40a; 21w41a; 21w42a; 21w43a; 21w44a; 1.18 Pre-release 1; 1.18 Pre-release 5; 1.18 Release Candidate 1; 1.18; 1.18.1; 1.18.2; 22w11a; 22w12a; 22w14a; 1.19; 22w24a; 1.19.2; 1.19.3 Pre-release 1; 1.19.3 Pre-release 3; 1.19.3 Release Candidate 1; 1.19.3; 1.19.4 Pre-release 1; 1.19.4 Pre-release 2; 1.19.4; 23w14a; 1.20.1; 1.20.2; 23w40a",
+    "fix versions": "23w41a",
+    "area": "Platform",
+    "labels": "vanilla-parity",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "image-2021-09-13-18-03-32-801.png; image-2021-09-13-18-04-22-571.png; image-2021-09-13-18-04-22-571-1.png; javaboat.png; javaminecart.png; MC-236501.mp4",
+    "_title": "Renamed minecarts and boats don't show their name tag in the world"
+  },
+  "stor": {
+    "bug_id": "MC-236501",
+    "affected_versions": [
+      "1.17.1",
+      "21w37a",
+      "21w38a",
+      "21w39a",
+      "21w40a",
+      "21w41a",
+      "21w42a",
+      "21w43a",
+      "21w44a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 5",
+      "1.18 Release Candidate 1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "22w11a",
+      "22w12a",
+      "22w14a",
+      "1.19",
+      "22w24a",
+      "1.19.2",
+      "1.19.3 Pre-release 1",
+      "1.19.3 Pre-release 3",
+      "1.19.3 Release Candidate 1",
+      "1.19.3",
+      "1.19.4 Pre-release 1",
+      "1.19.4 Pre-release 2",
+      "1.19.4",
+      "23w14a",
+      "1.20.1",
+      "1.20.2",
+      "23w40a"
+    ],
+    "recommended_version": "1.17.1",
+    "environment": "Minecraft Java Edition 1.17.1 in a vanilla single-player Creative Mode world. Use an open, flat area with enough unobstructed space to place an anvil, a boat, a rail, and a minecart. The Superflat world type is recommended solely to provide deterministic open ground. Use default controls or the corresponding rebound controls.",
+    "preconditions": [
+      "Install and launch the Java Edition release profile for exactly 1.17.1, the first version in the report's explicit Affects versions field. Do not use fix version 23w41a for reproduction.",
+      "Use a vanilla client without mods, shaders, resource packs, or datapacks that alter entity rendering or user-interface behavior.",
+      "Create a single-player world in Creative Mode so the required items can be obtained without crafting or experience-level preparation.",
+      "Have an Anvil, one Oak Boat, one Minecart, and one Rail available. Oak Boat is a concrete boat variant selected because the report does not require a particular wood type.",
+      "Leave at least two empty hotbar or inventory slots for the renamed boat and renamed minecart."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start an installation that runs Minecraft Java Edition 1.17.1.",
+        "exact_input": "1.17.1",
+        "success_cue": "The Minecraft main menu has loaded under version 1.17.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world, set Game Mode to Creative, and optionally select Superflat under More World Options to guarantee open ground. Start the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> World Type: Superflat -> Create New World",
+        "success_cue": "The player has spawned in a Creative Mode world with a flat, unobstructed area nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the nearby terrain has rendered and movement responds normally before manipulating items.",
+        "exact_input": null,
+        "success_cue": "Nearby blocks are rendered, no world-loading screen is present, and the player can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory with the inventory control, which is E by default. Use the Search Items tab to locate an Anvil, Oak Boat, Minecart, and Rail, and place one of each into separate hotbar slots. The hotbar is the row of nine slots along the bottom of the screen.",
+        "exact_input": "Search for: Anvil; Oak Boat; Minecart; Rail",
+        "success_cue": "The hotbar contains an Anvil, an Oak Boat, a Minecart, and a Rail.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Close the inventory with E or Esc. Select the Anvil's hotbar slot, point at an open ground block, and use the item by right-clicking to place the anvil.",
+        "exact_input": "right-click",
+        "success_cue": "An anvil block is standing on the ground in front of the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Point at the placed anvil and right-click it to open the anvil interface.",
+        "exact_input": "right-click",
+        "success_cue": "The anvil interface is open and shows two input slots, an output slot, and a rename text field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Move the Oak Boat from the hotbar or inventory into the anvil's left input slot.",
+        "exact_input": "Oak Boat",
+        "success_cue": "The Oak Boat occupies the left input slot and a boat appears in the output slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Click the rename text field at the top of the anvil interface. Select or erase the existing item name, then enter the distinct custom name \"Boat Test\".",
+        "exact_input": "Boat Test",
+        "success_cue": "The anvil output slot contains an Oak Boat whose displayed item name is \"Boat Test\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Take the renamed Oak Boat from the anvil output slot and place it into an available hotbar slot.",
+        "exact_input": "Boat Test",
+        "success_cue": "An Oak Boat named \"Boat Test\" is present in the hotbar, and the anvil's boat input has been consumed or cleared.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "While the anvil interface remains open, move the Minecart from the inventory or hotbar into the anvil's left input slot.",
+        "exact_input": "Minecart",
+        "success_cue": "The Minecart occupies the left input slot and a minecart appears in the output slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Click the rename text field, select or erase the existing item name, and enter the distinct custom name \"Minecart Test\".",
+        "exact_input": "Minecart Test",
+        "success_cue": "The anvil output slot contains a Minecart whose displayed item name is \"Minecart Test\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Take the renamed Minecart from the output slot, place it into an available hotbar slot, and close the anvil interface with E or Esc.",
+        "exact_input": "Minecart Test",
+        "success_cue": "Normal world view is restored, and the hotbar contains both \"Boat Test\" and \"Minecart Test\".",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Move to an unobstructed patch of ground near the anvil. Ensure there is enough room for the boat and a separate rail block, and keep both placement locations within the same visible, loaded area.",
+        "exact_input": null,
+        "success_cue": "Two nearby unobstructed placement locations are available and the surrounding terrain is fully rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Select the Oak Boat named \"Boat Test\" in the hotbar. Point at the first unobstructed ground location and right-click to place the renamed boat. Do not enter the boat.",
+        "exact_input": "Select \"Boat Test\", then right-click",
+        "success_cue": "A boat entity is present on the ground and the renamed boat item is no longer held on the cursor or in the selected slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Select the Rail in the hotbar. Point at the top surface of a solid ground block a short distance from the boat and right-click to place one rail.",
+        "exact_input": "right-click",
+        "success_cue": "One rail block is attached to the top of the ground and remains visible near the placed boat.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Select the Minecart named \"Minecart Test\" in the hotbar. Point directly at the placed rail and right-click to place the renamed minecart on it.",
+        "exact_input": "Select \"Minecart Test\", then right-click the rail",
+        "success_cue": "A minecart entity is resting on the rail, while the previously placed boat remains present nearby.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Without entering either vehicle, step back far enough to view the boat and minecart clearly. Keep both entities in loaded chunks, close all interfaces, and leave the camera ready for the observation subsystem to inspect each entity from nearby.",
+        "exact_input": null,
+        "success_cue": "The renamed boat and renamed minecart are both present in the world, the minecart is on its rail, no interface is open, and the player is positioned close enough to inspect both entities.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The renamed boat has been placed in the world and the renamed minecart has just been placed on the nearby rail. Both entities are loaded and available for immediate inspection; begin observing their in-world name-tag rendering without entering or removing either vehicle.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, or world type. Creative Mode and a Superflat test world are practical choices for deterministic item acquisition and open placement space, not asserted reproduction requirements.",
+      "The report does not specify a boat wood variant or the custom-name text. This plan uses an Oak Boat and the distinct names \"Boat Test\" and \"Minecart Test\" so the two renamed entities can be identified reliably.",
+      "The wording \"Rename a minecart/boat\" is grammatically ambiguous, but the following report step explicitly directs the tester to place both a boat and a minecart. This plan therefore renames and places both entity types.",
+      "No dedicated-server, multiplayer, operator, command, coordinate, seed, timing, or graphics-setting requirement is given, so the plan uses single-player and does not introduce those conditions.",
+      "Comment 12 says the issue was confirmed in 1.18 Pre-release 2, but that version is absent from the report's explicit Affects versions metadata. The affected_versions field follows the explicit metadata list exactly."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0b5518cc4565a8ac016aa8a2f493e887d09663781538ee5e0d",
+    "elapsed_seconds": 70.1,
+    "usage": {
+      "input_tokens": 9304,
+      "output_tokens": 5751,
+      "reasoning_tokens": 3694,
+      "total_tokens": 15055
+    },
+    "timestamp": "2026-09-15T01:45:29.903409+00:00"
+  }
+}

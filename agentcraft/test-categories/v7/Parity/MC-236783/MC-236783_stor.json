@@ -1,0 +1,139 @@
+{
+  "bug_id": "MC-236783",
+  "category": "Parity",
+  "source_md": "[Parity] - MC-236783.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Parity",
+    "project": "MC",
+    "issue key": "MC-236783",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-09-16T01:12:53.237-0700",
+    "updated": "2025-04-29T21:02:28.058-0700",
+    "resolution date": "2021-11-24T06:11:49.135-0800",
+    "affects versions": "21w37a; 1.18 Pre-release 6",
+    "fix versions": "1.18 Pre-release 8",
+    "labels": "ravager; vanilla-parity",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2021-09-16_16.07.59.png; MC-236783.mp4; MC-236783.png",
+    "_title": "Parity Issue: Ravagers still attack baby villagers in Java Edition"
+  },
+  "stor": {
+    "bug_id": "MC-236783",
+    "affected_versions": [
+      "21w37a",
+      "1.18 Pre-release 6"
+    ],
+    "recommended_version": "21w37a",
+    "environment": "Minecraft Java Edition 21w37a in a newly created vanilla single-player world using the integrated server. Use Creative mode with commands/cheats enabled and a non-Peaceful difficulty such as Normal. A Superflat world is recommended to provide clear, level terrain, but the report does not require a particular world type, seed, or coordinates.",
+    "preconditions": [
+      "Install and launch the exact affected Java Edition snapshot 21w37a. Do not use fix version 1.18 Pre-release 8 for this reproduction.",
+      "Use an unmodified vanilla client with no mods, plugins, or datapacks that alter ravager or villager behavior.",
+      "Create a new single-player world in Creative mode so the player cannot be harmed and can execute the supplied commands.",
+      "Ensure commands/cheats are enabled in the world.",
+      "Use Normal difficulty, or another non-Peaceful difficulty, so the ravager remains present.",
+      "Perform the test in an open area on solid ground where both summoned entities can be seen and where no unrelated villagers, iron golems, or raiders are close enough to distract the ravager."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the installation profile for snapshot 21w37a, then wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The lower-left area of the main menu identifies the running version as 21w37a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and begin creating a new test world. Set the game mode to Creative, ensure commands/cheats are enabled, and set the difficulty to Normal. For a deterministic open testing area, select the Superflat world type if convenient.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen is configured for Creative mode with commands available and a non-Peaceful difficulty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Create the world and wait without opening chat or pausing until terrain has rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded world, nearby terrain is visible, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to or remain in a clear area on solid ground with enough room to see two large entities. Check that no unrelated villagers, iron golems, pillagers, or other possible ravager targets are nearby.",
+        "exact_input": null,
+        "success_cue": "A clear testing area is visible around the player with no nearby entities likely to distract the ravager.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the currently bound Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's ravager summon command exactly as shown, including the leading slash, and press Enter. The relative coordinates place the ravager at the player's current position.",
+        "exact_input": "/summon minecraft:ravager ~ ~ ~",
+        "success_cue": "The command completes successfully and a ravager is visible at or immediately beside the player's position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "If entity collision moved the player slightly, stop moving but remain close enough that the ravager stays visible and its chunk remains loaded. Do not attack or otherwise interact with the ravager.",
+        "exact_input": null,
+        "success_cue": "The ravager remains present and visible in the loaded testing area, and the game is not paused.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T, or the currently bound Open Chat control, to reopen the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open while the ravager remains loaded nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's baby-villager summon command exactly as shown, including the leading slash and the historical Age NBT value, and press Enter. The relative coordinates place the villager at the player's current position near the ravager.",
+        "exact_input": "/summon minecraft:villager ~ ~ ~ {Age:-25000}",
+        "success_cue": "The command completes successfully and a small baby villager is visible at or immediately beside the player and ravager.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Do not pause the game, move far away, attack either entity, or issue additional commands. Keep both entities and their surrounding chunk loaded, and allow approximately 2 to 3 seconds of active game time to pass.",
+        "exact_input": null,
+        "success_cue": "At least 2 seconds of unpaused game time have elapsed while the ravager and baby villager remained loaded in the same immediate area.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The ravager and the Age:-25000 baby villager have been summoned close together, and approximately 2 to 3 seconds of unpaused simulation time have elapsed with both entities loaded. Immediately hand control to the observation subsystem without attacking, moving, pausing, or issuing another command.",
+    "uncertainties": [
+      "The report does not specify game mode, difficulty, world type, seed, coordinates, or whether the test used single-player or a dedicated server. A new single-player Creative Superflat world on Normal difficulty is selected as a minimal, safe, deterministic execution environment rather than as a claimed bug requirement.",
+      "The report says to wait 'a couple of seconds'; this plan operationalizes that as approximately 2 to 3 seconds of active, unpaused game time.",
+      "Both supplied commands use the same relative coordinates. They are preserved exactly even though summoning both entities at the player's position can cause temporary entity overlap or push the player.",
+      "No external verification was needed because the report supplies the affected versions and exact commands required for reproduction."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_002180f93f1a1f1e016aa8a33a327487d087efd8510741a922",
+    "elapsed_seconds": 39.37,
+    "usage": {
+      "input_tokens": 9388,
+      "output_tokens": 2780,
+      "reasoning_tokens": 1506,
+      "total_tokens": 12168
+    },
+    "timestamp": "2026-09-15T01:46:09.277456+00:00"
+  }
+}

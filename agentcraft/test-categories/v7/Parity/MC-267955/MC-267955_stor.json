@@ -1,0 +1,179 @@
+{
+  "bug_id": "MC-267955",
+  "category": "Parity",
+  "source_md": "[Parity] - MC-267955.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Parity; Projectiles",
+    "project": "MC",
+    "issue key": "MC-267955",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-01-18T08:56:11.754-0800",
+    "updated": "2025-04-29T10:44:20.033-0700",
+    "resolution date": "2024-02-15T05:01:18.263-0800",
+    "affects versions": "24w03b; 24w04a; 24w06a",
+    "fix versions": "24w07a",
+    "area": "Expansion B",
+    "labels": "breeze",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2024-02-15_17.25.12.png; 2024-02-15_17.25.12-1.png; 2024-02-15_17.25.19.png; MC-267955.png",
+    "issue links": "Relates:outward:MC-268080:When the projectiles are reflected from the breeze, the projectiles will deflect in the opposite direction in Bedrock, but in Java they will always deflect downward | Relates:inward:MC-268563:Snowballs, eggs, experience bottles, and ender pearls are destroyed instead of being deflected when hitting breezes | Duplicate:inward:MC-268079:Snowballs, eggs and ender pearls break when hitting breeze",
+    "_title": "Breezes that are not moving cannot deflect non-arrow and non-trident projectiles"
+  },
+  "stor": {
+    "bug_id": "MC-267955",
+    "affected_versions": [
+      "24w03b",
+      "24w04a",
+      "24w06a"
+    ],
+    "recommended_version": "24w03b",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 24w03b in a disposable single-player world, with the Update 1.21 experimental features enabled. Use Creative mode, commands/cheats enabled, and any non-Peaceful difficulty. Perform the test in an open, level area with an unobstructed line of sight to one normally functioning Breeze.",
+    "preconditions": [
+      "The Minecraft Launcher can install and launch the historical Java Edition snapshot 24w03b.",
+      "No mods, plugins, or custom data packs are active.",
+      "The test world has the Update 1.21 experiment enabled so that the Breeze is available in snapshot 24w03b.",
+      "The player is in Creative mode and can execute permission-level-2 commands.",
+      "Difficulty is not Peaceful, preventing the summoned hostile mob from immediately disappearing.",
+      "The hotbar has at least one available slot for snowballs.",
+      "Only one Breeze is used, and its AI is left enabled; do not apply NoAI, place it in a vehicle, or mechanically restrain it."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select the Installations tab, enable snapshot versions in the version filter, and create or select an installation whose version is exactly 24w03b. The official snapshot instructions identify the Installations tab as the place to enable snapshots. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-24w03b?utm_source=openai))",
+        "exact_input": "24w03b",
+        "success_cue": "An installation profile is selected whose displayed game version is exactly 24w03b, not 24w03a, 24w04a, or the fix version 24w07a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Launch the selected installation. At the main menu, verify that the lower-left version text identifies the running client as Minecraft Java Edition 24w03b.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is open and visibly reports version 24w03b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, then Create New World. Configure a new disposable world with Game Mode set to Creative, Allow Cheats or Commands enabled, and Difficulty set to Normal. A seed and world type are not specified by the report; the default world type and any seed may be used.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows Creative mode, commands enabled, and Normal difficulty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Before creating the world, open the world-creation Experiments menu, enable the experiment labeled Update 1.21, accept any experimental-feature warning, return to the creation screen, and create the world. Breeze content in 24w03b belongs to the experimental Update 1.21 feature set. ([minecraft.wiki](https://minecraft.wiki/w/Particles_%28Java_Edition%29?utm_source=openai))",
+        "exact_input": "Update 1.21",
+        "success_cue": "The world begins loading with the Update 1.21 experiment enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "After entering the world, wait without issuing commands until nearby terrain is rendered, the loading overlay is gone, and movement and camera input respond normally.",
+        "exact_input": null,
+        "success_cue": "The player can move and look around normally, and the nearby ground is fully rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Move to an open, approximately level location. Stop moving, look horizontally, and point the crosshair toward a clear ground area about five blocks ahead. Ensure there are no walls, trees, other entities, or deep drops between the player and that location.",
+        "exact_input": null,
+        "success_cue": "There is a clear, unobstructed line extending at least five blocks forward from the player over level ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press the Open Chat control, which is T by default, to open the in-game chat command entry.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible and ready to accept a command beginning with a slash.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter the summon command exactly as written, including the leading slash, and press Enter. The command uses local coordinates to summon one Breeze five blocks in the direction the player is facing. Java summon syntax accepts an entity identifier and position, and the Breeze entity identifier is minecraft:breeze. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Tutorial%3A%E7%94%A8%E5%91%BD%E4%BB%A4%E6%93%8D%E6%8E%A7%E5%AE%9E%E4%BD%93?variant=zh-hk&utm_source=openai))",
+        "exact_input": "/summon minecraft:breeze ^ ^ ^5",
+        "success_cue": "Exactly one living Breeze is visible near the intended point roughly five blocks in front of the player, and no command syntax error appears.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Keep a clear line of sight to the Breeze. If it has wandered, reposition carefully so the player is approximately four to eight blocks from it, then release all movement controls. Do not attack it, disable its AI, place it in a boat or minecart, or enclose it with blocks.",
+        "exact_input": null,
+        "success_cue": "The Breeze is alive, unobstructed, and close enough to hit directly with a thrown snowball.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T to open chat again.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open while the Breeze remains present in the loaded area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Enter the give command exactly as written, including the leading slash, and press Enter. This provides sixteen snowballs without requiring crafting or exploration; minecraft:snowball is the namespaced snowball item identifier. ([minecraft.wiki](https://minecraft.wiki/w/Item_tag_%28Java_Edition%29?utm_source=openai))",
+        "exact_input": "/give @s minecraft:snowball 16",
+        "success_cue": "A stack of 16 snowballs is present in the player's inventory or hotbar, and the command reports successful item delivery rather than a syntax error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Make the snowball stack the active hotbar item. If the stack is already in the nine-slot bar at the bottom of the screen, press the corresponding number key 1 through 9 or scroll to it. If it is only in the inventory, press E, left-click the snowball stack, left-click an empty hotbar slot, close the inventory with E, and select that slot.",
+        "exact_input": null,
+        "success_cue": "A snowball is visible in the player's hand, and the selected hotbar slot is outlined around the snowball stack.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Release all movement controls and watch the Breeze's body position. Wait for a natural stationary interval in which the Breeze remains on the same spot without walking, sliding, or jumping for at least one continuous second. Rotation in place may be ignored, but do not proceed while its position is changing.",
+        "exact_input": null,
+        "success_cue": "The Breeze's position has remained visibly unchanged for at least one continuous second while its normal AI remains enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Without moving closer, place the crosshair over the center of the stationary Breeze's body. Confirm immediately before continuing that the Breeze has not begun walking, sliding, or jumping.",
+        "exact_input": null,
+        "success_cue": "The crosshair is centered on the Breeze, the line of fire is unobstructed, a snowball remains selected, and the Breeze is still not translating through the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "While the Breeze is still stationary, press the Use Item control once, which is right-click by default, to throw one snowball directly at it. Do not move or throw additional snowballs before handing control to the observation subsystem.",
+        "exact_input": "right-click once",
+        "success_cue": "One snowball has visibly left the player's hand and is traveling on an unobstructed path toward the stationary Breeze.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The first snowball has just been thrown directly at a naturally stationary, AI-enabled Breeze in snapshot 24w03b. The projectile is in flight toward the Breeze; begin observing the projectile-Breeze interaction through and immediately after impact.",
+    "uncertainties": [
+      "The report does not specify a game mode, difficulty, world seed, coordinates, world type, or single-player versus dedicated-server environment. Creative single-player, Normal difficulty, and an arbitrary disposable world are practical choices used to make setup deterministic and safe.",
+      "The report does not define how long the Breeze must remain still. This plan treats at least one continuous second without positional movement as an observable stationary interval.",
+      "The report does not say to disable the Breeze's AI. This plan deliberately retains normal AI and waits for a natural stationary interval because applying NoAI could introduce an unreported condition that affects projectile handling.",
+      "The report says to throw 'some snowballs' but does not specify a count. The plan hands off on the first throw so the observation subsystem can inspect the complete first collision; additional attempts should only be made after that observation if needed.",
+      "The exact placement of the Experiments control can vary within historical world-creation interfaces, but the Update 1.21 experiment must be enabled for Breeze content in this affected snapshot."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0b9463c2b9ce3f4a016aa8a400a2a887d094cf3614f98b985a",
+    "elapsed_seconds": 114.37,
+    "usage": {
+      "input_tokens": 44052,
+      "output_tokens": 7350,
+      "reasoning_tokens": 5366,
+      "total_tokens": 51402
+    },
+    "timestamp": "2026-09-15T01:50:42.644405+00:00"
+  }
+}
