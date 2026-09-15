@@ -1,0 +1,132 @@
+{
+  "bug_id": "MC-306812",
+  "category": "Input",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Input] - MC-306812.md",
+  "source_meta": {
+    "mojira categories": "Accessibility; Input; Internationalisation",
+    "project": "MC",
+    "issue key": "MC-306812",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2026-03-11T10:00:04.045-0700",
+    "updated": "2026-03-16T05:47:06.344-0700",
+    "resolution date": "2026-03-13T05:35:40.327-0700",
+    "affects versions": "26.1 Pre-Release 1",
+    "fix versions": "26.1 Pre-Release 2",
+    "area": "Platform HC",
+    "votes": "1",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "屏幕截图 2026-03-12 001045.png; 屏幕截图 2026-03-12 001139.png; 屏幕截图 2026-03-12 001300.png",
+    "_title": "Inventories with no text fields cause key binds to conflict with IME input methods"
+  },
+  "stor": {
+    "bug_id": "MC-306812",
+    "affected_versions": [
+      "26.1 Pre-Release 1"
+    ],
+    "recommended_version": "26.1 Pre-Release 1",
+    "environment": "Minecraft Java Edition 26.1 Pre-Release 1 running on Windows with the Microsoft Pinyin Chinese input method installed. Use a keyboard-and-mouse setup and a Survival-mode world. The minimal plan uses a local single-player world because the report specifies a Survival world but does not describe any dedicated-server or multiplayer requirement. Microsoft Pinyin must be configured so that pressing Shift toggles between its English and Chinese input modes, as described in the report. Keep the default Inventory binding of E, or bind Inventory to E before testing.",
+    "preconditions": [
+      "Install and select the exact affected version, 26.1 Pre-Release 1; do not use the listed fix version, 26.1 Pre-Release 2.",
+      "Run the game on Windows with Microsoft Pinyin available as an active input method.",
+      "Confirm that Microsoft Pinyin is configured so that a press of Shift toggles between English and Chinese input modes.",
+      "Before opening the Minecraft inventory, place Microsoft Pinyin in English input mode so that one subsequent Shift press has a known transition to Chinese mode.",
+      "Use Survival mode rather than Creative mode, because the report specifically describes opening the Survival inventory and Creative inventory contains additional text-search UI.",
+      "Ensure the Minecraft Inventory action is bound to E, matching the key tested in the report.",
+      "No particular world seed, coordinates, items, cheats, operator permissions, or server configuration are specified or required for the minimal E-key reproduction.",
+      "If possible, use a display arrangement where the Microsoft Pinyin English/Chinese mode indicator can be seen without taking keyboard focus away from Minecraft."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Windows input-method selector, select Microsoft Pinyin and place it in English input mode before interacting with Minecraft. Do not use Shift inside Minecraft yet. Use the Windows input-method indicator to distinguish Microsoft Pinyin's English mode from its Chinese mode.",
+        "exact_input": "Select Microsoft Pinyin; select its English input mode",
+        "success_cue": "Microsoft Pinyin is the active Windows input method and its mode indicator shows English input mode.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the Minecraft Launcher, create or select an installation for the exact affected version, and launch it. If a warning is presented for running a pre-release version, acknowledge it without changing the selected version.",
+        "exact_input": "26.1 Pre-Release 1",
+        "success_cue": "The Minecraft main menu is loaded and the displayed game version is 26.1 Pre-Release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "From the main menu, open the single-player world list. Create a new world with Game Mode set to Survival, or load an existing world that is already in Survival mode. A new local world is the simplest deterministic choice; no seed or special terrain is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Survival -> Create New World",
+        "success_cue": "The player has spawned in a Survival-mode world, the terrain around the player has rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Make sure normal gameplay has keyboard focus and no Minecraft screen or menu is open. If the pause menu or another screen is open, return to gameplay before continuing. Do not press Shift while establishing this state, because Microsoft Pinyin must remain in its known English mode.",
+        "exact_input": "Esc, only if needed to return to gameplay",
+        "success_cue": "The normal first-person or third-person world view is visible, the player can look or move normally, and no GUI covers the world view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press and release the Inventory key once. With the report's E binding, press E. Wait for the Survival inventory screen to finish opening.",
+        "exact_input": "E",
+        "success_cue": "The Survival inventory screen is open and shows the player model, equipment slots, crafting area, and inventory slots.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Ensure the inventory currently has no active text field. If the recipe-book panel is expanded and exposes its search field, click the recipe-book button to collapse that panel. Then click a neutral empty area of the inventory background if necessary, avoiding all text-entry fields. Do not close the inventory.",
+        "exact_input": "Left-click the recipe-book toggle if its panel is open; then left-click an empty inventory-background area if needed",
+        "success_cue": "The Survival inventory remains open, the recipe-book search field is not visible or focused, and no caret or text-entry box is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "While the inventory still has keyboard focus, press and release Shift exactly once without clicking an item and without pressing another key at the same time. Use Left Shift for consistency with the report's references to the Shift control. Do not press Shift again afterward.",
+        "exact_input": "Left Shift",
+        "success_cue": "The Shift key has been released while the inventory remains open. The Microsoft Pinyin mode indicator, if visible, shows Chinese input mode; Minecraft still has focus and no text field was deliberately selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "With the Survival inventory still open and Microsoft Pinyin in Chinese input mode, press and release E exactly once. Do not press Shift first, do not click outside Minecraft, and do not provide any further keyboard or mouse input after this action.",
+        "exact_input": "E",
+        "success_cue": "The E key-down and key-up input has just been delivered while the no-text-field Survival inventory had focus and Microsoft Pinyin was in Chinese input mode; the executor has stopped further input so observation can begin.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "Microsoft Pinyin was switched from its confirmed English mode to Chinese mode by pressing Left Shift while the no-text-field Survival inventory was open, and E has just been pressed once while that inventory still had focus. Begin observation immediately without issuing another input or changing the IME mode.",
+    "uncertainties": [
+      "The report does not contain a separately formatted Steps to Reproduce section. This plan reconstructs the minimum execution path from the description.",
+      "The report specifies a Survival world but does not state whether it was single-player, an integrated server opened to LAN, or a dedicated server. The plan uses single-player because no server-dependent condition is described.",
+      "The report lists inventory, chest, and other GUIs as affected. The minimal plan uses the Survival inventory because it requires no world preparation, item acquisition, or container placement.",
+      "The report lists E, Q, Ctrl+Q, F, and 1-9 as conflicting actions. The plan selects E as the primary deterministic trigger because it requires no item or slot setup. The other keys are supported variants but are not required for this single reproduction attempt.",
+      "The exact appearance and location of the Microsoft Pinyin English/Chinese mode indicator can vary with the Windows configuration and display mode. The report only establishes that Shift is configured to toggle the mode.",
+      "The report also describes Shift-clicking an item as a common way to accidentally toggle the input language. The plan uses a plain Shift press to avoid adding an unnecessary item-transfer action while preserving the stated toggle condition.",
+      "The attached screenshots were named in the supplied report but their image contents were not provided, so no screenshot-specific UI state was incorporated."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01b1d4db3de55e93016aa7b9ecfaa087d0956cc2ecf611a686",
+    "elapsed_seconds": 75.25,
+    "usage": {
+      "input_tokens": 8543,
+      "output_tokens": 4470,
+      "reasoning_tokens": 2933,
+      "total_tokens": 13013
+    },
+    "timestamp": "2026-09-14T09:11:20.083167+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

@@ -1,0 +1,197 @@
+{
+  "bug_id": "MC-266886",
+  "category": "Input",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Input] - MC-266886.md",
+  "source_meta": {
+    "mojira categories": "Input; UI",
+    "project": "MC",
+    "issue key": "MC-266886",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2023-11-20T09:16:24.496-0800",
+    "updated": "2025-04-11T10:37:34.913-0700",
+    "resolution date": "2023-11-22T07:40:42.884-0800",
+    "affects versions": "1.20.3 Pre-Release 1",
+    "fix versions": "1.20.3 Pre-Release 2",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2023-11-20_18.12.24.png",
+    "issue links": "Duplicate:inward:MC-266933:Renaming item in Anvil not working | Duplicate:inward:MC-266896:cannot use backspace or cursors in anvil name editor | Duplicate:inward:MC-266901:Cannot delete names in anvil | Duplicate:inward:MC-266916:Pressing Backspace while renaming an item inside an Anvil doesn't work | Duplicate:inward:MC-266921:Backspace is not working in anvil renaming menu | Duplicate:inward:MC-266930:Can't delete any letters on item names on anvils",
+    "_title": "Backspace in Anvil no longer works when renaming an item"
+  },
+  "stor": {
+    "bug_id": "MC-266886",
+    "affected_versions": [
+      "1.20.3 Pre-Release 1"
+    ],
+    "recommended_version": "1.20.3 Pre-Release 1",
+    "environment": "Minecraft Java Edition 1.20.3 Pre-Release 1. Use a single-player Creative-mode world as a deterministic setup so an anvil and test item can be obtained without crafting or experience-level requirements. Use a physical keyboard with a functional Backspace key. The report does not specify an operating system, keyboard layout, world seed, or required graphics settings.",
+    "preconditions": [
+      "Install and launch exactly Minecraft Java Edition 1.20.3 Pre-Release 1, not the fixed version 1.20.3 Pre-Release 2.",
+      "Use a keyboard whose Backspace key is known to work outside the anvil name field.",
+      "Create or open a world in which the player can obtain and place an anvil. A new Creative-mode single-player world is the selected practical setup.",
+      "Use default controls unless they have been rebound: E opens the inventory, T opens chat, number keys select hotbar slots, right-click uses or places a block, and Esc closes the current screen.",
+      "Have one ordinary renameable item available. Because the report does not specify the item, this plan uses a Stick as a simple deterministic test item."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the affected version and launch it. Do not select 1.20.3 Pre-Release 2, because that is listed as the fix version.",
+        "exact_input": "1.20.3 Pre-Release 1",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 1.20.3 Pre-Release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world, set Game Mode to Creative, and create the world. Creative mode is an execution choice used to obtain the required item and anvil without adding crafting or experience prerequisites.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has spawned in a Creative-mode world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before interacting until the nearby terrain has rendered and normal movement and mouse input respond without loading interruption.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible and the player can look and move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Perform a control check for the physical Backspace key. Press T, or the rebound Open Chat control, to focus the chat input field.",
+        "exact_input": "T",
+        "success_cue": "The chat interface is open and its text-entry field is focused.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Type the control text into the chat input field. Do not press Enter or send the message.",
+        "exact_input": "ABC",
+        "success_cue": "The unsent chat input visibly reads ABC.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press Backspace once while the chat input field remains focused.",
+        "exact_input": "Backspace",
+        "success_cue": "The unsent chat input now reads AB, confirming that the same Backspace key functions in another Minecraft text field.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Press Esc to close chat without sending the control text.",
+        "exact_input": "Esc",
+        "success_cue": "The chat interface is closed and normal world controls are active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press E, or the rebound Inventory control, to open the Creative inventory. Select the Search Items tab, identified by the compass icon, and focus its search field.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open on the searchable item list and the search field can accept text.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter anvil in the Creative inventory search field. Locate the item named Anvil in the filtered results, left-click it, and then left-click hotbar slot 1 to place an Anvil there.",
+        "exact_input": "anvil",
+        "success_cue": "An Anvil item is visible in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Focus the Creative inventory search field, select its existing text with Ctrl+A, and type stick. Locate the item named Stick, left-click it, and then left-click hotbar slot 2 to place a Stick there.",
+        "exact_input": "Ctrl+A, then stick",
+        "success_cue": "A Stick is visible in hotbar slot 2 while the Anvil remains in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press E or Esc to close the Creative inventory and return to the world.",
+        "exact_input": "E",
+        "success_cue": "The inventory screen is closed, and the Anvil and Stick are visible in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press 1, or otherwise select hotbar slot 1, to make the Anvil the active held item.",
+        "exact_input": "1",
+        "success_cue": "Hotbar slot 1 is highlighted and the player is visibly holding an Anvil.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Aim at the top surface of a nearby solid ground block within reach and right-click once to place the Anvil.",
+        "exact_input": "right-click",
+        "success_cue": "An Anvil block is standing on the ground within interaction range.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Aim the crosshair at the placed Anvil and right-click it to open the anvil interface.",
+        "exact_input": "right-click",
+        "success_cue": "The anvil interface is open, showing two input slots on the left, an arrow, and an output slot on the right.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "In the player inventory or hotbar area at the bottom of the anvil interface, left-click the Stick to pick it up with the cursor. Then left-click the first anvil input slot—the leftmost slot before the plus sign—to place the Stick into it.",
+        "exact_input": "left-click Stick, then left-click the leftmost anvil input slot",
+        "success_cue": "The Stick is visible in the first anvil input slot, and the item-name text field at the top of the interface contains the item's current name.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Left-click inside the item-name text field near the right edge of its displayed text so the insertion caret is positioned after the existing item name.",
+        "exact_input": "left-click near the end of the item-name text",
+        "success_cue": "The item-name field is focused and its caret is positioned at the end of the current name.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Type the uppercase test letters TEST into the focused item-name field. Do not click the output slot or close the interface.",
+        "exact_input": "TEST",
+        "success_cue": "The item-name field visibly ends with TEST, with the text caret positioned immediately after the final T.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "With the item-name field still focused and the caret immediately after the final T, press Backspace exactly once. Do not press any other key or move focus away from the field before handing off to observation.",
+        "exact_input": "Backspace",
+        "success_cue": "One Backspace keypress has just been delivered while the anvil item-name field is focused and contains the typed test letters.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The player is still viewing the anvil interface in Minecraft Java Edition 1.20.3 Pre-Release 1, the Stick remains in the first input slot, and Backspace has just been pressed once with the text caret positioned after the final T in the item-name field. Begin observation immediately without changing focus or issuing another input.",
+    "uncertainties": [
+      "The report does not specify an operating system, keyboard layout, or hardware model; use the available physical keyboard and record those environment details separately if needed.",
+      "The report does not specify a game mode. Creative mode is selected only as the simplest deterministic method for obtaining the anvil and test item.",
+      "The report says only to get an item and does not identify a particular item. This plan uses a Stick; no item-specific condition is asserted by the report.",
+      "No world seed, coordinates, multiplayer requirement, server requirement, graphics setting, resource pack, or control remapping is specified.",
+      "The image attachment is not available in the supplied report text, so it is not used to add setup requirements."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e61db7affbfc710016aa7b916f61887d0ba3046e366b83ce8",
+    "elapsed_seconds": 59.54,
+    "usage": {
+      "input_tokens": 8474,
+      "output_tokens": 3873,
+      "reasoning_tokens": 2070,
+      "total_tokens": 12347
+    },
+    "timestamp": "2026-09-14T09:07:30.377228+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

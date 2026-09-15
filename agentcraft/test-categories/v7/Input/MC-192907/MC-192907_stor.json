@@ -1,0 +1,146 @@
+{
+  "bug_id": "MC-192907",
+  "category": "Input",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Input] - MC-192907.md",
+  "source_meta": {
+    "mojira categories": "Debug; Input",
+    "project": "MC",
+    "issue key": "MC-192907",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-06-30T10:07:06.923-0700",
+    "updated": "2025-06-17T09:14:41.300-0700",
+    "resolution date": "2025-06-17T09:14:41.254-0700",
+    "affects versions": "1.16.1; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4; 20w49a; 20w51a; 21w03a; 1.16.5; 21w15a; 1.17; 1.17.1; 1.18.1; 1.18.2; 22w12a; 1.19; 1.19.2; 1.19.4; 23w14a; 1.20.1; 1.21.1; 1.21.3; 1.21.4; 25w08a; 1.21.5",
+    "fix versions": "25w31a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "The F3 debug menu cannot be toggled while chat is open"
+  },
+  "stor": {
+    "bug_id": "MC-192907",
+    "affected_versions": [
+      "1.16.1",
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "1.16.4",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w15a",
+      "1.17",
+      "1.17.1",
+      "1.18.1",
+      "1.18.2",
+      "22w12a",
+      "1.19",
+      "1.19.2",
+      "1.19.4",
+      "23w14a",
+      "1.20.1",
+      "1.21.1",
+      "1.21.3",
+      "1.21.4",
+      "25w08a",
+      "1.21.5"
+    ],
+    "recommended_version": "1.16.1",
+    "environment": "Minecraft Java Edition 1.16.1 client. Use a single-player world as the simplest execution environment; the report does not require a dedicated server, multiple players, cheats, operator permissions, a particular game mode, a specific world seed, or specific graphics settings. The keyboard and operating system must be configured so the stated input sends an actual F3 function-key event.",
+    "preconditions": [
+      "Minecraft Java Edition 1.16.1 is installed and selectable in the Minecraft Launcher.",
+      "A keyboard capable of sending an F3 function-key event is available. On keyboards where function keys default to media controls, use the keyboard's Fn modifier or function-lock setting as necessary to send F3.",
+      "The Open Chat action uses its default T key binding, or the executor knows and can use the configured replacement binding.",
+      "Any playable world may be used because the report provides no required seed, coordinates, dimension, game mode, or world content."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the affected version 1.16.1, not the listed fix version or another installation.",
+        "exact_input": null,
+        "success_cue": "The Minecraft 1.16.1 main menu is displayed and responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open an existing single-player world, or create a new single-player world with any game mode and default world settings. No cheats or special seed are required for this reproduction path.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded world and the normal first-person gameplay view is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until world loading is complete before testing keyboard input. Do not leave the pause menu, inventory, or any other interface open.",
+        "exact_input": null,
+        "success_cue": "Surrounding terrain has rendered, player input responds normally, and only the ordinary gameplay HUD is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Normalize the initial debug-screen state. Inspect the screen for the F3 debug overlay, identifiable by diagnostic text such as the Minecraft version, coordinates, and system information. If that overlay is already visible, send F3 once while no GUI is open to close it; otherwise, do not press anything.",
+        "exact_input": "F3 only if the debug overlay is currently visible; on hardware that requires it, use Fn+F3 to send the F3 event",
+        "success_cue": "The normal gameplay view is visible without the F3 diagnostic text overlay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Perform a control check while no GUI is open: send one F3 function-key event.",
+        "exact_input": "F3; on hardware that requires it, use Fn+F3 to send the F3 event",
+        "success_cue": "The F3 debug overlay is visible, confirming that Minecraft receives the function-key input during ordinary gameplay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Send F3 again while still in ordinary gameplay to restore the debug overlay to its closed state.",
+        "exact_input": "F3; on hardware that requires it, use Fn+F3 to send the F3 event",
+        "success_cue": "The F3 diagnostic text overlay is no longer visible and the normal gameplay view remains active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the in-game chat using the Open Chat action. With default controls, press T once. Do not type a message and do not close the chat.",
+        "exact_input": "T",
+        "success_cue": "The translucent chat interface and empty chat input field are visible near the bottom of the screen, and the input field has keyboard focus.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "While the chat input field remains open and focused, send one F3 function-key event. Do not press Escape, Enter, T, or any other key before the observation subsystem takes control.",
+        "exact_input": "F3; on hardware that requires it, use Fn+F3 to send the F3 event",
+        "success_cue": "One F3 input has just been sent while the chat screen had keyboard focus, with no subsequent input performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The F3 key has just been pressed once while the in-game chat input field is open and focused, after the debug overlay was normalized to its closed state. Begin observation immediately, without closing chat or sending another keyboard or mouse input.",
+    "uncertainties": [
+      "The report does not specify single-player versus multiplayer, game mode, world seed, dimension, or graphics settings. A generic single-player world is selected as the minimum deterministic environment and is a practical inference rather than a reported requirement.",
+      "The physical key combination needed to generate an F3 event varies by keyboard and operating-system configuration. Fn+F3 is only a hardware-level alternative when pressing the physical F3 key alone invokes a media function.",
+      "The report does not explicitly require a control test outside chat. Steps 4 through 6 are included to establish a known initial overlay state and verify that the environment can deliver F3 normally before executing the reported trigger."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e63580037ba3dd6016aa7b8e75a1087d09d2a3fff36b1b1d6",
+    "elapsed_seconds": 47.64,
+    "usage": {
+      "input_tokens": 8914,
+      "output_tokens": 2985,
+      "reasoning_tokens": 1753,
+      "total_tokens": 11899
+    },
+    "timestamp": "2026-09-14T09:06:30.827728+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

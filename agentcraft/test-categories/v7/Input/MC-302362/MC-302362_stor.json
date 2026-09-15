@@ -1,0 +1,170 @@
+{
+  "bug_id": "MC-302362",
+  "category": "Input",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Input] - MC-302362.md",
+  "source_meta": {
+    "mojira categories": "Input; UI",
+    "project": "MC",
+    "issue key": "MC-302362",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2025-09-28T14:02:39.483-0700",
+    "updated": "2026-03-11T03:45:18.335-0700",
+    "resolution date": "2025-10-22T01:52:25.585-0700",
+    "affects versions": "1.21.9 Release Candidate 1; 1.21.9",
+    "fix versions": "25w44a",
+    "area": "Platform HC",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-302362.mp4",
+    "issue links": "Relates:outward:MC-301852:Placing a stack of items onto a slot and immediately shift-clicking it into a container moves all items of that type into the container | Relates:outward:MC-303393:Double-clicking to collect all items of the same kind at the mouse cursor is now overly sensitive",
+    "_title": "Clicking on \"Singleplayer\" or \"Multiplayer\" in the main menu then immediately clicking on a world or server joins it even when not clicking the play button"
+  },
+  "stor": {
+    "bug_id": "MC-302362",
+    "affected_versions": [
+      "1.21.9 Release Candidate 1",
+      "1.21.9"
+    ],
+    "recommended_version": "1.21.9 Release Candidate 1",
+    "environment": "Minecraft Java Edition client running 1.21.9 Release Candidate 1. Use the Singleplayer variant of the report so that no external server is required. Use a mouse or automated pointer input capable of issuing the second click reliably less than 250 milliseconds after the first click. Keep the game window position, window size, GUI scale, and world-list contents unchanged after target-coordinate calibration.",
+    "preconditions": [
+      "Minecraft Java Edition 1.21.9 Release Candidate 1 is installed and can reach the main menu.",
+      "The client has at least one joinable local world. The steps create a fresh test world to guarantee this condition.",
+      "The input system can move the pointer from the main-menu Singleplayer button to a previously recorded point in the world list and issue a second left click within 250 milliseconds.",
+      "No menu, loading screen, or other application is covering the Minecraft window.",
+      "The test uses the report-supported Singleplayer path; the alternative Multiplayer/server path is not required for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the profile for 1.21.9 Release Candidate 1, then wait for the main menu to become fully interactive.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is visible, including the Singleplayer and Multiplayer buttons, and pointer input responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the local-world selection screen at normal speed for initial test-world setup.",
+        "exact_input": "Move the pointer over Singleplayer and press the left mouse button once.",
+        "success_cue": "The Select World screen is open. This setup click is not part of the timing-critical reproduction attempt.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Start creating a fresh local test world.",
+        "exact_input": "Left-click Create New World.",
+        "success_cue": "The Create New World screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Give the test world a unique name so that its row can be identified during coordinate calibration.",
+        "exact_input": "Click the world-name field, press Ctrl+A, and type: MC-302362 timing test",
+        "success_cue": "The world-name field displays “MC-302362 timing test”.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Leave the remaining world settings at their defaults and create the world.",
+        "exact_input": "Left-click Create New World.",
+        "success_cue": "World generation begins and the client leaves the world-creation screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait for the new world to finish loading before attempting to leave it.",
+        "exact_input": null,
+        "success_cue": "Terrain is rendered around the player, the HUD is visible, and movement or menu input responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the in-game pause menu.",
+        "exact_input": "Press Esc.",
+        "success_cue": "The Game Menu is visible and gameplay is paused in singleplayer.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Save the test world and return to the main menu.",
+        "exact_input": "Left-click Save and Quit to Title.",
+        "success_cue": "The main menu is visible again and the Singleplayer button is interactive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open the Singleplayer screen at normal speed to calibrate a safe click location. Do not begin the timing-critical attempt yet.",
+        "exact_input": "Left-click Singleplayer once, then allow the world list to render.",
+        "success_cue": "The Select World screen is fully rendered and contains the row named “MC-302362 timing test”.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Identify and record a screen coordinate inside the “MC-302362 timing test” world row that is not on the row’s play button. Use the world-name text or another empty portion of the row rather than the triangular play control displayed on the world icon. Do not double-click the row.",
+        "exact_input": null,
+        "success_cue": "A reusable pointer coordinate inside the named world row has been recorded, and that coordinate is outside the play button.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Return to the main menu without changing the game window size, position, GUI scale, or world-list arrangement.",
+        "exact_input": "Press Esc.",
+        "success_cue": "The main menu is visible, and the recorded coordinate will still correspond to the same world-row location when the Singleplayer screen reopens.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Prepare the timing-critical two-click sequence. Move the pointer to the center of the Singleplayer button. Configure the input automation, if used, to move to the recorded world-row coordinate and issue the second click approximately 150 milliseconds after the first click is registered.",
+        "exact_input": "Pointer movement only; do not click yet.",
+        "success_cue": "The pointer rests over Singleplayer, the recorded non-play-button world-row coordinate is available, and the second click is scheduled for approximately 150 milliseconds after the first click, safely below the report’s 250-millisecond limit.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Begin the timing-critical sequence by clicking Singleplayer exactly once. Start measuring the interval from this click and do not wait for the Select World screen to settle.",
+        "exact_input": "Left mouse click on Singleplayer at time t=0 ms.",
+        "success_cue": "The first click has been issued and the client has begun switching from the main menu to the Select World screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Within 250 milliseconds of the Singleplayer click, move to the recorded coordinate in the “MC-302362 timing test” row and single-click it once. The click must land on the world row but outside its play button. Do not issue any additional clicks.",
+        "exact_input": "At approximately t=150 ms, issue one left mouse click at the recorded non-play-button coordinate in the “MC-302362 timing test” row.",
+        "success_cue": "The second click was delivered to the non-play-button portion of the target world row less than 250 milliseconds after the Singleplayer click; all further input has stopped.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The non-play-button portion of the “MC-302362 timing test” world row has just received one left click less than 250 milliseconds after the main-menu Singleplayer click. Stop generating input and hand control to the observation subsystem immediately.",
+    "uncertainties": [
+      "The report permits either Singleplayer or Multiplayer. This plan selects Singleplayer because it is deterministic and does not require an available external server.",
+      "The report does not specify a particular existing world, seed, game mode, difficulty, or world settings. A fresh default world named “MC-302362 timing test” is created only to provide a clearly identifiable, joinable world-list entry.",
+      "The report specifies an interval within 250 milliseconds but does not define whether it was measured between mouse-button presses, releases, or processed click events. Scheduling the second press approximately 150 milliseconds after the first press is a practical choice intended to remain clearly inside the stated limit.",
+      "The exact screen coordinate of the safe world-row click depends on window geometry and GUI scale. It must therefore be calibrated in the same unchanged window before the timing-critical attempt.",
+      "The report states that the second click may be anywhere on the world or server except its play button. This plan uses the world-name area as a practical, visually identifiable non-play-button target."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_06edec138089ee03016aa7b9a841e887d08d9b52e315feab74",
+    "elapsed_seconds": 68.72,
+    "usage": {
+      "input_tokens": 8394,
+      "output_tokens": 4040,
+      "reasoning_tokens": 2440,
+      "total_tokens": 12434
+    },
+    "timestamp": "2026-09-14T09:10:04.822269+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
