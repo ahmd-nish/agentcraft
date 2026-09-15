@@ -1,0 +1,148 @@
+{
+  "bug_id": "MC-178660",
+  "category": "Collision",
+  "source_md": "[Collision] - MC-178660.md",
+  "source_meta": {
+    "mojira categories": "Collision; Player",
+    "project": "MC",
+    "issue key": "MC-178660",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-04-14T07:20:22.627-0700",
+    "updated": "2025-04-26T09:47:04.724-0700",
+    "resolution date": "2024-12-12T09:42:36.154-0800",
+    "affects versions": "1.15.2; 20w15a; 20w30a; 20w49a; 21w03a; 1.16.5; 21w08b; 21w15a; 1.17; 1.17.1; 21w42a; 21w44a; 1.18.2; 1.19.2; 1.19.4; 1.20.1; 23w43a",
+    "fix versions": "24w33a",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-178660.mp4; MC-178660.png; Minecraft 24w33a - Singleplayer 2024-12-12 14-21-38.mp4",
+    "issue links": "Relates:inward:MC-151706:Player jitters when landing on a slime block with the slow falling effect | Duplicate:inward:MC-264960:Players who drink the Slow Falling Potion will keep jumping on the bed. | Duplicate:inward:MC-241033:Slowfalling on Bed | Duplicate:inward:MC-233956:Player jitters up and down when sleeping in a bed with the Slow Falling effect",
+    "_title": "Player jitters when landing on a bed with the slow falling effect"
+  },
+  "stor": {
+    "bug_id": "MC-178660",
+    "affected_versions": [
+      "1.15.2",
+      "20w15a",
+      "20w30a",
+      "20w49a",
+      "21w03a",
+      "1.16.5",
+      "21w08b",
+      "21w15a",
+      "1.17",
+      "1.17.1",
+      "21w42a",
+      "21w44a",
+      "1.18.2",
+      "1.19.2",
+      "1.19.4",
+      "1.20.1",
+      "23w43a"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Minecraft Java Edition 1.15.2 in a single-player world. Use Creative mode with cheats enabled as the minimal deterministic setup for obtaining a bed and executing the supplied effect command. Use default controls unless controls have been rebound.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.15.2, the first version listed as affected.",
+      "Create or load a single-player world in Creative mode with cheats enabled.",
+      "Use a player as the falling entity; the report also mentions other entities, but its supplied reproduction specifically tests the player.",
+      "Locate a flat, solid area with enough unobstructed space to place both halves of a bed and to stand and jump on it.",
+      "Do not hold the Sneak control, which is Left Shift by default, while jumping, falling, landing, or waiting on the bed.",
+      "Keep the player on the bed after landing; do not walk off immediately.",
+      "Perform the landing before the supplied 100-second Slow Falling effect expires."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start or load a single-player Creative-mode world in Minecraft Java Edition 1.15.2 with cheats enabled. Wait for world loading to finish before continuing.",
+        "exact_input": null,
+        "success_cue": "The player can move normally, nearby terrain is rendered, Creative flight is available, and commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Move to a flat area of solid ground. Choose a placement location where two adjacent floor blocks are available and the two blocks directly above them are unobstructed, because a bed occupies two horizontal block spaces.",
+        "exact_input": "Use the movement controls; defaults are W, A, S, and D.",
+        "success_cue": "A clear two-block-long bed placement area is visible and reachable.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Creative inventory, obtain any color of bed, and put it into one of the nine hotbar slots at the bottom of the inventory. Close the inventory afterward.",
+        "exact_input": "Press E; select any bed from the Creative inventory; place it in a hotbar slot; press E or Esc to close the inventory.",
+        "success_cue": "A bed item is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select the hotbar slot containing the bed, aim at the top surface of the chosen ground block, and use the bed item to place it. If placement fails, move to a location with two adjacent floor blocks and clear space above them, then try again.",
+        "exact_input": "Press the number key corresponding to the bed's hotbar slot, then right-click the top of a ground block.",
+        "success_cue": "A complete bed, including both its foot and head halves, is placed on the ground.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Open in-game chat and execute the report's Slow Falling command exactly as supplied. Include the leading slash because this command is being entered in player chat.",
+        "exact_input": "Press T, enter `/effect give @s minecraft:slow_falling 100 0`, then press Enter.",
+        "success_cue": "The command is accepted without an error and the player receives the Slow Falling status effect.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Confirm that Slow Falling is active before setting up the jump. In this version, an active status-effect icon should be visible on the HUD, and the effect can also be checked from the inventory screen.",
+        "exact_input": "If needed, press E to inspect active effects, then press E or Esc to close the inventory.",
+        "success_cue": "Slow Falling is still active and has enough remaining duration to complete one jump and landing.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Walk onto the top surface of the placed bed and position the player near its center. Release all movement controls. Make sure the Sneak control is not pressed.",
+        "exact_input": "Use W, A, S, and D to move onto the bed; release those keys; do not press Left Shift.",
+        "success_cue": "The player is stationary on top of the bed with Slow Falling active and is not sneaking.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "While remaining centered over the bed, jump vertically once. Do not hold a horizontal movement key, do not activate Creative flight by pressing Jump again, and do not press Sneak during the ascent or descent.",
+        "exact_input": "Press and release Space once; do not press Left Shift.",
+        "success_cue": "The player rises above the bed and begins descending toward the same bed under the Slow Falling effect.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Allow the player to land on the bed without pressing movement, Jump, or Sneak. Keep the player on the bed and immediately hand control to the observation subsystem when bed contact occurs.",
+        "exact_input": "No input; in particular, do not press W, A, S, D, Space, or Left Shift.",
+        "success_cue": "The player's feet have contacted the bed while Slow Falling remains active, and the player has not walked or sneaked off the bed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The Slow-Falling player has just landed on the top surface of the bed without sneaking and remains stationary on the bed. Begin observation immediately and continue through the post-landing bounce or settling period without supplying movement input.",
+    "uncertainties": [
+      "The report does not specify game mode, world type, seed, coordinates, difficulty, or whether the test must use single-player or a dedicated server. Single-player Creative mode with cheats enabled is selected only as the simplest deterministic way to place a bed and run the supplied command.",
+      "The report does not specify a bed color or orientation; any bed is used because no color- or orientation-dependent condition is stated.",
+      "The instruction to 'Jump on top of the bed' is operationalized as a vertical jump from a stationary position centered on the bed so that the player deterministically lands on the same bed.",
+      "The report states that holding Shift prevents the issue, so the plan explicitly requires that Sneak not be held. This is a key negative input condition rather than an added reproduction requirement.",
+      "The supplied effect duration is preserved exactly. In-game setup after executing the command must be completed before the effect expires."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e7eeeffbf83d548016aa8d39b052087d085efb6463feecbcf",
+    "elapsed_seconds": 35.15,
+    "usage": {
+      "input_tokens": 9107,
+      "output_tokens": 2453,
+      "reasoning_tokens": 1034,
+      "total_tokens": 11560
+    },
+    "timestamp": "2026-09-15T05:12:29.995654+00:00"
+  }
+}

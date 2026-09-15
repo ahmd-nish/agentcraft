@@ -1,0 +1,168 @@
+{
+  "bug_id": "MC-123364",
+  "category": "Collision",
+  "source_md": "[Collision] - MC-123364.md",
+  "source_meta": {
+    "mojira categories": "Collision; Player",
+    "project": "MC",
+    "issue key": "MC-123364",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2017-12-17T22:01:07.644-0800",
+    "updated": "2026-04-18T03:04:27.488-0700",
+    "resolution date": "2026-04-18T03:03:50.613-0700",
+    "affects versions": "Minecraft 1.12.2; Minecraft 17w50a; Minecraft 18w22c; Minecraft 1.13-pre1; Minecraft 1.13-pre2; Minecraft 1.13-pre3; Minecraft 1.13-pre4; Minecraft 1.13-pre5; Minecraft 1.13-pre6; Minecraft 1.13-pre8; Minecraft 1.13; Minecraft 18w30b; Minecraft 18w32a; Minecraft 1.13.1-pre1; Minecraft 1.13.1-pre2; Minecraft 1.13.1; Minecraft 1.13.2; Minecraft 18w48a; Minecraft 18w48b; Minecraft 18w49a; Minecraft 18w50a; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14.4 Pre-Release 2; 1.15.2; 20w10a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w08b; 21w13a; 21w17a; 1.17.1; 22w15a; 1.19.2; 1.20.6; 24w18a",
+    "fix versions": "24w21a",
+    "area": "Platform",
+    "labels": "collision; movement; player",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2017-12-18_00.00.38.png; 2017-12-18_02.16.40.png; MC-123364.mp4",
+    "issue links": "Relates:outward:MC-98153:Portals generate far-away chunks & set player on fire | Relates:outward:MC-89928:Portals not placing the player at correct coordinates causing them to take suffocation damage | Duplicate:inward:MC-223409:Opening a shulker box under an end portal causes you to go to the end, but with your overworld coords | Duplicate:inward:MC-222251:Wrong Warp to End Possible",
+    "_title": "Player-in-block checking happens after block collision events are done"
+  },
+  "stor": {
+    "bug_id": "MC-123364",
+    "affected_versions": [
+      "Minecraft 1.12.2",
+      "Minecraft 17w50a",
+      "Minecraft 18w22c",
+      "Minecraft 1.13-pre1",
+      "Minecraft 1.13-pre2",
+      "Minecraft 1.13-pre3",
+      "Minecraft 1.13-pre4",
+      "Minecraft 1.13-pre5",
+      "Minecraft 1.13-pre6",
+      "Minecraft 1.13-pre8",
+      "Minecraft 1.13",
+      "Minecraft 18w30b",
+      "Minecraft 18w32a",
+      "Minecraft 1.13.1-pre1",
+      "Minecraft 1.13.1-pre2",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2",
+      "Minecraft 18w48a",
+      "Minecraft 18w48b",
+      "Minecraft 18w49a",
+      "Minecraft 18w50a",
+      "Minecraft 1.14 Pre-Release 2",
+      "Minecraft 1.14 Pre-Release 3",
+      "Minecraft 1.14.4 Pre-Release 2",
+      "1.15.2",
+      "20w10a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w08b",
+      "21w13a",
+      "21w17a",
+      "1.17.1",
+      "22w15a",
+      "1.19.2",
+      "1.20.6",
+      "24w18a"
+    ],
+    "recommended_version": "Minecraft 1.12.2",
+    "environment": "Vanilla Minecraft Java Edition 1.12.2 in a new single-player Superflat world, using the integrated server. Use Survival mode with cheats enabled. Default keyboard and mouse controls are assumed; use the currently bound Forward control instead of W if controls have been changed.",
+    "preconditions": [
+      "Launch the exact affected version Minecraft 1.12.2 with no mods, plugins, datapacks, or third-party server software.",
+      "Create a new single-player world through Singleplayer -> Create New World. Select Game Mode: Survival, then More World Options -> Allow Cheats: ON and World Type: Superflat. No particular seed is required.",
+      "Use an expendable test world. The reproduction intentionally activates an End portal and may leave the player in a dangerous position after the dimension transition.",
+      "Keep the default Forward control bound to W, or identify the replacement key before beginning.",
+      "Do not use Creative flight, sprinting, sneaking, jumping, or strafing during the final movement step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition 1.12.2, open the prepared Superflat test world, and wait without entering commands until the Overworld has finished loading.",
+        "exact_input": null,
+        "success_cue": "The player is in the Overworld, nearby Superflat terrain is rendered, the HUD is visible, and movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create an elevated stone work platform so the setup has a deterministic Y coordinate and enough empty space around it. Press T to open in-game chat, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/fill -4 79 -4 5 79 4 stone",
+        "success_cue": "A one-block-thick stone platform covering X=-4 through 5, Y=79, and Z=-4 through 4 is visible above the Superflat ground, and chat does not report a command error.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Place the player at the deterministic reference position above the platform. Press T, enter the command exactly, and press Enter.",
+        "exact_input": "/tp @p 0.5 80 0.5 0 0",
+        "success_cue": "The player is standing on top of the elevated platform at approximately X=0.500, Y=80.000, Z=0.500.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Place the End portal block specified by the report. While remaining at the reference position, press T, enter the report command exactly, and press Enter.",
+        "exact_input": "/setblock ~2 ~ ~ end_portal",
+        "success_cue": "A horizontal, dark, star-like End portal surface is present at block coordinates X=2, Y=80, Z=0, two blocks in the positive-X direction from the reference block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Place the glass block specified by the report. Do not move from the reference position. Press T, enter the report command exactly, and press Enter.",
+        "exact_input": "/setblock ~1 ~ ~1 glass",
+        "success_cue": "A glass block is present at block coordinates X=1, Y=81, Z=0, immediately above the space between the player and the End portal block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Use the Minecraft 1.12.2-compatible teleport equivalent of the report's alignment command. The deterministic reference position makes floor-aligned X and Z equal to 0, so these absolute coordinates preserve the report's destination offsets and rotation. Press T, enter the command exactly, and press Enter.",
+        "exact_input": "/tp @p 1.7 80 0.700005 -60 0",
+        "success_cue": "The player is positioned at approximately X=1.700, Y=80.000, Z=0.700005, facing diagonally toward the End portal, with the player's upper bounding box intersecting the adjacent glass block.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Without pressing any movement key or moving the mouse, press F3 to open the debug screen and verify the forced position and rotation. Check for X near 1.700, Y near 80.000, Z near 0.700, horizontal rotation near -60 degrees, and vertical rotation near 0 degrees.",
+        "exact_input": "F3",
+        "success_cue": "The debug overlay confirms the approximate target coordinates and rotation; the player has not moved away from the forced glass intersection.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press F3 again to close the debug screen. Release all movement controls and do not rotate the camera after closing it.",
+        "exact_input": "F3",
+        "success_cue": "The debug overlay is closed, the normal first-person view is visible, and the player remains facing the portal from the forced intersection position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Trigger the reproduction by pressing and holding the Forward control, W by default, without sprinting, jumping, sneaking, strafing, or turning the camera. Continue holding Forward until the End dimension-loading transition starts, then immediately release Forward. If no transition starts within five seconds, release Forward without making any other corrective movement.",
+        "exact_input": "W",
+        "success_cue": "Forward movement has been attempted from the forced glass-intersection position; if the portal activates, the dimension-loading screen begins.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The player has just attempted forward movement from the forced glass-intersection position. If the End portal transition starts, release Forward and hand control to the observation subsystem as soon as the End view begins rendering; do not move, teleport, respawn, or otherwise correct the player's position.",
+    "uncertainties": [
+      "The report's literal command `/execute align xz run teleport @s ~1.7 ~ ~0.700005 -60 0` uses the rewritten command system and cannot be parsed by the selected first affected version, Minecraft 1.12.2. This plan therefore anchors the player at X=0.5, Y=80, Z=0.5 and uses the legacy-compatible equivalent `/tp @p 1.7 80 0.700005 -60 0`. Historical command documentation confirms that `/execute` was rewritten beginning in 17w45a and that the older `/tp` form accepts a target, coordinates, yaw, and pitch. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Tutorial%3A%E7%94%A8%E5%91%BD%E4%BB%A4%E6%93%8D%E6%8E%A7%E5%AE%9E%E4%BD%93?variant=zh-hk&utm_source=openai))",
+      "The report does not specify a game mode, world type, seed, or starting coordinates. Survival with cheats, a Superflat world, and an elevated platform at Y=79 are practical choices intended to provide deterministic empty space without changing the reported portal-and-glass geometry.",
+      "The command-based reproduction is treated as the primary procedure. Earlier comments describe more elaborate bed and glass setups and indicate that some manual variants may require multiple attempts, but those variants are not introduced because the report supplies a simpler precise command setup."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_00b93f5ff453621c016aa8d27f17fc87d0abe33381f1a8bd06",
+    "elapsed_seconds": 114.55,
+    "usage": {
+      "input_tokens": 36557,
+      "output_tokens": 8281,
+      "reasoning_tokens": 6510,
+      "total_tokens": 44838
+    },
+    "timestamp": "2026-09-15T05:09:05.051774+00:00"
+  }
+}

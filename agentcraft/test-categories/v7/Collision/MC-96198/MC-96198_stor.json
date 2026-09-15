@@ -1,0 +1,225 @@
+{
+  "bug_id": "MC-96198",
+  "category": "Collision",
+  "source_md": "[Collision] - MC-96198.md",
+  "source_meta": {
+    "mojira categories": "Collision",
+    "project": "MC",
+    "issue key": "MC-96198",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2016-01-28T08:34:35.715-0800",
+    "updated": "2025-10-15T01:48:08.178-0700",
+    "resolution date": "2024-05-07T04:40:21.412-0700",
+    "affects versions": "Minecraft 16w04a; Minecraft 16w05b; Minecraft 16w06a; Minecraft 1.9 Pre-Release 1; Minecraft 1.9 Pre-Release 2; Minecraft 1.10.2; Minecraft 1.11; Minecraft 1.11.2; Minecraft 1.12 Pre-Release 6; Minecraft 1.12 Pre-Release 7; Minecraft 1.12.2; Minecraft 18w05a; Minecraft 1.14; Minecraft 1.14.1; 20w14a; 1.16.1; 20w28a; 1.16.3; 1.16.4; 20w46a; 20w48a; 21w05b; 21w06a; 21w13a; 1.17 Pre-release 1; 1.17; 1.17.1; 1.18; 1.18.1; 1.18.2; 1.19 Pre-release 3; 1.19 Release Candidate 2; 1.19; 1.19.1 Pre-release 5; 1.19.2; 22w42a; 22w45a; 1.19.3; 1.20; 1.20.1; 23w44a",
+    "fix versions": "24w19a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2016-01-28_17.23.14.png; 2016-01-29_20.30.04.png; boat.mp4; boatClipHeights.mp4",
+    "issue links": "Duplicate:inward:MC-96382:Boat sinking into ground from water_bucket flow | Duplicate:inward:MC-104599:Boats Fall Through The Floor | Duplicate:inward:MC-128546:boat glitch when going too fast | Duplicate:inward:MC-151870:Boats can clip through blocks when falling into flowing-water | Duplicate:inward:MC-177486:boats glitch in the ground when falling into flowing water | Duplicate:inward:MC-197353:Boat slid into ground after dismounting | Duplicate:inward:MC-201953:Boats can fall through blocks when pushed into flowing water | Duplicate:inward:MC-214961:Boat falls through the floor on certain turns | Duplicate:inward:MC-215403:The player sunk into the ground while boating in a cave | Duplicate:inward:MC-222097:sinking boat | Duplicate:inward:MC-226801:Sometimes riding a boat in flowing water causes you to get stuck in blocks for a moment | Duplicate:inward:MC-229766:Boat sinks through blocks | Duplicate:inward:MC-230069:Boat getting stuck | Duplicate:inward:MC-234154:Boat able to phase through blocks | Duplicate:inward:MC-244101:Boat when placed on water went into the ground | Duplicate:inward:MC-246979:cats in boat in flowing water descend into block below and suffocate | Duplicate:inward:MC-249024:Boat disappears when on water above soul sand | Duplicate:inward:MC-251769:Boat Sinks in falling flowing water | Duplicate:inward:MC-252322:Boats clip through blocks | Duplicate:inward:MC-252746:Sinking through block when on a boat | Duplicate:inward:MC-253700:the boat gets stuck in blocks | Duplicate:inward:MC-253981:Glitch with boat and flowing water | Duplicate:inward:MC-254233:Oak Boat with Chest sinks under the water while you are on fire. | Duplicate:inward:MC-256565:Bamboo Raft Clipping through blocks under flowing water stream | Duplicate:inward:MC-256676:New bug in 1.19.3 snapshot | Duplicate:inward:MC-257274:Boats move through solid floor if falling onto shallow water | Duplicate:inward:MC-257568:Boat adios in 13 cm deep water (falls through blocks) | Duplicate:inward:MC-258764:Boats become unable to move and will sink into the ground if you drive it from plane of water. It will not sink into the ground untill you leave the boat. | Duplicate:inward:MC-263380:The boat sinks when it encounters downward flowing water and cannot be ridden | Duplicate:inward:MC-263572:boat glitch in ground | Duplicate:inward:MC-264435:Boats go thru floor | Duplicate:inward:MC-266381:The ship got stuck in the soil | Relates:inward:MC-122493:Boats fall through blocks when slightly intersecting with water | Duplicate:inward:MC-265256:The boat sinks when it encounters downward flowing water and cannot be ridden",
+    "_title": "Boats / rafts move into blocks when landing in less than one block deep water"
+  },
+  "stor": {
+    "bug_id": "MC-96198",
+    "affected_versions": [
+      "Minecraft 16w04a",
+      "Minecraft 16w05b",
+      "Minecraft 16w06a",
+      "Minecraft 1.9 Pre-Release 1",
+      "Minecraft 1.9 Pre-Release 2",
+      "Minecraft 1.10.2",
+      "Minecraft 1.11",
+      "Minecraft 1.11.2",
+      "Minecraft 1.12 Pre-Release 6",
+      "Minecraft 1.12 Pre-Release 7",
+      "Minecraft 1.12.2",
+      "Minecraft 18w05a",
+      "Minecraft 1.14",
+      "Minecraft 1.14.1",
+      "20w14a",
+      "1.16.1",
+      "20w28a",
+      "1.16.3",
+      "1.16.4",
+      "20w46a",
+      "20w48a",
+      "21w05b",
+      "21w06a",
+      "21w13a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19 Pre-release 3",
+      "1.19 Release Candidate 2",
+      "1.19",
+      "1.19.1 Pre-release 5",
+      "1.19.2",
+      "22w42a",
+      "22w45a",
+      "1.19.3",
+      "1.20",
+      "1.20.1",
+      "23w44a"
+    ],
+    "recommended_version": "Minecraft 16w04a",
+    "environment": "Unmodified Minecraft Java Edition snapshot 16w04a in a fresh single-player Creative world. A Superflat world is recommended only to simplify construction. Use the normal Move Forward control, default W, and Change Perspective control, default F5. No dedicated server, multiplayer participant, seed, or absolute coordinates are required by the report.",
+    "preconditions": [
+      "Install and launch exactly Minecraft Java Edition 16w04a, the first version listed in Affects versions. Do not use fix version 24w19a.",
+      "Use an unmodified client without mods that change boats, water, entity movement, or collision.",
+      "Ensure the Move Forward action is bound to a known key; the default is W.",
+      "Ensure the Use Item/Place Block action is bound to a known input; the default is right-click.",
+      "Prepare enough unobstructed space for a 13-by-13-block lower landing floor and a 3-by-16-block elevated water channel.",
+      "Use a normal wooden boat. Do not substitute a minecart or another vehicle. Bamboo rafts do not exist in the recommended historical version.",
+      "The exact screenshot-based structure is unavailable in the supplied report. The dimensions below are a deterministic practical reconstruction of the reported upper water level, waterfall, solid lower floor, and less-than-one-block-deep flowing water."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Java Edition snapshot 16w04a and start the game with that installation.",
+        "exact_input": "Minecraft Java Edition 16w04a",
+        "success_cue": "The game reaches the main menu and the displayed version is 16w04a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a fresh single-player Creative world. From the main menu, open Singleplayer, choose Create New World, set Game Mode to Creative, optionally select the Superflat world type under More World Options, and create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options... -> World Type: Superflat (recommended) -> Create New World",
+        "success_cue": "The player enters a new world in Creative mode and can fly and access unlimited inventory items.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before constructing anything until nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The surrounding ground is visible, missing chunks are no longer present around the construction area, and movement responds without loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory and put a stack of solid building blocks, a Water Bucket, and one normal wooden Boat into separate hotbar slots. The hotbar is the row of nine item slots along the bottom of the screen. The Creative inventory Search Items tab can be used to find each item.",
+        "exact_input": "E; search for \"stone\", \"water bucket\", and \"boat\"",
+        "success_cue": "A solid block, a Water Bucket, and a normal wooden Boat are visible in the player's hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Use the solid blocks to construct a flat 13-by-13-block lower landing floor. Keep the entire upper surface level, solid, and free of holes. This floor may be built directly on the Superflat ground.",
+        "exact_input": "Build a 13 x 13 solid horizontal floor",
+        "success_cue": "A level 13-by-13 solid floor with no gaps or blocks protruding above its surface is available for the lower flowing water.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Choose one side of the lower floor as the launch side. Centered on that side, build the bottom of an elevated channel three blocks wide and sixteen blocks long. Set the channel floor three blocks above the lower landing floor. Extend its front end over the lower floor so a boat leaving the channel will fall toward the lower floor; extend the rest of the channel away from the lower floor to provide an acceleration runway.",
+        "exact_input": "Upper channel floor: 3 blocks wide x 16 blocks long; channel floor 3 blocks above lower landing floor",
+        "success_cue": "A straight three-block-wide runway is suspended above the lower floor, with its long axis pointing toward the lower landing area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Build a one-block-high wall along both long sides of the elevated channel and across its rear end. Leave the end facing the lower landing floor completely open so both water and the boat can pass over that edge.",
+        "exact_input": "Side walls: 16 blocks long and 1 block above the channel floor; rear wall: 3 blocks wide; front wall: none",
+        "success_cue": "The elevated structure is a straight water channel with two side walls, a closed rear, and an unobstructed open end above the lower floor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Water Bucket and place water throughout the elevated channel until it contains a continuous, one-block-deep upper water surface suitable for boating. Place water directly in the channel cells rather than relying on one distant source to fill the runway. Allow water at the open end to spill downward onto the lower solid floor.",
+        "exact_input": "Select Water Bucket; right-click channel cells to place water",
+        "success_cue": "The upper channel has a continuous navigable water surface, and water is falling from its open end onto the lower floor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Wait until the water flow stops changing shape. Inspect the lower floor and verify that water from the fall spreads horizontally across the top of the solid floor. At least part of the intended landing path must contain visibly sloped or lower-than-full-block flowing water; do not replace the entire lower area with a flat pool of full source blocks.",
+        "exact_input": null,
+        "success_cue": "A stable waterfall connects the upper channel to shallow flowing water lying directly on the lower solid floor.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Remove any temporary support blocks, misplaced blocks, or other obstacles from the centerline between the rear of the upper channel, its open edge, and the shallow lower-water landing area. Do not remove the solid floor beneath the lower water.",
+        "exact_input": "Left-click unwanted obstruction blocks while in Creative mode",
+        "success_cue": "The boat has a straight, unobstructed route along the upper water, over the open edge, and into the lower flowing water.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Move to the rear portion of the elevated channel. Select the Boat in the hotbar, aim at the upper water near the rear of the channel, and use the Boat on the water.",
+        "exact_input": "Select Boat; right-click the upper water near the closed rear end",
+        "success_cue": "One normal boat is floating in the upper channel with most of the sixteen-block runway between it and the open end.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select an empty hotbar slot so that using the boat does not place water or blocks. Aim at the boat and use it to enter the boat.",
+        "exact_input": "Select empty hotbar slot; right-click the boat",
+        "success_cue": "The player's viewpoint is attached to the boat and the player can control it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Before beginning the run, steer the boat into the center of the channel and face it directly toward the open end and lower landing area. Use brief taps of Move Left and Move Right, default A and D, as needed. Do not begin the full-speed run until the boat is aligned and still has most of the runway ahead.",
+        "exact_input": "A and D as brief steering taps",
+        "success_cue": "The occupied boat is near the rear of the upper channel, centered between the side walls, and pointed straight toward the open end.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Switch to the rear third-person camera recommended in the report comment so the channel edge and landing path remain visible. Press Change Perspective repeatedly only until the camera is behind the player and boat.",
+        "exact_input": "F5, repeated until rear third-person view is active",
+        "success_cue": "The boat, the runway ahead, and the open end of the channel are visible from behind the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press and continuously hold Move Forward, default W. Keep holding it as the boat accelerates down the upper water channel. Use only small steering corrections if needed, and do not brake, dismount, or release Move Forward before reaching the edge.",
+        "exact_input": "Hold W; optionally tap A or D briefly without releasing W",
+        "success_cue": "The occupied boat is traveling quickly and straight toward the open end after using the available upper-water runway to accelerate.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Continue holding Move Forward while allowing the boat to pass completely over the open end of the upper channel, fall toward the lower floor, and make its first contact with the shallow flowing water above that floor. Do not dismount or release Move Forward before contact, and do not repeat the landing before handing off to observation.",
+        "exact_input": "Continue holding W through departure, fall, and first water contact",
+        "success_cue": "The occupied boat has just contacted the lower shallow flowing water above the solid floor while Move Forward remains held.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The occupied boat has just made its first contact with the shallow flowing water above the lower solid floor while the Move Forward input remains held. Begin observation immediately, before releasing the input, dismounting, moving the boat again, or repeating the run.",
+    "uncertainties": [
+      "The report relies on a screenshot whose contents and exact dimensions are not included in the supplied text. The 13-by-13 lower floor, 3-by-16 upper channel, and three-block elevation are practical reconstruction choices rather than dimensions asserted by the report.",
+      "The report does not specify a world seed, coordinates, construction material, exact drop height, or required game mode. A fresh Creative Superflat world and solid stone-like blocks are selected solely to make the setup deterministic and quick to construct.",
+      "The lower landing water must remain flowing and less than one full block deep, as stated by the title and description. Turning the lower area into a full source-water pool would remove a stated trigger condition.",
+      "The original report says only to grab a boat and recommends reproducing at full speed while holding W. Any normal wooden boat available in 16w04a is therefore acceptable.",
+      "Web verification was limited to checking the version-sensitive control behavior: available Minecraft Wiki history confirms that 16w04a boats use the normal forward/backward and left/right movement actions, consistent with the report's W instruction. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E8%88%B9?utm_source=openai))",
+      "A comment mentions 1.20.4, but that version is not present in the report's Affects versions field and is therefore not added to affected_versions.",
+      "Bamboo rafts are included in the report title because later affected versions support them, but the recommended first affected version, Minecraft 16w04a, must be tested with a boat."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_07fbd91989c6d47d016aa8d3be2d5c87d0be865c1ec25c3c66",
+    "elapsed_seconds": 152.63,
+    "usage": {
+      "input_tokens": 20164,
+      "output_tokens": 10521,
+      "reasoning_tokens": 7900,
+      "total_tokens": 30685
+    },
+    "timestamp": "2026-09-15T05:15:02.640350+00:00"
+  }
+}
