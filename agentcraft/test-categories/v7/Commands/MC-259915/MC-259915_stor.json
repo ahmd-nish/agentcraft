@@ -1,0 +1,131 @@
+{
+  "bug_id": "MC-259915",
+  "category": "Commands",
+  "source_md": "[Commands] - MC-259915.md",
+  "source_meta": {
+    "mojira categories": "Commands; Entities",
+    "project": "MC",
+    "issue key": "MC-259915",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-02-10T21:55:00.016-0800",
+    "updated": "2025-04-26T14:48:28.557-0700",
+    "resolution date": "2024-09-10T02:07:52.304-0700",
+    "affects versions": "23w06a; 1.19.4 Pre-release 3; 1.19.4 Release Candidate 2; 1.19.4; 1.20 Pre-release 1; 1.20.1",
+    "fix versions": "23w07a; 23w31a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "javaw_EFaL3DCAjw.mp4",
+    "issue links": "Relates:inward:MC-276459:Item display rotation wrapping does not interpolate cleanly",
+    "_title": "Item display position interpolation not working"
+  },
+  "stor": {
+    "bug_id": "MC-259915",
+    "affected_versions": [
+      "23w06a",
+      "1.19.4 Pre-release 3",
+      "1.19.4 Release Candidate 2",
+      "1.19.4",
+      "1.20 Pre-release 1",
+      "1.20.1"
+    ],
+    "recommended_version": "23w06a",
+    "environment": "Minecraft: Java Edition snapshot 23w06a, using an unmodified vanilla client in a newly created singleplayer Creative-mode world with cheats enabled. Perform the test in the Overworld on an open, solid, approximately level surface. Fabric, a dedicated server, multiple players, a specific seed, and a resource pack are not required for this reproduction path.",
+    "preconditions": [
+      "Install and launch the exact Java Edition snapshot 23w06a; do not use either listed fix version as the reproduction version.",
+      "Use a new or disposable test world because snapshots can damage worlds created in other versions.",
+      "Create the world in Creative mode with cheats/commands enabled so that /summon, /setblock, /time, and /gamerule can be executed from chat.",
+      "Use vanilla Minecraft without Fabric or other mods for the primary reproduction.",
+      "Have keyboard-and-mouse controls available. The default Move Forward control is W; if controls have been rebound, use the key currently assigned to Move Forward.",
+      "Stand on a full solid block in an open area with at least several blocks of unobstructed space around and in front of the player."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the 23w06a installation. From the title screen, select Singleplayer, create a new world in Creative mode with cheats enabled, and enter the world. A default world type and any seed are acceptable.",
+        "exact_input": null,
+        "success_cue": "The world has loaded in Java Edition 23w06a, the player is in Creative mode, and chat commands are permitted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Move to an open, approximately level surface in the Overworld. If necessary, double-tap Space to begin Creative flight and use the movement controls to locate a nearby unobstructed area. Land on a full solid block, then wait until the surrounding terrain has rendered and movement responds normally.",
+        "exact_input": "Default controls as needed: double-tap Space to toggle Creative flight; W/A/S/D to move; Space to rise; Left Shift to descend.",
+        "success_cue": "The player is standing on solid ground in a loaded area with an unobstructed view and enough nearby room to walk for several seconds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the world to daytime for clear visibility. Press T to open chat, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/time set day",
+        "success_cue": "The world lighting changes to daytime and chat confirms that the time was set.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Prevent the repeating command block used later from producing distracting command output. Press T, enter the command exactly, and press Enter.",
+        "exact_input": "/gamerule commandBlockOutput false",
+        "success_cue": "Chat confirms that the commandBlockOutput game rule is now false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Summon one visible item display at a player-relative location approximately two blocks to the side, one and a half blocks above the player's feet, and four blocks forward. The entity is given the unique tag mc259915 so the later command affects only this display. Press T, enter the command exactly, and press Enter.",
+        "exact_input": "/summon minecraft:item_display ^2 ^1.5 ^4 {Tags:[\"mc259915\"],item:{id:\"minecraft:diamond_block\",Count:1b},item_display:\"gui\",billboard:\"center\"}",
+        "success_cue": "Chat reports that a new Item Display was summoned, and a diamond-block item model is visible several blocks in front of and slightly to one side of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Install an always-active repeating command block directly beneath the player. Its stored command selects the nearest player, executes from that player's position and view direction, and teleports the tagged item display to the same player-relative offset once per game tick. Press T, enter the full /setblock command exactly, and press Enter. Keep the leading slash on /setblock, but preserve the stored Command text without a slash.",
+        "exact_input": "/setblock ~ ~-1 ~ minecraft:repeating_command_block{auto:1b,Command:\"execute as @p at @s run tp @e[type=minecraft:item_display,tag=mc259915,limit=1] ^2 ^1.5 ^4\"} replace",
+        "success_cue": "Chat confirms that the block was changed. A repeating command block now occupies the full block directly beneath the player's feet and is active without a lever or redstone signal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Remain close to the repeating command block and wait for at least one second so it has executed multiple times. Keep the camera generally directed toward the displayed diamond-block item and do not open any menus.",
+        "exact_input": null,
+        "success_cue": "The world is unpaused, controls are responsive, the tagged item display remains visible near the intended player-relative offset, and the repeating command block remains in the loaded area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Trigger continuous position updates by holding Move Forward while slowly turning the camera left and right. Stay within approximately ten blocks of the repeating command block, keep the world unpaused, and continue the movement during handoff so the command block keeps assigning new positions to the item display every game tick.",
+        "exact_input": "Hold W (or the rebound Move Forward control) and slowly move the mouse left and right.",
+        "success_cue": "The player is actively walking and turning while the always-active repeating command block continuously teleports the tagged item display to the moving player-relative destination.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The player has begun walking and turning while the nearby always-active repeating command block is continuously teleporting the mc259915-tagged item display to a position relative to the player's current location and view direction. Begin visual observation immediately while this movement and teleport loop remain active.",
+    "uncertainties": [
+      "The report does not provide a formal Steps to Reproduce section, exact commands, coordinates, seed, game mode, item type, movement distance, or update interval.",
+      "The report states that the issue can be reproduced by moving the item display at all and specifically mentions command blocks teleporting it to the player. The exact tagged diamond-block display, player-relative offset, and repeating /tp command in this plan are deterministic practical implementation choices rather than commands copied from the report.",
+      "The report confirms reproduction in both vanilla and Fabric and in both singleplayer and a local server, but does not require one particular environment. Vanilla singleplayer was selected as the simplest supported environment.",
+      "Continuous once-per-tick player-relative teleportation was selected instead of a single teleport so that the separate observation subsystem has an extended interval in which to inspect the position updates.",
+      "The 23w06a item_display entity fields and item-stack format, including item, item_display, billboard, and the listed display transform values, were checked against the official 23w06a snapshot documentation. Command-block auto activation syntax was also externally checked."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0380171884df5c22016aa8d0134ca087d08ad3edc29e7fcb88",
+    "elapsed_seconds": 134.17,
+    "usage": {
+      "input_tokens": 47466,
+      "output_tokens": 8923,
+      "reasoning_tokens": 7367,
+      "total_tokens": 56389
+    },
+    "timestamp": "2026-09-15T04:59:05.333681+00:00"
+  }
+}
