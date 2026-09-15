@@ -1,0 +1,160 @@
+{
+  "bug_id": "MC-227169",
+  "category": "Player Animation",
+  "source_md": "[Player Animation] - MC-227169.md",
+  "source_meta": {
+    "mojira categories": "Player Animation",
+    "project": "MC",
+    "issue key": "MC-227169",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-06-02T10:14:10.453-0700",
+    "updated": "2025-04-26T13:27:05.434-0700",
+    "resolution date": "2024-09-26T07:15:55.081-0700",
+    "affects versions": "1.17 Pre-release 4; 1.17 Release Candidate 1; 1.17; 1.17.1; 21w39a; 1.18 Pre-release 6; 1.18.1; 1.18.2; 22w11a; 1.19; 1.19.1 Release Candidate 2; 1.19.1; 1.19.2; 22w42a; 1.19.3; 1.20.1; 1.20.2; 1.20.4; 24w06a; 24w09a; 1.20.6; 24w21b; 1.21 Pre-Release 4; 24w36a",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "labels": "crossbow; hand",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2021-06-02_19.08.25.png; 2021-06-02_19.08.35.png; image-2024-09-19-01-21-14-504.png; image-2024-09-21-19-43-18-621.png; image-2024-09-21-19-43-35-111.png; MC-227169.mp4; Minecraft 1.17.1 2021-07-06 16-36-46_Trim_Trim_Trim_Trim.mp4",
+    "issue links": "Duplicate:inward:MC-273099:Loaded crossbow changes hand rotation when on second hand | Relates:outward:MC-226777:When a crossbow is loaded in the offhand, you cannot see it or shoot with it if an item is held in the main hand | Duplicate:inward:MC-272504:When a player puts a loaded crossbow in their off-hand, the main hand looks strange | Duplicate:inward:MC-269052:Another hand animation and swimming animation will be broken when the player is eating | Duplicate:inward:MC-268402:Charged crossbows make main hand rotate weirdly | Duplicate:inward:MC-268128:Crooked hand | Duplicate:inward:MC-265980:Hand twists when using crossbow in the off-hand | Duplicate:inward:MC-254441:The main hand is positioned incorrectly when holding a loaded crossbow in your offhand | Duplicate:inward:MC-230214:Loaded crossbow in second hand makes the arm look wrong | Duplicate:inward:MC-258550:Loaded crossbow in offhand gives a visual effect on main hand | Duplicate:inward:MC-242571:Offhand Charged crossbow messes with 1st person hand animation. | Duplicate:inward:MC-238000:While holding a loaded crossbow in the offhand slot, the main hand rotates a bit | Duplicate:inward:MC-235462:Strange look | Duplicate:inward:MC-233687:holding a cross bow in off hand without anything in your main | Duplicate:inward:MC-232754:Loaded crossbow in offhand causes main hand(if empty) to render weirdly | Duplicate:inward:MC-231789:Loaded crossbow in offhand and hand not appearing properly | Duplicate:inward:MC-231314:Crossbow in the off-hand causes hand position to be changed | Duplicate:inward:MC-228664:If the loaded crossbow is in the second hand, then the main one looks wrong | Duplicate:inward:MC-228538:Bug with hand when holding a crossbow that's loaded in the off-hand. | Duplicate:inward:MC-227450:Main Hand bug when holding charged crossbow in off-hand | Duplicate:inward:MC-227178:When a crossbow is loaded in your offhand your main hand is put to the side instead of being up",
+    "_title": "The main hand is positioned incorrectly when holding a loaded crossbow in your offhand"
+  },
+  "stor": {
+    "bug_id": "MC-227169",
+    "affected_versions": [
+      "1.17 Pre-release 4",
+      "1.17 Release Candidate 1",
+      "1.17",
+      "1.17.1",
+      "21w39a",
+      "1.18 Pre-release 6",
+      "1.18.1",
+      "1.18.2",
+      "22w11a",
+      "1.19",
+      "1.19.1 Release Candidate 2",
+      "1.19.1",
+      "1.19.2",
+      "22w42a",
+      "1.19.3",
+      "1.20.1",
+      "1.20.2",
+      "1.20.4",
+      "24w06a",
+      "24w09a",
+      "1.20.6",
+      "24w21b",
+      "1.21 Pre-Release 4",
+      "24w36a"
+    ],
+    "recommended_version": "1.17 Pre-release 4",
+    "environment": "Minecraft Java Edition 1.17 Pre-release 4 in a local single-player world. Use Creative mode as a deterministic way to obtain the crossbow and arrow. Perform the reproduction in first-person view. No specific world seed, coordinates, server, graphics setting, or multiplayer configuration is required by the report.",
+    "preconditions": [
+      "Launch the exact affected version 1.17 Pre-release 4 rather than the listed fix version.",
+      "Use a newly created or existing world in which the player can obtain a crossbow and at least one arrow; the plan uses a new Creative-mode world for convenience.",
+      "Begin with the offhand slot empty.",
+      "Use the configured equivalents if the default controls E (Inventory), F (Swap Item With Offhand), F5 (Change Perspective), or right mouse button (Use Item/Place Block) have been rebound."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation that uses exactly Java Edition version 1.17 Pre-release 4, and launch it.",
+        "exact_input": "Minecraft Launcher -> Installations -> select/create an installation for \"1.17 Pre-release 4\" -> Play",
+        "success_cue": "The Minecraft title screen has loaded and identifies the running version as 1.17 Pre-release 4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a world in Creative mode. No particular seed or world-generation setting is needed. Enter the world and wait until nearby terrain has rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is standing in a loaded world in Creative mode, with normal movement and camera response.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the camera to first-person view. Press the Change Perspective control repeatedly if necessary; its default key is F5.",
+        "exact_input": "F5, repeated only until first-person view is active",
+        "success_cue": "The camera looks directly from the player's viewpoint rather than showing the player's full character model in front of or behind the camera.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the Inventory control, whose default key is E.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Use the Creative inventory's Search Items tab to find a Crossbow. Place one Crossbow into an otherwise empty hotbar slot. The hotbar is the nine-slot row shown at the bottom of the screen. Remember which numbered slot, from 1 through 9, received the Crossbow.",
+        "exact_input": "Search Items -> enter \"crossbow\" -> move one Crossbow to an empty hotbar slot",
+        "success_cue": "One Crossbow is present in a known hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Search for an Arrow and place at least one Arrow in the inventory or in a different hotbar slot. Do not replace the Crossbow, and do not put the Arrow in the hotbar slot containing the Crossbow.",
+        "exact_input": "Search Items -> replace the search text with \"arrow\" -> move at least one Arrow to a different slot",
+        "success_cue": "The inventory contains a Crossbow and at least one Arrow in separate slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Close the inventory, then select the hotbar slot containing the Crossbow by pressing its number key or scrolling to it. Confirm that the offhand is still empty before continuing.",
+        "exact_input": "E, then the number key 1-9 corresponding to the Crossbow's hotbar slot",
+        "success_cue": "The Crossbow is selected and visible in the main hand, at least one Arrow remains elsewhere in the inventory, and the offhand is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Move the Crossbow from the main hand to the offhand using the Swap Item With Offhand control, whose default key is F. Because the offhand was empty, the selected main-hand hotbar slot becomes empty.",
+        "exact_input": "F",
+        "success_cue": "The Crossbow is visible on the offhand side of the first-person view, while the currently selected main-hand hotbar slot is empty.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Begin charging the offhand Crossbow by pressing and holding the Use Item/Place Block control, whose default input is the right mouse button. Keep holding it; do not release during the initial drawing animation.",
+        "exact_input": "Press and hold Right Mouse Button",
+        "success_cue": "The offhand Crossbow is undergoing its drawing/loading animation, and the right mouse button remains held.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Continue holding the right mouse button until the Crossbow finishes drawing and its loading sound sequence completes. Then release the right mouse button so that the Crossbow remains charged in the offhand. Do not swap hands, select another hotbar slot, fire the Crossbow, or leave first-person view after releasing the button.",
+        "exact_input": "Release Right Mouse Button only after the Crossbow has fully charged",
+        "success_cue": "A loaded Crossbow remains equipped in the offhand, the selected main-hand slot remains empty, and the camera remains in first-person view.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The player has just released the Use Item control after fully charging the Crossbow. The loaded Crossbow is equipped in the offhand, the selected main-hand hotbar slot is empty, and first-person view remains active. Hand control to the observation subsystem without firing the Crossbow or changing either hand's equipment.",
+    "uncertainties": [
+      "The report does not specify a game mode, world type, seed, or acquisition method. A new Creative-mode single-player world is used only as the simplest deterministic way to obtain the required items.",
+      "The report says to watch how the main hand is displayed but does not explicitly name the camera perspective. First-person view is selected because it directly exposes the rendered hand model being inspected.",
+      "The report does not require a dedicated server, additional players, particular coordinates, a particular main-hand preference, or special graphics settings; none are added to the reproduction requirements."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a13648e2c86705c016aa89fe1eb4487d081eb2cbaa40b1f11",
+    "elapsed_seconds": 54.06,
+    "usage": {
+      "input_tokens": 9673,
+      "output_tokens": 4460,
+      "reasoning_tokens": 2982,
+      "total_tokens": 14133
+    },
+    "timestamp": "2026-09-15T01:32:07.655694+00:00"
+  }
+}

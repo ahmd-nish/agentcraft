@@ -1,0 +1,227 @@
+{
+  "bug_id": "MC-101376",
+  "category": "Player Animation",
+  "source_md": "[Player Animation] - MC-101376.md",
+  "source_meta": {
+    "mojira categories": "Player Animation",
+    "project": "MC",
+    "issue key": "MC-101376",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2016-04-27T17:40:07.575-0700",
+    "updated": "2025-04-26T04:59:52.258-0700",
+    "resolution date": "2024-11-30T04:08:35.032-0800",
+    "affects versions": "Minecraft 1.9.2; Minecraft 1.9.4; Minecraft 16w20a; Minecraft 1.10 Pre-Release 1; Minecraft 1.10; Minecraft 1.10.2; Minecraft 16w32a; Minecraft 16w32b; Minecraft 1.12; Minecraft 1.13.1; 1.16.1; 20w27a; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 20w48a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w07a; 21w11a; 1.17.1; 1.18.1; 1.19.2; 22w42a; 1.19.3; 1.19.4; 1.20.1; 1.20.2; 23w43b; 1.21",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-101376.mp4",
+    "issue links": "Relates:inward:MCPE-188694:The Elytra animation only plays in 3rd person, not 1st person",
+    "_title": "Elytra appearance doesn't update in 1st person mode; only in 3rd person"
+  },
+  "stor": {
+    "bug_id": "MC-101376",
+    "affected_versions": [
+      "Minecraft 1.9.2",
+      "Minecraft 1.9.4",
+      "Minecraft 16w20a",
+      "Minecraft 1.10 Pre-Release 1",
+      "Minecraft 1.10",
+      "Minecraft 1.10.2",
+      "Minecraft 16w32a",
+      "Minecraft 16w32b",
+      "Minecraft 1.12",
+      "Minecraft 1.13.1",
+      "1.16.1",
+      "20w27a",
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "20w48a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w11a",
+      "1.17.1",
+      "1.18.1",
+      "1.19.2",
+      "22w42a",
+      "1.19.3",
+      "1.19.4",
+      "1.20.1",
+      "1.20.2",
+      "23w43b",
+      "1.21"
+    ],
+    "recommended_version": "Minecraft 1.9.2",
+    "environment": "Minecraft Java Edition 1.9.2 using a vanilla singleplayer Creative-mode Superflat world and keyboard/mouse controls. Use the perspective-toggle control, which is F5 by default, and the jump control, which is Space by default. The report also confirms that the issue can occur in multiplayer, but multiplayer is not required for this reproduction path.",
+    "preconditions": [
+      "Install and launch the exact Java Edition 1.9.2 game version; do not substitute the listed fix version 24w33a.",
+      "Use an unmodified client so that mods do not replace the player or Elytra renderer.",
+      "Know the current key bindings for Jump and Toggle Perspective. The instructions use their defaults: Space and F5.",
+      "The test needs enough height and airtime to begin gliding while in first-person view. The procedure therefore creates an elevated standing block over a clear landing area.",
+      "An Elytra must be equipped in the player's chest armor slot before the perspective and gliding sequence begins."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "From the Minecraft Launcher, start the installation corresponding to Java Edition 1.9.2. At the main menu, select Singleplayer and then Create New World.",
+        "exact_input": "Launcher version: 1.9.2; Main menu -> Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open in Minecraft Java Edition 1.9.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Configure a simple world for safe and deterministic setup. Change Game Mode to Creative. Open More World Options, cycle World Type until Superflat is selected, return with Done, and create the world. No particular seed is required by the report.",
+        "exact_input": "Game Mode: Creative; More World Options... -> World Type: Superflat -> Done -> Create New World",
+        "success_cue": "A Creative-mode Superflat world begins loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before interacting. Continue only after the flat terrain has rendered around the player and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are visible, the player is standing on the flat surface, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the inventory control, which is E by default. Select the Search Items tab; if necessary, identify it by hovering over the Creative inventory tabs until the Search Items tooltip appears.",
+        "exact_input": "E; select Search Items",
+        "success_cue": "The Creative inventory is open with a text search field available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Click the search field, enter \"elytra\", and move one Elytra from the search results into an empty hotbar slot. The hotbar is the row of nine item slots along the bottom of the inventory.",
+        "exact_input": "elytra",
+        "success_cue": "An Elytra is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the Survival Inventory tab within the Creative inventory. Drag the Elytra from its hotbar slot into the chest armor slot beside the player model. The chest slot is the second armor slot from the top, between the helmet and leggings slots.",
+        "exact_input": "Drag Elytra from hotbar to chest armor slot",
+        "success_cue": "The Elytra is displayed in the chest armor slot on the inventory screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Return to the Search Items tab, replace the search text with \"stone\", and place a stack of Stone into another empty hotbar slot. Any solid full block would satisfy the report, but Stone provides a simple elevated standing block.",
+        "exact_input": "stone",
+        "success_cue": "The Elytra remains equipped and a stack of Stone is available in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory with E. Select the Stone hotbar slot by pressing its corresponding number key from 1 through 9 or by using the mouse wheel.",
+        "exact_input": "E; then the number key corresponding to the Stone hotbar slot",
+        "success_cue": "The world view is visible and Stone appears as the selected item in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Build a vertical pillar approximately 25 blocks tall over the flat, unobstructed ground. Place the first Stone on the ground, stand on it, then repeatedly perform a single jump and right-click the top face beneath the player to place the next block. Allow each jump to finish before starting the next so that Creative flight is not accidentally activated. Count at least 25 placed blocks.",
+        "exact_input": "Right-click to place; then repeat Space followed by right-click at least 24 more times",
+        "success_cue": "The player is standing on the top block of an approximately 25-block-high Stone pillar, with clear air around the pillar and flat ground below.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Stop all movement and stand near the center of the pillar's top block. Verify that the player is standing on the block rather than hovering in Creative flight. If flight was accidentally activated, double-tap Space to disable it and settle onto the top block before continuing.",
+        "exact_input": "Release movement controls; if hovering, double-tap Space once and land on the top block",
+        "success_cue": "The player is stationary on the top Stone block and will fall if they move beyond its edge.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Establish first-person view before performing the report's required perspective cycle. Press the Toggle Perspective key as many times as necessary until the player's body is no longer shown in front of the camera and only the normal first-person hand or held item is visible.",
+        "exact_input": "F5 as needed until first-person view is active",
+        "success_cue": "The camera is in first-person view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While still standing on the top block, press the Toggle Perspective key once to enter rear third-person view.",
+        "exact_input": "F5",
+        "success_cue": "The camera is behind the player, and the player's back and equipped Elytra are visible while the player remains standing on the pillar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Return to first-person view before gliding. In Java Edition 1.9.2, the perspective control cycles through rear third-person, front third-person, and first-person, so press F5 twice, pausing briefly after each press.",
+        "exact_input": "F5, brief pause, F5",
+        "success_cue": "The player is again in first-person view and is still standing on the top block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Aim the camera outward over the clear landing area, approximately toward the horizon or slightly downward. Do not change perspective again yet.",
+        "exact_input": "Move mouse to aim outward, approximately level or slightly downward",
+        "success_cue": "The first-person camera points away from the pillar into unobstructed air, with room to glide before reaching the ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Walk forward off the top block using the forward control, W by default. Release W after the player has cleared the edge, and remain in first-person view.",
+        "exact_input": "W until clear of the block, then release W",
+        "success_cue": "The player is airborne, falling away from the pillar, and is still in first-person view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Once the player has begun descending, press the Jump control once to start gliding with the equipped Elytra. In this affected historical version, the input must be made while falling rather than while still rising.",
+        "exact_input": "Space once while falling",
+        "success_cue": "The trajectory changes from a mostly vertical fall to forward Elytra gliding, with a slower descent and continued clearance above the ground.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "Allow only enough time to confirm that gliding is active. Keep the camera aimed forward and do not wait until the player is close to landing.",
+        "exact_input": null,
+        "success_cue": "The player is actively moving forward through the air in first-person Elytra glide and still has several blocks of altitude remaining.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "While the player is still actively gliding, press the Toggle Perspective key exactly once to change directly from first-person view to rear third-person view. This perspective change is the trigger; do not press F5 again and do not wait for landing before handing off.",
+        "exact_input": "F5 once while actively gliding",
+        "success_cue": "The camera has just entered rear third-person view, the airborne player and equipped Elytra are visible, and the player remains in the glide before landing.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The player has just changed from first-person to rear third-person view while actively gliding with an equipped Elytra and remains airborne. Begin observation immediately, before another perspective change or landing occurs.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, world type, or required platform height. Creative mode, a Superflat world, and an approximately 25-block pillar are practical setup choices that provide the necessary airtime without adding exploration or survival hazards.",
+      "The report's instruction to \"Stand on a block\" does not explicitly state that the block must be elevated. Elevation is inferred because the following instruction requires starting an Elytra glide while remaining airborne long enough to switch perspective.",
+      "Singleplayer is selected as the minimum deterministic environment. A report comment confirms that multiplayer is also affected, but does not state that multiplayer is required.",
+      "The report does not state whether controls are rebound. F5, Space, E, and W refer to the default Java Edition keyboard bindings; use the corresponding bound actions if the local controls differ.",
+      "Only the primary sequence—begin gliding in first-person and then enter third-person—is included. The report also describes a reverse landing variant, but repeating that variant is not necessary to reach the primary trigger state."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0bd884cab7b6980a016aa89f599d4887d09594f3bf56d281a1",
+    "elapsed_seconds": 88.1,
+    "usage": {
+      "input_tokens": 25502,
+      "output_tokens": 6889,
+      "reasoning_tokens": 4555,
+      "total_tokens": 32391
+    },
+    "timestamp": "2026-09-15T01:30:24.979566+00:00"
+  }
+}

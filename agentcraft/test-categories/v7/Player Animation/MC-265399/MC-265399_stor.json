@@ -1,0 +1,238 @@
+{
+  "bug_id": "MC-265399",
+  "category": "Player Animation",
+  "source_md": "[Player Animation] - MC-265399.md",
+  "source_meta": {
+    "mojira categories": "Player Animation; Rendering",
+    "project": "MC",
+    "issue key": "MC-265399",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2023-09-14T07:35:19.782-0700",
+    "updated": "2025-04-11T10:37:06.675-0700",
+    "resolution date": "2024-09-05T09:25:34.043-0700",
+    "affects versions": "1.20.1; 1.20.2 Pre-Release 4; 1.20.2 Release Candidate 1; 24w19b; 1.21; 24w34a",
+    "fix versions": "24w37a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-265399.mp4",
+    "issue links": "Relates:inward:MC-267046:Players' heads are momentarily incorrectly positioned when entering the elytra flying state",
+    "_title": "Players' heads are incorrectly positioned while exiting the swimming/crawling state when other players are on screen"
+  },
+  "stor": {
+    "bug_id": "MC-265399",
+    "affected_versions": [
+      "1.20.1",
+      "1.20.2 Pre-Release 4",
+      "1.20.2 Release Candidate 1",
+      "24w19b",
+      "1.21",
+      "24w34a"
+    ],
+    "recommended_version": "1.20.1",
+    "environment": "Minecraft Java Edition 1.20.1 in a vanilla multiplayer environment with two simultaneously connected clients. An integrated Open-to-LAN world is sufficient; a dedicated server is not required. Use Player A's display for the reproduction view. Player A must have permission to execute commands. Creative mode and a Superflat world are practical choices for safely constructing the isolated aerial glass block and positioning Player B.",
+    "preconditions": [
+      "Launch both clients with Minecraft Java Edition 1.20.1, the first version listed as affected in the report.",
+      "Use two distinct connected players and designate them Player A and Player B. These labels describe their roles and do not require changing their account names.",
+      "Player A must be able to execute in-game commands with a leading slash. In an Open-to-LAN world, enable cheats when opening the world to LAN.",
+      "Use Player A's game window as the camera whose contents determine whether Player B is on screen.",
+      "Keep both clients connected and their surrounding chunks loaded throughout both the control pass and the final trigger pass.",
+      "Player A must remain stationary on the same isolated glass support block while each overhead block is added and removed.",
+      "Use the same camera perspective, look direction, graphics configuration, and general framing for the control pass and final pass; the intended changed condition is whether Player B is rendered on Player A's screen."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "On both clients, select and launch the exact Minecraft Java Edition version 1.20.1. Do not use the listed fix version 24w37a.",
+        "exact_input": "1.20.1",
+        "success_cue": "Both clients show Minecraft Java Edition 1.20.1 and are ready to enter the same multiplayer world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "On Player A's client, create a new Creative-mode Superflat world. After entering it, press Esc, select Open to LAN, set the LAN game mode to Creative, enable cheats, and start the LAN world. An already prepared equivalent multiplayer world may be used instead.",
+        "exact_input": "Esc -> Open to LAN -> Game Mode: Creative -> Allow Cheats: ON -> Start LAN World",
+        "success_cue": "Player A is in a multiplayer-accessible Creative world and can execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "On Player B's client, open Multiplayer, select Player A's LAN world, and join it. Assign the hosting player the role Player A and the joining player the role Player B.",
+        "exact_input": "Multiplayer -> select the LAN world -> Join Server",
+        "success_cue": "Player A and Player B are simultaneously connected to the same world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Using Player A, create the isolated aerial support block. Press T to open chat, enter the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/setblock 0 100 0 minecraft:glass",
+        "success_cue": "A single glass block exists at X=0, Y=100, Z=0, far above the Superflat terrain.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Using Player A, teleport to the center of the top surface of that glass block. Press T, enter the command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/tp @s 0.5 101 0.5",
+        "success_cue": "Player A is standing at X=0.5, Y=101, Z=0.5, centered on the glass block at X=0, Y=100, Z=0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Confirm that the support is completely isolated in the air: Player A must be standing on the one glass block, with no horizontally or diagonally adjacent blocks and no terrain near the player. Do not place a platform around it.",
+        "exact_input": null,
+        "success_cue": "The support glass is the only nearby block, Player A is stable on top of it, and the surrounding area is open air.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "On Player A's client, switch from first-person to third-person front view. With default controls, press F5 repeatedly until Player A's face and head are visible. If the perspective control was rebound, use the bound Toggle Perspective control instead.",
+        "exact_input": "F5",
+        "success_cue": "Player A can see their own head from the front in their own game window.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Adjust Player A's camera framing without walking off the block. Keep Player A's head clearly visible and large enough for its motion to be inspected during the crawl-to-standing transition.",
+        "exact_input": "Move the mouse only; do not use movement keys",
+        "success_cue": "Player A's head is clearly visible in the third-person view, and Player A remains centered on the isolated glass support.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Move Player B near the aerial test location but outside Player A's current camera frame. In Creative mode, Player B can double-tap Space to begin flying, hold Space to ascend, use W/A/S/D to move, and use Left Shift to descend. Player B must not be rendered anywhere on Player A's screen during the control pass.",
+        "exact_input": "Double-tap Space; then use Space, Left Shift, and W/A/S/D as needed",
+        "success_cue": "Player B is connected and available nearby but is not visible anywhere in Player A's game view.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Recheck Player A's display immediately before the control pass. Keep Player A stationary and verify that Player A's own head is visible while Player B is entirely out of sight and off-screen.",
+        "exact_input": null,
+        "success_cue": "Player A's head is framed for inspection, Player B is absent from Player A's screen, and Player A remains centered on the support glass.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Begin the control pass. On Player A's client, press T, enter the report's glass command exactly as written including the leading slash, and press Enter. Because the coordinates are relative, Player A—not Player B—must execute this command.",
+        "exact_input": "/setblock ~ ~1 ~ minecraft:glass",
+        "success_cue": "A glass block appears in Player A's upper-body/head space and Player A begins changing into the forced crawling/swimming pose.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Do not move Player A. Wait until the forced crawling/swimming pose has stabilized before continuing.",
+        "exact_input": null,
+        "success_cue": "Player A is visibly in the horizontal crawling/swimming pose while remaining on the isolated support block, and Player B is still absent from Player A's screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Using Player A's mouse, look upward while retaining the third-person view. Keep Player A's own head visible in the frame; do not walk, jump, or change perspective.",
+        "exact_input": "Move the mouse upward",
+        "success_cue": "Player A is looking upward, their head remains visible for inspection, and Player B remains off-screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Trigger the report's control transition. On Player A's client, press T, enter the air command exactly as written including the leading slash, and press Enter. Keep the camera centered on Player A's head as chat closes.",
+        "exact_input": "/setblock ~ ~1 ~ minecraft:air",
+        "success_cue": "The overhead glass has been replaced with air and Player A has started leaving the crawling/swimming pose while Player B remains off-screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Without evaluating or changing the camera, wait for the control transition to finish. Do not move Player A from the isolated support block.",
+        "exact_input": null,
+        "success_cue": "Player A has returned to a fully upright standing pose on the same glass support and is ready for the second pass.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Move Player B into Player A's existing camera frame. Player B may fly into position using W/A/S/D, Space, and Left Shift. Stop Player B at a location where their player model is clearly rendered on Player A's screen without blocking Player A's head.",
+        "exact_input": "Use W/A/S/D, Space, and Left Shift on Player B's client as needed",
+        "success_cue": "Player B's player model and Player A's own head are simultaneously visible on Player A's screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Leave Player B stationary in that visible location. On Player A's client, confirm that the perspective is still third-person front, Player A's head is clearly framed, and Player A is still centered on the original isolated glass block.",
+        "exact_input": null,
+        "success_cue": "Player B remains visibly rendered in Player A's frame, Player A's head is unobstructed, and Player A has not left the support block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Begin the final pass. On Player A's client, press T, enter the report's glass command exactly as written including the leading slash, and press Enter. Player A must execute the command so the relative coordinates refer to Player A.",
+        "exact_input": "/setblock ~ ~1 ~ minecraft:glass",
+        "success_cue": "A glass block appears in Player A's upper-body/head space and Player A begins changing into the forced crawling/swimming pose while Player B remains visible on-screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Do not move either player. Wait until Player A's crawling/swimming pose has stabilized, and make sure Player B remains rendered in Player A's view.",
+        "exact_input": null,
+        "success_cue": "Player A is stably in the crawling/swimming pose on the isolated support, and Player B is still visibly rendered on Player A's screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Using Player A's mouse, look upward again. Keep the same third-person perspective and keep Player A's head visible. If the changed look angle moves Player B out of frame, reposition only Player B until Player B is visible again; do not move Player A.",
+        "exact_input": "Move Player A's mouse upward; reposition Player B with W/A/S/D, Space, or Left Shift only if needed",
+        "success_cue": "Player A is looking upward in the crawling/swimming pose, Player A's head is clearly visible, and Player B is simultaneously visible in the same frame.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Stabilize the final test framing. Stop all movement on both clients, keep Player B visible, and keep the view centered closely on Player A's head. Do not change perspective after this point.",
+        "exact_input": null,
+        "success_cue": "Both player models are stationary and visible on Player A's screen, with Player A's head framed for the imminent transition.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "On Player A's client, press T and prepare the report's air command exactly as written. Do not submit a different command, and do not let Player B leave the frame.",
+        "exact_input": "/setblock ~ ~1 ~ minecraft:air",
+        "success_cue": "The exact air command is entered in Player A's chat input, Player B remains on-screen, and the command is ready to be submitted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Press Enter once on Player A's client to execute the prepared air command. Immediately hand control to the observation subsystem without moving either player, changing perspective, or waiting for the short exit animation to finish.",
+        "exact_input": "Enter",
+        "success_cue": "The overhead glass has just been replaced with air and Player A has begun exiting the crawling/swimming state while Player B is still visibly rendered on Player A's screen.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 23,
+    "handoff_condition": "Player A has just submitted `/setblock ~ ~1 ~ minecraft:air`; the overhead block is now air, Player A's crawl-to-standing transition has begun, Player A's own head is closely framed in third-person front view, and Player B remains visibly rendered on Player A's screen. Begin observation immediately before the transient exit animation completes.",
+    "uncertainties": [
+      "The report requires two players but does not specify whether to use an integrated LAN world or a dedicated server. The plan uses an Open-to-LAN world as the simplest multiplayer implementation.",
+      "The report does not specify a game mode or world type. Creative mode and a Superflat world are practical choices that permit safe aerial positioning and do not replace any stated condition.",
+      "The report does not specify exact coordinates for the isolated glass support. X=0, Y=100, Z=0 is a deterministic practical choice for a Superflat world.",
+      "The report says Player A should watch their own head but does not name a camera perspective. Third-person front view is selected because it exposes Player A's head clearly while allowing Player B to be rendered in the same view.",
+      "The report does not specify an exact upward pitch, field of view, distance, or Player B position. Player B must be adjusted so they remain visibly rendered after Player A looks upward, while Player A's head also remains unobstructed.",
+      "The contents of the attached MC-265399.mp4 were not supplied, so this plan relies on the written reproduction instructions and does not infer additional camera placement from the video."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_075d338843d78980016aa8a0776db887d0ab61d4735352014a",
+    "elapsed_seconds": 133.87,
+    "usage": {
+      "input_tokens": 8580,
+      "output_tokens": 10849,
+      "reasoning_tokens": 8007,
+      "total_tokens": 19429
+    },
+    "timestamp": "2026-09-15T01:35:57.178776+00:00"
+  }
+}

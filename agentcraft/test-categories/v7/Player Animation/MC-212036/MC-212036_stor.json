@@ -1,0 +1,151 @@
+{
+  "bug_id": "MC-212036",
+  "category": "Player Animation",
+  "source_md": "[Player Animation] - MC-212036.md",
+  "source_meta": {
+    "mojira categories": "Player Animation",
+    "project": "MC",
+    "issue key": "MC-212036",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2021-01-19T17:22:38.128-0800",
+    "updated": "2025-03-25T13:23:37.382-0700",
+    "resolution date": "2022-07-05T12:51:11.529-0700",
+    "affects versions": "20w28a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w07a; 21w08b; 21w14a; 21w15a; 21w16a; 21w17a; 1.17; 1.17.1; 21w42a; 1.18.1; 1.18.2",
+    "fix versions": "22w11a",
+    "labels": "hand-animation",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2021-01-19_18.22.25.png; MC-212036.mp4; MC-212036 - 1.18.2.png; MC-212036 - 22w11a (Fixed).png",
+    "_title": "Hand animation still plays when 7 blocks under a boat"
+  },
+  "stor": {
+    "bug_id": "MC-212036",
+    "affected_versions": [
+      "20w28a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "1.17",
+      "1.17.1",
+      "21w42a",
+      "1.18.1",
+      "1.18.2"
+    ],
+    "recommended_version": "20w28a",
+    "environment": "Minecraft Java Edition snapshot 20w28a in a single-player Creative-mode world with commands enabled. Use first-person view with the HUD and player hand visible. The seed and world type are unrestricted, but the player must have an unobstructed standing position with sufficient empty space overhead for a boat summoned 6.5 blocks above the player's feet.",
+    "preconditions": [
+      "Minecraft Java Edition 20w28a is installed and selected in the launcher.",
+      "A single-player world can be created or opened in Creative mode with commands enabled.",
+      "The player can use the Use Item/Place Block control, which is the right mouse button by default.",
+      "The test location has solid ground and at least 8 blocks of unobstructed vertical space above the player.",
+      "The player is not flying and can remain standing at the exact position from which the boat is summoned."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the 20w28a installation.",
+        "exact_input": null,
+        "success_cue": "The main menu is displayed and identifies the running version as 20w28a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode, or open an existing command-enabled Creative-mode world. For a new world, navigate through Singleplayer, choose Create New World, set Game Mode to Creative, and create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is in a loaded world in Creative mode and can execute commands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Wait for the nearby terrain to finish rendering, then walk to a place where the player can stand on solid ground with at least 8 blocks of empty space directly overhead. Stop walking and do not enter Creative flight.",
+        "exact_input": null,
+        "success_cue": "The player is stationary on the ground, movement responds normally, and no blocks occupy the space where the overhead boat will appear.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Use first-person view and ensure the HUD is visible. If necessary, press F5 until first-person view is active. If the HUD, crosshair, or hand is hidden, press F1 once to show them.",
+        "exact_input": "F5 as needed; F1 only if the HUD is hidden",
+        "success_cue": "The center crosshair and hotbar are visible, and the player's hand or arm is rendered at the edge of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select an empty hotbar slot so the main hand contains no item. Press the number key corresponding to an empty slot; if necessary, open the inventory with E and clear one hotbar slot first.",
+        "exact_input": "1-9 for an empty hotbar slot; E only if a slot must be cleared",
+        "success_cue": "The highlighted hotbar slot is empty and the player's empty hand is visible in first-person view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Without changing the player's standing position, open the in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat command-entry field is open and ready for input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the report's summon command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/summon minecraft:boat ~ ~6.5 ~ {NoGravity:1b}",
+        "success_cue": "The command is accepted and a boat is summoned directly above the player's command-execution position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Do not walk, jump, or fly after summoning the boat. Rotate the camera upward until the summoned boat is visible, and allow any brief entity rendering delay to finish.",
+        "exact_input": null,
+        "success_cue": "The boat is visible directly overhead, remains suspended instead of falling, and the player is still standing at the summon position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Adjust only the camera angle until the center crosshair is placed on the underside or side of the suspended boat. Do not move closer to it.",
+        "exact_input": "Move mouse to aim; do not use movement keys",
+        "success_cue": "The crosshair visually overlaps the boat while the player remains at the original position beneath it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press the Use Item/Place Block control exactly once to attempt to ride the distant boat. Do not hold the button or repeat the interaction before handing off to observation.",
+        "exact_input": "Right mouse button once",
+        "success_cue": "One interaction input has just been sent while the crosshair is on the suspended boat and the player remains beneath it.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The player has just right-clicked the suspended boat once from the unchanged position beneath it. Begin observation immediately after that single interaction input, without moving, clicking again, or evaluating the result during setup.",
+    "uncertainties": [
+      "The report does not specify a seed, world type, or coordinates, so any unobstructed test location is used.",
+      "The report does not specify single-player versus multiplayer; single-player is selected as the simplest deterministic environment because no dedicated-server or additional-player condition is stated.",
+      "First-person view, a visible HUD, and an empty main hand are practical choices to make the relevant hand movement easy to observe; the report does not explicitly state that these are mandatory.",
+      "The supplied command is preserved exactly for 20w28a and was not replaced with syntax from another version."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a8a5afc4f3d3133016aa89fb1207c87d081192d4539b3cb25",
+    "elapsed_seconds": 48.6,
+    "usage": {
+      "input_tokens": 9201,
+      "output_tokens": 3840,
+      "reasoning_tokens": 2577,
+      "total_tokens": 13041
+    },
+    "timestamp": "2026-09-15T01:31:13.586242+00:00"
+  }
+}

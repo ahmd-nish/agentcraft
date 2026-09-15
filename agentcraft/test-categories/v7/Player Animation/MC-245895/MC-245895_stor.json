@@ -1,0 +1,207 @@
+{
+  "bug_id": "MC-245895",
+  "category": "Player Animation",
+  "source_md": "[Player Animation] - MC-245895.md",
+  "source_meta": {
+    "mojira categories": "Player Animation; Rendering",
+    "project": "MC",
+    "issue key": "MC-245895",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2021-12-21T13:10:40.096-0800",
+    "updated": "2025-10-30T06:36:32.498-0700",
+    "resolution date": "2025-10-30T06:36:32.406-0700",
+    "affects versions": "1.18.1; 1.18.2; 22w18a; 22w19a; 1.19 Pre-release 3; 1.20 Pre-release 6",
+    "fix versions": "25w45a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Relates:inward:MC-199467:Certain entity animations stop after they've existed in world for too long",
+    "_title": "View Bobbing stops working after long elytra flight"
+  },
+  "stor": {
+    "bug_id": "MC-245895",
+    "affected_versions": [
+      "1.18.1",
+      "1.18.2",
+      "22w18a",
+      "22w19a",
+      "1.19 Pre-release 3",
+      "1.20 Pre-release 6"
+    ],
+    "recommended_version": "1.18.1",
+    "environment": "Minecraft Java Edition 1.18.1 in a newly created single-player Creative-mode world. Use a first-person camera with the hand and hotbar visible, keep View Bobbing enabled, equip an Elytra in the chest equipment slot, and carry Firework Rockets in the hotbar. Perform the flight and final walking test in the same uninterrupted world session.",
+    "preconditions": [
+      "Install and launch the exact affected Java Edition version 1.18.1; do not use the listed fix version 25w45a.",
+      "Allow approximately two hours of uninterrupted active play for sustained Elytra travel and generation of new chunks.",
+      "Use a newly created world so that extended straight-line travel consistently enters terrain that has not previously been generated.",
+      "Keep the world loaded for the entire reproduction. Do not use Save and Quit to Title, close the world, restart the game, or otherwise reload the world between the long flight and the final walking action; the report comment states that reloading the world removes the condition.",
+      "Default controls are assumed. If controls are rebound, use the bindings for Jump/Fly, Move Forward, Use Item, Change Perspective, and Toggle HUD that correspond to the stated default inputs."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Launcher, select the Java Edition installation for version 1.18.1, and start the game.",
+        "exact_input": "Select the 1.18.1 installation and click Play.",
+        "success_cue": "The Minecraft Java Edition 1.18.1 title screen is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode. From the title screen, open Singleplayer, choose Create New World, change Game Mode until it reads Creative, and create the world. No particular seed is specified by the report.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is present in a newly generated Creative-mode world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish before changing settings or beginning travel.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading overlay is gone, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Ensure the camera is in first-person view and that the hand and hotbar are visible. Press the perspective key repeatedly only if necessary, and restore the HUD if it is hidden.",
+        "exact_input": "Default: F5 cycles perspectives; F1 toggles the HUD and hand visibility.",
+        "success_cue": "The view is from the player's eyes, and the hotbar plus the player's hand or held item can be seen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the video settings menu that contains the View Bobbing option.",
+        "exact_input": "Esc -> Options -> Video Settings",
+        "success_cue": "The Video Settings screen is open and the View Bobbing control is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Set View Bobbing to ON. If it already reads ON, leave it unchanged. Use the menu's Done buttons to return to the world.",
+        "exact_input": "Click \"View Bobbing\" only if it currently reads OFF; then select Done -> Done -> Back to Game.",
+        "success_cue": "The View Bobbing setting reads ON, and the player has returned to the loaded world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory and select the Search Items tab so the required equipment can be obtained without crafting or exploration.",
+        "exact_input": "Press E, then select the Search Items tab marked with a compass icon.",
+        "success_cue": "The Creative inventory search field and item grid are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Search for an Elytra and place one into an empty hotbar slot. Pick up the Elytra from the search result with left-click and place it into the desired hotbar slot with another left-click.",
+        "exact_input": "Enter \"elytra\" in the search field; left-click the Elytra result; left-click an empty hotbar slot.",
+        "success_cue": "An Elytra icon is present in the player's hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Clear or replace the search text, search for Firework Rocket, and place Firework Rockets into a different hotbar slot.",
+        "exact_input": "Enter \"firework rocket\" in the search field; left-click a Firework Rocket result; left-click a different hotbar slot.",
+        "success_cue": "A Firework Rocket stack is present in the hotbar without replacing the Elytra.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Open the player equipment view within the Creative inventory—the tab that displays the player model and armor slots. Drag the Elytra from the hotbar into the chest equipment slot beside the player model. The chest slot is the torso slot, second armor slot from the top.",
+        "exact_input": "Select the player inventory/equipment tab; left-click the Elytra in the hotbar; left-click the chest equipment slot.",
+        "success_cue": "The Elytra appears in the chest equipment slot and is shown equipped on the player model.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Close the inventory and select the hotbar slot containing Firework Rockets so they can be used during Elytra flight.",
+        "exact_input": "Press E to close the inventory, then press the number key corresponding to the Firework Rocket hotbar slot or use the mouse wheel to select it.",
+        "success_cue": "A Firework Rocket is visible in the player's first-person hand, and the corresponding hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Use Creative flight to gain enough altitude for a reliable Elytra deployment. Double-tap Jump to begin Creative flight, then hold Jump to ascend until the ground is safely below the player; approximately 20 blocks or more is sufficient as an execution aid.",
+        "exact_input": "Double-tap Space, then hold Space to ascend.",
+        "success_cue": "The player is hovering well above the ground and no longer standing on a block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Prepare to transition from Creative flight into Elytra gliding. Face toward open terrain, hold Move Forward, and double-tap Jump to disable Creative flight. Allow the player to begin falling without landing.",
+        "exact_input": "Aim toward open terrain; hold W; double-tap Space.",
+        "success_cue": "The player is moving forward and beginning to lose altitude rather than hovering in Creative flight.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "While airborne and falling, press Jump once to deploy the equipped Elytra, then continue holding Move Forward and steer into a shallow forward glide.",
+        "exact_input": "Press Space once while falling; continue holding W and steer with the mouse.",
+        "success_cue": "The fall changes into controlled forward Elytra gliding, and the player remains airborne.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Use the selected Firework Rocket while gliding to accelerate. Continue facing away from the initially generated area.",
+        "exact_input": "Right-click once while the Firework Rocket is selected and the Elytra is deployed.",
+        "success_cue": "The player receives a forward rocket boost and continues gliding through the air.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Begin an external two-hour timer and sustain Elytra travel through newly generated terrain. Choose one general direction and continue forward rather than circling back over already loaded chunks. Hold Move Forward, steer clear of mountains and obstacles, and right-click additional Firework Rockets whenever more speed or altitude is needed. Continue for approximately two hours of active in-world flight. If terrain ahead has not rendered, reduce the descent angle or rocket frequency and wait while still in the world until chunks render; resume forward travel as soon as terrain is visible. Do not exit or reload the world during this interval.",
+        "exact_input": "For approximately 2 hours: hold W, steer with the mouse, and right-click with Firework Rockets as needed. Do not use Save and Quit or restart the world.",
+        "success_cue": "Approximately two hours of active Elytra flight have elapsed in the same world session, the player's location has advanced continuously away from the starting region, and newly rendered terrain has repeatedly appeared ahead during travel.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "After the flight interval, stop using Firework Rockets and make a controlled landing on unobstructed solid ground. Aim at a shallow angle, allow speed to decrease, and touch down without leaving the world.",
+        "exact_input": "Release right-click; continue steering with the mouse and W as needed until landing.",
+        "success_cue": "The Elytra glide has ended, the player is standing on solid ground, and ordinary grounded movement is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Keep View Bobbing enabled and preserve the accumulated session state. Do not reopen the world, teleport to another world, enter another dimension, or use Save and Quit. Ensure the camera remains in first person and the hand or selected Firework Rocket remains visible before starting the walking action.",
+        "exact_input": "If necessary, press F5 until first-person view is restored; press F1 only if the hand and HUD are hidden.",
+        "success_cue": "The player is grounded in first person, the hand or held Firework Rocket is visible, and the same world session used for the two-hour flight is still active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Begin walking forward on the ground and maintain ordinary walking for several seconds without jumping, flying, or sprinting. This is the action at which the separate observation subsystem should inspect first-person movement and rendering.",
+        "exact_input": "Press and hold W for several seconds.",
+        "success_cue": "The player is moving forward on foot over solid ground in first person after the approximately two-hour Elytra flight.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The player has completed approximately two hours of continuous Elytra-and-Firework travel through newly generated chunks, landed without reloading the world, retained first-person hand visibility with View Bobbing enabled, and has just begun walking forward on solid ground. Hand control to the observation subsystem while grounded walking continues.",
+    "uncertainties": [
+      "The report supplies no world seed, coordinates, biome, travel direction, required distance, or exact number of generated chunks. A new world and continuous travel in one direction are used as the simplest deterministic way to keep generating new chunks.",
+      "The report gives a variable trigger interval of about one to two hours. This plan uses approximately two hours to maximize the chance of reaching the reported condition, but the exact threshold may differ between runs or computers.",
+      "The report says to fly around while generating chunks but does not specify a route. Avoiding loops and traveling continuously away from the starting area is a practical interpretation intended to prevent travel over already generated chunks.",
+      "The exact frequency and flight duration of Firework Rocket boosts are not specified. Rockets should be used only as often as needed to maintain sustained forward Elytra travel and avoid landing.",
+      "No exact frame rate, render distance, simulation distance, hardware specification, or chunk-generation rate is supplied. These factors may change how much terrain is generated during the reported one-to-two-hour interval.",
+      "The linked video was not needed to operationalize the supplied written reproduction steps and was not consulted."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0f66cceadfea8782016aa8a017d2d487d0a86fe792c48c090b",
+    "elapsed_seconds": 95.64,
+    "usage": {
+      "input_tokens": 8489,
+      "output_tokens": 6982,
+      "reasoning_tokens": 4565,
+      "total_tokens": 15471
+    },
+    "timestamp": "2026-09-15T01:33:43.301092+00:00"
+  }
+}
