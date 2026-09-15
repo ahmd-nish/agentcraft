@@ -1,0 +1,207 @@
+{
+  "bug_id": "MC-260903",
+  "category": "Combat",
+  "source_md": "[Combat] - MC-260903.md",
+  "source_meta": {
+    "mojira categories": "Combat; Text",
+    "project": "MC",
+    "issue key": "MC-260903",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-03-10T13:09:56.398-0800",
+    "updated": "2025-04-30T03:54:24.168-0700",
+    "resolution date": "2023-07-26T03:49:42.836-0700",
+    "affects versions": "1.19.4 Release Candidate 2; 1.19.4; 23w13a",
+    "fix versions": "1.20 Pre-release 3",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "player-test-scoreboard.gif; zombie-husk-test.gif",
+    "issue links": "Relates:inward:MC-260761:Taking any damage before fatal fall damage removes the attacker credited for kill | Relates:inward:MC-264420:Dead mobs can no longer appear in extended death messages | Duplicate:inward:MC-261406:Previous attacker is credited for kill despite being overridden by new attacker | Duplicate:inward:MC-261587:playerkills Scoreboard objective and player killed entity advancement do not track correctly | Duplicate:inward:MC-261727:Incorrect player kill credit using /effect and /kill from command block after player gets attacked",
+    "_title": "Less recent attacker can be credited for kill"
+  },
+  "stor": {
+    "bug_id": "MC-260903",
+    "affected_versions": [
+      "1.19.4 Release Candidate 2",
+      "1.19.4",
+      "23w13a"
+    ],
+    "recommended_version": "1.19.4 Release Candidate 2",
+    "environment": "Minecraft: Java Edition 1.19.4 Release Candidate 2, identified as 1.19.4-rc2 in the launcher; fresh single-player Superflat Overworld using the integrated server; Creative mode with commands enabled for setup, followed by Survival mode on Easy difficulty for the attack sequence. Natural mob spawning is disabled and time is frozen at midnight to isolate the Zombie and Husk. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-1-19-4-release-candidate-1?utm_source=openai))",
+    "preconditions": [
+      "Install and launch the exact affected version 1.19.4 Release Candidate 2, not the fixed version 1.20 Pre-release 3.",
+      "Use a fresh disposable world so testing a historical release candidate cannot affect an important world.",
+      "Commands/cheats must be enabled because the plan uses commands to create a deterministic test arena and concludes with the report-provided /kill command.",
+      "Use one player in single-player. No dedicated server or second player is required by the report.",
+      "Begin the attack sequence at full health in Survival mode, without a shield raised and without armor or status effects that obscure whether damage was received.",
+      "Do not strike or kill either test mob. The player must receive melee damage first from the Zombie and then from the Husk.",
+      "No damage source other than the designated Zombie, designated Husk, and final /kill command may affect the player during the timed sequence.",
+      "Complete the sequence from the Zombie hit through submission of /kill in less than five seconds. If the Husk hits first, another entity deals damage, or the order cannot be confirmed, abandon that attempt and repeat the setup before handing off."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, enable historical snapshot/release-candidate installations if necessary, create or select an installation using version 1.19.4-rc2, and launch it. Do not select 1.19.4-rc1, another release candidate, or a fix version. The launcher identifier for the report's first affected version is 1.19.4-rc2. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-1-19-4-release-candidate-1?utm_source=openai))",
+        "exact_input": "1.19.4-rc2",
+        "success_cue": "The title screen is open in Minecraft: Java Edition 1.19.4 Release Candidate 2.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then Create New World. On the Game tab, set Game Mode to Creative, Difficulty to Easy, and Allow Cheats to ON. On the World tab, select Superflat as the world type. Leave experiments and data packs disabled, then create the world. The affected version's world-creation screen exposes game mode, difficulty, cheats, and world type through these tabs. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-java-edition-1-19-4?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "A new Creative-mode Superflat world begins loading with commands enabled.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Wait without entering commands until the terrain around the player has rendered and movement responds normally. Move to a flat, unobstructed patch with at least eight blocks of clear horizontal space, then stop moving. Remain at this same position while running the relative-position summon commands.",
+        "exact_input": null,
+        "success_cue": "The player is stationary on level ground with a clear area in front and to either side, and nearby chunks are fully responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the difficulty command including the leading slash, and press Enter. This explicitly prevents Peaceful difficulty from removing the hostile test mobs.",
+        "exact_input": "/difficulty easy",
+        "success_cue": "Command feedback confirms that the difficulty is Easy.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, enter the following command including the leading slash, and press Enter. This prevents unrelated mobs from naturally spawning during the isolated test. Java Edition gamerules use the form /gamerule <rule> <value>. ([minecraft.wiki](https://minecraft.wiki/w/Commands/gamerule?utm_source=openai))",
+        "exact_input": "/gamerule doMobSpawning false",
+        "success_cue": "Command feedback confirms that doMobSpawning is set to false.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the following command including the leading slash, and press Enter to stop the day/night cycle.",
+        "exact_input": "/gamerule doDaylightCycle false",
+        "success_cue": "Command feedback confirms that doDaylightCycle is set to false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, enter the following command including the leading slash, and press Enter. Freezing the world at midnight prevents the Zombie and Husk from burning before the test is completed.",
+        "exact_input": "/time set midnight",
+        "success_cue": "The sky is dark and remains at night because the daylight cycle is disabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "While still in Creative mode, press T, enter the following command including the leading slash, and press Enter. This removes any already-loaded non-player entities so that only the two subsequently summoned attackers can participate.",
+        "exact_input": "/kill @e[type=!minecraft:player]",
+        "success_cue": "Command feedback reports that loaded non-player entities were killed, and no nearby mobs remain.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Return to the stationary setup position if the previous actions caused any movement. Face any convenient direction and do not move until both summon commands and both Slowness commands have been completed; the summon coordinates are relative to the player's current position.",
+        "exact_input": null,
+        "success_cue": "The player is stationary on the flat test surface with at least eight clear blocks around the intended mob positions.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T, enter the following command including the leading slash, and press Enter. It summons one adult persistent Zombie three blocks along positive Z from the stationary player. Java Edition /summon accepts an entity identifier, position, and optional NBT. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Tutorial%3A%E7%94%A8%E5%91%BD%E4%BB%A4%E6%93%8D%E6%8E%A7%E5%AE%9E%E4%BD%93?variant=zh-hk&utm_source=openai))",
+        "exact_input": "/summon minecraft:zombie ~ ~ ~3 {IsBaby:0b,PersistenceRequired:1b}",
+        "success_cue": "One adult green-skinned Zombie is visible approximately three blocks from the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Without moving from the setup position, press T, enter the following command including the leading slash, and press Enter. The extreme Slowness effect keeps the Zombie near its assigned position while retaining its ability to perform a melee attack when the player enters reach.",
+        "exact_input": "/effect give @e[type=minecraft:zombie,sort=nearest,limit=1] minecraft:slowness 999999 255 true",
+        "success_cue": "Command feedback confirms that Slowness was applied to the nearest Zombie, and the Zombie remains nearly or completely stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Still without moving, press T, enter the following command including the leading slash, and press Enter. It summons one adult persistent Husk five blocks along positive X and three blocks along positive Z from the setup position, separating it from the Zombie while keeping the distance short enough for the timed sequence.",
+        "exact_input": "/summon minecraft:husk ~5 ~ ~3 {IsBaby:0b,PersistenceRequired:1b}",
+        "success_cue": "One adult tan/brown Husk is visible about five blocks to the side of the Zombie; both designated attackers are present and visually distinguishable.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Without moving, press T, enter the following command including the leading slash, and press Enter. This keeps the Husk at its assigned position until the player deliberately approaches it.",
+        "exact_input": "/effect give @e[type=minecraft:husk,sort=nearest,limit=1] minecraft:slowness 999999 255 true",
+        "success_cue": "Command feedback confirms that Slowness was applied to the nearest Husk, and both attackers remain separated and stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Confirm that the health bar will be easy to monitor and that no shield is raised. Press T, enter the following command including the leading slash, and press Enter to change only the executing player to Survival mode. Omitting a player argument targets the player executing /gamemode. ([es.minecraft.wiki](https://es.minecraft.wiki/w/Comandos/gamemode?utm_source=openai))",
+        "exact_input": "/gamemode survival",
+        "success_cue": "Hearts and hunger are visible above the hotbar, the player can receive damage, and the stationary Zombie and Husk begin targeting the player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Approach only the green Zombie until it performs exactly one melee attack. Do not attack, block, open a menu, or allow the Husk into melee range. The instant the Zombie's hit is confirmed, begin the five-second timed portion of the reproduction.",
+        "exact_input": null,
+        "success_cue": "The player has just received one damage event from the Zombie, confirmed by a health decrease, hurt sound, red damage flash, or knockback; the Husk has not yet hit the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Immediately sprint out of the Zombie's melee reach and directly toward the separated tan/brown Husk. Use the Sprint action, Left Ctrl by default, while holding the appropriate movement key. Do not pause, and do not pass back through the Zombie's reach.",
+        "exact_input": null,
+        "success_cue": "The Zombie is behind and outside melee reach, while the player is approaching the Husk within the same five-second window.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Enter the Husk's melee reach and allow the Husk to perform exactly one melee attack. Do not strike or block against it. Confirm the damage event before proceeding.",
+        "exact_input": null,
+        "success_cue": "The player has received a Zombie melee hit followed by a more recent Husk melee hit, in that exact order, with no intervening damage source.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Immediately move approximately three blocks away from the immobilized Husk so it cannot deliver another attack while chat is being opened. Continue treating the five-second limit as running from the Zombie's hit.",
+        "exact_input": null,
+        "success_cue": "Both mobs are outside immediate melee reach, the player is still alive, and the most recent damage event was the Husk's hit.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Before five seconds have elapsed since the Zombie hit, press T to open in-game chat, type the report-provided command exactly with its leading slash, and press Enter once. In Java Edition, /kill with no target argument targets the entity executing the command, which here is the player. Do not inspect or interpret the resulting killer attribution; hand control to the observation subsystem immediately. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E5%91%BD%E4%BB%A4/kill?variant=zh&utm_source=openai))",
+        "exact_input": "/kill",
+        "success_cue": "The /kill command has been submitted by the player immediately after the Zombie-then-Husk damage sequence, and the game has transitioned to the player's death state.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 19,
+    "handoff_condition": "The player has just submitted /kill after receiving one Zombie melee hit followed by one Husk melee hit, with the entire sequence from the Zombie hit through command submission completed within five seconds and with no other damage source intervening. The death screen and associated text are now available for the separate Observation Agent; take no further player action.",
+    "uncertainties": [
+      "The report does not specify a seed, coordinates, world type, game mode, difficulty, single-player versus dedicated server, or how to obtain the Zombie and Husk. A fresh single-player Superflat world, Creative command-based setup, and Easy Survival trigger phase are practical choices intended to remove exploration and random spawning.",
+      "The report's comment mentions a five-second attacker-memory limit but does not unambiguously state whether the interval is measured from the first hit, the most recent hit, or another internal event. This plan conservatively completes the entire Zombie-hit-to-/kill sequence within five seconds.",
+      "Version 1.19.3 is mentioned in a comment but is not present in the formal Affects versions field, so it is intentionally excluded from affected_versions.",
+      "The high-level report only requires one Zombie hit followed by one Husk hit. The Slowness effects, disabled natural spawning, frozen midnight, mob separation, and entity cleanup are deterministic execution aids rather than asserted bug requirements.",
+      "The generic command and UI details were checked against permitted Minecraft.net and Minecraft Wiki sources, but the supplied Mojira report remains the source of truth for the attacker order and exact /kill trigger."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_03907dd85e12f2f4016aa8c32e3c6c87d0a76184a18ffd4ccd",
+    "elapsed_seconds": 156.08,
+    "usage": {
+      "input_tokens": 39474,
+      "output_tokens": 10464,
+      "reasoning_tokens": 7749,
+      "total_tokens": 49938
+    },
+    "timestamp": "2026-09-15T04:04:26.122398+00:00"
+  }
+}

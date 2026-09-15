@@ -1,0 +1,169 @@
+{
+  "bug_id": "MC-272994",
+  "category": "Combat",
+  "source_md": "[Combat] - MC-272994.md",
+  "source_meta": {
+    "mojira categories": "Combat; Enchantments",
+    "project": "MC",
+    "issue key": "MC-272994",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-06-05T14:29:16.320-0700",
+    "updated": "2025-04-26T15:47:16.925-0700",
+    "resolution date": "2024-11-16T02:15:02.751-0800",
+    "affects versions": "1.21 Pre-Release 3; 24w33a",
+    "fix versions": "24w33a; 24w45a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2024-06-06_13.48.10.png; image-2024-06-07-01-51-20-166.png",
+    "issue links": "Duplicate:inward:MC-274751:Players can hurt the allay holding item from master by using sword enchanted by fire aspect | Duplicate:inward:MC-278347:Allay set on fire by Sweeping Edge+Fire Aspect sword",
+    "_title": "Allays assigned to a player can be set on fire with sweeping and fire aspect"
+  },
+  "stor": {
+    "bug_id": "MC-272994",
+    "affected_versions": [
+      "1.21 Pre-Release 3",
+      "24w33a"
+    ],
+    "recommended_version": "1.21 Pre-Release 3",
+    "environment": "Minecraft Java Edition 1.21 Pre-Release 3 in a new, unmodified singleplayer world. Use Creative mode with commands/cheats available for deterministic setup, then change to Survival mode before the triggering attack. Use keyboard and mouse controls; the listed keys assume default bindings.",
+    "preconditions": [
+      "Launch the exact affected version listed as Minecraft Java Edition 1.21 Pre-Release 3, not a later release or either listed fix version.",
+      "Create a disposable singleplayer world in Creative mode with commands available. A flat preset is optional but can make entity placement easier.",
+      "Use an open, level area with a solid block beneath the player and enough room for an allay and a cow.",
+      "Do not install mods or datapacks that alter combat, allay behavior, enchantments, entity immunity, or attack cooldowns.",
+      "The player must be standing on the ground, not sprinting, not jumping, and must allow the sword attack cooldown to become fully charged before the trigger.",
+      "The commands below must be entered in in-game chat with the leading slash. If command feedback reports insufficient permission, recreate the world with commands enabled.",
+      "After selecting the setup position, avoid walking away from it: the entity summon coordinates are relative to the player's position."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Load the new world using Minecraft Java Edition 1.21 Pre-Release 3 and wait for world initialization to finish.",
+        "exact_input": null,
+        "success_cue": "The player can move normally, nearby terrain is rendered, and the pause menu identifies the running version as 1.21 Pre-Release 3.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Move to an open, level area, stand on a solid block, and stop moving. Remain at this position through the setup so the relative summon coordinates stay usable.",
+        "exact_input": "W/A/S/D as needed, then release all movement keys",
+        "success_cue": "The player is stationary on level ground with at least three blocks of unobstructed space nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Summon a stationary allay slightly more than two blocks from the player. Press T to open in-game chat, enter the exact command including the leading slash, and press Enter. The NoAI tag is used only to prevent the allay from leaving the controlled test position.",
+        "exact_input": "/summon minecraft:allay ~2 ~ ~0.75 {NoAI:1b}",
+        "success_cue": "Command feedback indicates that an allay was summoned, and one allay is visible approximately two blocks from the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Obtain one cobblestone item to assign the allay to the player. Open in-game chat, execute the exact command, and press Enter.",
+        "exact_input": "/give @s minecraft:cobblestone 1",
+        "success_cue": "A cobblestone item is present in the player's inventory or hotbar, and command feedback reports that the item was given.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select the hotbar slot containing the cobblestone. The hotbar is the row of nine item slots at the bottom of the screen; use the corresponding number key or the mouse wheel until that slot has the selection outline.",
+        "exact_input": "Hotbar number key 1-9 or mouse wheel",
+        "success_cue": "Cobblestone is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Aim the crosshair directly at the summoned allay and use the item on it once to give it the cobblestone. With default controls, use means right-click.",
+        "exact_input": "right-click once",
+        "success_cue": "The cobblestone leaves the player's hand and is visibly held by the allay, establishing that the allay has been assigned to this player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Without changing the player's position, summon a stationary cow as the primary attack target. Open in-game chat, execute the exact command, and press Enter. The cow will be placed next to the assigned allay so the allay is within the sword's sweeping area.",
+        "exact_input": "/summon minecraft:cow ~2 ~ ~ {NoAI:1b}",
+        "success_cue": "A cow is visible approximately two blocks from the player, with the item-holding allay immediately beside it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Obtain a diamond sword. Open in-game chat, execute the exact command, and press Enter.",
+        "exact_input": "/give @s minecraft:diamond_sword 1",
+        "success_cue": "A diamond sword is present in the player's inventory or hotbar, and command feedback reports that the item was given.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the hotbar slot containing the diamond sword by pressing that slot's number key or using the mouse wheel.",
+        "exact_input": "Hotbar number key 1-9 or mouse wheel",
+        "success_cue": "The diamond sword is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "While the diamond sword remains selected in the main hand, apply Fire Aspect I. Press T, enter the exact enchant command including the leading slash, and press Enter.",
+        "exact_input": "/enchant @s minecraft:fire_aspect 1",
+        "success_cue": "Command feedback reports that Fire Aspect was applied to the selected sword; the sword remains selected and has the enchanted-item glint.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Change the player to Survival mode for the combat action. Open in-game chat, execute the exact command, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "Command feedback reports that the game mode was set to Survival, and the health and hunger bars are visible above the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Without pressing movement, sprint, jump, or attack, rotate the camera until the crosshair is centered on the cow's body. Confirm visually that the cobblestone-holding allay remains immediately adjacent to the cow rather than between the crosshair and the cow.",
+        "exact_input": "Move mouse only; do not press W/A/S/D, Left Ctrl, Space, or left-click",
+        "success_cue": "The crosshair is on the cow, the adjacent allay still visibly holds cobblestone, and the player remains stationary on the ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Keep the crosshair on the cow and wait at least one full second without attacking. This ensures the sword attack cooldown is fully charged so the next grounded, non-sprinting sword attack can produce a sweeping attack.",
+        "exact_input": "Wait at least 1 second with all attack and movement controls released",
+        "success_cue": "At least one second has elapsed since any attack, the player is still grounded and stationary, and the cow and assigned allay remain adjacent.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Attack the cow exactly once with the fully cooled Fire Aspect sword while remaining grounded and stationary. With default controls, attack means left-click. Do not click a second time.",
+        "exact_input": "left-click once",
+        "success_cue": "One sword attack input has been delivered to the cow while the assigned, item-holding allay is still within the sweeping area beside it.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The player has just completed one fully cooled, grounded, non-sprinting attack against the cow with the Fire Aspect sword while the item-holding allay is immediately adjacent. Begin observation immediately after this single attack and do not perform another attack.",
+    "uncertainties": [
+      "The report lists 24w33a both under affected versions and fix versions. The plan follows the required ordering rule and uses the first affected version, 1.21 Pre-Release 3.",
+      "The report does not specify a particular target mob; a cow is used as a deterministic, non-hostile implementation of the report's generic instruction to attack a mob.",
+      "The report does not require Sweeping Edge, so the plan adds only Fire Aspect I and relies on the normal fully charged sweeping attack performed by a grounded, non-sprinting player wielding a sword.",
+      "The NoAI entity tag and exact relative placement are deterministic setup aids inferred for automation; the report itself only requires an assigned allay to be within range of the sweeping effect."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_087459023ba4c809016aa8c3ca4e6887d0a5f03e3e29cea0df",
+    "elapsed_seconds": 90.64,
+    "usage": {
+      "input_tokens": 8453,
+      "output_tokens": 6234,
+      "reasoning_tokens": 4413,
+      "total_tokens": 14687
+    },
+    "timestamp": "2026-09-15T04:05:56.770869+00:00"
+  }
+}

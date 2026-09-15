@@ -1,0 +1,159 @@
+{
+  "bug_id": "MC-258535",
+  "category": "Combat",
+  "source_md": "[Combat] - MC-258535.md",
+  "source_meta": {
+    "mojira categories": "Combat; Player",
+    "project": "MC",
+    "issue key": "MC-258535",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-12-15T07:57:58.190-0800",
+    "updated": "2026-02-03T16:46:56.502-0800",
+    "resolution date": "2023-03-14T12:19:35.962-0700",
+    "affects versions": "1.19.3; 23w04a",
+    "fix versions": "23w06a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Relates:inward:MC-4708:Explosion deals no damage to the player in \"Peaceful\" difficulty | Duplicate:inward:MC-258817:1.19.3 protection causing ender crystal damage reduce more under hard mode | Duplicate:inward:MC-259072:End Crystals deal less damage on hard mode | Relates:outward:MC-258561:Endermen teleport away instead of taking damage from end crystal, TNT and wither skull explosions | Relates:inward:MC-260993:End crystals and TNT explosions do same damage regardless of difficulty for entities except players",
+    "_title": "End crystal and TNT explosions do same damage regardless of difficulty"
+  },
+  "stor": {
+    "bug_id": "MC-258535",
+    "affected_versions": [
+      "1.19.3",
+      "23w04a"
+    ],
+    "recommended_version": "1.19.3",
+    "environment": "Vanilla Minecraft: Java Edition 1.19.3 in a disposable single-player Superflat world using the integrated server. Cheats are enabled. Creative mode is used only for setup; the explosion is triggered in Survival mode on Peaceful difficulty. Natural health regeneration is disabled, the player has 200 maximum health, and the player has no armor, shield, protective status effects, or other equipment.",
+    "preconditions": [
+      "Install and select the exact Java Edition version 1.19.3 in the Minecraft Launcher; do not use the fix version 23w06a or a later version for this reproduction.",
+      "Use an unmodified vanilla client without mods, plugins, or datapacks that alter explosions, damage, difficulty, health, armor, attributes, or status effects.",
+      "Use a disposable world because the end crystal explosion can damage terrain outside the protected test pad.",
+      "Keyboard and mouse controls must permit opening chat, looking around, and performing the Attack/Destroy action. The default chat key is T and the default Attack/Destroy input is the left mouse button."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and launch the exact installation for Java Edition 1.19.3. From the title screen, select Singleplayer.",
+        "exact_input": null,
+        "success_cue": "The lower-left corner of the title screen identifies the running version as Minecraft 1.19.3, and the Singleplayer world-selection screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Create New World. Set Game Mode to Creative and set Allow Cheats to ON. Open More World Options, cycle World Type until Superflat is selected, return to the main creation screen, and select Create New World. No particular seed is required.",
+        "exact_input": null,
+        "success_cue": "A new Superflat world has loaded, the player can fly, and commands are available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Land on the flat surface in an open area, away from any generated village or other entities. Stop moving and wait until the surrounding terrain is rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing still on unobstructed flat ground and nearby chunks are fully rendered.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Create an explosion-resistant test pad directly beneath and around the player. Press T to open chat, enter the exact command including the leading slash, and press Enter.",
+        "exact_input": "/fill ~-5 ~-1 ~-5 ~5 ~-1 ~5 minecraft:obsidian replace",
+        "success_cue": "An 11-by-11 obsidian pad is visible at the player's feet, with the player standing near its center.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Disable natural health regeneration so Peaceful-mode healing cannot change the player's health immediately after the explosion. Press T, enter the exact command, and press Enter. This game rule controls natural health regeneration, including Peaceful regeneration. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/%E7%8E%A9%E5%AE%B6?variant=zh-tw&utm_source=openai))",
+        "exact_input": "/gamerule naturalRegeneration false",
+        "success_cue": "Chat reports that the naturalRegeneration game rule is now false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Set the report-supported non-Normal test difficulty to Peaceful. Press T, enter the exact command, and press Enter.",
+        "exact_input": "/difficulty peaceful",
+        "success_cue": "Chat confirms that the difficulty has been set to Peaceful.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Increase the player's base maximum health so one point-blank end crystal explosion can be measured without ending the test through player death. Press T, enter the exact command, and press Enter. The generic.max_health attribute identifier and attribute command are available in this affected-version command format. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Java%E7%89%881.16/%E5%BC%80%E5%8F%91%E7%89%88%E6%9C%AC?variant=zh-tw&utm_source=openai))",
+        "exact_input": "/attribute @s minecraft:generic.max_health base set 200",
+        "success_cue": "The command is accepted and reports that the player's minecraft:generic.max_health base value was set to 200.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Remove all inventory, hotbar, armor-slot, and offhand items so armor, enchantments, a shield, or another held item cannot affect the test. Press T, enter the exact command, and press Enter. A response saying that no items were found is also acceptable because the required empty state is already satisfied.",
+        "exact_input": "/clear @s",
+        "success_cue": "The hotbar is empty, and the player has no equipped armor or offhand item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Remove any active status effects before applying the setup heal. Press T, enter the exact command, and press Enter. A response saying that no effects could be removed is acceptable because it confirms that no effects were active.",
+        "exact_input": "/effect clear @s",
+        "success_cue": "No status-effect icons are present and no protective effect remains active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Fill the enlarged health pool using Instant Health. Press T, enter the exact command, and press Enter. Java Edition's effect command accepts the target, effect identifier, duration, amplifier, and hide-particles arguments in this order. ([zh.minecraft.wiki](https://zh.minecraft.wiki/w/Tutorial%3A%E7%94%A8%E5%91%BD%E4%BB%A4%E6%93%8D%E6%8E%A7%E5%AE%9E%E4%BD%93?variant=zh-hk&utm_source=openai))",
+        "exact_input": "/effect give @s minecraft:instant_health 1 10 true",
+        "success_cue": "The Instant Health command is accepted; the enlarged health pool is ready to be checked after entering Survival mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Switch to Survival mode so the player can receive explosion damage. Press T, enter the exact command, and press Enter. Do not equip any items afterward.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The health and hunger HUDs are visible, multiple rows of hearts are full, no armor icons are displayed, and the hotbar remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While standing still near the center of the obsidian pad, summon the end crystal at the player's exact current coordinates. Press T, enter the exact command including the leading slash, and press Enter. Do not walk away after executing it. The summon command accepts an entity identifier followed by coordinates, and an end crystal summoned without extra NBT is a valid entity. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-commands?utm_source=openai))",
+        "exact_input": "/summon minecraft:end_crystal ~ ~ ~",
+        "success_cue": "One rotating end crystal is visible overlapping the player's position on the obsidian pad, and the player has not moved away from it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Without moving from the crystal's position, turn only as much as necessary to place the crosshair on the crystal's rotating central model. With an empty main hand and no shield, press the Attack/Destroy control once—left mouse button by default—to strike and destroy the crystal. End crystals detonate when hit. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ADefeating_the_ender_dragon?utm_source=openai))",
+        "exact_input": "left-click once",
+        "success_cue": "The end crystal has been struck, the crystal entity is gone, and its explosion has just completed. Do not move, heal, change difficulty, or execute another command before handoff.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The unarmored player is in Survival mode on Peaceful difficulty with naturalRegeneration disabled and a 200-point maximum-health pool, and has just detonated an overlapping end crystal while standing on the center of the obsidian test pad. Begin observing the player's post-explosion health immediately, before any further input or state change.",
+    "uncertainties": [
+      "The report permits Hard, Peaceful, or Easy but does not require one specific non-Normal difficulty. Peaceful is selected as the simplest deterministic variant.",
+      "The report does not specify a world seed, world type, game mode, armor state, health capacity, regeneration setting, or exact crystal-spawning method. The Superflat world, obsidian pad, temporary Creative setup, Survival trigger state, empty equipment, 200 maximum health, and disabled natural regeneration are practical controls added to make a single explosion survivable and measurable without changing its difficulty setting.",
+      "The report says to spawn an end crystal but supplies no command. The plan uses the version-compatible command /summon minecraft:end_crystal ~ ~ ~ to place it at the player's current position.",
+      "TNT is mentioned in the title and description, but the report's formal reproduction steps use an end crystal. This plan reproduces only the end-crystal path and does not add a separate TNT variant.",
+      "The report does not state whether 'stand in the middle' means an exact entity-coordinate overlap. Summoning the crystal at ~ ~ ~ while the player remains stationary is used as the deterministic interpretation."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_009a267fb1017ab4016aa8c29a7e1c87d087eff99c9a13d363",
+    "elapsed_seconds": 147.7,
+    "usage": {
+      "input_tokens": 43408,
+      "output_tokens": 9619,
+      "reasoning_tokens": 7699,
+      "total_tokens": 53027
+    },
+    "timestamp": "2026-09-15T04:01:50.033173+00:00"
+  }
+}

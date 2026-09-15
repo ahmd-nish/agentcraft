@@ -1,0 +1,164 @@
+{
+  "bug_id": "MC-302663",
+  "category": "Combat",
+  "source_md": "[Combat] - MC-302663.md",
+  "source_meta": {
+    "mojira categories": "Combat; Sound",
+    "project": "MC",
+    "issue key": "MC-302663",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-10-09T07:39:20.939-0700",
+    "updated": "2025-11-04T05:31:09.802-0800",
+    "resolution date": "2025-11-03T04:38:18.083-0800",
+    "affects versions": "25w41a; 25w42a; 25w43a; 25w44a",
+    "fix versions": "25w45a",
+    "area": "Expansion A",
+    "votes": "14",
+    "watchers": "3",
+    "attachments": "3",
+    "attachment filenames": "2025-10-21 11.mp4; 2025-10-29 13-50-54.mp4; MC-302663.png",
+    "issue links": "Duplicate:inward:MC-302720:All attacks play the \"Weak Attack\" sound effect  | Duplicate:inward:MC-302723:Critical hit sound removed | Duplicate:inward:MC-302744:crit sound not playing in the newest snapshot (mounts of mayhem) | Duplicate:inward:MC-302749:Attacking sounds are broken | Duplicate:inward:MC-302765:Incorrect critical hit sound when attacking mobs | Duplicate:inward:MC-302766:Every non-Spear melee attack plays the \"Weak Attack\" sound, regardless of the attack cooldown | Duplicate:inward:MC-302762:Crit Sounds | Duplicate:inward:MC-302771:The sounds when hitting an enemy are broken and each attack produces the same weak hit sound effect | Duplicate:inward:MC-302831:Sounds of strong attacks, sweepeing attacks and critical attacks no longer play. | Duplicate:inward:MC-302731:Critical Attacks Don't Work | Duplicate:inward:MC-302914:There are now hit sounds besides weak attack playing | Duplicate:inward:MC-302956:Wrong sound event is played while making a critical attack | Duplicate:inward:MC-302928:mobs do not play critical hit sound | Duplicate:inward:MC-302965:Sounds Register Critical, Strong and Knockback Attack for a Weak attack  | Duplicate:inward:MC-302976:Critical Hit Sound doesn't play when it occours. | Duplicate:inward:MC-302977:Attacking bug | Duplicate:inward:MC-303270:The strong attack sound doesnt play anymore | Duplicate:inward:MC-303158:sweep hit/critical hit sound missing | Duplicate:inward:MC-303339:Every Attack except for Knockback Attacks make the Weak Attack sound. | Duplicate:inward:MC-303300:Attacking Audio Incorrect | Duplicate:inward:MC-303438:All attacks play the \"weak attack\" sfx | Duplicate:inward:MC-303495:I don't hear the crit and hit sound effect | Duplicate:inward:MC-303712:Sweep attack, Critical Hit, and Normal Attack sounds aren't playing at all | Duplicate:inward:MC-303787:Attack sounds missing or playing incorrectly... | Duplicate:inward:MC-303867:Damage type sound effect missing | Duplicate:inward:MC-303878:When I attack after the reload time for attacking completely fills up, it deals a weak attack, when it should be a strong attack. | Duplicate:inward:MC-303939:Crit Sound Does not play since the Mounts of Mayhem Snapshots",
+    "_title": "Any form of attacking non-player entities always produces the “weak attack” sound instead of the appropriate sound"
+  },
+  "stor": {
+    "bug_id": "MC-302663",
+    "affected_versions": [
+      "25w41a",
+      "25w42a",
+      "25w43a",
+      "25w44a"
+    ],
+    "recommended_version": "25w41a",
+    "environment": "Minecraft: Java Edition snapshot 25w41a in a new vanilla single-player test world, using keyboard and mouse. Use Creative mode with commands enabled for deterministic setup, then change to Survival mode before attacking. Use the default resource pack, no mods that alter combat or sound, and an audible or recordable game-audio output.",
+    "preconditions": [
+      "The Minecraft Launcher can install and launch Java Edition snapshot 25w41a.",
+      "Use a disposable test world rather than an important existing world because snapshots can damage or alter saved worlds.",
+      "The client has no resource pack or mod that replaces attack sounds or changes melee-combat behavior.",
+      "Master Volume and gameplay/player sound volume are above 0, and the operating-system output or automated audio-capture channel is not muted.",
+      "Use the bound equivalents if inventory, chat, jump, attack, or use controls have been changed from their defaults."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, open Minecraft: Java Edition -> Installations, enable the Snapshots filter if necessary, and create or select an installation whose version is exactly 25w41a. Launch that installation. The official 25w41a page identifies it as a Java Edition snapshot and documents enabling snapshots from the Installations tab. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-25w41a?utm_source=openai))",
+        "exact_input": "Minecraft Launcher -> Minecraft: Java Edition -> Installations -> Snapshots enabled -> version 25w41a -> Play",
+        "success_cue": "The Minecraft main menu loads and displays version 25w41a on the screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player test world in Creative mode. Keep commands enabled so the player can be changed to Survival mode after setup. Wait until terrain has rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Commands: ON, if shown -> Create New World",
+        "success_cue": "The player is in a newly loaded Creative-mode world and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Ensure attack sounds can be heard or captured. Open the pause menu, enter the sound settings, set Master Volume and the Players sound category above 0, then return to the world. If an external audio recorder is used, verify that it is capturing Minecraft's output device.",
+        "exact_input": "Esc -> Options -> Music & Sounds -> Master Volume above 0% and Players above 0% -> Done",
+        "success_cue": "Minecraft is unpaused, and ordinary interface or movement sounds are audible or visible in the audio-capture meter.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, obtain one Block of Copper, one Carved Pumpkin, and one unenchanted Iron Sword, and place all three in separate hotbar slots. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "E; search for \"Block of Copper\", \"Carved Pumpkin\", and \"Iron Sword\"; move one of each to the hotbar",
+        "success_cue": "The hotbar contains a Block of Copper, a Carved Pumpkin, and an unenchanted Iron Sword.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Close the inventory and move to a flat, solid location with at least a 3-by-3-block clear area and two unobstructed blocks of vertical space above the ground. Stop flying and stand on the ground before constructing the golem.",
+        "exact_input": "E to close inventory; use movement controls to reach a clear area; descend with the bound Sneak control, default Left Shift, if flying",
+        "success_cue": "The player is standing on solid flat ground with enough open space for a copper golem to appear.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the Block of Copper in the hotbar and use it on the ground to place a single copper block.",
+        "exact_input": "Select the Block of Copper hotbar slot, then right-click the target ground position",
+        "success_cue": "One Block of Copper is present on the ground directly in front of the player, with the space above it empty.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Select the Carved Pumpkin and right-click the top face of the placed Block of Copper. Placing a carved pumpkin directly atop a copper block is the officially documented method of summoning a copper golem. ([minecraft.net](https://www.minecraft.net/en-us/article/the-copper-cape-quest))",
+        "exact_input": "Select the Carved Pumpkin hotbar slot, aim at the top face of the Block of Copper, and right-click once",
+        "success_cue": "The two placed blocks convert into a living copper golem that is visible near the player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Select the unenchanted Iron Sword in the hotbar so it is held in the player's main hand. Do not attack yet.",
+        "exact_input": "Press the number key corresponding to the Iron Sword hotbar slot, or scroll to that slot",
+        "success_cue": "The Iron Sword is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Change from Creative mode to Survival mode. Press T to open chat, type the command exactly as shown with the leading slash, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The command succeeds, the Survival health and hunger HUD is visible, and the player is no longer using Creative flight.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Approach the copper golem on level ground until it is within normal melee reach, no more than approximately three blocks away. Keep the crosshair centered on the golem's body. Stop sprinting and ensure the player is not in water, climbing, riding another entity, or otherwise prevented from performing a normal jump critical attack.",
+        "exact_input": "Use movement controls to approach; release movement and sprint controls; aim the crosshair at the copper golem",
+        "success_cue": "The player is stationary on solid ground within melee reach, with the crosshair continuously aimed at the copper golem.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Without pressing the attack control, wait at least two seconds so the Iron Sword's attack cooldown is fully charged. If an attack-strength indicator is enabled, wait until it is completely filled. Java Edition melee attacks use a cooldown, and attacking before it refills produces a reduced-strength attack. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ABeginner%27s_guide?utm_source=openai))",
+        "exact_input": "Wait at least 2 seconds without left-clicking",
+        "success_cue": "At least two seconds have elapsed since any attack input, and the attack-strength indicator is full if it is displayed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "While still aimed at the copper golem and without sprinting, press the Jump control once. Allow the player to pass the top of the jump and begin moving downward. Do not press the attack control while still rising.",
+        "exact_input": "Press Space once, then wait until the player has passed the jump apex",
+        "success_cue": "The player is airborne and descending toward the ground while the crosshair remains on the copper golem.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Before landing, left-click exactly once to strike the copper golem during the downward portion of the jump. Do not make a second attack. This is the report's critical-attack trigger.",
+        "exact_input": "Left-click once while descending and while the crosshair is on the copper golem",
+        "success_cue": "The single strike connects: the copper golem reacts to damage, and critical-hit particles should provide a visual confirmation that the intended attack type was executed. No additional attack has been made.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The fully charged, single descending melee strike has just connected with the copper golem. Immediately hand control to the observation subsystem to capture and classify the attack audio, without attacking again or changing sound settings.",
+    "uncertainties": [
+      "The report does not specify single-player versus dedicated-server testing, a world seed, coordinates, difficulty, or an initial game mode. This plan uses a new single-player Creative world for setup and Survival mode for the critical attack because no server-specific condition is stated.",
+      "The report says to summon a copper golem but supplies no command. To avoid inventing an unverified command string, this plan uses the officially documented carved-pumpkin-on-copper-block construction method.",
+      "The report does not specify a weapon. An unenchanted Iron Sword is selected as a simple conventional melee weapon; it is a practical implementation choice and is not asserted as required by the report.",
+      "The report does not specify audio-volume settings, resource packs, or mods. Audible vanilla sound output is established only so the requested sound-triggering action can be evaluated reliably.",
+      "The exact critical-hit timing instructions are an operational reconstruction of the report's phrase \"Critically attack\". The trigger should be retried from step 10 only if the strike misses or no critical-hit particles appear; do not repeat successful strikes merely to amplify the behavior."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0ad3384fac2cde41016aa8c424f19887d0a92fe52ade2ddb80",
+    "elapsed_seconds": 106.28,
+    "usage": {
+      "input_tokens": 43734,
+      "output_tokens": 6340,
+      "reasoning_tokens": 4388,
+      "total_tokens": 50074
+    },
+    "timestamp": "2026-09-15T04:07:43.061829+00:00"
+  }
+}

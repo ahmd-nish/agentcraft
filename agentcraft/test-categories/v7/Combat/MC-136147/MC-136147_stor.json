@@ -1,0 +1,296 @@
+{
+  "bug_id": "MC-136147",
+  "category": "Combat",
+  "source_md": "[Combat] - MC-136147.md",
+  "source_meta": {
+    "mojira categories": "Combat",
+    "project": "MC",
+    "issue key": "MC-136147",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2018-08-16T19:15:30.531-0700",
+    "updated": "2025-04-26T07:04:58.214-0700",
+    "resolution date": "2024-11-18T09:30:31.038-0800",
+    "affects versions": "Minecraft 1.13; Minecraft 1.13.1-pre1; Minecraft 1.13.1-pre2; Minecraft 1.13.1; Minecraft 1.13.2-pre1; Minecraft 1.13.2-pre2; Minecraft 1.13.2; Minecraft 18w43b; Minecraft 18w43c; Minecraft 18w44a; Minecraft 18w45a; Minecraft 18w48b; Minecraft 19w07a; Minecraft 19w08b; Minecraft 19w09a; Minecraft 19w11a; Minecraft 19w11b; Minecraft 19w13b; Minecraft 19w14a; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 5; Minecraft 1.14; Minecraft 1.14.1 Pre-Release 1; Minecraft 1.14.2; Minecraft 1.14.3 Pre-Release 2; 1.14.4; 19w35a; 19w36a; 19w40a; 1.15.2; 20w12a; 1.16 Pre-release 1; 1.16.1; 20w30a; 1.16.2 Release Candidate 1; 1.16.3; 1.16.4 Release Candidate 1; 1.16.4; 20w46a; 20w51a; 21w05b; 21w06a; 21w07a; 21w11a; 21w15a; 21w19a; 1.17; 1.17.1; 21w39a; 21w42a; 1.18; 1.18.1; 1.18.2; 1.19; 1.19.1 Release Candidate 2; 1.19.2; 22w43a; 1.19.3; 1.19.4 Release Candidate 2; 1.19.4; 1.20 Release Candidate 1; 1.20; 1.20.1; 1.20.2 Release Candidate 1; 1.20.2 Release Candidate 2; 1.20.4; 24w12a; 1.20.6; 24w19a; 24w20a",
+    "fix versions": "24w19a",
+    "area": "Gameplay",
+    "labels": "durability; enchantment-effect; mainhand; offhand; riptide",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "fixed.mp4; MC-136147.mp4; MC-136147 - Damage when holding trident in main hand.png; MC-136147 - Damage when holding trident in offhand.png",
+    "issue links": "Relates:outward:MC-271455:When holding a fire aspect weapon in the mainhand, thrown tridents in the offhand will set mobs on fire | Relates:outward:MC-99063:Looting not working on offhand | Duplicate:inward:MC-263581:Trident in offhand applying damage from main hand | Duplicate:inward:MC-175586:Using Riptide in off hand will deal damage according to the item in your main hand, not the actual trident",
+    "_title": "Riptide tridents use mainhand item to inflict damage when thrown in the offhand"
+  },
+  "stor": {
+    "bug_id": "MC-136147",
+    "affected_versions": [
+      "Minecraft 1.13",
+      "Minecraft 1.13.1-pre1",
+      "Minecraft 1.13.1-pre2",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2-pre1",
+      "Minecraft 1.13.2-pre2",
+      "Minecraft 1.13.2",
+      "Minecraft 18w43b",
+      "Minecraft 18w43c",
+      "Minecraft 18w44a",
+      "Minecraft 18w45a",
+      "Minecraft 18w48b",
+      "Minecraft 19w07a",
+      "Minecraft 19w08b",
+      "Minecraft 19w09a",
+      "Minecraft 19w11a",
+      "Minecraft 19w11b",
+      "Minecraft 19w13b",
+      "Minecraft 19w14a",
+      "Minecraft 1.14 Pre-Release 2",
+      "Minecraft 1.14 Pre-Release 5",
+      "Minecraft 1.14",
+      "Minecraft 1.14.1 Pre-Release 1",
+      "Minecraft 1.14.2",
+      "Minecraft 1.14.3 Pre-Release 2",
+      "1.14.4",
+      "19w35a",
+      "19w36a",
+      "19w40a",
+      "1.15.2",
+      "20w12a",
+      "1.16 Pre-release 1",
+      "1.16.1",
+      "20w30a",
+      "1.16.2 Release Candidate 1",
+      "1.16.3",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w46a",
+      "20w51a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w11a",
+      "21w15a",
+      "21w19a",
+      "1.17",
+      "1.17.1",
+      "21w39a",
+      "21w42a",
+      "1.18",
+      "1.18.1",
+      "1.18.2",
+      "1.19",
+      "1.19.1 Release Candidate 2",
+      "1.19.2",
+      "22w43a",
+      "1.19.3",
+      "1.19.4 Release Candidate 2",
+      "1.19.4",
+      "1.20 Release Candidate 1",
+      "1.20",
+      "1.20.1",
+      "1.20.2 Release Candidate 1",
+      "1.20.2 Release Candidate 2",
+      "1.20.4",
+      "24w12a",
+      "1.20.6",
+      "24w19a",
+      "24w20a"
+    ],
+    "recommended_version": "Minecraft 1.13",
+    "environment": "Minecraft Java Edition 1.13 in a fresh single-player world using the integrated server. Use a Superflat world for a level test area, enable cheats, begin in Creative mode for deterministic construction and item acquisition, and switch to Survival mode before performing the damage trials. Use an unmodified vanilla client with no datapacks, attribute modifiers, or status effects beyond those created by the described setup.",
+    "preconditions": [
+      "The Minecraft Launcher has an installation profile for the exact release Minecraft 1.13; do not substitute 1.13.1 or a later version.",
+      "Create a fresh single-player Superflat world with Game Mode set to Creative and Allow Cheats enabled.",
+      "Use one player only. The player should have no Strength effect or other effect that changes attack damage.",
+      "Default keyboard and mouse inputs are assumed. If controls are rebound, use the mapped controls for Open Chat, Inventory, Use Item, and Swap Item With Offhand.",
+      "The Damage scoreboard objective must not already exist. A fresh world satisfies this condition.",
+      "The test lane must provide water at its launch end because a Riptide trident can launch its user only while the user is in water or exposed to rain.",
+      "Use two ordinary, unarmored sheep: one for the mainhand control trial and a fresh one for the offhand trigger trial."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the exact Minecraft Java Edition profile named Minecraft 1.13. Create and enter a fresh Creative-mode Superflat world with cheats enabled. Wait until the terrain has rendered and movement and inventory input respond normally.",
+        "exact_input": null,
+        "success_cue": "The F3 version text, title screen version label, or launcher profile confirms Minecraft 1.13, and the player is standing in a loaded Superflat world in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open the Creative inventory using the Inventory control, default E. Obtain one Trident, at least two Sheep Spawn Eggs, one Water Bucket, and enough solid blocks to build a short test corridor. Put the trident, sheep spawn eggs, and water bucket in separate hotbar slots.",
+        "exact_input": "E",
+        "success_cue": "The hotbar contains a Trident, at least two Sheep Spawn Eggs, and a Water Bucket; solid building blocks are also available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Construct a straight test lane on the flat ground. Make its interior one block wide and at least ten blocks long. Place solid sidewalls two blocks high along both sides and cap the far end with a solid wall. Keep the near end open. This confines each sheep to the player's forward Riptide path without putting a barrier between the player and sheep.",
+        "exact_input": null,
+        "success_cue": "A straight, one-block-wide corridor at least ten blocks long is open at the near end, closed at the far end, and has two-block-high sidewalls.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "At the open end of the corridor, remove the first two floor blocks to form a one-block-deep, two-block-long trench. Use the Water Bucket to fill both trench blocks with stationary water source blocks. Riptide requires the user to be in water or rain when activating it. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAchievement_guide?utm_source=openai))",
+        "exact_input": "Right-click / Use Item with Water Bucket",
+        "success_cue": "The corridor begins with a two-block-long water trench in which the player can stand, and the remaining lane ahead has a solid floor.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Select the Trident's hotbar slot so that the trident is visibly held in the main hand.",
+        "exact_input": "Press the number key assigned to the Trident's hotbar slot",
+        "success_cue": "A Trident is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat. Enter the exact enchantment command, including the leading slash, and press Enter. The selected mainhand item must remain the Trident while executing the command. The /enchant command and resource-location enchantment argument are available in Java Edition 1.13. ([pt.minecraft.wiki](https://pt.minecraft.wiki/w/Comandos/enchant?utm_source=openai))",
+        "exact_input": "/enchant @s minecraft:riptide 1",
+        "success_cue": "The command reports that the enchantment was applied. Hovering over the Trident in the inventory shows Riptide I.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open in-game chat. Enter the report's first scoreboard command exactly, including the leading slash, and press Enter. Cheats are required because this is an in-game command.",
+        "exact_input": "/scoreboard objectives add Damage minecraft.custom:minecraft.damage_dealt",
+        "success_cue": "Chat confirms that the Damage objective was created successfully.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press T, enter the report's sidebar-display command exactly with the leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives setdisplay sidebar Damage",
+        "success_cue": "The Damage objective is assigned to the right-side scoreboard display; it may remain empty until the player's score is initialized.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press T, enter the report's player-initialization command exactly with the leading slash, and press Enter.",
+        "exact_input": "/scoreboard players add @s Damage 0",
+        "success_cue": "The right-side Damage sidebar displays the current player's name with an initialized numerical score.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Switch to Survival mode for the two damage trials. Press T, enter the command with the leading slash, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The Survival health and hunger bars are visible, and chat confirms that the player's game mode was changed to Survival.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select a Sheep Spawn Egg. Enter the corridor and right-click the solid floor approximately three to five blocks beyond the water trench to spawn the first sheep. Immediately move back toward the water end so the sheep remains ahead of the player in the corridor.",
+        "exact_input": "Right-click / Use Item with Sheep Spawn Egg",
+        "success_cue": "One ordinary sheep is alive inside the narrow corridor, with no solid barrier between it and the water launch area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the Riptide I Trident's hotbar slot again. Stand inside the water trench, face directly down the corridor, and place the crosshair on the first sheep's body. Ensure the Trident is still in the main hand.",
+        "exact_input": "Select Trident hotbar slot; use mouse movement to aim",
+        "success_cue": "The player's feet or body are in water, the Riptide I Trident is in the main hand, and the first sheep is directly ahead under the crosshair.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press and hold Use Item, default right mouse button, while remaining in the water and keeping the crosshair aligned with the sheep. Hold until the Trident has completed its charge animation; do not release early.",
+        "exact_input": "Hold Right Mouse Button / Use Item",
+        "success_cue": "The mainhand Riptide I Trident is fully charged while the player remains in water and aimed down the corridor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Release Use Item to activate the mainhand Riptide launch. Do not steer sideways or make a separate left-click attack. Allow the propelled player to collide once with the first sheep, then release movement and attack controls.",
+        "exact_input": "Release Right Mouse Button / Use Item",
+        "success_cue": "The mainhand Riptide movement and a single collision with the first sheep have completed, and no follow-up attack has been made.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait until Riptide movement has ended and the Damage sidebar has stopped changing. Record the numerical Damage score shown after this mainhand control collision, but do not alter or reset it. This recorded value is the baseline from which the second collision's increase can be calculated.",
+        "exact_input": null,
+        "success_cue": "The post-control Damage score has been recorded, the sidebar remains visible, and the player is stationary.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select the Sheep Spawn Egg and spawn a fresh second sheep on the corridor floor. If the first sheep survived, keep the second sheep spatially distinct and target only the fresh sheep; if necessary, wait until the first sheep is away from the intended collision line. Do not attack either sheep manually.",
+        "exact_input": "Right-click / Use Item with Sheep Spawn Egg",
+        "success_cue": "A fresh, unarmored second sheep is alive in the corridor and can be used as the offhand trial target.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Return to the water trench at the open end of the corridor. Face the fresh second sheep and ensure no other entity is closer along the launch path.",
+        "exact_input": null,
+        "success_cue": "The player is back at the water launch end, and the second sheep is the first entity directly ahead in the corridor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Select the Riptide I Trident in the main hand, then use Swap Item With Offhand, default F, once. This moves the Trident into the offhand and moves the previously empty offhand contents into the selected mainhand hotbar slot. If the offhand was not empty, instead open the inventory with E, clear the shield-shaped offhand slot, and drag the Trident into that slot. Tridents can be equipped and used from the offhand. ([minecraft.wiki](https://minecraft.wiki/w/Dual_wield?utm_source=openai))",
+        "exact_input": "F (default Swap Item With Offhand)",
+        "success_cue": "The Riptide I Trident is visibly held in the offhand, and the currently selected mainhand hotbar slot is completely empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Stand in the water trench and aim the crosshair directly at the fresh second sheep. Reconfirm that the main hand is visually empty and that the Riptide I Trident remains in the offhand. Do not select another hotbar item.",
+        "exact_input": null,
+        "success_cue": "The player is wet, the main hand is empty, the Riptide I Trident is in the offhand, and the second sheep is directly ahead under the crosshair.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Record the current Damage sidebar value immediately before charging the offhand Trident. Do not reset the objective and do not perform any attack between recording this value and activating Riptide.",
+        "exact_input": null,
+        "success_cue": "The exact pre-collision Damage value for the offhand trial has been recorded and remains unchanged.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Press and hold Use Item, default right mouse button. Because the selected mainhand slot is empty, the offhand Riptide I Trident should begin charging. Remain in the water and keep the crosshair aligned with the second sheep until charging is complete.",
+        "exact_input": "Hold Right Mouse Button / Use Item",
+        "success_cue": "The offhand Riptide I Trident is fully charged while the player remains in water, the main hand remains empty, and the second sheep is aligned with the launch path.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Release Use Item to activate the offhand Riptide launch. Do not left-click, change hotbar slots, or steer sideways. Allow the propelled player to collide exactly once with the fresh second sheep, then make no further attack or item-use inputs.",
+        "exact_input": "Release Right Mouse Button / Use Item",
+        "success_cue": "The offhand Riptide launch has produced one completed player-to-sheep collision, the Damage sidebar remains visible, and no additional attack has occurred.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "The player, with an empty main hand and the Riptide I Trident still in the offhand, has just completed exactly one Riptide-propelled collision with the fresh second sheep. The Damage sidebar is still visible, the immediately preceding score was recorded at step 20, and no further attack, item use, hotbar change, or scoreboard command has been performed. Begin observation now.",
+    "uncertainties": [
+      "The report does not specify a world type, game mode, or single-player versus server environment. A fresh single-player Superflat world, Creative setup, and Survival execution are practical deterministic choices rather than report requirements.",
+      "The description says to spawn an entity, while the more detailed confirming comment specifies a sheep. This plan uses sheep to match that detailed reproduction.",
+      "The report describes one spawned entity but the mainhand control strike can kill an ordinary sheep. This plan uses one fresh sheep per trial so both strikes have valid, undamaged targets; that is a practical execution inference.",
+      "The report omits the wetness condition needed to activate Riptide. The water launch trench was added after external verification that Riptide launches only while the player is in water or exposed to rain. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AAchievement_guide?utm_source=openai))",
+      "The affected-version metadata includes 24w19a and 24w20a even though 24w19a is also listed as the fix version and the final comment states that the reporter could not reproduce in either version. All affected-version strings were nevertheless preserved exactly as supplied, and Minecraft 1.13 remains the recommended version because it is the first listed affected version.",
+      "The exact scoreboard increases described by the report are intentionally not included as success cues or handoff criteria because evaluating those values belongs to the separate observation subsystem."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_033acbea3160f089016aa8c210888487d0b03381391bb2b8cf",
+    "elapsed_seconds": 138.41,
+    "usage": {
+      "input_tokens": 27418,
+      "output_tokens": 10392,
+      "reasoning_tokens": 6990,
+      "total_tokens": 37810
+    },
+    "timestamp": "2026-09-15T03:59:22.319620+00:00"
+  }
+}
