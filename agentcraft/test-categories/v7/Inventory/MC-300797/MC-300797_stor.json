@@ -1,0 +1,120 @@
+{
+  "bug_id": "MC-300797",
+  "category": "Inventory",
+  "reproduction_method": "commands",
+  "source_md": "[Inventory] - MC-300797.md",
+  "source_meta": {
+    "mojira categories": "Inventory; Rendering",
+    "project": "MC",
+    "issue key": "MC-300797",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-08-06T21:40:07.386-0700",
+    "updated": "2026-03-11T03:53:32.957-0700",
+    "resolution date": "2025-08-25T04:07:39.706-0700",
+    "affects versions": "25w32a; 25w34b",
+    "fix versions": "25w35a",
+    "area": "Platform G",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2025-08-06_21.34.51.png; 2025-08-07_02.39.33.png; 2025-08-07_02.40.11.png; 2025-08-07 02-36-37.mp4",
+    "issue links": "Duplicate:inward:MC-301420:When glowing character appears on side of the screen | Relates:outward:MC-276826:Entity models render completely white in GUI screens while affected by glowing and invisibility at the same time",
+    "_title": "The glowing effect causes entities to render incorrectly inside of inventories"
+  },
+  "stor": {
+    "bug_id": "MC-300797",
+    "affected_versions": [
+      "25w32a",
+      "25w34b"
+    ],
+    "recommended_version": "25w32a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 25w32a in a single-player world using the integrated server. Use Survival mode with commands/cheats enabled. Set GUI Scale to 1 as the report's optional visibility aid. No dedicated server, additional players, seed, coordinates, resource pack, shader pack, or datapack is required by the report.",
+    "preconditions": [
+      "Install or create a Minecraft Launcher installation for the exact Java Edition snapshot 25w32a; do not use fix version 25w35a.",
+      "Use an unmodified vanilla client so third-party rendering changes do not affect the inventory entity preview.",
+      "Create or load a single-player world in Survival mode with commands enabled. The report provides no required seed, world type, dimension, biome, or coordinates.",
+      "Wait until the world and surrounding chunks have finished loading and player movement responds normally before applying the effect.",
+      "Use the player-inventory reproduction variant as the primary path because it is the shortest deterministic variant supplied in the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select the installation configured for Java Edition snapshot 25w32a, and start the game. At the title screen, verify that the displayed version is 25w32a before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft Java Edition title screen is open and identifies the running version as 25w32a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new world, or select a disposable existing world, configured for Survival mode with commands enabled. Enter the world and wait until terrain has rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Survival -> Allow Commands: On -> Create New World",
+        "success_cue": "The player is standing in a loaded single-player world, the Survival health and hunger bars are visible, movement is responsive, and commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set GUI Scale to 1, which the report recommends to make the rendering issue easier for the later observation subsystem to inspect. Return to the world after changing the option.",
+        "exact_input": "Esc -> Options... -> Video Settings... -> GUI Scale: 1 -> Done -> Done -> Back to Game",
+        "success_cue": "Gameplay is visible again and the interface is using GUI Scale 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Open the in-game chat and command-entry field using the Open Chat control, whose default key is T.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Enter the glowing-effect command exactly as supplied by the report, including the leading slash, and press Enter to execute it as the current player.",
+        "exact_input": "/effect give @s minecraft:glowing infinite",
+        "success_cue": "The command is accepted without a red syntax or permission error, chat closes, and command feedback indicates that the Glowing effect was applied to the executing player for an infinite duration.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "If chat output still covers part of the screen, wait briefly for it to fade or close chat. Do not remove the Glowing effect, leave the world, or change out of Survival mode.",
+        "exact_input": null,
+        "success_cue": "Normal gameplay is visible, the player remains in Survival mode, and the infinite Glowing effect is still active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Survival inventory using the Inventory control, whose default key is E. Press the key once and leave the inventory screen open; do not close it or move to another menu before handing control to the observation subsystem.",
+        "exact_input": "E",
+        "success_cue": "The Survival inventory interface is open and its three-dimensional player model preview is visible beside the crafting area and equipment slots.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The player has the infinite Glowing effect and has just opened the Survival inventory in snapshot 25w32a with GUI Scale set to 1. The inventory remains open with the player model preview visible; begin rendering observation now.",
+    "uncertainties": [
+      "The report provides two reproduction variants: the player's Survival inventory and a tamed horse's inventory. This plan intentionally selects the player-inventory variant because it is the first listed and is the simplest deterministic path; it does not require horse taming or selection of an unspecified horse-armor material.",
+      "GUI Scale 1 is described by the report as making the issue easier to see, not as a mandatory trigger condition. It is included to improve observation reliability.",
+      "No seed, coordinates, camera orientation, player skin, graphics mode, resolution, operating system, or GPU is specified by the report, so none is imposed.",
+      "The report uses the phrase \"Open the survival inventory,\" which is interpreted as opening the standard Survival-mode inventory interface rather than the Creative inventory interface."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0323d1380b6a4c9a016aa7bc6fccb887d0bda509d50f30a26a",
+    "elapsed_seconds": 61.0,
+    "usage": {
+      "input_tokens": 25532,
+      "output_tokens": 3527,
+      "reasoning_tokens": 2459,
+      "total_tokens": 29059
+    },
+    "timestamp": "2026-09-14T09:21:48.646706+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

@@ -1,0 +1,157 @@
+{
+  "bug_id": "MC-201759",
+  "category": "Inventory",
+  "reproduction_method": "settings/UI",
+  "source_md": "[Inventory] - MC-201759.md",
+  "source_meta": {
+    "mojira categories": "Inventory",
+    "project": "MC",
+    "issue key": "MC-201759",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-10-08T15:20:23.894-0700",
+    "updated": "2025-04-30T06:44:25.497-0700",
+    "resolution date": "2022-10-11T07:56:29.504-0700",
+    "affects versions": "1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w07a; 21w08b; 21w13a; 21w14a; 1.17 Pre-release 1; 1.17; 1.17.1; 21w40a; 1.18.1; 1.18.2 Pre-release 1; 1.18.2; 22w11a; 22w15a; 1.19",
+    "fix versions": "22w42a",
+    "game mode": "Creative",
+    "labels": "creative-inventory-contents",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2020-10-06_07.31.14.png; 2020-10-06_07.31.16.png",
+    "_title": "Obsidians aren't grouped together in Creative"
+  },
+  "stor": {
+    "bug_id": "MC-201759",
+    "affected_versions": [
+      "1.16.3",
+      "1.16.4 Pre-release 1",
+      "1.16.4 Pre-release 2",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w13a",
+      "21w14a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "21w40a",
+      "1.18.1",
+      "1.18.2 Pre-release 1",
+      "1.18.2",
+      "22w11a",
+      "22w15a",
+      "1.19"
+    ],
+    "recommended_version": "1.16.3",
+    "environment": "Minecraft Java Edition 1.16.3 in a single-player world, with the player in Creative mode. No particular world seed, coordinates, server configuration, items, or structures are required.",
+    "preconditions": [
+      "The Minecraft Launcher has an installation configured for the exact Java Edition version 1.16.3.",
+      "A mouse or equivalent input capable of scrolling the Creative inventory is available.",
+      "The inventory action is accessible; its default keyboard binding is E.",
+      "The player can create or enter a world in Creative mode."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start the installation for Minecraft Java Edition 1.16.3. Do not use the listed fix version 22w42a.",
+        "exact_input": "Select installation/version 1.16.3, then click Play.",
+        "success_cue": "The Minecraft Java Edition 1.16.3 main menu is fully loaded and responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a disposable single-player test world, or use an existing single-player world if one is already available for this exact version.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The world-creation screen is open, or an existing 1.16.3 world has been selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "If creating a world, change its game mode to Creative. If using an existing world, ensure the player is already in Creative mode before continuing.",
+        "exact_input": "Click the Game Mode button until it displays Game Mode: Creative.",
+        "success_cue": "The world-creation screen displays Game Mode: Creative, or the player in the existing world has Creative-mode abilities.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Create or enter the world, then wait for world generation and nearby chunk loading to finish.",
+        "exact_input": "Click Create New World, or click Play Selected World when using an existing world.",
+        "success_cue": "The player is in the world, nearby terrain is rendered, normal input is responsive, and the Creative hotbar is visible without health or hunger bars.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory using the bound inventory action; the default key is E.",
+        "exact_input": "E",
+        "success_cue": "The full Creative inventory interface is open, showing category tabs and a grid of available items and blocks.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Select the Building Blocks category by left-clicking its tab. If tooltips are needed to identify the tab, hover over the category icons until the tooltip reads Building Blocks.",
+        "exact_input": "Left-click the Building Blocks tab.",
+        "success_cue": "The Building Blocks tab is selected and its block grid is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Place the pointer over the item grid and scroll downward through the Building Blocks list until the standard Obsidian block appears. Hover over the block to verify its tooltip rather than relying only on its dark-purple texture.",
+        "exact_input": "Scroll down within the item grid; hover over the candidate block until the tooltip reads Obsidian.",
+        "success_cue": "An item with the tooltip Obsidian is visible in the Building Blocks grid.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Note Obsidian's position in the ordered Building Blocks list, including its visible row and the surrounding blocks. Do not pick up or move the item. Keep the Creative inventory open.",
+        "exact_input": null,
+        "success_cue": "The position and immediate neighboring entries around Obsidian have been recorded, and the Building Blocks tab remains open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Continue scrolling downward in the same Building Blocks grid until Crying Obsidian appears. Hover over it to confirm its identity. Do not switch tabs, enter text, pick up either block, or close the inventory.",
+        "exact_input": "Continue scrolling down; hover over the candidate block until the tooltip reads Crying Obsidian.",
+        "success_cue": "Crying Obsidian is visible and identified by its tooltip while the Building Blocks tab remains open, after the earlier position of Obsidian has been recorded.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "Crying Obsidian has just been located in the Building Blocks tab after the position and neighboring entries of standard Obsidian were recorded. Leave the Creative inventory open and hand control to the observation subsystem to inspect the relative ordering of the two entries.",
+    "uncertainties": [
+      "Comment 3 claims that several listed 1.16 versions should not be tagged because the issue was considered a 1.17-snapshot bug. This conflicts with the report's Affects versions field. Per the version-selection policy, every version from that field is retained and its first entry, 1.16.3, is recommended.",
+      "Comment 12 provides an alternate procedure using the Search Items tab specifically while confirming 21w40a. The primary report instead uses the Building Blocks tab, so the Building Blocks procedure is preserved for the recommended version.",
+      "The report does not require a particular world, seed, server type, or multiplayer setup. Using a disposable single-player Creative world is therefore a practical execution choice rather than a stated bug requirement."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0591331c5ff542cf016aa7bc10c9b087d0935825a42b80d326",
+    "elapsed_seconds": 42.76,
+    "usage": {
+      "input_tokens": 9149,
+      "output_tokens": 2668,
+      "reasoning_tokens": 1391,
+      "total_tokens": 11817
+    },
+    "timestamp": "2026-09-14T09:19:55.399646+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
