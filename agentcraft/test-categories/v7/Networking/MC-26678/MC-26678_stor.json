@@ -1,0 +1,260 @@
+{
+  "bug_id": "MC-26678",
+  "category": "Networking",
+  "source_md": "[Networking] - MC-26678.md",
+  "source_meta": {
+    "mojira categories": "Networking; Rendering",
+    "project": "MC",
+    "issue key": "MC-26678",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2013-07-19T12:07:19.461-0700",
+    "updated": "2025-04-26T03:03:19.663-0700",
+    "resolution date": "2025-01-21T00:51:31.087-0800",
+    "affects versions": "Minecraft 1.5.2; Minecraft 1.6.1; Minecraft 1.6.2; Minecraft 1.6.3; Minecraft 13w37b; Minecraft 1.7.4; Minecraft 14w04b; Minecraft 14w07a; Minecraft 14w18a; Minecraft 1.7.10; Minecraft 14w29b; Minecraft 14w32b; Minecraft 14w34d; Minecraft 1.8-pre3; Minecraft 1.8; Minecraft 1.8.1-pre3; Minecraft 1.8.7; Minecraft 1.8.8; Minecraft 15w46a; Minecraft 15w47a; Minecraft 1.10.2; Minecraft 16w32a; Minecraft 16w32b; Minecraft 1.11.2; Minecraft 17w16a; Minecraft 17w16b; Minecraft 17w17a; Minecraft 1.12 Pre-Release 6; Minecraft 1.12; Minecraft 1.12.1; Minecraft 1.12.2; Minecraft 17w50a; Minecraft 18w11a; Minecraft 1.13-pre1; Minecraft 1.14; 1.15.1; 1.15.2 Pre-release 2; 1.15.2; 20w08a; 1.16.1; 20w29a; 1.16.2; 1.19.3",
+    "fix versions": "23w03a",
+    "game mode": "Survival",
+    "labels": "12w18a; damage; shake",
+    "votes": "1",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2014-10-30_22.38.46.png; minecraftarmcomparison.gif",
+    "issue links": "Relates:outward:MC-120545:Teleportation wraps rotation angles causing first-person hand to rotate incorrectly | Relates:inward:MC-200474:Entities do not tilt in the direction of a killing blow upon death | Duplicate:inward:MC-231021:Damage Needs to be Fixed! | Duplicate:inward:MC-227955:Camera does not tilt towards damage direction | Duplicate:inward:MC-73853:Damage wobble no longer shows direction of incoming damage | Duplicate:inward:MC-212835:Directional camera when hit via mob not working correctly. | Duplicate:inward:MC-212359:Telling the serever to send the camera the angle(PLS  fix this fast. It is only onle little piece of code.) | Duplicate:inward:MC-212154:Camara tilt | Duplicate:inward:MC-204851:Damage Tilt Indicator | Duplicate:inward:MC-205503:damage shake issue | Duplicate:inward:MC-204809:Damage tilt always towards left | Duplicate:inward:MC-204669:screen tilts to the left when taking damage | Duplicate:inward:MC-202355:Damage screen tilt is de-synced, defaulting to tilt left | Duplicate:inward:MC-203742:Directional Damage Indicator | Duplicate:inward:MC-203715:Damage tilt indicator does not work correctly | Duplicate:inward:MC-204269:Attacked Camera Angle Tilt | Duplicate:inward:MC-203793:Directional damage indicator has not worked properly of EIGHT YEARS | Duplicate:inward:MC-203760:This bug has been here since 1.3 has been released | Duplicate:inward:MC-203526:Incorrect attack angle communication from server to client. | Duplicate:inward:MC-203482:Screen Tilts Towards Damage doesn't work | Duplicate:inward:MC-202616:Damage tilt always tilts to the left, and not towards the source of the damage | Duplicate:inward:MC-203265:Damage tilt still not working | Duplicate:inward:MC-203260:Directional screen tilt damage indicator hasn't been working since 1.3 java edition | Duplicate:inward:MC-202922:camera doesn't tilt to damage | Duplicate:inward:MC-143964:Player's arm and camera only jerk to the left when getting hurt",
+    "_title": "Damage wobble no longer shows direction of incoming damage"
+  },
+  "stor": {
+    "bug_id": "MC-26678",
+    "affected_versions": [
+      "Minecraft 1.5.2",
+      "Minecraft 1.6.1",
+      "Minecraft 1.6.2",
+      "Minecraft 1.6.3",
+      "Minecraft 13w37b",
+      "Minecraft 1.7.4",
+      "Minecraft 14w04b",
+      "Minecraft 14w07a",
+      "Minecraft 14w18a",
+      "Minecraft 1.7.10",
+      "Minecraft 14w29b",
+      "Minecraft 14w32b",
+      "Minecraft 14w34d",
+      "Minecraft 1.8-pre3",
+      "Minecraft 1.8",
+      "Minecraft 1.8.1-pre3",
+      "Minecraft 1.8.7",
+      "Minecraft 1.8.8",
+      "Minecraft 15w46a",
+      "Minecraft 15w47a",
+      "Minecraft 1.10.2",
+      "Minecraft 16w32a",
+      "Minecraft 16w32b",
+      "Minecraft 1.11.2",
+      "Minecraft 17w16a",
+      "Minecraft 17w16b",
+      "Minecraft 17w17a",
+      "Minecraft 1.12 Pre-Release 6",
+      "Minecraft 1.12",
+      "Minecraft 1.12.1",
+      "Minecraft 1.12.2",
+      "Minecraft 17w50a",
+      "Minecraft 18w11a",
+      "Minecraft 1.13-pre1",
+      "Minecraft 1.14",
+      "1.15.1",
+      "1.15.2 Pre-release 2",
+      "1.15.2",
+      "20w08a",
+      "1.16.1",
+      "20w29a",
+      "1.16.2",
+      "1.19.3"
+    ],
+    "recommended_version": "Minecraft 1.5.2",
+    "environment": "Unmodified Minecraft: Java Edition 1.5.2 in a new single-player world. Build the apparatus in Creative mode, then enable commands through Open to LAN and enter Survival mode before taking damage. The single-player integrated server preserves the post-1.3 client/server condition relevant to the report. Use first-person view and a flat, unobstructed outdoor area.",
+    "preconditions": [
+      "Install and launch the exact Java Edition 1.5.2 release, not the similarly numbered pre-release, a later affected version, or the fixed version 23w03a.",
+      "Use a vanilla client without mods that alter the camera, damage animation, player invulnerability, dispensers, projectiles, or networking.",
+      "Use first-person view. Press F5 as needed until the player's body is not visible in front of the camera.",
+      "Know the bindings for Move Forward, Move Back, Strafe Left, and Strafe Right; their default inputs are W, S, A, and D.",
+      "The trigger must occur in Survival mode with the player at full or nearly full health. Creative-mode arrow launches may be used only to validate the apparatus.",
+      "The report's attachment showing the original contraption is not included in the supplied data. The steps therefore construct a minimal four-direction cross that implements the report's stated dispenser, arrow, and pressure-plate relationships."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation using release 1.5.2 and start it. Do not select the 1.5.2 pre-release or the fixed snapshot 23w03a.",
+        "exact_input": "Release 1.5.2",
+        "success_cue": "The Minecraft main menu is open and the displayed game version is 1.5.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, select Create New World, give the world an identifiable name, set Game Mode to Creative, and create the world. A seed is not specified, so any seed may be used.",
+        "exact_input": "World name: MC-26678 reproduction; Game Mode: Creative",
+        "success_cue": "A new world has loaded and the player is in Creative mode, indicated by the absence of Survival hearts and hunger and by the ability to fly after double-tapping Space.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building. Do not continue until nearby terrain has rendered and walking, looking, inventory opening, and block placement respond normally.",
+        "exact_input": null,
+        "success_cue": "The surrounding terrain is visible and player controls respond without chunk-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Locate or make a flat, unobstructed area at least 9 blocks by 9 blocks. Remove tall grass, snow layers, water, walls, mobs, or other objects that could obstruct an arrow fired horizontally at the player.",
+        "exact_input": "left-click to remove obstructing blocks",
+        "success_cue": "A flat 9-by-9 test area is available with clear horizontal space around its center.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Creative inventory. Obtain four Dispensers, four Stone Pressure Plates, at least 64 Arrows, and several visually distinctive marker blocks such as colored wool. Put the dispensers, pressure plates, arrows, and marker blocks into accessible hotbar or inventory slots, then close the inventory.",
+        "exact_input": "E; Creative inventory items: Dispenser, Stone Pressure Plate, Arrow, and a distinctive marker block",
+        "success_cue": "The player has four dispensers, four stone pressure plates, at least 64 arrows, and marker blocks available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Choose one ground block near the middle of the cleared area as the central standing position, referred to as C. Place a distinctive marker block beside C without occupying C itself.",
+        "exact_input": "right-click with the marker block selected",
+        "success_cue": "The central standing block C is visually identifiable and remains empty so the player can stand on it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Stand on C and choose an arbitrary horizontal direction as 'forward.' Four blocks forward from C, build a marker pillar at least three blocks tall. This pillar defines the fixed facing direction for every test and should remain visible above the apparatus.",
+        "exact_input": "W to move forward; right-click to place marker blocks",
+        "success_cue": "A tall forward marker is four blocks from C, and it can be seen from C when the player faces forward.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Build the front launcher. The front dispenser belongs two blocks forward from C, between C and the marker pillar. Stand on the block one step forward from C, face away from C toward the intended dispenser position, select a dispenser, and place it on the ground two blocks forward from C. Confirm that the dispenser's opening faces back toward C; break and replace it if its opening points elsewhere.",
+        "exact_input": "Select Dispenser; right-click to place",
+        "success_cue": "A dispenser is two blocks forward from C and its firing opening points toward C.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Place a stone pressure plate on the ground one block forward from C, directly between C and the front dispenser. The plate must be horizontally adjacent to the dispenser's firing face.",
+        "exact_input": "Select Stone Pressure Plate; right-click to place",
+        "success_cue": "The front row, viewed from C, is C -> front pressure plate -> inward-facing front dispenser.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Return to C and face the forward marker. Build the right launcher two blocks directly to the player's right. Stand on the future right-pressure-plate position, face outward away from C, and place the dispenser. Confirm that its opening faces inward toward C.",
+        "exact_input": "D to move right; select Dispenser; right-click to place",
+        "success_cue": "A dispenser is two blocks to the right of C, relative to the forward marker, and its opening points toward C.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Place a stone pressure plate one block directly to the right of C, between C and the right dispenser. Keep the plate immediately adjacent to the dispenser's firing face.",
+        "exact_input": "Select Stone Pressure Plate; right-click to place",
+        "success_cue": "The right row is C -> right pressure plate -> inward-facing right dispenser.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Return to C and face the forward marker. Build the rear launcher two blocks directly behind the player. Stand on the future rear-pressure-plate position, face outward away from C, and place the dispenser. Confirm that its opening faces inward toward C.",
+        "exact_input": "S to move backward; select Dispenser; right-click to place",
+        "success_cue": "A dispenser is two blocks behind C and its opening points toward C.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Place a stone pressure plate one block directly behind C, between C and the rear dispenser.",
+        "exact_input": "Select Stone Pressure Plate; right-click to place",
+        "success_cue": "The rear row is C -> rear pressure plate -> inward-facing rear dispenser.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Return to C and face the forward marker. Build the left launcher two blocks directly to the player's left. Stand on the future left-pressure-plate position, face outward away from C, and place the dispenser. Confirm that its opening faces inward toward C.",
+        "exact_input": "A to move left; select Dispenser; right-click to place",
+        "success_cue": "A dispenser is two blocks to the left of C and its opening points toward C.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Place a stone pressure plate one block directly to the left of C, between C and the left dispenser. Inspect the completed apparatus from above or while flying: it should form a cross with C in the middle, one pressure plate on each side of C, and one inward-facing dispenser immediately beyond each plate.",
+        "exact_input": "Select Stone Pressure Plate; right-click to place",
+        "success_cue": "The completed top-down arrangement is front dispenser/plate, left dispenser/plate, C, right plate/dispenser, and rear plate/dispenser, with all four dispenser openings aimed toward C.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Load the dispensers. Right-click each of the four dispensers to open its nine-slot interface, move at least 16 arrows into any slot, and close the interface. Repeat until every dispenser contains arrows.",
+        "exact_input": "right-click each Dispenser; transfer at least 16 Arrows into each",
+        "success_cue": "Each of the four dispensers contains arrows and can fire multiple times.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "While still in Creative mode, validate the right-side mechanism without evaluating camera behavior. Stand on C, face the forward marker, and move right with D until the right pressure plate depresses. An immediately adjacent pressure plate can activate the dispenser without extra wiring. Return to C after one launch and do not rotate the camera. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ADefense?utm_source=openai))",
+        "exact_input": "D, then A to return to C",
+        "success_cue": "The right pressure plate clicks down and the right dispenser produces one launch sound or visible arrow; the dispenser still contains additional arrows.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 18,
+        "action": "Enable commands for the current single-player session. Press Esc, select Open to LAN, set Allow Cheats to ON, and select Start LAN World. Leave the game mode option otherwise unchanged; the host player's mode will be changed with a command in the next step.",
+        "exact_input": "Esc -> Open to LAN -> Allow Cheats: ON -> Start LAN World",
+        "success_cue": "The world resumes and chat reports that the local game has been hosted, confirming that the LAN session started.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Press T to open in-game chat. Type the exact historical command `/gamemode 0`, including the leading slash, and press Enter. Numeric game-mode values and the `gamemode <mode> [player]` argument order are appropriate for this pre-1.13 version. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AIssues/Weekly_12w16a?utm_source=openai))",
+        "exact_input": "/gamemode 0",
+        "success_cue": "The command succeeds, Survival hearts and hunger appear, and the player is no longer invulnerable or able to fly.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "Prepare the directional trigger. Stand exactly on C, allow any Creative-flight state to end, and wait until the player is stationary. Ensure sufficient health to survive one dispenser arrow. Face the tall forward marker so the right dispenser is exactly on the player's right; do not rotate the camera after establishing this orientation.",
+        "exact_input": "Move onto C; align view with the forward marker",
+        "success_cue": "The player is stationary on C in Survival mode, facing the forward marker, with the loaded right dispenser two blocks to the player's right.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Without turning the camera, hold the Strafe Right action, default key D, just long enough to step from C onto the right pressure plate. Release D as soon as the plate activates. Do not move or rotate after the arrow hits.",
+        "exact_input": "D",
+        "success_cue": "The right pressure plate depresses, the right dispenser fires from the player's right, and the Survival player takes one arrow hit while still facing the forward marker.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The Survival player has just been struck once by an arrow fired from the dispenser on the player's right while the player remains oriented toward the forward marker. Begin observing the immediate viewport/camera damage response before the player moves, turns, or receives another hit.",
+    "uncertainties": [
+      "The original image attachment, `2014-10-30_22.38.46.png`, is referenced but not present in the supplied report, and its exact block layout could not be retrieved. The four-way cross is a minimal reconstruction based on the report's explicit left, right, front, and rear pressure-plate instructions rather than a claim that every block matches the attachment.",
+      "The report asks for all four directional movements. This plan constructs and loads all four launchers but uses the right-side strike as the single deterministic handoff trigger. After that capture, the same setup can support separate left, front, and rear trials by returning to C, restoring health if necessary, facing the same marker, and using A, W, or S respectively.",
+      "No world seed, coordinates, difficulty, pressure-plate material, or exact arrow quantity is specified. The flat location, stone pressure plates, and minimum arrow counts are practical execution choices and are not asserted as required causes of the issue.",
+      "If a dispenser fails the Creative-mode validation, the most likely setup error is its facing direction or separation from the pressure plate. Rebuild it so its opening points toward C and its firing face is directly adjacent to the plate before entering Survival.",
+      "Historical Minecraft 1.5.2 may require a compatible Java runtime and launcher configuration; those platform-specific installation details are outside the Mojira reproduction information."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0f086c0484fcca8d016aa8a4d85c8487d0a390cbe32dd28867",
+    "elapsed_seconds": 148.77,
+    "usage": {
+      "input_tokens": 28811,
+      "output_tokens": 9882,
+      "reasoning_tokens": 6773,
+      "total_tokens": 38693
+    },
+    "timestamp": "2026-09-15T01:54:53.000517+00:00"
+  }
+}

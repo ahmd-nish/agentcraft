@@ -1,0 +1,193 @@
+{
+  "bug_id": "MC-74984",
+  "category": "Networking",
+  "source_md": "[Networking] - MC-74984.md",
+  "source_meta": {
+    "mojira categories": "Networking",
+    "project": "MC",
+    "issue key": "MC-74984",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2014-12-01T12:42:26.527-0800",
+    "updated": "2025-04-26T03:56:02.543-0700",
+    "resolution date": "2024-12-08T13:52:42.297-0800",
+    "affects versions": "Minecraft 1.8; Minecraft 1.8.1; Minecraft 1.8.3; Minecraft 1.8.4; Minecraft 1.8.7; Minecraft 1.8.8; Minecraft 1.8.9; Minecraft 1.9.1; Minecraft 1.9.2; Minecraft 1.9.4; Minecraft 1.10; Minecraft 1.11.2; Minecraft 17w16b; Minecraft 1.12; Minecraft 1.12.2; Minecraft 1.13; Minecraft 18w31a; Minecraft 1.13.1; 1.14.4; 1.15.2; 20w13b; 1.16 Pre-release 5; 1.16.1; 1.16.2; 1.16.3; 1.16.4; 20w51a; 1.16.5 Release Candidate 1; 1.16.5; 1.19",
+    "fix versions": "1.20 Pre-release 5",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "16",
+    "attachment filenames": "2014-12-01_21.25.56.png; 2014-12-01_21.26.08.png; 2014-12-01_21.29.31.png; 2015-12-30_20.59.40.png; 2020-12-10_19.20.14.png; 2020-12-10_19.20.17.png; 2020-12-10_19.20.20.png; 2020-12-10_19.20.36.png; 2020-12-10_19.30.17.png; 2020-12-10_19.49.16.png; 2020-12-10_19.55.18.png; image-2021-08-27-11-15-30-269.png; image-2022-07-04-15-06-29-652.png; IMG_5051.mov; latest.log; Untitled video - Made with Clipchamp.mp4",
+    "issue links": "Relates:inward:MC-128953:Connection to server not closed after continuing after an OutOfMemory error | Relates:inward:MC-133757:Day and Night Flash | Duplicate:inward:MC-120072:Server chat merges when connecting to another server | Duplicate:inward:MC-227783:Being connected to 2 servers at once. | Duplicate:inward:MC-223001:Canceling a connection to a Realm causes desink between client and realm | Duplicate:inward:MC-221137:Multiplayer-singleplayer weird bug | Duplicate:inward:MC-220566:Joining server + realm at same time allows player to get effected by gamemode commands and fly on any server. | Duplicate:inward:MC-218188:Aborting connection to a server quickly allows to connect to multiple servers | Duplicate:inward:MC-217487:It has been observed that one player is on multiple servers. | Duplicate:inward:MC-217226:Joining servers too quickly causes your client to be in 2 servers at once. | Duplicate:inward:MC-77819:Returning To Server-list And Not Main Menu | Duplicate:inward:MC-214284:Killed on a Realm server while in a single player world | Duplicate:inward:MC-212374:Connected to two servers at once | Duplicate:inward:MC-212019:1.16.5 Realms/Singleplayer bug | Duplicate:inward:MC-211372:Cancel joining a realm won't fully cancel the joining of the realm | Duplicate:inward:MC-210104:Trying to join a multiplayer server and cancelling right after, gives you the items inside of a singleplayer world. | Duplicate:inward:MC-96306:I am in 2 servers at a time | Duplicate:inward:MC-159329:Chat Bug | Relates:outward:MC-12989:Chat from a server connected to using direct connect sometimes remains in chat when joining another server. | Duplicate:inward:MC-95139:Client can connect to 2 servers at once | Duplicate:inward:MC-93790:Chat from one server shows on another | Duplicate:inward:MC-121210:Connecting to 2 servers at the same time | Duplicate:inward:MC-90327:Playing on two servers at once | Relates:inward:MC-78113:Disconnecting after death on hardcore mode server does not close connection to server | Duplicate:inward:MC-201222:Online Server Chat loaded in Singleplayer | Duplicate:inward:MC-199683:The teleportation problem about joining the server | Duplicate:inward:MC-199622:weird server bug | Duplicate:inward:MC-199554:Singleplayer and Multiplayer Loading issue | Duplicate:inward:MC-195177:Two worlds loading at once Xray bug | Duplicate:inward:MC-192726:Joined to 2 servers at once | Duplicate:inward:MC-194209:Minecraft Realms and Multiplayer Combination | Duplicate:inward:MC-193519:Collision breaks after canceling a connection to a multiplayer server, and joining a singleplayer world after | Duplicate:inward:MC-189592:Cancel connection to the server, don't cancel it. | Duplicate:inward:MC-186451:Inventory and map get carried over to a second server when rapidly switching servers | Duplicate:inward:MC-178732:I got into 2 minecraft servers at once | Duplicate:inward:MC-176812:Pressing cancel when logging into a server does not cancel joining the server | Duplicate:inward:MC-168999:2 servers merged into 1? | Duplicate:inward:MC-168846:Canceling joining server and then joining singleplayer-world does wired stuff | Duplicate:inward:MC-151614:Game thinks I'm on a different world | Duplicate:inward:MC-137115:In two servers at the same time | Duplicate:inward:MC-103846:Summary Connected to local and external server at the same | Duplicate:inward:MC-129533:Server \"combination\" issues | Duplicate:inward:MC-127677:Render Glitch changing servers | Relates:inward:MC-124615:Overworld terrain generation in Nether | Duplicate:inward:MC-108646:Connected to multiple servers at once | Duplicate:inward:MC-116504:Canceling entry to a server does not work. | Duplicate:inward:MC-113526:multiple people on a singleplayer world without lan | Relates:inward:MC-88299:Client freezes then disconnects with java.io.IOException: Error while write(...) when trying to join a server | Duplicate:inward:MC-103951:Multiplayer login issue | Duplicate:inward:MC-100686:Client can connect to multiple servers at once | Duplicate:inward:MC-96985:Client's server list can be lightly spammed and break joining servers | Duplicate:inward:MC-87667:double clicking a server before joining a server results in minecraft attempting to connect to both servers | Duplicate:inward:MC-93545:Join server multiple times on double click | Duplicate:inward:MC-94663:Attempting to join a server, canceling, connecting to another server cancelling then connecting to the first server, but ending up in the second server. | Duplicate:inward:MC-75183:Multiple instances (different to double instances due to lag) | Duplicate:inward:MC-81678:confusing chat | Duplicate:inward:MC-80226:Connecting to two servers at once | Duplicate:inward:MC-79627:Connecting to multiple servers at the same time | Duplicate:inward:MC-80144:Loading two servers with one Minecraft instance. | Duplicate:inward:MC-78448:Join Multiple Servers with ONE Client | Duplicate:inward:MC-76663:Connected to multiple servers simultaneously on the same client. | Relates:outward:REALMS-5078:Realms \"Cancel Join\" button does not stop the client from joining the realm | Duplicate:inward:REALMS-5531:After clicking on a realm and clicking cancel, sometimes it will send you to the realm while you are on the server select screen. | Relates:inward:REALMS-1178:Try to cancel loading a realm",
+    "_title": "Client continues to connect to server after canceling on 'Connecting to server' screen"
+  },
+  "stor": {
+    "bug_id": "MC-74984",
+    "affected_versions": [
+      "Minecraft 1.8",
+      "Minecraft 1.8.1",
+      "Minecraft 1.8.3",
+      "Minecraft 1.8.4",
+      "Minecraft 1.8.7",
+      "Minecraft 1.8.8",
+      "Minecraft 1.8.9",
+      "Minecraft 1.9.1",
+      "Minecraft 1.9.2",
+      "Minecraft 1.9.4",
+      "Minecraft 1.10",
+      "Minecraft 1.11.2",
+      "Minecraft 17w16b",
+      "Minecraft 1.12",
+      "Minecraft 1.12.2",
+      "Minecraft 1.13",
+      "Minecraft 18w31a",
+      "Minecraft 1.13.1",
+      "1.14.4",
+      "1.15.2",
+      "20w13b",
+      "1.16 Pre-release 5",
+      "1.16.1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4",
+      "20w51a",
+      "1.16.5 Release Candidate 1",
+      "1.16.5",
+      "1.19"
+    ],
+    "recommended_version": "Minecraft 1.8",
+    "environment": "A clean, unmodified Minecraft Java Edition 1.8 client using one authenticated account, plus two distinct multiplayer servers designated Server A and Server B. Both servers must accept 1.8 clients and the account must be permitted to join both. Server A must be reachable but its connection must remain on the client’s \"Connecting to server\" screen long enough to press Cancel; a delayed DNS lookup, proxy, network shaper, or naturally slow connection may be used to create that window. Server B should be normally reachable. Keep both server entries prepared in the Multiplayer server list so Server B can be selected immediately after canceling Server A. Use a newly started client process and do not restart Minecraft between the two connection attempts.",
+    "preconditions": [
+      "Install or select the exact affected release Minecraft 1.8; do not use the fixed version 1.20 Pre-release 5.",
+      "Use a vanilla client without client mods, because the report was confirmed on vanilla.",
+      "Obtain the addresses of two different servers, Server A and Server B, that are compatible with Minecraft 1.8 and can be joined by the same account.",
+      "Configure Server A or its network path so that selecting it leaves the client on the \"Connecting to server\" screen for long enough to click Cancel, while still allowing the connection attempt to continue toward a real, reachable server.",
+      "Ensure Server B is online and normally reachable before beginning the timed portion of the reproduction.",
+      "Fully close any previous Minecraft client process before the attempt, then launch a fresh client to avoid carrying over state from an earlier attempt.",
+      "Do not disconnect normally from Server A, restart the client, or intentionally pause between canceling Server A and starting the connection to Server B.",
+      "The timing is important: if Server A displays its world before Cancel is clicked, that attempt is invalid and must be repeated with a longer connection delay."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select an installation configured for the exact release Minecraft 1.8 and start the game.",
+        "exact_input": "Minecraft 1.8",
+        "success_cue": "The Minecraft title screen is open and identifies the running game version as Minecraft 1.8.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, left-click Multiplayer to open the multiplayer server list.",
+        "exact_input": "Multiplayer",
+        "success_cue": "The Play Multiplayer screen is visible and no world or server is currently open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "If Server A is not already listed, left-click Add Server, enter a recognizable name and the delayed Server A address supplied by the test environment, and then left-click Done.",
+        "exact_input": "Server Name: Server A; Server Address: <delayed Server A address>",
+        "success_cue": "A row named Server A is visible in the multiplayer server list.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "If Server B is not already listed, left-click Add Server, enter a recognizable name and the Server B address supplied by the test environment, and then left-click Done.",
+        "exact_input": "Server Name: Server B; Server Address: <Server B address>",
+        "success_cue": "Separate rows named Server A and Server B are visible in the multiplayer server list.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Allow the server list to update only long enough to confirm that Server B is online. Do not begin the timed connection sequence until Server A's delay mechanism is active.",
+        "exact_input": null,
+        "success_cue": "Server B is available for joining, Server A's delayed connection path is active, and both rows remain visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Left-click the Server A row once so that Server A is the selected server.",
+        "exact_input": "Server A",
+        "success_cue": "Server A is highlighted in the server list and Server B is not selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Start joining Server A by left-clicking Join Server or by double-clicking the Server A row.",
+        "exact_input": "Join Server",
+        "success_cue": "The server list is replaced by a connection-status screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Wait only until the status screen visibly says \"Connecting to server\" and its Cancel button is available. Do not wait for terrain, a loading world, or Server A's in-game view. If Server A's world appears before this state can be acted on, disconnect normally, return to the server list, increase Server A's connection delay, and restart the attempt from a fresh client process.",
+        "exact_input": "Connecting to server",
+        "success_cue": "The client is still on the \"Connecting to server\" screen, the Cancel button is clickable, and Server A's world has not appeared.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "While the screen still says \"Connecting to server\", immediately left-click Cancel once.",
+        "exact_input": "Cancel",
+        "success_cue": "The connection-status screen closes without ever displaying Server A's world, and the client returns to either the multiplayer server list or the title screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "If Cancel returned the client to the title screen, immediately left-click Multiplayer. If the multiplayer server list is already visible, perform no extra navigation. Do not restart or close the game.",
+        "exact_input": "Multiplayer",
+        "success_cue": "The multiplayer server list containing Server A and Server B is visible in the same client process used for the canceled connection.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Without an intentional delay, left-click the Server B row once.",
+        "exact_input": "Server B",
+        "success_cue": "Server B is highlighted in the server list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Immediately start joining Server B by left-clicking Join Server or by double-clicking the Server B row.",
+        "exact_input": "Join Server",
+        "success_cue": "The client leaves the server list and begins the connection to Server B without Minecraft having been restarted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Wait for Server B's world to finish loading. Continue only after terrain is rendered, the in-game HUD is visible, and ordinary movement input responds. Do not disconnect, restart, or join another world before handing control to the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "The player is in Server B's loaded world in the same client process, immediately following the canceled Server A attempt, and normal in-game input can be issued.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The client has just completed entry into Server B in the same Minecraft 1.8 process used to press Cancel on Server A's \"Connecting to server\" screen. Server A was canceled before its world appeared, Server B was joined immediately afterward, and no client restart or normal Server A disconnect occurred. Begin observing the client's connection and world state now.",
+    "uncertainties": [
+      "The report supplies no server addresses, so the executor must provide two distinct Minecraft 1.8-compatible servers.",
+      "The reproduction is timing-sensitive, and the report does not define a maximum delay between pressing Cancel and joining Server B. The plan therefore requires joining Server B as quickly as the UI allows, with no intentional pause.",
+      "A comment recommends increasing Server A's DNS/IP lookup time using a proxy that forces DNS lookups through the proxy, but the report does not provide an exact proxy product or configuration procedure.",
+      "The original report reproduces the issue in Minecraft 1.8, while some more detailed reproduction comments refer to later affected versions such as 1.8.7 and 1.16.4. This plan uses the original Minecraft 1.8 cancel-then-join sequence to preserve recommended-version fidelity.",
+      "Server A must be delayed but still reachable. A completely offline address or a connection that immediately fails may not preserve the in-progress connection condition described by the report.",
+      "The report does not establish a precise success rate; multiple fresh-client attempts may be necessary if the connection to Server A completes too quickly or is fully terminated before Server B is joined."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_06c69fdbed430d9f016aa8a5cf343887d08606566412b2193f",
+    "elapsed_seconds": 68.07,
+    "usage": {
+      "input_tokens": 17789,
+      "output_tokens": 4978,
+      "reasoning_tokens": 3077,
+      "total_tokens": 22767
+    },
+    "timestamp": "2026-09-15T01:57:38.972577+00:00"
+  }
+}
