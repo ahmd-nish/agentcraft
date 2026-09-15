@@ -1,0 +1,139 @@
+{
+  "bug_id": "MC-270862",
+  "category": "Items",
+  "source_md": "[Items] - MC-270862.md",
+  "source_meta": {
+    "mojira categories": "Commands; Items",
+    "project": "MC",
+    "issue key": "MC-270862",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-04-17T07:21:02.861-0700",
+    "updated": "2025-03-20T21:46:46.108-0700",
+    "resolution date": "2024-04-19T01:23:42.387-0700",
+    "affects versions": "1.20.5 Pre-Release 3; 1.20.5 Pre-Release 4",
+    "fix versions": "1.20.5 Release Candidate 2",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "javaw_qqCLfaSZ8s.jpg; javaw_SwDKsDE3nx.jpg",
+    "_title": "Firework Star item displays have inconsistent color updates"
+  },
+  "stor": {
+    "bug_id": "MC-270862",
+    "affected_versions": [
+      "1.20.5 Pre-Release 3",
+      "1.20.5 Pre-Release 4"
+    ],
+    "recommended_version": "1.20.5 Pre-Release 3",
+    "environment": "Minecraft Java Edition 1.20.5 Pre-Release 3 in a single-player test world. Use Creative mode, or another game mode with cheats enabled, so the player can execute /summon and /data commands. No particular world seed is required.",
+    "preconditions": [
+      "Configure and launch Minecraft Java Edition 1.20.5 Pre-Release 3, the first version listed as affected. Do not use the fix version, 1.20.5 Release Candidate 2.",
+      "Use a disposable single-player world in which the player has permission to execute commands. Creating the world in Creative mode is a practical way to ensure command access.",
+      "Use a fresh area with no pre-existing item display entities nearby. This prevents the nearest-entity selector in the modification command from targeting an unrelated display.",
+      "Stand in an open, fully loaded location where an item rendered at the player's position can be viewed. Wait until terrain has rendered and movement responds normally.",
+      "Remain at approximately the same position while running the two summon commands so both item displays are created together as specified by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch a Minecraft Java Edition game installation configured for the recommended affected version. At the main menu, verify that the displayed game version is 1.20.5 Pre-Release 3.",
+        "exact_input": "1.20.5 Pre-Release 3",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 1.20.5 Pre-Release 3.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open a disposable single-player world with command permission. If creating a new world, select Creative mode and create the world; no specific seed is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is inside the test world and can open chat and execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a clear location with no unrelated item display entities nearby. Stop moving and wait until surrounding chunks are rendered and player controls respond normally. Keep this location for both summon commands.",
+        "exact_input": null,
+        "success_cue": "The player is stationary in a fully loaded area, with no unrelated item displays close enough to interfere with the nearest-entity selector.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the first summon command exactly as supplied, including the leading slash, and press Enter.",
+        "exact_input": "/summon minecraft:item_display ~ ~ ~ {item:{id:\"firework_star\",components:{\"minecraft:firework_explosion\":{shape:\"small_ball\",colors:[I; -1]}}}}",
+        "success_cue": "The command completes without a syntax or permission error, and a firework-star item display exists at the player's position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Without changing the player's position, press T again, enter the same summon command a second time exactly as supplied, including the leading slash, and press Enter. The two entities occupy the same location and may visually overlap.",
+        "exact_input": "/summon minecraft:item_display ~ ~ ~ {item:{id:\"firework_star\",components:{\"minecraft:firework_explosion\":{shape:\"small_ball\",colors:[I; -1]}}}}",
+        "success_cue": "The second summon command completes without an error. Two item display entities have now been summoned at the player's location, even if their overlapping rendered items appear as a single firework star.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Stay near the two summoned displays. Press T to open chat, enter the supplied data modification command exactly, including the leading slash, and press Enter. The selector uses limit=1, so only one of the nearest item displays is selected for modification.",
+        "exact_input": "/data modify entity @e[type=minecraft:item_display,limit=1,sort=nearest] item.components.\"minecraft:firework_explosion\".colors set value [I; -65536]",
+        "success_cue": "The command completes without a syntax, permission, or no-entity-found error, confirming that one nearby item display's firework explosion colors data was modified.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait briefly after command execution until the game is responsive and the item displays have rendered. Do not issue another command or alter either display.",
+        "exact_input": null,
+        "success_cue": "The world is responsive, and the display location remains loaded and visible before leaving the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the pause menu and leave the world using Save and Quit to Title. Wait until the main title screen has fully appeared.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The single-player world has closed and the Minecraft title screen is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Rejoin the exact same test world: open the Singleplayer world list, select the world used in the preceding steps, and activate Play Selected World or double-click the world entry. Do not create a new world.",
+        "exact_input": "Singleplayer -> select the same test world -> Play Selected World",
+        "success_cue": "Minecraft begins loading the same saved world containing the two item displays and the modified entity data.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Wait for rejoining to finish. Do not continue until surrounding chunks have rendered, player movement responds normally, and the location where the two item displays were summoned is in view. The player should return near that location because the world was saved while standing beside the displays.",
+        "exact_input": null,
+        "success_cue": "The same test world is fully loaded, controls are responsive, and the two co-located item displays are present at the previously used location and ready for observation.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The player has rejoined the same saved world after modifying one of the two co-located item displays. World loading is complete, controls are responsive, and the item display location is currently in view. Hand control to the observation subsystem before performing any further commands or entity modifications.",
+    "uncertainties": [
+      "The report does not specify a game mode or world seed. Creative mode and an arbitrary disposable world are selected only to provide reliable command permission and do not replace any stated report requirement.",
+      "The formal Steps to Reproduce use initial color value -1 and modified value -65536. Comment 3 provides an alternative reproduction using initial value 0 and modified value 16777215. This plan preserves and prioritizes the commands from the formal Steps to Reproduce.",
+      "Both summon commands use the same relative coordinates and therefore create overlapping item displays. The report does not require separating them, so the plan preserves their shared position even though visual overlap can make manual entity counting difficult.",
+      "The selector in the modification command does not deterministically distinguish between the two displays when both occupy the same coordinates. It is sufficient that limit=1 selects exactly one of them, as required by the report.",
+      "The report describes the visual update as inconsistent, so a single execution may not present the same visual state on every run. The plan performs one modification and one reload rather than repeatedly triggering the issue."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_026368892ab6bf7a016aa8b100435887d0bf662e55c38209f2",
+    "elapsed_seconds": 59.7,
+    "usage": {
+      "input_tokens": 8954,
+      "output_tokens": 4131,
+      "reasoning_tokens": 2574,
+      "total_tokens": 13085
+    },
+    "timestamp": "2026-09-15T02:45:15.810421+00:00"
+  }
+}

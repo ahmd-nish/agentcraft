@@ -1,0 +1,220 @@
+{
+  "bug_id": "MC-3587",
+  "category": "Items",
+  "source_md": "[Items] - MC-3587.md",
+  "source_meta": {
+    "mojira categories": "Items",
+    "project": "MC",
+    "issue key": "MC-3587",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2012-11-20T20:36:43.893-0800",
+    "updated": "2025-05-29T09:20:37.977-0700",
+    "resolution date": "2021-09-26T23:34:18.379-0700",
+    "affects versions": "Minecraft 1.4.5; Minecraft 1.4.7; Minecraft 1.5; Minecraft 1.5.1; Minecraft 1.5.2; Snapshot 13w25c; Minecraft 1.7.4; Minecraft 14w02c; Minecraft 14w03b; Minecraft 14w04a; Minecraft 14w04b; Minecraft 1.7.10; Minecraft 14w30b; Minecraft 14w30c; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05a; 21w05b; 21w06a; 21w07a; 21w08b; 21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w16a; 21w17a",
+    "fix versions": "21w18a",
+    "game mode": "Survival",
+    "labels": "anvil; inventory",
+    "watchers": "2",
+    "attachments": "0",
+    "issue links": "Relates:outward:MC-87935:When closing the inventory while holding an item with the cursor in Creative mode, the item disappears",
+    "_title": "Last use of an anvil causes player to drop their item"
+  },
+  "stor": {
+    "bug_id": "MC-3587",
+    "affected_versions": [
+      "Minecraft 1.4.5",
+      "Minecraft 1.4.7",
+      "Minecraft 1.5",
+      "Minecraft 1.5.1",
+      "Minecraft 1.5.2",
+      "Snapshot 13w25c",
+      "Minecraft 1.7.4",
+      "Minecraft 14w02c",
+      "Minecraft 14w03b",
+      "Minecraft 14w04a",
+      "Minecraft 14w04b",
+      "Minecraft 1.7.10",
+      "Minecraft 14w30b",
+      "Minecraft 14w30c",
+      "1.16.3",
+      "1.16.4 Pre-release 1",
+      "1.16.4 Pre-release 2",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a"
+    ],
+    "recommended_version": "Minecraft 1.4.5",
+    "environment": "Vanilla Minecraft Java Edition 1.4.5 in a single-player world using the integrated server. Perform the anvil operations in Survival mode. Enable cheats only to provision a historically valid very damaged anvil, expendable items, and experience levels without introducing crafting or exploration randomness. Use keyboard and mouse controls; instructions name the default controls.",
+    "preconditions": [
+      "Launch the exact full release labeled Minecraft 1.4.5, not the similarly named pre-release and not the fixed version 21w18a or any later version.",
+      "Use a new or disposable world so that testing in an old Minecraft version cannot damage a valuable world.",
+      "The world must be in Survival mode when the anvil is used and the output is collected.",
+      "Cheats must be enabled so the version-compatible setup commands can be entered in single-player chat.",
+      "Keep at least three inventory slots free: one for very damaged anvils, one for unnamed cobblestone, and one for renamed output.",
+      "Conduct the test on a solid, level surface away from lava, fire, cacti, explosions, the Void, steep drops, and other players or entities that could move or collect an item.",
+      "Use a normal left-click on the anvil output. Shift-clicking the output is specifically excluded by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft launcher, select the installation for the full Java Edition release Minecraft 1.4.5, and launch the game.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen is open and displays version 1.4.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, choose Singleplayer, select Create New World, set Game Mode to Survival, open More World Options, set Allow Cheats to ON, and create the world. Do not select Hardcore or Creative as the gameplay mode.",
+        "exact_input": null,
+        "success_cue": "A new world begins loading with Survival selected and commands permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the world and nearby chunks finish loading. Do not begin setup while terrain is still appearing or movement is unresponsive.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, movement responds normally, and the Survival HUD shows hearts and hunger icons.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a solid, level area with no nearby environmental hazards. Ensure there is a floor block with open space directly above it where the anvil can be placed.",
+        "exact_input": null,
+        "success_cue": "The player is standing next to a safe floor location, and there is no lava, fire, cactus, void edge, or steep drop nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat, type the historical 1.4.5 give command exactly as shown, and press Enter. The numeric item ID 145 is an anvil, and item data value 2 selects its most damaged obtainable inventory variant.",
+        "exact_input": "/give @p 145 64 2",
+        "success_cue": "The inventory contains a stack of anvils using the most visibly cracked damage variant, historically represented by anvil item data value 2.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the following command, and press Enter to obtain expendable items for repeated low-cost rename operations.",
+        "exact_input": "/give @p 4 64",
+        "success_cue": "A stack of 64 Cobblestone is present in the inventory.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Press T, enter the following command, and press Enter. In this version, the uppercase L suffix grants experience levels rather than raw experience points.",
+        "exact_input": "/xp 64L @p",
+        "success_cue": "The experience-level number above the hotbar has increased by 64 levels.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Press E to open the player inventory. Identify the hotbar as the row of nine slots at the bottom. If necessary, left-click the very damaged anvil stack and then left-click a hotbar slot to place it there. Put the Cobblestone stack in another accessible inventory or hotbar slot. Press E again to close the inventory.",
+        "exact_input": null,
+        "success_cue": "The player inventory is closed, a very damaged anvil is accessible from the hotbar, and the Cobblestone stack is available in the inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the hotbar slot containing the very damaged anvils by pressing its number key or scrolling the mouse wheel until that slot is outlined.",
+        "exact_input": null,
+        "success_cue": "A very damaged anvil is shown in the player's hand and its hotbar slot is selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim at the top face of the prepared solid floor block and right-click once to place one very damaged anvil. Do not place it on a gravity-affected or hazardous setup where it could fall before use.",
+        "exact_input": null,
+        "success_cue": "One heavily cracked anvil block stands on the floor in front of the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "With an empty cursor and while standing within interaction range, aim at the placed anvil and right-click it once.",
+        "exact_input": null,
+        "success_cue": "The anvil interface is open, showing two input slots, an output slot, the item-name field, and the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Place exactly one unnamed Cobblestone into the left input slot: left-click the Cobblestone stack to pick it up, right-click the empty left input slot once to deposit one block, and left-click the original inventory slot to return the remainder of the stack. Leave the second input slot empty.",
+        "exact_input": null,
+        "success_cue": "The left input contains exactly one Cobblestone, the second input is empty, the remaining unnamed Cobblestone is back in the inventory, and no item remains attached to the mouse cursor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Click the item-name text field in the anvil interface. Press Ctrl+A to select its current text, then type the single lowercase letter shown. This creates a simple rename-only operation.",
+        "exact_input": "a",
+        "success_cue": "The name field displays \"a\" and a renamed Cobblestone appears in the output slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Wait until the output slot is visibly populated and the displayed level cost is affordable. Keep the mouse cursor empty before taking the output.",
+        "exact_input": null,
+        "success_cue": "The renamed Cobblestone is available in the output slot, the cost is displayed, and the player has enough experience levels to complete the operation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Move the pointer over the anvil output slot and perform one normal left-click. Do not hold Shift and do not shift-click. This click attempts to pick the completed item up onto the mouse cursor and is the report's trigger action when it coincides with the anvil's final use.",
+        "exact_input": null,
+        "success_cue": "On a non-final use, the anvil interface remains open and the renamed Cobblestone is attached to the cursor. On the final use, the anvil block disappears and the interface closes automatically; if that second condition occurs, stop all input immediately and hand off to observation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Only if the interface remained open after step 15, left-click an empty player-inventory slot or the existing stack of identically renamed Cobblestone to put down the cursor-held output. Then repeat steps 12 through 15 with another single unnamed Cobblestone. Continue until an execution of step 15 makes the very damaged anvil disappear and force-closes the interface. Do not manually close the interface during an iteration, and stop immediately when the automatic closure occurs.",
+        "exact_input": null,
+        "success_cue": "After each non-breaking iteration, the cursor is empty and the interface is ready for another operation. The loop terminates only when the anvil disappears and the interface closes automatically immediately after the normal output click.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The final normal left-click on the populated anvil output slot has just caused the very damaged anvil to disappear and the anvil interface to close automatically. The player has not clicked again, moved, opened an inventory, or attempted to collect or relocate any item since that automatic closure. Begin observation now.",
+    "uncertainties": [
+      "The report describes using all of an anvil's \"charges,\" but anvil damage and final breakage are probabilistic rather than a predictable fixed-use counter. Historical mechanic documentation indicates a 12% damage-or-break chance per completed use, so the exact iteration that becomes the trigger cannot be predetermined.",
+      "Starting with item data value 2 accelerates setup by placing the anvil directly in its most damaged obtainable state. The report comments support beginning with a damaged anvil, but the report does not provide this exact historical command.",
+      "A stack of 64 Cobblestone permits up to 64 rename attempts. There is a very small possibility that the anvil will not break during those attempts; if that occurs, obtain another stack using the same /give command and continue with the same still-placed very damaged anvil.",
+      "The report does not specify single-player versus dedicated server, a world seed, coordinates, difficulty, or a particular item operation. Single-player, a safe arbitrary location, and renaming individual Cobblestone blocks were selected as minimal practical implementation choices that preserve the required Survival-mode output-click trigger.",
+      "Historical English naming for the item data value 2 anvil variant may appear as \"Very Damaged Anvil\" rather than the later name \"Damaged Anvil.\" Identify it by data value 2 and by its most heavily cracked appearance."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0636768e6fa20205016aa8b13bed1887d08acbe2afdc8e4d6c",
+    "elapsed_seconds": 109.94,
+    "usage": {
+      "input_tokens": 42887,
+      "output_tokens": 8336,
+      "reasoning_tokens": 5994,
+      "total_tokens": 51223
+    },
+    "timestamp": "2026-09-15T02:47:05.758359+00:00"
+  }
+}

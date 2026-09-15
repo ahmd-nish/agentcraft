@@ -1,0 +1,229 @@
+{
+  "bug_id": "MC-189365",
+  "category": "Items",
+  "source_md": "[Items] - MC-189365.md",
+  "source_meta": {
+    "mojira categories": "Items; Player",
+    "project": "MC",
+    "issue key": "MC-189365",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-06-13T05:52:48.518-0700",
+    "updated": "2025-04-29T09:44:28.713-0700",
+    "resolution date": "2024-04-30T01:47:57.982-0700",
+    "affects versions": "1.16 Pre-release 5; 1.16 Pre-release 8; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Release Candidate 1; 1.16.2 Release Candidate 2; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w06a; 21w08b; 21w11a; 21w15a; 21w17a; 21w19a; 21w20a; 1.17; 1.17.1; 1.18; 1.18.1; 1.19; 1.19.2; 1.19.3; 23w05a; 1.19.4; 23w14a; 1.20.4; 24w09a",
+    "fix versions": "24w18a",
+    "area": "Gameplay",
+    "labels": "player; soul_speed",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "Minecraft 1.16 Pre-release 5 - Singleplayer 2020-06-13 08-51-28.mp4",
+    "issue links": "Relates:inward:MC-189368:Soul Speed effect still persists when slow falling off a block | Relates:inward:MC-175312:Soul Speed changes players' FOV (field of view) | Duplicate:inward:MC-198621:Fast walk with shift, without speed potion | Duplicate:inward:MC-199709:When standing on the edge of a block near soul sand after you run, the soul speed enchant effect will work | Duplicate:inward:MC-205484:speed from soulspeed doesn't disappear when you place block while sneaking and stand on it. | Duplicate:inward:MC-209084:Soul Speed resists after crossing the Soul Sand | Duplicate:inward:MC-214229:Soul speed effect carrys on when shifting on the edge of blocks that aren't soul soil or soul sand | Duplicate:inward:MC-259677:Soul sand on the march back | Relates:outward:MC-177960:While standing on soul soil/sand with soul speed, replacing the block beneath you with a non-soul block keeps the soul speed",
+    "_title": "Player can retain Soul Speed effect by bridging"
+  },
+  "stor": {
+    "bug_id": "MC-189365",
+    "affected_versions": [
+      "1.16 Pre-release 5",
+      "1.16 Pre-release 8",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w27a",
+      "20w28a",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.2 Release Candidate 1",
+      "1.16.2 Release Candidate 2",
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w06a",
+      "21w08b",
+      "21w11a",
+      "21w15a",
+      "21w17a",
+      "21w19a",
+      "21w20a",
+      "1.17",
+      "1.17.1",
+      "1.18",
+      "1.18.1",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "23w05a",
+      "1.19.4",
+      "23w14a",
+      "1.20.4",
+      "24w09a"
+    ],
+    "recommended_version": "1.16 Pre-release 5",
+    "environment": "Vanilla Minecraft Java Edition 1.16 Pre-release 5 in a singleplayer world. Use Creative mode with cheats during construction and item setup, then Survival mode for the trigger sequence. No particular seed, dimension, biome, or coordinates are specified.",
+    "preconditions": [
+      "Launch Java Edition 1.16 Pre-release 5, not the fixed version 24w18a or any later version.",
+      "Use Soul Soil for the first bridge extension. Do not substitute Soul Sand; the report states that Soul Sand lowers the player too far for this procedure to work properly.",
+      "Use a full, non-Soul-Speed block for the following extension. This plan uses Stone as the unspecified normal block.",
+      "Keep the Soul Soil in hotbar slot 1 and Stone in hotbar slot 2 so the block type can be changed without interrupting movement.",
+      "During the trigger sequence, keep the Sneak action continuously active, use only forward movement, and do not step or move backward. With default controls, Sneak is Left Shift, forward is W, and backward is S.",
+      "If Left Shift is released, S is pressed, the player steps backward, or the player falls before reaching the trigger, restart the movement sequence from the original platform edge."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Java Edition 1.16 Pre-release 5 and launch it. At the title screen, confirm that the displayed version is exactly 1.16 Pre-release 5.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen displays Java Edition 1.16 Pre-release 5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new singleplayer world in Creative mode. Leave cheats enabled so the report-supplied item command and the later game-mode command can be executed.",
+        "exact_input": null,
+        "success_cue": "The player has entered a Creative-mode singleplayer world and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the surrounding terrain has rendered and player movement, inventory interaction, and chat commands respond normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are rendered and the player responds immediately to movement input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the report-supplied command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:netherite_boots{Enchantments:[{id:\"soul_speed\",lvl:3}]}",
+        "success_cue": "A pair of Netherite Boots is added to the player's inventory and the command does not display a syntax error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the inventory. Locate the Netherite Boots created by the command, verify that their tooltip lists Soul Speed III, and move them into the feet armor slot. Close the inventory with E.",
+        "exact_input": null,
+        "success_cue": "The Soul Speed III Netherite Boots are visibly equipped in the feet armor slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Open the Creative inventory with E. Use the Search Items tab to find Soul Soil, then place a stack of Soul Soil into hotbar slot 1.",
+        "exact_input": "soul soil",
+        "success_cue": "Soul Soil occupies hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "While the Creative inventory remains open, search for Stone and place a stack of Stone into hotbar slot 2. Close the inventory.",
+        "exact_input": "stone",
+        "success_cue": "Soul Soil is in hotbar slot 1 and Stone is in hotbar slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "In a clear area, construct a small Stone starting platform whose top surface is at least four blocks above the ground. Make the platform at least 3 blocks by 3 blocks, and choose one edge with at least six blocks of unobstructed horizontal air beyond it. The block at the chosen starting edge must be Stone, not Soul Soil or Soul Sand.",
+        "exact_input": null,
+        "success_cue": "A stable elevated Stone platform exists with a straight, unobstructed bridging direction extending over open air.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Land on the platform and stop Creative flight. Stand several blocks back from the selected edge, facing directly toward the open-air bridging direction.",
+        "exact_input": null,
+        "success_cue": "The player is standing on the platform, is not flying, and is facing the selected edge head-on.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T, enter the game-mode command including the leading slash, and press Enter to conduct the movement sequence in Survival mode.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "Chat confirms the game mode was changed to Survival, and the player is standing normally on the platform.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press 1 to select the Soul Soil in hotbar slot 1. Keep the camera facing straight toward the selected platform edge.",
+        "exact_input": "1",
+        "success_cue": "Soul Soil is shown as the selected item in the player's hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Press and continuously hold the Sneak action, default Left Shift. While continuing to hold Sneak, press and hold forward, default W, until ledge protection stops the player at the platform edge. Do not press backward, default S.",
+        "exact_input": "Hold Left Shift + W",
+        "success_cue": "The player is crouched at the outer edge, still facing forward over open air, without falling or moving backward.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Without releasing Sneak or forward movement, angle the camera downward until the crosshair targets the outward vertical face near the top of the Stone block supporting the player. Right-click once to attach one Soul Soil block to that face, extending the platform horizontally at the same height.",
+        "exact_input": "Right-click",
+        "success_cue": "One Soul Soil block is attached directly beyond the Stone edge, with its top surface level with the platform.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Continue holding Sneak and forward movement so the player advances from the Stone platform onto the newly placed Soul Soil. Keep facing the same direction and do not step backward.",
+        "exact_input": "Continue holding Left Shift + W",
+        "success_cue": "The crouched player is positioned on the Soul Soil extension and has not reversed direction or released Sneak.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Without releasing Sneak or forward movement, press 2 to change the selected hotbar item from Soul Soil to Stone. Continue applying forward input toward the open edge.",
+        "exact_input": "2 while continuing to hold Left Shift + W",
+        "success_cue": "Stone is selected while the player remains crouched on the Soul Soil and continues pressing toward the outer edge.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "At the outer edge of the Soul Soil, keep Sneak and forward movement held. Aim down at the outward vertical face of the Soul Soil block and right-click once to attach a Stone block at the same height directly ahead.",
+        "exact_input": "Right-click while continuing to hold Left Shift + W",
+        "success_cue": "A Stone block is attached directly beyond the Soul Soil, forming a straight Stone–Soul Soil–Stone path.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Continue holding Sneak and forward movement until the player advances from the Soul Soil onto the newly placed Stone. Do not release Sneak, stop to reposition, or use backward movement before this transition is complete.",
+        "exact_input": "Continue holding Left Shift + W",
+        "success_cue": "The player has just crossed onto the Stone extension while continuously sneaking and moving in the original forward direction, with no backward movement since entering the Soul Soil.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The player has just moved directly from the Soul Soil extension onto the first Stone extension while continuously holding Sneak and forward movement, and no backward movement has occurred. Hand control to the observation subsystem immediately without changing direction, releasing Sneak, or walking back.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, dimension, game mode, platform design, or which non-Soul-Speed block to use. An elevated Stone platform, Creative-mode construction, and Survival-mode execution are practical choices rather than stated requirements.",
+      "The Soul Speed boots command is copied exactly from a report comment that explicitly presents it for 21w06a. Its exact execution was not definitively verified from an allowed primary web source for the recommended version, 1.16 Pre-release 5. If that exact command produces a syntax error, do not silently modernize or alter its NBT; record the setup as blocked by version-specific command uncertainty.",
+      "The report also describes a separate inverse sequence in which the first extension is a normal block and subsequent extensions are Soul Speed blocks. This plan targets the issue title's primary Soul-Soil-then-normal-block sequence so that there is one unambiguous trigger step and immediate observation handoff."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0ccc83261f83db64016aa8aff7f99087d085e33f3c8cd22a87",
+    "elapsed_seconds": 139.79,
+    "usage": {
+      "input_tokens": 26157,
+      "output_tokens": 10349,
+      "reasoning_tokens": 8175,
+      "total_tokens": 36506
+    },
+    "timestamp": "2026-09-15T02:42:11.262236+00:00"
+  }
+}

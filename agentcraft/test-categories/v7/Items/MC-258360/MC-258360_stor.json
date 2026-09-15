@@ -1,0 +1,129 @@
+{
+  "bug_id": "MC-258360",
+  "category": "Items",
+  "source_md": "[Items] - MC-258360.md",
+  "source_meta": {
+    "mojira categories": "Items",
+    "project": "MC",
+    "issue key": "MC-258360",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-12-07T17:34:25.261-0800",
+    "updated": "2025-04-30T04:30:55.989-0700",
+    "resolution date": "2023-05-16T04:25:50.021-0700",
+    "affects versions": "1.19.3; 23w05a; 1.19.4; 1.20 Pre-release 1",
+    "fix versions": "1.20 Pre-release 2",
+    "area": "Platform",
+    "labels": "horse; horse_armor",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "1.png; 2.png; 3.png; 4.png; 5.png; MC-258360.png",
+    "issue links": "Relates:inward:MC-191591:Saddles lose their NBT data when equipped on horses, zombie horses, skeleton horses, mules or donkeys via right-clicking | Duplicate:inward:MC-258473:Dyed horse armor becomes restored to default color after placed on horse. | Duplicate:inward:MC-258648:When I dye leather horse armor and put it on horses the dyed color disappears | Duplicate:inward:MC-258931:Bug with painted horse armor | Duplicate:inward:MC-259688:Dyed leather horse armor loses its dye when quick-equipped onto a horse ( NBT discarded) | Duplicate:inward:MC-259726:Dyed horse armor loses its color when right click on a horse with it | Duplicate:inward:MC-261476:dyes on leather horse armor is dismissed with the \"quick\" equip on horse | Duplicate:inward:MC-261914:Horse leather armor looses color on right click equipping | Duplicate:inward:MC-262342:Leather Horse armour loses dye | Duplicate:inward:MC-262578:Leather horse armor resets to normal color when right clicked onto a horse",
+    "_title": "Horse armor loses its NBT data when equipped on horses via right-clicking"
+  },
+  "stor": {
+    "bug_id": "MC-258360",
+    "affected_versions": [
+      "1.19.3",
+      "23w05a",
+      "1.19.4",
+      "1.20 Pre-release 1"
+    ],
+    "recommended_version": "1.19.3",
+    "environment": "Minecraft Java Edition 1.19.3 in a vanilla single-player world. Use Survival mode with commands available through cheats. No particular seed or dimension is specified; perform the reproduction in the Overworld in an open area where a horse can be approached directly.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.19.3, the first version listed as affected in the report; do not use the fixed version 1.20 Pre-release 2.",
+      "Create or load a single-player world with cheats enabled so that the supplied /summon and /give commands can be executed from in-game chat.",
+      "Use Survival mode as a minimally interfering implementation choice; the report does not specify a required game mode.",
+      "Ensure the player has at least one empty inventory slot to receive the leather horse armor.",
+      "Stand on solid ground in an open area with enough room for a horse to appear at the player's current X, Y, Z coordinates.",
+      "Use the configured Use Item/Place Block control when instructed to right-click; its default input is the right mouse button."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Launcher, select or create an installation that runs Minecraft Java Edition 1.19.3, start the game, and enter the cheats-enabled test world.",
+        "exact_input": "Minecraft Java Edition 1.19.3",
+        "success_cue": "The player is controlling a character in a loaded 1.19.3 world, surrounding chunks are rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "If the player is not already in Survival mode, open chat and switch to Survival mode. Include the leading slash because this is an in-game chat command.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The player is in Survival mode, indicated by the normal health and hunger bars above the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to an open location, stop moving, and make sure the block occupied by the player and the nearby blocks are clear enough for a horse to spawn without being trapped inside other blocks.",
+        "exact_input": null,
+        "success_cue": "The player is standing on solid ground with a clear, directly reachable space at the player's current position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the report's horse summon command exactly as supplied—including the leading slash, capitalization, coordinates, and NBT—and press Enter.",
+        "exact_input": "/summon minecraft:horse ~ ~ ~ {NoAI:1b,Tame:1b}",
+        "success_cue": "A horse appears at or immediately beside the player's position. It remains stationary because NoAI is enabled and is already tamed because Tame is enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Step back far enough to see the summoned horse clearly while remaining within normal right-click interaction range. Do not mount or open the horse inventory.",
+        "exact_input": null,
+        "success_cue": "The stationary horse is visible under the crosshair and can be reached with a normal right-click.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat, enter the report's item-give command exactly as supplied—including the leading slash and all NBT punctuation and quoting—and press Enter.",
+        "exact_input": "/give @s minecraft:leather_horse_armor{display:{Name:'{\"text\":\"MC-258360\",\"italic\":\"false\"}',color:11141290}}",
+        "success_cue": "One leather horse armor item is added to the player's inventory; it has the custom display name MC-258360 and a custom dyed color.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Place the supplied leather horse armor in the hotbar if necessary, then select its hotbar slot. To move it when it is not already in the hotbar, press E to open the inventory, drag the armor into one of the nine bottom hotbar slots, close the inventory with E, and select that slot using the corresponding number key or mouse wheel.",
+        "exact_input": "E, then hotbar slot key 1-9 as applicable",
+        "success_cue": "The leather horse armor is visible in the player's main hand, and its hotbar slot is highlighted as the active slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "While standing beside the horse and holding the custom leather horse armor in the active hand, center the crosshair on the horse's body and use the Use Item/Place Block control once—right mouse button by default. Do not open the horse inventory before performing this quick-equip interaction.",
+        "exact_input": "Right-click once on the horse while holding the custom leather horse armor",
+        "success_cue": "The right-click interaction has completed and the horse is now visibly wearing leather horse armor; no inventory-based equipping method was used.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The custom-NBT leather horse armor has just been equipped directly by right-clicking the tamed horse, and the horse is visibly wearing it. Hand control to the observation subsystem before performing any further interaction, removal, replacement, or inventory-based equipping.",
+    "uncertainties": [
+      "The report does not specify single-player versus dedicated server. A cheats-enabled single-player world is selected because both supplied commands and the right-click interaction can be executed there without changing the stated reproduction path.",
+      "The report does not specify a game mode. Survival mode is selected to make transfer of the armor from the player's hand to the horse unambiguous and to avoid possible Creative-mode item-retention differences.",
+      "No world seed, coordinates, biome, difficulty, or graphics settings are specified; none are added as reproduction requirements.",
+      "The report states that the issue does not occur when using the horse inventory, so the horse inventory must not be used to equip the armor before the trigger step."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0046d7ba8e6989d6016aa8b0e0f5e087d0a6d60e0ee2320e03",
+    "elapsed_seconds": 31.24,
+    "usage": {
+      "input_tokens": 8910,
+      "output_tokens": 2303,
+      "reasoning_tokens": 1034,
+      "total_tokens": 11213
+    },
+    "timestamp": "2026-09-15T02:44:16.097255+00:00"
+  }
+}
