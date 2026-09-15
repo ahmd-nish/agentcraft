@@ -1,0 +1,234 @@
+{
+  "bug_id": "MC-72687",
+  "category": "Accessibility",
+  "reproduction_method": "commands",
+  "source_md": "[Accessibility] - MC-72687.md",
+  "source_meta": {
+    "mojira categories": "Accessibility; Text; UI",
+    "project": "MC",
+    "issue key": "MC-72687",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2014-10-04T11:42:28.853-0700",
+    "updated": "2025-04-26T03:47:59.147-0700",
+    "resolution date": "2024-10-22T11:43:30.317-0700",
+    "affects versions": "Minecraft 1.8; Minecraft 1.10.2; Minecraft 16w41a; Minecraft 1.13.2; Minecraft 19w08b; Minecraft 19w09a; Minecraft 19w11a; Minecraft 19w11b; 1.14.4; 1.15.1; 1.15.2; 20w06a; 20w07a; 20w20a; 20w46a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w07a; 21w08b; 21w14a; 21w17a; 1.17.1; 21w44a; 1.18 Pre-release 1; 1.18 Pre-release 7; 1.18; 1.18.1; 22w03a; 22w05a; 22w06a; 22w07a; 1.18.2 Release Candidate 1; 1.18.2; 22w17a; 22w18a; 1.19 Release Candidate 2; 1.19",
+    "fix versions": "22w24a",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "Capture d’écran 2014-10-04 à 20.36.20.png; javaw 2016-10-15 11-09-21-800.png; javaw 2016-10-15 11-32-01-351.png; MC-72687.mp4; MC-72687.png; MC-72687 - 22w24a (Fixed).png; MC-72687 - Comparison.png",
+    "issue links": "Relates:outward:MC-240724:There are no shadows on text displayed within the subtitles overlay | Cloners:inward:MC-92012:Action Bar messages are barely visible",
+    "_title": "There are no shadows on text displayed within the action bar"
+  },
+  "stor": {
+    "bug_id": "MC-72687",
+    "affected_versions": [
+      "Minecraft 1.8",
+      "Minecraft 1.10.2",
+      "Minecraft 16w41a",
+      "Minecraft 1.13.2",
+      "Minecraft 19w08b",
+      "Minecraft 19w09a",
+      "Minecraft 19w11a",
+      "Minecraft 19w11b",
+      "1.14.4",
+      "1.15.1",
+      "1.15.2",
+      "20w06a",
+      "20w07a",
+      "20w20a",
+      "20w46a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w14a",
+      "21w17a",
+      "1.17.1",
+      "21w44a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 7",
+      "1.18",
+      "1.18.1",
+      "22w03a",
+      "22w05a",
+      "22w06a",
+      "22w07a",
+      "1.18.2 Release Candidate 1",
+      "1.18.2",
+      "22w17a",
+      "22w18a",
+      "1.19 Release Candidate 2",
+      "1.19"
+    ],
+    "recommended_version": "Minecraft 1.8",
+    "environment": "Unmodified Minecraft Java Edition 1.8 in a local single-player Creative-mode world, using the default Minecraft resource pack and a visible HUD. No dedicated server, additional players, operator permissions, or cheats are required for the Minecraft 1.8 jukebox-based action-bar trigger.",
+    "preconditions": [
+      "Install or select an official Minecraft Java Edition 1.8 launcher installation. Do not use the listed fix version or a newer version for this reproduction.",
+      "Disable client mods, shaders, and custom resource packs that could replace or alter the font or HUD renderer.",
+      "Use a Creative-mode world so a Jukebox and Music Disc can be obtained deterministically without crafting or exploration.",
+      "Keep the HUD visible so the hotbar and temporary action-bar message can be seen.",
+      "Use a normal gameplay view with enough clear ground in reach to place one Jukebox."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for Java Edition 1.8 and start the game.",
+        "exact_input": "Minecraft 1.8",
+        "success_cue": "The Minecraft 1.8 main menu is displayed, with the version identified as 1.8 on the menu screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open Options, then Resource Packs. Ensure only the built-in Default resource pack is active; remove any custom packs from the selected list, then return to the main menu.",
+        "exact_input": "Options... -> Resource Packs... -> Default",
+        "success_cue": "The game has returned to the main menu with no custom resource pack active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Click Singleplayer, then click Create New World.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Enter a recognizable world name, such as MC-72687, and click the Game Mode button until it reads Game Mode: Creative.",
+        "exact_input": "MC-72687",
+        "success_cue": "The world-creation screen shows Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Click Create New World and wait for generation and terrain loading to finish. Do not continue until nearby terrain is rendered and normal movement responds immediately.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the generated Creative world, surrounding terrain is rendered, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Confirm that the normal gameplay HUD is visible. If the crosshair and nine-slot hotbar are hidden, press the Toggle HUD control once; its default key is F1.",
+        "exact_input": "F1 only if the HUD is hidden",
+        "success_cue": "The crosshair is visible at screen center and the nine-slot hotbar is visible along the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press the inventory control, default E, to open the Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open and its item-category tabs are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Search Items tab, represented by a compass icon near the top of the Creative inventory.",
+        "exact_input": "Click the compass-icon Search Items tab",
+        "success_cue": "A text search field and a searchable item grid are displayed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Click the search field and enter jukebox.",
+        "exact_input": "jukebox",
+        "success_cue": "The item grid is filtered and a Jukebox block item is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Move the Jukebox from the search results into the first hotbar slot shown along the bottom of the inventory. This can be done by clicking the Jukebox and then clicking hotbar slot 1.",
+        "exact_input": "Jukebox -> hotbar slot 1",
+        "success_cue": "A Jukebox icon is present in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Replace the current search text with music disc.",
+        "exact_input": "music disc",
+        "success_cue": "The item grid shows the available Music Disc items.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Choose the Music Disc whose tooltip identifies the track as C418 - 13 and move it into hotbar slot 2.",
+        "exact_input": "Music Disc (C418 - 13) -> hotbar slot 2",
+        "success_cue": "The selected Music Disc is present in hotbar slot 2 while the Jukebox remains in slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press the inventory control, default E, to close the Creative inventory and return to gameplay.",
+        "exact_input": "E",
+        "success_cue": "The world view is visible again, with the Jukebox in hotbar slot 1 and the Music Disc in slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press hotbar key 1 to select the Jukebox. Aim the crosshair at the top surface of a nearby solid ground block with empty space above it.",
+        "exact_input": "1",
+        "success_cue": "The Jukebox is shown as the held item and the crosshair targets a valid nearby placement surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Right-click the targeted ground surface once to place the Jukebox.",
+        "exact_input": "right-click",
+        "success_cue": "A Jukebox block is placed in the world within interaction reach of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press hotbar key 2 to select the Music Disc.",
+        "exact_input": "2",
+        "success_cue": "The Music Disc is the active held item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Aim the center crosshair directly at the placed Jukebox. Keep the hotbar area unobstructed and be ready to inspect the temporary text immediately after the next action.",
+        "exact_input": null,
+        "success_cue": "The Jukebox is under the crosshair and within right-click interaction range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Right-click the Jukebox exactly once with the Music Disc to insert and play it. Immediately hand control to the observation subsystem while the temporary 'Now playing' text is visible above the hotbar.",
+        "exact_input": "right-click",
+        "success_cue": "The disc has been accepted by the Jukebox, music playback has begun, and the temporary track-identification text is currently displayed in the action-bar area above the hotbar.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The Music Disc has just been inserted into the placed Jukebox in Minecraft Java Edition 1.8, and its temporary track-identification text is currently visible in the action-bar area. Begin visual inspection before that temporary message fades.",
+    "uncertainties": [
+      "The report supplies the command `/title @a actionbar {\"text\":\"MC-72687\",\"color\":\"white\"}`, but the required version-selection policy makes Minecraft 1.8 the recommended version. The report's own historical comments indicate that command-driven action-bar messages became available later, around the 16w32b development period, so that command is not used or modified in this Minecraft 1.8 plan.",
+      "The Minecraft 1.8 reproduction therefore uses the vanilla Jukebox track-identification message, which the supplied report comments identify as an action-bar use in vanilla Minecraft.",
+      "The report does not require a particular Music Disc. Music Disc C418 - 13 is selected only as a deterministic practical choice; another standard Minecraft 1.8 Music Disc should trigger the same type of temporary message.",
+      "If reproduction specifically through the report's exact `/title` command is required instead of through the earliest affected version, use the affected version Minecraft 16w41a in a cheats-enabled world and execute the supplied command without changing its text. That alternative is not the recommended-version procedure because Minecraft 16w41a is not the first listed affected version."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0e3ae2e72ec6dea8016aa7b34fc0a087d0a7720c1275e08360",
+    "elapsed_seconds": 76.6,
+    "usage": {
+      "input_tokens": 35481,
+      "output_tokens": 5177,
+      "reasoning_tokens": 3216,
+      "total_tokens": 40658
+    },
+    "timestamp": "2026-09-14T08:43:08.145974+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

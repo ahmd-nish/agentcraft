@@ -1,0 +1,240 @@
+{
+  "bug_id": "MC-203401",
+  "category": "Accessibility",
+  "source_md": "[Accessibility] - MC-203401.md",
+  "source_meta": {
+    "mojira categories": "Accessibility; Input",
+    "project": "MC",
+    "issue key": "MC-203401",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-11-02T16:51:55.502-0800",
+    "updated": "2025-07-25T06:18:09.282-0700",
+    "resolution date": "2025-07-25T06:18:09.214-0700",
+    "affects versions": "1.15.2; 1.16.2; 1.16.4; 20w46a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w18a; 21w20a; 1.17 Pre-release 1; 1.19; 22w42a; 22w43a; 23w05a; 1.19.4 Pre-release 2; 1.19.4; 23w14a; 1.20.1; 1.20.4; 1.21.7",
+    "fix versions": "25w31a",
+    "area": "Platform",
+    "labels": "controls-not-configurable",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "2020-11-03_00.48.41.png; 2020-11-03_00.49.15.png",
+    "issue links": "Relates:inward:MC-147718:F1, F3, F3+[char] combos cannot be rebound | Relates:outward:MC-270985:\"Pick block with NBT/components\" key cannot be rebound | Relates:outward:MC-268283:Navigating the hotbar via the scroll wheel cannot be rebound | Relates:inward:MC-122645:Narrator hotkey cannot be customized or disabled | Duplicate:inward:MC-179496:Sprinting by double-pressing \"Walk Forwards\" (default \"W\" key) cannot be disabled | Duplicate:inward:MC-299291:Sprint activates on its own",
+    "_title": "Double-tapping forward button to sprint cannot be disabled/reconfigured"
+  },
+  "stor": {
+    "bug_id": "MC-203401",
+    "affected_versions": [
+      "1.15.2",
+      "1.16.2",
+      "1.16.4",
+      "20w46a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w18a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.19",
+      "22w42a",
+      "22w43a",
+      "23w05a",
+      "1.19.4 Pre-release 2",
+      "1.19.4",
+      "23w14a",
+      "1.20.1",
+      "1.20.4",
+      "1.21.7"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Vanilla Minecraft Java Edition 1.15.2 client, English-language user interface, keyboard and mouse, and a new single-player Creative-mode Superflat world. Creative mode is selected so the hunger requirement is not applicable. Use a clean game profile or game directory so Forward initially uses its default W binding and G is unused.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.15.2, the first affected version listed in the report; do not use the fixed version 25w31a.",
+      "Use an unmodified client without mods that alter movement, sprinting, key bindings, or input handling.",
+      "Use keyboard controls. Forward must initially be bound to W, and G must not be assigned to another action.",
+      "Create or enter a world where the player can move across a level, unobstructed stretch of ground.",
+      "Keep the player on the ground throughout the test; do not activate Creative flight.",
+      "Do not press the separately configured Sprint control, whose default input is Left Ctrl, during either double-tap sequence.",
+      "Do not crouch, collide with a block, open a GUI, or hold another movement control while performing a double-tap."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher using a clean vanilla installation configured for Minecraft Java Edition 1.15.2, then launch the game.",
+        "exact_input": "1.15.2",
+        "success_cue": "The Minecraft 1.15.2 main menu is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open the controls screen by selecting Options and then Controls.",
+        "exact_input": "Options... -> Controls...",
+        "success_cue": "The Controls screen is open and the movement key bindings are visible or can be reached by scrolling.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Locate the Forward movement binding. If it does not display W, click its binding button and press W. Leave it unchanged if it already displays W.",
+        "exact_input": "W",
+        "success_cue": "The Forward entry displays W as its assigned key.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Confirm that G is not assigned to another control. With clean default 1.15.2 controls, G should be unused. Do not assign G yet.",
+        "exact_input": "G",
+        "success_cue": "Forward remains bound to W, and no other control is assigned to G.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Return to the main menu by selecting Done on the Controls screen and then Done on the Options screen.",
+        "exact_input": "Done -> Done",
+        "success_cue": "The Minecraft main menu is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the single-player world list and begin creating a new world.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter a recognizable world name and cycle the Game Mode button until it displays Creative.",
+        "exact_input": "World Name: MC-203401; Game Mode: Creative",
+        "success_cue": "The world name is set and the creation screen displays Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open More World Options and cycle the World Type setting until Superflat is selected, then return to the primary world-creation screen.",
+        "exact_input": "More World Options... -> World Type: Superflat -> Done",
+        "success_cue": "The world is configured as a Creative-mode Superflat world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select Create New World and wait for generation and loading to finish.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the world, nearby terrain is rendered, movement responds normally, and the player is not flying.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Turn the player to face a level, unobstructed stretch of ground. Keep both feet on the ground and ensure no block, entity, or wall is immediately ahead.",
+        "exact_input": "Mouse movement only",
+        "success_cue": "There is enough clear ground ahead for several seconds of uninterrupted forward movement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Perform the first input of the baseline double-tap by pressing and releasing W quickly. Do not press Left Ctrl or any other movement key.",
+        "exact_input": "W (press and release)",
+        "success_cue": "W has been released after a brief forward tap, the player remains grounded, and the next step can be performed immediately.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Within approximately 200 milliseconds of releasing the first W press, press W again and hold it for about one second. Do not press the separate Sprint control.",
+        "exact_input": "W (press and hold within approximately 200 ms of the first release)",
+        "success_cue": "The second W input has been delivered while the player is grounded and has been held for about one second.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Release W and wait until all forward movement has stopped. Continue waiting for at least one second so the first double-tap sequence cannot combine with later movement input.",
+        "exact_input": "W (release); wait at least 1 second",
+        "success_cue": "No movement key is held and the player is stationary on the ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Pause the game and navigate back to the controls screen.",
+        "exact_input": "Esc -> Options... -> Controls...",
+        "success_cue": "The Controls screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Locate the Forward entry, which should currently display W, and click its key-binding button so it waits for a replacement input.",
+        "exact_input": "Click the W button beside Forward",
+        "success_cue": "The Forward binding is selected and waiting for a new key input.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Press G once to assign G to Forward.",
+        "exact_input": "G",
+        "success_cue": "The Forward entry now displays G.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Verify that the Forward entry still displays G and that the controls screen does not indicate a duplicate binding for G. Do not change the separately configured Sprint binding.",
+        "exact_input": null,
+        "success_cue": "Forward is uniquely bound to G, and the separate Sprint control remains on a different key.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Select Done to leave Controls, select Done to leave Options, and resume the world from the pause menu.",
+        "exact_input": "Done -> Done -> Back to Game",
+        "success_cue": "The player is back in the world and player movement accepts keyboard input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Release all movement keys and wait at least one second. Confirm that the player is grounded, not flying, stationary, and still facing an unobstructed stretch of level ground.",
+        "exact_input": "Wait at least 1 second with no movement input",
+        "success_cue": "The player is stationary on the ground, no movement key is held, and the route ahead is clear.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Perform the first input of the post-rebinding double-tap by pressing and releasing G quickly. Do not press W, Left Ctrl, or any other movement key.",
+        "exact_input": "G (press and release)",
+        "success_cue": "G has been released after a brief forward tap, the player remains grounded, and the next step can be performed immediately.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Within approximately 200 milliseconds of releasing the first G press, press G again and keep it held. Do not press the separate Sprint control. Hand control to the observation subsystem while G remains held.",
+        "exact_input": "G (press and hold within approximately 200 ms of the first release)",
+        "success_cue": "The second G input has just been delivered and remains held while the grounded player has clear terrain ahead.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "Forward is bound to G, the player is grounded in the unobstructed 1.15.2 world, no separate Sprint input is pressed, and the second G press of the quick double-tap has just begun and remains held. Begin observation without releasing G.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, terrain type, difficulty, or single-player versus multiplayer. A new single-player Creative Superflat world is selected as the simplest deterministic environment; the report explicitly makes the full-hunger condition conditional, so it is not applicable in Creative mode.",
+      "The report describes the required input timing only as a quick double-tap. An interval of approximately 200 milliseconds is a practical implementation choice intended to unambiguously constitute a quick double-tap; it was not specified by the report.",
+      "The report refers to the player's usual Forward button rather than requiring W initially. This plan normalizes the initial binding to the default W key before changing it to the report's example unused key, G.",
+      "The report does not explicitly require a clean profile or unmodified client. Those conditions are used to prevent an existing G binding, modified sprint behavior, or retained control configuration from interfering with execution."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_03123923fe12f212016aa8bb3c38c887d09304a40e949f4748",
+    "elapsed_seconds": 100.93,
+    "usage": {
+      "input_tokens": 9208,
+      "output_tokens": 6922,
+      "reasoning_tokens": 4837,
+      "total_tokens": 16130
+    },
+    "timestamp": "2026-09-15T03:29:36.007860+00:00"
+  }
+}

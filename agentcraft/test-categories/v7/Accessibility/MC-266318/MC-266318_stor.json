@@ -1,0 +1,235 @@
+{
+  "bug_id": "MC-266318",
+  "category": "Accessibility",
+  "source_md": "[Accessibility] - MC-266318.md",
+  "source_meta": {
+    "mojira categories": "Accessibility; Sound",
+    "project": "MC",
+    "issue key": "MC-266318",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-11-02T09:43:05.043-0700",
+    "updated": "2025-05-29T09:08:44.348-0700",
+    "resolution date": "2025-03-25T09:51:07.285-0700",
+    "affects versions": "23w44a; 1.20.3 Pre-Release 1; 24w03b; 24w10a; 24w19b; 1.21; 1.21.1; 24w35a; 1.21.3; 1.21.4",
+    "fix versions": "25w15a",
+    "area": "Expansion B",
+    "labels": "door; trapdoor",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "MC-266318.mkv",
+    "_title": "Trapdoors and doors have inconsistent subtitles for being opened and closed"
+  },
+  "stor": {
+    "bug_id": "MC-266318",
+    "affected_versions": [
+      "23w44a",
+      "1.20.3 Pre-Release 1",
+      "24w03b",
+      "24w10a",
+      "24w19b",
+      "1.21",
+      "1.21.1",
+      "24w35a",
+      "1.21.3",
+      "1.21.4"
+    ],
+    "recommended_version": "23w44a",
+    "environment": "Minecraft: Java Edition snapshot 23w44a; unmodified client; new single-player Creative-mode world; Update 1.21 experimental features enabled; English (US) language; default resource pack; subtitles enabled; Master Volume and Blocks sound category set above 0%; no nearby redstone components powering the test blocks.",
+    "preconditions": [
+      "Use snapshot 23w44a, the first version listed in the report's Affects versions field. Do not use fix version 25w15a.",
+      "Use a new disposable world rather than an existing important world because snapshot and experimental worlds may be unstable.",
+      "Use the default resource pack and English (US) if the displayed subtitle wording must be compared directly with the English wording in the report.",
+      "Use Creative mode as a deterministic way to obtain the exact Copper Door and Copper Trapdoor without crafting or exploration.",
+      "Enable the Update 1.21 experiment during world creation; Copper Doors and Copper Trapdoors are experimental content in snapshot 23w44a.",
+      "Keep the test blocks away from levers, redstone torches, pressure plates, buttons, powered blocks, or other redstone sources so that every state change is caused by direct player interaction.",
+      "The instructions use default Java Edition controls. If controls have been rebound, use the key assigned to the named action instead."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using an installation configured for snapshot 23w44a. From the title screen, open a new single-player world workflow rather than loading an existing world.",
+        "exact_input": "Launch 23w44a -> Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open in a client running snapshot 23w44a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Set the world game mode to Creative so the required blocks can be obtained directly from the Creative inventory.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen displays Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the experimental-feature configuration from the world-creation screen and enable the experiment named Update 1.21. Accept the experimental-world warning if it appears, then return to the main world-creation screen.",
+        "exact_input": "More -> Experiments -> Update 1.21: ON -> Done; accept the warning if prompted",
+        "success_cue": "Update 1.21 is enabled for the new world and the world-creation screen identifies the configuration as experimental.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Create the world. Wait without interacting until terrain has rendered, the hotbar is visible, and player movement responds normally.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is standing in the new Creative world, nearby terrain is rendered, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "If the game is not already using English (US), pause the game, open the language menu, select English (US), and return to the world. This keeps the displayed subtitle wording aligned with the English report.",
+        "exact_input": "Esc -> Options -> Language -> English (US) -> Done -> Done",
+        "success_cue": "Menus and item names are displayed in English.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Pause the game and open Music & Sounds. Set Show Subtitles to ON. Also verify that Master Volume and the Blocks sound category are above 0%, then return to the world.",
+        "exact_input": "Esc -> Options -> Music & Sounds -> Show Subtitles: ON; Master Volume: above 0%; Blocks: above 0% -> Done -> Done",
+        "success_cue": "The game has resumed with Show Subtitles set to ON and block sound events not muted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory and select the Search Items tab, identified by the magnifying-glass icon.",
+        "exact_input": "E -> Search Items tab",
+        "success_cue": "The Creative inventory search field and searchable item grid are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Search for the door item. Among any oxidation or waxed variants, locate the item whose tooltip is exactly Copper Door, then place one Copper Door into hotbar slot 1.",
+        "exact_input": "Search: copper door; move the item named exactly \"Copper Door\" to hotbar slot 1",
+        "success_cue": "Hotbar slot 1 contains the base, unoxidized item named Copper Door rather than an exposed, weathered, oxidized, or waxed variant.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Replace the search text with the trapdoor query. Locate the item whose tooltip is exactly Copper Trapdoor, then place one Copper Trapdoor into hotbar slot 2.",
+        "exact_input": "Search: copper trapdoor; move the item named exactly \"Copper Trapdoor\" to hotbar slot 2",
+        "success_cue": "Hotbar slot 2 contains the base, unoxidized item named Copper Trapdoor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Close the inventory and move to a clear patch of solid ground with enough empty space above it for a two-block-tall door. Ensure there are no nearby redstone sources that could operate either block.",
+        "exact_input": "E; use W/A/S/D to move and the mouse to look",
+        "success_cue": "A clear solid placement area is available, with at least two vertical blocks of empty space and no nearby redstone components.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select hotbar slot 1 containing the Copper Door. Aim at the top face of the chosen ground block and use the Place Block action once to place the door.",
+        "exact_input": "1 -> right-click the top face of a solid ground block",
+        "success_cue": "A closed, two-block-tall base Copper Door is standing on the ground.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select hotbar slot 2 containing the Copper Trapdoor. Aim at the top face of a nearby ground block and use the Place Block action once. Leave enough space for the trapdoor to rotate open.",
+        "exact_input": "2 -> right-click the top face of a nearby solid ground block",
+        "success_cue": "A closed, horizontal base Copper Trapdoor is placed near the Copper Door and has unobstructed space to open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Stand close enough to interact with both blocks and orient the camera so the Copper Door, Copper Trapdoor, and lower-right subtitle area can be monitored without moving far. Avoid standing on the trapdoor.",
+        "exact_input": "Use W/A/S/D and the mouse; remain within interaction range of both blocks",
+        "success_cue": "Both test blocks can be targeted from the player's position, and neither block is receiving redstone power.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Select an empty hotbar slot so that subsequent right-clicks cannot accidentally place another block. Aim the crosshair at the Copper Door.",
+        "exact_input": "Select any empty hotbar slot, then aim at the Copper Door",
+        "success_cue": "The player's hand holds no placeable test block and the crosshair is centered on the Copper Door.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Use the door once to change it from closed to open. Keep the lower-right subtitle area unobstructed while the interaction occurs.",
+        "exact_input": "Right-click the Copper Door once",
+        "success_cue": "The Copper Door visibly rotates into its open state and one fresh subtitle event is generated for the interaction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Do not interact with either test block until the subtitle entry generated by the door-opening action has faded. This separates the opening and closing events so their entries do not overlap.",
+        "exact_input": null,
+        "success_cue": "The Copper Door remains open and the subtitle entry from the previous interaction is no longer visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Use the Copper Door once more to change it from open to closed.",
+        "exact_input": "Right-click the Copper Door once",
+        "success_cue": "The Copper Door visibly returns to its closed state and one fresh subtitle event is generated for the interaction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Wait until the subtitle entry generated by the door-closing action has faded before operating the trapdoor.",
+        "exact_input": null,
+        "success_cue": "The Copper Door remains closed and the previous subtitle entry is no longer visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Aim the crosshair at the Copper Trapdoor while retaining an empty hand.",
+        "exact_input": "Move the mouse until the crosshair is centered on the Copper Trapdoor",
+        "success_cue": "The Copper Trapdoor is closed, directly targeted, and within interaction range.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Use the Copper Trapdoor once to change it from closed to open. Keep the lower-right subtitle area unobstructed.",
+        "exact_input": "Right-click the Copper Trapdoor once",
+        "success_cue": "The Copper Trapdoor visibly rotates into its open state and one fresh subtitle event is generated for the interaction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Wait until the subtitle entry generated by the trapdoor-opening action has faded. Do not operate the door or make other avoidable block sounds during this interval.",
+        "exact_input": null,
+        "success_cue": "The Copper Trapdoor remains open and the previous subtitle entry is no longer visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Use the Copper Trapdoor once more to change it from open to closed. Immediately hand control to the observation subsystem while the newly generated subtitle entry is still displayed.",
+        "exact_input": "Right-click the Copper Trapdoor once",
+        "success_cue": "The Copper Trapdoor has visibly returned to its closed state and a fresh subtitle entry from this final interaction is present in the lower-right subtitle area.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "The base Copper Door has been manually opened and closed once, with its two subtitle events temporally separated, and the base Copper Trapdoor has then been manually opened and has just been manually closed. Subtitles remain enabled, no redstone is powering either block, and the subtitle entry produced by the final Copper Trapdoor interaction should still be onscreen for immediate observation.",
+    "uncertainties": [
+      "The report does not specify game mode, world seed, world type, or server type. A new single-player Creative world is selected only to provide deterministic access to the two required blocks.",
+      "The report omits that Copper Doors and Copper Trapdoors belong to the Update 1.21 experiment in snapshot 23w44a. The experiment requirement was externally verified for this historical snapshot.",
+      "The report does not state a language. English (US) is selected so the autonomous observer can compare the visible text with the English subtitle names given in the report.",
+      "The description discusses iron trapdoors as well, but the formal Steps to Reproduce explicitly instruct testing a Copper Door and Copper Trapdoor. This plan therefore does not add an Iron Door or Iron Trapdoor test.",
+      "The report does not request oxidation-level or waxed-variant testing. This plan uses only the exact base items named Copper Door and Copper Trapdoor.",
+      "Several later affected versions make the copper blocks available without the Update 1.21 experiment, but recommended_version is the first listed affected version, 23w44a, where the experiment must be enabled."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_00472078192e3970016aa8bdac319087d0aa61bcab6903b647",
+    "elapsed_seconds": 621.21,
+    "usage": {
+      "input_tokens": 32697,
+      "output_tokens": 7081,
+      "reasoning_tokens": 4615,
+      "total_tokens": 39778
+    },
+    "timestamp": "2026-09-15T03:39:57.222976+00:00"
+  }
+}
