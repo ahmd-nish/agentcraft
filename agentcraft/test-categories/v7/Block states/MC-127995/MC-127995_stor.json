@@ -1,0 +1,191 @@
+{
+  "bug_id": "MC-127995",
+  "category": "Block states",
+  "source_md": "[Block states] - MC-127995.md",
+  "source_meta": {
+    "mojira categories": "Block states",
+    "project": "MC",
+    "issue key": "MC-127995",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2018-04-05T08:39:14.407-0700",
+    "updated": "2025-04-26T06:28:32.006-0700",
+    "resolution date": "2024-08-24T01:19:56.344-0700",
+    "affects versions": "Minecraft 18w14b; Minecraft 1.13.1-pre2; Minecraft 1.13.1; 1.14.4; 19w37a; 1.15.1; 20w21a; 1.16 Pre-release 8; 20w28a; 1.16.2 Pre-release 1; 1.16.3; 1.16.4; 20w51a; 21w03a; 1.16.5; 21w05a; 21w05b; 21w06a; 21w07a; 21w16a; 21w18a; 21w19a; 1.17 Pre-release 2; 1.17; 1.17.1; 21w41a; 21w44a; 1.18.1; 1.18.2; 22w18a; 1.19; 1.19.2; 1.19.3; 23w03a; 1.19.4; 23w18a; 1.20 Pre-release 1; 1.20.1",
+    "fix versions": "24w33a",
+    "area": "Gameplay",
+    "labels": "bone_meal; sea_pickle",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "MC-127995.mp4; MC-127995.png",
+    "issue links": "Relates:outward:MC-261423:Pitcher pod crop with a block on top consumes bone meal despite being unable to grow | Duplicate:inward:MC-226962:Bone meal can be used on sea pickle that has the maximum space | Duplicate:inward:MC-224995:Sea Pickels will use bone meal underwater without doing anything. | Duplicate:inward:MC-218922:Sea Pickle uses Bonemeal when not on Coral Block | Duplicate:inward:MC-201486:sea pickle growth",
+    "_title": "You can use bone meal on sea pickles in situations where no sea pickles will grow"
+  },
+  "stor": {
+    "bug_id": "MC-127995",
+    "affected_versions": [
+      "Minecraft 18w14b",
+      "Minecraft 1.13.1-pre2",
+      "Minecraft 1.13.1",
+      "1.14.4",
+      "19w37a",
+      "1.15.1",
+      "20w21a",
+      "1.16 Pre-release 8",
+      "20w28a",
+      "1.16.2 Pre-release 1",
+      "1.16.3",
+      "1.16.4",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w16a",
+      "21w18a",
+      "21w19a",
+      "1.17 Pre-release 2",
+      "1.17",
+      "1.17.1",
+      "21w41a",
+      "21w44a",
+      "1.18.1",
+      "1.18.2",
+      "22w18a",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "23w03a",
+      "1.19.4",
+      "23w18a",
+      "1.20 Pre-release 1",
+      "1.20.1"
+    ],
+    "recommended_version": "Minecraft 18w14b",
+    "environment": "Minecraft Java Edition Minecraft 18w14b in a single-player Overworld world. Use Creative mode for deterministic item acquisition. No particular seed, server, datapack, resource pack, graphics setting, or coordinates are specified. The instructions assume default controls, including E for inventory, number keys for hotbar selection, and right-click for Use Item/Place Block.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to make historical snapshot Minecraft 18w14b available, then launch that exact version.",
+      "Use an unmodified client without gameplay-affecting mods or datapacks.",
+      "A mouse or equivalent input capable of issuing the Use Item/Place Block action is available.",
+      "The test location must be dry land: the sea pickle must not be waterlogged or otherwise submerged.",
+      "Use an ordinary land block such as grass, dirt, or stone as the supporting block; do not use a coral block.",
+      "Creative mode is selected only as a practical way to obtain the sea pickle and bone meal. The report does not require a specific game mode, although it separately notes that bone meal consumption can be noticed in Survival mode."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the affected snapshot selected for this reproduction.",
+        "exact_input": "Launch the installation configured for Minecraft 18w14b.",
+        "success_cue": "The Minecraft title screen is open and displays 18w14b as the running version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode so the required items can be obtained without crafting or exploration.",
+        "exact_input": "Click Singleplayer -> Create New World; set Game Mode to Creative; then click Create New World.",
+        "success_cue": "The player has spawned in a new Overworld world and Creative flight/inventory access is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish before manipulating items or blocks.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the player can look and move normally, and the game is no longer displaying a world-loading screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory and locate the Sea Pickle item through the item-search interface.",
+        "exact_input": "Press E; open the Search Items tab if it is not already selected; click the search field and type: sea pickle",
+        "success_cue": "A Sea Pickle item is visible among the search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Place a Sea Pickle stack into the first hotbar slot. The hotbar is the row of nine item slots at the bottom of the inventory and game screen.",
+        "exact_input": "Left-click the Sea Pickle search result, then left-click hotbar slot 1.",
+        "success_cue": "A Sea Pickle stack is present in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Use the Creative inventory search field to locate Bone Meal.",
+        "exact_input": "Click the search field, replace its contents with: bone meal",
+        "success_cue": "A Bone Meal item is visible among the search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Place a Bone Meal stack into the second hotbar slot, keeping it separate from the Sea Pickle stack, and close the inventory.",
+        "exact_input": "Left-click the Bone Meal search result; left-click hotbar slot 2; then press E to close the inventory.",
+        "success_cue": "Normal world view is restored, with Sea Pickle in hotbar slot 1 and Bone Meal in hotbar slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Locate an exposed ordinary land block on which to place the test sea pickle. Use the top face of a grass, dirt, or stone block with air above it and no water occupying or touching the intended sea-pickle position.",
+        "exact_input": "Move and aim at the top face of a suitable dry grass, dirt, or stone block.",
+        "success_cue": "The crosshair points at the top face of a dry, non-coral block with enough open space above it for placement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the Sea Pickle in the first hotbar slot.",
+        "exact_input": "Press 1.",
+        "success_cue": "The Sea Pickle is shown in the player's hand and hotbar slot 1 is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Place exactly one sea pickle on the selected dry land block. Do not right-click the placed pickle additional times, because repeated placement can increase the number of pickles in the same block.",
+        "exact_input": "Right-click the top face of the selected dry block once.",
+        "success_cue": "One singular sea pickle is visible on top of the dry supporting block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Confirm that the placed sea pickle is in a condition where normal sea-pickle growth is not being tested: it remains outside water and is not supported by coral. Then select the Bone Meal stack and target the sea pickle itself.",
+        "exact_input": "Verify that no water occupies the sea pickle's block; press 2; position the crosshair directly over the sea pickle.",
+        "success_cue": "Bone Meal is shown in the player's hand, hotbar slot 2 is highlighted, and the crosshair is centered on the singular dry sea pickle.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Attempt to apply bone meal to the singular sea pickle while it remains on dry, non-coral land. Use one interaction as the minimum deterministic trigger; the original report's unspecified instruction to apply several amounts may be tested by repeating the same input after observation begins.",
+        "exact_input": "Right-click the targeted sea pickle once while Bone Meal is selected.",
+        "success_cue": "The Use Item/Place Block input has just been issued while the Bone Meal was selected and the crosshair remained on the dry sea pickle.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The player has just right-clicked the singular sea pickle once with Bone Meal while the pickle remains on dry, non-coral land. Begin observing the result of that interaction immediately; if repeatability must be checked, issue additional separate right-clicks without altering the placement conditions.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, supporting land-block type, or game mode.",
+      "Creative mode and an ordinary grass, dirt, or stone support block are practical execution choices rather than explicit reproduction requirements.",
+      "The report says to apply 'several amounts' of bone meal but does not provide an exact number. The plan uses one right-click as the precise trigger and leaves any repeatability attempts to the observation phase.",
+      "The report notes that bone meal is consumed in Survival mode, but Survival mode is not required by its listed reproduction steps. This plan uses Creative mode to avoid adding version-sensitive commands or unrelated item-acquisition work."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_059e35e463a5f7c2016aa8c91b85a487d0a57abf975c98ac60",
+    "elapsed_seconds": 66.02,
+    "usage": {
+      "input_tokens": 9770,
+      "output_tokens": 4548,
+      "reasoning_tokens": 2864,
+      "total_tokens": 14318
+    },
+    "timestamp": "2026-09-15T04:28:13.073188+00:00"
+  }
+}

@@ -1,0 +1,248 @@
+{
+  "bug_id": "MC-300558",
+  "category": "Block states",
+  "source_md": "[Block states] - MC-300558.md",
+  "source_meta": {
+    "mojira categories": "Block states; Commands; Entities",
+    "project": "MC",
+    "issue key": "MC-300558",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-08-02T07:13:17.599-0700",
+    "updated": "2025-08-29T05:16:31.859-0700",
+    "resolution date": "2025-08-29T05:16:31.799-0700",
+    "affects versions": "25w31a; 25w32a; 25w34b",
+    "fix versions": "25w36a",
+    "area": "Expansion A",
+    "votes": "1",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "CopperGolemLockDemo.mkv; CopperGolemLockDemo-Downscaled.mkv",
+    "issue links": "Duplicate:inward:MC-300781:Copper Golems can open locked chests",
+    "_title": "Copper golems can open locked chests without an appropriate key item"
+  },
+  "stor": {
+    "bug_id": "MC-300558",
+    "affected_versions": [
+      "25w31a",
+      "25w32a",
+      "25w34b"
+    ],
+    "recommended_version": "25w31a",
+    "environment": "Minecraft: Java Edition snapshot 25w31a in a fresh single-player Creative mode world with commands enabled. Prefer a Superflat world with structure generation disabled so no unrelated chests can attract the copper golem. Use a separate test world/game directory because this is a historical snapshot. Default controls are assumed: T for chat, E for inventory, right-click for Use Item/Place Block, left-click for normal inventory clicks, and Esc to close a container screen.",
+    "preconditions": [
+      "Install and launch exactly snapshot 25w31a, the first version listed as affected. Do not use fix version 25w36a.",
+      "Create a fresh Creative mode world with commands enabled. A dedicated server and additional players are not required by the report.",
+      "Use an open test area containing no other copper chests, chests, or trapped chests that could distract the copper golem. The setup commands below clear a 13-by-13 area up to six blocks high.",
+      "Keep the player completely stationary while executing the relative-coordinate setup commands in steps 4 through 10. Moving between those commands would cause them to target different locations.",
+      "The wooden chest must remain empty so the cobblestone carried by the golem is otherwise eligible to be deposited there.",
+      "The area above and around both chests must remain unobstructed so the copper golem can stand beside and interact with them."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select or create an installation for Java Edition snapshot 25w31a, and launch it. If necessary, open the Installations tab, enable snapshot versions, choose 25w31a as the installation version, and use a separate game directory.",
+        "exact_input": null,
+        "success_cue": "The game reaches the main menu and identifies the running version as 25w31a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and ensure commands are allowed. For a deterministic empty test area, select Superflat world generation and disable structure generation, then create the world.",
+        "exact_input": null,
+        "success_cue": "The player appears in a new Creative mode world with the hotbar visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building until world loading has completed. Test that looking and walking respond normally, then stop at one position and do not move until step 10 has been completed.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, movement responds normally, and the player is standing still at the coordinate anchor for the relative commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the command exactly as shown, including the leading slash, and press Enter. This creates a stone floor one block below the player without changing the player's anchor position.",
+        "exact_input": "/fill ~-6 ~-1 ~-6 ~6 ~-1 ~6 minecraft:stone",
+        "success_cue": "A 13-by-13 stone floor exists one block beneath the player, and chat reports that blocks were filled or changed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Without moving, press T, enter the command exactly as shown, and press Enter. This removes obstructions from the test area while leaving the stone floor intact.",
+        "exact_input": "/fill ~-6 ~ ~-6 ~6 ~5 ~6 minecraft:air",
+        "success_cue": "The space from the player's foot level through five blocks above it is clear throughout the test area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Without moving, open chat and execute the following command to place the copper block that will be used to create the copper golem. It is placed three blocks in one horizontal direction from the player's anchor.",
+        "exact_input": "/setblock ~ ~ ~-3 minecraft:copper_block",
+        "success_cue": "A copper block is visible three blocks from the player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Without moving, open chat and execute the following command to place the copper input chest two blocks to one side of the player's anchor.",
+        "exact_input": "/setblock ~-2 ~ ~ minecraft:copper_chest",
+        "success_cue": "A single copper chest is visible two blocks to one side of the player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Without moving, open chat and execute the following command to place the target ordinary wooden chest on the opposite side of the player's anchor.",
+        "exact_input": "/setblock ~2 ~ ~ minecraft:chest",
+        "success_cue": "A single ordinary wooden chest is visible two blocks on the opposite side of the player; the copper and wooden chests are four blocks apart.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Without moving, press T and execute the command exactly as shown. The leading slash is required in in-game chat. This merges the report's trial-key item predicate into the lock component of the wooden chest.",
+        "exact_input": "/data merge block ~2 ~ ~ {components:{\"minecraft:lock\":{items:\"minecraft:trial_key\"}}}",
+        "success_cue": "Chat reports that the block data of the wooden chest was modified.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Still without moving, execute this command to read back the wooden chest's lock component and verify that the previous command targeted the intended chest.",
+        "exact_input": "/data get block ~2 ~ ~ components.\"minecraft:lock\"",
+        "success_cue": "Chat displays a lock value containing the predicate {items:\"minecraft:trial_key\"}. The relative-coordinate setup is complete, so the player may now move.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Perform the report's optional player control check. Open chat and clear the player's inventory so the main hand cannot contain a trial key or any other item.",
+        "exact_input": "/clear @s",
+        "success_cue": "All inventory and hotbar slots are empty, including the currently selected main-hand slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Walk to the ordinary wooden chest and use it once with the empty main hand by aiming at the chest and pressing Use Item/Place Block, which is right-click by default.",
+        "exact_input": null,
+        "success_cue": "The chest inventory screen does not appear, confirming that the lock rejects an empty or nonmatching player hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press T and give the player one trial key for the matching-key half of the optional control check.",
+        "exact_input": "/give @s minecraft:trial_key 1",
+        "success_cue": "A trial key appears in the player's inventory, normally in the first available hotbar slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Select the hotbar slot containing the trial key; if it entered the first hotbar slot, press 1. Confirm that the trial key is visibly held in the player's main hand, then aim at the same wooden chest and right-click it once.",
+        "exact_input": null,
+        "success_cue": "The wooden chest's inventory screen is visible while the trial key is held in the main hand, confirming that the configured predicate recognizes the key.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press Esc to close the wooden chest screen without putting any item into the chest.",
+        "exact_input": null,
+        "success_cue": "The player has returned to the world view and the wooden chest remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Remove the trial key before beginning the copper-golem portion of the reproduction. Press T and execute the following command.",
+        "exact_input": "/clear @s minecraft:trial_key",
+        "success_cue": "No trial key remains in the player's inventory or main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Press T and give the player a carved pumpkin for constructing the copper golem.",
+        "exact_input": "/give @s minecraft:carved_pumpkin 1",
+        "success_cue": "A carved pumpkin is present in the player's inventory or hotbar.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 18,
+        "action": "Select the carved pumpkin in the hotbar. Walk to the copper block placed in step 6, aim at its top face, and right-click to place the carved pumpkin on top of it. The carved pumpkin must be placed last, after the copper block is already present.",
+        "exact_input": null,
+        "success_cue": "A living copper golem is visible at the construction position, with both the copper input chest and the locked wooden chest nearby.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 19,
+        "action": "Clear the player's inventory so the remaining Creative-mode carved pumpkin cannot be confused with the test item. Open chat and execute the following command.",
+        "exact_input": "/clear @s",
+        "success_cue": "The player's inventory and main hand are empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Give the player one cobblestone. Cobblestone is the chosen nonmatching item because it does not satisfy the report's minecraft:trial_key predicate.",
+        "exact_input": "/give @s minecraft:cobblestone 1",
+        "success_cue": "Exactly one cobblestone is present in the player's inventory, normally in the first available hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Select the cobblestone's hotbar slot, then walk to the copper-colored chest placed in step 7. Aim at that copper chest and right-click to open its container screen. Do not open the ordinary wooden chest during this step.",
+        "exact_input": null,
+        "success_cue": "The copper chest container screen is open, and the one cobblestone is visible in the player's hotbar or inventory section at the bottom of the screen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Move the cobblestone into the copper chest. With the copper chest screen open, Shift-left-click the cobblestone stack in the player's inventory, or pick it up with left-click and left-click an empty slot in the copper chest's upper inventory grid.",
+        "exact_input": null,
+        "success_cue": "One cobblestone is visible in a slot in the copper chest's upper inventory grid, and it is no longer in the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Press Esc immediately after depositing the cobblestone to close the copper chest, then move a few blocks back without leaving the cleared test area. Do not interact with either chest or with the golem again.",
+        "exact_input": null,
+        "success_cue": "The world view is visible, both chests and the copper golem can be monitored, and the copper chest contains the cobblestone while the wooden chest remains empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 24,
+        "action": "Wait for the copper golem to search the copper chest and collect the cobblestone. Allow several search cycles if necessary; after failing to find an item, a copper golem may idle before searching again. Do not proceed until the item is visibly carried by the golem.",
+        "exact_input": null,
+        "success_cue": "The copper golem is visibly holding the cobblestone, establishing that it has collected the nonmatching item from the copper chest.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 25,
+        "action": "Continue waiting without interacting. Track the cobblestone-holding copper golem until it reaches the ordinary locked wooden chest, faces or positions itself to use that chest, and begins its item-placement/chest-interaction action. Hand control to the observation subsystem immediately when this interaction starts; do not wait to evaluate its outcome.",
+        "exact_input": null,
+        "success_cue": "The copper golem is holding cobblestone and has just begun interacting with the locked ordinary wooden chest.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 25,
+    "handoff_condition": "The copper golem, while visibly holding the nonmatching cobblestone, has just begun its item-placement interaction with the empty wooden chest whose minecraft:lock component requires minecraft:trial_key. Begin observation at this moment without yet classifying whether the chest opens or whether the item is transferred.",
+    "uncertainties": [
+      "The report supplies the lock predicate but not a complete command or chest coordinates. The plan uses relative coordinates and the component-era block-entity command `/data merge block ... {components:{\"minecraft:lock\":{items:\"minecraft:trial_key\"}}}` so the predicate is applied without altering its contents.",
+      "The report does not specify game mode, world seed, coordinates, world type, or server type. A fresh single-player Creative Superflat world with commands and structures disabled is selected as the simplest deterministic environment.",
+      "The report says to create a copper golem with a copper chest but does not prescribe crafting, Creative inventory, spawn eggs, or commands. The plan places the copper chest by command and constructs the golem by placing a carved pumpkin on a copper block, matching the affected snapshot's documented creation mechanic.",
+      "The report does not name the nonmatching item. One cobblestone is selected as a practical deterministic item that cannot match the predicate requiring minecraft:trial_key.",
+      "The optional player lock validation from the report is included because it confirms that the command correctly configured the target chest before the golem interaction. It may be omitted only if a shorter reproduction is required and step 10 successfully returns the intended predicate."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_02e7d7df6a5be148016aa8ca8f1b9887d0a7320b13f7c90c41",
+    "elapsed_seconds": 155.61,
+    "usage": {
+      "input_tokens": 33814,
+      "output_tokens": 10544,
+      "reasoning_tokens": 7753,
+      "total_tokens": 44358
+    },
+    "timestamp": "2026-09-15T04:35:54.578024+00:00"
+  }
+}

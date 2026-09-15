@@ -1,0 +1,157 @@
+{
+  "bug_id": "MC-250034",
+  "category": "Block states",
+  "source_md": "[Block states] - MC-250034.md",
+  "source_meta": {
+    "mojira categories": "Block states",
+    "project": "MC",
+    "issue key": "MC-250034",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2022-04-08T07:43:51.918-0700",
+    "updated": "2025-04-11T12:42:08.208-0700",
+    "resolution date": "2022-11-06T06:02:50.319-0800",
+    "affects versions": "22w14a; 22w15a; 22w16b; 22w18a; 1.19 Pre-release 3",
+    "fix versions": "1.19 Pre-release 5",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "2022-04-08_15.39.09.png; 2022-04-08_15.39.13.png; 2022-04-08_15.39.14.png; 2022-04-08_15.40.54.png; MC-250034.mp4; MC-250034.png",
+    "issue links": "Relates:outward:MC-104259:Player / mob stuck on farmland while it changes to dirt",
+    "_title": "Standing on top of mud as it converts to clay causes the player to fall through or be pushed out of the block"
+  },
+  "stor": {
+    "bug_id": "MC-250034",
+    "affected_versions": [
+      "22w14a",
+      "22w15a",
+      "22w16b",
+      "22w18a",
+      "1.19 Pre-release 3"
+    ],
+    "recommended_version": "22w14a",
+    "environment": "Vanilla Minecraft Java Edition snapshot 22w14a in a single-player Overworld using the integrated server. Use Creative mode with cheats enabled for deterministic block acquisition, flight, and game-rule control. Use default controls or the equivalent configured bindings.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to run the exact snapshot 22w14a; do not use the listed fix version, 1.19 Pre-release 5.",
+      "Create a disposable Creative-mode world with cheats enabled. No particular seed, biome, coordinates, difficulty, or world-generation type is specified by the report.",
+      "The conversion assembly must contain mud directly above an ordinary block, with downward-pointing Pointed Dripstone attached beneath that block. This arrangement is stated in the report and corroborated by the version documentation. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
+      "Stone is used as the unspecified block below the mud, and Dirt is used only as a temporary construction scaffold. These block choices are practical implementation choices rather than report requirements.",
+      "Random ticking will be disabled during construction so the mud cannot convert before the player is positioned. It will be re-enabled at a high value only at the final trigger step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the launcher installation configured for snapshot 22w14a. Wait for the main menu to finish loading.",
+        "exact_input": "Minecraft Java Edition 22w14a",
+        "success_cue": "The main menu displays Minecraft Java Edition 22w14a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer, create a new disposable world, set Game Mode to Creative, ensure Allow Cheats is ON under More World Options, and create the world. Wait until terrain has rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options... -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player is in a loaded Overworld, can fly, and is permitted to execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Disable random block ticks during construction. Press T to open in-game chat, type the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/gamerule randomTickSpeed 0",
+        "success_cue": "Chat confirms that randomTickSpeed is set to 0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to locate Mud, Stone, Pointed Dripstone, and Dirt. Place each item in a separate hotbar slot, then close the inventory with E. The hotbar is the row of nine item slots at the bottom of the game screen.",
+        "exact_input": "E; search terms: mud, stone, pointed dripstone, dirt; E",
+        "success_cue": "Mud, Stone, Pointed Dripstone, and Dirt are all visible in separate hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Move to an open, flat area. Select Dirt in the hotbar and construct a temporary vertical pillar four blocks tall. If necessary, double-tap Space to begin Creative flight so each upper face can be targeted and right-clicked.",
+        "exact_input": "Select Dirt; double-tap Space if flight is needed; right-click to place four Dirt blocks vertically",
+        "success_cue": "A four-block-tall Dirt pillar stands in an open area with sufficient air beside it for a three-block hanging assembly.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "While flying level with the top of the temporary pillar, select Mud. Aim at one horizontal side face of the top Dirt block and right-click once, placing one Mud block beside the pillar rather than above it.",
+        "exact_input": "Select Mud; right-click one side face of the top Dirt block",
+        "success_cue": "One Mud block is attached beside the top Dirt block, with open air directly beneath the Mud block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Fly below the Mud block, select Stone, aim at the center of the Mud block's underside, and right-click once. This places the Stone block directly below the Mud.",
+        "exact_input": "Select Stone; right-click the underside of the Mud block",
+        "success_cue": "The assembly has Mud on top and Stone immediately below it, with no air gap between them.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Remain below the assembly and select Pointed Dripstone. Aim at the underside of the Stone block and right-click once so the Pointed Dripstone attaches to the Stone as a downward-pointing stalactite.",
+        "exact_input": "Select Pointed Dripstone; right-click the underside of the Stone block",
+        "success_cue": "A downward-pointing Pointed Dripstone is visibly hanging directly beneath the Stone; the vertical order is Mud, Stone, then Pointed Dripstone.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Remove every Dirt block in the temporary pillar by left-clicking the Dirt blocks in Creative mode. Do not break the Mud, Stone, or Pointed Dripstone. Confirm that the remaining test assembly is isolated, especially that there are no blocks horizontally adjacent to the Mud block.",
+        "exact_input": "Left-click each of the four temporary Dirt blocks",
+        "success_cue": "Only the isolated vertical test assembly remains: Mud above Stone above downward Pointed Dripstone, with air on all four horizontal sides of the Mud.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Move above the Mud block using Creative flight. Center the player over it, then hold the descend/sneak control, Left Shift by default, until the player's feet come to rest on the Mud surface. Release Left Shift and release all movement controls. Do not stand on the edge or continue flying.",
+        "exact_input": "Double-tap Space if needed; W/A/S/D to center over Mud; hold Left Shift to descend; release Left Shift after landing",
+        "success_cue": "The player is motionless with both feet positioned on the upper surface of the Mud block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Without moving off the Mud, press T to open chat and type the high-random-tick command exactly. Do not press Enter yet. The value 1000 is a practical high value selected because the report does not provide an exact number.",
+        "exact_input": "/gamerule randomTickSpeed 1000",
+        "success_cue": "The complete command is visible in the chat input but has not been submitted; the player remains over the Mud and the block is still Mud.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press Enter to execute the prepared command. Immediately release all movement, jump, flight, and sneak inputs. Remain stationary while the game runs until the Mud directly under the player converts into Clay. Continue only until that single conversion occurs; do not repeat the setup or trigger.",
+        "exact_input": "Enter; then no movement input",
+        "success_cue": "The block position immediately beneath the player has just changed from Mud to Clay.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The isolated Mud block has just converted into Clay while the player was stationary on its upper surface and randomTickSpeed was set to 1000. Hand control to the observation subsystem immediately, before the player intentionally moves, jumps, flies, or sneaks.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, biome, coordinates, or single-player versus dedicated-server requirement. A Creative single-player world with cheats is selected solely to make construction and timing deterministic.",
+      "The report says only to place 'a block' below the Mud. Stone is selected as a simple inert full block; the report does not state that Stone specifically is required.",
+      "The report recommends a 'high value' for randomTickSpeed but gives no exact value. The plan uses 1000 and records it as a practical inference.",
+      "Disabling randomTickSpeed during construction is not part of the report; it is used only to prevent premature conversion and is reversed at the trigger step.",
+      "The description says the issue may also affect other entities, but this plan tests the explicitly described player case only.",
+      "The description notes an additional possibility when no blocks surround the converting block. The temporary scaffold is therefore removed before triggering, although surrounding air is not stated as necessary for the primary reproduction."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0e0951e2a12c8eba016aa8ca0eb91087d0864e2b424c2bb664",
+    "elapsed_seconds": 129.09,
+    "usage": {
+      "input_tokens": 17623,
+      "output_tokens": 8383,
+      "reasoning_tokens": 6587,
+      "total_tokens": 26006
+    },
+    "timestamp": "2026-09-15T04:33:18.954807+00:00"
+  }
+}

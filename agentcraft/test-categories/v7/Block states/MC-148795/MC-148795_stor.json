@@ -1,0 +1,220 @@
+{
+  "bug_id": "MC-148795",
+  "category": "Block states",
+  "source_md": "[Block states] - MC-148795.md",
+  "source_meta": {
+    "mojira categories": "Block states",
+    "project": "MC",
+    "issue key": "MC-148795",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2019-04-19T10:18:21.598-0700",
+    "updated": "2025-04-30T05:51:25.376-0700",
+    "resolution date": "2023-01-12T15:28:59.251-0800",
+    "affects versions": "Minecraft 1.14 Pre-Release 5; Minecraft 1.14; Minecraft 1.14.1; 1.14.4; 19w39a; 19w41a; 19w45b; 1.15 Pre-Release 2; 1.15.1; 1.15.2; 20w18a; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w30a; 1.16.2; 1.16.4; 20w45a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w07a; 21w08a; 21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w16a; 21w17a; 21w19a; 21w20a; 1.17 Pre-release 1; 1.17 Pre-release 3; 1.17 Pre-release 4; 1.17 Pre-release 5; 1.17 Release Candidate 1; 1.17 Release Candidate 2; 1.17; 1.17.1 Pre-release 1; 1.17.1 Pre-release 3; 1.17.1 Release Candidate 1; 1.17.1; 21w37a; 21w38a; 21w39a; 21w41a; 21w42a; 21w43a; 21w44a; 1.18 Pre-release 1; 1.18 Pre-release 2; 1.18 Pre-release 4; 1.18 Pre-release 5; 1.18; 1.18.1; 22w03a; 22w06a; 1.18.2",
+    "fix versions": "22w11a",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "2019-04-20_00.55.54.png; 2020-12-21_14.45.56.png; javaw 2021-11-17 12-12-45-454.mp4; javaw 2021-11-17 12-12-55-715.mp4; javaw 2021-11-17 12-19-48-484.jpg; javaw 2021-11-17 12-19-57-905.jpg; MC-148795.mp4; MC-148795.png",
+    "issue links": "Relates:inward:MC-143167:Scaffolding creates ghost blocks at the height limit | Relates:outward:MC-219875:You can cause a desync when repeatably picking up liquids | Duplicate:inward:MC-142966:Builds two scaffolding blocks when 1 is placed | Duplicate:inward:MC-146893:Scaffolding falling | Duplicate:inward:MC-148963:Scaffolding not falling. After general placing of the block. | Duplicate:inward:MC-149090:Scaffolding block can float in air | Duplicate:inward:MC-149107:Scaffolding | Duplicate:inward:MC-149317:Scaffolding Floats and Deletes Blocks When Placing | Duplicate:inward:MC-149348:Scaffolding | Duplicate:inward:MC-149807:.. | Duplicate:inward:MC-149810:bugged scaffolding | Duplicate:inward:MC-150619:Баг с подмостками(строительными лесами) | Duplicate:inward:MC-150890:Scaffolding bug | Duplicate:inward:MC-151020:Floating scaffolding. | Duplicate:inward:MC-151872:You can place scaffolding in the air without any support | Duplicate:inward:MC-152620:Bug with scaffolding | Duplicate:inward:MC-153692:Quickly placing scaffolding will create fake scaffolding | Duplicate:inward:MC-154067:Spamming Scaffolding fast creates floating Scaffolding Block | Duplicate:inward:MC-155341:Travelling, by levitating scaffolding. | Duplicate:inward:MC-155852:\"Phantom\" Scaffolding | Duplicate:inward:MC-156634:Bug Scaffoldings (they fly) | Duplicate:inward:MC-162254:Floating Scaffolding | Duplicate:inward:MC-162734:Floating scaffolding | Duplicate:inward:MC-163433:flying scraffolding | Duplicate:inward:MC-167005:Flying scaffolding | Duplicate:inward:MC-167168:Scaffolding remains flying | Duplicate:inward:MC-168696:Server kick for Flying because of Scaffolding | Duplicate:inward:MC-171508:Fly'ing scaffolding | Duplicate:inward:MC-171527:Ошибка с подмостками | Duplicate:inward:MC-173341:Scaffolding creates a glitch that lets you make a bridge in the air, and when you die you get all the blocks back | Duplicate:inward:MC-175558:Scaffolding can be placed in midair | Duplicate:inward:MC-176754:Scaffholding flying | Duplicate:inward:MC-177484:Ghost scaffolding able to be placed on mid-air | Duplicate:inward:MC-180725:Flying scaffolding | Duplicate:inward:MC-182279:Floating scaffolding | Duplicate:inward:MC-184691:Scaffolding glitch | Duplicate:inward:MC-188369:Scaffolding vanishing client side | Duplicate:inward:MC-190751:Levitating scaffolding | Duplicate:inward:MC-198037:Scaffolding fly glitch | Duplicate:inward:MC-204964:some times scafondin floats | Duplicate:inward:MC-205531:Ghost Scaffoldings | Duplicate:inward:MC-209257:You can fly but not really. | Duplicate:inward:MC-215435:if u place build up and place a scafholding next to 4 scafholding on a side if u keep doing it it will create a gost block wich u can walk on air | Duplicate:inward:MC-217154:Flight bug with scaffolding | Duplicate:inward:MC-228515:Phantom Scaffolding | Duplicate:inward:MC-228914:Placing Horizontal Scaffolding Via Shortcut Makes Gap Plus Ghost Scaffold | Duplicate:inward:MC-235580:Ghost Scaffolding | Duplicate:inward:MC-241719:Floating scaffolding can generate in 1.18 Pre-release 2 and can be moved around. | Duplicate:inward:REALMS-3003:I found a way to place scaffolding in the air.",
+    "_title": "Ghost blocks can occasionally be created when placing scaffolding too quickly"
+  },
+  "stor": {
+    "bug_id": "MC-148795",
+    "affected_versions": [
+      "Minecraft 1.14 Pre-Release 5",
+      "Minecraft 1.14",
+      "Minecraft 1.14.1",
+      "1.14.4",
+      "19w39a",
+      "19w41a",
+      "19w45b",
+      "1.15 Pre-Release 2",
+      "1.15.1",
+      "1.15.2",
+      "20w18a",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w30a",
+      "1.16.2",
+      "1.16.4",
+      "20w45a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08a",
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "21w19a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17 Pre-release 3",
+      "1.17 Pre-release 4",
+      "1.17 Pre-release 5",
+      "1.17 Release Candidate 1",
+      "1.17 Release Candidate 2",
+      "1.17",
+      "1.17.1 Pre-release 1",
+      "1.17.1 Pre-release 3",
+      "1.17.1 Release Candidate 1",
+      "1.17.1",
+      "21w37a",
+      "21w38a",
+      "21w39a",
+      "21w41a",
+      "21w42a",
+      "21w43a",
+      "21w44a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 2",
+      "1.18 Pre-release 4",
+      "1.18 Pre-release 5",
+      "1.18",
+      "1.18.1",
+      "22w03a",
+      "22w06a",
+      "1.18.2"
+    ],
+    "recommended_version": "Minecraft 1.14 Pre-Release 5",
+    "environment": "Minecraft Java Edition, using the exact affected version Minecraft 1.14 Pre-Release 5. Use an unmodified vanilla client and a single-player Creative-mode test world as the simplest way to obtain enough scaffolding and perform rapid placement safely. A flat world is preferred but is not stated as required by the report. Use a keyboard and mouse, with the Use Item/Place Block action temporarily assigned to an otherwise unused keyboard key.",
+    "preconditions": [
+      "The launcher can start the exact historical version corresponding to the report label Minecraft 1.14 Pre-Release 5.",
+      "Use a separate launcher installation or game directory so opening the historical version does not modify unrelated worlds or settings.",
+      "No client mods, server plugins, macros, or automatic clickers are active.",
+      "A keyboard key that is not assigned to another important action is available for the temporary Use Item/Place Block binding.",
+      "The test world contains a level, unobstructed area where a scaffolding structure can be placed and extended."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the launcher installation for the exact affected version Minecraft 1.14 Pre-Release 5. Do not select the fix version 22w11a or any later version.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is displayed and identifies the Minecraft 1.14 Pre-Release 5 installation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer and create a new Creative-mode test world. For simpler positioning, set the world type to Superflat if that option is available; otherwise use a normal world and later find a flat outdoor area. No particular seed is required by the report.",
+        "exact_input": null,
+        "success_cue": "A new Creative-mode world begins loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before changing settings or placing blocks. Continue only after the terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, the player can move normally, and initial world loading is no longer interrupting input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the pause menu, select Options, and then select Controls. Locate the control named Use Item/Place Block, which is normally assigned to the right mouse button.",
+        "exact_input": "Esc -> Options -> Controls",
+        "success_cue": "The Controls screen is open and the Use Item/Place Block binding is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Select the Use Item/Place Block binding and press an otherwise unused keyboard key. Use V if it is shown as unassigned; if V conflicts with another action, use a different unassigned letter key and substitute that key wherever V appears below. Do not use a mouse button for this reproduction.",
+        "exact_input": "V",
+        "success_cue": "Use Item/Place Block displays V, or another deliberately selected keyboard key, without an unwanted conflicting binding.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Return to the world without restoring the normal right-mouse-button binding.",
+        "exact_input": "Done -> Done -> Back to Game",
+        "success_cue": "The player is back in the world and Use Item/Place Block remains assigned to the selected keyboard key.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory with the inventory action, whose default key is E. Open the Search Items tab, enter scaffolding in the search field, and transfer a stack of Scaffolding to an empty hotbar slot. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "E; search text: scaffolding",
+        "success_cue": "A stack of Scaffolding is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory and select the hotbar slot containing Scaffolding, using the corresponding number key or the mouse wheel.",
+        "exact_input": "E, then the hotbar slot number containing Scaffolding",
+        "success_cue": "The Scaffolding item is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Move to a level, unobstructed patch of solid ground with several blocks of clear space above it. Keep away from walls, trees, or other structures that could intercept placement attempts.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The player is facing an exposed ground block with open space above and around it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim the crosshair at the top face of the exposed ground block and briefly tap the remapped Use Item/Place Block key once to place the initial supported scaffolding block. If a key other than V was selected in step 5, use that key instead.",
+        "exact_input": "Tap V once",
+        "success_cue": "Exactly one initial scaffolding block is standing on the ground in front of the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Stand approximately two to three blocks away from the initial scaffolding and aim at an exposed side face of the scaffolding. Position the view so it can be moved upward along the structure as additional scaffolding is placed.",
+        "exact_input": "W/A/S/D and mouse movement as needed",
+        "success_cue": "The crosshair is resting on the side of the scaffolding, the player remains within placement reach, and the scaffolding item is still selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press and continuously hold the keyboard key assigned to Use Item/Place Block instead of repeatedly clicking the mouse. While holding the key, keep the crosshair on the exposed side of the scaffolding structure; smoothly move the view upward along the uppermost visible scaffolding as necessary so the game can continue accepting rapid placement attempts. Maintain the uninterrupted placement input for approximately five seconds.",
+        "exact_input": "Hold V continuously for approximately 5 seconds while tracking the growing scaffolding structure",
+        "success_cue": "A burst of multiple scaffolding placement attempts has been completed using uninterrupted keyboard input rather than individual mouse clicks.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Release the Use Item/Place Block key and immediately stop placing, breaking, walking on, or otherwise updating the resulting scaffolding. Leave the camera facing the structure so the observation subsystem can inspect it before another interaction changes its state.",
+        "exact_input": "Release V; provide no further interaction input",
+        "success_cue": "Rapid placement input has ended, the resulting scaffolding structure remains in view, and no subsequent block interaction has occurred.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The player has just completed and released a continuous keyboard-driven burst of rapid scaffolding placement, the resulting scaffolding structure is still loaded and visible, and no block has been broken, touched, walked on, or otherwise updated since the burst ended. Begin observation now.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, world type, coordinates, multiplayer requirement, or exact scaffolding arrangement. A single-player Creative Superflat world and a supported vertical scaffolding structure are practical choices intended to remove unrelated resource and terrain constraints.",
+      "The report only says to place scaffolding quickly. The vertical rapid-placement path is the simplest implementation of that instruction, but the original attachments may have demonstrated a different placement direction or structure geometry.",
+      "The issue is explicitly described as occasional. A single rapid-placement burst may not produce a reproducible candidate every time; if another trial is required, reset to a fresh supported scaffolding block and repeat only the rapid-placement burst rather than modifying the previous structure.",
+      "A report comment states that the problem can be reproduced more easily by assigning Use Item/Place Block to a keyboard key and holding that key, so this control configuration is included even though it was not in the original two-line Steps to Reproduce.",
+      "Another report comment suggests reproducibility may depend on hardware read/write speed. No specific frame-rate, latency, storage, or hardware condition is established by the report.",
+      "The issue metadata lists 22w11a as the fix version. A later comment contains a likely typographical statement referring to 21w11a as fixed, but it also states that versions greater than or equal to 22w11a no longer reproduce; the plan therefore preserves 22w11a as the excluded fix version and recommends the first listed affected version."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_035142437f5cb719016aa8c95d350c87d082a689764b05b09d",
+    "elapsed_seconds": 85.79,
+    "usage": {
+      "input_tokens": 11196,
+      "output_tokens": 5541,
+      "reasoning_tokens": 3392,
+      "total_tokens": 16737
+    },
+    "timestamp": "2026-09-15T04:29:38.869516+00:00"
+  }
+}

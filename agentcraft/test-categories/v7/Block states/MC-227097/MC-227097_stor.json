@@ -1,0 +1,175 @@
+{
+  "bug_id": "MC-227097",
+  "category": "Block states",
+  "source_md": "[Block states] - MC-227097.md",
+  "source_meta": {
+    "mojira categories": "Block states",
+    "project": "MC",
+    "issue key": "MC-227097",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2021-06-01T15:50:58.471-0700",
+    "updated": "2025-04-26T13:26:19.567-0700",
+    "resolution date": "2025-01-15T08:45:33.921-0800",
+    "affects versions": "1.17 Pre-release 3; 1.17 Pre-release 4; 1.17 Pre-release 5; 1.17 Release Candidate 1; 1.17; 1.17.1 Pre-release 1; 1.17.1 Pre-release 2; 1.17.1 Release Candidate 1; 1.17.1; 21w37a; 21w38a; 1.18.1; 1.19.1 Pre-release 5; 1.19.1; 1.19.2; 1.19.3; 1.19.4 Pre-release 2; 1.21 Pre-Release 1",
+    "fix versions": "25w03a",
+    "labels": "end-portal",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "End portal deletes blocks.mp4",
+    "issue links": "Relates:outward:MC-273945:Unlike end portals, nether portals do not drop replaced blocks, which can result in major item loss",
+    "_title": "End portals delete blocks that are inside of the portal"
+  },
+  "stor": {
+    "bug_id": "MC-227097",
+    "affected_versions": [
+      "1.17 Pre-release 3",
+      "1.17 Pre-release 4",
+      "1.17 Pre-release 5",
+      "1.17 Release Candidate 1",
+      "1.17",
+      "1.17.1 Pre-release 1",
+      "1.17.1 Pre-release 2",
+      "1.17.1 Release Candidate 1",
+      "1.17.1",
+      "21w37a",
+      "21w38a",
+      "1.18.1",
+      "1.19.1 Pre-release 5",
+      "1.19.1",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4 Pre-release 2",
+      "1.21 Pre-Release 1"
+    ],
+    "recommended_version": "1.17 Pre-release 3",
+    "environment": "Minecraft Java Edition 1.17 Pre-release 3 in a new, disposable, unmodified single-player Creative-mode world with commands enabled. No particular seed, coordinates, difficulty, or server configuration is specified by the report.",
+    "preconditions": [
+      "Install and launch the exact affected version Minecraft Java Edition 1.17 Pre-release 3 rather than the fixed snapshot 25w03a or a later version.",
+      "Use a new disposable world so that entering the End and modifying gamerules cannot affect a valued world.",
+      "Use Creative mode as a practical way to obtain End Portal Frames, Eyes of Ender, and clearly identifiable test blocks without unrelated crafting or exploration.",
+      "Enable commands when creating the world so the doTileDrops gamerule can explicitly be set to true, matching the reporter's clarification in the comments.",
+      "Use the default interaction control of right-click unless the Use Item/Place Block control has been rebound."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start an installation configured for Minecraft Java Edition 1.17 Pre-release 3. At the main menu, verify the displayed version before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 1.17 Pre-release 3.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, set Allow Cheats to ON, and create the world. Wait until surrounding terrain has rendered and normal movement responds without loading pauses.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player is standing in a loaded single-player Creative world and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press T to open in-game chat. Enter the gamerule command exactly as shown, including the leading slash, and press Enter. This explicitly enables ordinary block item drops and removes the incorrect doTileDrops=false condition discussed in the report comments.",
+        "exact_input": "/gamerule doTileDrops true",
+        "success_cue": "Command feedback confirms that doTileDrops is set to true.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Select the Search Items tab, search for End Portal Frame, and place a stack in one of the nine hotbar slots along the bottom of the inventory. Search for Eye of Ender and place a stack in a second hotbar slot. Search for Block of Diamond and place a stack in a third hotbar slot. At least 12 frames, 12 eyes, and 9 test blocks are required; extra items in each stack are harmless.",
+        "exact_input": "E; search: End Portal Frame; search: Eye of Ender; search: Block of Diamond",
+        "success_cue": "Separate hotbar slots contain at least 12 End Portal Frames, 12 Eyes of Ender, and 9 Blocks of Diamond.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E again to close the inventory. Select the End Portal Frame hotbar slot by pressing its hotbar number key or scrolling the mouse wheel until the frame is shown in the player's hand.",
+        "exact_input": "E, then the applicable hotbar number key or mouse wheel",
+        "success_cue": "The world view is visible and an End Portal Frame is held in the active hotbar slot, indicated by the highlighted hotbar box.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Find or prepare a level area with at least a 5-by-5-block footprint and enough open space to walk around it. The portal will use a central 3-by-3 opening surrounded by frame blocks on its four sides; the four outer corner positions remain empty.",
+        "exact_input": null,
+        "success_cue": "A level 5-by-5 area is available with unobstructed access around all four sides.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Build an empty End portal frame around a central 3-by-3 opening. Place three End Portal Frames along each of the four sides, for 12 frames total, leaving the four corner positions empty. To obtain the required inward orientation, stand within the central opening while placing each row and face outward toward the row being placed; rotate to face the next side before placing its three frames. Keep all 12 frames at the same elevation.",
+        "exact_input": "Right-click once for each of 12 frame placements",
+        "success_cue": "Twelve empty End Portal Frames form four rows of three around a 3-by-3 center; the four corners are empty and every frame's eye socket is oriented toward the center.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Block of Diamond hotbar slot. Fill all nine positions of the portal's central 3-by-3 area with diamond blocks. Place them on the supporting ground so that each diamond block occupies the same block layer as the surrounding End Portal Frames, rather than placing the blocks below the frames or on top of them.",
+        "exact_input": "Applicable hotbar number key, then right-click once in each of the nine central positions",
+        "success_cue": "Nine diamond blocks completely fill the 3-by-3 interior at the same elevation as the frame blocks, and all 12 frame blocks remain accessible from outside the ring.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select the Eye of Ender hotbar slot by pressing its hotbar number key or scrolling until an Eye of Ender is held.",
+        "exact_input": "Applicable hotbar number key or mouse wheel",
+        "success_cue": "An Eye of Ender is held in the active hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "From outside the frame, aim at the top of an empty End Portal Frame and right-click to insert an Eye of Ender. Repeat on different frames until exactly 11 of the 12 frames contain eyes. Deliberately leave one known frame empty so portal activation can be performed as a separate trigger action.",
+        "exact_input": "Right-click once on each of 11 different End Portal Frames",
+        "success_cue": "Exactly 11 frames visibly contain Eyes of Ender, one frame remains empty, the diamond blocks still occupy the center, and the portal has not activated.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Remain outside the portal ring and move to the side containing the one empty frame. Aim the crosshair at the top surface of that empty frame. Do not stand over the central 3-by-3 area, because activation can immediately create the active portal surface there.",
+        "exact_input": null,
+        "success_cue": "The crosshair is aimed at the final empty End Portal Frame while the player is standing outside the ring and still holding an Eye of Ender.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Right-click the final empty End Portal Frame once to insert the twelfth Eye of Ender and activate the completed portal. Do not break blocks, place blocks, run item-removal commands, or change the doTileDrops gamerule after this action.",
+        "exact_input": "Right-click once",
+        "success_cue": "The twelfth eye is seated and the completed frame has activated an End portal across the central 3-by-3 area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Immediately move onto the newly activated portal surface using the Move Forward control, W by default; jump with Space if needed to cross the frame edge. Allow the teleport to complete, then wait until the destination terrain has rendered and player movement responds normally. Do not clear the inventory, pick up items deliberately, or execute any commands during the transition.",
+        "exact_input": "W; Space if needed",
+        "success_cue": "The player has passed through the newly activated portal, the End dimension has loaded, and normal movement responds without dimension-loading pauses.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The final Eye of Ender has activated the portal around the test blocks, and the player has passed through it into the fully loaded End without performing any intervening block-breaking, block-placement, item-removal, gamerule-change, or cleanup action. The observation subsystem should now inspect the post-activation state.",
+    "uncertainties": [
+      "The report does not specify a game mode, seed, coordinates, difficulty, or exact test-block type. Creative mode, a new world, an arbitrary level area, and Blocks of Diamond are practical deterministic choices rather than stated requirements.",
+      "The report says to place multiple blocks in the middle but does not specify their number or arrangement. This plan fills all nine cells of the central 3-by-3 area to reproduce the condition unambiguously.",
+      "The report comments clarify that doTileDrops was accidentally shown as false in an earlier video and was intended to be true. The plan therefore sets doTileDrops to true explicitly before constructing the portal.",
+      "Correct End Portal Frame orientation is required for activation. If inserting the twelfth eye does not activate the portal, at least one frame is facing incorrectly; rebuild the frame while standing in the central opening and facing outward during each placement rather than altering the supplied reproduction condition."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0fd3daae8d2bc576016aa8c9b31c1087d0a0824e78d39d9ea8",
+    "elapsed_seconds": 90.96,
+    "usage": {
+      "input_tokens": 8976,
+      "output_tokens": 5865,
+      "reasoning_tokens": 3810,
+      "total_tokens": 14841
+    },
+    "timestamp": "2026-09-15T04:31:09.848317+00:00"
+  }
+}
