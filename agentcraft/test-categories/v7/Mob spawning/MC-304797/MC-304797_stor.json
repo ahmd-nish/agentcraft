@@ -1,0 +1,162 @@
+{
+  "bug_id": "MC-304797",
+  "category": "Mob spawning",
+  "source_md": "[Mob spawning] - MC-304797.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning",
+    "project": "MC",
+    "issue key": "MC-304797",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2025-12-05T10:52:21.759-0800",
+    "updated": "2025-12-08T04:15:29.518-0800",
+    "resolution date": "2025-12-08T04:15:29.472-0800",
+    "affects versions": "1.21.11 Release Candidate 2",
+    "fix versions": "1.21.11 Release Candidate 3",
+    "area": "Expansion A",
+    "votes": "12",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "202512060118.mp4",
+    "issue links": "Relates:inward:MC-302842:Nautiluses and zombie nautiluses never despawn",
+    "_title": "Zombie nautiluses generated in ocean ruins are not persistent"
+  },
+  "stor": {
+    "bug_id": "MC-304797",
+    "affected_versions": [
+      "1.21.11 Release Candidate 2"
+    ],
+    "recommended_version": "1.21.11 Release Candidate 2",
+    "environment": "Minecraft Java Edition 1.21.11 Release Candidate 2 in a newly created singleplayer world using the integrated server. Use Creative mode with commands enabled, a non-Peaceful difficulty such as the default Normal difficulty, and a render distance of at least 8 chunks.",
+    "preconditions": [
+      "Install and launch the exact affected version: Minecraft Java Edition 1.21.11 Release Candidate 2. Do not use the fix version, 1.21.11 Release Candidate 3.",
+      "Use a newly created world so the target ocean-ruin chunks have not already been generated or visited in this save.",
+      "Use the exact seed -8790581265353131111.",
+      "Enable commands for the world. Creative mode is recommended so the player can safely remain underwater and use all required teleport commands without Survival hazards interfering.",
+      "Set Render Distance to 8 chunks or greater before generating the target area.",
+      "Do not name, mount, leash, place in a boat, or otherwise interact with the target zombie nautilus, because such actions could change its persistence or behavior.",
+      "Keep the world difficulty above Peaceful so hostile mobs are not removed for an unrelated reason."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the installation for version 1.21.11 Release Candidate 2, then wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The lower-left version label on the main menu identifies the running version as 1.21.11 Release Candidate 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and ensure commands are enabled. Open the world-generation settings, enter the report's seed exactly, and create the world.",
+        "exact_input": "-8790581265353131111",
+        "success_cue": "A new Creative singleplayer world opens and the player can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Confirm that the difficulty is not Peaceful. If necessary, press Esc, select Options, open Difficulty, and choose Normal or another non-Peaceful difficulty.",
+        "exact_input": null,
+        "success_cue": "The active difficulty is Easy, Normal, or Hard rather than Peaceful.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set the render distance to at least 8 chunks: press Esc, select Options, select Video Settings, adjust Render Distance to 8 chunks or greater, and select Done until returning to the world.",
+        "exact_input": "8 chunks or greater",
+        "success_cue": "The Video Settings screen shows Render Distance set to 8 chunks or greater, and the player has returned to gameplay.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Wait before teleporting until the initial spawn terrain has rendered and movement and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are visible, the loading screen is gone, and player movement responds without world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Teleport to the report's target coordinates. Press T to open in-game chat, enter the command exactly with its leading slash, and press Enter.",
+        "exact_input": "/tp -9591 63 8825",
+        "success_cue": "The teleport completes and the player is at approximately X=-9591, Y=63, Z=8825. Ocean terrain begins rendering around the destination.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Do not issue another command yet. Wait until the destination chunks, including the nearby ocean-ruin area, have rendered and player movement and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "The surrounding ocean terrain is loaded, no terrain-loading screen remains, and the player can move normally at the destination.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Locate the nearest generated zombie nautilus using the report's selector. Press T, enter the command exactly with its leading slash, and press Enter.",
+        "exact_input": "/tp @n[type=zombie_nautilus]",
+        "success_cue": "The command teleports the player to a zombie nautilus associated with the ocean-ruin area. If the command instead reports that no entity was found, the required setup state was not reached; stop and retry in another newly created world using the same version, seed, settings, and sequence.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Allow the immediate surroundings at the zombie nautilus to finish rendering. Do not interact with, name, mount, attack, or otherwise modify the zombie nautilus.",
+        "exact_input": null,
+        "success_cue": "The player is beside the zombie nautilus, the nearby ocean-ruin terrain is loaded, and the entity has not been altered by player interaction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Teleport vertically to absolute Y=256 while retaining the current X and Z coordinates. Press T, enter the report's command exactly, and press Enter. The number 256 is an absolute Y coordinate because it does not have a tilde; do not change this to /tp ~ ~256 ~.",
+        "exact_input": "/tp ~ 256 ~",
+        "success_cue": "The teleport completes. The player remains at the same horizontal X and Z location and is now at approximately Y=256.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait until the high-altitude teleport has completed and movement and commands respond normally before continuing.",
+        "exact_input": null,
+        "success_cue": "The player is stable at approximately Y=256, the loading transition is finished, and chat commands can be entered normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Teleport back to absolute Y=64 at the same X and Z coordinates. Press T, enter the report's command exactly, and press Enter. The number 64 is an absolute Y coordinate; do not change this to a relative vertical movement.",
+        "exact_input": "/tp ~ 64 ~",
+        "success_cue": "The teleport completes. The player is at approximately Y=64 at the same horizontal location, and the surrounding ocean chunks have rendered enough for commands to respond normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Run the nearest-zombie-nautilus teleport command a second time. Press T, enter the command exactly with its leading slash, press Enter once, and immediately hand control to the observation subsystem without issuing additional commands.",
+        "exact_input": "/tp @n[type=zombie_nautilus]",
+        "success_cue": "The second nearest-zombie-nautilus command has been submitted, and its resulting chat response and any resulting player teleport are available for the observation subsystem to inspect.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The second `/tp @n[type=zombie_nautilus]` command has just been submitted after the player moved from the ocean ruin to absolute Y=256 and back to absolute Y=64. Begin observing the command response and player destination immediately, without performing another action.",
+    "uncertainties": [
+      "A report comment states that one tester did not find a zombie nautilus at the primary coordinates and instead found one near /tp -7326 46 6539; the main report's seed and coordinates remain the primary reproduction path and the alternate location has not been substituted.",
+      "The report does not explicitly state game mode or difficulty. Creative mode, commands enabled, and a non-Peaceful difficulty are practical setup choices intended to execute the supplied commands safely without removing the target for an unrelated reason.",
+      "The report says render distance 8 or more but does not specify simulation distance, so no simulation-distance requirement has been added.",
+      "If the first `/tp @n[type=zombie_nautilus]` lookup fails, the subsequent steps do not establish this report's required precondition. A fresh world retry is preferred over continuing or manually summoning a replacement, because the bug specifically concerns a zombie nautilus generated as part of an ocean ruin."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_00667c6b5bdbfc1d016aa8a7609dc087d08c87726d63cfe06f",
+    "elapsed_seconds": 53.22,
+    "usage": {
+      "input_tokens": 8734,
+      "output_tokens": 3761,
+      "reasoning_tokens": 2070,
+      "total_tokens": 12495
+    },
+    "timestamp": "2026-09-15T02:04:05.680879+00:00"
+  }
+}

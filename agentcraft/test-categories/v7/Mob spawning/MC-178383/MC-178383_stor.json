@@ -1,0 +1,225 @@
+{
+  "bug_id": "MC-178383",
+  "category": "Mob spawning",
+  "source_md": "[Mob spawning] - MC-178383.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning",
+    "project": "MC",
+    "issue key": "MC-178383",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-04-12T06:24:22.253-0700",
+    "updated": "2026-04-15T11:14:15.260-0700",
+    "resolution date": "2024-05-20T12:14:50.609-0700",
+    "affects versions": "20w15a; 20w20b; 1.16.1; 20w30a; 1.16.2; 1.16.4; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w08a; 21w08b; 21w15a; 1.17; 1.17.1; 1.18 Pre-release 1; 1.18 Pre-release 8; 1.18.1; 22w03a; 1.18.2; 22w19a; 1.19; 1.19.2; 22w42a; 1.20.2; 1.20.4; 23w51b; 24w07a; 24w14a",
+    "fix versions": "24w19a",
+    "labels": "data; horse; summon",
+    "watchers": "2",
+    "attachments": "4",
+    "attachment filenames": "Crazy Total Hearts For a Mule.png; Crazy Total Hearts For a Mule 2.png; MC-178383.png; MC-178383-1.png",
+    "issue links": "Relates:outward:MC-103250:Horse / Donkey / Mule health points is 26 ♥ by command to spawn | Relates:inward:MC-195931:Incorrect amount of damage heart particles shown when hitting some entities for the first time | Duplicate:inward:MC-203414:Summoned horses, donkeys, llamas and mules don't take damage on first hit | Duplicate:inward:MC-216959:Horses/Donkeys/Mules from spawn eggs spawn with 53 health points, but after hitting they get a normal amount of health points | Duplicate:inward:MC-232846:Summoned Minecraft Horses Variants Wrong Health | Problem/Incident:outward:MC-195931:Incorrect amount of damage heart particles shown when hitting some entities for the first time",
+    "_title": "Horses, donkeys, mules and llamas spawned from spawn eggs or /summon command have 53 health"
+  },
+  "stor": {
+    "bug_id": "MC-178383",
+    "affected_versions": [
+      "20w15a",
+      "20w20b",
+      "1.16.1",
+      "20w30a",
+      "1.16.2",
+      "1.16.4",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w08a",
+      "21w08b",
+      "21w15a",
+      "1.17",
+      "1.17.1",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 8",
+      "1.18.1",
+      "22w03a",
+      "1.18.2",
+      "22w19a",
+      "1.19",
+      "1.19.2",
+      "22w42a",
+      "1.20.2",
+      "1.20.4",
+      "23w51b",
+      "24w07a",
+      "24w14a"
+    ],
+    "recommended_version": "20w15a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 20w15a, running in a new singleplayer Creative-mode world with cheats enabled. The instructions use keyboard-and-mouse default control names; use the corresponding bound controls if they have been changed.",
+    "preconditions": [
+      "Use the first listed affected version, 20w15a, rather than the fix version 24w19a.",
+      "Configure the Minecraft Launcher to make historical Java Edition snapshots available and create or select an installation for exactly 20w15a.",
+      "Use a disposable test world because snapshots are development versions and should not be used to open an important existing world.",
+      "No world seed, coordinates, biome, difficulty, or world type is specified by the report.",
+      "The test requires permission to execute the report's /data command; enable cheats when creating the world.",
+      "Use only one horse for the query, and remain close to that horse so the selector sorted by nearest resolves to the intended entity."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher. If snapshot versions are not available, enable snapshots in the launcher installation settings. Create or select a Java Edition installation whose version is exactly 20w15a.",
+        "exact_input": "20w15a",
+        "success_cue": "The selected launcher installation explicitly shows version 20w15a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Start the selected installation and wait for the Minecraft main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The main menu is responsive and its version text identifies the running game as Minecraft Java Edition 20w15a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the singleplayer world-creation screen by selecting Singleplayer and then Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Set Game Mode to Creative. This provides direct access to the Horse Spawn Egg without adding crafting or exploration to the reproduction.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen shows that Creative mode is selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Set Allow Cheats to ON so that the report's /data command can be executed in chat.",
+        "exact_input": "Allow Cheats: ON",
+        "success_cue": "The world-creation screen shows that cheats are enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Create the world. Do not enter a seed because the report does not specify one.",
+        "exact_input": null,
+        "success_cue": "The player has spawned into the new world in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait until nearby terrain has rendered and player movement and input respond normally.",
+        "exact_input": null,
+        "success_cue": "The surrounding chunks are visible, and the player can move and look around without waiting for initial world loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open the Creative inventory using the Inventory control.",
+        "exact_input": "E (default Inventory key)",
+        "success_cue": "The Creative inventory interface is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open the Search Items tab in the Creative inventory, focus its search field, and search for the horse spawn egg.",
+        "exact_input": "horse spawn egg",
+        "success_cue": "The search results include an item named Horse Spawn Egg.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Move one Horse Spawn Egg from the search results into an empty hotbar slot. The hotbar is the row of nine item slots along the bottom of the inventory and gameplay screen.",
+        "exact_input": null,
+        "success_cue": "A Horse Spawn Egg is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Close the Creative inventory using the Inventory control or Escape.",
+        "exact_input": "E or Esc",
+        "success_cue": "Normal first-person gameplay is visible and the Horse Spawn Egg remains in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Move to a clear patch of solid ground with enough open space for a horse. If a naturally generated horse is already nearby, move to another patch before continuing so the later nearest-horse selector is unambiguous.",
+        "exact_input": null,
+        "success_cue": "There is solid ground within interaction reach, and no pre-existing horse is close to the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select the hotbar slot containing the Horse Spawn Egg using its number key or the mouse wheel. The selected slot is the active slot and has a visible highlight around it.",
+        "exact_input": "Hotbar key 1-9 corresponding to the Horse Spawn Egg slot",
+        "success_cue": "The Horse Spawn Egg is shown in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Aim the crosshair at the nearby solid ground and use the Horse Spawn Egg exactly once by pressing the Use Item/Place Block control.",
+        "exact_input": "Right mouse button (default Use Item/Place Block control)",
+        "success_cue": "Exactly one newly spawned horse is visible beside the targeted ground.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait until the horse is fully visible, then stand within a few blocks of it. Do not spawn another horse, leave the world, or reload the world before querying its data.",
+        "exact_input": null,
+        "success_cue": "The newly spawned horse is the nearest horse to the player, and normal movement and input remain responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Open the in-game chat input. The command must be executed in the current world by the player with cheats enabled, not entered into the launcher or a text editor.",
+        "exact_input": "T (default Open Chat key)",
+        "success_cue": "The chat command input line is open at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Type the report's data query exactly as supplied, including the leading slash, selector arguments, capitalization of Health, and spaces. Do not modernize or otherwise modify the command.",
+        "exact_input": "/data get entity @e[type=horse,limit=1,sort=nearest] Health",
+        "success_cue": "The complete command is visible in the chat input line without a syntax error being shown before execution.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Execute the command by pressing Enter once.",
+        "exact_input": "Enter",
+        "success_cue": "Chat displays a successful data-query result for the Health NBT path of the nearest horse. Stop immediately after this result appears and pass control to the observation subsystem without attacking, mounting, reloading, or respawning the horse.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The Horse Spawn Egg-created horse is still present as the nearest horse, and the exact /data get entity @e[type=horse,limit=1,sort=nearest] Health command has just produced its chat result. Begin observing and recording that returned Health value before any interaction or world reload changes the entity state.",
+    "uncertainties": [
+      "The report provides formal reproduction steps only for a horse created with a spawn egg. Although the title and comments also mention donkeys, mules, llamas, and entities created with /summon, those variants are not added to this minimum reproduction path.",
+      "No seed, coordinates, biome, difficulty, or world type is specified. A new Creative world and a clear patch of solid ground are practical execution choices, not report-stated requirements.",
+      "The report does not specify whether other horses may be present. Keeping the spawned horse nearest to the player is added solely to ensure that the supplied nearest-entity selector queries the intended horse.",
+      "The report notes that leaving and re-entering can change the health state, so the plan avoids world reloads between spawning and querying; this ordering is supported by the supplied report comments.",
+      "External verification was used only to confirm snapshot availability workflow and the operational form of the Java Edition /data get entity command. The exact historical command from the report was preserved unchanged."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0c07ff82ba1a4c6c016aa8a6218f8c87d0abc009abdb307fe1",
+    "elapsed_seconds": 62.95,
+    "usage": {
+      "input_tokens": 18042,
+      "output_tokens": 4664,
+      "reasoning_tokens": 2779,
+      "total_tokens": 22706
+    },
+    "timestamp": "2026-09-15T01:58:55.938408+00:00"
+  }
+}

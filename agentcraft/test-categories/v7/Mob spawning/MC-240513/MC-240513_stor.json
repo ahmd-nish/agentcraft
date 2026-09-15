@@ -1,0 +1,172 @@
+{
+  "bug_id": "MC-240513",
+  "category": "Mob spawning",
+  "source_md": "[Mob spawning] - MC-240513.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning",
+    "project": "MC",
+    "issue key": "MC-240513",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-11-03T13:09:13.550-0700",
+    "updated": "2025-04-29T21:02:05.022-0700",
+    "resolution date": "2021-11-24T17:29:10.146-0800",
+    "affects versions": "21w44a; 1.18 Pre-release 1; 1.18 Pre-release 5",
+    "fix versions": "1.18 Pre-release 6",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "2021-11-03_13.46.16.png; 2021-11-05_11.17.56.png; 2021-11-23_11.31.25.png; 2021-11-23_11.38.27.png; image-2021-11-09-09-41-30-741.png; image-2021-11-09-09-42-12-039.png",
+    "issue links": "Duplicate:inward:MC-241276:Pandas spawns rate are extremely low in the 1.18 first pre-release | Duplicate:inward:MC-241985:Pandas no longer spawn naturally | Relates:outward:MC-236756:Biome-exclusive mob spawn rates are reduced",
+    "_title": "Pandas do not spawn in bamboo jungles with Default world"
+  },
+  "stor": {
+    "bug_id": "MC-240513",
+    "affected_versions": [
+      "21w44a",
+      "1.18 Pre-release 1",
+      "1.18 Pre-release 5"
+    ],
+    "recommended_version": "21w44a",
+    "environment": "Minecraft: Java Edition 21w44a, vanilla single-player integrated server, fresh world with World Type set to Default. Creative mode is used as a practical aid for safe teleportation and terrain inspection; commands/cheats must be enabled. Do not use fix version 1.18 Pre-release 6.",
+    "preconditions": [
+      "The Minecraft Launcher is configured to display historical snapshots, and the exact installation 21w44a is available.",
+      "Use an unmodified vanilla client: disable mods, custom datapacks, and server plugins that could change biome generation, entity spawning, commands, or entity visibility.",
+      "Create a new world directly in 21w44a; do not upgrade an existing world from another version.",
+      "Leave the world seed blank so Minecraft selects a seed, because the report supplies no deterministic seed.",
+      "Commands must be available to the player. In single-player, enable cheats while creating the world.",
+      "Keep the default doMobSpawning gamerule enabled. Do not summon pandas, kill existing passive mobs, or otherwise manipulate mob spawning before the test.",
+      "The target biome is specifically minecraft:bamboo_jungle, as identified by the title and the report's locate command; do not substitute an ordinary minecraft:jungle biome."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation whose Version field is the historical snapshot \"21w44a\", then launch the game with that installation. Confirm the version shown on the title screen before continuing.",
+        "exact_input": "21w44a",
+        "success_cue": "The Minecraft: Java Edition title screen is open and displays 21w44a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World to open the world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Creative mode is not stated as a bug requirement; it is selected so the player can teleport above unknown terrain and descend safely without introducing survival preparation or fall damage.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open More World Options. Set World Type to Default, ensure Allow Cheats is ON, and leave the seed field blank. Do not choose Single Biome, Amplified, Large Biomes, or another world type.",
+        "exact_input": null,
+        "success_cue": "World Type reads Default, commands are allowed, and no seed has been entered.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Select Create New World and wait for world generation and player placement to finish.",
+        "exact_input": null,
+        "success_cue": "The player is controllable in the newly generated world and the nearby terrain has rendered.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat. Enter the gamerule query exactly as shown, including the leading slash, and press Enter. Do not change any other gamerules.",
+        "exact_input": "/gamerule doMobSpawning",
+        "success_cue": "Chat reports that doMobSpawning is true. If it is false, this world does not have the required default spawning state; set it to true before continuing or recreate the world with default settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open chat again. Enter the report's biome-location command exactly as shown, including the leading slash, then press Enter.",
+        "exact_input": "/locatebiome minecraft:bamboo_jungle",
+        "success_cue": "Chat reports the location of the nearest minecraft:bamboo_jungle and gives its horizontal X and Z coordinates and distance.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Record the returned X coordinate and Z coordinate exactly, preserving any minus signs. In this affected version, /locatebiome identifies the target using horizontal coordinates; the teleport height will therefore be supplied separately.",
+        "exact_input": null,
+        "success_cue": "The X and Z coordinates of the located bamboo jungle have been recorded and are available for the teleport command.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Press T. Enter a teleport command using the recorded coordinates: replace <X_FROM_LOCATEBIOME> and <Z_FROM_LOCATEBIOME> with the returned integer values, omit the angle brackets, keep Y set to 200, include the leading slash, and press Enter. For example, coordinates X=-1200 and Z=640 would produce /tp @s -1200 200 640.",
+        "exact_input": "/tp @s <X_FROM_LOCATEBIOME> 200 <Z_FROM_LOCATEBIOME>",
+        "success_cue": "The player teleports to the located X/Z position at Y=200, and target-area terrain begins rendering below or around the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Wait until the surrounding chunks have rendered and player movement responds normally. While in Creative flight, descend toward the terrain without dropping into Survival-style free fall. Stop above the bamboo canopy or on a safe exposed surface.",
+        "exact_input": null,
+        "success_cue": "The terrain around the located position is fully visible, movement is responsive, and dense bamboo-jungle terrain can be approached safely.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Open the debug screen with F3; on keyboards that reserve function keys, use the keyboard's equivalent such as Fn+F3. Read the biome entry and confirm that the player's current biome is minecraft:bamboo_jungle. If the player is immediately outside it, move horizontally toward the recorded locate position until the debug biome entry reads minecraft:bamboo_jungle.",
+        "exact_input": "F3",
+        "success_cue": "The debug screen identifies the player's current biome as minecraft:bamboo_jungle.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Close the debug screen with F3. Move through the bamboo jungle for approximately 64 to 128 horizontal blocks at a moderate Creative-flight or walking speed, staying near enough to the surface to inspect the terrain. Avoid attacking mobs, changing time, killing entities, summoning entities, or leaving the bamboo jungle. This traversal operationalizes the report's requirement to visit the biome and allows several target-biome chunks to load.",
+        "exact_input": "F3",
+        "success_cue": "Several bamboo-jungle chunks have rendered around the player, bamboo-covered ground is visible, and movement remains responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Stop at a position still inside minecraft:bamboo_jungle and wait 60 seconds without using commands or leaving the biome. Keep the game unpaused so the integrated server continues ticking. The report does not define a waiting interval; this short interval provides a consistent opportunity for normal entity spawning before running its detection command.",
+        "exact_input": null,
+        "success_cue": "The game has remained unpaused in a fully loaded bamboo-jungle area for 60 seconds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press T to open chat. Enter the report's effect command exactly as written, including the leading slash, and press Enter once. Do not add a distance restriction, change the selector, or change the duration.",
+        "exact_input": "/effect give @e[type=panda] glowing 1000",
+        "success_cue": "The command has been submitted, chat now contains its execution feedback, and any panda selected by the command would receive the glowing effect.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The player is in a loaded minecraft:bamboo_jungle in a fresh Default world, and /effect give @e[type=panda] glowing 1000 has just been executed once. Hand off immediately so the observation subsystem can inspect the command feedback and the loaded biome without any further movement, commands, entity spawning, or world modification.",
+    "uncertainties": [
+      "The report supplies no seed or fixed coordinates, so /locatebiome determines a different target location for each generated world.",
+      "The report does not specify a game mode. Creative mode is selected only as a practical execution aid for commands, safe teleportation, flight, and terrain inspection.",
+      "The report does not explicitly state single-player versus dedicated server. A fresh single-player Default world is used because no dedicated-server, multiplayer, operator/non-operator, or server.properties condition is supplied.",
+      "The report does not define how much terrain must be loaded or how long the player must remain in the biome before executing the effect command. The 64-to-128-block traversal and 60-second unpaused interval are practical, bounded sampling choices rather than report-stated requirements.",
+      "The report calls @e[type=panda] a check for nearby pandas, but the supplied selector contains no distance limit. The exact report command is preserved and therefore targets matching loaded entities according to command-selector behavior.",
+      "Comments contain differing accounts of panda availability and rarity. Those claims are not converted into additional reproduction requirements.",
+      "Y=200 in the teleport command is a practical safety height because /locatebiome in the recommended affected version supplies the target's horizontal location rather than a terrain-safe destination height."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0dad9e164d562a44016aa8a6b48ed887d0a4509677eaf27b2c",
+    "elapsed_seconds": 84.86,
+    "usage": {
+      "input_tokens": 17459,
+      "output_tokens": 5800,
+      "reasoning_tokens": 3867,
+      "total_tokens": 23259
+    },
+    "timestamp": "2026-09-15T02:01:45.269820+00:00"
+  }
+}

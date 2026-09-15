@@ -1,0 +1,222 @@
+{
+  "bug_id": "MC-248092",
+  "category": "Mob spawning",
+  "source_md": "[Mob spawning] - MC-248092.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Mob spawning",
+    "project": "MC",
+    "issue key": "MC-248092",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-01-10T12:38:34.782-0800",
+    "updated": "2026-03-12T00:46:08.596-0700",
+    "resolution date": "2026-03-12T00:46:08.549-0700",
+    "affects versions": "1.18.1; 1.19.2; 1.19.4; 1.21.5; 25w20a",
+    "fix versions": "26.1 Pre-Release 2",
+    "area": "Platform",
+    "votes": "1",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "2022-01-11_07.47.10.png; 2022-01-11_07.49.53.png; 2023-04-20 - Minecraft 1.19.4.mp4",
+    "_title": "Untamed cats on lead despawn when attached to fence post"
+  },
+  "stor": {
+    "bug_id": "MC-248092",
+    "affected_versions": [
+      "1.18.1",
+      "1.19.2",
+      "1.19.4",
+      "1.21.5",
+      "25w20a"
+    ],
+    "recommended_version": "1.18.1",
+    "environment": "Minecraft Java Edition 1.18.1, unmodified vanilla client, single-player Creative-mode world using the integrated server. No Fabric, Forge, third-party server, datapack, or command is required. Control references assume default Java Edition key bindings unless they have been rebound.",
+    "preconditions": [
+      "Install and select the exact Minecraft Java Edition version 1.18.1 in the launcher.",
+      "Use an unmodified vanilla installation and a single-player world in Creative mode, matching the environment in which the reporter confirmed the issue.",
+      "Use a test area with a clear, traversable line extending at least 100 horizontal blocks from the fence location. A flat, open area is preferred so the fence and cat can be viewed from a distance.",
+      "Set Render Distance and Simulation Distance high enough to keep terrain around the fence loaded at approximately 100 blocks; at least 8 chunks is a practical starting value. Keep Entity Distance at 100% or higher if that option has previously been reduced.",
+      "Have four available hotbar slots for an Oak Fence, Cat Spawn Egg, Lead, and Spyglass.",
+      "Do not feed fish to, otherwise tame, or use a name tag on the spawned cat. The target must remain an ordinary untamed cat."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the game from the Minecraft Launcher using the installation configured for Java Edition 1.18.1. Do not launch a modded installation.",
+        "exact_input": "Minecraft Java Edition 1.18.1",
+        "success_cue": "The main menu is displayed and identifies the running version as Minecraft Java Edition 1.18.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode, or load an existing unmodified single-player Creative world. Wait until terrain has rendered and movement responds normally.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The player is in a loaded single-player world and can use Creative flight and the Creative inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "If necessary, open the pause menu and navigate to Options -> Video Settings. Set Render Distance and Simulation Distance to at least 8 chunks, and ensure Entity Distance is not below 100%. Return to the world after applying the settings.",
+        "exact_input": "Render Distance: at least 8 chunks; Simulation Distance: at least 8 chunks; Entity Distance: at least 100%",
+        "success_cue": "The world is active again with terrain visible for at least approximately 100 blocks in the intended travel direction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Locate a flat, open test area with a clear line of sight for at least 100 horizontal blocks. Avoid placing the test beside a cliff, dense forest, building, or other obstruction that would prevent looking back at the fence.",
+        "exact_input": null,
+        "success_cue": "There is an unobstructed route and viewing line extending approximately 100 blocks from the selected fence location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Creative inventory, then open the Search Items tab identified by the magnifying-glass icon.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory is open and its item-search field is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Click the search field, clear any existing text, enter \"oak fence\", and place one Oak Fence into hotbar slot 1. The report does not specify a wood type; Oak Fence is used as a representative fence post.",
+        "exact_input": "oak fence",
+        "success_cue": "An Oak Fence is present in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Clear the inventory search field, enter \"cat spawn egg\", and place one Cat Spawn Egg into hotbar slot 2.",
+        "exact_input": "cat spawn egg",
+        "success_cue": "A Cat Spawn Egg is present in hotbar slot 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Clear the inventory search field, enter \"lead\", and place one Lead into hotbar slot 3.",
+        "exact_input": "lead",
+        "success_cue": "A Lead is present in hotbar slot 3.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Clear the inventory search field, enter \"spyglass\", and place one Spyglass into hotbar slot 4. Close the inventory by pressing E.",
+        "exact_input": "spyglass",
+        "success_cue": "A Spyglass is present in hotbar slot 4 and the player has returned to the world view.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select hotbar slot 1 using the 1 key, aim at the ground at the chosen test location, and right-click once to place the Oak Fence.",
+        "exact_input": "1, then right-click the ground",
+        "success_cue": "One freestanding vertical fence post is placed at the test location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select hotbar slot 2 using the 2 key. Aim at the ground approximately 2 to 4 blocks from the fence and right-click once with the Cat Spawn Egg.",
+        "exact_input": "2, then right-click the ground",
+        "success_cue": "A live cat is visible close enough to the fence to be attached with a lead.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Confirm that the spawned cat is untamed before continuing. It must not have a collar, and the player must not feed it raw cod or raw salmon. If it was accidentally tamed, spawn a fresh cat and use the fresh untamed cat instead.",
+        "exact_input": null,
+        "success_cue": "The target cat is alive, has no collar, and has not been tamed or named.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select hotbar slot 3 using the 3 key. Approach until the cat is within interaction reach, center the crosshair on the cat, and right-click the cat once with the Lead. If the untamed cat moves away, follow it without feeding it and retry when it is within reach.",
+        "exact_input": "3, then right-click the cat",
+        "success_cue": "A lead line extends from the player to the untamed cat as the player moves away from it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "While still holding the Lead, move within interaction reach of the fence post, center the crosshair on the fence, and right-click the fence once to tie the other end of the lead to it.",
+        "exact_input": "right-click the fence post",
+        "success_cue": "A lead knot is visible on the fence and the lead line runs between the fence and the untamed cat rather than between the cat and the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Stand immediately beside the fence and press F3 to open the debug overlay. Record the displayed X and Z coordinates and choose one unobstructed horizontal direction in which to travel. Use the coordinate at the fence as the distance reference.",
+        "exact_input": "F3",
+        "success_cue": "The starting X and Z coordinates near the fence have been recorded and a clear travel direction has been selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select the Spyglass in hotbar slot 4 before leaving the fence so it will already be in the active slot upon reaching the observation position.",
+        "exact_input": "4",
+        "success_cue": "The Spyglass is visible in the player's hand and is the active hotbar item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Enter Creative flight by pressing Space twice quickly. If necessary, hold Space briefly to rise only a few blocks above the ground while retaining an unobstructed view back toward the fence.",
+        "exact_input": "Double-tap Space; optionally hold Space briefly",
+        "success_cue": "The player is flying and can travel away without terrain or vegetation immediately blocking the return view.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Fly promptly in a straight horizontal line away from the fence using the movement controls, normally W. Use the F3 coordinates to measure the displacement: continue until either X or Z differs from the recorded starting coordinate by approximately 100 blocks, preferably within 95 to 105 blocks. Do not travel diagonally unless calculating the total horizontal distance separately.",
+        "exact_input": "Hold W until the horizontal displacement is approximately 100 blocks",
+        "success_cue": "The player is stationary in flight approximately 100 horizontal blocks from the fence location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Release the movement controls and wait only until nearby terrain has finished rendering and movement responds normally. Do not fly back toward the fence, change dimensions, leave the world, or use commands that move the player or the cat.",
+        "exact_input": null,
+        "success_cue": "The player remains approximately 100 blocks from the fence, the relevant terrain is rendered, and input is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Turn to face the recorded fence location. With the Spyglass still selected, hold the Use Item control, which is right-click by default, and center the magnified view on the fence and tethered-cat area.",
+        "exact_input": "Right-click and hold while aiming at the fence location",
+        "success_cue": "The circular spyglass zoom overlay is visible and the fence-and-cat test area is centered in the magnified view at the beginning of the observation interval.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Begin a 120-second observation interval while remaining approximately 100 blocks from the fence. Keep the spyglass view aimed at the test area as continuously as practical, and do not approach or interact with the cat or fence during this interval. Hand control to the observation subsystem as soon as the interval starts.",
+        "exact_input": "Maintain approximately 100-block distance for up to 120 seconds",
+        "success_cue": "The timer has started, the player remains at the required distance, and the spyglass is directed toward the tethered-cat test area without any further setup action pending.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The untamed cat is tied by a lead to the fence, the player is stationary approximately 100 horizontal blocks away, the test area is centered through the spyglass, and the 120-second distant-observation interval has just started. The observation subsystem should now monitor the cat, lead, and fence area without moving the player closer or interacting with the setup.",
+    "uncertainties": [
+      "The report gives no world seed, biome, difficulty, cat variant, or precise fence wood type. These are treated as nonessential; Oak Fence and any clear Creative-world location are used as practical choices.",
+      "The instruction says to move \"about 100 blocks away\" rather than giving an exact threshold. This plan operationalizes that as a horizontal distance of approximately 95 to 105 blocks from the fence.",
+      "The report gives a variable interval of 15 to 120 seconds rather than one exact delay. The plan therefore starts a full 120-second observation window.",
+      "The description mentions both untamed cats and ocelots, but the title and numbered reproduction instructions specifically use a wild cat. This plan reproduces the cat case only.",
+      "The minimum Render Distance, Simulation Distance, and Entity Distance values are not stated in the report. The suggested values are practical measures intended to keep the test location rendered and observable at approximately 100 blocks.",
+      "The bug is distance-and-time dependent rather than being initiated by one instantaneous interaction. Step 21 is designated as the trigger because it begins the sustained distant interval after all required setup conditions have been established."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0f1b3664576986e5016aa8a7096f3087d085c3916c5dc4dd1a",
+    "elapsed_seconds": 87.18,
+    "usage": {
+      "input_tokens": 8818,
+      "output_tokens": 6411,
+      "reasoning_tokens": 3978,
+      "total_tokens": 15229
+    },
+    "timestamp": "2026-09-15T02:03:12.455802+00:00"
+  }
+}

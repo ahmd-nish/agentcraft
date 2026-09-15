@@ -1,0 +1,165 @@
+{
+  "bug_id": "MC-183743",
+  "category": "Mob spawning",
+  "source_md": "[Mob spawning] - MC-183743.md",
+  "source_meta": {
+    "mojira categories": "Mob spawning",
+    "project": "MC",
+    "issue key": "MC-183743",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-05-13T04:57:32.953-0700",
+    "updated": "2025-04-11T12:48:22.526-0700",
+    "resolution date": "2023-04-05T19:32:11.214-0700",
+    "affects versions": "20w19a; 20w20b; 1.16 Pre-release 7; 1.16 Release Candidate 1; 1.16; 1.16.1",
+    "fix versions": "20w27a",
+    "labels": "mojang_internal_1",
+    "watchers": "1",
+    "attachments": "11",
+    "attachment filenames": "2020-05-09_10.59.39.png; 2020-05-12_11.17.10.png; 2020-05-13_07.50.04.png; 2020-06-10_14.29.42.png; 2020-06-23_10-37-39_Village Test.zip; 2020-06-23_11.07.02.png; 2020-07-10_22.54.29.png; 2023-04-05_17.47.26.png; 2023-04-05_17.47.28.png; 2023-04-05_17.47.32.png; golems.JPG",
+    "issue links": "Duplicate:inward:MC-184201:Villagers spawning too many Iron Golems | Duplicate:inward:MC-191903:Villagers gossip golem spawn | Duplicate:inward:MC-192391:Too many iron Golems spawning | Duplicate:inward:MC-192783:Way too many iron golems in their house | Duplicate:inward:MC-205895:Golem excessive overpopulation | Relates:outward:MC-158542:Iron Golems don't stop spawning | Relates:inward:MC-193217:Villagers don't reset their golem spawning timer when reloaded",
+    "_title": "Iron golem overpopulation"
+  },
+  "stor": {
+    "bug_id": "MC-183743",
+    "affected_versions": [
+      "20w19a",
+      "20w20b",
+      "1.16 Pre-release 7",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1"
+    ],
+    "recommended_version": "20w19a",
+    "environment": "Minecraft: Java Edition 20w19a, single-player integrated server, using the report attachment \"2020-06-23_10-37-39_Village Test.zip\". The attached test world is described as a Creative-mode, Peaceful-difficulty superflat world containing a villager trading-hall structure, villagers and beds, plus two iron golems buried underground. Run an unmodified vanilla client without gameplay-altering mods or additional data packs.",
+    "preconditions": [
+      "Install and select an isolated Minecraft: Java Edition 20w19a launcher installation. In the official launcher, snapshot installations are exposed by enabling snapshots under the Installations tab. Use a separate game directory if possible so the imported test world cannot be opened accidentally in another version. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-26-2-snapshot-2?utm_source=openai))",
+      "Obtain the exact Mojira attachment named \"2020-06-23_10-37-39_Village Test.zip\". The deterministic reload procedure depends on the prepared village and the two existing buried iron golems in this world.",
+      "Keep an untouched copy of the ZIP archive or extracted world before opening it. Snapshot versions can damage or irreversibly convert worlds, so each reproduction attempt should begin from a fresh copy. ([minecraft.net](https://www.minecraft.net/fr-ca/article/minecraft-snapshot-20w19a?utm_source=openai))",
+      "Commands must be available because the report requires changing the time. The attached world is described as Creative mode and should normally permit commands. If the imported world denies the command, temporarily enable commands through Esc -> Open to LAN -> Allow Cheats: ON -> Start LAN World, then retry the command.",
+      "Do not remove, kill, teleport, or uncover the two buried iron golems, and do not move or destroy the villagers, beds, or structure before triggering the reload. Their prepared state is part of the supplied test world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Close Minecraft completely. Extract a fresh copy of the report attachment \"2020-06-23_10-37-39_Village Test.zip\". Locate the extracted world directory—the directory that directly contains level.dat—and place that directory in the saves folder used by the isolated 20w19a installation. Avoid opening this copy in any newer Minecraft version first.",
+        "exact_input": "2020-06-23_10-37-39_Village Test.zip",
+        "success_cue": "A single extracted world folder containing level.dat is present in the 20w19a installation's saves directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open the Minecraft Launcher, select the installation configured specifically for Java Edition snapshot 20w19a, and start the game. Confirm that the lower-left corner of the main menu identifies the running version as 20w19a before proceeding.",
+        "exact_input": "20w19a",
+        "success_cue": "The Minecraft main menu is open and displays version 20w19a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Click Singleplayer and select the imported test world created from the attachment. Do not select any similarly named working copy or an unrelated world.",
+        "exact_input": "Singleplayer",
+        "success_cue": "The imported test world is highlighted in the world-selection list.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Click Play Selected World to open the imported world. If Minecraft offers to create a backup, accept the backup or cancel and verify that the untouched archive is preserved before continuing; do not open the world in a different version.",
+        "exact_input": "Play Selected World",
+        "success_cue": "The player has entered the imported superflat test world in 20w19a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Wait until the nearby terrain and constructed trading hall have rendered and player movement responds normally. Verify the loaded world matches the report: it is superflat, the player is in Creative mode, the difficulty is Peaceful, and a constructed enclosure or trading hall containing villagers and beds is present. Creative mode can be recognized by the absence of normal Survival health and hunger handling and by the ability to begin flying with a double-press of Space. Peaceful difficulty can be checked under Esc -> Options -> Difficulty without changing it.",
+        "exact_input": "Esc -> Options -> Difficulty",
+        "success_cue": "The world is responsive, the villager structure is loaded, Creative mode is active, and Difficulty is set to Peaceful.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Locate the villager trading-hall structure in the cleaned test world and move inside it, close enough that the villagers are visibly loaded and moving. If necessary in Creative mode, double-press Space to begin flying, use W/A/S/D to move, and press Space or Left Shift to move vertically. Land or stop flying inside the structure. Do not break blocks while entering.",
+        "exact_input": null,
+        "success_cue": "The player is inside the structure and can see the loaded villagers and their beds or trading-hall area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Leave all entities and blocks in their prepared state. In particular, do not kill visible golems, dig down to inspect the two buried golems, move villagers, remove beds, or alter the structure. Remain inside or immediately adjacent to the villager area so its chunks stay loaded.",
+        "exact_input": null,
+        "success_cue": "The villager area remains intact and loaded, with no entities or village blocks deliberately changed by the executor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open in-game chat. Enter the executable Java Edition time command shown below, including the leading slash, and press Enter. The report writes the words as \"/set time 09000\", but Java Edition uses the \"/time set\" command order, so only the command-word order is corrected while the report's exact numeric argument 09000 is preserved. If an insufficient-permission error appears, press Esc, choose Open to LAN, set Allow Cheats to ON, choose Start LAN World, and then repeat this step.",
+        "exact_input": "/time set 09000",
+        "success_cue": "Chat reports that the time was set, and the world's daylight visibly changes to the time represented by 09000.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Keep the villager structure loaded and wait for the villagers' gathering period to begin. Do not leave the area or advance the time again. Continue only when multiple villagers have begun moving toward or congregating around their shared gathering area, rather than merely standing at beds or workstations.",
+        "exact_input": null,
+        "success_cue": "Multiple villagers are visibly in their gathering behavior or congregated in the common area while the structure remains loaded.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "As soon as the villagers are gathering, press Esc and click Save and Quit to Title. Do not wait through another villager schedule period before leaving.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The world has closed and the Minecraft title screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "From the title screen, click Singleplayer and highlight the same imported test world that was just saved. Do not replace it with a new extraction between saving and reloading, because this step must reload the state established at time 09000.",
+        "exact_input": "Singleplayer",
+        "success_cue": "The same test world used in the preceding steps is highlighted in the world-selection screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Click Play Selected World once to reload that same world. This world reload is the report's trigger action; do not repeatedly click the button or open another world.",
+        "exact_input": "Play Selected World",
+        "success_cue": "The loading screen begins for the same prepared test world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Wait only until the world and the villager structure have rendered and movement responds normally. Keep the structure's chunks loaded, do not kill or move any golem, and do not initiate another reload. Immediately transfer control to the observation subsystem once loading is complete.",
+        "exact_input": null,
+        "success_cue": "The player is back in the responsive, fully rendered villager structure immediately after the time-09000 world reload.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The same prepared test world has just been reloaded after its villagers entered their gathering period at time 09000. The villager trading-hall chunks are fully rendered and responsive, and no villagers, beds, existing buried golems, newly present entities, or structure blocks have been altered after re-entry. Begin observation immediately.",
+    "uncertainties": [
+      "The report attachment itself was not included as file content in the supplied prompt, so its spawn point, displayed world name, exact structure appearance, villager count, and precise locations of the two buried golems cannot be specified beyond the report's description.",
+      "The comments state that the original test village was created in 1.15.2 and tested in later snapshots, but they do not state the exact Minecraft version in which the attached cleaned backup was last saved. Because the first listed affected version must be used, this plan selects 20w19a. If 20w19a refuses to load the attachment as a newer-format save, preserve the failure and test from another untouched copy rather than manually downgrading world files.",
+      "The report gives the command as \"/set time 09000\". That word order is not executable Java Edition syntax; the plan uses \"/time set 09000\", preserving the supplied time argument. Minecraft command documentation identifies \"/time set\" as the applicable command form. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACommand_blocks_and_functions?utm_source=openai))",
+      "The report does not give a fixed real-time wait duration for villagers to gather. The plan therefore uses visible villager congregation as the readiness condition rather than inventing a timeout.",
+      "The report says repeated reloads eventually make the structure overflow, but it also states that one reload reliably produces an additional spawn. This plan performs only one trigger cycle so the observation system can evaluate the minimum deterministic occurrence without intentionally creating excessive entities."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0decaf44633bd1c1016aa8a6603b9487d08f6a78e41fa610e8",
+    "elapsed_seconds": 84.46,
+    "usage": {
+      "input_tokens": 35128,
+      "output_tokens": 5726,
+      "reasoning_tokens": 3560,
+      "total_tokens": 40854
+    },
+    "timestamp": "2026-09-15T02:00:20.403006+00:00"
+  }
+}
