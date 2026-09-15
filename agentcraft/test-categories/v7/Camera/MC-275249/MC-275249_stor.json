@@ -1,0 +1,180 @@
+{
+  "bug_id": "MC-275249",
+  "category": "Camera",
+  "source_md": "[Camera] - MC-275249.md",
+  "source_meta": {
+    "mojira categories": "Camera",
+    "project": "MC",
+    "issue key": "MC-275249",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2024-08-15T10:07:29.958-0700",
+    "updated": "2025-04-26T16:08:37.692-0700",
+    "resolution date": "2024-08-19T06:19:06.983-0700",
+    "affects versions": "24w33a",
+    "fix versions": "24w34a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "10",
+    "attachment filenames": "1.21.1 no zoom.png; 1.21.1 zoom.png; 1.21.1 zoom slider set to 0.png; 1.21.1 zoom slider set to 0-1.png; 2024-08-15_12.13.30.png; 2024-08-15_12.13.54.png; 24w33a no zoom.png; 24w33a zoom.png; 24w33a zoom slider set to 0.png; 24w33a zoom slider set to 0-1.png",
+    "issue links": "Duplicate:inward:MC-275305:Spyglass does not work properly (zoom bugged) | Duplicate:inward:MC-275371:Spyglass not zooming in | Duplicate:inward:MC-275572:Spy glass effect is affected by FOV Effects option",
+    "_title": "\"FOV Effects\" slider incorrectly modifying zoom values on the spyglass"
+  },
+  "stor": {
+    "bug_id": "MC-275249",
+    "affected_versions": [
+      "24w33a"
+    ],
+    "recommended_version": "24w33a",
+    "environment": "Minecraft: Java Edition snapshot 24w33a, unmodified vanilla client with no mods. Use a single-player Creative-mode world as the simplest deterministic way to obtain a spyglass; the report does not require multiplayer, a dedicated server, a specific seed, coordinates, commands, experiments, or a particular fullscreen/windowed state.",
+    "preconditions": [
+      "The Minecraft Launcher has a playable installation for the exact snapshot version 24w33a.",
+      "The client is vanilla and has no mods installed or loaded, matching the report.",
+      "A mouse or equivalent input is available for the bound Use Item/Place Block action; its default keyboard-and-mouse binding is right-click.",
+      "Use one unchanged player position and one stationary visual target for both spyglass tests so that the two settings are directly comparable.",
+      "Do not use fix version 24w34a for the reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and launch the exact Java Edition installation named or configured for snapshot 24w33a. Use a clean vanilla profile or game directory without mods.",
+        "exact_input": "24w33a",
+        "success_cue": "The Minecraft main menu opens and displays 24w33a as the running version, normally in the lower-left corner.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new world with Game Mode set to Creative, or load an existing disposable Creative-mode world created in 24w33a. No particular seed or experiments are required. Creative mode is an item-acquisition convenience rather than a condition stated by the report.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player is in a 24w33a world and has access to the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Do not begin the test immediately on world entry. Wait until nearby terrain has rendered and looking or moving responds normally.",
+        "exact_input": null,
+        "success_cue": "Surrounding chunks are visible and camera movement is responsive without world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the Creative inventory using the inventory control, which is E by default.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open and shows category tabs and the player hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select the Search Items tab and enter the item name \"spyglass\" in the search field.",
+        "exact_input": "spyglass",
+        "success_cue": "A Spyglass item is visible in the Creative inventory search results.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Move one Spyglass from the search results into any empty hotbar slot. The hotbar is the row of nine item slots along the bottom of the inventory and gameplay screen.",
+        "exact_input": "Left-click or shift-click the Spyglass into an empty hotbar slot",
+        "success_cue": "A Spyglass icon is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Close the inventory with E, then select the hotbar slot containing the Spyglass by scrolling to it or pressing its corresponding number key, 1 through 9.",
+        "exact_input": "E, then the number key corresponding to the Spyglass hotbar slot",
+        "success_cue": "The Spyglass is highlighted in the hotbar and is visible in the player's main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Choose a stationary, clearly defined visual target, such as the edge of a distant block, tree, building, or terrain feature. If necessary, fly to an open area first. Stand still, center the crosshair on the target, and do not change the player's position between the 100% and 0% tests. A target several blocks away is sufficient; the report's four-block-gap arrangement was a comparison aid rather than a stated prerequisite.",
+        "exact_input": "Center the crosshair on one stationary target; release all movement controls",
+        "success_cue": "The player is stationary with the same identifiable target centered or otherwise clearly framed on screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press Esc, select Options, select Video Settings, and locate the slider labeled \"FOV Effects\" as specified by the report. Do not change the separate general FOV setting.",
+        "exact_input": "Esc -> Options -> Video Settings -> FOV Effects",
+        "success_cue": "The FOV Effects slider is visible in the settings interface.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Adjust the FOV Effects slider to exactly 100%. Move the slider fully to its maximum if necessary, and confirm that its displayed value reads 100%.",
+        "exact_input": "100%",
+        "success_cue": "The FOV Effects control visibly reads 100%.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select Done as needed until gameplay resumes. Do not press movement controls or relocate the player.",
+        "exact_input": "Done -> Done",
+        "success_cue": "The world view is active again, the Spyglass remains selected, and the player remains at the comparison position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Re-center the same target if needed, then press and hold the bound Use Item/Place Block action while the Spyglass is selected. With default keyboard-and-mouse controls, hold the right mouse button. Continue holding until the spyglass viewing overlay is fully visible. The default right-button Use action is externally documented. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ABeginner%27s_guide?utm_source=openai))",
+        "exact_input": "Hold right mouse button (default Use Item/Place Block)",
+        "success_cue": "The spyglass viewing overlay is fully visible while the Use action remains held.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Release the Use Item/Place Block action to stop using the Spyglass. Keep the player at exactly the same position and retain the same target for the lower-setting test.",
+        "exact_input": "Release right mouse button",
+        "success_cue": "The spyglass overlay has disappeared, the Spyglass remains selected, and the player has not changed position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Open Esc -> Options -> Video Settings again, locate FOV Effects, and set it to exactly 0%. The report states that any value below 100% can be tested; 0% is selected here as the clearest deterministic lower-than-100% value.",
+        "exact_input": "Esc -> Options -> Video Settings -> FOV Effects -> 0%",
+        "success_cue": "The FOV Effects control visibly reads 0%.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Select Done as needed to resume gameplay. Without walking, flying, sprinting, changing the general FOV option, or switching items, aim at the same stationary target used for the 100% test.",
+        "exact_input": "Done -> Done; release movement controls",
+        "success_cue": "The Spyglass is selected, the player is at the original comparison position, and the same target is framed on screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press and hold the bound Use Item/Place Block action again while aiming at the same target. With default keyboard-and-mouse controls, hold the right mouse button. Keep the input held and hand control to the observation subsystem as soon as the spyglass overlay is fully visible.",
+        "exact_input": "Hold right mouse button (default Use Item/Place Block)",
+        "success_cue": "The spyglass viewing overlay is fully visible at FOV Effects 0%, the same target is framed, and the Use action remains held.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has just begun using the selected Spyglass while FOV Effects is set to 0%, from the same stationary position and against the same visual target used for the 100% baseline. The spyglass overlay is fully visible and the Use Item/Place Block input remains held; begin observing the camera framing and zoom state now.",
+    "uncertainties": [
+      "The report specifies the navigation path as Video Settings -> FOV Effects, and that path is preserved. External historical material also describes FOV Effects as an accessibility setting, so menu terminology may vary even when referring to the same slider. ([feedback.minecraft.net](https://feedback.minecraft.net/hc/en-us/articles/360057761252-Minecraft-Java-Edition-Snapshot-21w10a?utm_source=openai))",
+      "The report does not specify a game mode, seed, coordinates, or server type. Single-player Creative mode is chosen only to obtain the Spyglass quickly and remove unrelated survival setup.",
+      "The reporter mentions a four-block-wide gap only as the specific visual comparison used for attached screenshots; its exact construction and orientation are not described. The plan therefore uses one stationary target viewed from one unchanged position rather than inventing unsupported gap geometry.",
+      "The report states that fullscreen versus windowed mode does not change the result, so no display-mode requirement is imposed."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0661ae09270a3595016aa8c49e48d487d0b5111c144728cad4",
+    "elapsed_seconds": 113.45,
+    "usage": {
+      "input_tokens": 35094,
+      "output_tokens": 7148,
+      "reasoning_tokens": 5269,
+      "total_tokens": 42242
+    },
+    "timestamp": "2026-09-15T04:09:51.178680+00:00"
+  }
+}

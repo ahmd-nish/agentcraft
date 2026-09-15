@@ -1,0 +1,172 @@
+{
+  "bug_id": "MC-276965",
+  "category": "Camera",
+  "source_md": "[Camera] - MC-276965.md",
+  "source_meta": {
+    "mojira categories": "Camera; Textures and models",
+    "project": "MC",
+    "issue key": "MC-276965",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-09-25T14:27:34.497-0700",
+    "updated": "2025-05-29T09:04:30.300-0700",
+    "resolution date": "2024-10-08T01:36:45.772-0700",
+    "affects versions": "24w39a",
+    "fix versions": "1.21.2 Pre-Release 1",
+    "area": "Platform",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "javaw_9GgvnisUf3.gif; postshaderuniformbug.png",
+    "_title": "Post shader ColorModulate uniform not reset properly after spectating spiders"
+  },
+  "stor": {
+    "bug_id": "MC-276965",
+    "affected_versions": [
+      "24w39a"
+    ],
+    "recommended_version": "24w39a",
+    "environment": "Minecraft Java Edition snapshot 24w39a in a clean, unmodded single-player world. Use Creative mode with commands enabled, vanilla resources, no external shader packs, and hardware capable of selecting Fabulous! graphics. The deterministic setup below uses a Superflat world and stationary summoned entities, although the report does not require that world type or summoning method.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to make snapshot versions available and install/select snapshot 24w39a.",
+      "Use a clean vanilla installation without mods, external shader packs, or resource packs that alter post-processing or entity visuals.",
+      "Ensure the computer's graphics hardware and drivers allow the Graphics option to be set to Fabulous!.",
+      "Use the default Attack control (left mouse button) and Sneak control (Left Shift), or identify the equivalent controls if the key bindings have been changed.",
+      "Do not use Minecraft Java Edition 1.21.2 Pre-Release 1, because it is listed as a fix version rather than an affected version.",
+      "Minecraft Java Edition 1.21.1 is mentioned in the report only as an unaffected comparison run; it is not an affected version and is not the target of this reproduction plan."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, enable snapshot installations if necessary, select an installation whose version is exactly snapshot 24w39a, and start the game.",
+        "exact_input": "24w39a",
+        "success_cue": "The Minecraft Java Edition main menu is open and the displayed version is 24w39a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, select Create New World, and set the game mode to Creative. Ensure commands or cheats are enabled if the world-creation screen exposes a separate command setting.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The new-world configuration shows Creative mode and permits in-game commands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "For deterministic visibility and unobstructed entity placement, open the world-type settings and select Superflat. Leave the other world-generation settings at their defaults.",
+        "exact_input": "World Type: Superflat",
+        "success_cue": "The world-creation screen identifies the selected world type as Superflat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Create the world. After the loading screen closes, do not continue until nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded Creative-mode Superflat world and can move normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Press Esc, open Options, open Video Settings, and activate the Graphics option until its value is Fabulous!. Accept any Fabulous-graphics warning prompt, apply the setting if an Apply button is shown, and return to the world. Allow rendering to stabilize before continuing.",
+        "exact_input": "Esc -> Options -> Video Settings -> Graphics: Fabulous!",
+        "success_cue": "The player is back in the world, the Graphics setting is Fabulous!, surrounding terrain is rendered, and controls respond normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Without moving to a confined location, press T to open in-game chat. Enter the supplied deterministic Enderman summon command, including the leading slash, and press Enter. The NoAI tag keeps the Enderman in place so it remains easy to target.",
+        "exact_input": "/summon minecraft:enderman ~3 ~ ~ {NoAI:1b}",
+        "success_cue": "A stationary Enderman appears approximately three blocks along the positive X direction from the player's summon position, and the command reports a successful summon.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Remain near the same location. Press T to open chat, enter the deterministic spider summon command including the leading slash, and press Enter.",
+        "exact_input": "/summon minecraft:spider ~-3 ~ ~ {NoAI:1b}",
+        "success_cue": "A stationary spider appears approximately three blocks along the negative X direction from the player's summon position, and both the spider and Enderman remain loaded nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open chat, enter the Spectator-mode command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The player is in Spectator mode, can fly, and can pass through blocks rather than colliding with them.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Turn and, if necessary, fly a short distance until the summoned Enderman is clearly visible. Keep both summoned entities nearby and within loaded chunks.",
+        "exact_input": null,
+        "success_cue": "The stationary Enderman is visible at close range and the player remains in free-flying Spectator mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Aim directly at the Enderman's body so that the center crosshair rests on the entity with no block or other entity between the camera and the Enderman.",
+        "exact_input": null,
+        "success_cue": "The crosshair is centered on the Enderman at a range where it can be selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press the Attack control once while targeting the Enderman; with default controls, left-click once. Do not hold the mouse button.",
+        "exact_input": "Left-click once while the crosshair is on the Enderman",
+        "success_cue": "The camera is attached to the Enderman's viewpoint rather than moving as a free-flying spectator.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Press and release the Sneak control once to stop spectating the Enderman; with default controls, press Left Shift once.",
+        "exact_input": "Left Shift",
+        "success_cue": "The camera has detached from the Enderman and the player can once again fly independently in Spectator mode. Fabulous! graphics remains selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Turn toward the summoned spider and, if necessary, fly a short distance until it is clearly visible. Aim at the spider's body with an unobstructed line of sight.",
+        "exact_input": null,
+        "success_cue": "The crosshair is centered on the stationary spider at a range where it can be selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press the Attack control once while targeting the spider; with default controls, left-click once. Do not hold the mouse button.",
+        "exact_input": "Left-click once while the crosshair is on the spider",
+        "success_cue": "The camera is attached to the spider's viewpoint rather than moving as a free-flying spectator.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press and release the Sneak control once to stop spectating the spider; with default controls, press Left Shift once. Do not open any menus, change the Graphics option, spectate another entity, or perform another post-processing transition after this input.",
+        "exact_input": "Left Shift",
+        "success_cue": "The camera has just detached from the spider, the player is back in free-flying Spectator mode, and Graphics is still set to Fabulous!.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player has just exited the spider's spectator viewpoint by pressing Sneak and is now a free-flying spectator while Fabulous! graphics remains enabled. No subsequent graphics change or entity-spectating action has occurred. Begin visual observation immediately in this state.",
+    "uncertainties": [
+      "The report does not prescribe a world type. Superflat is selected only as a practical way to provide an open, deterministic testing area.",
+      "The report says to spawn an Enderman and a spider but does not prescribe spawn eggs or commands. The plan uses modern summon commands with NoAI tags as a practical deterministic method for snapshot 24w39a; the entities' stationary state is not asserted to be required by the bug.",
+      "The report also describes changing to Fast Graphics, spectating the Enderman a second time, and repeating the sequence in Java Edition 1.21.1. Those are post-trigger diagnostic and comparison procedures. They are not included in the primary run because changing graphics immediately after step 15 would alter the first directly observable trigger state before the observation subsystem can inspect it."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_00a089020797ada8016aa8c50f5f1c87d091910305f5357447",
+    "elapsed_seconds": 94.93,
+    "usage": {
+      "input_tokens": 8924,
+      "output_tokens": 5998,
+      "reasoning_tokens": 4276,
+      "total_tokens": 14922
+    },
+    "timestamp": "2026-09-15T04:11:26.115962+00:00"
+  }
+}

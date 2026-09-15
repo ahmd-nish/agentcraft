@@ -1,0 +1,232 @@
+{
+  "bug_id": "MC-3615",
+  "category": "Camera",
+  "source_md": "[Camera] - MC-3615.md",
+  "source_meta": {
+    "mojira categories": "Camera; Rendering",
+    "project": "MC",
+    "issue key": "MC-3615",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2012-11-21T06:33:25.528-0800",
+    "updated": "2025-10-26T01:31:57.870-0700",
+    "resolution date": "2022-08-17T11:48:37.380-0700",
+    "affects versions": "Minecraft 1.4.4; Minecraft 1.4.5; Minecraft 1.4.7; Minecraft 1.5; Minecraft 1.6.2; Minecraft 1.7.4; Minecraft 14w08a; Minecraft 1.7.5; Minecraft 14w10c; Minecraft 14w11b; Minecraft 1.7.9; Minecraft 14w17a; Minecraft 14w18b; Minecraft 14w19a; Minecraft 14w20a; Minecraft 14w20b; Minecraft 14w21b; Minecraft 1.10.2; Minecraft 16w32a; Minecraft 16w32b; Minecraft 16w33a; Minecraft 16w35a; Minecraft 1.11.1; Minecraft 18w07c; Minecraft 1.13-pre6; Minecraft 1.14.2; 1.15.2; 20w06a; 20w08a; 20w22a; 1.16 Pre-release 3; 1.16 Pre-release 4; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Release Candidate 1; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a",
+    "fix versions": "Minecraft 14w25b; 20w48a",
+    "game mode": "Creative",
+    "labels": "lava; visibility",
+    "watchers": "2",
+    "attachments": "14",
+    "attachment filenames": "2012-11-10_22.19.06.png; 2012-11-10_22.19.13.png; 2012-11-19_19.09.35.png; 2014-03-02_11.47.11.png; 2014-03-02_11.47.14.png; 2014-03-09_13.26.01.png; 2014-06-22_20.57.01.png; 2020-06-23_01.45.08.png; 2020-11-25_17.56.22.png; 2020-11-25_18.06.18.png; 2020-11-25_18.31.01.png; 2020-11-25_18.32.20.png; 2022-03-09_22.24.11.jpg; 2022-03-16_17.41.05.png",
+    "issue links": "Relates:inward:MC-166546:The environment is rendered blue when player is outside water surface | Relates:inward:MC-206610:At certain camera angles around -25.4 in second person, the lava fog effect applies when it shouldn't | Cloners:inward:MC-206561:Water is still completely transparent at certain height levels | Cloners:inward:MC-206842:Lava is still briefly transparent at a specific height level | Relates:outward:MCPE-6965:Lava and water can visually disappear in a certain condition",
+    "_title": "Lava and water are completely transparent at certain height levels"
+  },
+  "stor": {
+    "bug_id": "MC-3615",
+    "affected_versions": [
+      "Minecraft 1.4.4",
+      "Minecraft 1.4.5",
+      "Minecraft 1.4.7",
+      "Minecraft 1.5",
+      "Minecraft 1.6.2",
+      "Minecraft 1.7.4",
+      "Minecraft 14w08a",
+      "Minecraft 1.7.5",
+      "Minecraft 14w10c",
+      "Minecraft 14w11b",
+      "Minecraft 1.7.9",
+      "Minecraft 14w17a",
+      "Minecraft 14w18b",
+      "Minecraft 14w19a",
+      "Minecraft 14w20a",
+      "Minecraft 14w20b",
+      "Minecraft 14w21b",
+      "Minecraft 1.10.2",
+      "Minecraft 16w32a",
+      "Minecraft 16w32b",
+      "Minecraft 16w33a",
+      "Minecraft 16w35a",
+      "Minecraft 1.11.1",
+      "Minecraft 18w07c",
+      "Minecraft 1.13-pre6",
+      "Minecraft 1.14.2",
+      "1.15.2",
+      "20w06a",
+      "20w08a",
+      "20w22a",
+      "1.16 Pre-release 3",
+      "1.16 Pre-release 4",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w27a",
+      "20w28a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.2 Release Candidate 1",
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "1.16.4 Pre-release 1",
+      "1.16.4 Pre-release 2",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w45a",
+      "20w46a"
+    ],
+    "recommended_version": "Minecraft 1.4.4",
+    "environment": "Minecraft Java Edition 1.4.4 in single-player on the integrated server, using a fresh Superflat world in Creative mode with cheats enabled. Perform two independent executions of this plan: a lava run using the Lava Bucket and `/tp ~ 62.39 ~`, and a water run using the Water Bucket and `/tp ~ 63.39 ~`. Use a fresh world for each run so that the fluids cannot interact.",
+    "preconditions": [
+      "A launcher installation for the exact historical version Minecraft 1.4.4 is available and can start successfully.",
+      "Default movement and interaction controls are assumed: E opens the inventory, T opens chat, Space controls upward movement and toggles Creative flight when double-tapped, left-click breaks a block, and right-click uses or places the selected item.",
+      "The test must be performed in Creative mode, and cheats must be enabled so the report's `/tp` command can be executed.",
+      "Choose one run before beginning: the lava run or the water run. Complete the setup and hand off for that run, then create another fresh world and repeat for the other fluid.",
+      "The player must not have a resource pack, mod, shader, or third-party client installed unless separately required by the reproduction system; none is specified by the report.",
+      "Because `/setblock` is unavailable in Minecraft 1.4.4, the source block must be positioned manually with the matching filled bucket. The report's exact source-placement commands are preserved in uncertainties and must not be entered in 1.4.4."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft launcher, select an installation that runs the exact version Minecraft 1.4.4, and launch the game without mods.",
+        "exact_input": "Minecraft 1.4.4",
+        "success_cue": "The Minecraft 1.4.4 title screen is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a fresh test world. Set Game Mode to Creative. Open More World Options, set World Type to Superflat, set Allow Cheats to ON, return to the main world-creation screen, and create the world. Do not reuse the same world for the lava and water runs.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> World Type: Superflat -> Allow Cheats: ON -> Done -> Create New World",
+        "success_cue": "A fresh Superflat world has loaded and the player is in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building until the terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The nearby Superflat terrain is visible, no loading screen is present, and movement inputs respond immediately.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Start Creative flight by quickly pressing the jump control twice. Use Space to rise several blocks and then release all movement controls so the player hovers.",
+        "exact_input": "Double-tap Space",
+        "success_cue": "The player remains suspended in the air instead of falling to the ground.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Creative inventory. Put one nonflammable solid building block, such as Stone, in a hotbar slot. For the lava run, also put a Lava Bucket in another hotbar slot. For the water run, instead put a Water Bucket in another hotbar slot. The hotbar is the row of nine slots at the bottom of the inventory and gameplay screen.",
+        "exact_input": "E; obtain Stone and either Lava Bucket or Water Bucket",
+        "success_cue": "Stone and exactly the filled bucket selected for this run are visible in separate hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Close the inventory with E. Press F3 to display debug information and choose an integer horizontal target column near the player, denoted (T_x, T_z). The fluid source will occupy block coordinates (T_x, 64, T_z). Ensure this location and the immediately surrounding blocks at Y=64 are open air. Record T_x and T_z for use during alignment.",
+        "exact_input": "E, then F3",
+        "success_cue": "The debug overlay is visible, T_x and T_z have been recorded, and the intended block at (T_x, 64, T_z) is open air.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Using Stone, construct a temporary one-block-wide support pillar in the adjacent column (T_x+1, T_z). Build upward from the Superflat ground until the top Stone block occupies Y=64. Use Creative flight and the F3 coordinates to control the height; do not place a solid block in the target fluid column (T_x, T_z).",
+        "exact_input": "Select Stone; right-click repeatedly to place the temporary pillar",
+        "success_cue": "A Stone support block occupies (T_x+1, 64, T_z), while (T_x, 64, T_z) remains open air.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the filled bucket in the hotbar by pressing its hotbar number or scrolling to it. Confirm that the bucket name corresponds to the chosen run.",
+        "exact_input": "Select Lava Bucket for the lava run, or Water Bucket for the water run",
+        "success_cue": "The matching filled bucket is held in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Aim at the side face of the Y=64 support block that borders the target air block (T_x, 64, T_z). Right-click once with the filled bucket to place one source block in the target column. Do not place the fluid on top of the support block.",
+        "exact_input": "Right-click once with the selected filled bucket",
+        "success_cue": "The selected fluid occupies block (T_x, 64, T_z).",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Switch to an empty hand or another item. In Creative mode, left-click the temporary support blocks at (T_x+1, 64, T_z), (T_x+1, 63, T_z), and (T_x+1, 62, T_z) to remove them. Do not left-click the fluid source block.",
+        "exact_input": "Left-click each of the three specified support blocks once",
+        "success_cue": "No solid support block remains beside the fluid at Y=62 through Y=64, and the source fluid is still present at (T_x, 64, T_z).",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Wait briefly for fluid and block updates to process. Remain in flight and do not enter the source yet.",
+        "exact_input": null,
+        "success_cue": "The source block remains in the target column, nearby fluid movement has updated, and player controls remain responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While flying above Y=65, move horizontally over the source. Use the F3 coordinates to place the player's X coordinate within T_x through T_x+1 and Z coordinate within T_z through T_z+1, preferably near the center of the source column. Release all horizontal movement controls once aligned.",
+        "exact_input": "W/A/S/D as needed; release all movement keys after alignment",
+        "success_cue": "The player is hovering above the source with both horizontal coordinates inside the source block's column.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Open chat by pressing T. For the lava run, enter the report's exact teleport command `/tp ~ 62.39 ~`. For the water run, enter the report's exact teleport command `/tp ~ 63.39 ~`. Include the leading slash and press Enter once. Do not add a player selector or alter the decimal value.",
+        "exact_input": "Lava run: /tp ~ 62.39 ~\nWater run: /tp ~ 63.39 ~",
+        "success_cue": "The command closes chat and moves the player vertically while preserving the aligned X and Z position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "If the debug overlay is not already visible, press F3. Confirm that the displayed player Y position is approximately 62.39 for the lava run or 63.39 for the water run, and confirm that X and Z are still inside the chosen source column. Then press F3 again to hide the overlay so it does not obstruct rendering observation.",
+        "exact_input": "F3 to verify, then F3 to hide",
+        "success_cue": "The required decimal Y position has been confirmed, the player remains horizontally aligned with the fluid source, and the debug overlay is hidden.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Release every movement, jump, and descend control. Do not change altitude or move horizontally during the camera test.",
+        "exact_input": "Release W, A, S, D, Space, and Left Shift",
+        "success_cue": "The player remains stationary at the teleported position inside the selected fluid setup.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Begin changing only the camera pitch: slowly move the mouse upward until looking steeply upward, then reverse and move it downward until looking steeply downward. Continue a slow up-and-down pitch sweep without moving the player or changing the horizontal viewing direction more than necessary.",
+        "exact_input": "Slow vertical mouse movement: look up, then look down",
+        "success_cue": "The camera pitch is actively sweeping up and down while the player's position and altitude remain unchanged.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player is stationary at the report-specified Y position, horizontally aligned with the manually placed Y=64 source block, the debug overlay is hidden, and the first slow up-and-down camera sweep has begun. Hand control to the observation subsystem during this sweep; after that run is complete, repeat the plan in a fresh world for the other fluid variant.",
+    "uncertainties": [
+      "The report lists Minecraft 1.4.4 first, so it is the required recommended version. However, the supplied `/setblock` command did not exist in that version; external version history indicates `/setblock` was introduced in snapshot 13w37a for Java Edition 1.7.2. The plan therefore substitutes manual bucket placement only for the unavailable source-placement operation.",
+      "The raw report's exact source-placement commands are `/setblock ~ 64 ~ lava` and `/setblock ~ 64 ~ water`. They are intentionally not executed in Minecraft 1.4.4 because they would be unrecognized. If a separate command-exact reproduction is requested, Minecraft 1.7.4 is the first formally listed affected version in this report that postdates the addition of `/setblock`; that does not change the required recommended_version.",
+      "Manual bucket placement causes normal fluid updates around the source and may not be perfectly identical to placement by `/setblock`. The source block itself is positioned at the same Y=64 block coordinate required by the report, and nearby temporary solid blocks are removed before triggering the test.",
+      "The report supplies no world seed, absolute X/Z coordinates, terrain requirement, or required world type. A fresh Superflat world and an arbitrary recorded target column are practical choices intended to remove terrain and exploration variability.",
+      "The report does not specify the exact camera pitch or mouse speed at which the relevant rendering state becomes inspectable. The plan uses a slow sweep across the available upward and downward pitch range while keeping player position fixed.",
+      "The lava and water procedures have different teleport heights and are treated as independent runs. Combining them in one location could create stone or cobblestone and invalidate the setup."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_08dfb6cf8ee190d6016aa8c5d9f1e887d0844e95b893752fb0",
+    "elapsed_seconds": 143.35,
+    "usage": {
+      "input_tokens": 38524,
+      "output_tokens": 9359,
+      "reasoning_tokens": 6559,
+      "total_tokens": 47883
+    },
+    "timestamp": "2026-09-15T04:15:37.134282+00:00"
+  }
+}
