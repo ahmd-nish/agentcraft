@@ -1,0 +1,132 @@
+{
+  "bug_id": "MC-248778",
+  "category": "Internationalisation",
+  "reproduction_method": "outside-game inspection",
+  "source_md": "[Internationalisation] - MC-248778.md",
+  "source_meta": {
+    "mojira categories": "Internationalisation",
+    "project": "MC",
+    "issue key": "MC-248778",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-02-23T06:18:40.822-0800",
+    "updated": "2025-05-03T09:20:46.679-0700",
+    "resolution date": "2023-09-01T04:26:31.931-0700",
+    "affects versions": "1.18.1; 1.18.2 Release Candidate 1; 1.18.2; 1.19 Pre-release 1; 1.19; 1.19.1; 1.19.2; 22w43a; 22w45a; 1.19.3; 1.19.4; 1.20.1",
+    "fix versions": "1.20.2 Pre-release 1",
+    "area": "Platform",
+    "labels": "shulker_box; translatability",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-248778 - Context.png",
+    "issue links": "Relates:outward:MC-238807:\"Out of memory!\" message is untranslatable | Relates:inward:MC-248817:The track output characters within command blocks are untranslatable | Duplicate:inward:MC-129565:Shulker box preview count affected by item display name styling",
+    "_title": "The item count symbol within shulker box tooltips is untranslatable"
+  },
+  "stor": {
+    "bug_id": "MC-248778",
+    "affected_versions": [
+      "1.18.1",
+      "1.18.2 Release Candidate 1",
+      "1.18.2",
+      "1.19 Pre-release 1",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "22w43a",
+      "22w45a",
+      "1.19.3",
+      "1.19.4",
+      "1.20.1"
+    ],
+    "recommended_version": "1.18.1",
+    "environment": "Minecraft Java Edition 1.18.1 client in a single-player Creative-mode world with commands enabled. Use an unmodified client and the current in-game language; no particular world seed, coordinates, dimension, server, or graphics setting is required by the report.",
+    "preconditions": [
+      "Install and select the exact Java Edition 1.18.1 installation in the Minecraft Launcher. Do not use the fixed version 1.20.2 Pre-release 1.",
+      "Ensure Minecraft 1.18.1 can start with its launcher-provided runtime or another compatible Java 17 runtime.",
+      "Use an unmodified client without tooltip-changing mods or resource packs, as a practical control against unrelated tooltip changes.",
+      "Have keyboard and mouse access, using the configured equivalents of Open Chat (default T), Inventory (default E), and cursor movement.",
+      "Create a fresh single-player world in Creative mode with commands/cheats enabled. The report supplies no required seed or world-generation conditions."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation whose version is exactly Java Edition 1.18.1, then start the game. Do not select 1.18.2 or the listed fix version.",
+        "exact_input": null,
+        "success_cue": "The Minecraft title screen displays version 1.18.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer, then Create New World. Set Game Mode to Creative. Open More World Options and ensure Allow Cheats is ON, then create the world.",
+        "exact_input": null,
+        "success_cue": "The player enters a newly created Creative-mode world in Java Edition 1.18.1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until nearby terrain has rendered and normal player movement responds without initial world-loading pauses.",
+        "exact_input": null,
+        "success_cue": "Surrounding chunks are visible and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press the configured Open Chat control, default T, to open the in-game chat input. The following command must be executed in in-game chat, including its leading slash; it is not a server-console command.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Enter the exact 1.18.1-compatible command below and press Enter. This gives the player one shulker box whose first internal slot contains a stack of 64 stone. Preserve the legacy BlockEntityTag, Items, Slot, id, and Count syntax exactly; do not convert it to modern data-component syntax.",
+        "exact_input": "/give @s minecraft:shulker_box{BlockEntityTag:{Items:[{Slot:0b,id:\"minecraft:stone\",Count:64b}]}} 1",
+        "success_cue": "The command succeeds and a shulker box item appears in an available player inventory or hotbar slot.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Press the configured Inventory control, default E, to open the player inventory. Locate the shulker box item added by the command. The hotbar is the bottom row of nine inventory slots, but the shulker box may occupy another slot if the active hotbar slot was unavailable.",
+        "exact_input": "E",
+        "success_cue": "The inventory screen is open and the shulker box item is visible in one of the player's slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Move the mouse cursor onto the shulker box item and leave it there without clicking, moving the item, or closing the inventory. Do not place or open the shulker box; the test concerns the tooltip of the shulker box while it is an inventory item.",
+        "exact_input": null,
+        "success_cue": "A tooltip for the shulker box is fully visible and includes the stored stone stack with its item-count segment.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The inventory remains open, the cursor is stationary over the filled shulker box item, and its tooltip—including the stored stone entry and item-count segment—has just rendered. Begin localization-focused observation of the tooltip at this point.",
+    "uncertainties": [
+      "The report's formal Steps to Reproduce refer to 'this search filter' on the official Minecraft Crowdin project, but the supplied report does not preserve the filter URL, query text, or filter settings. That exact external-site procedure therefore cannot be made execution-ready from the supplied evidence.",
+      "The in-game procedure is reconstructed from the report's description and code-analysis context so that the affected shulker box tooltip is deterministically displayed. It does not silently claim to reproduce the omitted Crowdin search.",
+      "The report does not specify an in-game language, locale, or custom language resource pack. The plan leaves the current language unchanged; proving the absence of a translation key, rather than merely exposing the affected text segment, may require a separate localization-resource or source inspection.",
+      "The /give command is an execution aid not supplied by the report. It uses the legacy item NBT structure applicable to 1.18.1 and must not be modernized to post-1.20.5 data-component syntax.",
+      "The unavailable image attachment may contain additional Crowdin search context that is not present in the supplied text."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0517805fad9fb8e2016aa7bab9306c87d0a8cb6bbe08af95da",
+    "elapsed_seconds": 87.75,
+    "usage": {
+      "input_tokens": 37538,
+      "output_tokens": 5491,
+      "reasoning_tokens": 4269,
+      "total_tokens": 43029
+    },
+    "timestamp": "2026-09-14T09:14:56.784920+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

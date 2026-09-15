@@ -1,0 +1,131 @@
+{
+  "bug_id": "MC-264561",
+  "category": "Internationalisation",
+  "reproduction_method": "commands",
+  "source_md": "[Internationalisation] - MC-264561.md",
+  "source_meta": {
+    "mojira categories": "Internationalisation",
+    "project": "MC",
+    "issue key": "MC-264561",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-08-02T10:43:42.554-0700",
+    "updated": "2025-04-30T03:37:40.636-0700",
+    "resolution date": "2023-08-30T03:00:42.713-0700",
+    "affects versions": "1.20.1; 23w31a; 23w32a",
+    "fix versions": "23w35a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2023-08-10 16-24-22.mkv",
+    "_title": "Some new strings introduced in 23w31a are missing articles"
+  },
+  "stor": {
+    "bug_id": "MC-264561",
+    "affected_versions": [
+      "1.20.1",
+      "23w31a",
+      "23w32a"
+    ],
+    "recommended_version": "1.20.1",
+    "environment": "Minecraft Java Edition 1.20.1 in a single-player world, using the English (US) language, with commands/cheats enabled. Use the game's built-in language resources without a custom resource pack that overrides English translation strings.",
+    "preconditions": [
+      "Minecraft Java Edition 1.20.1 is installed and can be launched as a separate installation.",
+      "The client language can be changed to English (US).",
+      "The executor can create a single-player world with commands enabled; no particular seed, dimension, game mode, coordinates, or world terrain is required.",
+      "The deterministic test key selected from the report is commands.random.error.range_too_large. This key requires no substitution arguments in the supplied /tellraw command."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Java Edition installation configured for version 1.20.1. On the title screen, verify that the displayed version is exactly 1.20.1 before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft Java Edition title screen is visible and identifies the running version as 1.20.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, open Options, select Language, choose English (US), and confirm the selection with Done. If English (US) is already selected, leave it selected.",
+        "exact_input": "Options -> Language -> English (US) -> Done",
+        "success_cue": "The menus are displayed in English and English (US) is the selected language.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Ensure that no custom resource pack is enabled that replaces English language files. From the title screen, open Options, then Resource Packs, move any custom packs out of the selected list, and confirm with Done. The built-in Default resources may remain active.",
+        "exact_input": "Options -> Resource Packs -> disable custom language-overriding packs -> Done",
+        "success_cue": "No custom resource pack capable of overriding the tested English translation string is selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Return to the title screen, select Singleplayer, and open the Create New World screen.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The world-creation screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Configure the new world so commands are permitted. Select Creative mode for convenience and explicitly set Allow Commands to On. No specific world name, seed, difficulty, or world-generation setting is required.",
+        "exact_input": "Game Mode: Creative; Allow Commands: On",
+        "success_cue": "The world-creation screen shows Creative mode and Allow Commands set to On.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World and wait for world generation and loading to finish. Do not continue while the loading screen is present.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is in the world, terrain is rendered around the player, the HUD is visible, and normal movement or camera input responds.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press the default Open Chat key, T, to open the in-game chat input. If controls have been rebound, use the key assigned to Open Chat instead.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Type the report's /tellraw command using commands.random.error.range_too_large in place of XYZ. Preserve the leading slash, selector, capitalization, punctuation, quotation marks, braces, and translation key exactly as shown. Do not press Enter yet.",
+        "exact_input": "/tellraw @s {\"translate\":\"commands.random.error.range_too_large\"}",
+        "success_cue": "The complete command /tellraw @s {\"translate\":\"commands.random.error.range_too_large\"} is visible in the chat input field without a syntax-error indication.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press Enter once to execute the command. Do not enter another command or clear the chat before handing control to the observation subsystem.",
+        "exact_input": "Enter",
+        "success_cue": "The command has executed and a tellraw message generated from the specified translation key is visible in the in-game chat area.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The /tellraw command for commands.random.error.range_too_large has just executed, and its translated message is visible in chat. Hand control to the observation subsystem before changing the language, clearing chat, or executing another command.",
+    "uncertainties": [
+      "The report lists 1.20.1 first in Affects versions, so it is retained as the recommended version as required. However, the description says the affected strings were introduced in snapshot 23w31a, which was released after 1.20.1. If 1.20.1 displays the raw translation key instead of resolving it to an English sentence, preserve that result as a version-availability problem and rerun the same plan in the next listed affected version, 23w31a.",
+      "The report permits displaying any affected string. This plan chooses commands.random.error.range_too_large because it is the first listed key and its displayed text does not require a %s substitution argument. The other listed keys are commands.random.error.range_too_small, pack.dropRejected.message, and symlink_warning.title.world."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0bb8cd28c371b21d016aa7bb87754087d0a00200c21ac83ce0",
+    "elapsed_seconds": 46.85,
+    "usage": {
+      "input_tokens": 8579,
+      "output_tokens": 2881,
+      "reasoning_tokens": 1711,
+      "total_tokens": 11460
+    },
+    "timestamp": "2026-09-14T09:17:41.374055+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
