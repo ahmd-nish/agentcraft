@@ -1,0 +1,190 @@
+{
+  "bug_id": "MC-272224",
+  "category": "Enchantments",
+  "source_md": "[Enchantments] - MC-272224.md",
+  "source_meta": {
+    "mojira categories": "Enchantments; Particles",
+    "project": "MC",
+    "issue key": "MC-272224",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-05-19T11:42:28.874-0700",
+    "updated": "2025-04-29T09:03:40.810-0700",
+    "resolution date": "2024-05-31T02:55:27.399-0700",
+    "affects versions": "24w20a; 24w21b; 1.21 Pre-Release 1",
+    "fix versions": "1.21 Pre-Release 2",
+    "area": "Platform",
+    "labels": "enchant; enchantement; enchantment-effect",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2024-05-19_20.29.00.png; 2024-05-29_20.07.09.png; bug.zip",
+    "_title": "'in_bounding_box' vertical position for 'spawn_particles' effect is anchored incorrectly"
+  },
+  "stor": {
+    "bug_id": "MC-272224",
+    "affected_versions": [
+      "24w20a",
+      "24w21b",
+      "1.21 Pre-Release 1"
+    ],
+    "recommended_version": "24w20a",
+    "environment": "Vanilla Minecraft Java Edition 24w20a in a new singleplayer Creative-mode world with commands enabled. Load the report attachment bug.zip as a world data pack. Set particle display to All. Perform the test on an elevated transparent glass platform using a stationary, default-scale cow as the attacked mob. No particular world seed or coordinates are required by the report.",
+    "preconditions": [
+      "Install and select the exact Minecraft Java Edition snapshot 24w20a in the Minecraft Launcher. Do not use the fix version 1.21 Pre-Release 2.",
+      "Obtain the report attachment named bug.zip. Keep the attached data pack unmodified and available to copy into the test world.",
+      "Use a vanilla client without mods that alter enchantments, entities, combat, particles, or rendering.",
+      "Use English UI labels for the paths below, or select the equivalent controls if the game language differs.",
+      "Ensure the observation or recording subsystem can begin inspecting the particle event immediately when the final attack is made, because the test requires only one trigger occurrence."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the Java Edition installation for snapshot 24w20a and start the game.",
+        "exact_input": "24w20a",
+        "success_cue": "The main menu is open and the lower-left version text identifies the running game as 24w20a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open Options, then Video Settings. Locate the Particles setting and cycle it to All. Select Done until you return to the main menu.",
+        "exact_input": "Options -> Video Settings -> Particles: All",
+        "success_cue": "The Particles video setting displays All, so particle visibility is not reduced by the client setting.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, then Create New World. On the Game tab, set Game Mode to Creative and make sure Allow Commands is On. No specific seed is required.",
+        "exact_input": "Game Mode: Creative; Allow Commands: On",
+        "success_cue": "The world-creation screen shows Creative mode and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Before creating the world, open the More tab, select Data Packs, and select Open Pack Folder. Copy the unmodified bug.zip attachment into the folder that opens, then return to Minecraft. A data pack can be loaded from a .zip file placed in the world's datapacks location. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AInstalling_a_data_pack?utm_source=openai))",
+        "exact_input": "bug.zip",
+        "success_cue": "bug.zip appears as an available data pack in the Data Packs screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Enable bug.zip by selecting the arrow on its data-pack icon so that it moves to the Selected or enabled side of the screen. Select Done. If Minecraft asks for confirmation before enabling the pack, accept the prompt without modifying the pack.",
+        "exact_input": null,
+        "success_cue": "bug.zip is shown in the enabled data-pack list and the world-creation screen can be resumed without a data-pack validation error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select Create New World and wait for world generation to finish. Do not continue while the loading screen is visible or while nearby terrain is still failing to render.",
+        "exact_input": null,
+        "success_cue": "The player is in the new world, nearby chunks are rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Verify that the attached data pack is enabled. Press T to open in-game chat, type the command exactly with the leading slash, and press Enter. Inspect the enabled-pack list in chat for an entry corresponding to bug.zip. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AInstalling_a_data_pack?utm_source=openai))",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "The command output lists the file data pack corresponding to bug.zip as enabled, and no data-pack loading error is displayed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Move to an open location. Double-tap Space to begin Creative flight, then hold Space to rise until the player's feet are at least about eight blocks above the terrain. Release Space and remain hovering.",
+        "exact_input": "Double-tap Space; then hold Space",
+        "success_cue": "The player is hovering in Creative flight with enough empty space below to build an elevated platform and view its underside.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "While hovering, press T, enter the following command exactly with its leading slash, and press Enter. This creates a 9-by-9 glass floor one block below the player.",
+        "exact_input": "/fill ~-4 ~-1 ~-4 ~4 ~-1 ~4 minecraft:glass",
+        "success_cue": "A square transparent glass platform is visible directly below the player, and chat reports that blocks were filled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Hold the Sneak/descend control, Left Shift by default, until the player is standing on the center area of the glass platform. Release the key after landing.",
+        "exact_input": "Left Shift",
+        "success_cue": "The player is stationary on top of the glass platform rather than hovering, and the transparent area beneath the platform remains visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Obtain the required Diamond Sword. Press T, type the command exactly with the leading slash, and press Enter. Because this is a newly created world with an otherwise empty inventory, the sword should enter the first available hotbar slot.",
+        "exact_input": "/give @s minecraft:diamond_sword",
+        "success_cue": "Chat confirms that one Diamond Sword was given, and a Diamond Sword icon is visible in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select the hotbar slot containing the Diamond Sword. If it entered the leftmost hotbar slot, press 1; otherwise press the number corresponding to the slot where it appeared. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "1",
+        "success_cue": "The Diamond Sword's hotbar slot has the selection outline and the sword is visible in the player's main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "With the Diamond Sword still selected in the main hand, press T, enter the report's enchantment command exactly with the leading slash, and press Enter. Do not replace or modernize the supplied enchantment identifier.",
+        "exact_input": "/enchant @s bug:particle_post_damage",
+        "success_cue": "The enchant command succeeds, and the selected Diamond Sword has an enchanted visual glint or otherwise remains selected after a successful command message.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Create a stationary target on the same platform. Stand near the platform center, press T, enter the command exactly with its leading slash, and press Enter. The cow is placed two blocks away and NoAI prevents it from wandering off the platform; the report permits attacking any mob.",
+        "exact_input": "/summon minecraft:cow ~2 ~ ~ {NoAI:1b}",
+        "success_cue": "A living, stationary, default-scale cow is standing on the glass platform approximately two blocks from the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Keep the enchanted Diamond Sword selected. Turn toward the cow and adjust position without jumping until the crosshair is aimed at the cow's body from normal melee range. Choose a viewing angle that keeps the cow's body, the glass at its feet, and some space beneath the glass in the camera view.",
+        "exact_input": "Mouse movement and normal movement controls; do not jump",
+        "success_cue": "The crosshair is on the cow, the cow is within sword reach, and both the upper body and transparent floor below it are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Stop moving and wait at least one second so the melee attack cooldown is fully charged. Confirm that no menu or chat screen is open and that the enchanted sword remains selected.",
+        "exact_input": "Wait at least 1 second",
+        "success_cue": "The player is stationary, the gameplay view is unobstructed, and the next left-click will perform a fully charged sword attack on the cow.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Attack the cow exactly once by pressing left-click while the crosshair remains on its body. Do not jump, repeatedly click, or make another attack before handing control to the observation subsystem.",
+        "exact_input": "Left-click once",
+        "success_cue": "The cow registers one melee hit and the enchantment's post-attack particle event has just been triggered.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The stationary cow on the elevated glass platform has just been hit exactly once with the selected Diamond Sword enchanted with bug:particle_post_damage. The camera still includes the cow's bounding area, the transparent floor at its feet, and the space beneath that floor; begin particle-position observation immediately.",
+    "uncertainties": [
+      "The raw report names the required attachment as bug.zip but does not include its binary contents, directory structure, pack metadata, or enchantment JSON. The reproduction cannot proceed past data-pack loading unless the exact attachment is supplied and accepted by 24w20a.",
+      "The report specifies no world seed, coordinates, operating system, or server requirement. This plan therefore uses a new singleplayer world at an arbitrary open location.",
+      "The report says that any mob can be attacked and uses a scale-3 Husk only for its screenshot showcase, explicitly stating that default scale also reproduces the issue. This plan uses a default-scale stationary cow to avoid daylight burning, hostile movement, and unrelated particles.",
+      "The elevated glass platform, the cow's NoAI state, and the platform-building and summon commands are deterministic practical setup choices; they are not stated as mandatory conditions by the report.",
+      "The attached data pack was originally reported across multiple development versions. This plan follows the required first affected version, 24w20a; if bug.zip produces a version-format or registry-loading error in that exact snapshot, the attachment's compatibility cannot be resolved from the supplied report text alone."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0beeb9b54326b3aa016aa8c0fc6ee087d0b33320d0276190ee",
+    "elapsed_seconds": 100.39,
+    "usage": {
+      "input_tokens": 21554,
+      "output_tokens": 6767,
+      "reasoning_tokens": 4623,
+      "total_tokens": 28321
+    },
+    "timestamp": "2026-09-15T03:54:08.628273+00:00"
+  }
+}

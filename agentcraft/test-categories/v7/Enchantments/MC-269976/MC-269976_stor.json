@@ -1,0 +1,247 @@
+{
+  "bug_id": "MC-269976",
+  "category": "Enchantments",
+  "source_md": "[Enchantments] - MC-269976.md",
+  "source_meta": {
+    "mojira categories": "Enchantments",
+    "project": "MC",
+    "issue key": "MC-269976",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-03-27T12:59:21.478-0700",
+    "updated": "2025-05-29T09:06:57.018-0700",
+    "resolution date": "2024-04-20T15:12:04.345-0700",
+    "affects versions": "24w13a",
+    "fix versions": "1.20.5 Pre-Release 1",
+    "area": "Expansion B",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "b570d097-a30f-47a7-974e-acbda045bbd3.png",
+    "issue links": "Relates:outward:MC-269977:Wind Burst enchantment is obtainable in Enchanting Table | Relates:outward:MCPE-180764:Wind Burst enchantment is obtainable from villager trading",
+    "_title": "Wind Burst book available from villager trading"
+  },
+  "stor": {
+    "bug_id": "MC-269976",
+    "affected_versions": [
+      "24w13a"
+    ],
+    "recommended_version": "24w13a",
+    "environment": "Minecraft: Java Edition snapshot 24w13a in a fresh single-player Creative-mode world with cheats enabled. Enable the built-in Update 1.21 experiment so that the mace and Wind Burst content are present; leave the separate Villager Trade Rebalance experiment disabled to avoid changing the ordinary librarian trade pool.",
+    "preconditions": [
+      "Install and launch the exact affected snapshot 24w13a. Do not use fix version 1.20.5 Pre-Release 1.",
+      "Use a disposable test world rather than an important save because this is an old snapshot.",
+      "At world creation, enable the Update 1.21 experimental feature set. Java experimental features are exposed through per-world feature toggles. ([minecraft.net](https://www.minecraft.net/ja-jp/article/testing-new-minecraft-features/feature-toggles-java-edition?utm_source=openai))",
+      "Creative mode and cheats are practical setup choices because the report does not specify a game mode and the test requires repeatedly obtaining blocks and variable trade inputs.",
+      "Use one adult, unemployed villager. Do not use a baby villager, a green-clothed nitwit, or a villager whose trades have already been used.",
+      "Perform the test in a clear area without other villagers, lecterns, or workstation blocks that could interfere with workstation assignment.",
+      "The Wind Burst offer is randomly generated in this affected version. The report provides no seed or guaranteed reroll count, so an unknown number of lectern replacements may be required.",
+      "Accept any displayed Wind Burst enchantment level and price; the report does not require a particular level or emerald cost."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation using snapshot 24w13a, launch it, and verify that the main menu displays 24w13a.",
+        "exact_input": "24w13a",
+        "success_cue": "The Minecraft: Java Edition main menu is open and identifies the running version as 24w13a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and ensure commands/cheats are allowed. No particular seed is required because the report supplies none.",
+        "exact_input": null,
+        "success_cue": "The world-creation screen shows Creative mode and commands are available for the new world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Before creating the world, open the world-creation Experiments menu, enable the experiment named Update 1.21, confirm the warning if one appears, and leave Villager Trade Rebalance disabled.",
+        "exact_input": "Update 1.21",
+        "success_cue": "Update 1.21 is enabled while Villager Trade Rebalance remains disabled on the world-creation screen.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Create the world and wait without interacting until terrain has rendered and normal movement responds immediately.",
+        "exact_input": null,
+        "success_cue": "The player is in the new world, nearby chunks are rendered, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat, enter the time command with the leading slash, and press Enter. Keeping the test in daytime makes workstation assignment easier to observe.",
+        "exact_input": "/time set day",
+        "success_cue": "The world changes to daytime and the command reports successful execution.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T again, enter the daylight-cycle command with the leading slash, and press Enter so the test does not unexpectedly advance out of villager working time during repeated rerolls.",
+        "exact_input": "/gamerule doDaylightCycle false",
+        "success_cue": "Chat confirms that doDaylightCycle is now false and daylight remains fixed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Move to clear level ground away from any visible village, other villager, lectern, or workstation. Press E to open the Creative inventory, use the Search Items tab, and place a Villager Spawn Egg, a Lectern, and a stack of any solid building block into the hotbar.",
+        "exact_input": "Villager Spawn Egg; Lectern",
+        "success_cue": "The hotbar contains a Villager Spawn Egg, a Lectern, and solid blocks, and the selected test area has no competing workstation setup.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Using the solid blocks, construct a small roofless containment pen with at least two floor spaces inside and walls two blocks high. Leave enough room for one villager and one lectern. The pen only prevents the villager from wandering during rerolls.",
+        "exact_input": null,
+        "success_cue": "A roofless pen with two-block-high walls and space for a villager beside a lectern is complete.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select the Villager Spawn Egg in the hotbar and right-click the floor inside the pen once. Inspect the spawned villager. If it is a baby, or if it wears the solid green nitwit outfit, remove it in Creative mode and spawn another. Use an adult villager that initially has no workstation profession.",
+        "exact_input": null,
+        "success_cue": "Exactly one adult, non-nitwit villager is contained in the pen and has not previously been traded with.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Lectern in the hotbar and right-click the floor space immediately beside the villager to place it.",
+        "exact_input": null,
+        "success_cue": "One lectern is placed next to the contained villager, with no other lectern or workstation competing for that villager.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait until the villager claims the lectern. Watch for profession-change particles and the librarian appearance; do not continue while the villager is still visibly unemployed.",
+        "exact_input": null,
+        "success_cue": "The contained villager has changed into a librarian associated with the placed lectern.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Face the librarian and right-click it to open the trading interface. Confirm that the interface identifies it as a novice librarian.",
+        "exact_input": null,
+        "success_cue": "The novice librarian trading interface is open and its initial offer rows are visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Inspect every currently displayed offer. For each offer whose output is an Enchanted Book, move the pointer over the output book and read its tooltip. The target roll is any offer whose enchantment name is Wind Burst, regardless of level or price. If the target roll is present, proceed to step 17. If it is absent, close the interface with Esc and proceed to step 14.",
+        "exact_input": "Wind Burst",
+        "success_cue": "Either the target librarian roll has been identified, or the trade interface has been closed so the unwanted roll can be reset.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Only when no Wind Burst offer was found and no trade has been completed, select a suitable tool or use Creative instant breaking and left-click the lectern to break it. Pick up or retain the lectern item for replacement.",
+        "exact_input": null,
+        "success_cue": "The lectern block is absent and the untraded villager remains safely inside the pen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait for the villager to release the destroyed workstation and lose the librarian profession. Do not place the lectern again until the profession change is visible.",
+        "exact_input": null,
+        "success_cue": "The villager has reverted from librarian to its unemployed appearance.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Place the lectern again on the same floor space beside the villager, wait for the villager to become a librarian again, and return to step 12 to inspect the newly generated offers. Repeat steps 12 through 16 as many times as necessary, but stop breaking the lectern immediately when a Wind Burst offer is identified. Breaking and replacing a job block rerolls an untraded villager, while completing a trade locks its offers. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AVillager_trading_hall?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "A new librarian roll is ready for inspection, or the reroll loop has ended because the target roll was identified.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Once a Wind Burst offer has been identified, close the trading interface with Esc without breaking the lectern. Leave both the target librarian and its lectern in place for the remainder of the reproduction.",
+        "exact_input": null,
+        "success_cue": "The target librarian remains beside its intact lectern, and no trade-reset action has been performed after identifying the target roll.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Right-click the target librarian again. Select an offer other than the Wind Burst enchanted-book offer and note the exact item type and quantity shown in its input slot or slots. Close the trading interface with Esc.",
+        "exact_input": null,
+        "success_cue": "The cost of one non-target offer has been recorded, and the target librarian has not yet been rerolled or traded with.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Press E, search the Creative inventory for the exact input item or items required by the selected non-target offer, and move at least the displayed quantity into the player inventory. For example, obtain paper if the villager buys paper, or obtain emeralds and any second requested item if the villager sells an item.",
+        "exact_input": "Use the exact item names and quantities displayed by the selected non-Wind-Burst offer.",
+        "success_cue": "The player inventory contains every input item and quantity required to complete the chosen non-target trade once.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Right-click the target librarian, select the chosen non-target offer, place the required items into the trade input slot or slots if they are not filled automatically, and click the output item once to complete the trade. Move the received item into the player inventory.",
+        "exact_input": null,
+        "success_cue": "One trade has completed, the received item is in the player inventory, and the librarian's trade progress has advanced; its offers are now locked.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "With the same locked librarian, select the Wind Burst enchanted-book offer and note the exact item types and quantities required in its input slots. Close the interface, open the Creative inventory, and obtain at least those exact quantities. Use the displayed costs rather than assuming a fixed emerald price or enchantment level.",
+        "exact_input": "Wind Burst",
+        "success_cue": "The player inventory contains the exact inputs required to complete the displayed Wind Burst book trade once.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 22,
+        "action": "Right-click the locked librarian, select the Wind Burst enchanted-book offer, place the required items into the input slot or slots, and click the enchanted-book output once to complete the purchase. Move the purchased book into the player inventory.",
+        "exact_input": "Wind Burst",
+        "success_cue": "The target transaction has completed once, and its enchanted-book output is in the player inventory while the librarian and lectern remain in place.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Press E, search the Creative inventory for Mace and Anvil, and place one of each into the hotbar. Keep the purchased enchanted book in the player inventory.",
+        "exact_input": "Mace; Anvil",
+        "success_cue": "The player has one mace, one anvil, and the book acquired in step 22 available in inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Select the Anvil in the hotbar and right-click a clear floor space near the pen to place it. Right-click the placed anvil to open its interface.",
+        "exact_input": null,
+        "success_cue": "The anvil interface is open and both input slots are empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 25,
+        "action": "Place the unenchanted mace in the anvil's left input slot and the purchased enchanted book in the right input slot. Click the mace in the output slot and move it into the player inventory. Do not perform any combat or additional Wind Burst testing before handoff.",
+        "exact_input": "Left input: Mace; Right input: the enchanted book purchased in step 22",
+        "success_cue": "The anvil transaction has completed, the output mace is in the player inventory, and the anvil input slots no longer contain the original mace and book.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "A trade with the locked target librarian has been completed using the displayed Wind Burst enchanted-book offer, and the resulting book has just been combined with a mace at an anvil. The librarian and its lectern remain intact and no further interaction has been performed; begin observation from this state.",
+    "uncertainties": [
+      "The report specifies no seed, coordinates, game mode, server requirement, villager biome, Wind Burst level, trade price, or expected number of lectern rerolls.",
+      "Offer generation is random, so the target may require many repetitions of the reroll loop. No command is used to force the offer because doing so would bypass the reported natural villager-trading condition.",
+      "The report does not state which experiments were enabled. The plan enables Update 1.21 because the relevant mace content belonged to that experimental feature set in this snapshot, and leaves Villager Trade Rebalance disabled to avoid adding an unrelated trade configuration.",
+      "Creative mode, cheats, fixed daytime, the containment pen, and the use of a non-target trade to lock the librarian are practical execution choices rather than explicit report requirements.",
+      "The report's phrase 'without limits' does not specify a restocking procedure or number of purchases. This plan performs one target purchase, which is sufficient for the supplied mace-application step and avoids unnecessary repetition."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0a5d876c09ead685016aa8c0777f1487d0b10f533e6ffe9d3e",
+    "elapsed_seconds": 133.33,
+    "usage": {
+      "input_tokens": 36601,
+      "output_tokens": 10012,
+      "reasoning_tokens": 7128,
+      "total_tokens": 46613
+    },
+    "timestamp": "2026-09-15T03:52:28.226777+00:00"
+  }
+}

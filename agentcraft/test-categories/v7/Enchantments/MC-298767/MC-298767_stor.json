@@ -1,0 +1,204 @@
+{
+  "bug_id": "MC-298767",
+  "category": "Enchantments",
+  "source_md": "[Enchantments] - MC-298767.md",
+  "source_meta": {
+    "mojira categories": "Combat; Enchantments; Projectiles",
+    "project": "MC",
+    "issue key": "MC-298767",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-06-15T02:11:16.850-0700",
+    "updated": "2025-10-09T01:04:37.469-0700",
+    "resolution date": "2025-10-09T01:04:37.432-0700",
+    "affects versions": "1.21.5; 1.21.6 Release Candidate 1; 1.21.6; 1.21.7 Release Candidate 1; 1.21.8; 25w35a",
+    "fix versions": "25w41a",
+    "area": "Platform",
+    "votes": "4",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "1.mp4; Minecraft 2025.06.15 - 11.02.06.29.mp4",
+    "issue links": "Duplicate:inward:MC-301020:Piercing arrows do not pierce as expected at level IV when hit entities are on the same block",
+    "_title": "Piercing arrows phase through mobs that are in the same block"
+  },
+  "stor": {
+    "bug_id": "MC-298767",
+    "affected_versions": [
+      "1.21.5",
+      "1.21.6 Release Candidate 1",
+      "1.21.6",
+      "1.21.7 Release Candidate 1",
+      "1.21.8",
+      "25w35a"
+    ],
+    "recommended_version": "1.21.5",
+    "environment": "Minecraft Java Edition 1.21.5 in a new single-player Creative-mode world with commands enabled. Use an open, flat area with enough room to dig a 1×1 vertical pit and stand beside it. No world seed or coordinates are specified by the report.",
+    "preconditions": [
+      "Launch exactly Java Edition 1.21.5, the first version listed as affected.",
+      "Use two adult mobs of the same type to guarantee equal hitbox dimensions; this plan uses two adult pigs.",
+      "Commands must be permitted because the deterministic setup directly summons both pigs at 1 health point, equivalent to half a heart.",
+      "Use a normal arrow as crossbow ammunition, not a firework rocket.",
+      "Do not damage, ignite, suffocate, or otherwise interact with the pigs after summoning them; each pig has only 1 health point.",
+      "Fire only one test shot, then immediately hand control to the observation subsystem."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the Java Edition installation for version 1.21.5, and launch the game. Do not use the listed fix version or a newer installation for this reproduction.",
+        "exact_input": "1.21.5",
+        "success_cue": "The Minecraft title screen identifies the running version as Java Edition 1.21.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new world. Set Game Mode to Creative and ensure commands are allowed. A Superflat world may be used to provide an unobstructed testing area; the report does not require a particular seed or terrain type.",
+        "exact_input": null,
+        "success_cue": "The player has entered a Creative-mode world and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before beginning construction. Do not continue until the nearby terrain has rendered and movement, block breaking, and chat commands respond normally.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are visible and the player can move and break blocks without loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Choose a solid ground block in the open area. In Creative mode, break that block with left-click, then break the block immediately beneath it. This creates a vertical pit that is exactly one block wide by one block long and two blocks deep, with a solid block still forming its floor.",
+        "exact_input": null,
+        "success_cue": "A 1×1 opening extends two blocks below ground level and has solid walls and a solid floor.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Drop or fly into the pit and stand on its bottom floor. Position the player wholly within the single bottom block so that relative summon coordinates place each pig in the same 1×1 space.",
+        "exact_input": null,
+        "success_cue": "The player is standing at the bottom of the 1×1 pit.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat. Enter the first summon command exactly as written, including the leading slash, and press Enter. The command creates an adult pig at 1 health point, disables its movement AI, prevents normal despawning, and tags it for verification.",
+        "exact_input": "/summon minecraft:pig ~ ~ ~ {Health:1.0f,NoAI:1b,PersistenceRequired:1b,Tags:[\"mc298767_a\"]}",
+        "success_cue": "The command succeeds and one stationary adult pig appears in the bottom block of the pit.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Without leaving the pit, press T again and execute the second summon command exactly as written. Do not punch or otherwise damage the first pig.",
+        "exact_input": "/summon minecraft:pig ~ ~ ~ {Health:1.0f,NoAI:1b,PersistenceRequired:1b,Tags:[\"mc298767_b\"]}",
+        "success_cue": "The command succeeds and two stationary adult pigs are confined together within the same 1×1 bottom space.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Verify the first pig's health. Open chat with T, enter the data command exactly as written, and press Enter.",
+        "exact_input": "/data get entity @e[tag=mc298767_a,limit=1] Health",
+        "success_cue": "Command feedback reports a Health value of 1.0f for the first tagged pig, corresponding to one health point or half a heart.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Verify the second pig's health. Open chat with T, enter the data command exactly as written, and press Enter.",
+        "exact_input": "/data get entity @e[tag=mc298767_b,limit=1] Health",
+        "success_cue": "Command feedback reports a Health value of 1.0f for the second tagged pig.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Exit the pit without touching the attack control. In Creative mode, double-tap Space to begin flying, then hold Space to ascend above the pigs and move onto an adjacent ground block. Do not break any pit wall or allow the pigs to leave the 1×1 space.",
+        "exact_input": "Double-tap Space, then hold Space",
+        "success_cue": "The player is outside the pit, while both pigs remain alive and together in its bottom 1×1 space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Obtain a crossbow. Press T, enter the give command exactly as written with the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:crossbow 1",
+        "success_cue": "Command feedback confirms that one crossbow was given and the crossbow is present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Place the crossbow in the hotbar and select it. If it was not placed there automatically, press E to open the inventory, left-click the crossbow, left-click an empty slot in the bottom nine-slot hotbar, and press E to close the inventory. Press the number key corresponding to that hotbar slot.",
+        "exact_input": null,
+        "success_cue": "The crossbow is visible in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Enchant the held crossbow with Piercing I. While the unenchanted crossbow remains selected, press T, enter the enchant command exactly as written, and press Enter. Piercing level I is sufficient for a shot intended to pass through two targets.",
+        "exact_input": "/enchant @s minecraft:piercing 1",
+        "success_cue": "The command succeeds; the selected crossbow has an enchantment glint and its tooltip lists Piercing I.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Obtain one normal arrow. Press T, enter the give command exactly as written, and press Enter.",
+        "exact_input": "/give @s minecraft:arrow 1",
+        "success_cue": "At least one normal arrow is present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "With the Piercing I crossbow selected, point away from the pigs to prevent an accidental test shot. Hold the Use Item control, right-click by default, until the loading animation and sounds finish. Release right-click only after the crossbow is fully loaded.",
+        "exact_input": "Hold right-click until loading completes, then release",
+        "success_cue": "The crossbow remains visibly cocked/loaded after right-click is released, and the held-item tooltip indicates that an arrow is loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Move to a ground block directly beside the pit. Look down into the opening and adjust position until there is an unobstructed line from the crosshair to the pigs; no rim or wall block should be between the loaded crossbow and their bodies.",
+        "exact_input": null,
+        "success_cue": "Both pigs remain in the same bottom 1×1 space and the player's crosshair has a clear downward line of fire into that space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Aim the crosshair at the central body area where the two pigs overlap. Keep the Piercing I crossbow selected and do not use melee attack, break a block, or fire a preliminary shot.",
+        "exact_input": null,
+        "success_cue": "The loaded crossbow is aimed through the shared space occupied by both pig hitboxes.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Fire exactly once by pressing the Use Item control, right-click by default. Do not reload, fire again, or interact with either pig after this shot.",
+        "exact_input": "Right-click once",
+        "success_cue": "The crossbow discharges and the arrow reaches the shared 1×1 space containing the two pigs.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The Piercing I crossbow has just been fired once, and its arrow has reached the 1×1 space occupied by the two half-heart pigs. Immediately hand control to the observation subsystem without firing another shot or interacting with the pigs.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, or whether the reproduction must occur in single-player or on a dedicated server. This plan uses a command-enabled Creative single-player world as the simplest deterministic setup.",
+      "The report permits any two mobs with the same hitbox size but does not identify a specific pair. Two adult pigs are used because identical entities necessarily have the same hitbox dimensions.",
+      "The report specifies a 1×1 hole but does not specify its depth. A two-block-deep pit is used to keep both pigs confined while allowing a clear downward shot.",
+      "The report does not specify the Piercing level. Piercing I is selected because only one additional target must be pierced; any level of Piercing supports a two-target shot.",
+      "The report says to get the mobs to half a heart but does not prescribe a damage method. This plan directly summons each pig with Health:1.0f to avoid accidental death or unequal health from manual attacks.",
+      "The report does not specify the exact shooting position or angle. This plan fires downward from the rim into the shared 1×1 space to avoid adding horizontal alignment or movement requirements.",
+      "The attachment videos were referenced in the raw report but their visual contents were not supplied, so no attachment-specific positioning or timing details were incorporated."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0ed031a09b0bd9d0016aa8c1a08a6887d0ac25146e9728e082",
+    "elapsed_seconds": 97.27,
+    "usage": {
+      "input_tokens": 26560,
+      "output_tokens": 7129,
+      "reasoning_tokens": 4897,
+      "total_tokens": 33689
+    },
+    "timestamp": "2026-09-15T03:56:49.570076+00:00"
+  }
+}

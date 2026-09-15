@@ -1,0 +1,180 @@
+{
+  "bug_id": "MC-273281",
+  "category": "Enchantments",
+  "source_md": "[Enchantments] - MC-273281.md",
+  "source_meta": {
+    "mojira categories": "Data Packs; Enchantments; Projectiles",
+    "project": "MC",
+    "issue key": "MC-273281",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-06-12T10:03:11.446-0700",
+    "updated": "2025-04-16T13:01:55.072-0700",
+    "resolution date": "2024-07-08T03:00:51.446-0700",
+    "affects versions": "1.21; 1.21 Release Candidate 1",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "projectile_spawned_bug_example_latest.zip",
+    "issue links": "Cloners:outward:MC-271562:\"projectile_spawned\" Enchantment component triggers the enchantment effects BEFORE setting the projectile's default NBT",
+    "_title": "\"projectile_spawned\" Enchantment Component runs predicates and effects on projectiles before all of their data has been assigned"
+  },
+  "stor": {
+    "bug_id": "MC-273281",
+    "affected_versions": [
+      "1.21",
+      "1.21 Release Candidate 1"
+    ],
+    "recommended_version": "1.21",
+    "environment": "Minecraft Java Edition 1.21 in a vanilla single-player world. Use Creative mode with commands enabled so the test items and report-supplied enchantment can be applied deterministically. Install the provided projectile_spawned_bug_example_latest.zip datapack in the test world's datapacks directory.",
+    "preconditions": [
+      "A Minecraft Java Edition installation using exactly version 1.21 is available. Do not use fix version 24w33a or any later version for this reproduction.",
+      "The report attachment projectile_spawned_bug_example_latest.zip has been downloaded and is accessible to the reproduction environment.",
+      "The Minecraft game directory and the test world's save directory are writable so the datapack can be installed.",
+      "Use the control bound to Use Item, which is right-click by default, when drawing and firing the bow.",
+      "Keep the in-game chat display available because the datapack communicates during each projectile-spawn event."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using an installation configured for version 1.21. Confirm the selected version before creating the test world.",
+        "exact_input": "Minecraft Java Edition 1.21",
+        "success_cue": "The main menu is open and identifies the running game version as 1.21.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a new world named MC-273281-Repro. Set Game Mode to Creative and enable commands, then create the world.",
+        "exact_input": "World name: MC-273281-Repro; Game Mode: Creative; Allow Commands: On",
+        "success_cue": "The player has spawned in a new Creative-mode world and can access the hotbar and chat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before modifying the world files. Continue only after the terrain around the player has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, chunks are no longer visibly loading around the player, and player movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Pause the game and return to the title screen so the world is closed before installing the datapack.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The Minecraft title screen is displayed and the MC-273281-Repro world is no longer open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "In the active Minecraft game directory, open the save folder for MC-273281-Repro and then open its datapacks subdirectory. Copy the provided zip attachment directly into that directory without extracting or renaming it.",
+        "exact_input": "Copy projectile_spawned_bug_example_latest.zip to <game directory>/saves/MC-273281-Repro/datapacks/",
+        "success_cue": "projectile_spawned_bug_example_latest.zip is present directly inside the test world's datapacks directory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Return to Minecraft, open Singleplayer, select MC-273281-Repro, and enter the world again.",
+        "exact_input": "Singleplayer -> MC-273281-Repro -> Play Selected World",
+        "success_cue": "The player is back in the test world, surrounding terrain is rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Reload the world's datapacks. Press T to open in-game chat, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/reload",
+        "success_cue": "The reload completes without reporting that the provided datapack failed to load. The player remains in the world with controls responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Obtain one bow. Open chat with T, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:bow 1",
+        "success_cue": "A bow is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Obtain arrows for both test shots. Open chat with T, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:arrow 64",
+        "success_cue": "A stack of arrows is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Make the bow the active item. If the bow is in the hotbar—the row of nine item slots at the bottom of the screen—use the mouse wheel or the corresponding number key to select its slot. If it is only in the main inventory, press E, move it to a hotbar slot, close the inventory, and select that slot.",
+        "exact_input": "Select the hotbar slot containing the bow",
+        "success_cue": "The bow is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Apply the report-supplied custom enchantment to the held bow. With the bow still selected, press T, enter the exact command from the report including the leading slash, and press Enter.",
+        "exact_input": "/enchant @s test:arrow_crit_detection",
+        "success_cue": "The command succeeds rather than reporting an unknown enchantment or an inapplicable item, and the selected bow displays an enchanted glint.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Move outdoors or to another location with a clear firing lane. Face approximately horizontally toward open space, with no block or entity immediately in front of the player. Keep the enchanted bow selected.",
+        "exact_input": "Use normal movement controls; aim with the mouse",
+        "success_cue": "The enchanted bow remains selected and there is enough open space in front of the crosshair for two arrows to be fired without an immediate point-blank collision.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Fire the first arrow without fully charging the bow. Hold Use Item—right-click by default—for approximately 0.25 to 0.5 seconds, then release while the bow is still partway through its draw animation. Do not hold until the maximum-draw pose.",
+        "exact_input": "Hold right-click for approximately 0.25–0.5 seconds, then release",
+        "success_cue": "One arrow has been launched from a visibly partial bow draw, and the bow has returned to its resting position in the player's hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Pause briefly between shots without changing items or closing the world. Wait until the first shot has completed its immediate processing and the player can begin drawing the bow again.",
+        "exact_input": "Wait approximately 1 second",
+        "success_cue": "The enchanted bow is still selected, is no longer in its draw animation, and the Use Item control can start a new draw normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Prepare the fully charged shot. Hold Use Item—right-click by default—and do not release until the bow reaches and remains at its maximum-draw pose. Holding for at least approximately 1.25 seconds avoids releasing before full charge.",
+        "exact_input": "Press and hold right-click for at least approximately 1.25 seconds; do not release yet",
+        "success_cue": "The bow is held at its maximum-draw pose and no longer appears to draw farther while right-click remains held.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Release Use Item immediately after confirming that the bow is fully charged, thereby firing the second arrow. Do not perform another attack, command, reload, or item change after releasing.",
+        "exact_input": "Release right-click",
+        "success_cue": "The second arrow has just been launched from the fully drawn enchanted bow, after the earlier partially charged arrow.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has fired exactly two arrows from the bow enchanted with test:arrow_crit_detection: first from a partial draw and then from a confirmed full draw. The fully charged second arrow has just spawned, chat remains available, and no subsequent command, reload, item change, or additional shot has been performed. Begin observation immediately.",
+    "uncertainties": [
+      "The report attachment's internal files were not supplied in the raw report, so the plan assumes projectile_spawned_bug_example_latest.zip is the updated datapack referenced by the report and is usable in final release 1.21.",
+      "The report does not specify single-player versus dedicated server, game mode, world seed, or location. A new single-player Creative world with commands enabled is used as the minimum deterministic setup and is not asserted to be a required bug condition.",
+      "The report describes partial and full charging qualitatively but supplies no exact timing. The timing guidance is an execution aid; the visible bow draw state is the controlling condition."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0f3bdb6d4eb73721016aa8c160ca4887d08bb8b2d2e9064209",
+    "elapsed_seconds": 63.64,
+    "usage": {
+      "input_tokens": 8514,
+      "output_tokens": 4656,
+      "reasoning_tokens": 2830,
+      "total_tokens": 13170
+    },
+    "timestamp": "2026-09-15T03:55:12.277313+00:00"
+  }
+}
