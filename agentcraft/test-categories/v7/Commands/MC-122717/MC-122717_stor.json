@@ -1,0 +1,214 @@
+{
+  "bug_id": "MC-122717",
+  "category": "Commands",
+  "reproduction_method": "commands",
+  "source_md": "[Commands] - MC-122717.md",
+  "source_meta": {
+    "mojira categories": "Commands",
+    "project": "MC",
+    "issue key": "MC-122717",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2017-11-29T18:12:18.417-0800",
+    "updated": "2026-06-16T09:22:57.318-0700",
+    "resolution date": "2026-06-16T09:16:22.616-0700",
+    "affects versions": "Minecraft 17w48a; Minecraft 17w49a; Minecraft 17w49b; Minecraft 17w50a; Minecraft 18w01a; Minecraft 18w06a; Minecraft 18w08b; Minecraft 18w11a; Minecraft 18w16a; Minecraft 18w19b; Minecraft 1.13-pre1; Minecraft 1.13-pre2; Minecraft 1.13-pre5; Minecraft 1.13-pre9; Minecraft 1.13; Minecraft 18w30a; Minecraft 18w44a; Minecraft 19w02a; Minecraft 19w08a; Minecraft 19w11b; Minecraft 1.14.3; 1.14.4; 19w40a; 19w46b; 20w07a; 20w17a; 1.18.2; 1.19.2; 22w42a; 1.20.6; 24w18a; 24w40a; 1.21.5",
+    "fix versions": "Future Update",
+    "labels": "command-feedback",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "Bug.mp4; screenshot-1.png",
+    "issue links": "Duplicate:inward:MC-277394:Tag remove command returned incorrect count when do not use the target selector variable | Relates:inward:MC-123068:The number of advancements said to be revoked from the player is incorrect | Relates:inward:MC-125061:Feedback text for successful \"/recipe take *\" doesn't account for locked recipes | Duplicate:inward:MC-271517:Entities immune to some/all effects show as being affected when using @e | Duplicate:inward:MC-155058:/tag in functions broken | Duplicate:inward:MC-131048:Command '/tag @e remove tagname' says it removed tag from all entities, and not just the ones with the tag | Duplicate:inward:MC-124979:/enchant feedback text is inaccurate if not all entities could receive the enchantment | Duplicate:inward:MC-121735:Using /tag add or remove if some entities already have the tag shows that it was successful for all | Duplicate:inward:MC-306519:The /clear command informs about the removal of an item from two players even if only one player had the item | Relates:outward:MC-308014:The success message of /clear reports that it affected more players than it did",
+    "_title": "Command success messages for some commands include unaffected entities, unlike the command result"
+  },
+  "stor": {
+    "bug_id": "MC-122717",
+    "affected_versions": [
+      "Minecraft 17w48a",
+      "Minecraft 17w49a",
+      "Minecraft 17w49b",
+      "Minecraft 17w50a",
+      "Minecraft 18w01a",
+      "Minecraft 18w06a",
+      "Minecraft 18w08b",
+      "Minecraft 18w11a",
+      "Minecraft 18w16a",
+      "Minecraft 18w19b",
+      "Minecraft 1.13-pre1",
+      "Minecraft 1.13-pre2",
+      "Minecraft 1.13-pre5",
+      "Minecraft 1.13-pre9",
+      "Minecraft 1.13",
+      "Minecraft 18w30a",
+      "Minecraft 18w44a",
+      "Minecraft 19w02a",
+      "Minecraft 19w08a",
+      "Minecraft 19w11b",
+      "Minecraft 1.14.3",
+      "1.14.4",
+      "19w40a",
+      "19w46b",
+      "20w07a",
+      "20w17a",
+      "1.18.2",
+      "1.19.2",
+      "22w42a",
+      "1.20.6",
+      "24w18a",
+      "24w40a",
+      "1.21.5"
+    ],
+    "recommended_version": "Minecraft 17w48a",
+    "environment": "Minecraft: Java Edition snapshot 17w48a in a new single-player Creative-mode Superflat world using the integrated server. Cheats must be enabled, command feedback and visible chat must be available, and no mods, plugins, custom data packs, or additional players should be present.",
+    "preconditions": [
+      "Configure the launcher to start the exact affected snapshot Minecraft 17w48a, not a later 1.13 snapshot, release, or the listed fix version.",
+      "Use a fresh world so no entity already has the scoreboard tag named `test`.",
+      "Use English (US) if the observation subsystem will compare the command feedback text to the wording in the report.",
+      "Enable cheats so the player can execute permission-level-2 commands from in-game chat.",
+      "The plan creates six stationary armor stands at distinct distances and removes unrelated entities so both selectors resolve to the same nearest five entities, with exactly one additional entity selected by the second command.",
+      "After choosing the test position, do not walk, fly, teleport, place entities, drop items, or otherwise change entity distances until both reported `/tag` commands have completed."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft: Java Edition using the exact installation/profile for snapshot 17w48a. Confirm the version text on the title screen before continuing.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running game as Minecraft 17w48a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Set the client language to English (US): from the title screen open Options, open Language, select English (US), and confirm with Done.",
+        "exact_input": null,
+        "success_cue": "Title-screen and menu text is displayed in English.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Create a fresh test world. Select Singleplayer, Create New World, choose Creative mode, open More World Options, set Allow Cheats to ON, select the Superflat world type, disable structure generation if that option is shown, and create the world. No particular seed is required.",
+        "exact_input": null,
+        "success_cue": "A new Creative-mode Superflat world is open and the player can fly and use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Ensure chat messages are visible. Press Esc, open Options, open Chat Settings, set Chat to Shown, and return to the world.",
+        "exact_input": null,
+        "success_cue": "The Chat setting is Shown and the player has returned to gameplay.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Wait until the surrounding flat terrain has rendered and movement responds normally. Stand still on an open, level part of the Superflat surface with at least 14 unobstructed blocks available in the positive X direction. Release all movement controls and retain this position for the remainder of the reproduction.",
+        "exact_input": null,
+        "success_cue": "Terrain is loaded, the player is stationary on level ground, and a straight open area extends at least 14 blocks in one world-axis direction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enable command feedback explicitly. Press T to open in-game chat, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/gamerule sendCommandFeedback true",
+        "success_cue": "The gamerule command completes and subsequent command responses can appear in chat.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Prevent new natural mobs from entering the selector during the test. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamerule doMobSpawning false",
+        "success_cue": "Natural mob spawning is disabled for the test world.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Remove all existing non-player entities before creating the controlled targets. Press T, enter the command including the leading slash, and press Enter. Wait about one second and execute the same command again to remove any drops or experience orbs created by the first pass. Repeat until an execution reports that no matching entity was found. Do not move the player while doing this.",
+        "exact_input": "/kill @e[type=!player]",
+        "success_cue": "A final cleanup attempt finds no non-player entity; only the stationary player remains as an entity in the immediate test area.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Create the first stationary target two blocks away along positive X. Without moving, press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/summon armor_stand ~2 ~ ~",
+        "success_cue": "One armor stand is visible on the ground two blocks in the positive X direction from the stationary player.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Create the second stationary target four blocks away along positive X. Without moving, press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/summon armor_stand ~4 ~ ~",
+        "success_cue": "A second armor stand is visible farther along the same line, with two armor stands now present at distinct distances.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Create the third stationary target six blocks away along positive X. Without moving, press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/summon armor_stand ~6 ~ ~",
+        "success_cue": "A third armor stand is visible on the same line, distinct from the first two.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Create the fourth stationary target eight blocks away along positive X. Without moving, press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/summon armor_stand ~8 ~ ~",
+        "success_cue": "A fourth armor stand is visible on the same line at a greater distance.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Create the fifth stationary target ten blocks away along positive X. Without moving, press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/summon armor_stand ~10 ~ ~",
+        "success_cue": "A fifth armor stand is visible on the same line at a distinct distance.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Create the sixth stationary target twelve blocks away along positive X. Without moving, press T, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/summon armor_stand ~12 ~ ~",
+        "success_cue": "Six armor stands are present in one line at distinct distances of approximately 2, 4, 6, 8, 10, and 12 blocks from the stationary player, with no unrelated entities nearby.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Establish the partial preexisting-tag condition using the report's first command. Do not move or alter any entities. Press T, enter the command exactly as written including its leading slash, and press Enter.",
+        "exact_input": "/tag @e[sort=nearest,limit=5] add test",
+        "success_cue": "The first command executes successfully, and the five entities selected as nearest now have the `test` tag.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Immediately execute the report's second command without moving the player or changing any entity. Press T, enter the command exactly as written including its leading slash, and press Enter. After it completes, issue no further commands and leave the newest feedback line visible for the observation subsystem.",
+        "exact_input": "/tag @e[sort=nearest,limit=6] add test",
+        "success_cue": "The second `/tag` command has completed while the player and all controlled entities remained in the same positions, and its feedback line is available in chat for inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The second command, `/tag @e[sort=nearest,limit=6] add test`, has just completed with the same entity arrangement used by the first command. The latest command feedback remains visible in chat; hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The report does not specify a game mode, world type, seed, coordinates, or method for supplying nearby entities. Creative mode, a Superflat world, cleanup commands, and six armor stands are deterministic implementation choices rather than report requirements.",
+      "The helper commands used to suppress, remove, and summon entities are not part of the report's original reproduction commands. The two `/tag` commands are preserved exactly as supplied.",
+      "The controlled setup deliberately provides at least six entities at distinct distances regardless of whether the executing player is included among the nearest selector results. This avoids relying on tied distances or random natural mob placement.",
+      "If the exact historical client rejects an optional helper command despite the version verification, the equivalent fallback is to disable or remove unrelated entities manually and place six armor stands at distinct distances without moving between the two reported `/tag` commands; the reported commands themselves must not be changed."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_00d1a71eb18b3206016aa7b553676887d09e2f5e4ef9e6d5ac",
+    "elapsed_seconds": 130.8,
+    "usage": {
+      "input_tokens": 34871,
+      "output_tokens": 7932,
+      "reasoning_tokens": 5845,
+      "total_tokens": 42803
+    },
+    "timestamp": "2026-09-14T08:52:38.039737+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

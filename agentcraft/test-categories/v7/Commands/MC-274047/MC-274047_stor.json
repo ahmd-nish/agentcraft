@@ -1,0 +1,274 @@
+{
+  "bug_id": "MC-274047",
+  "category": "Commands",
+  "reproduction_method": "commands",
+  "source_md": "[Commands] - MC-274047.md",
+  "source_meta": {
+    "mojira categories": "Commands; Performance",
+    "project": "MC",
+    "issue key": "MC-274047",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2024-07-01T02:39:09.119-0700",
+    "updated": "2026-04-11T10:12:44.846-0700",
+    "resolution date": "2025-04-12T03:17:02.294-0700",
+    "affects versions": "1.21; 1.21.1 Release Candidate 1; 1.21.1; 24w33a; 24w34a; 24w35a; 24w36a; 24w37a; 24w38a; 24w39a; 24w40a; 1.21.2 Pre-Release 1; 1.21.2 Pre-Release 2; 1.21.2 Pre-Release 3; 1.21.2 Pre-Release 4; 1.21.2 Pre-Release 5; 1.21.2 Release Candidate 1; 1.21.2 Release Candidate 2; 1.21.2; 24w44a; 1.21.3; 24w45a; 1.21.4 Pre-Release 1; 1.21.4 Pre-Release 2; 1.21.4 Pre-Release 3; 1.21.4 Release Candidate 1; 1.21.4 Release Candidate 3; 1.21.4; 25w02a; 25w03a; 25w04a; 25w05a; 25w06a",
+    "fix versions": "25w07a",
+    "area": "Platform",
+    "votes": "1",
+    "watchers": "2",
+    "attachments": "4",
+    "attachment filenames": "FallingBlock entity with invalid LootTable.txt; FallingBlock entity with invalid Name.txt; Placing Suspicious Sand with Invalid LootTable.txt; Spawner.txt",
+    "_title": "Setting certain fields in NBT to invalid characters causes exceptions to be logged, potentially causing lag"
+  },
+  "stor": {
+    "bug_id": "MC-274047",
+    "affected_versions": [
+      "1.21",
+      "1.21.1 Release Candidate 1",
+      "1.21.1",
+      "24w33a",
+      "24w34a",
+      "24w35a",
+      "24w36a",
+      "24w37a",
+      "24w38a",
+      "24w39a",
+      "24w40a",
+      "1.21.2 Pre-Release 1",
+      "1.21.2 Pre-Release 2",
+      "1.21.2 Pre-Release 3",
+      "1.21.2 Pre-Release 4",
+      "1.21.2 Pre-Release 5",
+      "1.21.2 Release Candidate 1",
+      "1.21.2 Release Candidate 2",
+      "1.21.2",
+      "24w44a",
+      "1.21.3",
+      "24w45a",
+      "1.21.4 Pre-Release 1",
+      "1.21.4 Pre-Release 2",
+      "1.21.4 Pre-Release 3",
+      "1.21.4 Release Candidate 1",
+      "1.21.4 Release Candidate 3",
+      "1.21.4",
+      "25w02a",
+      "25w03a",
+      "25w04a",
+      "25w05a",
+      "25w06a"
+    ],
+    "recommended_version": "1.21",
+    "environment": "Unmodified Minecraft Java Edition 1.21 client using a new, expendable singleplayer Creative-mode world with commands enabled. Execute every supplied command through in-game chat, including the leading slash. Keep the active game directory's logs/latest.log available to the separate observation subsystem.",
+    "preconditions": [
+      "Launch the exact affected Java Edition version 1.21, not the fixed version 25w07a or a later version.",
+      "Use an expendable world because the procedure places NBT-bearing blocks, summons falling-block entities, and modifies a monster spawner.",
+      "Create or load the world in Creative mode with Allow Cheats enabled so that /give, /summon, and /data can be executed.",
+      "Use an unmodified client without mods or datapacks that alter commands, block entities, falling blocks, spawners, or logging.",
+      "Ensure there is a loaded, level area with a solid floor and enough open space to place suspicious sand and a monster spawner.",
+      "Ensure the inventory has room for suspicious sand, a breeze spawn egg, and a monster spawner.",
+      "Identify the game instance's current logs/latest.log before triggering the cases so the observation subsystem can inspect the correct live log.",
+      "Do not place the invalid-Name summon command in a repeating command block; a single execution is sufficient before the final deterministic spawner trigger."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the 1.21 installation profile, then select Singleplayer.",
+        "exact_input": null,
+        "success_cue": "The main menu identifies the running version as Minecraft Java Edition 1.21, and the singleplayer world list is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new expendable world. Set Game Mode to Creative and set Allow Cheats to ON, then create the world. If an existing expendable Creative world with commands enabled is used instead, load that world.",
+        "exact_input": null,
+        "success_cue": "The player is in a Creative-mode world where commands can be executed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until nearby terrain is fully rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Surrounding chunks are visible, the player can move without initial loading pauses, and chat can be opened.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a level, solid area with several empty blocks of space. Use separate nearby positions for the suspicious-sand block and the later monster spawner so they do not overlap.",
+        "exact_input": null,
+        "success_cue": "A solid floor and unobstructed placement locations are available within reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Locate the active game directory's logs/latest.log outside the game and make its path available to the observation subsystem. Leave Minecraft running and do not evaluate the log contents during these setup steps.",
+        "exact_input": null,
+        "success_cue": "The observation subsystem can access the live latest.log belonging to the running 1.21 instance.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat. Enter the report's suspicious-sand command exactly as written, including the leading slash, and press Enter once.",
+        "exact_input": "/give @s minecraft:suspicious_sand[minecraft:block_entity_data={id:brushable_block,LootTable:\"?\"}]",
+        "success_cue": "A suspicious-sand item has been added to the player's inventory; the command is not executed a second time.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "If the suspicious sand is not already in the hotbar, press E to open the inventory, locate the suspicious-sand item, and move it into any hotbar slot. Close the inventory with E or Esc, then select that slot using its number key or the mouse wheel.",
+        "exact_input": null,
+        "success_cue": "Suspicious sand is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Aim at the top face of an empty solid floor block and use the selected suspicious sand once with right-click, or the bound Use Item/Place Block control, to place it.",
+        "exact_input": null,
+        "success_cue": "The suspicious-sand block supplied by the command now occupies the targeted location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Move a few blocks away from the placed suspicious sand so the next falling-block summons have unobstructed space at the player's current coordinates.",
+        "exact_input": null,
+        "success_cue": "The player is standing in an open location and is not inside the placed suspicious-sand block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T to open chat. Enter the report's falling-block command with the invalid BlockState Name exactly as written, including the leading slash, and press Enter once. Do not use a repeating command block.",
+        "exact_input": "/summon minecraft:falling_block ~ ~ ~ {BlockState:{\"Name\":\"?\"}}",
+        "success_cue": "The command has been submitted exactly once and control has returned to the player; no persistent summoned entity is required as a progress check.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait only until the command submission has finished processing and player movement responds again. Do not repeatedly execute the command even if no falling block remains visible.",
+        "exact_input": null,
+        "success_cue": "Player controls respond normally enough to submit the next command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T to open chat. Enter the report's falling-block command with the invalid LootTable exactly as written, including the leading slash, and press Enter once.",
+        "exact_input": "/summon minecraft:falling_block ~ ~ ~ {BlockState:{\"Name\":\"suspicious_sand\"},TileEntityData:{LootTable:\"?\"}}",
+        "success_cue": "The command has been submitted exactly once and control has returned to the player; the test does not depend on the falling block remaining visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Prepare the report's spawn egg for the spawner case. Press T, enter the exact /give command including the leading slash, and press Enter once.",
+        "exact_input": "/give @s minecraft:breeze_spawn_egg[minecraft:entity_data={id:arrow,inBlockState:{Name:\"?\"}}]",
+        "success_cue": "A breeze spawn egg containing the supplied entity data has been added to the inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Press E if necessary, move the command-provided breeze spawn egg into a hotbar slot, close the inventory, and select that hotbar slot.",
+        "exact_input": null,
+        "success_cue": "The command-provided breeze spawn egg is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Obtain one monster spawner without replacing or modifying the report's supplied commands. Press T, enter the following convenience /give command, and press Enter.",
+        "exact_input": "/give @s minecraft:spawner",
+        "success_cue": "A monster-spawner item has been added to the inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Press E if necessary, move the monster spawner into a different hotbar slot, close the inventory, and select the spawner's hotbar slot.",
+        "exact_input": null,
+        "success_cue": "The monster-spawner item is visible in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Aim at the top face of a solid floor block several blocks away from the previously placed suspicious sand. Right-click once, or use the bound Place Block control, to place the monster spawner.",
+        "exact_input": null,
+        "success_cue": "One monster-spawner block is placed on the floor with open space directly above it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Select the hotbar slot containing the command-provided breeze spawn egg.",
+        "exact_input": null,
+        "success_cue": "The breeze spawn egg with the invalid inBlockState Name is visible in the player's hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Aim directly at the placed monster spawner and right-click it once with the breeze spawn egg. Do not right-click the surrounding ground and do not repeat the interaction.",
+        "exact_input": null,
+        "success_cue": "The Use Item action has been performed on the monster spawner exactly once, and the spawner block remains at the selected location.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Switch to an empty hotbar slot so another accidental right-click cannot reuse the spawn egg.",
+        "exact_input": null,
+        "success_cue": "The spawn egg is no longer held in the active hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Fly or jump onto the top face of the monster spawner and stop moving. Position the player's feet directly above the spawner rather than on an adjacent block.",
+        "exact_input": null,
+        "success_cue": "The player is standing on the monster spawner, so the relative block position ~ ~-1 ~ resolves to that spawner.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Wait until the surrounding chunk is fully loaded and movement and chat respond normally. Remain standing on the spawner.",
+        "exact_input": null,
+        "success_cue": "The player remains stationary on top of the loaded spawner and can open chat without a loading pause.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Press T to open in-game chat while remaining on top of the spawner. Type the report's /data command exactly as written, including the leading slash, but do not press Enter until the full command has been entered.",
+        "exact_input": "/data modify block ~ ~-1 ~ SpawnData.entity.inBlockState set value {Name:\"?\"}",
+        "success_cue": "The complete command is visible in the chat input and the player has not moved away from the spawner.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "Press Enter once to execute the prepared /data command. Do not execute it again, move off the spawner, open another menu, or perform further interactions before handing control to the observation subsystem.",
+        "exact_input": "/data modify block ~ ~-1 ~ SpawnData.entity.inBlockState set value {Name:\"?\"}",
+        "success_cue": "The command has just been submitted once while ~ ~-1 ~ targets the monster spawner directly below the player.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 24,
+    "handoff_condition": "The report's /data modify command has just been submitted once while the player is standing directly on the target monster spawner. Leave the world running in this state and immediately hand control to the observation subsystem to monitor game responsiveness and the active logs/latest.log. Do not repeat the command or add a repeating command block.",
+    "uncertainties": [
+      "The report does not explicitly require singleplayer, a dedicated server, or a particular game mode. A singleplayer Creative world with commands enabled is selected as the simplest deterministic environment, and the report specifically mentions the singleplayer Esc menu in its behavior description.",
+      "The report supplies several independent triggers. Steps 8, 10, 12, and 19 perform the direct cases once, while trigger_step 24 identifies the final spawner data mutation because that is the report's deterministic continuing-spam/performance case.",
+      "The report notes that putting the invalid-Name /summon command in a repeating command block can cause high MSPT lag, but it does not require a repeating command block for a basic reproduction. This plan intentionally executes that command only once to avoid unnecessary repeated lag and exception generation.",
+      "The /give @s minecraft:spawner command is an execution convenience used only to obtain the spawner requested by the report; the report does not prescribe how the spawner must be acquired.",
+      "Controls are described using the default Java Edition bindings T, E, and right-click. If controls have been rebound, use the bindings for Open Chat, Inventory, and Use Item/Place Block instead."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e97900e2dddf561016aa7b5d63f3c87d0981be80538f8f2db",
+    "elapsed_seconds": 98.75,
+    "usage": {
+      "input_tokens": 9283,
+      "output_tokens": 6392,
+      "reasoning_tokens": 3624,
+      "total_tokens": 15675
+    },
+    "timestamp": "2026-09-14T08:54:16.798272+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
