@@ -1,0 +1,219 @@
+{
+  "bug_id": "MC-307585",
+  "category": "Advancements",
+  "source_md": "[Advancements] - MC-307585.md",
+  "source_meta": {
+    "mojira categories": "Advancements",
+    "project": "MC",
+    "issue key": "MC-307585",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2026-04-16T14:33:16.006-0700",
+    "updated": "2026-05-07T23:07:12.463-0700",
+    "resolution date": "2026-05-07T23:07:12.357-0700",
+    "affects versions": "26.1.2",
+    "fix versions": "26.2 Snapshot 7",
+    "area": "Platform HC",
+    "votes": "4",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "tnt test 1.21.11-26.1.zip; We_Have_Liftoff_1_21_11.mp4; We_Have_Liftoff_26_1_x.mp4",
+    "_title": "The `fall_after_explosion` advancement trigger does not work with TNT anymore"
+  },
+  "stor": {
+    "bug_id": "MC-307585",
+    "affected_versions": [
+      "26.1.2"
+    ],
+    "recommended_version": "26.1.2",
+    "environment": "Minecraft: Java Edition 26.1.2 in a fresh, disposable singleplayer world. Use Creative mode with commands enabled so the attached datapack can be checked and the TNT launcher can be assembled without unrelated resource gathering. Use the exact attached datapack archive named \"tnt test 1.21.11-26.1.zip\" and the attached video \"We_Have_Liftoff_26_1_x.mp4\" as the blueprint for the launcher. Do not use 26.2 Snapshot 7 or a later fixed version.",
+    "preconditions": [
+      "The official Minecraft Launcher has an installation for Minecraft: Java Edition 26.1.2.",
+      "The three report attachments are locally available, especially \"tnt test 1.21.11-26.1.zip\" and \"We_Have_Liftoff_26_1_x.mp4\".",
+      "Use a new world so the advancement from the attached datapack has not already been granted.",
+      "Use the datapack method listed as method 1 in the report; do not also install BlazeandCave's Advancement Pack or modify a vanilla advancement, because either would introduce unnecessary variables.",
+      "No gameplay mods, server plugins, or additional datapacks are enabled.",
+      "The launcher must use TNT entities as shown in the attached video. Do not substitute wind charges, TNT minecarts, beds, respawn anchors, or another explosion source because the advancement condition specifically tests a cause entity of type \"minecraft:tnt\".",
+      "Build in an open area with enough unobstructed vertical space for the player to rise at least 100 blocks above the launch position.",
+      "Keep a copy of the disposable world or be prepared to create another fresh world if the one-use TNT launcher is accidentally activated before the player is correctly positioned."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select the installation for Minecraft: Java Edition 26.1.2, and start the game. Do not select the listed fix version, 26.2 Snapshot 7.",
+        "exact_input": "Minecraft: Java Edition 26.1.2",
+        "success_cue": "The game reaches the title screen and identifies the running version as 26.1.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World to open the new-world configuration screen.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Give the world a recognizable name, set Game Mode to Creative, and ensure commands or cheats are enabled. Creative mode is an execution convenience and does not replace the TNT launch condition.",
+        "exact_input": "MC-307585 TNT test 26.1.2",
+        "success_cue": "The new-world screen shows Creative mode and commands enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "From the new-world screen, navigate to the Data Packs configuration. In the standard Java Edition world-creation interface, open the More tab or page, select Data Packs, and then select Open Pack Folder.",
+        "exact_input": "More -> Data Packs -> Open Pack Folder",
+        "success_cue": "The operating system opens the datapacks folder associated with the world being created.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Copy the exact attached archive into the opened datapacks folder. Keep it as a ZIP archive unless Minecraft fails to detect it; do not edit its advancement JSON or pack metadata.",
+        "exact_input": "tnt test 1.21.11-26.1.zip",
+        "success_cue": "The file \"tnt test 1.21.11-26.1.zip\" is present in the opened datapacks folder.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Return to Minecraft. If the pack appears under Available, select its pack icon or arrow to move it to Selected. Confirm the datapack selection and return to the world-creation screen. If the game reports a fatal validation error and will not enable the pack, stop rather than rewriting the attachment.",
+        "exact_input": "tnt test 1.21.11-26.1.zip",
+        "success_cue": "The attached datapack is listed as selected or enabled, with no fatal validation error preventing world creation.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select Create New World. Wait until the player appears in the world, nearby chunks have rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a responsive 26.1.2 world and surrounding terrain has loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Verify that the attached datapack is enabled. Press T to open in-game chat, enter the command exactly with its leading slash, and press Enter.",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "Chat reports the enabled datapacks and includes the custom pack loaded from the attached archive; no datapack loading error is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Outside Minecraft, open the attached video \"We_Have_Liftoff_26_1_x.mp4\". Review or pause it at frames that clearly show the complete launcher, including its dimensions, block spacing, water placement, TNT positions, redstone or timing components, player launch position, and activation method. Keep the video available while building.",
+        "exact_input": "We_Have_Liftoff_26_1_x.mp4",
+        "success_cue": "The executor has a visible reference for the complete 26.1-series launcher and its activation sequence.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "In Minecraft, move to a flat, open build site. Look upward and confirm there is no roof, overhang, tree canopy, or other obstruction in the vertical launch path. If necessary, clear the site using Creative mode.",
+        "exact_input": null,
+        "success_cue": "A flat construction area and an unobstructed vertical launch path of more than 100 blocks are available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Obtain the blocks and components shown in the attached video from the Creative inventory. Press E to open the inventory, use the Search Items field to locate each required item, and place each item in the hotbar, which is the row of nine slots at the bottom of the inventory. Do not acquire a wind charge or substitute a different explosive for TNT.",
+        "exact_input": "E",
+        "success_cue": "Every block and component visible in the video's launcher, including TNT, is available in the Creative inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Recreate the non-explosive structure of the launcher block-for-block from the attached 26.1 video. Preserve the video's dimensions, spacing, elevations, containment blocks, slabs or partial blocks, water sources, and the orientation of directional blocks. Use right-click to place blocks and left-click to remove any incorrectly placed block.",
+        "exact_input": null,
+        "success_cue": "The launcher's structural frame and any water containment match the attached video's arrangement, with no TNT placed prematurely unless the video requires it during construction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Place the launcher's redstone and timing components exactly as shown in the video. Preserve component orientation, repeater delay settings, wiring connections, and the state of any lever, button, pressure plate, or other activation control. Keep the launcher unpowered while assembling it.",
+        "exact_input": null,
+        "success_cue": "The completed control circuit visually matches the video and has not yet initiated a TNT fuse.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Place the exact number of ordinary TNT blocks in the exact positions shown in the video. Do not replace them with TNT minecarts and do not manually ignite any TNT before all positions have been checked.",
+        "exact_input": "TNT",
+        "success_cue": "All TNT positions match the attached video, the TNT remains unprimed, and the launcher is ready for a single activation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Compare the finished launcher against the clearest full-contraption frame in \"We_Have_Liftoff_26_1_x.mp4\". Check the structure from the same viewing direction and correct any differences in block count, block orientation, water placement, TNT placement, wiring, or player position markers before continuing.",
+        "exact_input": "We_Have_Liftoff_26_1_x.mp4",
+        "success_cue": "The completed launcher matches the report video closely enough that its TNT timing and launch direction are preserved.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Move the player into the precise launch position shown in the video. Make sure the player is standing rather than using Creative flight: if currently flying, press the jump control twice, default Space twice, and settle onto the launch surface. Do not hold movement, jump, sneak, or sprint.",
+        "exact_input": "Space twice only if Creative flight is active",
+        "success_cue": "The player is stationary, affected by gravity, and aligned with the TNT launcher at the same launch position shown in the video.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Press F3 to display the debug overlay and record the player's current Y coordinate as Y_start. Leave the overlay visible if it does not obstruct activation; otherwise record the value and close it with F3. The launch must reach at least Y_start + 100.",
+        "exact_input": "F3",
+        "success_cue": "The launch-position Y coordinate has been recorded and a target value equal to Y_start plus 100 has been calculated.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Activate the launcher exactly once using the same control and input shown in the attached video. For example, if the demonstrated control is a button or lever, aim the crosshair at it and right-click once; do not repeatedly toggle it. Immediately release all movement controls.",
+        "exact_input": null,
+        "success_cue": "The launcher's TNT fuse or demonstrated redstone activation sequence has started while the player remains in the launch position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Remain in place until the TNT detonates and launches the player upward. Do not press Space twice, enable Creative flight, move out of the launch column, or use commands during the ascent.",
+        "exact_input": null,
+        "success_cue": "The player has been propelled upward by ordinary TNT and is ascending without player-controlled flight.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "During the ascent, monitor the debug Y coordinate if available. Allow the player to continue upward until the coordinate has increased by at least 100 blocks from Y_start. Do not wait for the player to land and do not activate the launcher a second time.",
+        "exact_input": null,
+        "success_cue": "The player has reached an altitude of at least Y_start + 100 as a result of the TNT launch.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "Release every movement input and allow gravity to take over at the apex. The precise advancement-triggering moment is when the TNT-launched player stops rising and begins falling. Hand control to the observation subsystem immediately at that transition, before landing or performing another action.",
+        "exact_input": null,
+        "success_cue": "The player has just transitioned from upward motion to downward motion after rising at least 100 blocks from the TNT explosion launch.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The player has just begun descending after being launched at least 100 blocks upward by the video-matched ordinary-TNT launcher in the fresh 26.1.2 world, with the attached datapack enabled. Begin advancement observation immediately; do not wait for landing, reactivate the launcher, open menus, or use commands first.",
+    "uncertainties": [
+      "The raw report does not textually describe the TNT launcher's block list, dimensions, TNT count, redstone timings, water layout, launch position, or activation control. Those details exist only in the attached videos, so the plan must use \"We_Have_Liftoff_26_1_x.mp4\" as the authoritative visual blueprint rather than fabricate a different launcher.",
+      "The exact namespace and advancement identifier inside \"tnt test 1.21.11-26.1.zip\" are not supplied. A fresh world is therefore used to ensure the criterion starts ungranted without inventing an /advancement revoke command target.",
+      "The structured Affects versions field lists 26.1.2, while the description says \"26.1+\" and the original Steps to Reproduce say 26.1. Per affected-version selection policy, this plan uses the exact structured affected version 26.1.2.",
+      "The attachment filename and description explicitly mention compatibility with 26.1 rather than specifically 26.1.2. The plan assumes the attached pack remains loadable in the listed affected patch 26.1.2. If Minecraft rejects it with a fatal datapack-format error, execution is blocked and the attachment should not be silently rewritten.",
+      "The report includes a comparison run in Minecraft 1.21.11. This plan stops at the trigger in the first formally listed affected version, 26.1.2, as required for bug reproduction. A separate 1.21.11 control world can be prepared using the same archive and its corresponding video if the observation system also requires regression comparison."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0e6c73ca0239d805016aa8cc7b26dc87d09bfd3016806dcc2d",
+    "elapsed_seconds": 137.6,
+    "usage": {
+      "input_tokens": 25322,
+      "output_tokens": 7848,
+      "reasoning_tokens": 5192,
+      "total_tokens": 33170
+    },
+    "timestamp": "2026-09-15T04:43:48.624323+00:00"
+  }
+}

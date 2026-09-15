@@ -1,0 +1,210 @@
+{
+  "bug_id": "MC-274372",
+  "category": "Advancements",
+  "source_md": "[Advancements] - MC-274372.md",
+  "source_meta": {
+    "mojira categories": "Advancements; Data Packs",
+    "project": "MC",
+    "issue key": "MC-274372",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-07-11T23:34:21.110-0700",
+    "updated": "2025-04-26T15:55:04.943-0700",
+    "resolution date": "2024-08-07T01:15:52.237-0700",
+    "affects versions": "1.21",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "Bug.mp4; MC-274372.zip",
+    "_title": "using_item advancement trigger keeps being activated even after the item stops being used, after teleporting to another dimension"
+  },
+  "stor": {
+    "bug_id": "MC-274372",
+    "affected_versions": [
+      "1.21"
+    ],
+    "recommended_version": "1.21",
+    "environment": "Minecraft Java Edition 1.21 in a fresh vanilla single-player world using the integrated server. Use Creative mode with commands/cheats enabled as a practical safety choice: the report does not require a particular game mode, and Creative mode avoids environmental death after the datapack teleports the player to Overworld Y=-60. Install only the supplied MC-274372 datapack and any automatically enabled vanilla datapacks.",
+    "preconditions": [
+      "A Minecraft Java Edition 1.21 installation is available; do not use fix version 24w33a for this reproduction.",
+      "The supplied attachment MC-274372.zip is available to the executor.",
+      "The executor can access the selected world's datapacks directory under <Minecraft game directory>/saves/<world name>/datapacks/.",
+      "The installed datapack must directly expose pack.mcmeta and the data directory at its root. If MC-274372.zip is only an outer wrapper around a datapack folder, install the inner datapack folder rather than leaving the extra wrapper level.",
+      "Use a fresh test world without another datapack defining the test namespace, advancement test:book, or function test:book.",
+      "The Use Item control must be available; its default input is the right mouse button.",
+      "Reserve at least three hotbar slots: one for the edible book, one for obsidian, and one for flint and steel."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch the Minecraft Launcher, select the exact Java Edition 1.21 installation, and start the game. Do not select the listed fix version 24w33a or a newer release.",
+        "exact_input": "1.21",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as Minecraft Java Edition 1.21.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a fresh single-player world in Creative mode with commands or cheats enabled. No specific seed is required by the report. Enter a recognizable world name so its save directory can be found afterward.",
+        "exact_input": "Game Mode: Creative; commands/cheats enabled",
+        "success_cue": "The player has spawned in a new Creative-mode world and can open chat and execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press Esc, choose Save and Quit to Title, and wait for the world to finish closing before modifying its files.",
+        "exact_input": null,
+        "success_cue": "The Singleplayer or main-title screen is visible and the test world is no longer open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the test world's datapacks directory in the filesystem: <Minecraft game directory>/saves/<world name>/datapacks/. Create the datapacks directory only if it is absent.",
+        "exact_input": "<Minecraft game directory>/saves/<world name>/datapacks/",
+        "success_cue": "The filesystem view is open at the datapacks directory belonging to the same world created in step 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Install the supplied MC-274372 datapack. First inspect MC-274372.zip: if pack.mcmeta and data are directly at the archive root, place that zip in the datapacks directory. If the archive instead contains one folder and that inner folder contains pack.mcmeta and data, extract or copy that inner folder into the datapacks directory. Do not leave pack.mcmeta hidden behind an unnecessary extra folder level.",
+        "exact_input": "MC-274372.zip",
+        "success_cue": "One installed zip or folder in the world's datapacks directory directly contains pack.mcmeta and data, including the supplied test:book advancement and reward function.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Return to Minecraft, open Singleplayer, select the same test world, and enter it. Wait until surrounding chunks render and normal movement is responsive.",
+        "exact_input": null,
+        "success_cue": "The player is back in the same Creative test world and the terrain is fully responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open in-game chat, type the reload command exactly with the leading slash, and press Enter.",
+        "exact_input": "/reload",
+        "success_cue": "Datapack reloading completes without a red parsing, missing-function, or incompatible-pack error in chat.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press T, execute the datapack-list command, and inspect the enabled-pack list for the installed MC-274372 pack. Do not continue if the supplied pack is listed only as available or disabled.",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "The supplied MC-274372 file or folder appears in the enabled datapack list.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T, enter the report's give command exactly with the leading slash, and press Enter. Preserve the component syntax and numeric values exactly as supplied.",
+        "exact_input": "/give @s book[food={can_always_eat: true, eat_seconds: 86400, nutrition: 1, saturation: 1}]",
+        "success_cue": "Chat reports that a book was given, and a book item is present in the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press E to open the inventory. Locate the newly given book and move it into a reserved hotbar slot, such as the first slot. The hotbar is the row of nine item slots at the bottom of the inventory. Leave the book there while preparing the portal.",
+        "exact_input": null,
+        "success_cue": "The edible book occupies a known hotbar slot and is not confused with another ordinary book.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "While using the Creative inventory, open the Search Items tab, obtain at least 14 obsidian blocks and one flint and steel, and put them in hotbar slots other than the book's slot. Close the inventory with E when finished.",
+        "exact_input": "Obsidian; Flint and Steel",
+        "success_cue": "The hotbar contains the edible book, at least 14 obsidian, and one flint and steel in distinct slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Move to a clear area. Select the obsidian and build an upright rectangular Nether portal frame that is four blocks wide and five blocks tall on its outside edges, leaving a two-block-wide by three-block-high empty opening inside. Using 14 obsidian allows all four corners to be filled.",
+        "exact_input": null,
+        "success_cue": "A complete upright obsidian frame surrounds an empty 2-by-3-block interior opening.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select the flint and steel, aim at an exposed face of an obsidian block bordering the bottom of the frame's interior, and use the item with right-click.",
+        "exact_input": "Use Item (default: right mouse button)",
+        "success_cue": "The portal's interior fills with the animated purple Nether-portal surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Walk into the purple portal surface and remain inside it without stepping out until the dimension transition starts.",
+        "exact_input": "Move Forward (default: W)",
+        "success_cue": "The dimension-loading screen or portal transition begins.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Wait for the Nether destination to finish loading. Do not begin the item-use test while terrain is still loading or player movement is unresponsive.",
+        "exact_input": null,
+        "success_cue": "Nether terrain and its reddish ambience are visible, surrounding chunks have rendered, and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select the hotbar slot containing the edible book by pressing that slot's number key or scrolling to it. Do not merely keep the book elsewhere in the inventory.",
+        "exact_input": "Select the hotbar slot containing the book",
+        "success_cue": "The book's hotbar slot is highlighted and the book is visible in the player's hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Press F3, or the system's equivalent Debug Screen input, so the debug overlay can be used to recognize the cross-dimension teleport and destination coordinates. Keep the book selected.",
+        "exact_input": "F3",
+        "success_cue": "The debug overlay is visible and displays the player's current XYZ coordinates while the book remains selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Press and continuously hold Use Item while the edible book is selected. The default input is the right mouse button. Do not release the input in the Nether and do not switch hotbar slots.",
+        "exact_input": "Press and hold Use Item (default: right mouse button)",
+        "success_cue": "The book-use action has started, or the dimension transition begins immediately in response to starting it; the Use Item input remains held.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Continue holding Use Item until the datapack transfers the player from the Nether to the Overworld. Watch the debug coordinates and dimension transition; the supplied reward function targets X=0, Y=-60, Z=0 with yaw 0 and pitch 0. Keep the same book slot selected throughout the transfer.",
+        "exact_input": null,
+        "success_cue": "The Nether is no longer the active dimension, and the player has arrived in the Overworld at or effectively at XYZ 0, -60, 0 with the book still selected.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "As soon as the Overworld destination is reached, release the Use Item input completely. Do not use the book again, do not switch hotbar slots, and do not close the world before handing control to the observation subsystem.",
+        "exact_input": "Release Use Item (default: release the right mouse button)",
+        "success_cue": "The right mouse button or rebound Use Item control is no longer pressed; the edible book remains selected in the active hotbar slot; and the player remains at the Overworld destination immediately after the release.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 20,
+    "handoff_condition": "The player has just arrived in the Overworld at approximately XYZ 0, -60, 0 after beginning to use the edible book in the Nether. Use Item has now been released completely, the same edible book remains selected, and no further item use or hotbar-slot change has been performed. Begin observation immediately from this state.",
+    "uncertainties": [
+      "The report does not specify game mode, world seed, single-player versus dedicated server, or a required portal location. This plan uses a fresh Creative single-player world as the simplest safe execution path and does not treat Creative mode as a bug requirement.",
+      "The report comments state that an earlier attachment was an outer zip containing a datapack folder and that a moderator corrected it. The raw report does not expose the current archive's internal file tree, so installation is conditional on whether pack.mcmeta and data are at the archive root.",
+      "The report supplies the advancement and function excerpts but not the full pack.mcmeta or directory tree. This plan therefore relies on the supplied corrected attachment instead of attempting to reconstruct the datapack manually.",
+      "The report does not specify whether controls were rebound. Right mouse button, E, T, W, and F3 refer to the standard default controls; use the corresponding bound actions if the test installation differs.",
+      "The report does not explicitly instruct the player to release Use Item immediately after arriving in the Overworld, but release is necessary to establish the reported condition in which the item is no longer being used. The release has therefore been made the final trigger action."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_07617ed1ba730c52016aa8cbfa4b8087d0bc0374cccbfce86a",
+    "elapsed_seconds": 129.23,
+    "usage": {
+      "input_tokens": 8585,
+      "output_tokens": 8189,
+      "reasoning_tokens": 5778,
+      "total_tokens": 16774
+    },
+    "timestamp": "2026-09-15T04:41:31.005247+00:00"
+  }
+}
