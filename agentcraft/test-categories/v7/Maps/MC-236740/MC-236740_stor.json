@@ -1,0 +1,142 @@
+{
+  "bug_id": "MC-236740",
+  "category": "Maps",
+  "source_md": "[Maps] - MC-236740.md",
+  "source_meta": {
+    "mojira categories": "Maps; World generation",
+    "project": "MC",
+    "issue key": "MC-236740",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2021-09-15T17:27:12.428-0700",
+    "updated": "2025-04-16T13:02:08.462-0700",
+    "resolution date": "2024-05-15T15:37:56.278-0700",
+    "affects versions": "21w37a; 21w38a; 21w39a; 21w40a; 21w41a; 21w42a; 21w43a; 21w44a; 1.18 Pre-release 1",
+    "fix versions": "1.18 Pre-release 3",
+    "labels": "buried-treasure-map; lag-spike; shipwreck",
+    "watchers": "1",
+    "attachments": "8",
+    "attachment filenames": "2021-09-15_21.31.05.png; 2021-09-25_14_33_52-MC-236740-21w38a.zip; 2021-09-25_14_34_23-MC-236740-21w38a.zip; 2021-09-25_14.34.26.png; 2021-10-07_09.47.01.png; 2021-10-20_21_01_18-New World-21w42a.zip; 2021-10-20_21.01.24.png; MC-236740.mp4",
+    "issue links": "Duplicate:inward:MC-238198:Game crashes when opening new underwater chests | Duplicate:inward:MC-238710:The locate buried treasure command has a tremendous lag | Duplicate:inward:MC-238830:Using '/locate buried_treasure' or opening a chest in a shipwreck containing a buried treasure map can cause extreme TPS lag | Duplicate:inward:MC-238940:typing /locate buried_treasure disables cheat commands until game reload | Duplicate:inward:MC-239642:Unable to operate properly near ocean shipwrecks / will cause game lag or crash | Duplicate:inward:MC-239657:Minecraft slowed | Duplicate:inward:MC-239771:Lag / Freeze when opening a loot chest | Duplicate:inward:MC-240535:trying to open chest at this location crashes game. | Duplicate:inward:MC-241037:21w44a Opening sunken ship chest causes crash | Duplicate:inward:MC-241167:1.18 treasure map boat chest lag | Duplicate:inward:MC-241653:Opening Map Chest causing lag and crash. | Cloners:inward:MC-249136:Freeze/server-side lag spike sometimes occurs when attempting to locate a buried treasure or opening/breaking a chest containing a map",
+    "_title": "Server-side lag spike sometimes occurs when attempting to locate a buried treasure or opening/breaking a chest containing a map"
+  },
+  "stor": {
+    "bug_id": "MC-236740",
+    "affected_versions": [
+      "21w37a",
+      "21w38a",
+      "21w39a",
+      "21w40a",
+      "21w41a",
+      "21w42a",
+      "21w43a",
+      "21w44a",
+      "1.18 Pre-release 1"
+    ],
+    "recommended_version": "21w37a",
+    "environment": "Minecraft Java Edition 21w37a, unmodified vanilla client, single-player world using the integrated server, Creative mode, cheats enabled, and structure generation enabled. Use the report's explicitly labeled shipwreck route with seed -1899573754757393022.",
+    "preconditions": [
+      "Install and launch the exact affected snapshot 21w37a rather than the fixed version 1.18 Pre-release 3.",
+      "Create a new world; do not reuse a world that has already generated or opened the target shipwreck chest.",
+      "Use seed -1899573754757393022 exactly, including the leading minus sign.",
+      "Enable Generate Structures so the shipwreck exists at the supplied location.",
+      "Use Creative mode and enable cheats so the supplied teleport command can be executed and the player cannot drown while positioned underwater.",
+      "Do not open or break any chest at the target shipwreck before the trigger step.",
+      "Use the shipwreck teleport route for this execution. The report also supplies other valid routes, but they are not needed for this deterministic plan."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation that uses snapshot 21w37a, launch it, and wait for the Minecraft main menu to appear.",
+        "exact_input": "21w37a",
+        "success_cue": "The lower-left version text on the main menu identifies the running game as Minecraft Java Edition 21w37a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World. Set the game mode to Creative. Open More World Options and ensure Allow Cheats is ON and Generate Structures is ON.",
+        "exact_input": null,
+        "success_cue": "The new-world screen shows Creative mode, cheats enabled, and structure generation enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "In the Seed for the World Generator field, enter the report's shipwreck seed exactly. Do not omit the minus sign.",
+        "exact_input": "-1899573754757393022",
+        "success_cue": "The seed field contains exactly -1899573754757393022.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Select Create New World and wait until the player enters the world. Do not continue while the loading screen is visible; wait until terrain is rendered and normal player movement and camera movement respond.",
+        "exact_input": null,
+        "success_cue": "The player is in the newly generated world, terrain is visible, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat.",
+        "exact_input": "T",
+        "success_cue": "The chat command-entry field is open and ready for text input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the supplied shipwreck teleport command exactly as written, including the leading slash, and press Enter. The final two numbers set the player's yaw and pitch so the player arrives facing the intended area.",
+        "exact_input": "/execute in minecraft:overworld run tp @s 2843.30 60.63 -977.73 255.15 36.00",
+        "success_cue": "The command is accepted and the player is teleported to X 2843.30, Y 60.63, Z -977.73 in the Overworld with the nearby shipwreck loading around the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait for all teleportation-related loading to finish before interacting with anything. Continue only after the surrounding water, seabed, and shipwreck blocks have rendered, the camera and movement respond normally, and commands can be entered without a loading delay.",
+        "exact_input": null,
+        "success_cue": "The underwater shipwreck area is fully rendered and the integrated server is responsive before the chest interaction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Locate the chest at the supplied shipwreck destination. Begin with the view direction established by the teleport command and adjust the camera only as needed to place the crosshair over the nearby chest in the shipwreck. Move only the minimum distance needed to bring it within interaction range. Do not open or break any other chest.",
+        "exact_input": null,
+        "success_cue": "The crosshair is over the unopened target chest at the shipwreck, the chest is within normal interaction range, and the area remains responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Use the Use Item/Place Block control—right-click by default—once on the target chest. Do not repeatedly click, break the chest, or trigger additional map chests during this attempt.",
+        "exact_input": "right-click once",
+        "success_cue": "A single use-block interaction has just been sent to the target shipwreck chest; no additional player actions have been performed afterward.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "The player has just right-clicked the unopened target chest at the supplied shipwreck coordinates after all teleportation and chunk loading completed. Immediately hand control to the observation subsystem to monitor integrated-server responsiveness and the chest interaction without issuing further inputs.",
+    "uncertainties": [
+      "The report characterizes the condition as intermittent, although the supplied seeds and coordinates are described as particularly good examples. A single clean attempt may therefore not activate the condition.",
+      "The report does not explicitly require a particular game mode. Creative mode is selected only as a practical way to execute the teleport command and prevent underwater drowning without changing the reported chest-opening trigger.",
+      "The report provides multiple valid test locations. This plan selects the explicitly labeled shipwreck at /execute in minecraft:overworld run tp @s 2843.30 60.63 -977.73 255.15 36.00 because it avoids ambiguity about the structure type. Other report-supplied alternatives are seed 5120366084678867272 at /execute in minecraft:overworld run tp @s 1303.51 49.00 4016.70 178.65 27.45 and the underwater ruins in seed -1899573754757393022 at /execute in minecraft:overworld run tp @s 2263.13 41.86 -1161.19 264.75 52.80.",
+      "The report says to open 'the chest' after teleporting but does not provide a block coordinate or an explicit visual description distinguishing that chest from any other shipwreck chest. The supplied position and facing angles are therefore used to identify the intended nearby target.",
+      "Because this is a performance-related reproduction, the plan performs the trigger only once. Restart from a newly created world or an untouched copy of the world if another attempt is required."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0de74725b3b0e87a016aa8ac040c5c87d0a55d234ddc7792e4",
+    "elapsed_seconds": 46.69,
+    "usage": {
+      "input_tokens": 11063,
+      "output_tokens": 3195,
+      "reasoning_tokens": 1755,
+      "total_tokens": 14258
+    },
+    "timestamp": "2026-09-15T02:23:46.610623+00:00"
+  }
+}

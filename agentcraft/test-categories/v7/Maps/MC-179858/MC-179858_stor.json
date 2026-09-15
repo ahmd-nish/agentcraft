@@ -1,0 +1,181 @@
+{
+  "bug_id": "MC-179858",
+  "category": "Maps",
+  "source_md": "[Maps] - MC-179858.md",
+  "source_meta": {
+    "mojira categories": "Maps",
+    "project": "MC",
+    "issue key": "MC-179858",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2020-04-22T08:47:50.793-0700",
+    "updated": "2025-04-30T05:39:33.846-0700",
+    "resolution date": "2023-02-05T07:21:51.686-0800",
+    "affects versions": "20w17a",
+    "fix versions": "20w18a",
+    "watchers": "1",
+    "attachments": "11",
+    "attachment filenames": "2020-04-22_17.44.16.png; 2020-04-27_08.02.56.png; 2020-04-29_16.00.13.png; 2020-04-29_16.12.41.png; 2020-04-29_16.55.26.png; 2020-04-29_16.55.33.png; 2020-04-29_21.32.00.png; 2020-05-05_11.12.46.png; 2020-05-05_11.15.28.png; Bugged map.PNG; screenshot-1.png",
+    "issue links": "Relates:outward:MC-179952:Height map data doesn't get converted | Duplicate:inward:MC-179844:Empty maps get corrupted when used | Duplicate:inward:MC-179859:Maps have grey lines which aren't supposed to be there on them | Duplicate:inward:MC-179875:[Dupe of MC-17858] Map does not take info of surface block | Duplicate:inward:MC-179885:Maps get destroyed by strange stripes | Duplicate:inward:MC-179894:Maps glitched | Duplicate:inward:MC-179901:maps add lines when we use them | Duplicate:inward:MC-179923:Maps are ruined | Duplicate:inward:MC-179925:Maps don't create accurate image | Duplicate:inward:MC-179927:20w16a - 20w17a world corruption | Duplicate:inward:MC-179942:When usuing maps, weird, grey lines appear. | Duplicate:inward:MC-179956:Map item picture all screwed up when I try to update it | Duplicate:inward:MC-179957:Map bug | Duplicate:inward:MC-179987:Map rendering broken | Duplicate:inward:MC-179988:When updating maps, grey streaks appear | Duplicate:inward:MC-180006:Lines created in maps in new snapshot | Duplicate:inward:MC-180011:Improper Map depictions | Duplicate:inward:MC-180012:Old maps get corrupted when opened in 20W17A | Duplicate:inward:MC-180019:Updating worlds from 20w16a Creates chunk glitches | Duplicate:inward:MC-180026:Map Distortion 20w17a | Duplicate:inward:MC-180027:Maps generate incorrectly | Duplicate:inward:MC-180048:Map render looks corrupted. | Duplicate:inward:MC-180072:Map update messed up texture | Duplicate:inward:MC-180133:Item - map appear corrupt | Duplicate:inward:MC-180139:maps look corrupted | Duplicate:inward:MC-180154:Corrupt maps | Duplicate:inward:MC-180180:Snapshot 20w17a Map bug | Duplicate:inward:MC-180194:Maps are showing blocks that are not there | Duplicate:inward:MC-180195:Maps are messed up and covered in blotches and missing terrain | Duplicate:inward:MC-180202:Maps not generating correctly | Duplicate:inward:MC-180212:Empty maps generate with lines on them. | Duplicate:inward:MC-180241:Maps are generated a strange way | Duplicate:inward:MC-180245:Maps have gray lines randomly across them | Duplicate:inward:MC-180258:Map Line issue | Duplicate:inward:MC-180305:Maps no longer work.., Properly at least | Duplicate:inward:MC-180335:A bug in snapshot 20w17a - Corrupted map | Duplicate:inward:MC-180357:Snapshot 20wa17a maps not working | Duplicate:inward:MC-180371:Map is broken. | Duplicate:inward:MC-180382:Map bug | Duplicate:inward:MC-180393:Map generation is glitched | Duplicate:inward:MC-180422:Map doesn't work | Duplicate:inward:MC-180450:Maps show extremely corrupted terrain | Duplicate:inward:MC-180460:Spoiled map | Duplicate:inward:MC-180554:Maps not rendereing properly | Duplicate:inward:MC-180568:Maps Broken in older worlds | Duplicate:inward:MC-180612:Local maps with excessive gray lines | Duplicate:inward:MC-180646:Map is broken | Duplicate:inward:MC-180670:20W17a Map and rain bugs or converting issues | Duplicate:inward:MC-180688:Map generation bug | Duplicate:inward:MC-180697:Maps are broken | Duplicate:inward:MC-180767:Maps when created or updated are glitched in most recent version | Duplicate:inward:MC-180781:the map is loading wrong | Duplicate:inward:MC-180787:Map (Item) not generating correctly. | Duplicate:inward:MC-180796:map loading with lines in it. | Duplicate:inward:MC-180811:Maps Overtaken by Horizontal Lines of Grey: | Duplicate:inward:MC-180826:The map doesn't work on Minecraft snapshot | Duplicate:inward:MC-180837:Maps show stone pattern despite it not being there and rain under solid blocks | Duplicate:inward:MC-180849:map visual glitch | Duplicate:inward:MC-180857:Map distorted after update | Duplicate:inward:MC-180894:Maps looks bad | Duplicate:inward:MC-180930:Maps corrupted | Duplicate:inward:MC-180960:Map bug 20w17a | Duplicate:inward:MC-180963:Maps have gray lines. | Duplicate:inward:MC-180970:Maps are corrupted | Duplicate:inward:MC-180983:Map quirkyness | Duplicate:inward:MC-181014:Map Visuals appear shattered | Duplicate:inward:MC-181054:Maps have grey lines through them | Duplicate:inward:MC-181059:Updating maps causes them to render incorrectly | Duplicate:inward:MC-181069:Map corrupted with gray lines | Duplicate:inward:MC-181073:Maps showing gray dashes | Duplicate:inward:MC-181100:The map does not rander correctly | Duplicate:inward:MC-181193:Newly generated map has erroneous gray stripes | Duplicate:inward:MC-181201:map pixels malfunction, no texture pack used | Duplicate:inward:MC-181215:Maps Filling in the Wrong Blocks | Duplicate:inward:MC-181234:Map, odd behaviour | Duplicate:inward:MC-181239:Maps showing corrupted when used | Duplicate:inward:MC-181293:In-games maps have large grey blotches all over them | Duplicate:inward:MC-181328:Maps BUG... | Duplicate:inward:MC-181342:Maps not rendereding properly | Duplicate:inward:MC-181385:maps have gray lines all over instead of the terrain | Duplicate:inward:MC-181399:Maps appear bugged | Duplicate:inward:MC-181408:Maps in the newest snapshot (20w17a) don't work right | Duplicate:inward:MC-181421:problem on the maps | Duplicate:inward:MC-181426:MC-179858 is still not fixed. | Duplicate:inward:MC-181429:Stone-like things on maps | Duplicate:inward:MC-181436:Maps still displaying \"stone\" pattern | Duplicate:inward:MC-181450:Maps are still not fixed and worse | Duplicate:inward:MC-181468:Map with Gray lines on | Duplicate:inward:MC-181478:Map Rendering Issue | Duplicate:inward:MC-181481:Grey Glitches on maps | Duplicate:inward:MC-181509:Map bug from 20w17a still not fixed | Duplicate:inward:MC-181545:Random grey and and red pixels on maps | Duplicate:inward:MC-181619:Map with gray patches | Duplicate:inward:MC-181626:Gray spots on the map, picture attatched :D | Duplicate:inward:MC-181635:map bug | Duplicate:inward:MC-181663:Minecraft map displaying grey and some red blocks randomly over the map instead of terrain | Duplicate:inward:MC-181688:Map Block Rendering Error | Duplicate:inward:MC-181698:Maps are not functioning. | Duplicate:inward:MC-181712:Creating or Updating maps makes them have stripes (On worlds made before 1.16 snapshots) | Duplicate:inward:MC-181751:Bug not Fixed | Duplicate:inward:MC-181772:Maps bug | Duplicate:inward:MC-181790:20w18a Maps & Rain Bug | Duplicate:inward:MC-181800:Map creates weird patterns when loading in a new snapshot in a old world | Duplicate:inward:MC-181957:Map renders random horizontal lines | Duplicate:inward:MC-182004:Maps (item, not worldsave) look corrupted | Duplicate:inward:MC-182010:Lines Thru Map | Duplicate:inward:MC-182020:Lines through maps | Duplicate:inward:MC-182027:Maps rendering strangely | Duplicate:inward:MC-182202:Maps will load as if the world was glitched when updated from older version. | Duplicate:inward:MC-182264:En la 20w18a se corrompen los mapas. | Duplicate:inward:MC-182286:hello . every time i create a new map  this happens and i dont knw why .it started when i played on the 1.16 snapshots | Duplicate:inward:MC-182311:Maps are broken | Duplicate:inward:MC-182485:Gray streaks across maps | Duplicate:inward:MC-182508:When I open my old world map (the paper map) It seems to be glithed or destorted as if im looking at a map in a nether. | Duplicate:inward:MC-182695:The map is showing blocks that did never exist there, and still aren't. | Duplicate:inward:MC-182774:Die maps sind verbugt. | Duplicate:inward:MC-182793:Map glitch | Duplicate:inward:MC-182851:Maps of area look destroyed | Duplicate:inward:MC-182871:Broken Maps | Duplicate:inward:MC-182939:Rain patches and Distorted Maps (on 3rd Party Servers) | Duplicate:inward:MC-182946:Broken Maps | Duplicate:inward:MC-182971:Maps are showing slices of underground | Duplicate:inward:MC-182991:Maps render wrong | Duplicate:inward:MC-183000:PIXEL MESS ON MAPS | Duplicate:inward:MC-183023:maps not loading correctly | Duplicate:inward:MC-183034:Maps are buggy | Duplicate:inward:MC-183035:Maps generation gray bar issues | Duplicate:inward:MC-183044:Maps are glitched | Duplicate:inward:MC-183082:Maps don't create properly... | Duplicate:inward:MC-183170:Maps not rendering correctly | Duplicate:inward:MC-183178:map voids | Duplicate:inward:MC-183200:Snapshot Map Rendering | Duplicate:inward:MC-183288:Maps in latest snapshot | Duplicate:inward:MC-183289:Maps not rendering properly | Duplicate:inward:MC-183322:Map bug | Duplicate:inward:MC-183515:maps don't generate properly | Duplicate:inward:MC-183701:Maps are generating with some missing blocks | Duplicate:inward:MC-183763:Map Glitches when attempting to update | Duplicate:inward:MC-183781:Bug visual en mapa | Duplicate:inward:MC-183795:Maps are showing things that aren't there. | Duplicate:inward:MC-183887:Map Corrupted | Duplicate:inward:MC-183976:Map Bug | Duplicate:inward:MC-184032:maps glitched terrain | Duplicate:inward:MC-184115:Stone pattern Chunk Bug on Empty Map | Duplicate:inward:MC-184119:Maps are messed up | Duplicate:inward:MC-184697:Map glitch | Duplicate:inward:MC-184717:Blocks in the world seem to be transparent | Duplicate:inward:MC-185271:When you generate a map, it makes a strange pattern | Duplicate:inward:MC-185565:Map render broken | Duplicate:inward:MC-185972:old maps that are updated to 1.16 snapshot are not outdated correctly | Duplicate:inward:MC-186460:error in map | Duplicate:inward:MC-186474:Minecraft maps | Duplicate:inward:MC-187179:Maps in game have spiky graphs | Duplicate:inward:MC-187487:The map creates odd lines on any maps created in this version | Duplicate:inward:MC-187856:Map having issues | Duplicate:inward:MC-188988:Map display in hand and item frame | Duplicate:inward:MC-189010:Maps are corrupted | Duplicate:inward:MC-190156:Funky lookin maps | Duplicate:inward:MC-190838:Maps not rendering Correctly | Duplicate:inward:MC-191085:Maps are broke | Duplicate:inward:MC-191092:Maps Glitched | Duplicate:inward:MC-191303:grey lines in maps | Duplicate:inward:MC-191351:Maps Have Weird Blocks On Them | Duplicate:inward:MC-191493:funky maps in End | Duplicate:inward:MC-191979:Maps with gray stripes since the previous snapshots | Duplicate:inward:MC-192234:Old maps are corrupted after Nether update (they have grey lines on them). | Duplicate:inward:MC-192367:Looking at maps yields corrupted-looking texture | Duplicate:inward:MC-192396:Maps will not load correctly | Duplicate:inward:MC-192461:mincraft map error | Duplicate:inward:MC-193812:Map Item has corurpted recently. | Duplicate:inward:MC-196215:Strange green bars appear on Filled Maps | Duplicate:inward:MC-201075:Map bug | Duplicate:inward:MC-212204:maps get corrupted in chunks that were generated in previous snapshots | Duplicate:inward:MCL-13842:Maps show stone pattern despite it not being there and rain under solid blocks",
+    "_title": "Maps show stone-like pattern despite it not being there"
+  },
+  "stor": {
+    "bug_id": "MC-179858",
+    "affected_versions": [
+      "20w17a"
+    ],
+    "recommended_version": "20w17a",
+    "environment": "Minecraft Java Edition, vanilla single-player using two launcher installations: 20w16a to create the pre-upgrade world and filled map, followed by the affected snapshot 20w17a to open the same world. Use the same game directory, or otherwise ensure that the 20w17a installation can access the world created in 20w16a. Creative mode is used only as a practical way to obtain and update a map without crafting or survival requirements.",
+    "preconditions": [
+      "The Minecraft Launcher can start both Java Edition snapshot 20w16a and snapshot 20w17a.",
+      "Snapshot 20w17a must not create the test world; the same world must first exist and contain a filled map in a version from before 20w17a. This plan uses 20w16a, the immediately preceding snapshot, as the deterministic setup version.",
+      "Do not optimize the world with \"Erase cached data\" and do not use the startup arguments \"--forceUpgrade --eraseCache\" before reproducing; the report identifies those operations as repair procedures.",
+      "Use an unmodified vanilla client with no datapacks, mods, or resource packs required by the test.",
+      "Keep a backup of the 20w16a world because opening the working copy in 20w17a upgrades that copy.",
+      "No particular world seed, coordinates, map scale, difficulty, or graphics setting is specified by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select or create an installation that runs Java Edition snapshot 20w16a, then start the game with that installation.",
+        "exact_input": "Select installation/version \"20w16a\" and press Play.",
+        "success_cue": "The Minecraft main menu is open and displays version 20w16a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world list and begin creating a new world. Give it a recognizable name such as \"MC-179858 pre-20w17a\" so that the same world can be identified after changing versions.",
+        "exact_input": "Singleplayer -> Create New World; world name: MC-179858 pre-20w17a",
+        "success_cue": "The world-creation screen shows the chosen test-world name.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the world to Creative mode to permit direct access to an Empty Map without crafting, then create the world. Leave the seed and world-generation settings at their defaults.",
+        "exact_input": "Game Mode: Creative -> Create New World",
+        "success_cue": "The player has spawned in the new 20w16a world and the Creative-mode hotbar is visible at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Wait before interacting until the spawn terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby surface terrain is visible, missing chunks are no longer appearing around the player, and movement responds without world-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E. Select the Search Items tab, enter \"map\" in the search field, and place the item specifically labeled \"Empty Map\" into any hotbar slot. The hotbar is the nine-slot row along the bottom of the screen.",
+        "exact_input": "E; search text: map; move one Empty Map to a hotbar slot",
+        "success_cue": "One Empty Map is present in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Close the inventory and select the hotbar slot containing the Empty Map. Use the corresponding number key 1 through 9 or scroll the mouse wheel until that slot is highlighted.",
+        "exact_input": "E to close inventory; then the applicable hotbar key 1-9 or mouse wheel",
+        "success_cue": "The Empty Map's hotbar slot is highlighted and the player is holding the Empty Map.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Use the held Empty Map once with the use-item control, whose default input is right-click. Do this while standing in the loaded Overworld terrain.",
+        "exact_input": "right-click once",
+        "success_cue": "The Empty Map has changed into a filled Map, the map is visible in the player's hands, and nearby terrain begins appearing on it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Keep the filled Map selected and move around within its coverage area long enough to populate a useful baseline. Walk with W, or double-tap Space to begin Creative flight and then use W. Keep the player marker within the map border and continue until the map contains multiple areas of rendered surface terrain rather than remaining mostly blank.",
+        "exact_input": "W; optionally Space twice to toggle Creative flight",
+        "success_cue": "The filled Map remains in the active hotbar slot and shows a substantial area of surface terrain created while the world is still running in 20w16a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Stop moving while still somewhere covered by the filled Map, then open the pause menu and save the world by returning to the title screen. Do not discard the Map; leave it in the player's inventory or active hotbar slot.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The game has returned to the title screen after saving the 20w16a world with the filled Map in the player's inventory.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Close Minecraft completely so the world files are no longer in use.",
+        "exact_input": "Quit Game",
+        "success_cue": "The 20w16a game process has closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Create a backup of the saved world before upgrading it. Copy the entire folder for \"MC-179858 pre-20w17a\" from the active game directory's saves folder to a separate backup location. Do not use the backup copy for the reproduction; retain it as the pre-20w17a source world.",
+        "exact_input": "Copy .minecraft/saves/<test-world-folder> to a separate backup location",
+        "success_cue": "There are two copies of the world: the working copy in the game's saves directory and a separate untouched 20w16a backup.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "In the Minecraft Launcher, switch to an installation that runs the affected Java Edition snapshot 20w17a and start the game. Ensure this installation uses the game directory containing the working copy of the test world.",
+        "exact_input": "Select installation/version \"20w17a\" and press Play.",
+        "success_cue": "The Minecraft main menu is open and displays version 20w17a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Open Singleplayer, select the working world named \"MC-179858 pre-20w17a\", and load it in 20w17a. If Minecraft warns that the world was created in a different version or recommends making a backup, proceed with opening the working copy because a separate backup was already made. Do not choose Optimize World and do not erase cached data.",
+        "exact_input": "Singleplayer -> select MC-179858 pre-20w17a -> Play Selected World; confirm the version warning if shown",
+        "success_cue": "The same world has opened in 20w17a at the player's saved position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Wait until the upgraded world is fully ready before updating the Map. Do not continue while chunks are missing or while player movement is unresponsive.",
+        "exact_input": null,
+        "success_cue": "Surrounding terrain has rendered, the player can move normally, and the game is still running version 20w17a.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Locate the pre-existing filled Map in the inventory or hotbar. If necessary, press E, move that filled Map to a hotbar slot, close the inventory, and select its slot using the corresponding number key or mouse wheel.",
+        "exact_input": "E if needed; move the existing filled Map to the hotbar; E to close; select with hotbar key 1-9 or mouse wheel",
+        "success_cue": "The Map created in 20w16a is selected in the active hotbar slot and is visibly held by the player in the 20w17a world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "While continuing to hold and view the pre-existing filled Map, walk or fly over the nearby surface that lies within the map's coverage. Use W for several seconds and keep the player marker within the map border so the map actively revisits and updates terrain from the upgraded world.",
+        "exact_input": "Hold W for several seconds; optionally use Space twice first if Creative flight is needed",
+        "success_cue": "The player has moved through previously mapped Overworld terrain in 20w17a while the existing filled Map remained selected and visible.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The pre-existing filled Map has just been carried across previously mapped surface terrain in the world after that world was upgraded from 20w16a to 20w17a. The Map is still selected and visible; begin observing its rendered contents now.",
+    "uncertainties": [
+      "The issue contains no formal Steps to Reproduce section. The cross-version path is reconstructed from the description and comments stating that worlds from before 20w17a become affected when loaded in 20w17a.",
+      "The report does not designate one exact source version for creating the old world. This plan uses 20w16a as the immediately preceding snapshot and because the supplied issue context explicitly discusses upgrades from 20w16a to 20w17a.",
+      "The description most directly refers to looking at existing maps, while comments also state that newly created maps in an affected upgraded world can exhibit the issue. This plan uses an existing filled Map created before the upgrade because that most closely follows the original description.",
+      "No original world download, seed, coordinates, map identifier, map scale, or required amount of exploration is supplied. The plan therefore creates a small baseline map in an arbitrary 20w16a world and updates it in the same nearby area after upgrading.",
+      "Creative mode is not stated as a requirement. It is selected solely to obtain an Empty Map and traverse terrain deterministically without introducing crafting, resource collection, hunger, or combat."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0cd9f61151a52fed016aa8abc33b3c87d08e5d0cf6aa097241",
+    "elapsed_seconds": 64.83,
+    "usage": {
+      "input_tokens": 14122,
+      "output_tokens": 4777,
+      "reasoning_tokens": 2588,
+      "total_tokens": 18899
+    },
+    "timestamp": "2026-09-15T02:22:59.911420+00:00"
+  }
+}

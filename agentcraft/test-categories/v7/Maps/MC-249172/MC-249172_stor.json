@@ -1,0 +1,164 @@
+{
+  "bug_id": "MC-249172",
+  "category": "Maps",
+  "source_md": "[Maps] - MC-249172.md",
+  "source_meta": {
+    "mojira categories": "Maps",
+    "project": "MC",
+    "issue key": "MC-249172",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2022-03-16T17:47:12.067-0700",
+    "updated": "2025-03-21T00:04:30.846-0700",
+    "resolution date": "2022-03-24T08:49:37.551-0700",
+    "affects versions": "22w11a",
+    "fix versions": "22w12a",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "2022-03-16_20.44.59.png; MC-249172.mp4; MC-249172.png",
+    "_title": "Map color for mangrove slab is incorrect"
+  },
+  "stor": {
+    "bug_id": "MC-249172",
+    "affected_versions": [
+      "22w11a"
+    ],
+    "recommended_version": "22w11a",
+    "environment": "Vanilla Minecraft Java Edition snapshot 22w11a in a single-player Creative-mode world. Use an English (US) interface and default keyboard/mouse controls where possible. A new Superflat world is recommended to provide a clear, level test area without changing the map-color interaction under test.",
+    "preconditions": [
+      "The Minecraft Launcher has snapshots enabled and can launch Java Edition snapshot 22w11a.",
+      "Do not use fix version 22w12a for this reproduction.",
+      "Use the unmodified 22w11a client without resource packs or datapacks that change the tested blocks or map rendering.",
+      "Have enough unobstructed, level ground to construct four 5-by-5 block patches within approximately 20 horizontal blocks of the point where the map is filled.",
+      "If controls have been rebound, use the bound equivalents of E for inventory, F3 for the debug display, right-click for use/place, and the hotbar selection keys or mouse wheel."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start the installation whose version is exactly snapshot 22w11a. At the title screen, confirm that the displayed game version is 22w11a before continuing.",
+        "exact_input": "22w11a",
+        "success_cue": "The Minecraft Java Edition title screen is open and identifies the running version as 22w11a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, open More World Options, cycle World Type to Superflat, return with Done, and create the world. No particular seed is required by the report.",
+        "exact_input": null,
+        "success_cue": "A new Creative-mode Superflat world begins loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without beginning the test until the nearby flat terrain has rendered and normal movement responds immediately. Verify Creative mode by confirming that the player can fly after double-tapping Space and does not need to gather resources normally.",
+        "exact_input": null,
+        "success_cue": "The surrounding Superflat terrain is fully visible, movement is responsive, and the player is in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, search separately for each listed item, and move the result into distinct hotbar slots: one Empty Map, one stack of Oak Planks, one stack of Oak Slabs, one stack of Mangrove Planks, and one stack of Mangrove Slabs. The hotbar is the nine-slot row displayed along the bottom of the screen. Close the inventory with E when finished.",
+        "exact_input": "Empty Map; Oak Planks; Oak Slab; Mangrove Planks; Mangrove Slab",
+        "success_cue": "The hotbar contains an Empty Map and all four required construction items, including both mangrove items available in 22w11a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Move to the middle of a broad, unobstructed section of the flat world. Keep this location as the center of the test area so that every test patch can be built within about 20 horizontal blocks of it.",
+        "exact_input": null,
+        "success_cue": "The player is standing in an open, level area large enough for a roughly 13-by-13-block test layout.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the hotbar slot containing the Empty Map so that it is the active item in the player's main hand. With default controls, press the number key corresponding to its hotbar slot or scroll the mouse wheel until the map is selected.",
+        "exact_input": null,
+        "success_cue": "The Empty Map is visibly held in the player's main hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Right-click once while holding the Empty Map to fill and initialize it at the test location. Do not right-click repeatedly.",
+        "exact_input": null,
+        "success_cue": "The Empty Map has changed into a filled map and displays the surrounding terrain.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Switch to any block item so that the filled map remains stored in the hotbar but is no longer held. Press F3 and orient the player so the debug display reports that the player is facing north. Reserve four 5-by-5 footprints in a two-by-two arrangement, with a three-block-wide gap between neighboring footprints: northwest for Oak Planks, northeast for Oak Slabs, southwest for Mangrove Planks, and southeast for Mangrove Slabs. Keep the entire arrangement within approximately 20 horizontal blocks of where the map was filled.",
+        "exact_input": null,
+        "success_cue": "Four distinct 5-by-5 test footprints have been identified within the initialized map's nearby coverage, and their material assignments are known.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select Oak Planks and place a single horizontal layer of 25 blocks covering the entire northwest 5-by-5 footprint. Each position in the footprint should contain one oak plank block.",
+        "exact_input": null,
+        "success_cue": "A complete 5-by-5 Oak Planks patch occupies the northwest position of the layout.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select Oak Slabs and cover the northeast 5-by-5 footprint with 25 individual slabs. Place each slab by right-clicking the top face of the ground once. Do not click a position twice, because two slabs in one position would form a double slab; break and replace any accidental double slab.",
+        "exact_input": null,
+        "success_cue": "A complete 5-by-5 patch of single bottom Oak Slabs occupies the northeast position, with no double slabs.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select Mangrove Planks and place a single horizontal layer of 25 blocks covering the southwest 5-by-5 footprint. Each position in the footprint should contain one mangrove plank block.",
+        "exact_input": null,
+        "success_cue": "A complete 5-by-5 Mangrove Planks patch occupies the southwest position of the layout.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select Mangrove Slabs and cover the southeast 5-by-5 footprint with 25 individual slabs. Place each slab by right-clicking the top face of the ground once. Do not place a second slab in the same position; break and replace any accidental double slab.",
+        "exact_input": null,
+        "success_cue": "A complete 5-by-5 patch of single bottom Mangrove Slabs occupies the southeast position, with no double slabs.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Confirm the physical layout before updating the map: Oak Planks northwest, Oak Slabs northeast, Mangrove Planks southwest, and Mangrove Slabs southeast. Confirm that the patches remain separated and that all four are near the location where the map was initialized.",
+        "exact_input": null,
+        "success_cue": "All four labeled test patches are complete, distinct, and located inside the nearby mapped test area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Select the hotbar slot containing the filled map so it becomes the active item in the main hand. Slowly walk around or between the four patches while continuing to hold the map. Continue until all four patch footprints are represented on the map and the relevant portion of the map texture stops changing for at least two seconds. Keep the filled map selected when finished.",
+        "exact_input": null,
+        "success_cue": "The filled map is active, all four test footprints have been updated onto it, and the map texture is no longer changing.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The filled map is selected in the active hotbar slot and has just finished refreshing after the Oak Planks, Oak Slabs, Mangrove Planks, and single Mangrove Slabs patches were placed. The physical two-by-two layout and its map representation are ready for the separate observation subsystem.",
+    "uncertainties": [
+      "The report does not specify a seed, coordinates, world type, or game mode. A new Creative-mode Superflat world is selected as the simplest deterministic execution environment.",
+      "The report does not specify the size or arrangement of the block samples. Four separated 5-by-5 patches are used so each material occupies multiple visible map pixels and can be identified by position without relying on its displayed color.",
+      "The report does not specify whether the tested slabs are top or bottom slabs. This plan uses individual bottom slabs placed directly on the ground and explicitly avoids double slabs.",
+      "The report's phrase \"obtain and fill a map\" is interpreted as obtaining an Empty Map and right-clicking once to initialize it at the test site.",
+      "English item names and default controls are used for executable UI directions; equivalent localized labels or rebound controls may be used if necessary."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_09511b8299b2fcc3016aa8ac8b2a5087d087db8af78069d211",
+    "elapsed_seconds": 118.94,
+    "usage": {
+      "input_tokens": 15601,
+      "output_tokens": 7183,
+      "reasoning_tokens": 5325,
+      "total_tokens": 22784
+    },
+    "timestamp": "2026-09-15T02:27:13.816408+00:00"
+  }
+}

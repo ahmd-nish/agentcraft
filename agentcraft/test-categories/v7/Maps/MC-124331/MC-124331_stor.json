@@ -1,0 +1,185 @@
+{
+  "bug_id": "MC-124331",
+  "category": "Maps",
+  "source_md": "[Maps] - MC-124331.md",
+  "source_meta": {
+    "mojira categories": "Maps",
+    "project": "MC",
+    "issue key": "MC-124331",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2018-01-15T17:13:12.093-0800",
+    "updated": "2025-04-26T06:09:50.124-0700",
+    "resolution date": "2024-08-27T00:02:37.428-0700",
+    "affects versions": "Minecraft 1.12.2; Minecraft 18w02a; Minecraft 1.13.1; Minecraft 1.13.2; 1.15.1; 1.16.4; 20w45a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w14a; 21w17a; 1.17.1; 21w41a; 1.18 Release Candidate 3; 1.18.1; 1.18.2; 22w13a; 1.19; 1.19.2; 1.19.3; 23w03a; 1.20.1; 1.21; 1.21.1 Release Candidate 1; 1.21.1; 24w33a; 24w34a",
+    "fix versions": "24w35a",
+    "area": "Gameplay",
+    "labels": "redstone-lamp",
+    "watchers": "1",
+    "attachments": "5",
+    "attachment filenames": "2018-01-15_19.10.09.png; 2018-01-15_19.10.27.png; 2018-09-15_02.25.56.png; MC-124331.mp4; MC-124331.png",
+    "issue links": "Relates:outward:MCPE-112543:Redstone lamps don't show up on maps",
+    "_title": "Redstone lamps do not show on maps"
+  },
+  "stor": {
+    "bug_id": "MC-124331",
+    "affected_versions": [
+      "Minecraft 1.12.2",
+      "Minecraft 18w02a",
+      "Minecraft 1.13.1",
+      "Minecraft 1.13.2",
+      "1.15.1",
+      "1.16.4",
+      "20w45a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w14a",
+      "21w17a",
+      "1.17.1",
+      "21w41a",
+      "1.18 Release Candidate 3",
+      "1.18.1",
+      "1.18.2",
+      "22w13a",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "23w03a",
+      "1.20.1",
+      "1.21",
+      "1.21.1 Release Candidate 1",
+      "1.21.1",
+      "24w33a",
+      "24w34a"
+    ],
+    "recommended_version": "Minecraft 1.12.2",
+    "environment": "Minecraft Java Edition 1.12.2 in a single-player world. Use Creative mode with cheats enabled so the supplied /fill command can be executed and an Empty Map can be obtained without adding unrelated crafting steps. A new Superflat world is a practical deterministic choice because it provides a level surface with a visually consistent block layer beneath the lamps.",
+    "preconditions": [
+      "Launch the exact recommended affected version, Minecraft Java Edition 1.12.2, rather than the listed fix version 24w35a.",
+      "Use a world in which the player has permission to execute commands. For single-player, create or open the world with cheats enabled.",
+      "Use Creative mode as a practical execution choice; the report does not require a specific game mode.",
+      "Stand on an open, level, solid surface with at least a 10-by-10-block area of air beside the player so the 9-by-9 lamp platform will not replace existing structures.",
+      "Keep the blocks directly beneath the future lamp platform intact. The supplied command places lamps at the player's current Y level, from one to nine blocks away in both the positive X and positive Z directions.",
+      "Do not add levers, redstone blocks, or other power sources; the supplied command creates ordinary unpowered redstone lamps.",
+      "Use an unmodified world without datapacks or mods that change maps, redstone lamps, or block map colors."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft launcher with the Minecraft Java Edition 1.12.2 installation selected, launch the game, and wait for the main menu.",
+        "exact_input": null,
+        "success_cue": "The main menu identifies the running game as Minecraft 1.12.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player Creative-mode world with cheats enabled. For a deterministic level work area, select the Superflat world type. Enter the world and wait until terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded world, can fly, and has permission to use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a clear section of the level surface. Stand still on a solid block and verify that there is open air in the square extending at least nine blocks in the positive X direction and nine blocks in the positive Z direction from the player's position. The exact facing direction does not affect the relative-coordinate command.",
+        "exact_input": null,
+        "success_cue": "There is enough unobstructed space beside the player for a 9-by-9 horizontal lamp platform, with the normal surface blocks remaining directly below that space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the in-game chat input using the default chat control.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Enter the report's command exactly as supplied, including the leading slash, and press Enter. Do not modernize or otherwise alter the block identifier or coordinates.",
+        "exact_input": "/fill ~1 ~ ~1 ~9 ~ ~9 minecraft:redstone_lamp",
+        "success_cue": "The command completes successfully and a horizontal 9-by-9 area of 81 unpowered redstone lamps is visible beside the player's original position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Wait for the lamp platform and surrounding terrain to finish rendering. If necessary, fly slightly upward to confirm the platform is complete, but remain close to it and do not place blocks over the lamps.",
+        "exact_input": null,
+        "success_cue": "All 81 lamp blocks are loaded in a complete 9-by-9 square, their top faces are unobstructed, and player movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Creative inventory using the inventory control.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory interface is open, with item tabs and the nine hotbar slots visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Locate the item named Empty Map in the Creative inventory and place one Empty Map into any hotbar slot. The hotbar is the row of nine item slots along the bottom of the inventory interface.",
+        "exact_input": null,
+        "success_cue": "One Empty Map is present in a known hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Close the inventory, then select the hotbar slot containing the Empty Map by pressing its corresponding number key or scrolling the mouse wheel until that slot is highlighted.",
+        "exact_input": "E, then the number key corresponding to the Empty Map's hotbar slot",
+        "success_cue": "The Empty Map is shown as the held item and its hotbar slot has the active selection outline.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Position the player on or immediately beside the 9-by-9 lamp platform so the platform is close to the location where the map will be created. Keep the platform's top surface uncovered and remain in the Overworld.",
+        "exact_input": null,
+        "success_cue": "The player is within a few blocks of the lamp platform, the platform is loaded, and the Empty Map remains selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Use the selected Empty Map with the default use-item control to create and begin filling the map. Keep the resulting filled map selected and remain near the lamp platform while its terrain pixels populate.",
+        "exact_input": "Right-click",
+        "success_cue": "The Empty Map has changed into a filled map, and terrain-colored pixels have populated rather than the map remaining entirely blank.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Adjust the camera downward as needed so the held filled map is fully visible on screen. Do not switch hotbar slots, leave the area, cover the lamps, or alter the lamp platform before handing control to the observation subsystem.",
+        "exact_input": "Move the mouse downward until the held map is clearly visible",
+        "success_cue": "The filled map is selected, visibly displayed in the player's hands, and has updated while the player is beside the loaded redstone-lamp platform.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The player has just brought the updated filled map into clear view while standing on or beside the loaded, unobstructed 9-by-9 redstone-lamp platform. Begin map-content observation now without changing the selected item or world blocks.",
+    "uncertainties": [
+      "The report does not specify a game mode, world type, seed, coordinates, or the material beneath the lamps. Creative mode and a new Superflat world are practical choices that make the supplied command and map acquisition deterministic while retaining a solid block layer beneath the lamps.",
+      "The report does not explicitly distinguish between powered and unpowered lamps. The supplied /fill command creates unpowered redstone lamps, so no power source has been added.",
+      "The report does not prescribe crafting the map versus obtaining it from Creative inventory. Creative inventory is used to avoid unrelated crafting while still performing the required action of using an Empty Map to create a filled map.",
+      "No external verification was required; the reproduction plan preserves the report's exact command and uses the first listed affected version."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_003a3538cb1f67a8016aa8ab8c843887d0b4cf7903e1b6d6f5",
+    "elapsed_seconds": 54.86,
+    "usage": {
+      "input_tokens": 9700,
+      "output_tokens": 3835,
+      "reasoning_tokens": 2128,
+      "total_tokens": 13535
+    },
+    "timestamp": "2026-09-15T02:21:55.070389+00:00"
+  }
+}
