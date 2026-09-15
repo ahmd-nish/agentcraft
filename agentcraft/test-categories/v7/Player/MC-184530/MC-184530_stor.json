@@ -1,0 +1,254 @@
+{
+  "bug_id": "MC-184530",
+  "category": "Player",
+  "source_md": "[Player] - MC-184530.md",
+  "source_meta": {
+    "mojira categories": "Player",
+    "project": "MC",
+    "issue key": "MC-184530",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-05-19T12:10:16.090-0700",
+    "updated": "2025-04-26T10:05:39.907-0700",
+    "resolution date": "2025-01-13T23:12:40.155-0800",
+    "affects versions": "1.15.2; 20w20b; 20w21a; 1.17.1; 1.18.2; 22w15a; 23w51b; 1.21.3; 1.21.4 Pre-Release 1; 1.21.4",
+    "fix versions": "25w02a",
+    "labels": "motion; movement; player; slowness",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "2021-07-21_21.23.18.png; 2024-12-23_22.00.23.png; image-2020-05-19-15-03-19-610.png; image-2020-05-19-15-09-52-755.png; image-2020-05-19-15-11-51-939.png; image-2020-05-19-15-12-15-376.png",
+    "issue links": "Relates:outward:MC-271065:Diagonal player movement is not normalized when holding two movement keys",
+    "_title": "Player movement at low speeds is biased towards cardinal directions"
+  },
+  "stor": {
+    "bug_id": "MC-184530",
+    "affected_versions": [
+      "1.15.2",
+      "20w20b",
+      "20w21a",
+      "1.17.1",
+      "1.18.2",
+      "22w15a",
+      "23w51b",
+      "1.21.3",
+      "1.21.4 Pre-Release 1",
+      "1.21.4"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Vanilla Minecraft Java Edition 1.15.2 in a single-player Creative-mode Superflat world with commands/cheats enabled. Use the default Classic Flat preset so the grass surface is at Y=3 and the player's standing Y coordinate is 4. Default controls are referenced: W for Forward, Left Shift for Sneak, T for chat, F3 for the debug overlay, and right-click for block interaction.",
+    "preconditions": [
+      "Install and launch the exact affected version Minecraft Java Edition 1.15.2, not fix version 25w02a or a later version.",
+      "Use an unmodified vanilla client. Disable mods, movement-altering clients, and datapacks that alter player attributes or movement.",
+      "Create a single-player world with Game Mode set to Creative, Allow Cheats set to ON, and World Type set to Superflat using the default Classic Flat preset.",
+      "Use one player only so the @a trail command and @p teleport command operate on the intended player.",
+      "Use default Forward and Sneak bindings, or identify the rebound keys that perform those actions.",
+      "During each measured movement pass, do not press A, S, D, jump, sprint, or provide mouse/controller look input. Camera adjustment is permitted only after movement has stopped so the lever can be switched.",
+      "Do not remove the armor stands after the first pass; both trails must remain for the later observation handoff."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "From the Minecraft Launcher, start a clean installation of Java Edition 1.15.2 and wait for the main menu to load.",
+        "exact_input": null,
+        "success_cue": "The lower-left portion of the main menu identifies the running version as Minecraft 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, open More World Options, set Allow Cheats to ON, and cycle World Type to Superflat. Leave the default Classic Flat preset selected, then create the world.",
+        "exact_input": null,
+        "success_cue": "The player appears in Creative mode on a level grass plane extending beyond the visible area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the nearby terrain is fully rendered and normal movement and input respond without world-loading pauses.",
+        "exact_input": null,
+        "success_cue": "The surrounding flat-world chunks are visible and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the build-position teleport command including the leading slash, and press Enter.",
+        "exact_input": "/tp @s 0.5 4 3.5 180 20",
+        "success_cue": "The player is standing on the flat grass near X=0, Y=4, Z=3.5 and is looking generally north toward decreasing Z.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open chat, execute the setblock command to place the Impulse command block at X=0, Y=4, Z=0, and close chat after execution.",
+        "exact_input": "/setblock 0 4 0 minecraft:command_block",
+        "success_cue": "A normal orange Impulse command block is visible on top of the grass at X=0, Y=4, Z=0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open chat and execute the setblock command to place the Repeating command block immediately north of the Impulse command block, at X=0, Y=4, Z=-1.",
+        "exact_input": "/setblock 0 4 -1 minecraft:repeating_command_block",
+        "success_cue": "A purple Repeating command block is directly adjacent to the north side of the orange Impulse command block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Right-click the purple Repeating command block at X=0, Y=4, Z=-1. In its configuration screen, ensure the mode reads Repeat, the condition reads Unconditional, and the redstone setting reads Needs Redstone. Enter the report-supplied armor-stand command in the Console Command field and select Done. Retain the supplied leading slash if the UI accepts it; if the UI automatically removes only that slash, leave all remaining command text unchanged.",
+        "exact_input": "/execute as @a as @s run summon minecraft:armor_stand ~ ~ ~ {Small:1b}",
+        "success_cue": "The purple command block is configured as Repeat, Unconditional, Needs Redstone, with the supplied summon command stored in it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Right-click the orange Impulse command block at X=0, Y=4, Z=0. Ensure its mode reads Impulse, its condition reads Unconditional, and its redstone setting reads Needs Redstone. Enter the deterministic teleport command and select Done. The target is approximately ten blocks south of the lever; yaw 174 is six degrees away from the nearest cardinal yaw of 180, and pitch 0 keeps the view level.",
+        "exact_input": "/tp @p 1.55 4 11.5 174 0",
+        "success_cue": "The orange command block is configured as Impulse, Unconditional, Needs Redstone, with the teleport command stored in it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T, enter the give command including the leading slash, and press Enter to obtain one lever.",
+        "exact_input": "/give @s minecraft:lever 1",
+        "success_cue": "A Lever is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the hotbar slot containing the Lever by scrolling to it or pressing the corresponding number key. The hotbar is the row of nine item slots along the bottom of the screen; the selected slot has a highlighted outline.",
+        "exact_input": null,
+        "success_cue": "The lever is shown in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Stand on the south side of the orange Impulse command block—the open side facing positive Z and opposite the purple Repeating command block. Aim at the orange block's south vertical face and right-click once to attach the lever directly to that face. Do not switch it on yet.",
+        "exact_input": null,
+        "success_cue": "An unpowered lever is attached to the south face of the orange command block, with the purple command block still directly behind the orange block to the north.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Press F3 to display the debug overlay and leave it visible during both movement passes so the player's coordinates can be used as a stopping reference.",
+        "exact_input": null,
+        "success_cue": "The debug overlay displays the player's XYZ coordinates and facing information.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Move to the south side of the attached lever, close enough to interact with it. Aim the crosshair directly at the lever until its selection outline is visible. After establishing this aim, stop providing mouse or other look-direction input.",
+        "exact_input": null,
+        "success_cue": "The lever is under the crosshair and can be activated with right-click without moving the camera.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Right-click the lever once. This powers both adjacent command blocks: the Impulse command block teleports the player to the prepared starting position, and the Repeating command block begins summoning small armor stands at the player's successive positions.",
+        "exact_input": null,
+        "success_cue": "The view jumps to approximately X=1.55, Y=4, Z=11.5 with yaw 174, and small armor stands begin appearing at or behind the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "As soon as the teleport has completed and movement responds, press and continuously hold only Forward, normally W. Do not sneak, sprint, jump, strafe, or provide look input during this first pass.",
+        "exact_input": "W",
+        "success_cue": "The player is walking forward across the flat ground while facing the command-block setup, and the powered Repeating command block is leaving an armor-stand trail.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Continue holding W until the player is close to the lever. Use the debug Z coordinate as a deterministic reference and release W when Z is approximately 3.5, before colliding with the command block. Do not adjust the camera until W has been released.",
+        "exact_input": null,
+        "success_cue": "The player is stationary about two blocks south of the lever, and the first armor-stand trail extends from the teleport location toward the command blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "After the player is fully stationary, camera movement no longer affects the recorded movement path. Re-aim at the lever if necessary and right-click it once to turn it off.",
+        "exact_input": null,
+        "success_cue": "The lever is in its unpowered position, the player remains near the command blocks, and the Repeating command block is no longer adding armor stands to the trail.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Aim the crosshair at the now-unpowered lever again until it can be activated. Once aimed, stop providing look input in preparation for the sneaking pass.",
+        "exact_input": null,
+        "success_cue": "The unpowered lever is targeted by the crosshair and can be activated without changing the camera direction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Right-click the lever once to power the command blocks for the second pass. Allow the Impulse command block to teleport the player back to the same start position and orientation.",
+        "exact_input": null,
+        "success_cue": "The player is again at approximately X=1.55, Y=4, Z=11.5 with yaw 174, and the Repeating command block has resumed summoning armor stands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Press and hold the Sneak action, which is Left Shift by default. Keep it held without pressing a movement key yet.",
+        "exact_input": "Left Shift",
+        "success_cue": "The player is in the sneaking state at the teleport position and has not started the second movement path.",
+        "source_basis": "report"
+      },
+      {
+        "step": 21,
+        "action": "While continuing to hold Sneak, press and continuously hold Forward, normally W. Keep both inputs held. Do not press A, S, D, sprint, jump, or provide look input while moving.",
+        "exact_input": "Left Shift + W",
+        "success_cue": "The player is moving forward slowly in the sneaking state while the Repeating command block records the route with small armor stands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 22,
+        "action": "Continue holding both W and Left Shift until the player is close to the lever. Release W when the debug Z coordinate is approximately 3.5, before colliding with the command-block setup. Keep the camera unchanged until forward movement has stopped.",
+        "exact_input": null,
+        "success_cue": "Forward movement has stopped near the lever, and the second armor-stand trail has been recorded from the same teleport position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 23,
+        "action": "Release Left Shift after W has been released so the player stops sneaking without adding further forward movement.",
+        "exact_input": null,
+        "success_cue": "The player is stationary near the command blocks and is no longer sneaking.",
+        "source_basis": "report"
+      },
+      {
+        "step": 24,
+        "action": "After all movement keys are released, re-aim at the lever if necessary and right-click it once to turn off the command blocks.",
+        "exact_input": null,
+        "success_cue": "The lever is unpowered, armor stands are no longer being summoned, and both completed armor-stand movement trails remain on the flat plane.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "Do not move the player through either trail, operate the lever again, remove armor stands, or alter the command blocks. Leave the world in this completed state for the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "The player is stationary beside the unpowered lever, and the normal-speed and sneaking movement paths are both preserved as armor-stand trails.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The second, sneaking movement pass has been completed; W and Left Shift have been released; the lever and both command blocks are unpowered; and the two armor-stand trails remain in place. Begin observation without moving the player or changing the trails.",
+    "uncertainties": [
+      "The report does not provide a world seed, exact build coordinates, exact starting coordinates, or an exact pitch value. The plan uses the default Classic Flat world and a deterministic setup at X=0, Y=4, Z=0, with a teleport target of X=1.55, Y=4, Z=11.5, yaw 174, and pitch 0. These values satisfy the report's requirement for a position about ten blocks away and a yaw six degrees away from a cardinal direction.",
+      "The report does not require a specific game mode or server type. Single-player Creative mode with cheats enabled was selected as the simplest deterministic way to configure command blocks without altering the movement condition being tested.",
+      "The report does not specify which face of which command block should receive the lever. This plan attaches it to the south face of the Impulse command block, with the Repeating command block directly adjacent on the north side, implementing the report's instruction that one lever power the two adjacent command blocks.",
+      "The exact teleport command was constructed for this plan rather than copied from the report. Its yaw value of 174 is copied from the report's example, while its coordinates and pitch are practical choices.",
+      "The report references W and Shift without stating whether controls were rebound. The plan assumes the default W and Left Shift bindings; equivalent rebound Forward and Sneak controls should be used if necessary."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0654c5cf44e3609d016aa89190de8087d0915310a0c0b4b085",
+    "elapsed_seconds": 165.23,
+    "usage": {
+      "input_tokens": 9448,
+      "output_tokens": 11530,
+      "reasoning_tokens": 8565,
+      "total_tokens": 20978
+    },
+    "timestamp": "2026-09-15T00:32:53.707106+00:00"
+  }
+}

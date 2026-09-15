@@ -1,0 +1,231 @@
+{
+  "bug_id": "MC-697",
+  "category": "Player",
+  "source_md": "[Player] - MC-697.md",
+  "source_meta": {
+    "mojira categories": "Player",
+    "project": "MC",
+    "issue key": "MC-697",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2012-10-25T23:26:16.898-0700",
+    "updated": "2026-04-04T07:37:29.631-0700",
+    "resolution date": "2026-04-04T07:37:05.164-0700",
+    "affects versions": "Minecraft 1.4.2; Minecraft 1.4.6; Minecraft 1.7.4; Minecraft 14w05b; Minecraft 14w06b; Minecraft 14w07a; Minecraft 14w08a; Minecraft 1.7.10; Minecraft 14w32d; Minecraft 1.8.1-pre3; Minecraft 1.9.4; Minecraft 1.10; Minecraft 1.10.1; Minecraft 1.10.2; Minecraft 1.11.2; Minecraft 1.12.1; Minecraft 1.12.2; Minecraft 1.13-pre6; Minecraft 18w30b; Minecraft 1.13.2; Minecraft 1.14 Pre-Release 2; Minecraft 1.14 Pre-Release 3; Minecraft 1.14 Pre-Release 4; Minecraft 1.14 Pre-Release 5; 1.14.4; 1.15.2; 20w13b; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 1.16.2; 1.16.4; 1.16.5; 21w06a; 21w07a; 21w08b; 21w11a; 21w14a; 1.17 Release Candidate 2; 1.17; 1.19.3; 23w03a; 23w04a; 23w05a; 23w06a; 1.20.4",
+    "fix versions": "26.1 Snapshot 6",
+    "area": "Platform",
+    "labels": "duplication; playerdata",
+    "votes": "1",
+    "watchers": "4",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-231106:Lost inventory when using new pc | Duplicate:inward:MC-222811:Found dupe bug | Duplicate:inward:MC-210908:Duplication Glitch with LAN worlds. | Duplicate:inward:MC-176509:In single-player worlds, statistics and advancements are unique to each Mojang account, while inventory is shared. | Duplicate:inward:MC-199552:Player data merged with launcher user switch | Duplicate:inward:MC-193732:Inventorys duplicated by switching accounts (singleplayer) | Duplicate:inward:MC-175955:LAN Inventories Inconsistant | Duplicate:inward:MC-175421:Singleplayer with multiple accounts dupe | Duplicate:inward:MC-167227:When ever a account is switch it keeps the same inventory in that world, it essentially duplicates everything a player has. | Duplicate:inward:MC-157967:Local Area Network Server Progress Deleted | Duplicate:inward:MC-145307:Old player's inventory is loaded on LAN game | Duplicate:inward:MC-133046:Player 2 logs into a single player world and receives the inventory from player 1. | Duplicate:inward:MC-124097:2nd Player Advancements overwritten by 1st Player advancements | Duplicate:inward:MC-122674:Inventory Switch | Duplicate:inward:MC-13576:Different accounts accessed via the same PC share inventories | Relates:inward:MC-2368:Accidental joining of game causes world to not save for the session | Duplicate:inward:MC-67379:Item Cloning Glitch in LAN Survival | Duplicate:inward:MC-112043:Incorrect Character Data on LAN Server | Duplicate:inward:MC-80246:Duplicating items in Singleplayer using Open to LAN feature | Relates:inward:MC-5405:Duplication of Items/xp in game | Duplicate:inward:MC-17785:Server login inventory copy | Relates:inward:MC-5222:Join server with correct skin and username, but wrong inventory, experience level, and position | Duplicate:inward:MC-4600:Lan world progress save failure | Duplicate:inward:MC-44064:\"Open To Lan\" game will overwrite player data | Duplicate:inward:MC-52929:Player 2 given Player 1's inventory, location, XP | Blocks:inward:MC-124027:Default singleplayer player data is not written or read to level.dat anymore | Duplicate:inward:REALMS-2173:Spawning with wrong inventory",
+    "_title": "Default singleplayer player data is always used for players opening world"
+  },
+  "stor": {
+    "bug_id": "MC-697",
+    "affected_versions": [
+      "Minecraft 1.4.2",
+      "Minecraft 1.4.6",
+      "Minecraft 1.7.4",
+      "Minecraft 14w05b",
+      "Minecraft 14w06b",
+      "Minecraft 14w07a",
+      "Minecraft 14w08a",
+      "Minecraft 1.7.10",
+      "Minecraft 14w32d",
+      "Minecraft 1.8.1-pre3",
+      "Minecraft 1.9.4",
+      "Minecraft 1.10",
+      "Minecraft 1.10.1",
+      "Minecraft 1.10.2",
+      "Minecraft 1.11.2",
+      "Minecraft 1.12.1",
+      "Minecraft 1.12.2",
+      "Minecraft 1.13-pre6",
+      "Minecraft 18w30b",
+      "Minecraft 1.13.2",
+      "Minecraft 1.14 Pre-Release 2",
+      "Minecraft 1.14 Pre-Release 3",
+      "Minecraft 1.14 Pre-Release 4",
+      "Minecraft 1.14 Pre-Release 5",
+      "1.14.4",
+      "1.15.2",
+      "20w13b",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w27a",
+      "20w28a",
+      "1.16.2",
+      "1.16.4",
+      "1.16.5",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w11a",
+      "21w14a",
+      "1.17 Release Candidate 2",
+      "1.17",
+      "1.19.3",
+      "23w03a",
+      "23w04a",
+      "23w05a",
+      "23w06a",
+      "1.20.4"
+    ],
+    "recommended_version": "Minecraft 1.4.2",
+    "environment": "Minecraft Java Edition, exact client version Minecraft 1.4.2, local singleplayer, and two distinct authenticated player profiles with different usernames. Both profiles must launch the game using the same game directory and therefore the same saves folder. Use a fresh Creative-mode world for this minimal two-player-profile reproduction; LAN and a dedicated server are not required for the selected variant.",
+    "preconditions": [
+      "Two distinct Minecraft Java Edition player profiles are available; designate them Player 1 and Player 2.",
+      "Player 1 and Player 2 have different usernames. Do not use the same profile under two labels.",
+      "Both profiles can launch the exact affected version Minecraft 1.4.2.",
+      "Both profiles use the same Minecraft game directory, so a world created by Player 1 remains visible in the Singleplayer world list after switching to Player 2.",
+      "Player 2 has never opened the new test world before the trigger step.",
+      "Do not use the workaround from the report: do not delete or edit the Data > Player entry in level.dat.",
+      "Close the game completely before changing from Player 1 to Player 2; do not leave the world open to LAN or run both clients simultaneously for this variant."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Configure or select a launcher installation that starts the exact affected Java Edition version Minecraft 1.4.2. Ensure its game directory will be reused when launching both player profiles.",
+        "exact_input": "Minecraft 1.4.2",
+        "success_cue": "The selected installation identifies its game version as Minecraft 1.4.2 and points to the shared game directory that will contain the test world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Sign in as Player 1 and launch Minecraft 1.4.2. Wait for the main menu to become responsive.",
+        "exact_input": null,
+        "success_cue": "Minecraft 1.4.2 is at the main menu under Player 1's distinct account identity.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Open the local world menu by clicking Singleplayer, then click Create New World.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Enter the world name MC-697-Repro. Click the Game Mode button until it displays Creative, then click Create New World. Do not configure a special seed; the bug does not depend on terrain generation.",
+        "exact_input": "World Name: MC-697-Repro; Game Mode: Creative",
+        "success_cue": "The world named MC-697-Repro begins loading in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Wait for world creation and terrain loading to finish. Do not continue while the loading screen is visible or while nearby terrain is still failing to render.",
+        "exact_input": null,
+        "success_cue": "Player 1 can see rendered terrain, look around, and move normally in the newly created world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press E, using the default Inventory control, to open Player 1's Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory item grid and the player's hotbar slots are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Locate the Block of Diamond in the Creative inventory and place a stack into hotbar slot 1. Locate the Block of Gold and place a stack into hotbar slot 2. Use left-click to pick up each item stack and left-click the intended hotbar slot to place it. These items are a distinctive Player 1 inventory marker; no crafting is required.",
+        "exact_input": "Block of Diamond -> hotbar slot 1; Block of Gold -> hotbar slot 2",
+        "success_cue": "Hotbar slot 1 contains Block of Diamond items and hotbar slot 2 contains Block of Gold items.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press E to close the inventory. Press the number key 1 to make hotbar slot 1 the active slot.",
+        "exact_input": "E, then 1",
+        "success_cue": "The inventory is closed, hotbar slot 1 is highlighted, and Player 1 visibly holds a Block of Diamond.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Leave Player 1 in the world briefly without dropping or placing the two inventory marker stacks. This establishes a nonempty, readily identifiable player state for the world save.",
+        "exact_input": null,
+        "success_cue": "Player 1 remains in the loaded world with Block of Diamond in slot 1, Block of Gold in slot 2, and slot 1 selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press Esc to open the pause menu, then click Save and Quit to Title. Wait until the main menu is fully displayed. This saves Player 1's current state as the world's singleplayer/default player data.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The main menu is displayed and MC-697-Repro is no longer open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Exit Minecraft completely rather than only returning to the main menu. Wait until the game process has closed.",
+        "exact_input": "Quit Game",
+        "success_cue": "No Minecraft 1.4.2 game window remains open and the launcher can change accounts safely.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "In the launcher, sign out of Player 1 or change the active account, then sign in as the distinct Player 2 profile. Do not move, copy, convert, or edit the MC-697-Repro world.",
+        "exact_input": null,
+        "success_cue": "The launcher is authenticated as Player 2, whose username differs from Player 1's username.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Using the same installation and shared game directory from step 1, launch Minecraft 1.4.2 as Player 2. Wait for the main menu to become responsive.",
+        "exact_input": "Minecraft 1.4.2",
+        "success_cue": "Minecraft 1.4.2 is at the main menu under Player 2's account identity.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Click Singleplayer and locate the existing world named MC-697-Repro. Do not create a second world and do not use Open to LAN.",
+        "exact_input": "Singleplayer",
+        "success_cue": "MC-697-Repro appears in Player 2's Singleplayer world list, confirming that both profiles are accessing the same saved world folder.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Select MC-697-Repro and click Play Selected World, or double-click the world entry once. This world-opening action is the reproduction trigger.",
+        "exact_input": "MC-697-Repro -> Play Selected World",
+        "success_cue": "The world loading screen appears for the existing MC-697-Repro world under Player 2's profile.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Wait until the world has finished loading. Do not open the inventory, change hotbar selection, move items, issue commands, or save and quit before handing control to the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "Player 2 is in the loaded MC-697-Repro world, surrounding terrain is rendered, and normal camera or movement input responds; Player 2's inventory and position have not yet been altered after loading.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "Player 2 has just opened the existing MC-697-Repro singleplayer world originally created and saved by Player 1. Terrain loading has completed, input is responsive, and Player 2 has not yet moved items, changed the selected hotbar slot, opened a container, or saved the world. Begin observing the loaded player state now.",
+    "uncertainties": [
+      "The report does not provide a formal numbered Steps to Reproduce section. This plan reconstructs the minimum same-computer, two-account path from the description and supporting comments.",
+      "The report describes three related situations: a different player opening another player's world, an existing LAN participant playerdata entry being ignored, and default data becoming outdated after dedicated-server play. This plan intentionally selects only the simplest first situation; it does not establish the LAN or dedicated-server variants.",
+      "No game mode, seed, world name, inventory contents, or location is prescribed by the report. A fresh Creative world and distinctive diamond/gold block inventory markers are practical execution choices, not asserted bug requirements.",
+      "The exact arrangement of the Minecraft 1.4.2 Creative inventory depends on the historical UI and selected language. If the named blocks are not immediately visible, locate them by their item names or icons without substituting items unavailable in Minecraft 1.4.2.",
+      "The plan assumes the launcher permits both profiles to use one shared game directory. If account-specific installations use different game directories, the same unmodified MC-697-Repro world folder must be made accessible to Player 2 before step 14 without opening or converting it in another version."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0302268890336da4016aa893c9dcb087d0b295f0bfb42a4b29",
+    "elapsed_seconds": 92.6,
+    "usage": {
+      "input_tokens": 12805,
+      "output_tokens": 6009,
+      "reasoning_tokens": 3767,
+      "total_tokens": 18814
+    },
+    "timestamp": "2026-09-15T00:41:10.345606+00:00"
+  }
+}
