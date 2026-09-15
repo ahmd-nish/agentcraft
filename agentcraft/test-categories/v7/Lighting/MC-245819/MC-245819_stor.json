@@ -1,0 +1,177 @@
+{
+  "bug_id": "MC-245819",
+  "category": "Lighting",
+  "source_md": "[Lighting] - MC-245819.md",
+  "source_meta": {
+    "mojira categories": "Lighting",
+    "project": "MC",
+    "issue key": "MC-245819",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-12-20T01:59:41.869-0800",
+    "updated": "2025-03-25T13:08:44.686-0700",
+    "resolution date": "2023-04-26T03:00:11.096-0700",
+    "affects versions": "1.18.1; 22w03a; 22w05a; 22w06a; 1.18.2 Pre-release 1; 1.18.2; 22w13a; 22w15a; 22w17a; 1.19 Pre-release 3; 1.19 Pre-release 5; 1.19; 1.19.1 Pre-release 4; 1.19.1; 1.19.2; 22w43a; 1.19.3; 1.19.4",
+    "fix versions": "23w17a",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2022-01-14_17.28.00.png; 2022-01-14_17-26-51.mkv; 2022-01-23 13-39-28.mp4; MC-245819.mp4; MC-245819.png; MC-245819 (2).png; MC-245819 - 22w13a.png",
+    "_title": "Lighting can still occasionally lag behind world generation"
+  },
+  "stor": {
+    "bug_id": "MC-245819",
+    "affected_versions": [
+      "1.18.1",
+      "22w03a",
+      "22w05a",
+      "22w06a",
+      "1.18.2 Pre-release 1",
+      "1.18.2",
+      "22w13a",
+      "22w15a",
+      "22w17a",
+      "1.19 Pre-release 3",
+      "1.19 Pre-release 5",
+      "1.19",
+      "1.19.1 Pre-release 4",
+      "1.19.1",
+      "1.19.2",
+      "22w43a",
+      "1.19.3",
+      "1.19.4"
+    ],
+    "recommended_version": "1.18.1",
+    "environment": "Minecraft Java Edition 1.18.1 client connected to a matching 1.18.1 dedicated multiplayer server. For the simplest deterministic arrangement, run the server locally and connect through the Multiplayer menu using localhost. Use a new server world so the player initially appears at the server's world spawn and has no bed or respawn-anchor location. Keep the server console accessible so operator permission can be granted without already having in-game command permission.",
+    "preconditions": [
+      "Install or otherwise provision both a Minecraft Java Edition 1.18.1 client and a Minecraft Java Edition 1.18.1 dedicated server. Do not use the listed fix version, 23w17a, for this reproduction.",
+      "Complete the server's required first-run setup, including EULA acceptance, before beginning the test.",
+      "Use a new server world, or ensure that the test player has no personal respawn point and begins close to the server's world spawn before executing the teleport command.",
+      "Know the exact Minecraft username of the joining player so it can be entered into the dedicated-server console.",
+      "Leave the game window visible and prepare the observation or recording subsystem before triggering respawn because the reported condition may be visible for only a split second.",
+      "Allow for multiple attempts. The report explicitly describes the issue as intermittent and notes that one attempt may not expose it."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the dedicated Minecraft Java Edition 1.18.1 server using the prepared server directory and world.",
+        "exact_input": null,
+        "success_cue": "The server console reports that startup is complete and the server is accepting player connections.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Launch the Minecraft Java Edition client using the matching 1.18.1 installation.",
+        "exact_input": null,
+        "success_cue": "The 1.18.1 title screen is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "From the title screen, select Multiplayer, choose Direct Connection, enter the address of the dedicated server, and join it. If the server is running on the same computer, use localhost as the address.",
+        "exact_input": "localhost",
+        "success_cue": "The player appears in the server world and normal first-person control is available.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Do not travel away from the initial join area. Wait until the terrain around the world spawn has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, chunks are no longer visibly loading, and the player can move and look around without waiting for the join process.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "In the dedicated-server console, grant operator permission to the connected player. Enter the console command without a leading slash, replacing the placeholder with the exact username shown for the connected player.",
+        "exact_input": "op <player_username>",
+        "success_cue": "The server console confirms that the named player has been made a server operator.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Return focus to the Minecraft client and keep the player near the initial world-spawn area. Do not set a bed or respawn-anchor location.",
+        "exact_input": null,
+        "success_cue": "The player remains alive near the original join location and will respawn at the server's world spawn after death.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, or the currently bound Open Chat key, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter the report's teleport command exactly as written, including the leading slash, and press Enter. This adds 1000 blocks to the player's current X coordinate while preserving the current Y and Z coordinates.",
+        "exact_input": "/tp @s ~1000 ~ ~",
+        "success_cue": "The command succeeds and the player is teleported approximately 1000 blocks along the positive X direction from the world-spawn area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "After teleportation, wait before continuing. Do not execute the kill command while the destination is still visibly loading.",
+        "exact_input": null,
+        "success_cue": "Terrain at the distant location has rendered, the player can look and move normally, and chat or commands respond without waiting for teleportation or chunk loading.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Make sure the game window is unobstructed, close any inventory or menu screen, and arm the observation or recording subsystem before killing the player. Keep the main world view ready to be inspected immediately after respawn.",
+        "exact_input": null,
+        "success_cue": "The normal first-person world view is visible and the observation subsystem is ready to capture the brief respawn and rendering transition.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T, or the currently bound Open Chat key, to open chat again.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open at the distant location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Enter the kill command exactly as supplied by the report, including the leading slash, and press Enter once.",
+        "exact_input": "/kill",
+        "success_cue": "The player dies and the death screen containing the Respawn control is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Click the Respawn button once. Do not open another menu, switch windows, or delay visual capture as the death screen closes and the world view returns.",
+        "exact_input": "Respawn",
+        "success_cue": "The death screen closes and the client begins displaying the player's respawned first-person view at the server's respawn location.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The Respawn button has just been clicked, the death screen is closing, and the first-person world view at the server respawn location is beginning to render. Hand control to the observation subsystem immediately for the complete respawn and surrounding-chunk rendering transition. If another attempt is required, repeat steps 7 through 13 after the player has fully respawned and movement is responsive.",
+    "uncertainties": [
+      "The report provides no world seed, coordinates, render-distance setting, graphics setting, server.properties configuration, hardware specification, or required game mode.",
+      "Using a new local dedicated-server world is a practical deterministic setup choice; the report requires a server but does not explicitly require a fresh world or a local host.",
+      "The exact teleport command only guarantees a displacement of positive 1000 blocks from the player's current position. The plan keeps the player at the initial world-spawn area before running it so that the destination is far from the spawn chunks as required by the report.",
+      "The report and comments disagree about whether a server is strictly required: the primary reproduction steps specify a server, while one comment reports reproduction in singleplayer. This plan preserves the primary server-based procedure.",
+      "The issue is explicitly intermittent, and a moderator comment suggests that reproducibility may depend on hardware. No particular hardware configuration is supplied, so failure on one attempt or system does not establish that the execution sequence was incorrect.",
+      "The report does not specify whether immediate respawn is enabled. This plan assumes the normal death screen appears; if the server has the doImmediateRespawn gamerule enabled, the observation subsystem must already be active before /kill because there will be no Respawn button."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_01244b65e55d799b016aa8aecb3bf487d0ad849cde547c47fa",
+    "elapsed_seconds": 71.44,
+    "usage": {
+      "input_tokens": 8751,
+      "output_tokens": 4901,
+      "reasoning_tokens": 3234,
+      "total_tokens": 13652
+    },
+    "timestamp": "2026-09-15T02:35:56.920104+00:00"
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "bug_id": "MC-258190",
+  "category": "Lighting",
+  "source_md": "[Lighting] - MC-258190.md",
+  "source_meta": {
+    "mojira categories": "Lighting",
+    "project": "MC",
+    "issue key": "MC-258190",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-11-29T00:32:43.546-0800",
+    "updated": "2025-04-30T06:07:15.099-0700",
+    "resolution date": "2022-12-02T14:01:20.640-0800",
+    "affects versions": "1.19.3 Pre-release 2; 1.19.3 Pre-release 3",
+    "fix versions": "1.19.3 Release Candidate 1",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "Inked20221129154039188.jpg; Inked20221129154134576-1.jpg; Inked20221129154813121-1.jpg; Inked20221130080126236.jpg; Inked20221130083043694.jpg; Inked20221130083457062.jpg; MC-258190 - Version Behavior Comparison.png",
+    "issue links": "Relates:inward:MC-258257:Bubble columns retain their light levels from the sky after upgrading old worlds",
+    "_title": "Bubble columns let skylight through"
+  },
+  "stor": {
+    "bug_id": "MC-258190",
+    "affected_versions": [
+      "1.19.3 Pre-release 2",
+      "1.19.3 Pre-release 3"
+    ],
+    "recommended_version": "1.19.3 Pre-release 2",
+    "environment": "Minecraft Java Edition 1.19.3 Pre-release 2 in a newly created local single-player Creative-mode world with commands enabled. Perform the test during fixed daytime and clear weather. Use an open-topped, opaque-walled water shaft created directly in this version rather than a world upgraded from another version.",
+    "preconditions": [
+      "The Minecraft Launcher is able to launch the exact version named \"1.19.3 Pre-release 2\"; enable historical/snapshot installations in the launcher if necessary.",
+      "Create a new test world directly in 1.19.3 Pre-release 2. Do not reuse or upgrade a world from another version, because converted bubble columns are covered by the separately linked issue MC-258257.",
+      "Use Creative mode so the required blocks can be obtained without crafting and the player can safely construct and enter the deep water shaft.",
+      "Enable commands/cheats when creating the world so daytime and clear weather can be maintained deterministically.",
+      "Use the listed default controls or their rebound equivalents: T for chat, E for inventory, number keys or mouse wheel for hotbar selection, right-click to place/use an item, Space to ascend or fly, and Left Shift to descend.",
+      "The test site must have an unobstructed view of the sky directly above the planned water shaft. Do not build beneath terrain, trees, structures, or a roof."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact affected version \"1.19.3 Pre-release 2\", launch it, and wait for the main menu.",
+        "exact_input": "1.19.3 Pre-release 2",
+        "success_cue": "The lower-left corner or title screen version label identifies the running game as Minecraft Java Edition 1.19.3 Pre-release 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world in Creative mode, ensure commands/cheats are enabled, and enter the world. No particular seed is required because the test structure will be constructed manually.",
+        "exact_input": null,
+        "success_cue": "The player is in a newly created Creative-mode world and can fly by double-tapping Space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the spawn-area chunks have rendered and movement responds normally. Move to a level outdoor location with open sky and enough room for a structure approximately 4 blocks long, 3 blocks wide, and 17 blocks tall.",
+        "exact_input": null,
+        "success_cue": "The selected construction site is fully loaded and there are no blocks, leaves, terrain, or structures above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, type the command including the leading slash, and press Enter to set daytime.",
+        "exact_input": "/time set day",
+        "success_cue": "The sky changes to daytime and command feedback confirms that the time was set.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, enter the command including the leading slash, and press Enter to stop the daylight cycle so the test remains in daytime.",
+        "exact_input": "/gamerule doDaylightCycle false",
+        "success_cue": "Command feedback confirms that doDaylightCycle is now false and the sun no longer advances.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, enter the command including the leading slash, and press Enter to clear any rain or thunder.",
+        "exact_input": "/weather clear",
+        "success_cue": "The sky is clear, precipitation is absent, and command feedback confirms clear weather.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab to find Stone, Soul Sand, and Water Bucket, and place all three items into separate hotbar slots. Stone is used as an opaque construction block and as the floor of the access column.",
+        "exact_input": "Stone; Soul Sand; Water Bucket",
+        "success_cue": "Stone, Soul Sand, and a Water Bucket are visible in separate slots in the nine-slot hotbar at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory with E. Place two floor blocks side by side on the selected site: one Soul Sand block for the target column and one Stone block for an adjacent access column. Remember which side contains the Soul Sand.",
+        "exact_input": null,
+        "success_cue": "A Soul Sand block and a Stone block are horizontally adjacent at the same height, with no block placed above either one yet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select Stone in the hotbar. At the same vertical level as the two floor blocks, build a one-block-thick stone perimeter around the two-block-long by one-block-wide interior. Do not place a wall between the Soul Sand cell and the adjacent Stone cell.",
+        "exact_input": null,
+        "success_cue": "The two floor blocks form the bottom of a shared 2-by-1 interior cavity surrounded on all four exterior sides by opaque Stone.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Raise the complete exterior Stone perimeter vertically until Stone walls exist from the floor level through 16 blocks above the floor, for 17 Stone blocks of total wall height when the bottom perimeter layer is counted. Leave the entire top open and do not place any roof blocks.",
+        "exact_input": null,
+        "success_cue": "The structure is an open-topped shaft with a 2-by-1 interior, opaque walls, a Soul Sand floor under one interior cell, a Stone floor under the other, and room for 16 vertical water layers above each floor block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Fly above the open shaft and verify that the vertical line directly above the Soul Sand remains unobstructed all the way to the sky. Remove any accidental block over the cavity before continuing.",
+        "exact_input": null,
+        "success_cue": "Looking upward from the shaft opening shows open daytime sky, and neither interior column has a roof or other solid block above it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Select the Water Bucket. Enter the shaft from its open top in Creative flight and descend toward the Stone floor, using Left Shift to move downward. Stay primarily in the interior cell aligned over the Stone floor so that this cell remains the access column.",
+        "exact_input": null,
+        "success_cue": "The player is inside the shaft near its bottom and can distinguish the Stone-bottom access cell from the adjacent Soul-Sand-bottom target cell.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Fill the access column above the Stone floor with source-water blocks. Starting one block above the Stone floor, right-click an inner Stone wall face with the Water Bucket to place water in that interior cell. Ascend exactly one block and repeat until all 16 vertical cells from the floor to the open top have each received a direct bucket placement.",
+        "exact_input": null,
+        "success_cue": "The complete column above the Stone floor is water from bottom to top, its uppermost water block is exposed to the sky, and there are no air gaps in that column.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Use the Water Bucket to fill the target column directly above the Soul Sand, beginning with the cell immediately above the Soul Sand. Place a source-water block at each successive height through the first 15 layers. Work from the adjacent access column and right-click the inner face of the far wall at the required height when necessary.",
+        "exact_input": null,
+        "success_cue": "The target column contains water from the Soul Sand through layer 15, bubble particles rise through those filled layers, and only the sixteenth/topmost target cell remains unfilled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Move to the top of the adjacent Stone-bottom access column. Confirm that the neighboring top target cell directly above the 15 filled target layers is still the only air gap and that there is no solid block above that cell.",
+        "exact_input": null,
+        "success_cue": "The player is beside the unfilled top target cell; the target water and bubbles currently end one block below it, while open sky is visible above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "While the Water Bucket is selected, right-click an inner Stone wall face bordering the unfilled top target cell to place the final source-water block. This completes the source-water path from the Soul Sand to the exposed water surface.",
+        "exact_input": null,
+        "success_cue": "A continuous vertical stream of upward bubble particles now extends from the Soul Sand through the final water block to the open surface, with no air gap or solid block interrupting it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Move into the adjacent Stone-bottom water column and descend with Left Shift until positioned near the bottom. Face sideways toward the Soul Sand and its bubble column without entering or blocking the target column.",
+        "exact_input": null,
+        "success_cue": "The player is submerged near the Stone floor, facing the neighboring Soul Sand at close range, while the bubble column remains continuous to the open daytime sky.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The final source-water block has been placed, the Soul Sand bubble column now runs continuously to an unobstructed open surface during fixed clear daytime, and the player is positioned near the bottom in the adjacent water column facing the Soul Sand. Begin observation without placing or removing additional blocks.",
+    "uncertainties": [
+      "The report does not specify a game mode, seed, coordinates, server type, or construction dimensions. A new Creative single-player world and a manually built shaft are practical choices rather than report-mandated requirements.",
+      "The report does not specify the necessary water depth. Sixteen source-water layers are used so the base is sufficiently far below the open surface for skylight propagation to be inspected while preserving the stated requirement that bubbles reach the surface.",
+      "The adjacent Stone-bottom water column is an inferred access path that allows the player to approach and face the Soul Sand without occupying the upward-flowing bubble column.",
+      "The comments state that occurrence in 1.19.3 Pre-release 3 was not consistent. The plan therefore uses 1.19.3 Pre-release 2, the first version in the formal Affects versions list.",
+      "Comments confirm that magma-block bubble columns are also affected, but the primary report reproduction specifically uses Soul Sand, so this plan does not add a magma-block variant."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0538667e2e3a9676016aa8af5e88a887d0aab40866072135c2",
+    "elapsed_seconds": 135.88,
+    "usage": {
+      "input_tokens": 8995,
+      "output_tokens": 9297,
+      "reasoning_tokens": 7080,
+      "total_tokens": 18292
+    },
+    "timestamp": "2026-09-15T02:39:34.231825+00:00"
+  }
+}

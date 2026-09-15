@@ -1,0 +1,185 @@
+{
+  "bug_id": "MC-249508",
+  "category": "Lighting",
+  "source_md": "[Lighting] - MC-249508.md",
+  "source_meta": {
+    "mojira categories": "Lighting",
+    "project": "MC",
+    "issue key": "MC-249508",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2022-03-25T12:51:03.257-0700",
+    "updated": "2025-04-16T13:02:49.934-0700",
+    "resolution date": "2023-04-26T03:01:37.560-0700",
+    "affects versions": "22w12a; 22w13a; 22w15a; 22w17a; 1.19; 1.19.2; 1.19.3; 1.19.4 Release Candidate 1; 1.19.4",
+    "fix versions": "23w17a",
+    "labels": "cave_vines; cave_vines_plant; glow_lichen",
+    "watchers": "1",
+    "attachments": "9",
+    "attachment filenames": "2022-03-25_17.02.17.png; MC-249508.mp4; MC-249508.png; MC-249508 (2).png; MC-249508 - 1.19.png; MC-249508 - 22w13a.png; MC-249508 - 22w15a.mp4; MC-249508 - 22w15a.png; MC-249508 - 22w17a.png",
+    "issue links": "Duplicate:inward:MC-254198:Lighting fails over chunk borders in initial world generation | Cloners:outward:MC-218739:Glow berries and glow lichen generation does not cause light updates across chunk borders",
+    "_title": "Light emitted from cave vines and glow lichens upon world generation still sometimes doesn't propagate across chunk borders"
+  },
+  "stor": {
+    "bug_id": "MC-249508",
+    "affected_versions": [
+      "22w12a",
+      "22w13a",
+      "22w15a",
+      "22w17a",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "1.19.4 Release Candidate 1",
+      "1.19.4"
+    ],
+    "recommended_version": "22w12a",
+    "environment": "Vanilla Minecraft Java Edition in a single-player world using version 22w12a, the first version listed as affected. Use a newly generated Default-type world with commands enabled. Creative mode is selected as a practical safety measure for teleporting into the underground target location; the report does not specify a required game mode.",
+    "preconditions": [
+      "Install and select the exact Java Edition snapshot 22w12a; do not use the fixed version 23w17a.",
+      "Use a clean vanilla installation without mods, shaders, custom resource packs, or externally supplied datapacks.",
+      "Create a completely new world so the chunks around the target coordinates have not previously been generated or loaded.",
+      "Use the report's seed exactly as written: -2284214782727173621.",
+      "Enable commands before creating the world so the supplied in-game teleport command can be executed.",
+      "Do not manually travel toward the target coordinates before teleporting; the intended condition is that the target chunks are encountered for the first time.",
+      "Do not place, break, or interact with blocks at the destination before handing control to the observation subsystem, because such actions could cause unrelated block or lighting updates."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and launch the exact Java Edition installation for snapshot 22w12a. Use a clean, unmodified game directory if available.",
+        "exact_input": "22w12a",
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 22w12a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer, then select Create New World. Do not open an existing world because the target chunks must be newly generated.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. This is not a report requirement; it is a practical safety choice that permits command use and reduces the risk of death at the underground teleport destination.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen displays Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open More World Options and ensure Allow Cheats is set to ON so the supplied teleport command can be run from in-game chat.",
+        "exact_input": "Allow Cheats: ON",
+        "success_cue": "The world-creation options show that cheats or commands are enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "In the world seed field, replace any existing text with the exact seed from the report. Preserve the leading minus sign and all digits.",
+        "exact_input": "-2284214782727173621",
+        "success_cue": "The seed field contains exactly -2284214782727173621.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Leave the world-generation type set to Default and do not add custom datapacks or other generation settings. Return to the main world-creation screen if necessary, then select Create New World.",
+        "exact_input": "World Type: Default",
+        "success_cue": "World generation begins for a new world using the supplied seed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait at the initial spawn point without traveling toward the target. Continue only after the loading screen has closed, nearby terrain has rendered, and normal camera and movement input responds.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly generated world at its initial spawn point, and the game responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T, or the currently bound Open Chat control, to open in-game chat. The command must be run in the game as the local player, so its leading slash must be included.",
+        "exact_input": "T",
+        "success_cue": "The in-game chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Enter the report's teleport command exactly as supplied, but do not press Enter until the full command has been checked. Preserve the dimension, selector, decimal coordinates, yaw, and pitch exactly.",
+        "exact_input": "/execute in minecraft:overworld run tp @s 2824.69 -30.54 -1906.49 -672.08 25.00",
+        "success_cue": "The complete command is visible in chat exactly as /execute in minecraft:overworld run tp @s 2824.69 -30.54 -1906.49 -672.08 25.00.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press Enter once to execute the command. This teleport is the reproduction trigger because it causes the distant target chunks to be generated and loaded for the first time. Do not repeat the command unless the first execution fails with a command error.",
+        "exact_input": "Enter",
+        "success_cue": "Chat closes and the player is teleported underground in the Overworld near X 2824.69, Y -30.54, Z -1906.49 with the report's camera orientation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Do not interact with the terrain after arriving. Wait until the cave and surrounding chunks have rendered, the loading transition has ended, and camera or movement input responds normally. Do not unload and reload the area.",
+        "exact_input": null,
+        "success_cue": "The underground surroundings are fully visible and responsive, with no loading screen or visibly incomplete nearby terrain.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press F3, or the bound debug-screen control, and verify that the dimension is the Overworld and the displayed player coordinates are approximately X 2824.69, Y -30.54, Z -1906.49. Small display rounding is acceptable.",
+        "exact_input": "F3",
+        "success_cue": "The debug screen confirms the player is in the Overworld at approximately 2824.69 / -30.54 / -1906.49.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "While the world view is active, press F3+G to display chunk-border guides. On keyboards where function keys control hardware features, hold the keyboard's Fn modifier as necessary. Do not place blocks to mark the borders.",
+        "exact_input": "F3 + G",
+        "success_cue": "Colored vertical and horizontal chunk-border guide lines are visible in the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "If the full debug text obstructs the cave view, press F3 once to hide the text overlay; the chunk-border guides should remain enabled.",
+        "exact_input": "F3",
+        "success_cue": "The cave is clearly visible while the colored chunk-border guides remain displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Remain at or immediately beside the teleport position and rotate the camera slowly without breaking, placing, or interacting with blocks. Locate naturally generated luminous cave vines, including vines bearing glow berries, or glow lichen at or near one of the displayed chunk borders. Preserve the report-provided arrival direction as the initial viewing direction before panning.",
+        "exact_input": "Mouse movement only",
+        "success_cue": "At least one naturally generated cave-vine or glow-lichen light source near a displayed chunk border is visible, and no block interaction or chunk reload has been induced.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The player has teleported into the previously ungenerated target area, surrounding chunks have finished their first load, chunk-border guides are displayed, and naturally generated luminous cave vines or glow lichen near a border is in view. Hand control to the observation subsystem before placing, breaking, or interacting with any blocks or unloading the area.",
+    "uncertainties": [
+      "The report explicitly states that the issue occurs inconsistently and cannot be reproduced reliably; completing this procedure once may not produce the reported lighting state.",
+      "The deterministic seed and coordinates in the formal Steps to Reproduce are explicitly identified as a 1.19.4 example, whereas recommended_version is necessarily 22w12a because it is the first listed affected version. The report does not confirm that the same luminous blocks exist at this location in 22w12a, so terrain or feature differences may prevent reaching the final localization cue.",
+      "For the formally documented 1.19.4 example, the same seed and command can be used in version 1.19.4 if the target feature is absent in 22w12a; however, 1.19.4 is not selected as recommended_version because it is not the first affected-version entry.",
+      "The comments provide a separate first-load sample for 22w15a: seed -168050448401021573 and command /execute in minecraft:overworld run tp @s -46.79 -39.73 242.87 201.68 42.11. This plan does not silently substitute that sample because it belongs to a different affected version.",
+      "The report does not identify the exact cave-vine or glow-lichen block, exact chunk-border face, or precise viewing direction beyond the yaw and pitch embedded in the teleport command.",
+      "No required render distance, simulation distance, brightness, smooth-lighting setting, or graphics mode is specified. Leave these settings at the installation defaults rather than inventing a requirement."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0a99dd745c232c60016aa8af0d0f4887d09f1a861973cf9e5f",
+    "elapsed_seconds": 81.41,
+    "usage": {
+      "input_tokens": 9101,
+      "output_tokens": 6121,
+      "reasoning_tokens": 4123,
+      "total_tokens": 15222
+    },
+    "timestamp": "2026-09-15T02:37:18.341156+00:00"
+  }
+}

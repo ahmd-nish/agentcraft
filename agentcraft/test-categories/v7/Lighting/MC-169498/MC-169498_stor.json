@@ -1,0 +1,188 @@
+{
+  "bug_id": "MC-169498",
+  "category": "Lighting",
+  "source_md": "[Lighting] - MC-169498.md",
+  "source_meta": {
+    "mojira categories": "Lighting",
+    "project": "MC",
+    "issue key": "MC-169498",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2020-01-05T12:18:54.477-0800",
+    "updated": "2025-04-30T04:51:31.781-0700",
+    "resolution date": "2023-04-12T01:35:30.477-0700",
+    "affects versions": "1.15.1; 1.15.2; 20w06a; 20w18a; 20w20b; 20w22a; 1.16 Pre-release 3; 1.16.2; 1.17.1; 1.18; 1.19.4; 23w12a",
+    "fix versions": "23w16a",
+    "labels": "mojang_internal_1",
+    "watchers": "1",
+    "attachments": "6",
+    "attachment filenames": "picture-1.png; picture-2.png; picture-3.png; picture-4.png; picture-5.png; showcase.mp4",
+    "issue links": "Relates:outward:MC-170010:Sky-lightmaps not properly initialized",
+    "_title": "Empty top subchunks don't update skylight in some cases"
+  },
+  "stor": {
+    "bug_id": "MC-169498",
+    "affected_versions": [
+      "1.15.1",
+      "1.15.2",
+      "20w06a",
+      "20w18a",
+      "20w20b",
+      "20w22a",
+      "1.16 Pre-release 3",
+      "1.16.2",
+      "1.17.1",
+      "1.18",
+      "1.19.4",
+      "23w12a"
+    ],
+    "recommended_version": "1.15.1",
+    "environment": "Unmodified Minecraft Java Edition 1.15.1 in single-player Creative mode with cheats enabled. Use a custom Superflat Overworld containing exactly 16 solid layers from Y=0 through Y=15, with no generated structures. Set Smooth Lighting to OFF and Brightness to Moody to maximize the visibility of lighting boundaries. The deterministic test location is centered inside a chunk at X=8, Z=8; its surface is Y=15, the required air gap is Y=16, and the temporary solid block is Y=17.",
+    "preconditions": [
+      "Launch the exact affected Java Edition version 1.15.1 rather than the fixed version 23w16a.",
+      "Use a vanilla client without shaders, lighting-altering mods, or lighting-altering resource packs.",
+      "Create a new world for this reproduction; do not use an existing world containing blocks or structures above the test surface.",
+      "Use Creative mode and enable commands so that the test block can be positioned without temporary support blocks.",
+      "The flat world's highest generated layer must be Y=15, placing its surface exactly at the boundary below the empty Y=16 through Y=31 subchunk.",
+      "Generated structures must be disabled so villages or other generated blocks cannot occupy the test subchunk or horizontally neighboring subchunks.",
+      "Do not place any blocks other than the single specified test block in Y=16 or above before performing the trigger."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact affected release 1.15.1, launch it, and wait for the main menu.",
+        "exact_input": "1.15.1",
+        "success_cue": "The main menu displays \"Minecraft 1.15.1\" in the lower-left corner.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then select Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set Game Mode to Creative. Open More World Options and ensure Allow Cheats is ON.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON",
+        "success_cue": "The world is configured for Creative mode and commands are enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "While in More World Options, cycle World Type until it reads Superflat, then select Customize and open Presets.",
+        "exact_input": "More World Options... -> World Type: Superflat -> Customize -> Presets",
+        "success_cue": "The Superflat preset screen is open and its preset-code text field is editable.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Replace the entire preset-code text field with the supplied 1.15.1-compatible preset, select Use Preset, and return to the world-options screen. This creates stone at Y=0 through Y=15 and air beginning at Y=16.",
+        "exact_input": "16*minecraft:stone;minecraft:plains;",
+        "success_cue": "The Superflat layer preview shows one 16-layer stone entry and no layers above it.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Set Generate Structures to OFF, return to the main world-creation screen, give the world any name, and select Create New World.",
+        "exact_input": "Generate Structures: OFF",
+        "success_cue": "World generation begins without generated structures enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait until the player enters the world, the surrounding flat terrain has rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "A continuous flat stone surface is visible, surrounding chunks are rendered, and the player can move normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press Esc, select Options, select Video Settings, and repeatedly select Smooth Lighting until its value is OFF.",
+        "exact_input": "Esc -> Options -> Video Settings -> Smooth Lighting: OFF",
+        "success_cue": "The Video Settings screen explicitly displays \"Smooth Lighting: OFF\".",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "On the Video Settings screen, move the Brightness control fully toward the Moody end, then select Done until gameplay resumes.",
+        "exact_input": "Brightness: Moody",
+        "success_cue": "Gameplay has resumed with Smooth Lighting OFF and Brightness set to Moody.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press T to open in-game chat, enter the time command including the leading slash, and press Enter. This keeps the surface under stable daytime skylight.",
+        "exact_input": "/time set noon",
+        "success_cue": "The command succeeds and the sky is at daytime/noon.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T, enter the teleport command including the leading slash, and press Enter. The final two arguments face the player south at a level angle toward the future test block.",
+        "exact_input": "/tp @s 8.5 16 4.5 0 0",
+        "success_cue": "The player is positioned on or immediately above the flat surface at X=8.5, Y=16, Z=4.5 and is facing toward positive Z.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Wait until the terrain around the new position is fully rendered. Do not place support blocks. Confirm that the nearby terrain is a flat surface with open sky and no structures or player-placed blocks above it.",
+        "exact_input": null,
+        "success_cue": "The stone surface is fully rendered and the space from Y=16 upward around X=8, Z=8 is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press T, enter the setblock command including the leading slash, and press Enter. This places one opaque stone block at X=8, Y=17, Z=8. The surface block below it is at Y=15, leaving exactly one air block at Y=16 between the surface and the test block.",
+        "exact_input": "/setblock 8 17 8 minecraft:stone",
+        "success_cue": "The command reports successful placement, and one stone block is visible floating above the surface with exactly a one-block-high air gap beneath it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "With chat closed, keep the player at the teleported position and center the crosshair on the floating stone block. If the crosshair moved, adjust the view slightly without moving or placing any blocks.",
+        "exact_input": null,
+        "success_cue": "The crosshair is on the floating stone block at X=8, Y=17, Z=8, while the surface block at X=8, Y=15, Z=8 remains intact below the air gap.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Break the floating stone block once using the attack/destroy action, whose default input is left-click. In Creative mode, one click should remove it immediately. Do not place or break any other block afterward.",
+        "exact_input": "left-click",
+        "success_cue": "The floating block has just been removed, Y=16 and Y=17 at X=8, Z=8 are air, and the surface at Y=15 remains intact. The scene has not been reloaded and no additional block update has been made.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The isolated solid block at X=8, Y=17, Z=8 has just been broken while the Y=15 surface and the one-block air-gap location remain otherwise untouched. Smooth Lighting is still OFF, Brightness is still Moody, and no later block update or world reload has occurred. Begin lighting/render observation immediately.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode with cheats was selected as a practical method for constructing the isolated block without adding temporary support blocks.",
+      "The report describes a Superflat world with \"only the first 16 blocks\" but does not provide its preset code or block material. This plan interprets that as 16 solid stone layers occupying Y=0 through Y=15.",
+      "Stone was selected as the unspecified solid block because it is a full opaque block in the affected version; the report does not identify the material used in the attachment images.",
+      "The attachment images and demonstration video were not available in the supplied report content, so the exact original horizontal coordinates and camera angle could not be preserved. X=8, Z=8 was selected to put the test near the center of a chunk rather than on a horizontal chunk boundary.",
+      "The report contains a later comparison setup involving an additional block placed directly on the surface. That comparison is not required to reach the primary bug trigger, so this execution plan hands control to the observation subsystem immediately after the first isolated block is removed.",
+      "Command-based placement is a practical deterministic substitute for manually placing the floating block. It avoids temporary support blocks that would violate or disturb the empty-subchunk precondition."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_06a74378a34336fe016aa8ae048e6c87d0a8a543cd885290ac",
+    "elapsed_seconds": 92.36,
+    "usage": {
+      "input_tokens": 17105,
+      "output_tokens": 6833,
+      "reasoning_tokens": 4907,
+      "total_tokens": 23938
+    },
+    "timestamp": "2026-09-15T02:33:04.568742+00:00"
+  }
+}
