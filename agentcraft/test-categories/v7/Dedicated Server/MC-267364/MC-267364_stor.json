@@ -1,0 +1,160 @@
+{
+  "bug_id": "MC-267364",
+  "category": "Dedicated Server",
+  "reproduction_method": "commands",
+  "source_md": "[Dedicated Server] - MC-267364.md",
+  "source_meta": {
+    "mojira categories": "Commands; Dedicated Server",
+    "project": "MC",
+    "issue key": "MC-267364",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2023-12-18T03:33:45.725-0800",
+    "updated": "2025-10-09T01:32:44.559-0700",
+    "resolution date": "2025-10-09T01:32:44.505-0700",
+    "affects versions": "1.20.4; 23w51b; 1.20.6; 24w21b; 1.21; 1.21.4",
+    "fix versions": "25w41a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-267364.mp4",
+    "_title": "Teleporting in the air is considered flying by server"
+  },
+  "stor": {
+    "bug_id": "MC-267364",
+    "affected_versions": [
+      "1.20.4",
+      "23w51b",
+      "1.20.6",
+      "24w21b",
+      "1.21",
+      "1.21.4"
+    ],
+    "recommended_version": "1.20.4",
+    "environment": "A vanilla Minecraft: Java Edition 1.20.4 dedicated server and a matching 1.20.4 client. The dedicated server must have allow-flight=false and command blocks enabled. Use one connected test player with operator permission, in Survival mode, with no other player close enough to be selected by @p.",
+    "preconditions": [
+      "Use the dedicated Java Edition server, not a single-player world or a world opened to LAN.",
+      "The server and client must both run the recommended affected version, 1.20.4.",
+      "The server EULA must have been accepted, and the executor must be able to edit server.properties and access the dedicated server console.",
+      "The test account must be able to join the server and must be granted operator permission so it can run /gamemode and /setblock from in-game chat.",
+      "Use a disposable test world or a location where replacing the block at the player's feet and the block immediately below it will not damage important builds.",
+      "Keep other players disconnected if possible. If another player must remain connected, ensure the test player is the player nearest the command blocks so both @p selectors target the test player.",
+      "Use default controls unless noted otherwise; if controls are rebound, use the bound control for opening chat."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Provision an isolated vanilla Minecraft: Java Edition dedicated server for version 1.20.4, and select the matching 1.20.4 installation in the Minecraft client. Do not substitute the fixed version 25w41a.",
+        "exact_input": null,
+        "success_cue": "The dedicated server files and client installation both identify their version as Minecraft Java Edition 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "If server.properties has not yet been generated, start the dedicated server once, complete the required EULA acceptance, and then stop the server before editing its configuration. Do not edit server.properties while the server is running.",
+        "exact_input": "eula=true",
+        "success_cue": "The dedicated server is stopped, and both eula.txt and server.properties exist in the server directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open server.properties in a plain-text editor and set the dedicated server's flight setting to false. Replace any existing allow-flight line rather than adding a duplicate line.",
+        "exact_input": "allow-flight=false",
+        "success_cue": "server.properties contains exactly one active allow-flight property, and its value is false.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "In server.properties, enable command blocks because the report's two automatic command blocks must execute on the dedicated server. Replace any existing enable-command-block line rather than adding a duplicate line, then save the file.",
+        "exact_input": "enable-command-block=true",
+        "success_cue": "server.properties contains exactly one active enable-command-block property with the value true, and the file has been saved.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Start the 1.20.4 dedicated server and wait for startup and world loading to finish. Do not continue while the server is still generating or loading the world.",
+        "exact_input": null,
+        "success_cue": "The server console displays the normal completion message beginning with “Done”, and the console accepts commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Launch the 1.20.4 client, open Multiplayer, connect to the dedicated server using its configured address, and wait until terrain has rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The test player is present in the dedicated server world, surrounding chunks are rendered, and movement is responsive.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Grant the connected test player operator permission from the dedicated server console. Enter the console command without a leading slash, replacing <player_name> with the test account's exact Minecraft profile name.",
+        "exact_input": "op <player_name>",
+        "success_cue": "The server console confirms that the named player was made a server operator.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Move the test player to an ordinary loaded area with a solid block under the player and open air overhead. Stop on the center of a block and remain at that position while entering the setup commands. Ensure no other player is closer to this position than the test player.",
+        "exact_input": null,
+        "success_cue": "The test player is stationary on a replaceable block, the area around and above the player is unobstructed, and the local chunks are fully loaded.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press T to open in-game chat. Enter the report's game-mode command exactly as shown, including the leading slash, and press Enter. This command must be run by the player in chat, not from the server console.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "Command feedback confirms that the test player's game mode is Survival, and the Survival health and hunger HUD is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Without moving from the selected position, press T to open in-game chat. Enter the report's first setblock command exactly as shown, including capitalization, NBT, quotation marks, relative coordinates, and the leading slash. Press Enter once to execute it.",
+        "exact_input": "/setblock ~ ~-1 ~ chain_command_block{auto:1b,Command:\"teleport @p ~ ~3 ~\"}",
+        "success_cue": "Command feedback reports that the block was placed or changed, and an always-active chain command block now occupies the block immediately below the player's feet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Remain at the same horizontal position. Press T to open in-game chat, enter the report's second setblock command exactly as shown, including the facing=down block state, NBT, quotation marks, relative coordinates, and the leading slash, and press Enter once. Be prepared for automatic teleportation to start immediately when this repeating command block is placed.",
+        "exact_input": "/setblock ~ ~ ~ repeating_command_block[facing=down]{auto:1b,Command:\"teleport @p ~ 0 ~\"}",
+        "success_cue": "The repeating command block has been placed at the player's former feet position directly above the chain command block, is facing downward into it, and the two automatic teleport commands have begun executing without further player input.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Immediately stop issuing commands and do not provide movement, jumping, flying, or game-mode input. Leave the automatic command-block teleport loop running for the report's stated interval of “a few seconds,” while handing control to the observation subsystem as soon as the loop begins.",
+        "exact_input": null,
+        "success_cue": "No manual player input is being supplied, the automatic teleport loop remains the only active movement source, and the observation interval is in progress.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The second /setblock command has just created and activated the downward-facing repeating command block above the chain command block, automatic server-command teleportation has begun, and the player is supplying no manual movement input. The observation subsystem should take control immediately and monitor the client connection and server response during the next few seconds.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, dimension, world type, or exact test location. An ordinary loaded Overworld location with open vertical space is used as a practical deterministic choice.",
+      "The report specifies allow-flight=false but does not explicitly mention enable-command-block. Dedicated-server command blocks must be enabled for the supplied reproduction commands to operate, so enable-command-block=true is included as a practical execution requirement.",
+      "The report does not specify an exact duration for “a few seconds.” No precise timeout is invented; observation begins immediately when the second command block activates.",
+      "The report does not specify the number of connected players. A single connected test player is recommended because both supplied commands use @p and could otherwise select a different nearby player."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0071941553a9a908016aa7b82992d487d0ba657e7f8ca4583c",
+    "elapsed_seconds": 94.94,
+    "usage": {
+      "input_tokens": 8459,
+      "output_tokens": 5877,
+      "reasoning_tokens": 4176,
+      "total_tokens": 14336
+    },
+    "timestamp": "2026-09-14T09:04:08.362703+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

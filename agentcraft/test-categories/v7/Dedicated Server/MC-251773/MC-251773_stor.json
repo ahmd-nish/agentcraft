@@ -1,0 +1,126 @@
+{
+  "bug_id": "MC-251773",
+  "category": "Dedicated Server",
+  "reproduction_method": "outside-game inspection",
+  "source_md": "[Dedicated Server] - MC-251773.md",
+  "source_meta": {
+    "mojira categories": "Dedicated Server",
+    "project": "MC",
+    "issue key": "MC-251773",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2022-05-15T14:15:05.771-0700",
+    "updated": "2025-04-16T13:03:04.394-0700",
+    "resolution date": "2022-09-03T20:26:36.980-0700",
+    "affects versions": "22w19a",
+    "fix versions": "1.19 Pre-release 1",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "fat_tower_base.nbt",
+    "issue links": "Blocks:outward:MC-131740:Re-running the data generator in the same folder causes previously generated -reports and- .snbt files to be deleted",
+    "_title": "The --dev argument for the data generators no longer converts NBT to SNBT properly"
+  },
+  "stor": {
+    "bug_id": "MC-251773",
+    "affected_versions": [
+      "22w19a",
+      "22w15a"
+    ],
+    "recommended_version": "22w19a",
+    "environment": "Minecraft: Java Edition 22w19a dedicated-server data-generator environment on a local filesystem, using a terminal or command prompt and a Java SE 17 runtime available through the `java` command. Java SE 17 is the minimum Java version listed for 22w19a. No Minecraft client, running game server, world, EULA acceptance, player account, or operator permissions are required. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_22w19a?utm_source=openai))",
+    "preconditions": [
+      "The exact Mojira attachment `fat_tower_base.nbt` from MC-251773 is available and has not been decompressed, converted, renamed, or otherwise modified.",
+      "The official cross-platform server JAR for Minecraft: Java Edition snapshot 22w19a is available and is named exactly `server.jar`. The official 22w19a snapshot page provides the applicable server JAR download. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-22w19a?utm_source=openai))",
+      "A Java SE 17 runtime is installed, and running `java -version` from the chosen terminal invokes that runtime.",
+      "The executor has permission to create files and subdirectories in the test directory.",
+      "A fresh, isolated test directory is used so that no output or cache from an earlier data-generator execution can affect this single reproduction run.",
+      "Do not use the fix version `1.19 Pre-release 1` for this reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create a new, otherwise empty filesystem directory for this reproduction. Use a simple path without unusual shell characters; for example, a directory named `MC-251773-test`. Do not create a `generated` subdirectory manually and do not reuse a directory from an earlier data-generator run.",
+        "exact_input": null,
+        "success_cue": "The test directory exists, is writable, and contains no files or subdirectories.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Download or retrieve the attachment named `fat_tower_base.nbt` from Mojira report MC-251773. Save the binary attachment directly in the test directory. Preserve the filename and `.nbt` extension exactly; ensure the operating system or browser has not appended another extension such as `.zip`, `.txt`, or `.download`.",
+        "exact_input": "fat_tower_base.nbt",
+        "success_cue": "The test directory contains an unmodified file whose exact filename is `fat_tower_base.nbt`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "From the official Minecraft Snapshot 22w19a page, download the cross-platform Minecraft server JAR for 22w19a. Place that JAR directly in the same test directory as `fat_tower_base.nbt`. Rename the downloaded JAR to exactly `server.jar` if it has any other filename. Do not substitute a server JAR from `1.19 Pre-release 1` or a current Minecraft release. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-22w19a?utm_source=openai))",
+        "exact_input": "server.jar",
+        "success_cue": "The test directory contains the 22w19a server JAR named exactly `server.jar`, beside `fat_tower_base.nbt`.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Open a terminal or command prompt and check the Java runtime that will execute the data generator. Run the version command and read the first lines of its output.",
+        "exact_input": "java -version",
+        "success_cue": "The command completes successfully and reports Java version 17. If `java` is not found or reports a different major version, configure the terminal to use Java 17 before continuing.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Change the terminal's working directory to the test directory containing the two downloaded files. On Windows, this may be done by opening Command Prompt in that folder; on macOS or Linux, use `cd` followed by the directory path. Do not run the data-generator command from a parent directory.",
+        "exact_input": null,
+        "success_cue": "The terminal's current working directory is the test directory created in step 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Inspect the current directory before execution. Confirm that `server.jar` and `fat_tower_base.nbt` are both regular files directly in this directory, not inside nested folders. Confirm that there is no existing `generated` directory and no existing data-generator cache. Do not start the JAR as a normal Minecraft server.",
+        "exact_input": null,
+        "success_cue": "The current directory contains `server.jar` and `fat_tower_base.nbt`, and it contains no preexisting `generated` output directory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "From the terminal whose working directory is the test directory, execute the report's data-generator command once. The report's `<path>` placeholder is replaced with `.` because `.` denotes the current directory, which is the folder containing the NBT input. Preserve the `-DbundlerMainClass`, `-jar`, `--dev`, and `--input` arguments exactly. Do not add `--output`, do not launch a second copy, and do not rerun the command.",
+        "exact_input": "java -DbundlerMainClass=\"net.minecraft.data.Main\" -jar server.jar --dev --input .",
+        "success_cue": "The terminal starts `net.minecraft.data.Main` and begins the `NBT to SNBT` provider rather than starting an interactive Minecraft dedicated server.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Allow the single data-generator execution to finish without interrupting it or modifying any files. Wait until the provider and caching messages have completed and the Java process returns control to the shell prompt. Preserve the complete terminal output and leave the generated filesystem contents untouched for the Observation Agent.",
+        "exact_input": null,
+        "success_cue": "The Java process has terminated normally, the shell prompt is available again, and the console output and generated directory are ready for inspection.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The 22w19a data-generator command has completed exactly once and returned control to the terminal. The full console log remains visible or captured, and the newly produced `generated` directory and its contents have not been opened with a program that could modify them, deleted, or altered. Hand control to the Observation Agent to inspect the log and filesystem output.",
+    "uncertainties": [
+      "The raw report names the required Mojira attachment but does not supply its attachment download URL or binary contents. Reproduction requires the exact `fat_tower_base.nbt` attachment from MC-251773; no substitute structure file has been introduced.",
+      "The formal Affects Versions field lists `22w19a`, while the confirmation comment additionally states that the problem started in `22w15a` and that `22w14a` works. Both explicitly affected snapshots are recorded, but the plan uses `22w19a` because it is the first listed affected version and the version used by the report's primary steps.",
+      "The operating system is not specified. The plan therefore uses the cross-platform Java command and `.` as the input path after establishing the test directory as the terminal's working directory."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_07da7660399463c2016aa7b7d1810c87d09fa87d10cc91d41a",
+    "elapsed_seconds": 88.06,
+    "usage": {
+      "input_tokens": 31611,
+      "output_tokens": 5445,
+      "reasoning_tokens": 3928,
+      "total_tokens": 37056
+    },
+    "timestamp": "2026-09-14T09:02:33.420729+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
