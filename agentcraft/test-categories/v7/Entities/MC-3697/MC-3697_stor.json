@@ -1,0 +1,228 @@
+{
+  "bug_id": "MC-3697",
+  "category": "Entities",
+  "source_md": "[Entities] - MC-3697.md",
+  "source_meta": {
+    "mojira categories": "Entities",
+    "project": "MC",
+    "issue key": "MC-3697",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2012-11-22T07:39:37.860-0800",
+    "updated": "2025-05-29T09:20:39.599-0700",
+    "resolution date": "2024-09-14T06:21:16.400-0700",
+    "affects versions": "Minecraft 1.4.5; Snapshot 12w50a; 1.15.2; 20w16a; 1.16 Pre-release 2; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w30a; 1.16.2 Pre-release 1; 1.16.2 Pre-release 2; 1.16.2 Pre-release 3; 1.16.2 Release Candidate 1; 1.16.2 Release Candidate 2; 1.16.2; 1.16.3 Release Candidate 1; 1.16.3; 1.16.4 Pre-release 1; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w07a; 21w08b; 21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w17a; 21w20a; 1.17; 1.17.1 Release Candidate 1; 1.17.1; 21w39a; 21w40a; 21w42a; 1.18; 1.18.1; 22w05a; 1.18.2 Release Candidate 1; 1.18.2; 22w14a; 22w18a; 1.19; 1.19.1 Pre-release 5; 1.19.1; 1.19.2; 22w43a; 1.19.3; 1.19.4; 1.20; 1.20.1; 23w33a; 24w11a; 24w13a; 1.20.6; 1.21; 1.21.1",
+    "fix versions": "24w33a",
+    "area": "Platform",
+    "labels": "armor_stand; glow_item_frame; item_frame; leash_knot; painting; tnt",
+    "watchers": "2",
+    "attachments": "6",
+    "attachment filenames": "2012-11-22_10.38.01.png; 2012-11-22_10.38.07.png; 2012-11-22_10.39.20.png; 2024-08-14_03.08.23.png; MC-3697.mp4; setup.png",
+    "issue links": "Relates:outward:MC-276700:Underwater explosions can still destroy vehicles | Relates:inward:MCPE-183527:TNT submerged in water can destroy armor stands, leash knots and paintings",
+    "_title": "TNT submerged in water can destroy item frames, paintings, armor stands, and other similar entities"
+  },
+  "stor": {
+    "bug_id": "MC-3697",
+    "affected_versions": [
+      "Minecraft 1.4.5",
+      "Snapshot 12w50a",
+      "1.15.2",
+      "20w16a",
+      "1.16 Pre-release 2",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.2 Pre-release 2",
+      "1.16.2 Pre-release 3",
+      "1.16.2 Release Candidate 1",
+      "1.16.2 Release Candidate 2",
+      "1.16.2",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "1.16.4 Pre-release 1",
+      "1.16.4 Pre-release 2",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08b",
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w17a",
+      "21w20a",
+      "1.17",
+      "1.17.1 Release Candidate 1",
+      "1.17.1",
+      "21w39a",
+      "21w40a",
+      "21w42a",
+      "1.18",
+      "1.18.1",
+      "22w05a",
+      "1.18.2 Release Candidate 1",
+      "1.18.2",
+      "22w14a",
+      "22w18a",
+      "1.19",
+      "1.19.1 Pre-release 5",
+      "1.19.1",
+      "1.19.2",
+      "22w43a",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "23w33a",
+      "24w11a",
+      "24w13a",
+      "1.20.6",
+      "1.21",
+      "1.21.1"
+    ],
+    "recommended_version": "Minecraft 1.4.5",
+    "environment": "Vanilla Minecraft: Java Edition Minecraft 1.4.5, single-player integrated server, Creative mode, in a new disposable Overworld. A flat or Superflat world is recommended only to simplify construction. No specific seed, coordinates, difficulty, resource pack, graphics setting, or dedicated server is stated by the report.",
+    "preconditions": [
+      "Install and launch the exact affected version Minecraft 1.4.5 rather than the fix version 24w33a.",
+      "Use a new disposable world so the TNT test cannot damage an important save.",
+      "Use Creative mode as a practical construction method; the report does not require a particular game mode.",
+      "Default controls are assumed: E opens the Creative inventory and right-click uses or places the selected item. If controls have been rebound, use the equivalent bound actions.",
+      "Obtain Stone or another ordinary solid building block, TNT, a Water Bucket, a Painting, an Item Frame, and Flint and Steel from the Creative inventory.",
+      "Perform the test in a clear area away from mobs, dropped items, or unrelated decorative entities that could obstruct placement or make the target entities ambiguous.",
+      "In the recommended historical version, reproduce with the explicitly named Item Frame and Painting targets. Do not require later-added target types such as armor stands or glow item frames for this run."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher installation configured for the exact affected version Minecraft 1.4.5, with no gameplay-modifying mods, and wait for the main menu to finish loading.",
+        "exact_input": "Minecraft 1.4.5",
+        "success_cue": "The Minecraft main menu is responsive and identifies the running version as Minecraft 1.4.5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set the game mode to Creative, and create the world. A Superflat world may be selected under the world options to provide a convenient building surface; no particular seed is required. Wait until terrain has rendered and player movement responds normally.",
+        "exact_input": "Game Mode: Creative; optional World Type: Superflat",
+        "success_cue": "The player is standing in a loaded Overworld and can use Creative-mode flight and the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the Creative inventory. Locate Stone or another ordinary solid block, TNT, Water Bucket, Painting, Item Frame, and Flint and Steel, then move each item to an accessible inventory or hotbar slot. Close the inventory with E or Esc.",
+        "exact_input": "Stone; TNT; Water Bucket; Painting; Item Frame; Flint and Steel",
+        "success_cue": "All six required item types are available in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a clear, approximately 9-by-9-block area of level ground. Remove tall grass or other obstructions from the construction area if necessary.",
+        "exact_input": null,
+        "success_cue": "There is enough unobstructed level space for a wall and a small water pit, with no nearby entities that could be mistaken for test targets.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Using Stone, build a vertical target wall seven blocks wide and four blocks high. Keep the entire front face accessible; this is the face on which the Painting and Item Frame will be mounted.",
+        "exact_input": "7 blocks wide × 4 blocks high",
+        "success_cue": "A solid seven-by-four-block vertical wall is present with an unobstructed front face.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Directly in front of the wall, excavate a three-by-three-block pit that is two blocks deep. Place one side of the pit against the base of the wall so the future submerged TNT will remain close to entities attached above the waterline.",
+        "exact_input": "3 blocks wide × 3 blocks long × 2 blocks deep",
+        "success_cue": "A two-block-deep, three-by-three pit touches the base of the target wall and is otherwise empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select TNT in the hotbar. Place one TNT block in the center cell of the pit's bottom layer. Do not ignite it yet.",
+        "exact_input": "TNT",
+        "success_cue": "Exactly one unprimed TNT block is centered on the floor of the two-block-deep pit.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the Water Bucket and place water throughout the pit. Continue placing water as needed until the surface is level, the spaces around the TNT contain water, and there is a complete water block directly above the TNT. Do not leave the TNT exposed above the water surface.",
+        "exact_input": "Water Bucket",
+        "success_cue": "The TNT is visible at the bottom of the pit and is fully submerged, including a full layer of water above it; the water is contained inside the pit.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select the Painting. Face the front of the target wall above the pit and right-click a wall block immediately above the water surface to place a painting. If placement fails or the selected painting extends outside the wall, clear more wall space or remove and place it again. Do not allow water flow to remove it.",
+        "exact_input": "Painting; right-click the wall",
+        "success_cue": "A painting is attached to the wall facing the submerged TNT and remains present without touching an obstruction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Item Frame. Right-click an unoccupied wall block near the painting and just above the water surface. Leave at least one free wall block if necessary to avoid overlapping the painting. The frame may remain empty because the frame entity itself is the target.",
+        "exact_input": "Item Frame; right-click the wall",
+        "success_cue": "An empty item frame is attached to the wall near the painting, and both target entities are visible from the pit.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Verify the completed pre-trigger setup before proceeding: one TNT block is fully underwater, the Painting and Item Frame are still attached above the nearby water surface, and no solid block has been placed between the TNT and the front faces of the targets.",
+        "exact_input": null,
+        "success_cue": "The submerged TNT, Painting, and Item Frame are simultaneously present and within the compact test structure.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select Flint and Steel in the active hotbar slot. Stand or fly close enough to reach the submerged TNT, aim the crosshair directly at the TNT through the water, and right-click once. Do not left-click, because Creative-mode left-clicking would remove the TNT rather than ignite it.",
+        "exact_input": "Flint and Steel; right-click the submerged TNT once",
+        "success_cue": "The TNT changes into a flashing primed TNT entity, the fuse sound begins, and the primed TNT remains inside the water-filled pit.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Immediately stop interacting with the setup and wait for the single primed TNT entity to complete its fuse and detonate. Do not place or break blocks, attack the targets, or ignite additional TNT while waiting.",
+        "exact_input": null,
+        "success_cue": "The one TNT detonation has completed and the explosion sound and particles have begun to clear; no post-explosion evaluation has yet been performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The single TNT entity has just detonated while fully submerged next to the wall-mounted Painting and Item Frame. Begin the separate observation phase immediately, without touching the wall, targets, drops, or surrounding blocks.",
+    "uncertainties": [
+      "The report requires building the setup shown in setup.png, but the attachment image itself was not included in the supplied report text and its exact geometry could not be recovered. The compact wall-and-pit arrangement above is therefore a minimum deterministic reconstruction rather than a claim that its dimensions match the attachment.",
+      "The report does not specify the target-to-TNT distance, water-container dimensions, world seed, coordinates, game mode, or ignition mechanism. Creative mode, the stated dimensions, and Flint and Steel are practical execution choices.",
+      "The first listed affected version, Minecraft 1.4.5, was selected as required. This historical run is limited to the explicitly named Item Frame and Painting targets available for the original reproduction; later-listed affected versions can be used in a separate run if testing later-added entity types is required.",
+      "Web verification was attempted only because the attachment-dependent setup geometry was missing. No accessible external source established the exact layout shown in setup.png, so the supplied report remains the source of truth and the reconstructed geometry is explicitly marked as inference."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0786b63c47de8031016aa8900977d087d0b9fd1d06fca379d9",
+    "elapsed_seconds": 131.18,
+    "usage": {
+      "input_tokens": 23824,
+      "output_tokens": 5300,
+      "reasoning_tokens": 5300,
+      "total_tokens": 29124
+    },
+    "timestamp": "2026-09-15T00:25:48.398776+00:00"
+  }
+}
