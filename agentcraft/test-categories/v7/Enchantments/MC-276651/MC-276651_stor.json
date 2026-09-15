@@ -1,0 +1,163 @@
+{
+  "bug_id": "MC-276651",
+  "category": "Enchantments",
+  "reproduction_method": "commands",
+  "source_md": "[Enchantments] - MC-276651.md",
+  "source_meta": {
+    "mojira categories": "Data Packs; Enchantments",
+    "project": "MC",
+    "issue key": "MC-276651",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-09-12T16:36:13.036-0700",
+    "updated": "2025-04-26T16:46:58.155-0700",
+    "resolution date": "2024-10-01T04:22:24.927-0700",
+    "affects versions": "24w37a; 24w38a",
+    "fix versions": "24w40a",
+    "area": "Platform",
+    "labels": "damage-item; data-pack; enchantment",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "image-2024-09-18-20-23-28-123.png; repair testing 1.zip",
+    "_title": "damage_item does not repair items when the value is negative"
+  },
+  "stor": {
+    "bug_id": "MC-276651",
+    "affected_versions": [
+      "24w37a",
+      "24w38a"
+    ],
+    "recommended_version": "24w37a",
+    "environment": "Minecraft: Java Edition snapshot 24w37a in a singleplayer world using the integrated server. Use the exact attached data pack \"repair testing 1.zip\". Creative mode and commands/cheats are enabled as practical execution choices; the report does not specify a game mode, world seed, coordinates, or dedicated-server requirement.",
+    "preconditions": [
+      "Configure the Minecraft Launcher to start the unmodified Java Edition snapshot 24w37a, which is the first version listed as affected.",
+      "Obtain the exact Mojira attachment named \"repair testing 1.zip\" from MC-276651. Do not rewrite, rename internally, modernize, or substitute its enchantment definition.",
+      "The attached data pack must provide the custom enchantment identifier testing:repair_damage_negative_test. The raw report does not include the pack's file contents, so reproduction cannot proceed if the attachment is unavailable or invalid.",
+      "Use a player with permission to execute /give, /enchant, and /datapack commands. In singleplayer, create the test world with commands/cheats enabled.",
+      "Use a new or otherwise controlled inventory so the netherite chestplate created by the report's command can be identified unambiguously."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start the installation configured for Java Edition snapshot 24w37a. Do not use the listed fix version 24w40a.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 24w37a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, and configure a disposable test world. Set Game Mode to Creative to simplify inventory handling.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is open with Creative mode selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Enable commands for the world. In the world-creation screen, open the More tab and ensure Allow Commands is set to ON if it is not already enabled by Creative mode.",
+        "exact_input": null,
+        "success_cue": "The world configuration permits the player to execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "From the More tab of the world-creation screen, open Data Packs.",
+        "exact_input": null,
+        "success_cue": "The Data Packs selection screen is visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Drag the exact attachment file \"repair testing 1.zip\" into the Data Packs screen. Accept the confirmation prompt if one appears, then use the arrow on the pack entry to move it into the selected/enabled packs column. Leave the ZIP packaged unless Minecraft rejects it as an invalid data pack.",
+        "exact_input": "repair testing 1.zip",
+        "success_cue": "The attached repair-testing pack appears in the selected/enabled packs column without an incompatibility or validation error that prevents continuing.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select Done, then select Create New World. Wait until the player has entered the world, surrounding terrain has rendered, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded 24w37a world and can move and open chat normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T to open in-game chat, enter the data-pack listing command exactly as shown including the leading slash, and press Enter.",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "Command output lists the repair-testing attachment among the enabled data packs. Its displayed pack name may be based on its file name or its internal pack description.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open chat, enter the report's item command exactly as written including the leading slash, and press Enter. Do not change the item identifier or component syntax.",
+        "exact_input": "/give @p minecraft:netherite_chestplate[minecraft:damage=591]",
+        "success_cue": "The command reports that a Netherite Chestplate was given to the player, and one damaged Netherite Chestplate is present in the player's inventory or hotbar.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Press E to open the inventory. Locate the newly given Netherite Chestplate; it should have a nearly depleted durability bar because it was created with minecraft:damage=591. Move this chestplate into hotbar slot 1, the leftmost slot in the nine-slot bar at the bottom of the inventory. Keep hotbar slot 2 empty so it can be used to establish a clean trigger boundary.",
+        "exact_input": "E",
+        "success_cue": "The damaged Netherite Chestplate is in hotbar slot 1 and hotbar slot 2 is empty.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press E to close the inventory, then press the hotbar key 1 to make slot 1 the active slot. The active hotbar slot is the outlined slot, and its item is held in the player's main hand.",
+        "exact_input": "1",
+        "success_cue": "Hotbar slot 1 is outlined and the damaged Netherite Chestplate is visible as the main-hand item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "While the damaged chestplate remains selected in the main hand, press T to open chat. Enter the report's enchantment command exactly as written, including the leading slash and custom namespace, and press Enter.",
+        "exact_input": "/enchant @p testing:repair_damage_negative_test",
+        "success_cue": "The command completes successfully rather than reporting an unknown enchantment, incompatible item, insufficient permission, or other command error. The selected chestplate is now enchanted, normally indicated by an enchantment glint and/or an enchantment entry in its tooltip.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Immediately press the hotbar key 2 to select the deliberately empty adjacent slot. Do not equip, drop, replace, or otherwise modify the enchanted chestplate in slot 1.",
+        "exact_input": "2",
+        "success_cue": "Hotbar slot 2 is outlined, the player's main hand is empty, and the enchanted damaged chestplate remains in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press the hotbar key 1 once to select the enchanted damaged chestplate again. From this point onward, do not switch slots, equip the chestplate as armor, open an inventory, drop it, or execute another item-modifying command. Hand control to the observation subsystem immediately so it can monitor the item while the main-hand condition remains continuous.",
+        "exact_input": "1",
+        "success_cue": "Hotbar slot 1 is outlined and the enchanted, damaged Netherite Chestplate has just become the continuously held main-hand item.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 13,
+    "handoff_condition": "The 24w37a world has the attached repair-testing data pack enabled, and the Netherite Chestplate created with minecraft:damage=591 has been successfully enchanted with testing:repair_damage_negative_test. The player has just selected that chestplate in the main hand and will keep it selected continuously. Begin time-based durability observation immediately from this state, covering at least the next 20 game ticks without changing the held item.",
+    "uncertainties": [
+      "The raw report references the attachment \"repair testing 1.zip\" but does not provide its contents. This plan therefore cannot independently reconstruct or validate the definition of testing:repair_damage_negative_test; the exact attachment must be used.",
+      "The report does not specify game mode, world seed, multiplayer status, or dedicated-server configuration. A Creative singleplayer world with commands enabled is selected as the simplest deterministic environment and is not asserted to be a bug requirement.",
+      "The data pack's exact displayed name in /datapack list enabled is unknown because pack.mcmeta was not supplied. The executor must identify it by the attachment file name or internal description and must also confirm that the custom enchantment command resolves successfully.",
+      "The report does not explicitly describe how the chestplate was selected before /enchant, although /enchant operates on the target player's selected main-hand item. The inventory and hotbar-selection steps operationalize this necessary command precondition.",
+      "Switching briefly to empty hotbar slot 2 after enchanting and then back to slot 1 is a practical inference used to produce a precise observation start point; it is not stated in the report."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_08d76c78ec0d0d35016aa7b888812087d0b6248ddd8fb5a33f",
+    "elapsed_seconds": 94.82,
+    "usage": {
+      "input_tokens": 16657,
+      "output_tokens": 5585,
+      "reasoning_tokens": 3813,
+      "total_tokens": 22242
+    },
+    "timestamp": "2026-09-14T09:05:43.185382+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}
