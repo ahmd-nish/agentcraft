@@ -1,0 +1,195 @@
+{
+  "bug_id": "MC-275270",
+  "category": "Minecart",
+  "source_md": "[Minecart] - MC-275270.md",
+  "source_meta": {
+    "mojira categories": "Minecart",
+    "project": "MC",
+    "issue key": "MC-275270",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-08-15T11:09:43.666-0700",
+    "updated": "2025-04-26T16:08:47.667-0700",
+    "resolution date": "2024-08-20T06:00:32.078-0700",
+    "affects versions": "24w33a",
+    "fix versions": "24w34a",
+    "area": "Platform",
+    "labels": "experimental_minecart",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "image_2024-08-15_181714052.png; image-2024-08-15-18-19-45-192.png; image-2024-08-15-20-09-38-588.png; screenshot-1.png",
+    "issue links": "Relates:outward:MC-275203:Minecarts always spawn facing east/west and move upward slightly when being placed on rails | Duplicate:inward:MC-275356:VERY strange visual minecart behavior (Look at Picture and Video!)",
+    "_title": "Minecart not oriented correctly when placed on a sloped unpowered powered rail"
+  },
+  "stor": {
+    "bug_id": "MC-275270",
+    "affected_versions": [
+      "24w33a"
+    ],
+    "recommended_version": "24w33a",
+    "environment": "Minecraft Java Edition snapshot 24w33a in a single-player Creative-mode world with the Minecart Improvements experiment enabled. No particular seed, coordinates, or dedicated server is specified by the report.",
+    "preconditions": [
+      "The Minecraft Launcher is able to install and start Java Edition snapshot 24w33a.",
+      "Create a new world for this reproduction because the Minecart Improvements experiment must be enabled from the Experiments screen during world creation.",
+      "Use the Minecart Improvements experiment; the report comment states that the issue only occurs with this experimental toggle enabled.",
+      "Use Item/Place Block must be bound to an available control; its default input is right-click.",
+      "Use an open build area without adjacent redstone power sources so that the powered rail remains unpowered."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation that uses snapshot 24w33a, and start the game with that installation.",
+        "exact_input": "Version: snapshot 24w33a; click Play",
+        "success_cue": "The Java Edition main menu is open and displays version 24w33a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world creation screen.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Set the new world's game mode to Creative so the required building materials can be acquired without unrelated crafting or exploration.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world creation screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the experiment settings and enable the experiment named Minecart Improvements. Do not substitute the Redstone Experiments toggle or leave Minecart Improvements disabled.",
+        "exact_input": "More -> Experiments -> Minecart Improvements: ON",
+        "success_cue": "The Minecart Improvements control is visibly set to ON.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Return from the Experiments screen and create the world. If an experimental-world warning appears, accept it and continue.",
+        "exact_input": "Done -> Create New World; confirm Proceed if prompted",
+        "success_cue": "The player has entered the newly created world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Wait before building until nearby terrain has rendered and normal movement and camera controls respond without world-loading pauses.",
+        "exact_input": null,
+        "success_cue": "Nearby blocks are rendered, the player can move normally, and the world is ready for block placement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press E to open the Creative inventory, select the Search Items tab, search for Stone, and move Stone into an empty hotbar slot. The hotbar is the row of nine immediately selectable slots at the bottom of the screen.",
+        "exact_input": "E; search text: Stone",
+        "success_cue": "Stone is present in a hotbar slot.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "In the Creative inventory search, find Powered Rail and move it into a different hotbar slot.",
+        "exact_input": "Search text: Powered Rail",
+        "success_cue": "Powered Rail is present in a hotbar slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "In the Creative inventory search, find the ordinary Minecart item and move it into a different hotbar slot. Use the item named Minecart, not Minecart with Chest, Minecart with Hopper, Minecart with TNT, or Minecart with Furnace.",
+        "exact_input": "Search text: Minecart",
+        "success_cue": "An ordinary Minecart item is present in a hotbar slot.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Close the inventory and move to a clear, approximately 3-by-3-block area that has no redstone torches, redstone blocks, powered redstone dust, levers, buttons, or other potential rail power sources next to the intended build.",
+        "exact_input": "E",
+        "success_cue": "The inventory is closed and an unobstructed, unpowered build area is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select Stone in the hotbar and place one Stone block on the ground. Designate this single block as the lower support.",
+        "exact_input": "Select the Stone hotbar slot; right-click the ground once",
+        "success_cue": "One Stone block is present as the lower support.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Place a second Stone block directly adjacent to the lower support, then place one more Stone block on top of that second block. This produces two adjacent support columns: one column one block tall and the other two blocks tall.",
+        "exact_input": "Right-click the adjacent ground position; right-click the top face of the newly placed block",
+        "success_cue": "A one-block-tall Stone support and a directly adjacent two-block-tall Stone support are present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select Powered Rail and place one on the top face of the one-block-tall support.",
+        "exact_input": "Select the Powered Rail hotbar slot; right-click the top of the one-block-tall support",
+        "success_cue": "A Powered Rail is resting on the lower support.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Place another Powered Rail on the top face of the adjacent two-block-tall support so the two rails connect across the one-block height difference.",
+        "exact_input": "Right-click the top of the two-block-tall support",
+        "success_cue": "The rail on the lower support has changed into a diagonal segment that rises toward the rail on the taller support.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Confirm that the diagonal target rail is a Powered Rail and is not receiving redstone power. If desired, aim at it and use the F3 debug screen to check that the targeted block is minecraft:powered_rail with an ascending shape and powered set to false, then close the debug screen before continuing.",
+        "exact_input": "F3; verify Targeted Block properties; F3",
+        "success_cue": "The target is a visibly sloped Powered Rail, no redstone source is powering it, and the normal game view is restored.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Select the ordinary Minecart item in the hotbar. Do not mount or dispense it.",
+        "exact_input": "Press the number key corresponding to the Minecart hotbar slot, or scroll to that slot",
+        "success_cue": "Minecart is the active hotbar item and is visible in the player's hand.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Aim the crosshair directly at the diagonal surface of the lower, sloped, unpowered Powered Rail. Ensure the crosshair is not aimed at the flat rail on the upper support or at either Stone support block.",
+        "exact_input": null,
+        "success_cue": "The crosshair is centered on the diagonal Powered Rail that rises between the two support heights.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Use the Minecart item once on the sloped, unpowered Powered Rail, using the default right-click control. Do not push, enter, strike, or otherwise interact with the resulting minecart after placement.",
+        "exact_input": "Right-click once (Use Item/Place Block)",
+        "success_cue": "A minecart entity has just been created on the diagonal Powered Rail, with no subsequent interaction performed.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The ordinary minecart has just been placed directly onto the sloped, unpowered Powered Rail in the 24w33a world with Minecart Improvements enabled. Stop player input and begin observing the newly placed minecart's orientation.",
+    "uncertainties": [
+      "The report's exact build diagram was contained in image attachments that were not included in the supplied report text and were not publicly readable from the issue page. The plan therefore reconstructs the minimum supported setup: a Powered Rail sloping upward by one block and receiving no redstone power.",
+      "The original attachment may have used different support blocks, cardinal orientation, surrounding rails, or a longer slope. None of those details are available in the supplied text, so Stone supports and a two-rail one-block incline are practical implementation choices rather than asserted report requirements.",
+      "The report does not specify a seed, coordinates, game mode, or multiplayer/server requirement. A new single-player Creative world is selected solely to remove item-acquisition randomness while retaining the required experimental toggle.",
+      "The comment describes dispenser placement as an additional reproduction variant requiring a one-tick pulse, but the primary report already supplies the simpler player-placement trigger. The dispenser variant is intentionally omitted from the main execution path."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_00b40d6bffeb60a5016aa8aa0cc01887d0b1705f3877247406",
+    "elapsed_seconds": 77.79,
+    "usage": {
+      "input_tokens": 25353,
+      "output_tokens": 4969,
+      "reasoning_tokens": 3137,
+      "total_tokens": 30322
+    },
+    "timestamp": "2026-09-15T02:15:54.415470+00:00"
+  }
+}

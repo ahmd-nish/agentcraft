@@ -1,0 +1,157 @@
+{
+  "bug_id": "MC-275857",
+  "category": "Minecart",
+  "source_md": "[Minecart] - MC-275857.md",
+  "source_meta": {
+    "mojira categories": "Minecart; Rendering",
+    "project": "MC",
+    "issue key": "MC-275857",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-08-22T01:01:46.244-0700",
+    "updated": "2025-04-26T16:24:55.343-0700",
+    "resolution date": "2024-09-12T01:24:55.664-0700",
+    "affects versions": "24w34a; 24w36a",
+    "fix versions": "24w37a",
+    "area": "Platform",
+    "labels": "experimental_minecart",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "image-2024-08-22-18-06-26-755.png; image-2024-08-23-15-34-17-578.png; world.zip",
+    "issue links": "Relates:outward:MC-275883:Riding a minecart cluster into a wall freezes the game",
+    "_title": "Minecarts become invisible if a lot of them are in the same area"
+  },
+  "stor": {
+    "bug_id": "MC-275857",
+    "affected_versions": [
+      "24w34a",
+      "24w36a"
+    ],
+    "recommended_version": "24w34a",
+    "environment": "Minecraft: Java Edition snapshot 24w34a, using the attached world.zip as a local single-player world. Preserve the world's existing experimental settings and redstone construction; do not recreate the setup in a new world or open the test copy in 24w37a.",
+    "preconditions": [
+      "The attachment named world.zip is available and has not been modified.",
+      "Minecraft Launcher can launch the exact historical snapshot 24w34a; do not use the launcher entry named Latest Snapshot unless it explicitly resolves to 24w34a.",
+      "Use a separate 24w34a game directory, or at minimum retain an untouched backup of world.zip, so the test can be reset after the world's redstone state changes.",
+      "The extracted save folder containing level.dat must be installed directly under the selected installation's saves directory.",
+      "Use the controls bound to Attack/Destroy and Use Item/Place Block as applicable; the default Use Item/Place Block input is right-click.",
+      "Do not change the imported world's game mode, experimental feature configuration, command blocks, redstone components, or minecart arrangement before following the reset step."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Make an untouched backup copy of the attached world.zip. Perform the reproduction on a separate working copy so the original saved redstone and entity state remains reusable.",
+        "exact_input": "world.zip",
+        "success_cue": "An unchanged original archive and a separate working copy of world.zip are available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open Minecraft Launcher, select Minecraft: Java Edition, and open the Installations tab. Enable snapshot versions in the version filter if necessary, create a new installation, and select the exact version 24w34a. Assign a separate game directory to this installation if possible. Do not select 24w37a, because that is listed as a fix version. Official snapshot instructions confirm that snapshots are enabled from the Installations tab. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-24w34a?utm_source=openai))",
+        "exact_input": "24w34a",
+        "success_cue": "A launcher installation explicitly displaying version 24w34a is selected and ready to start.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Use the folder icon for the 24w34a launcher installation to open its game directory. Open its saves folder, creating that folder if it is absent. Extract the working copy of world.zip. If extraction creates nested wrapper folders, move the innermost folder that directly contains level.dat into saves; level.dat must not remain buried an extra folder level below the world folder. Java Edition downloaded worlds are installed by extracting the folder containing level.dat into the saves directory. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3AMap_downloads?utm_source=openai))",
+        "exact_input": "world.zip -> <24w34a game directory>/saves/<world folder>/level.dat",
+        "success_cue": "The saves directory contains one extracted world folder, and level.dat is directly inside that world folder.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Return to Minecraft Launcher and start the installation that explicitly identifies itself as snapshot 24w34a. Wait for the Java Edition main menu to finish loading.",
+        "exact_input": "Play: 24w34a",
+        "success_cue": "The Minecraft: Java Edition main menu is open under version 24w34a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Select Singleplayer. In the world list, select the newly imported world corresponding to the extracted attachment and choose Play Selected World. Do not choose Create New World. If an experimental-world warning appears, acknowledge it and continue without changing the world's experiments or recreating the world.",
+        "exact_input": "Singleplayer -> <imported attached world> -> Play Selected World",
+        "success_cue": "The player enters the attached world's prebuilt test area rather than a newly generated world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Do not operate any controls in the build yet. Wait until the loading screen has disappeared, surrounding chunks and the redstone construction are rendered, and camera movement and player movement respond normally.",
+        "exact_input": null,
+        "success_cue": "The prebuilt world is fully rendered and responsive, with no terrain-loading screen present.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "In the prebuilt test area, locate the impulse command block used as the reset control. An impulse command block is the orange/tan patterned command-block variant. Identify the button physically mounted on, or immediately associated with, that command block. Also identify the nearby piston and the separate lever next to that piston, but do not touch the lever yet. Do not open or edit the command block.",
+        "exact_input": null,
+        "success_cue": "The reset button on the impulse command block and the test lever next to the piston have both been identified without either control being activated.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Aim the crosshair directly at the button on the impulse command block and activate it exactly once with Use Item/Place Block, default right-click. This is the report's reset action for killing all minecarts currently present before starting the test.",
+        "exact_input": "Use Item/Place Block once (default: right-click) on the impulse-command-block button",
+        "success_cue": "The button visibly depresses or otherwise activates once and then returns to its unpressed position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Allow at least one game tick for the command block action to complete. Do not press the reset button repeatedly. If minecarts were visible in the apparatus before the press, wait until those pre-existing minecarts are gone before proceeding.",
+        "exact_input": null,
+        "success_cue": "The reset button is no longer depressed, and no pre-existing visible minecarts remain in the apparatus.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Move only as much as necessary to reach the piston control. Aim the crosshair at the lever specifically identified as being next to the piston. Preserve the lever's loaded position; do not try to force it into a presumed starting state before the test.",
+        "exact_input": null,
+        "success_cue": "The crosshair is aimed at the lever next to the piston, and the lever has not yet been toggled since the reset button was pressed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Activate the lever exactly once with Use Item/Place Block, default right-click. Do not double-click, immediately toggle it back, or press the minecart-kill button afterward.",
+        "exact_input": "Use Item/Place Block once (default: right-click) on the lever next to the piston",
+        "success_cue": "The lever handle changes to its opposite position exactly once while the world remains loaded.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Immediately turn the camera toward the prebuilt track or operating area where the minecarts are being produced or clustered. Release the interaction control and avoid leaving the area, pausing for an extended period, reloading the world, or changing the lever while observation proceeds.",
+        "exact_input": null,
+        "success_cue": "The minecart operating or accumulation area is in view, the lever remains in its newly toggled position, and the relevant chunks remain loaded.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The reset button has been pressed once, the lever next to the piston has then been toggled exactly once, and the prebuilt minecart operating area is loaded and in view. Hand control to the observation subsystem immediately and keep the world open without resetting, reloading, leaving the area, or toggling the lever again; the report describes a delayed occurrence, and a confirmation comment places it at approximately 30 seconds after activation.",
+    "uncertainties": [
+      "The attachment contents were not available for direct inspection, so the imported world's display name, spawn orientation, exact control-station layout, and exact location of the minecart accumulation area are not known from the supplied text.",
+      "The internal folder nesting of world.zip is unknown. The executable world folder is the folder that directly contains level.dat.",
+      "The formal reproduction steps say only that the behavior occurs 'after some time'; approximately 30 seconds comes from a confirming report comment and is not a guaranteed exact timeout.",
+      "The report does not state the lever's required initial on/off position. The plan therefore preserves the position stored in the attached world and toggles it exactly once, matching the wording 'Flick the lever.'",
+      "No particular game mode, camera perspective, graphics option, render distance, simulation distance, resource pack, or player coordinates are specified. These must not be invented as mandatory conditions.",
+      "If multiple impulse command blocks, pistons, buttons, or levers exist in the attached build, the supplied text does not provide coordinates or command contents that uniquely distinguish them; use the impulse-command-block button and the lever physically next to the piston in the apparent prebuilt test station."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_099b799ec0ed15f5016aa8aabf665c87d09a4ba9c59f0f2c9d",
+    "elapsed_seconds": 89.88,
+    "usage": {
+      "input_tokens": 16784,
+      "output_tokens": 6318,
+      "reasoning_tokens": 4459,
+      "total_tokens": 23102
+    },
+    "timestamp": "2026-09-15T02:19:04.957664+00:00"
+  }
+}

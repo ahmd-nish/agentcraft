@@ -1,0 +1,188 @@
+{
+  "bug_id": "MC-275377",
+  "category": "Minecart",
+  "source_md": "[Minecart] - MC-275377.md",
+  "source_meta": {
+    "mojira categories": "Minecart",
+    "project": "MC",
+    "issue key": "MC-275377",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2024-08-15T20:56:52.484-0700",
+    "updated": "2025-04-26T16:12:20.333-0700",
+    "resolution date": "2024-08-21T12:25:56.899-0700",
+    "affects versions": "24w33a",
+    "fix versions": "24w34a",
+    "labels": "experimental_minecart",
+    "watchers": "1",
+    "attachments": "4",
+    "attachment filenames": "2024-08-21_14.24.40.png; image-2024-08-16-11-52-06-558.png; image-2024-08-16-11-52-33-905.png; Setup.png",
+    "_title": "Derailed minecarts snap onto nearby rails after falling down"
+  },
+  "stor": {
+    "bug_id": "MC-275377",
+    "affected_versions": [
+      "24w33a"
+    ],
+    "recommended_version": "24w33a",
+    "environment": "Minecraft Java Edition snapshot 24w33a in a newly created single-player world with the Minecart Improvements experiment enabled. Creative mode is recommended as a practical execution choice so the setup can be built and its two upper components can be broken accurately without tool or mining-delay requirements.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition snapshot 24w33a, not the fixed snapshot 24w34a.",
+      "Create a new world for this test; Minecart Improvements is an experimental feature that must be enabled during world creation in 24w33a.",
+      "At world creation, navigate through More -> Experiments, set Minecart Improvements to ON, confirm the experimental-world warning if shown, and then create the world. This activation method is confirmed by the official 24w33a snapshot notes. ([minecraft.net](https://www.minecraft.net/es-es/article/minecraft-snapshot-24w33a?utm_source=openai))",
+      "Use Creative mode as a practical choice. No seed, coordinates, world type, server requirement, commands, or game rule changes are specified by the report.",
+      "Have one minecart, one powered rail, one normal rail, and several solid full blocks available in the inventory.",
+      "Use an open area where the vertically stacked test structure and the falling minecart will remain visible.",
+      "The report refers to an attached setup image whose block-by-block contents are not present in the supplied report text. The steps below use the minimum deterministic vertical arrangement supported by the written actions: a minecart on an upper powered rail and removable support block, with a normal rail directly below the fall path."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft Java Edition using the 24w33a installation/profile and wait for the title screen to finish loading.",
+        "exact_input": "Minecraft Java Edition 24w33a",
+        "success_cue": "The lower-left corner of the title screen identifies the running version as 24w33a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open the single-player world creation screen and select Creative mode. Creative mode is not stated by the report, but it provides the required blocks and allows the powered rail and support block to be removed immediately and accurately.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative",
+        "success_cue": "The Create New World screen shows Creative as the selected game mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the experimental-feature menu, enable Minecart Improvements, return to the world creation screen, and accept any warning that the world uses experimental features.",
+        "exact_input": "More -> Experiments -> Minecart Improvements: ON -> Done",
+        "success_cue": "Minecart Improvements remains enabled and the world creation screen is ready to continue.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Create the world and wait until terrain is rendered and normal player movement responds without loading pauses.",
+        "exact_input": "Create New World",
+        "success_cue": "The player is in the new world, nearby terrain is visible, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory using the inventory action, whose default key is E. Obtain a Minecart, Powered Rail, Rail, and at least six solid full blocks. Place these items into accessible hotbar slots, then close the inventory with E or Esc.",
+        "exact_input": "E; select Minecart, Powered Rail, Rail, and solid full blocks",
+        "success_cue": "The hotbar contains a minecart, a powered rail, a normal rail, and solid full blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Move to an open, level location. If necessary in Creative mode, press Space twice to begin flying so the elevated portion of the setup can be placed safely.",
+        "exact_input": "Space twice, if flight is needed",
+        "success_cue": "There is sufficient clear space for a lower rail and an upper powered rail separated vertically by an air gap.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select a solid block and place one block to serve as the permanent lower support. Select the normal Rail and place it on the top face of that block. This is the nearby rail onto which the falling minecart will land.",
+        "exact_input": "Right-click/place one solid block; then right-click/place one Rail on its top face",
+        "success_cue": "A single normal rail is visible on top of a solid support block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Build a temporary vertical pillar immediately beside the lower rail. Extend the pillar until a block can be attached directly above the lower rail while leaving exactly one full air-block space between the lower rail and that attached block.",
+        "exact_input": "Place temporary solid blocks beside the lower rail",
+        "success_cue": "The temporary pillar reaches one block beside the intended upper support position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Attach one solid block to the side of the temporary pillar so that it is vertically aligned with the lower rail and exactly one full air block separates this solid block from the lower rail below. This attached block is the removable block referred to as being underneath the minecart.",
+        "exact_input": "Right-click/place one solid block directly above the lower rail with one full air block left between them",
+        "success_cue": "From bottom to top, the aligned column consists of the lower support block, the normal rail, one air block, and the removable solid block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Select the Powered Rail and place it on top of the removable solid block. Ensure its visible track direction is parallel to the lower normal rail. Do not add a redstone power source; the supplied text specifies the powered-rail block type but does not state that it must receive power.",
+        "exact_input": "Right-click/place one Powered Rail on the removable solid block",
+        "success_cue": "The powered rail is directly above the lower normal rail, with the removable solid block and one air block between the two rails.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Remove every block in the temporary side pillar without breaking the lower rail's permanent support, the lower rail, the vertically aligned removable support block, or the powered rail.",
+        "exact_input": "Left-click each temporary pillar block in Creative mode",
+        "success_cue": "The temporary pillar is gone, the vertical fall path is unobstructed, and both rails remain in place.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select the Minecart in the hotbar. Aim at the upper powered rail and use the item, normally by right-clicking, to place the minecart on that rail.",
+        "exact_input": "Right-click the upper Powered Rail while holding the Minecart",
+        "success_cue": "One minecart is resting on the upper powered rail.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Stand at one end of the upper rail, align yourself with the direction in which the rail runs, and walk gently into the minecart to push it a small distance. Release movement immediately after the minecart shifts away from the center of the rail block. Do not push it far enough to leave the powered rail or the area above the removable support block.",
+        "exact_input": "Briefly press the forward movement action, default W, while contacting the minecart",
+        "success_cue": "The minecart remains over the removable support block but is visibly offset along the rail rather than centered on the block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Stop touching the minecart and wait until it is no longer rolling. If it leaves the powered rail or falls from the setup, replace it and repeat the previous step with a shorter push.",
+        "exact_input": null,
+        "success_cue": "The minecart is stationary, visibly off-center, and still supported by the upper powered rail and removable block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Move to the side of the upper assembly so the exposed edge of the powered rail can be targeted without striking the minecart. In Creative mode, left-click the powered rail once to break only the rail underneath the minecart.",
+        "exact_input": "Left-click the Powered Rail",
+        "success_cue": "The powered rail has disappeared, while the minecart remains above and supported by the removable solid block at approximately its displaced horizontal position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Confirm that the lower normal rail is still directly below the minecart's fall path and that no temporary blocks obstruct the space between the minecart and that rail. Do not push or enter the minecart after removing the powered rail.",
+        "exact_input": null,
+        "success_cue": "The stationary minecart is on the removable solid block, and the lower normal rail is visible below through the unobstructed fall path.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "From the side, aim at an exposed side face of the removable solid block directly underneath the minecart. Left-click that block once in Creative mode to break it without attacking the minecart. This is the trigger action; hand control to the observation subsystem as soon as the block disappears.",
+        "exact_input": "Left-click the removable solid block underneath the minecart",
+        "success_cue": "The removable support block has disappeared and the minecart is unsupported and beginning to fall toward the lower normal rail.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "The powered rail and then the solid support block beneath the displaced minecart have been broken in that order. The minecart has just become unsupported and is beginning to fall toward the vertically aligned lower normal rail; begin observing its horizontal position and movement during contact with that rail.",
+    "uncertainties": [
+      "The supplied report omits the contents of Setup.png and the other image attachments. Consequently, the exact distances, number of blocks, viewing angle, rail orientation, and any additional blocks shown in the reporter's original setup could not be preserved.",
+      "The minimum reconstructed setup uses a normal rail directly below the upper powered rail, with one air block and one removable solid support block between them. This geometry is a practical inference from the title and written sequence, not an exact transcription of the unavailable setup image.",
+      "The report does not state whether the powered rail was receiving redstone power. This plan leaves it unpowered because the report only requires the powered-rail block to be present and instructs the player to push the minecart manually.",
+      "The report does not specify a game mode. Creative mode is selected only to make item acquisition and the required two-stage block removal deterministic.",
+      "No seed, absolute coordinates, biome, dimension, world type, multiplayer environment, minecartMaxSpeed value, resource pack, or graphics setting is supplied by the report; none is added as a reproduction requirement."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_00c5df913f4b27ec016aa8aa5a918487d0b0e540dd4ee7d496",
+    "elapsed_seconds": 100.64,
+    "usage": {
+      "input_tokens": 21206,
+      "output_tokens": 6423,
+      "reasoning_tokens": 4305,
+      "total_tokens": 27629
+    },
+    "timestamp": "2026-09-15T02:17:35.068333+00:00"
+  }
+}

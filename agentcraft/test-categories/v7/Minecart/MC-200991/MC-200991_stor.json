@@ -1,0 +1,205 @@
+{
+  "bug_id": "MC-200991",
+  "category": "Minecart",
+  "source_md": "[Minecart] - MC-200991.md",
+  "source_meta": {
+    "mojira categories": "Enchantments; Hitboxes; Minecart",
+    "project": "MC",
+    "issue key": "MC-200991",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-09-25T00:14:11.268-0700",
+    "updated": "2025-04-29T08:17:40.840-0700",
+    "resolution date": "2024-07-15T02:58:06.149-0700",
+    "affects versions": "1.16.1; 1.16.3; 1.16.4 Pre-release 2; 1.16.4 Release Candidate 1; 1.16.4; 20w45a; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5; 21w07a; 21w13a; 21w16a; 21w17a; 1.17; 1.17.1; 21w40a; 1.20 Pre-release 4",
+    "fix versions": "24w18a",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "MC-200991.mp4; MC-200991.png; setup.png",
+    "issue links": "Duplicate:inward:MC-231141:Minecarts traveling on rails on soul sand still use players' Soul Speed boots' durability | Relates:inward:MC-274447:Soul speed can use durability when equipping boots while standing on soul blocks | Duplicate:inward:MC-193282:Soul Speed Effect Triggers While Riding Mounts on Soul Blocks | Duplicate:inward:MC-194186:Strider speeds up from the shower speed boots | Duplicate:inward:MC-202718:Soul Speed Boots lose durability and eventually break when riding minecart over Soul Soil. | Duplicate:inward:MC-209059:Riding Minecart over soulsand damages boots",
+    "_title": "Soul Speed in minecart uses durability"
+  },
+  "stor": {
+    "bug_id": "MC-200991",
+    "affected_versions": [
+      "1.16.1",
+      "1.16.3",
+      "1.16.4 Pre-release 2",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w45a",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w07a",
+      "21w13a",
+      "21w16a",
+      "21w17a",
+      "1.17",
+      "1.17.1",
+      "21w40a",
+      "1.20 Pre-release 4"
+    ],
+    "recommended_version": "1.16.1",
+    "environment": "Minecraft Java Edition 1.16.1, unmodified vanilla client, single-player integrated server, Overworld, keyboard and mouse. Use Creative mode with cheats enabled to construct the deterministic rail setup, then change to Survival mode before placing and riding the minecart.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 1.16.1, the first version listed as affected. Do not use fix version 24w18a.",
+      "Use a new or disposable single-player world with commands/cheats available.",
+      "Do not use mods, plugins, datapacks, or altered game rules that change minecart movement, enchantments, item durability, or player equipment.",
+      "Have a clear, approximately 11-by-11-block flat area available in the Overworld.",
+      "Use newly generated leather boots containing only Soul Speed III; do not add Unbreaking or Mending.",
+      "The report does not specify a seed, coordinates, or dimension, so no particular seed or location is required."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Java Edition 1.16.1, launch it, and wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The lower-left version text on the main menu identifies the running game as Minecraft 1.16.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new world in Creative mode, and ensure commands/cheats are enabled. Enter the world and wait until surrounding terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded single-player world, can fly, and has access to the Creative inventory and commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Locate a level area with room for a 9-by-9-block rail loop plus at least one clear block around every side. Remove vegetation or other blocks that would obstruct the track or its power sources.",
+        "exact_input": null,
+        "success_cue": "An unobstructed area of at least 11 by 11 blocks is available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Obtain Soul Soil, Rail, Powered Rail, Redstone Torch, and Minecart, and place them in accessible hotbar slots. The hotbar is the nine-slot row at the bottom of the screen; select its slots with the number keys 1 through 9 or the mouse wheel. Close the inventory with E.",
+        "exact_input": "Creative inventory search terms: Soul Soil; Rail; Powered Rail; Redstone Torch; Minecart",
+        "success_cue": "Soul Soil, ordinary rails, powered rails, redstone torches, and a minecart are available in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "At ground level, replace or cover the perimeter of a 9-by-9-block square with Soul Soil. Use Soul Soil on all four sides, including the four corners, while leaving the 7-by-7 interior empty or unchanged. The perimeter contains 32 Soul Soil blocks.",
+        "exact_input": "9-by-9 outer perimeter: 32 Soul Soil blocks",
+        "success_cue": "A closed square ring of Soul Soil surrounds a 7-by-7-block interior, with no gaps in the ring.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Build a closed rail loop directly on top of the Soul Soil ring. Place one ordinary Rail on each of the four corner blocks so that each corner becomes a curved rail. On each side, fill all seven positions between the corner rails with Powered Rails.",
+        "exact_input": "4 ordinary corner Rails and 28 Powered Rails",
+        "success_cue": "The rails form one continuous closed loop, every rail is supported directly by Soul Soil, and all four ordinary corner rails visibly connect the two adjoining straight sides.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Power the straight sections. At the midpoint outside each of the four sides, place a Redstone Torch on top of the adjacent ground block beside a Powered Rail. Inspect the rails; powered rails should appear bright red. If any powered rail remains dark, place an additional Redstone Torch on an adjacent solid block until that rail and the connected straight section are powered.",
+        "exact_input": null,
+        "success_cue": "Every Powered Rail in the loop is visibly lit, while the four ordinary corner rails still form an unbroken loop.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enable advanced item tooltips for the later durability inspection. Press F3+H together and read the status message. If the message says that advanced tooltips are hidden, press F3+H once more so the final message says they are shown. On keyboards that reserve function keys, hold Fn as required.",
+        "exact_input": "F3+H",
+        "success_cue": "A status message reports \"Advanced tooltips: shown\" or the equivalent localized message.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Change to Survival mode. Press T to open in-game chat, enter the command with its leading slash, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The command succeeds, hearts and hunger icons are visible, and the player is in Survival mode.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press E to open the Survival inventory and inspect the foot armor slot, located at the bottom of the vertical armor-slot column beside the player model. If any boots are present, move them into an ordinary inventory slot. Press E to close the inventory.",
+        "exact_input": null,
+        "success_cue": "The player's foot armor slot is empty before the test boots are supplied.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the Minecart in the hotbar. Aim at a Powered Rail on a straight section of the loop and right-click once to place the minecart.",
+        "exact_input": "right-click / Use Item",
+        "success_cue": "One empty minecart is resting on a powered straight section of the rail loop.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "With an empty hand or any non-placeable selected item, aim at the minecart and right-click it to mount it. Do not press the dismount control, which is Left Shift by default.",
+        "exact_input": "right-click / Use Item",
+        "success_cue": "The viewpoint is seated inside the minecart and the player is a passenger of that minecart.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "While mounted, hold W briefly to nudge the minecart along the powered rail. Release W once the powered rails have accelerated it.",
+        "exact_input": "W",
+        "success_cue": "The occupied minecart is moving around the loop without the player dismounting.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Allow the minecart to complete at least one full circuit before equipping the boots. Confirm that it passes all four corners and continues moving without stopping. If it stops, remain mounted, use W to restart it, and correct any unpowered or disconnected rail before continuing.",
+        "exact_input": null,
+        "success_cue": "The occupied minecart has completed a full loop and continues circulating over rails supported by Soul Soil.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "While still mounted in the moving minecart, press T to open in-game chat. Do not press Left Shift or otherwise dismount.",
+        "exact_input": "T",
+        "success_cue": "The chat input is open while the player remains a passenger in the minecart.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Enter the following 1.16.1-compatible command exactly, including the leading slash, and press Enter. This equips a new pair of leather boots enchanted only with Soul Speed III in the player's foot armor slot.",
+        "exact_input": "/replaceitem entity @s armor.feet minecraft:leather_boots{Enchantments:[{id:\"minecraft:soul_speed\",lvl:3s}]} 1",
+        "success_cue": "The command reports successful replacement of the armor slot; the player remains mounted, and new Soul Speed III leather boots occupy the foot armor slot.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 17,
+        "action": "After executing the equipment command, leave the boots equipped and remain in the minecart while it continues circulating over the Soul-Soil-supported rail loop for approximately 30 seconds. Do not dismount. Count only time during which the minecart is moving; if it stops, restart it with W while remaining mounted and continue until approximately 30 seconds of mounted movement has elapsed.",
+        "exact_input": "Approximately 30 seconds; do not press Left Shift",
+        "success_cue": "Approximately 30 seconds of mounted minecart travel have elapsed since the Soul Speed III boots were equipped, and the player is still wearing the boots and riding on the Soul-Soil-supported loop.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 17,
+    "handoff_condition": "Approximately 30 seconds of continuous mounted travel have just elapsed with the Soul Speed III leather boots equipped. The player remains in Survival mode, mounted in the moving minecart, and traveling on rails placed directly over Soul Soil. Hand control to the observation subsystem for item-durability inspection.",
+    "uncertainties": [
+      "The contents of setup.png and the example video were not supplied in the raw report. The 9-by-9 powered loop is therefore a deterministic reconstruction of the text requirement that the player ride a minecart track placed on Soul Soil; it may not duplicate the attachment's exact dimensions or power layout.",
+      "The equipment command shown in the 21w40a comment uses `/item replace`, but recommended version 1.16.1 predates that command. This plan explicitly adapts it to `/replaceitem`; Minecraft Wiki documents that `/replaceitem` was replaced by `/item` in 20w46a/1.17. ([de.minecraft.wiki](https://de.minecraft.wiki/w/Befehl/replaceitem?utm_source=openai))",
+      "The report specifies only \"around thirty seconds,\" not an exact exposure duration. This plan uses approximately 30 seconds of actual minecart movement and does not require repeated or extended triggering.",
+      "No world seed, coordinates, or dimension are specified. An Overworld location and a newly constructed powered loop are practical execution choices rather than report-mandated conditions."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_065ada6e0dc17a95016aa8a98b941487d09b40354e73b8aecd",
+    "elapsed_seconds": 129.49,
+    "usage": {
+      "input_tokens": 34894,
+      "output_tokens": 9245,
+      "reasoning_tokens": 6966,
+      "total_tokens": 44139
+    },
+    "timestamp": "2026-09-15T02:14:36.621499+00:00"
+  }
+}

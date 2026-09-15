@@ -1,0 +1,197 @@
+{
+  "bug_id": "MC-279548",
+  "category": "Minecart",
+  "source_md": "[Minecart] - MC-279548.md",
+  "source_meta": {
+    "mojira categories": "Combat; Minecart",
+    "project": "MC",
+    "issue key": "MC-279548",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2025-01-15T16:47:05.430-0800",
+    "updated": "2026-03-11T03:47:17.982-0700",
+    "resolution date": "2025-08-04T08:35:55.538-0700",
+    "affects versions": "25w03a",
+    "fix versions": "25w32a",
+    "area": "Platform HC",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "2025-01-15_17.30.21.png",
+    "_title": "TNT minecart does not remember ignition source when exploding from a fall"
+  },
+  "stor": {
+    "bug_id": "MC-279548",
+    "affected_versions": [
+      "25w03a"
+    ],
+    "recommended_version": "25w03a",
+    "environment": "Minecraft: Java Edition snapshot 25w03a in a disposable vanilla world. Use single-player with cheats enabled, or a dedicated server where the reproducing player has operator permission. Perform construction and the timed priming sequence in Creative mode, then change to Survival mode immediately before releasing the frozen simulation. The report's attached screenshot, 2025-01-15_17.30.21.png, is authoritative for the timing-sensitive rail, TNT, and drop geometry.",
+    "preconditions": [
+      "Install and launch the exact affected snapshot 25w03a; do not use fix version 25w32a or a later release.",
+      "Use a newly created or otherwise disposable world because both the TNT block and TNT minecart will damage the setup and surrounding terrain.",
+      "Enable commands by creating the world with cheats enabled, opening an existing single-player world to LAN with cheats enabled, or granting the player operator permission on a server.",
+      "Have access to the attachment 2025-01-15_17.30.21.png if possible. Its exact block spacing and orientation were not included in the supplied text, but the sequence relies on that geometry to position the TNT minecart correctly after 52 and then 28 stepped ticks.",
+      "The setup must include the TNT block, a TNT minecart, the powered-rail route shown in the attachment, a lever that powers those rails, a track exit or drop that causes the primed minecart to fall, and an accessible position close to the minecart's landing or collision point.",
+      "Before beginning the timed sequence, the lever must be off, the powered rails must be unpowered, the TNT minecart must be stationary and unprimed in its starting position, and the separate TNT block must be intact.",
+      "The player must have a flint and steel available and must wear no armor, hold no shield in either hand, possess no active Resistance effect, and have no Totem of Undying in either hand when changing to Survival mode.",
+      "If repeating the test, rebuild the complete setup and use a fresh, unprimed TNT minecart and TNT block; do not reuse the explosion-damaged remains of a previous attempt."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using an installation configured for snapshot 25w03a, then enter a disposable world with commands enabled.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded 25w03a world, terrain is visible, movement responds normally, and commands are permitted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Enter Creative mode. Press T to open chat, type the command exactly as supplied below including the leading slash, and press Enter.",
+        "exact_input": "/gamemode creative",
+        "success_cue": "The game confirms Creative mode, and the player can fly and access the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Creative inventory with E. Obtain at least one flint and steel, one TNT block, one minecart with TNT, the powered rails and lever required by the attachment, and any ordinary rails and solid construction blocks visible in the attachment. Move the flint and steel to a hotbar slot, meaning one of the nine slots along the bottom of the screen.",
+        "exact_input": null,
+        "success_cue": "The construction items are available, and a flint and steel is visible in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Reconstruct the complete setup depicted in 2025-01-15_17.30.21.png without changing its rail length, elevations, gaps, TNT placement, lever connection, or orientation. In particular, reproduce the lever-controlled powered-rail path, the TNT minecart's starting position, the separate TNT block, and the open drop or collision route used by the minecart.",
+        "exact_input": null,
+        "success_cue": "The physical setup matches the attachment, including the relative positions of the TNT block, TNT minecart, powered rails, lever, track exit, and landing area.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Leave the lever in its off position. Confirm visually that the powered rails are dark rather than glowing red, that the TNT minecart is stationary and not flashing, and that the separate TNT block has not been ignited.",
+        "exact_input": null,
+        "success_cue": "The lever is off, the powered rails are unpowered, the TNT minecart is stationary and unprimed, and the TNT block is intact.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Confirm that the route from the TNT minecart's starting location to the drop is unobstructed and that the surrounding chunks are fully rendered. Do not begin the timed sequence while terrain is still loading.",
+        "exact_input": null,
+        "success_cue": "The entire rail route and landing area are visible, and movement and commands respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Move close enough to the separate TNT block to ignite it with the flint and steel, while remaining able to reach the lever during the frozen simulation. Remain in Creative mode.",
+        "exact_input": null,
+        "success_cue": "The player can point at the TNT block and can subsequently reach the lever without rebuilding or changing the setup.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Freeze normal world ticking. Press T, enter the following command including the leading slash, and press Enter.",
+        "exact_input": "/tick freeze",
+        "success_cue": "Command feedback confirms that ticking is frozen; entities and scheduled world changes no longer advance continuously, while the player can still move and interact.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select the hotbar slot containing the flint and steel using its number key or the mouse wheel. Point the crosshair at the separate TNT block and use the item with right-click once to prime that block.",
+        "exact_input": null,
+        "success_cue": "The TNT block has changed into a primed TNT entity, but its fuse is not continuously advancing because normal ticking remains frozen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Advance the frozen simulation by exactly 52 ticks. Press T, enter the following command including the leading slash, and press Enter once. Do not issue the command a second time.",
+        "exact_input": "/tick step 52",
+        "success_cue": "Exactly 52 ticks have been processed, the initial primed TNT still exists, and the simulation has returned to its frozen state.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Move to the lever without changing any blocks or interacting with either explosive. Use right-click once on the lever to switch it on and power the powered rails.",
+        "exact_input": null,
+        "success_cue": "The lever is visibly on and the connected powered rails glow red, while the world remains frozen between tick-step commands.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Advance the frozen simulation by exactly 28 additional ticks. Press T, enter the following command including the leading slash, and press Enter once. Do not repeat it.",
+        "exact_input": "/tick step 28",
+        "success_cue": "The initial TNT block has completed its fuse and detonated, the TNT minecart has been primed by that detonation, and the simulation is frozen again with the primed minecart at or entering the fall portion of the attachment's setup.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Do not run another tick-step command. Visually identify the primed TNT minecart and determine its fall or landing point from its current position and trajectory. Do not strike, ignite, replace, or otherwise interact with the minecart.",
+        "exact_input": null,
+        "success_cue": "The primed TNT minecart is present, world ticking remains frozen, and the player has identified where to stand near its imminent fall or collision.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "While still in Creative mode, remove all equipped armor through the inventory and ensure neither hand contains a shield or Totem of Undying. Clear any active Resistance effect if one was previously applied.",
+        "exact_input": null,
+        "success_cue": "All four armor slots are empty, neither hand contains a protective item, and no Resistance effect is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Move to the stable standing position shown or implied by the attachment near the falling TNT minecart's landing or collision point. Position the player close enough that the minecart's explosion can kill an unarmored Survival-mode player in one hit, but do not stand where merely changing game mode causes an immediate fall into the void or another unrelated hazard.",
+        "exact_input": null,
+        "success_cue": "The player is on stable footing immediately beside the minecart's imminent impact area, with the primed minecart still suspended by the frozen simulation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Change to Survival mode while ticking is still frozen. Press T, type the following command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The game confirms Survival mode; hearts and hunger are visible, the player is still positioned by the impact area, and the minecart has not resumed moving.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Without moving away, verify that normal ticking is still frozen, the player remains unarmored in Survival mode, and the primed TNT minecart is still positioned to complete its fall or collision as soon as ticking resumes.",
+        "exact_input": null,
+        "success_cue": "All final trigger conditions are simultaneously established: Survival mode, lethal-range positioning, no protective equipment, a primed falling TNT minecart, and frozen world ticking.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "Release the frozen simulation. Press T, enter the following command including the leading slash, and press Enter once. Immediately hand control to the observation subsystem; do not move, pause, or enter another command.",
+        "exact_input": "/tick unfreeze",
+        "success_cue": "Normal world ticking has resumed and the previously paused primed TNT minecart is free to continue its fall or collision.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The player has just executed /tick unfreeze while standing unarmored in Survival mode at lethal range of the primed TNT minecart's imminent fall or collision. Normal ticking has resumed and the cart has been released to complete that movement; begin observation immediately.",
+    "uncertainties": [
+      "The supplied report text refers to attachment 2025-01-15_17.30.21.png but does not include the image itself. Consequently, the exact number of powered rails, rail orientation, elevations, horizontal distances, TNT placement, drop height, and player standing location cannot be recovered from the supplied evidence without inventing geometry.",
+      "Web verification was attempted using the permitted Minecraft and Mojira domains, but the issue attachment's contents and attachment identifier were not available. The plan therefore preserves the attachment as the authoritative setup rather than substituting an unverified rail design.",
+      "The report does not explicitly state single-player versus dedicated server. A cheats-enabled single-player world is selected as the simplest execution environment because no multiplayer-only condition is described.",
+      "The exact lethal standing distance is not numerically specified. The executor must preserve the screenshot's positioning or choose a stable position immediately adjacent to the minecart's impact area while unarmored.",
+      "The report notes inherent random fuse timing for a TNT minecart. A run can exceptionally detonate before ground contact; rebuild the setup and repeat the same sequence if the minecart detonates before completing the intended fall or collision, but do not repeatedly trigger explosions within one setup."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0ecc3d6ec75018ec016aa8ab193dac87d0b3a8f92bd4a2c15f",
+    "elapsed_seconds": 98.4,
+    "usage": {
+      "input_tokens": 25602,
+      "output_tokens": 6101,
+      "reasoning_tokens": 3703,
+      "total_tokens": 31703
+    },
+    "timestamp": "2026-09-15T02:20:43.365352+00:00"
+  }
+}
