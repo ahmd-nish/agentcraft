@@ -1,0 +1,189 @@
+{
+  "bug_id": "MC-190805",
+  "category": "Custom Worlds",
+  "source_md": "[Custom Worlds] - MC-190805.md",
+  "source_meta": {
+    "mojira categories": "Custom Worlds",
+    "project": "MC",
+    "issue key": "MC-190805",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-06-20T21:22:37.484-0700",
+    "updated": "2026-01-21T01:22:43.407-0800",
+    "resolution date": "2026-01-21T01:22:43.293-0800",
+    "affects versions": "1.16 Release Candidate 1; 1.16; 1.16.1; 20w28a; 20w30a; 1.16.3 Release Candidate 1; 1.16.3; 1.16.5; 21w07a",
+    "fix versions": "22w12a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "3",
+    "attachment filenames": "mcDefaultTest.json; mcDefaultTest-1.json; mcDefaultTest-2.json",
+    "issue links": "Relates:outward:MC-189214:Modifying the type compound of the end dimension erases the dragon fight",
+    "_title": "Ender dragon fight is hardcoded into custom world presets; can't actually be accessed without these presets"
+  },
+  "stor": {
+    "bug_id": "MC-190805",
+    "affected_versions": [
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w28a",
+      "20w30a",
+      "1.16.3 Release Candidate 1",
+      "1.16.3",
+      "1.16.5",
+      "21w07a"
+    ],
+    "recommended_version": "1.16 Release Candidate 1",
+    "environment": "Minecraft: Java Edition 1.16 Release Candidate 1 in singleplayer, using the report's attached custom-world JSON. Use Creative mode with commands enabled so the supplied /setblock command can be executed safely. No dedicated server or additional player is required.",
+    "preconditions": [
+      "The Minecraft Launcher must have an installation for the exact affected version \"1.16 Release Candidate 1\" available.",
+      "Download the report attachment intended for the original 1.16 Release Candidate 1 reproduction to an accessible local directory. Based on the attachment names and report chronology, use \"mcDefaultTest.json\" rather than the later \"mcDefaultTest-1.json\" or \"mcDefaultTest-2.json\" revisions.",
+      "Preserve the attachment exactly as supplied; do not rewrite, modernize, or otherwise alter its dimension-type or noise-generator JSON.",
+      "Use a new disposable singleplayer world; no seed or coordinates are specified by the report.",
+      "Commands must be enabled. Selecting Creative mode is a practical way to enable commands and avoid survival hazards during the dimension transition."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation whose version is exactly \"1.16 Release Candidate 1\", then launch it.",
+        "exact_input": "1.16 Release Candidate 1",
+        "success_cue": "The Minecraft: Java Edition main menu has loaded under the selected 1.16 Release Candidate 1 installation.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Confirm that the unmodified report attachment \"mcDefaultTest.json\" is present in a local directory that can be reached from the operating system's file-selection dialog.",
+        "exact_input": "mcDefaultTest.json",
+        "success_cue": "The JSON file is locally available and has not been edited.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "From the main menu, select \"Singleplayer\".",
+        "exact_input": null,
+        "success_cue": "The Select World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Select \"Create New World\".",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Cycle the \"Game Mode\" button until it displays \"Creative\". Creative mode is not stated as a bug requirement; it is selected to provide command access and prevent survival hazards from interfering with the test.",
+        "exact_input": "Creative",
+        "success_cue": "The world-creation screen displays \"Game Mode: Creative\".",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Verify that \"Allow Cheats\" is set to \"ON\". If Creative mode enabled it automatically, leave it enabled; otherwise click the button until it reads \"ON\".",
+        "exact_input": "Allow Cheats: ON",
+        "success_cue": "The world-creation screen shows that cheats or commands are enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select \"More World Options...\" to expose the world-generation controls used by this historical version.",
+        "exact_input": null,
+        "success_cue": "The More World Options screen is visible, including an \"Import Settings\" control.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Select \"Import Settings\".",
+        "exact_input": null,
+        "success_cue": "The operating system's JSON file-selection dialog opens.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "In the file-selection dialog, navigate to and select the unmodified attachment named \"mcDefaultTest.json\", then confirm the selection with the dialog's Open/Select action.",
+        "exact_input": "mcDefaultTest.json",
+        "success_cue": "Minecraft begins reading the selected custom world-generation settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "If Minecraft displays an experimental-world warning, or a recoverable parsing/validation warning that explicitly offers an option to continue, choose the option that continues with the imported settings. Do not edit the JSON in response to the warning. If the message provides no way to continue and returns to the menu, stop rather than substituting a different world configuration.",
+        "exact_input": null,
+        "success_cue": "Minecraft returns to the world-creation flow with the imported custom settings accepted and still allows the world to be created.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Select \"Create New World\" to generate a new world from the imported JSON settings.",
+        "exact_input": null,
+        "success_cue": "The world-generation/loading screen appears.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Wait until the Overworld finishes loading. Do not continue while the terrain is blank or player input is unresponsive.",
+        "exact_input": null,
+        "success_cue": "Overworld terrain is rendered around the player and normal movement and camera controls respond.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Remain in a stable, fully loaded location and stop moving. The supplied command uses relative coordinates, so the block space containing the player's current position is the target location.",
+        "exact_input": null,
+        "success_cue": "The player is stationary, the surrounding terrain is loaded, and there is no other loading screen active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press the default chat key T to open in-game chat. If controls have been rebound, use the control assigned to Open Chat.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Enter the report's command exactly as written, including the leading slash, and press Enter. Do not change the namespace, coordinates, or block identifier. Because the end portal is placed in the block space at the player's current position, remain there and allow portal contact to initiate the dimension transition.",
+        "exact_input": "/setblock ~ ~ ~ minecraft:end_portal",
+        "success_cue": "The command is accepted and an End-dimension loading transition begins; if the portal block is briefly visible before loading, the player is intersecting it.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Wait for the End-dimension transition to finish. Do not begin evaluation while terrain is still loading.",
+        "exact_input": null,
+        "success_cue": "The player is in the End environment, with the arrival area and surrounding End terrain rendered, and movement and camera controls are responsive.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player has just completed the portal transition into the End generated by the imported custom-world JSON, the End terrain has rendered, and player controls are responsive. Hand control to the observation subsystem immediately without performing additional commands, exploration, or entity spawning.",
+    "uncertainties": [
+      "The supplied report lists three attachments but does not include their file contents, upload timestamps, or explicit version-to-file mapping. The plan selects \"mcDefaultTest.json\" for the first affected version because it is the original unsuffixed attachment referenced by the initial reproduction; verify attachment metadata if it is available to the execution system.",
+      "A later comment states that the original file eventually became invalid because it lacked the required coordinate_scale property. That comment concerns later tested versions; the plan does not add coordinate_scale or otherwise modify the file when reproducing in the first affected version.",
+      "The exact wording and buttons of the experimental or parsing warning are not included in the report. Continue only when Minecraft itself presents a recoverable continuation option; do not bypass a fatal error by changing the test JSON.",
+      "The report does not prescribe a game mode. Creative mode is selected only as a practical execution choice that enables the supplied command and minimizes unrelated hazards.",
+      "No seed, spawn coordinates, graphics settings, server configuration, or additional datapacks are specified for the recommended 1.16 Release Candidate 1 reproduction."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0dd371964b44a1e0016aa8ce17877087d09c3dee346971eb02",
+    "elapsed_seconds": 86.38,
+    "usage": {
+      "input_tokens": 26075,
+      "output_tokens": 4987,
+      "reasoning_tokens": 3324,
+      "total_tokens": 31062
+    },
+    "timestamp": "2026-09-15T04:49:49.614826+00:00"
+  }
+}

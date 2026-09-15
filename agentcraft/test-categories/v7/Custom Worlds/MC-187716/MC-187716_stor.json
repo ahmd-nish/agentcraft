@@ -1,0 +1,216 @@
+{
+  "bug_id": "MC-187716",
+  "category": "Custom Worlds",
+  "source_md": "[Custom Worlds] - MC-187716.md",
+  "source_meta": {
+    "mojira categories": "Custom Worlds",
+    "project": "MC",
+    "issue key": "MC-187716",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-06-05T13:47:27.412-0700",
+    "updated": "2025-04-11T14:13:33.359-0700",
+    "resolution date": "2021-11-06T16:15:08.252-0700",
+    "affects versions": "1.16 Pre-release 2; 1.16 Release Candidate 1; 1.16; 1.16.1; 20w27a; 20w28a; 1.16.2 Pre-release 1; 1.16.2 Pre-release 3; 1.16.2; 1.16.4; 20w46a; 20w48a; 20w49a; 20w51a; 21w03a; 1.16.5 Release Candidate 1; 1.16.5; 21w05a; 21w06a; 21w07a; 21w08a; 21w08b; 21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w16a; 21w17a; 21w18a; 21w20a; 1.17 Pre-release 2; 1.17 Release Candidate 1; 21w42a; 21w43a",
+    "fix versions": "21w44a",
+    "labels": "Surface_builders; custom-worldgen",
+    "watchers": "1",
+    "attachments": "10",
+    "attachment filenames": "2020-06-05_20.55.52.png; 2020-06-05_21.35.32.png; 2020-06-05_21.36.00.png; 2020-06-05_21.38.14.png; 2020-06-05_21.41.27.png; 2020-06-21_01.56.43.png; Taller Nether.zip; Taller Nether-1.zip; worldgen_settings_export.json; worldgen settings export.json",
+    "issue links": "Duplicate:inward:MC-192852:Nether biomes don't generate groundcover over Y=127 even if there is terrain. | Duplicate:inward:MC-193912:Custom world geoation problems | Duplicate:inward:MC-196663:Surface builders used by new Nether biomes stop above y=127 | Duplicate:inward:MC-197338:custom nether dimension_type logicalHeight does not actually change the dimension height | Duplicate:inward:MC-207390:Nether biomes do not generate as intended above y=128 | Duplicate:inward:MC-212300:Nether biomes don't apply above y=128 | Duplicate:inward:MC-215178:Nether Wastes blocks don't generate above y128 and below y0 in the World Type: Caves | Duplicate:inward:MC-223577:Certain Features Not Generating Above Height 128 in 256-High Nether | Duplicate:inward:MC-227515:Nether biome surface builder types incorrectly assume the world height is 128 blocks | Relates:inward:MC-208816:No terrain nor feature generation currently supports negative Y values",
+    "_title": "Nether biome surface builder types incorrectly assume the world height is 128 blocks"
+  },
+  "stor": {
+    "bug_id": "MC-187716",
+    "affected_versions": [
+      "1.16 Pre-release 2",
+      "1.16 Release Candidate 1",
+      "1.16",
+      "1.16.1",
+      "20w27a",
+      "20w28a",
+      "1.16.2 Pre-release 1",
+      "1.16.2 Pre-release 3",
+      "1.16.2",
+      "1.16.4",
+      "20w46a",
+      "20w48a",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "1.16.5 Release Candidate 1",
+      "1.16.5",
+      "21w05a",
+      "21w06a",
+      "21w07a",
+      "21w08a",
+      "21w08b",
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "21w18a",
+      "21w20a",
+      "1.17 Pre-release 2",
+      "1.17 Release Candidate 1",
+      "21w42a",
+      "21w43a"
+    ],
+    "recommended_version": "1.16 Pre-release 2",
+    "environment": "Minecraft: Java Edition 1.16 Pre-release 2 in single-player, using a fresh custom world imported from the report's version-compatible world-generation JSON. Use an unmodified client, Creative mode, commands enabled, and Spectator mode for non-destructive inspection. Use an isolated game directory so the pre-release does not access unrelated worlds.",
+    "preconditions": [
+      "The Minecraft Launcher can start the exact affected version 1.16 Pre-release 2; do not substitute 1.16 Release Candidate 1, release 1.16, or fix version 21w44a.",
+      "Download the MC-187716 attachment named worldgen_settings_export.json and keep its contents unchanged. The plan assumes this is the early attachment intended for the initial 1.16 Pre-release reproduction.",
+      "Before continuing, establish that the selected JSON defines a Nether whose generated terrain can extend above Y=127. If the file is rejected by 1.16 Pre-release 2 or does not define a taller Nether, stop rather than silently replacing or rewriting it.",
+      "Create a completely new world in 1.16 Pre-release 2. Do not reuse a world opened in 1.16 Pre-release 1, and do not upgrade the test world to another version.",
+      "Do not enable unrelated data packs, mods, or custom world-generation files.",
+      "The instructions refer to the default keyboard and mouse controls. If controls are rebound, use the bound control for the same action."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact affected version 1.16 Pre-release 2 and launch it from an isolated game directory. Enable historical snapshot/pre-release versions in the launcher if the version is not initially listed.",
+        "exact_input": "Version: 1.16-pre2",
+        "success_cue": "The Minecraft title screen is open and identifies the running game as Minecraft 1.16 Pre-release 2.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Make the report attachment worldgen_settings_export.json available through the operating system's file chooser. Do not rename its extension, edit its JSON, or substitute either Taller Nether ZIP attachment, because those ZIP files were discussed for later snapshots.",
+        "exact_input": "worldgen_settings_export.json",
+        "success_cue": "An unchanged local copy of worldgen_settings_export.json is available for selection.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "From the title screen, select Singleplayer and then Create New World. This must be a new world rather than a re-created or converted older save.",
+        "exact_input": "Singleplayer -> Create New World",
+        "success_cue": "The Create New World screen is open for a new save.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open More World Options and select Import Settings. In the file chooser, select worldgen_settings_export.json. Accept the experimental custom-world warning if one appears. Do not manually alter any imported generator, dimension, height, default-block, biome, or surface-builder value.",
+        "exact_input": "More World Options... -> Import Settings -> worldgen_settings_export.json",
+        "success_cue": "Minecraft accepts the JSON and returns to world creation with the imported custom world-generation settings active; no invalid-settings or data-pack error is displayed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Set the world to Creative mode so commands and flight-related setup are available without gathering resources. Ensure Allow Cheats is ON after importing the settings, because importing may return the interface to a different world-creation state.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON",
+        "success_cue": "The world-creation screen shows Creative mode and commands/cheats enabled.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Optionally give the world a recognizable name, then select Create New World. Do not change the imported world-generation options before creating it.",
+        "exact_input": "World Name: MC-187716 1.16-pre2; Create New World",
+        "success_cue": "World creation begins using the imported settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Wait for the player to enter the new world. Do not continue while the loading screen is visible or while nearby chunks are still appearing. Test movement briefly to confirm that the integrated server is responsive.",
+        "exact_input": null,
+        "success_cue": "The player is present in the newly created world, nearby terrain is rendered, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Enter Spectator mode so the player can inspect tall Nether terrain without mining, suffocating, falling, or modifying naturally generated surfaces. Press T to open chat, enter the command including its leading slash, and press Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The command succeeds; the hotbar disappears and the player can fly through solid blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Teleport into the custom Nether at Y=160. Press T, enter the command exactly with the leading slash, and press Enter. Spectator mode makes the initial destination safe even if the coordinate is inside solid terrain or above an open cavern.",
+        "exact_input": "/execute in minecraft:the_nether run teleport @s 0 160 0",
+        "success_cue": "The view reloads in the Nether dimension and the player remains in Spectator mode near Y=160.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Wait until the Nether terrain surrounding the destination has rendered and movement and chat respond normally. Then press F3, or Fn+F3 on keyboards where the function row is media-controlled, to open the debug overlay.",
+        "exact_input": "F3",
+        "success_cue": "The debug overlay is visible, the current dimension is minecraft:the_nether, and the displayed player Y coordinate is approximately 160.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Locate a biome whose affected surface-builder type is explicitly confirmed by the report. While still near Y=160, press T, enter the Soul Sand Valley locate command with its leading slash, and press Enter.",
+        "exact_input": "/locatebiome minecraft:soul_sand_valley",
+        "success_cue": "Chat returns coordinates for a nearby minecraft:soul_sand_valley instead of reporting that the biome could not be found.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Read the X and Z coordinates returned by locatebiome. Press T and teleport to those X and Z coordinates while retaining Y=160. Replace only the two placeholders; keep the command's Y value at 160. This loads or generates tall Nether terrain at the vertical level relevant to the report.",
+        "exact_input": "/teleport @s <RETURNED_X> 160 <RETURNED_Z>",
+        "success_cue": "The teleport completes and the player is positioned at Y=160 near the located Soul Sand Valley coordinates.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Do not move immediately after teleporting. Wait until all nearby chunks have rendered and movement, the debug overlay, and chat update normally.",
+        "exact_input": null,
+        "success_cue": "The terrain around the located coordinates is fully rendered and the integrated server is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Use the F3 biome line to verify that the player's current position at Y greater than 127 is inside minecraft:soul_sand_valley. If the exact teleport point is on a biome boundary, move horizontally in Spectator mode near the returned coordinates while keeping Y above 127 until the biome line identifies minecraft:soul_sand_valley. If the biome cannot be reached at this height, repeat the locate command from the current Y=160 position and use the new X and Z result.",
+        "exact_input": "F3 biome check: minecraft:soul_sand_valley",
+        "success_cue": "The debug overlay identifies the current biome as minecraft:soul_sand_valley while the player's Y coordinate remains greater than 127.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Within the confirmed Soul Sand Valley, use Spectator flight to locate naturally generated solid terrain above Y=127. Use the movement controls W/A/S/D, Space to ascend, and Left Shift to descend. Look specifically for an exposed floor surface: a solid top block with air directly above it, rather than an arbitrary block inside a solid mass. Do not break or place blocks.",
+        "exact_input": "W/A/S/D; Space; Left Shift",
+        "success_cue": "A naturally generated exposed floor surface in minecraft:soul_sand_valley is visible, and the F3 targeted-block coordinates place its top block at Y=128 or higher.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Hover two to five blocks above the selected surface, center it in view, and stop all movement. Keep the F3 overlay open so the dimension, biome, player height, and targeted-block coordinates remain available. Wait until chunk rendering and movement are stable, then hand control to the observation subsystem without changing versions or modifying the terrain.",
+        "exact_input": null,
+        "success_cue": "A stable, naturally generated Soul Sand Valley floor surface at Y=128 or higher is centered in view, minecraft:the_nether and minecraft:soul_sand_valley are visible in debug information, and the game is responsive.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The custom Nether chunk near the located Soul Sand Valley has been generated or loaded at Y=160, and the player is now stationary in Spectator mode above a naturally generated Soul Sand Valley floor surface whose top block is at Y=128 or higher. The F3 overlay remains open and the terrain has not been modified. Begin surface-composition observation now.",
+    "uncertainties": [
+      "The raw contents and attachment timestamps were not supplied. The plan assumes worldgen_settings_export.json is the attachment compatible with the first listed affected version, 1.16 Pre-release 2. If Minecraft rejects it, attachment metadata or contents are required before a valid first-version reproduction can continue.",
+      "The report supplies no deterministic world seed or Nether coordinates. The locatebiome command and limited high-altitude Spectator search are therefore necessary practical inferences.",
+      "The report confirms minecraft:nether_forest, minecraft:soul_sand_valley, and minecraft:basalt_deltas surface-builder types. This plan selects minecraft:soul_sand_valley as one confirmed test case and does not use the only tentatively identified minecraft:nether type.",
+      "The report does not provide a formal numbered Steps to Reproduce section. The minimum path of importing a taller-Nether configuration, generating Nether chunks above Y=127, and positioning the player at a confirmed affected biome surface was reconstructed from the description, comments, and attachment names.",
+      "Web verification confirmed that the affected release family exposed experimental custom-world import during world creation and that a fresh 1.16 Pre-release 2 world should be used rather than a world opened in 1.16 Pre-release 1. Command-based navigation and biome selection remain practical implementation choices rather than report-mandated actions."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_09af258dd6051990016aa8cd73f7a887d0835dfac3bd20bbca",
+    "elapsed_seconds": 164.1,
+    "usage": {
+      "input_tokens": 32410,
+      "output_tokens": 9752,
+      "reasoning_tokens": 7265,
+      "total_tokens": 42162
+    },
+    "timestamp": "2026-09-15T04:48:23.219949+00:00"
+  }
+}

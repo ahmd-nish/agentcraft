@@ -1,0 +1,204 @@
+{
+  "bug_id": "MC-202036",
+  "category": "Custom Worlds",
+  "source_md": "[Custom Worlds] - MC-202036.md",
+  "source_meta": {
+    "mojira categories": "Custom Worlds",
+    "project": "MC",
+    "issue key": "MC-202036",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2020-10-12T07:08:32.613-0700",
+    "updated": "2025-05-02T00:39:02.852-0700",
+    "resolution date": "2021-10-11T19:17:11.896-0700",
+    "affects versions": "20w30a; 1.16.3; 1.16.4 Release Candidate 1; 1.16.4; 20w46a; 21w03a; 1.16.5; 21w17a; 1.17.1",
+    "fix versions": "21w38a",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "Incendium_v3.0.3.zip; Incendium v3.1.zip",
+    "issue links": "Duplicate:inward:MC-196336:Custom Biome map changes on relog | Duplicate:inward:MC-196388:Custom Biome map changes on relog.",
+    "_title": "Adding a biome to a datapack shifts biome IDs in existing chunks"
+  },
+  "stor": {
+    "bug_id": "MC-202036",
+    "affected_versions": [
+      "20w30a",
+      "1.16.3",
+      "1.16.4 Release Candidate 1",
+      "1.16.4",
+      "20w46a",
+      "21w03a",
+      "1.16.5",
+      "21w17a",
+      "1.17.1"
+    ],
+    "recommended_version": "20w30a",
+    "environment": "Minecraft: Java Edition 20w30a in a single-player world using the integrated server. Use one persistent world for both datapack states. Creative mode is selected as a practical implementation choice so a Nether portal can be constructed without unrelated resource gathering. Do not open the test world in the fix version 21w38a or any other Minecraft version during this procedure.",
+    "preconditions": [
+      "A Minecraft: Java Edition installation profile for exactly snapshot 20w30a is available.",
+      "The two original Mojira attachments are available as separate ZIP files with the exact filenames \"Incendium_v3.0.3.zip\" and \"Incendium v3.1.zip\".",
+      "The ZIP files have not been renamed, merged, or replaced by another Incendium release.",
+      "The executor can copy and remove files from the test world's datapacks directory.",
+      "Use a new disposable test world. Do not perform the reproduction in a valuable existing save.",
+      "Keep Minecraft version 20w30a selected before every load of the test world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an isolated Java Edition installation that launches exactly snapshot 20w30a. Start the game with this installation and verify that the title screen identifies the running version as 20w30a.",
+        "exact_input": "20w30a",
+        "success_cue": "Minecraft: Java Edition is at the main menu and displays version 20w30a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, choose Singleplayer, then Create New World. Give the world a recognizable name such as \"MC-202036-Repro\" and set Game Mode to Creative. Leave the seed unspecified because the report provides no required seed.",
+        "exact_input": "MC-202036-Repro",
+        "success_cue": "The Create New World screen shows Creative mode and the chosen test-world name.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Open the Data Packs screen from the world-creation screen, then choose Open Pack Folder. Copy the exact attachment \"Incendium_v3.0.3.zip\" into the folder that opens. Do not copy \"Incendium v3.1.zip\" yet, and do not extract the ZIP.",
+        "exact_input": "Incendium_v3.0.3.zip",
+        "success_cue": "The world-creation datapack folder contains \"Incendium_v3.0.3.zip\" and does not contain \"Incendium v3.1.zip\".",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Return to the Minecraft Data Packs screen. Move Incendium v3.0.3 from the Available list to the Selected list by clicking its arrow or datapack icon. If a validation or experimental-world warning appears, confirm it without changing the Minecraft version.",
+        "exact_input": "Incendium_v3.0.3.zip",
+        "success_cue": "Incendium v3.0.3 appears in the Selected datapacks list and Minecraft permits returning to the world-creation screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Create the world. Wait until the player appears and surrounding terrain has rendered. Do not proceed while the world is still showing a loading screen or while player movement is unresponsive.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the new Creative-mode Overworld, terrain is visible, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open the Creative inventory with the inventory control, which is E by default. Use the Search Items tab to place Obsidian and Flint and Steel into hotbar slots, then close the inventory with E or Esc. The hotbar is the row of nine item slots at the bottom of the game screen.",
+        "exact_input": "E; Obsidian; Flint and Steel",
+        "success_cue": "Obsidian and Flint and Steel are visible in the player's hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the Obsidian hotbar slot. Build a vertical rectangular Nether portal frame with a 2-block-wide by 3-block-high empty interior; a complete frame is 4 blocks wide and 5 blocks high when its four corners are included. Ensure the interior contains only air.",
+        "exact_input": null,
+        "success_cue": "A complete upright obsidian frame with a clear 2-by-3 interior stands near the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select Flint and Steel in the hotbar, aim at an interior bottom block of the obsidian frame, and use the item with right-click. Wait for the purple portal field to fill the frame.",
+        "exact_input": "right-click",
+        "success_cue": "The portal interior is filled with the animated purple Nether portal field.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Walk into the purple portal field with the movement controls, using W by default, and remain inside it until dimension transfer begins.",
+        "exact_input": "W",
+        "success_cue": "The dimension-loading screen appears and the player is transferred away from the Overworld.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Wait until the Nether terrain surrounding the destination has fully rendered and the player can move normally. Do not leave the Nether or replace the datapack at this stage.",
+        "exact_input": null,
+        "success_cue": "The player is in the Nether, nearby terrain is visible, and movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Press F3 to open the debug screen and inspect the displayed biome resource identifier. If the current position is not in a custom biome supplied by the datapack, move or fly through newly generated Nether terrain until the biome line shows a non-vanilla biome identifier rather than an identifier beginning with \"minecraft:\". In Creative mode, double-tap Space to begin flying and use W to move. Do not assume a specific custom-biome identifier because the report does not provide one.",
+        "exact_input": "F3; double-tap Space; W",
+        "success_cue": "The player is standing or flying in a generated Nether chunk whose F3 biome line displays a custom, non-\"minecraft:\" biome identifier.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "While remaining near the identified custom-biome area, press F3+G to display chunk borders. Move across several adjacent chunk borders so multiple Nether chunks are generated and loaded under Incendium v3.0.3. A practical minimum is to cross a border in each cardinal direction from the selected target chunk and then return to that target chunk. Wait after each movement until nearby terrain has rendered.",
+        "exact_input": "F3+G; W; A; S; D",
+        "success_cue": "The target custom-biome chunk and several adjacent Nether chunks have rendered under Incendium v3.0.3, and the player has returned to the target chunk.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "With the player back in the target custom-biome chunk, press F3 if necessary and record the exact X, Y, and Z coordinates and the displayed custom-biome identifier. Press F2 to save a screenshot of the debug screen as a location record. Leave the player at this position.",
+        "exact_input": "F3; F2",
+        "success_cue": "The target coordinates and original custom-biome identifier have been recorded, a screenshot has been saved, and the player remains in the target Nether chunk.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press Esc and choose Save and Quit to Title while the player is still in the recorded target Nether chunk. Wait until the main menu is displayed so the world is no longer running.",
+        "exact_input": "Esc -> Save and Quit to Title",
+        "success_cue": "The main menu is visible and the test world is closed with the player's saved position inside the generated Nether target chunk.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Before changing datapacks, create a backup copy of the entire test-world folder in a separate location. The backup is only for recovery; continue the reproduction using the original world folder, not the backup.",
+        "exact_input": null,
+        "success_cue": "A separate backup copy exists and the original test-world folder remains the active save.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "From Singleplayer, select the same test world, choose Edit, and use Open World Folder. Open its \"datapacks\" subfolder. Remove \"Incendium_v3.0.3.zip\" from that folder and copy in the exact second attachment, \"Incendium v3.1.zip\". Do not leave both versions installed simultaneously.",
+        "exact_input": "Remove Incendium_v3.0.3.zip; copy Incendium v3.1.zip",
+        "success_cue": "The original world's datapacks folder contains \"Incendium v3.1.zip\" and no longer contains \"Incendium_v3.0.3.zip\".",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Return to Minecraft and verify once more that the running launcher installation is still exactly 20w30a. In Singleplayer, select the original \"MC-202036-Repro\" world; do not create a new world and do not open the backup.",
+        "exact_input": "20w30a; MC-202036-Repro",
+        "success_cue": "The original test world is selected for loading in Minecraft 20w30a after the datapack replacement.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Open the selected original world with Incendium v3.1 installed. Confirm any datapack or experimental-world prompt required to continue, but do not use a safe-mode option that disables the datapack. Wait until loading finishes, the player appears at the previously recorded Nether coordinates, the previously generated surrounding chunks are rendered, and movement responds normally.",
+        "exact_input": "Incendium v3.1.zip",
+        "success_cue": "The same save is running in 20w30a with Incendium v3.1 installed, and the player is at the recorded location inside the previously generated Nether custom-biome area.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The original world has just finished loading in Minecraft 20w30a with only \"Incendium v3.1.zip\" installed, and the player is positioned at the recorded coordinates inside Nether chunks that were generated under \"Incendium_v3.0.3.zip\". The old surrounding chunks are rendered and movement is responsive; hand control to the observation subsystem now.",
+    "uncertainties": [
+      "The report does not supply a world seed, target coordinates, or a specific custom-biome identifier. The procedure therefore locates any Incendium custom biome under v3.0.3 and records its coordinates before replacing the datapack.",
+      "The report does not specify a game mode. Creative mode is used only as a practical way to build a Nether portal and traverse terrain without unrelated resource gathering.",
+      "The report says to load \"some chunks\" but does not state an exact number or shape. The plan loads the target custom-biome chunk and several adjacent chunks to satisfy that condition without generating an excessive area.",
+      "The attachment contents are not included in the supplied report text. This plan assumes the executor has the two original Mojira ZIP attachments and that they are valid for the report's reproduction.",
+      "The report does not specify whether the player must leave the target area and return after replacing the datapack. Saving the player inside the target Nether chunk makes those existing chunks load immediately when the same world is reopened.",
+      "Minecraft 20w30a menu labels or datapack warning text may differ slightly by launcher platform or language; the required file order remains v3.0.3 for initial Nether generation followed by v3.1 in the same world."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0d449ee225f32881016aa8ce6df0b487d0baa0592d09cbef6c",
+    "elapsed_seconds": 104.09,
+    "usage": {
+      "input_tokens": 8916,
+      "output_tokens": 6593,
+      "reasoning_tokens": 4097,
+      "total_tokens": 15509
+    },
+    "timestamp": "2026-09-15T04:51:33.718310+00:00"
+  }
+}

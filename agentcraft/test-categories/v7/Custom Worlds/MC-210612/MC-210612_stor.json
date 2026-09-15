@@ -1,0 +1,224 @@
+{
+  "bug_id": "MC-210612",
+  "category": "Custom Worlds",
+  "source_md": "[Custom Worlds] - MC-210612.md",
+  "source_meta": {
+    "mojira categories": "Custom Worlds; Structures",
+    "project": "MC",
+    "issue key": "MC-210612",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-01-05T08:25:50.621-0800",
+    "updated": "2025-03-25T13:23:42.285-0700",
+    "resolution date": "2022-08-31T00:35:51.915-0700",
+    "affects versions": "20w51a; 21w03a; 1.16.5; 21w05b; 21w06a; 21w10a; 21w11a; 21w15a; 1.17 Pre-release 5; 1.17",
+    "fix versions": "1.18.2 Pre-release 1",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "210612.json",
+    "_title": "Strongholds do not generate in certain customized worlds despite /locate saying otherwise"
+  },
+  "stor": {
+    "bug_id": "MC-210612",
+    "affected_versions": [
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05b",
+      "21w06a",
+      "21w10a",
+      "21w11a",
+      "21w15a",
+      "1.17 Pre-release 5",
+      "1.17"
+    ],
+    "recommended_version": "20w51a",
+    "environment": "Minecraft Java Edition 20w51a, single-player integrated server, a newly created Creative-mode world with commands available, and the final working revision of the report attachment named 210612.json imported as the world's custom generation settings.",
+    "preconditions": [
+      "Install and launch an unmodified Minecraft Java Edition 20w51a profile. Use a separate game directory if necessary so that newer installations do not overwrite this historical profile's files or options.",
+      "Download the final available revision of 210612.json from the MC-210612 attachments. The comments state that an earlier supplied revision produced parser errors and was later replaced, so do not use a locally retained earlier revision with the same filename.",
+      "Keep 210612.json as a standalone JSON file in a location accessible through the operating system's file-selection dialog; do not place it in the saves directory as though it were a complete world.",
+      "Use a new single-player world. Do not substitute a normally generated world, manually recreate the JSON settings, or change the imported world-generation configuration.",
+      "Commands must be available. Selecting Creative mode during world creation should provide command access in this single-player test.",
+      "If importing 210612.json produces parser or validation errors in 20w51a, stop rather than creating a world with fallback/default settings; such a world would not preserve the report's required customized generation."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation whose version is exactly Java Edition snapshot 20w51a, then start that installation.",
+        "exact_input": "20w51a",
+        "success_cue": "The Minecraft main menu is open and the displayed version is 20w51a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, open the single-player world list.",
+        "exact_input": null,
+        "success_cue": "The Select World screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Select Create New World to open the world-creation screen.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is visible and is configuring a new world rather than an existing save.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Change Game Mode until it is set to Creative. If an Allow Cheats control is independently available, ensure it is set to ON.",
+        "exact_input": "Game Mode: Creative; Allow Cheats: ON if shown",
+        "success_cue": "The world-creation screen identifies the selected game mode as Creative and commands will be available in the world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Open the additional world-generation controls by selecting More World Options.",
+        "exact_input": "More World Options...",
+        "success_cue": "The screen shows world-generation controls, including the control used to import world settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the Import Settings control. This is the historical custom-world-settings import function available during world creation in this version family.",
+        "exact_input": "Import Settings",
+        "success_cue": "The operating system's file-selection dialog opens.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "In the file-selection dialog, navigate to and select the final downloaded report attachment, then confirm the file selection.",
+        "exact_input": "210612.json",
+        "success_cue": "Minecraft begins processing 210612.json and either presents an experimental-settings confirmation or returns to world creation with the imported settings.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "If Minecraft displays a warning that custom or experimental world settings may be unstable, use the confirmation control to continue with the imported settings.",
+        "exact_input": null,
+        "success_cue": "The warning closes and Minecraft returns to the new-world configuration flow without abandoning the imported settings.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Confirm that the import completed without a parser, validation, or settings-loading error. Do not manually change the imported seed, biome distribution, dimension settings, structure settings, default block, or effects after import.",
+        "exact_input": null,
+        "success_cue": "The Create New World flow remains usable after the import and no message states that 210612.json failed to load.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select Create New World to generate the customized world from the imported settings.",
+        "exact_input": "Create New World",
+        "success_cue": "World generation begins using the imported configuration.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait for the world to finish loading. Do not begin the command sequence while the loading screen is still present.",
+        "exact_input": null,
+        "success_cue": "The player is controllable in the new world, nearby terrain has rendered, and the Creative-mode hotbar and crosshair are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press the chat/command key, which is T by default, to open the in-game command input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Enter the report's locate command exactly, including the leading slash, and press Enter.",
+        "exact_input": "/locate stronghold",
+        "success_cue": "Chat reports the position of the nearest stronghold rather than reporting a syntax, permission, or unknown-structure error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Read the locate result and record the reported X and Z coordinates exactly. If the result displays a coordinate triplet such as [X, ~, Z], X is the first value and Z is the third value; the tilde means that no fixed Y coordinate was supplied.",
+        "exact_input": null,
+        "success_cue": "The executor has stored the locate result's exact X and Z values for use in the teleport command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Press T again to open a fresh command input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready for the teleport command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Teleport horizontally to the reported locate position. Replace <LOCATED_X> and <LOCATED_Z> with the exact first and third coordinate values from the locate result; retain the tilde for Y so the player's current vertical coordinate is preserved. Include the leading slash, then press Enter.",
+        "exact_input": "/tp @s <LOCATED_X> ~ <LOCATED_Z>",
+        "success_cue": "The player's horizontal position changes to the reported X and Z coordinates and the command does not produce a syntax or permission error.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Wait at the destination until the surrounding customized terrain has rendered and player movement and commands respond normally.",
+        "exact_input": null,
+        "success_cue": "Chunks around the located X/Z position are rendered and the game accepts movement without active destination-loading pauses.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Press T to open the command input for the game-mode change.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 19,
+        "action": "Switch the player to Spectator mode by entering the command with its leading slash and pressing Enter.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The command succeeds, the normal Creative hotbar is no longer present, and the player can fly through solid blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 20,
+        "action": "Without moving significantly away from the located X/Z coordinates, aim the camera downward. Use the coordinates display if it was already enabled, or the F3 debug screen if needed, to keep X and Z close to the recorded locate values.",
+        "exact_input": "F3 if coordinate guidance is needed",
+        "success_cue": "The camera is aimed into the ground while the player remains in Spectator mode at or very near the reported stronghold X/Z position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Begin flying straight downward through the terrain at the located position using the descend control, Left Shift by default. Continue only until the observation subsystem takes control; do not return to the surface, generate another world, or run /locate again.",
+        "exact_input": "Left Shift",
+        "success_cue": "The Spectator-mode player has entered the underground terrain beneath the X/Z position returned by /locate and can visually inspect generated blocks while descending.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The player is in Spectator mode at the X/Z position returned by /locate stronghold, the destination chunks are fully loaded, and the player has just begun descending through the underground terrain. Hand control to the observation subsystem to inspect structure generation around the locate target.",
+    "uncertainties": [
+      "The raw report does not include the contents of 210612.json, so its seed, exact dimension configuration, biome list, structure configuration, and default block cannot be reproduced manually from the supplied text.",
+      "The comments state that an earlier attachment revision caused parser errors and that a new working world-generation import was later supplied, but the raw export lists only one attachment filename and does not identify attachment revisions. The plan therefore requires the final available revision associated with the issue.",
+      "Although 20w51a is the first listed affected version and is therefore the recommended version, the report does not explicitly establish that the final replacement revision of 210612.json remains syntactically compatible with 20w51a. If it is rejected, do not silently move to another affected version or allow default generation; the attachment-to-version mapping must first be resolved.",
+      "The report supplies neither a fixed seed nor fixed stronghold coordinates in text. The reproduction therefore obtains the target coordinates dynamically from /locate stronghold in the imported world.",
+      "The teleport command was not supplied verbatim by the reporter. Using /tp @s <LOCATED_X> ~ <LOCATED_Z> is a practical implementation of the report's instruction to teleport to the coordinates while avoiding an invented fixed Y coordinate."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0a5c804144bdf4d0016aa8ced5e85087d0ba2aeca75b99e700",
+    "elapsed_seconds": 93.59,
+    "usage": {
+      "input_tokens": 23222,
+      "output_tokens": 5221,
+      "reasoning_tokens": 3104,
+      "total_tokens": 28443
+    },
+    "timestamp": "2026-09-15T04:53:07.321254+00:00"
+  }
+}

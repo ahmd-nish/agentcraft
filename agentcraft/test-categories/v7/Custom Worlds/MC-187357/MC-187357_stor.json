@@ -1,0 +1,167 @@
+{
+  "bug_id": "MC-187357",
+  "category": "Custom Worlds",
+  "source_md": "[Custom Worlds] - MC-187357.md",
+  "source_meta": {
+    "mojira categories": "Custom Worlds; Structures; World generation",
+    "project": "MC",
+    "issue key": "MC-187357",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2020-06-04T12:11:11.716-0700",
+    "updated": "2025-04-29T20:56:57.128-0700",
+    "resolution date": "2021-11-28T00:46:39.536-0800",
+    "affects versions": "1.16 Pre-release 1; 1.16 Pre-release 2; 1.16 Pre-release 5; 1.16.1",
+    "fix versions": "1.16.2 Pre-release 2",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "mcFlatStronghold.json; mcOverworldDefaults.json",
+    "_title": "Strongholds will not generate in floating_islands or caves preset"
+  },
+  "stor": {
+    "bug_id": "MC-187357",
+    "affected_versions": [
+      "1.16 Pre-release 1",
+      "1.16 Pre-release 2",
+      "1.16 Pre-release 5",
+      "1.16.1"
+    ],
+    "recommended_version": "1.16 Pre-release 1",
+    "environment": "Minecraft: Java Edition 1.16 Pre-release 1 in singleplayer, using a newly created custom world whose Overworld generator settings are imported from the report's JSON; commands enabled so /locate can be executed.",
+    "preconditions": [
+      "A Minecraft: Java Edition installation for 1.16 Pre-release 1 is available. Use a separate game directory or otherwise avoid opening valuable worlds in this historical pre-release.",
+      "The executor can create a plain-text UTF-8 JSON file and select it through Minecraft's native file picker.",
+      "Use the floating-islands JSON from the report exactly as supplied. Do not add a structures or stronghold section, and do not substitute either attached workaround file, mcFlatStronghold.json or mcOverworldDefaults.json.",
+      "Create a new world for this reproduction; do not import the settings into or convert an existing world.",
+      "Only one /locate attempt is needed. Do not repeatedly execute the command after the first response."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Create a plain-text UTF-8 file named MC-187357-floating-islands.json. Copy the supplied world-generation JSON into it exactly, including the seed and minecraft:floating_islands generator setting, then save the file with the .json extension rather than .txt.",
+        "exact_input": "{\n  \"generate_features\": true,\n  \"bonus_chest\": false,\n  \"seed\": -1464245863,\n  \"dimensions\": {\n    \"minecraft:overworld\": {\n      \"generator\": {\n        \"type\": \"minecraft:noise\",\n        \"seed\": -1464245863,\n        \"biome_source\": {\n          \"type\": \"minecraft:vanilla_layered\",\n          \"seed\": -1464245863,\n          \"large_biomes\": false\n        },\n        \"settings\": \"minecraft:floating_islands\"\n      },\n      \"type\": \"minecraft:overworld\"\n    },\n    \"minecraft:the_nether\": {\n      \"generator\": {\n        \"type\": \"minecraft:noise\",\n        \"seed\": -1464245863,\n        \"biome_source\": {\n          \"type\": \"minecraft:multi_noise\",\n          \"seed\": -1464245863,\n          \"preset\": \"minecraft:nether\"\n        },\n        \"settings\": \"minecraft:nether\"\n      },\n      \"type\": \"minecraft:the_nether\"\n    },\n    \"minecraft:the_end\": {\n      \"generator\": {\n        \"type\": \"minecraft:noise\",\n        \"seed\": -1464245863,\n        \"biome_source\": {\n          \"type\": \"minecraft:the_end\",\n          \"seed\": -1464245863\n        },\n        \"settings\": \"minecraft:end\"\n      },\n      \"type\": \"minecraft:the_end\"\n    }\n  }\n}",
+        "success_cue": "MC-187357-floating-islands.json exists as a readable JSON file and contains minecraft:floating_islands without any added structures or stronghold configuration.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Launch Minecraft: Java Edition using the installation configured for 1.16 Pre-release 1. Do not use the listed fix version, 1.16.2 Pre-release 2.",
+        "exact_input": "1.16 Pre-release 1",
+        "success_cue": "The Minecraft title screen identifies the running game as 1.16 Pre-release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "From the title screen, click Singleplayer and then click Create New World.",
+        "exact_input": null,
+        "success_cue": "The Create New World screen is open for a new world.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Set Game Mode to Creative. Creative mode is not asserted by the report; it is selected only to make the command-based reproduction safe and straightforward.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The world-creation screen displays Game Mode: Creative.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Click More World Options... to open the seed, structure, command, and world-import controls used by this version.",
+        "exact_input": null,
+        "success_cue": "The More World Options screen is visible and includes the Import Settings control.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Verify that Allow Cheats is ON. If the button reads Allow Cheats: OFF, click it once. Do not proceed with cheats disabled because /locate requires command permission.",
+        "exact_input": "Allow Cheats: ON",
+        "success_cue": "The button reads Allow Cheats: ON.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Click Import Settings to open the operating system's file-selection dialog.",
+        "exact_input": null,
+        "success_cue": "A file-selection dialog is open and waiting for a JSON file to be selected.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "In the file-selection dialog, navigate to MC-187357-floating-islands.json, select it, and activate the dialog's Open or Select button.",
+        "exact_input": "MC-187357-floating-islands.json",
+        "success_cue": "Minecraft accepts the selected file and returns to world creation without displaying Error Importing Settings.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "If Minecraft displays a warning that imported/custom world-generation settings are experimental, accept the warning by clicking Yes or Proceed. If no warning appears, continue without changing any imported setting.",
+        "exact_input": null,
+        "success_cue": "The warning is dismissed, the Create New World interface is available again, and no import error is displayed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Leave the imported world-generation configuration unchanged. In particular, do not add custom stronghold settings and do not replace minecraft:floating_islands with minecraft:overworld or minecraft:amplified. Click Create New World.",
+        "exact_input": null,
+        "success_cue": "The world-generation loading screen appears.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Wait for world creation and initial chunk loading to finish. Do not issue the command while the loading screen is present. Once control is available, wait until nearby terrain has rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in the Overworld, floating-islands terrain is visible around the player, the loading screen is gone, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Press T, the default Open Chat control, to open the in-game chat and command-entry field.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is visible and has keyboard focus.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Type the version-compatible stronghold location command into chat exactly as shown, including the leading slash. Do not press Enter yet.",
+        "exact_input": "/locate stronghold",
+        "success_cue": "The chat input field contains /locate stronghold exactly, with stronghold in lowercase.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Press Enter once to submit the command, then wait until Minecraft produces a command-feedback line in chat. Do not execute the command a second time.",
+        "exact_input": "Enter",
+        "success_cue": "The /locate stronghold command has been submitted and its resulting feedback line is visible in chat.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 14,
+    "handoff_condition": "The player is in the newly generated floating-islands Overworld created from the report's unmodified JSON, and /locate stronghold has just returned a feedback line in chat. Hand control to the observation subsystem to capture and evaluate that command feedback.",
+    "uncertainties": [
+      "The report does not specify a game mode. Creative mode is selected only as a practical way to enable and safely execute /locate; the generator configuration remains unchanged.",
+      "The title mentions both floating_islands and caves, but the report supplies a complete deterministic JSON configuration only for minecraft:floating_islands. This plan therefore reproduces the documented floating-islands case and does not invent a separate caves configuration.",
+      "The plan assumes the English UI labels used by Java Edition 1.16 Pre-release 1. Equivalent localized controls may have different text.",
+      "An experimental-settings confirmation may appear after importing the JSON; the precise warning presentation can depend on the affected pre-release, so that action is conditional."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0dc052f5502bc5da016aa8cd16cf7887d082d2bcd20ec16e32",
+    "elapsed_seconds": 95.19,
+    "usage": {
+      "input_tokens": 34051,
+      "output_tokens": 5932,
+      "reasoning_tokens": 4117,
+      "total_tokens": 39983
+    },
+    "timestamp": "2026-09-15T04:45:39.103439+00:00"
+  }
+}
