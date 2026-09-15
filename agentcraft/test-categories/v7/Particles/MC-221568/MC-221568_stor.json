@@ -1,0 +1,220 @@
+{
+  "bug_id": "MC-221568",
+  "category": "Particles",
+  "source_md": "[Particles] - MC-221568.md",
+  "source_meta": {
+    "mojira categories": "Particles",
+    "project": "MC",
+    "issue key": "MC-221568",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2021-03-31T10:35:19.401-0700",
+    "updated": "2025-04-11T12:40:25.998-0700",
+    "resolution date": "2023-05-15T07:40:20.727-0700",
+    "affects versions": "21w13a; 21w14a; 21w15a; 21w16a; 21w17a; 1.17; 1.17.1; 1.18.1; 22w12a; 1.19; 1.19.1 Pre-release 5; 1.19.2",
+    "fix versions": "22w42a",
+    "labels": "barrier; invisible-block-manipulation; invisible-blocks; invisible-blocks-not-invisible; light_block; structure_void; unnecessary-particles",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2021-03-31_18.31.59.png; 2021-03-31_18.32.00.png; 2021-03-31_18.32.03.png; 2021-03-31_18.32.04.png; 2021-03-31_18.32.21.png; 2021-03-31_18.32.22.png; MC-221568.mp4",
+    "issue links": "Relates:outward:MC-221864:Iron golems produce walking particles for light blocks | Relates:inward:MC-249384:Warden can create light, barrier and structure void particles when digging",
+    "_title": "Inconsistency: Barriers and structure voids produce particles when broken, but light blocks do not"
+  },
+  "stor": {
+    "bug_id": "MC-221568",
+    "affected_versions": [
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "1.17",
+      "1.17.1",
+      "1.18.1",
+      "22w12a",
+      "1.19",
+      "1.19.1 Pre-release 5",
+      "1.19.2"
+    ],
+    "recommended_version": "21w13a",
+    "environment": "Vanilla Minecraft: Java Edition snapshot 21w13a in a singleplayer world using the integrated server. The player must be in Creative mode with commands/cheats enabled. Set the client particle option to All so the comparison is not affected by reduced particle settings. Use default controls or the equivalent rebound controls.",
+    "preconditions": [
+      "The Minecraft Launcher is configured to make historical Java Edition snapshots available, and snapshot 21w13a can be launched.",
+      "Use an unmodified client without mods or resource packs that alter block models, invisible-block rendering, or particles.",
+      "The test world must permit commands. The simplest setup is a new singleplayer Creative-mode world with Allow Cheats set to ON.",
+      "The player must have enough unobstructed space to place three separated pedestal blocks and one test block above each pedestal.",
+      "The observation system must be ready before the first test block is broken and must remain active until all three comparison blocks have been broken."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select a Java Edition installation whose version is exactly snapshot 21w13a, then start the game with that installation.",
+        "exact_input": "Minecraft Launcher -> Installations -> New installation or Edit -> Version: snapshot 21w13a -> Play",
+        "success_cue": "The game reaches the main menu and displays 21w13a as the running version.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new singleplayer world. Set Game Mode to Creative and set Allow Cheats to ON before creating it. No particular seed or world type is required; a flat, open spawn area is preferable but not mandatory.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The world loads with the player in Creative mode, indicated by the absence of health and hunger bars and the ability to fly by double-tapping Space.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Wait for world loading to finish before preparing the test. Do not continue while nearby terrain is still appearing or player controls are unresponsive.",
+        "exact_input": null,
+        "success_cue": "Nearby chunks are rendered, the player can turn and move normally, and opening chat responds immediately.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Configure the client to display all particles. Open the pause menu, enter the video settings, and cycle the Particles option until it reads All. Return to the world afterward.",
+        "exact_input": "Esc -> Options -> Video Settings -> Particles: All -> Done -> Done -> Back to Game",
+        "success_cue": "The Video Settings screen showed Particles: All, and the player has returned to the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Obtain three ordinary stone blocks for use as visible pedestals. Press T to open in-game chat, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:stone 3",
+        "success_cue": "Three Stone blocks are present in the player's inventory or hotbar, and the command does not produce a red syntax or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Obtain one Barrier item. Press T, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:barrier 1",
+        "success_cue": "A Barrier item is present in the player's inventory or hotbar, and the command does not produce a red syntax or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Obtain one Structure Void item. Press T, enter the command exactly with the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:structure_void 1",
+        "success_cue": "A Structure Void item is present in the player's inventory or hotbar, and the command does not produce a red syntax or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Obtain one Light block item. Press T, enter the command exactly with the leading slash, and press Enter. No BlockStateTag is necessary for this break-particle comparison; the default light level is sufficient.",
+        "exact_input": "/give @s minecraft:light 1",
+        "success_cue": "A Light item is present in the player's inventory or hotbar, and the command does not produce a red syntax or permission error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Open the inventory with E. Arrange Stone, Barrier, Structure Void, and Light into four separate hotbar slots. The hotbar is the nine-slot row at the bottom of the inventory and at the bottom of the normal game screen. Close the inventory with E when finished.",
+        "exact_input": "E; drag Stone, Barrier, Structure Void, and Light into separate hotbar slots; E",
+        "success_cue": "All four item types are visible in separate hotbar slots and can be selected individually with their corresponding number keys or the mouse wheel.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Move to a clear patch of solid ground. Select Stone, then place three single Stone pedestal blocks in a straight horizontal row by right-clicking the ground. Leave one empty horizontal block between adjacent pedestals so the three test positions cannot overlap. Treat them as the left, middle, and right pedestals while facing the row.",
+        "exact_input": "Select the Stone hotbar slot; right-click the ground three times with one empty block between placements",
+        "success_cue": "Three separate Stone blocks form a clearly visible row with one-block gaps: a left pedestal, a middle pedestal, and a right pedestal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select the Barrier item in the hotbar. Aim at the top face of the left Stone pedestal and right-click once to place a Barrier directly above it.",
+        "exact_input": "Select Barrier; aim at the top of the left pedestal; right-click once",
+        "success_cue": "While the Barrier item remains selected, the Barrier's visible marker appears in the one-block space directly above the left Stone pedestal.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Select the Structure Void item. Aim at the top face of the middle Stone pedestal and right-click once to place a Structure Void directly above it.",
+        "exact_input": "Select Structure Void; aim at the top of the middle pedestal; right-click once",
+        "success_cue": "While the Structure Void item remains selected, its special marker appears in the one-block space directly above the middle Stone pedestal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select the Light item. Aim at the top face of the right Stone pedestal and right-click once to place a Light block directly above it. Do not right-click the placed Light block again, because additional right-clicks cycle its light level and are unnecessary for this test.",
+        "exact_input": "Select Light; aim at the top of the right pedestal; right-click once",
+        "success_cue": "While the Light item remains selected, the Light block's marker appears in the one-block space directly above the right Stone pedestal.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 14,
+        "action": "Move approximately two to four blocks away from the front of the pedestal row and face all three pedestals. Adjust the camera so each test position can be targeted without moving far between breaks.",
+        "exact_input": "Use movement controls, normally W/A/S/D, and mouse look",
+        "success_cue": "The left, middle, and right pedestals are distinguishable and all three test positions are within easy camera reach.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Select the Barrier item so the placed Barrier is visible and targetable. Center the crosshair on the Barrier marker directly above the left pedestal. Do not click until the observation system is ready.",
+        "exact_input": "Select Barrier; move the crosshair onto the marker above the left pedestal",
+        "success_cue": "The Barrier marker above the left pedestal is visible and outlined under the crosshair, ready to be broken.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 16,
+        "action": "With the crosshair still on the Barrier above the left pedestal, left-click once to break it in Creative mode. This is the first trigger action; particle observation must begin no later than this click.",
+        "exact_input": "left-click once",
+        "success_cue": "While the Barrier item is still selected, the Barrier marker is no longer present above the left Stone pedestal.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Select the Structure Void item so the placed Structure Void can be identified. Center the crosshair on the Structure Void marker directly above the middle pedestal.",
+        "exact_input": "Select Structure Void; move the crosshair onto the marker above the middle pedestal",
+        "success_cue": "The Structure Void marker above the middle pedestal is visible and targeted by the crosshair.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "With the crosshair still on the Structure Void above the middle pedestal, left-click once to break it in Creative mode.",
+        "exact_input": "left-click once",
+        "success_cue": "While the Structure Void item is still selected, the Structure Void marker is no longer present above the middle Stone pedestal.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Select the Light item so the placed Light block becomes visible and targetable. Center the crosshair on the Light marker directly above the right pedestal.",
+        "exact_input": "Select Light; move the crosshair onto the marker above the right pedestal",
+        "success_cue": "The Light block marker above the right pedestal is visible and targeted by the crosshair.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "With the crosshair still on the Light block above the right pedestal, left-click once to break it in Creative mode.",
+        "exact_input": "left-click once",
+        "success_cue": "While the Light item is still selected, the Light block marker is no longer present above the right Stone pedestal. Each of the three test blocks has now been broken exactly once in the order Barrier, Structure Void, Light.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "Begin observation at step 16, when the Barrier is first broken, and keep observation active through steps 18 and 20. Handoff is complete after the Barrier, Structure Void, and Light block have each been broken exactly once in that order while Particles remains set to All; the three Stone pedestals remain in place and the spaces directly above them are empty.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce section. The minimum deterministic path was reconstructed from the description's statement that a Creative-mode player breaks the three command-exclusive invisible blocks.",
+      "The description refers once to a 'structure block,' but the issue title, labels, and later wording specifically identify Structure Void. This plan therefore tests minecraft:structure_void rather than minecraft:structure_block.",
+      "The report also mentions punching, sprinting, falling, and iron-golem walking as other circumstances that can create particles. Those secondary variants are not included because breaking each block once is the primary and safest deterministic reproduction described by the issue.",
+      "The pedestal arrangement, particle-setting check, and Barrier -> Structure Void -> Light order are execution aids rather than report-mandated requirements.",
+      "External verification was used for the 21w13a Light block's command-only acquisition and held-item visibility/targetability behavior, and for the relevant Java Edition item identifiers and /give syntax."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_01ca2430e75a9332016aa8a1d920c487d09c27828f60f04222",
+    "elapsed_seconds": 86.95,
+    "usage": {
+      "input_tokens": 32987,
+      "output_tokens": 6742,
+      "reasoning_tokens": 4305,
+      "total_tokens": 39729
+    },
+    "timestamp": "2026-09-15T01:41:03.816271+00:00"
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "bug_id": "MC-47607",
+  "category": "Particles",
+  "source_md": "[Particles] - MC-47607.md",
+  "source_meta": {
+    "mojira categories": "Particles; Rendering",
+    "project": "MC",
+    "issue key": "MC-47607",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2014-02-06T10:15:01.270-0800",
+    "updated": "2025-05-29T09:21:20.713-0700",
+    "resolution date": "2023-09-27T05:39:37.820-0700",
+    "affects versions": "Minecraft 14w06b; 20w51a; 21w03a; 1.16.5; 21w05a; 21w05b; 21w06a; 21w07a; 21w08a; 21w08b; 21w10a; 21w11a; 21w13a; 21w14a; 21w15a; 21w16a; 21w17a; 21w18a; 1.17; 1.17.1; 21w40a; 21w41a; 21w42a; 1.18 Pre-release 1; 1.18; 1.18.1; 22w03a; 22w05a; 1.18.2 Release Candidate 1; 1.18.2; 22w16b; 22w17a; 1.19; 1.19.1; 1.19.2; 22w43a; 1.19.3; 1.19.4; 1.20; 1.20.1; 23w31a",
+    "fix versions": "23w40a",
+    "labels": "barrier",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "2014-02-06_22.01.53.png; MC-47607.mp4; MC-47607.png",
+    "issue links": "Relates:outward:MC-203704:Candles don't show flame animations when particles are set to \"Minimal\" | Duplicate:inward:MC-46735:Barriers should be visible when holding one in creative | Duplicate:inward:MC-48698:Can't see barrier block texture | Duplicate:inward:MC-48721:Barrier won't show up when selected in toolbar | Duplicate:inward:MC-49037:Barriers are Invisible in Creative | Duplicate:inward:MC-51139:When Barrier Item Is Held In Inventory, The Barrier Block Texture Doesn't Appear | Duplicate:inward:MC-51347:barrier bloc | Duplicate:inward:MC-52443:barriers ALWAYS invisible | Duplicate:inward:MC-54205:Barriers not seeable | Duplicate:inward:MC-55305:you don't see the red barrier block anymore | Duplicate:inward:MC-58860:Barrier particle not showing | Duplicate:inward:MC-62640:Barrier block isn't visible while holding one | Duplicate:inward:MC-64146:You cannot see placed barriers while holding a barrier in your hand In Creative Mode | Duplicate:inward:MC-67863:Barrier Particle doesn't show | Duplicate:inward:MC-69523:barrier only visible in creative mode when particles are set to 'All' | Duplicate:inward:MC-69557:Barrier Icon/particle (Inside the barrier blocks) does not show up when holding a barrier | Duplicate:inward:MC-70311:Barrier block not visible in creative | Duplicate:inward:MC-80663:Barriers not shown when holding themselves. | Duplicate:inward:MC-119396:Barrier texture not showing when barrier item is held | Duplicate:inward:MC-120971:Barriers won't show when holding the barrier item anymore! | Duplicate:inward:MC-122938:Barrier block particle | Duplicate:inward:MC-125180:Barrier invisible while holding barrier. | Duplicate:inward:MC-127453:Barrier block is invisible at all time | Duplicate:inward:MC-139166:Barrier block doesn't appear when holding barrier (nvm, works as intended) | Duplicate:inward:MC-162075:Barriers in creative mod. | Duplicate:inward:MC-165502:Barrier Error | Duplicate:inward:MC-177156:It's fixed! Particles was minimal | Duplicate:inward:MC-194020:Barrier set | Duplicate:inward:MC-194887:Barriers will remain hidden while holding a barrier block | Duplicate:inward:MC-212593:Buggy Barrier Blocks | Duplicate:inward:MC-212718:Barrier blocks don't show particles | Duplicate:inward:MC-241176:placed barrier not rendering as it is held | Duplicate:inward:MC-245389:Invisible Barriers | Duplicate:inward:MC-254223:Barrier can not show the texture",
+    "_title": "Barrier particles aren't shown if particles are set to minimal"
+  },
+  "stor": {
+    "bug_id": "MC-47607",
+    "affected_versions": [
+      "Minecraft 14w06b",
+      "20w51a",
+      "21w03a",
+      "1.16.5",
+      "21w05a",
+      "21w05b",
+      "21w06a",
+      "21w07a",
+      "21w08a",
+      "21w08b",
+      "21w10a",
+      "21w11a",
+      "21w13a",
+      "21w14a",
+      "21w15a",
+      "21w16a",
+      "21w17a",
+      "21w18a",
+      "1.17",
+      "1.17.1",
+      "21w40a",
+      "21w41a",
+      "21w42a",
+      "1.18 Pre-release 1",
+      "1.18",
+      "1.18.1",
+      "22w03a",
+      "22w05a",
+      "1.18.2 Release Candidate 1",
+      "1.18.2",
+      "22w16b",
+      "22w17a",
+      "1.19",
+      "1.19.1",
+      "1.19.2",
+      "22w43a",
+      "1.19.3",
+      "1.19.4",
+      "1.20",
+      "1.20.1",
+      "23w31a"
+    ],
+    "recommended_version": "Minecraft 14w06b",
+    "environment": "Minecraft Java Edition snapshot 14w06b, using an unmodified client in a single-player Creative-mode world with cheats enabled so the unobtainable Barrier item can be acquired with a version-compatible command.",
+    "preconditions": [
+      "Install and launch the exact Java Edition snapshot 14w06b, preferably from a separate launcher installation/profile so its historical settings and world files are isolated from newer versions.",
+      "Use the normal Minecraft resource pack and no client mods, shaders, or optimization modifications that alter particle rendering.",
+      "A keyboard and mouse are available. The instructions name the default controls; use the equivalent bound control if keys have been reassigned.",
+      "No particular seed, biome, structure, coordinates, difficulty, or world type are specified by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation for snapshot 14w06b and start the game. Do not substitute the listed fix version 23w40a.",
+        "exact_input": "14w06b",
+        "success_cue": "The 14w06b title screen is displayed and the version text identifies the running snapshot as 14w06b.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, open More World Options, ensure Allow Cheats is ON, and create the world. Using a new world is a deterministic way to establish the Creative-mode condition; the report does not require a specific existing world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options... -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player has entered a world in Creative mode and commands are permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without opening menus until nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "Solid ground is visible nearby, chunks are no longer visibly appearing around the player, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the pause menu with the default pause control.",
+        "exact_input": "Esc",
+        "success_cue": "The Game menu is open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Open the general options screen.",
+        "exact_input": "Options...",
+        "success_cue": "The Options screen is displayed.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Open the video settings screen.",
+        "exact_input": "Video Settings...",
+        "success_cue": "The Video Settings screen is displayed and contains the Particles setting.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Click the Particles button repeatedly until its displayed value is Minimal. Stop as soon as it reads Minimal; do not leave it on All or Decreased.",
+        "exact_input": "Particles: Minimal",
+        "success_cue": "The button on the Video Settings screen visibly reads \"Particles: Minimal\".",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Use Done to leave Video Settings, use Done again to leave Options, and select Back to Game if the pause menu remains open.",
+        "exact_input": "Done -> Done -> Back to Game",
+        "success_cue": "Gameplay has resumed with the Particles option still set to Minimal.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open the in-game chat input using the default chat control. The next command must be executed in in-game chat, not in a server console.",
+        "exact_input": "T",
+        "success_cue": "The chat input line is open at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Type the exact 14w06b-compatible give command, including its leading slash, and press Enter. This supplies one Barrier because the Barrier is not normally selected from the historical Creative inventory.",
+        "exact_input": "/give @p minecraft:barrier 1",
+        "success_cue": "The command is accepted and a Barrier item appears in the player's inventory, normally in the first available hotbar slot.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "If the Barrier did not enter the hotbar automatically, press E to open the inventory, locate the Barrier item, and move it into any hotbar slot. The hotbar is the row of nine item slots displayed along the bottom of the gameplay screen. Close the inventory with E after moving the item.",
+        "exact_input": "E",
+        "success_cue": "A Barrier item is present in one of the nine hotbar slots and normal gameplay view is restored.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Select the hotbar slot containing the Barrier by pressing that slot's number key, 1 through 9, or by scrolling until the slot is highlighted. Keep this item selected for the rest of the reproduction; barrier visibility in this snapshot is activated while a Creative-mode player holds a Barrier.",
+        "exact_input": "1-9, matching the Barrier's hotbar slot",
+        "success_cue": "The Barrier slot has the hotbar selection highlight and the Barrier item is the player's actively held item.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Move to an exposed solid ground block with an empty air block directly above it. Remain close enough to place a block on its top face without changing the active hotbar slot.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The player is standing within placement reach of a visible solid ground block, and the air immediately above that block is unobstructed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Aim the crosshair at the top face of the chosen solid ground block. Keep the Barrier selected and do not aim at grass, a flower, an entity, or another interactable object that could consume the click.",
+        "exact_input": "Mouse movement",
+        "success_cue": "The crosshair is centered on the top face of the chosen ground block and the Barrier remains selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Right-click once to place one Barrier in the air block immediately above the targeted ground block. After clicking, do not scroll the mouse wheel, press another hotbar number, open the inventory, or move far away; continue actively holding the Barrier.",
+        "exact_input": "Right-click once",
+        "success_cue": "The placement action has just been performed at the targeted block space, the Barrier remains selected in the active hotbar slot, and the player remains directly beside the placement location.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player has just manually placed a Barrier on top of the selected ground block in Creative mode, the Video Settings particle level remains Minimal, the Barrier item remains selected in the active hotbar slot, and the player remains beside and facing the placement location. Begin particle-rendering observation now without changing the held item or graphics settings.",
+    "uncertainties": [
+      "The report provides no seed, coordinates, world type, or required terrain, so the plan uses an arbitrary newly generated world and the first convenient exposed solid ground block.",
+      "The report does not specify how to obtain the Barrier item. The plan uses the version-compatible command `/give @p minecraft:barrier 1` because Barrier is not normally obtained from the historical Creative inventory.",
+      "The report says to switch into Creative mode but does not indicate that a transition from another game mode is itself required. The plan creates the test world directly in Creative mode to minimize unrelated actions.",
+      "Barrier placement produces an invisible solid block, and the success cue deliberately does not use the presence or absence of its red particle icon because evaluating that rendering is the responsibility of the observation subsystem."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0515a60db13d478b016aa8a29faff487d0ba15979a47be1e75",
+    "elapsed_seconds": 68.71,
+    "usage": {
+      "input_tokens": 32896,
+      "output_tokens": 5027,
+      "reasoning_tokens": 3226,
+      "total_tokens": 37923
+    },
+    "timestamp": "2026-09-15T01:44:04.254848+00:00"
+  }
+}

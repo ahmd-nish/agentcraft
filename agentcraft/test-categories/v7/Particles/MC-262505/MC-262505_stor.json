@@ -1,0 +1,183 @@
+{
+  "bug_id": "MC-262505",
+  "category": "Particles",
+  "source_md": "[Particles] - MC-262505.md",
+  "source_meta": {
+    "mojira categories": "Mob behaviour; Particles",
+    "project": "MC",
+    "issue key": "MC-262505",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2023-05-10T06:31:35.046-0700",
+    "updated": "2025-04-11T10:29:58.984-0700",
+    "resolution date": "2023-11-09T16:24:57.308-0800",
+    "affects versions": "1.20 Pre-release 1",
+    "fix versions": "1.20 Pre-release 3",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "5",
+    "attachment filenames": "2023-05-10_14.23.30.png; 2023-05-10_14.24.30.png; 2023-05-10_14.24.41.png; 2023-05-10_14.24.42.png; 2023-05-10_14.24.44.png",
+    "issue links": "Relates:outward:MC-240028:Water and lava have dedicated minecraft:block particles",
+    "_title": "Iron golems can produce particles for blocks they're not colliding with"
+  },
+  "stor": {
+    "bug_id": "MC-262505",
+    "affected_versions": [
+      "1.20 Pre-release 1"
+    ],
+    "recommended_version": "1.20 Pre-release 1",
+    "environment": "Minecraft: Java Edition 1.20 Pre-release 1 in a clean, unmodded single-player Creative-mode world using the integrated server. Use default resources, enable cheats/commands, and set particle rendering to All. The deterministic coordinates and command-built arena below are a practical reconstruction because the report's five image attachments and part of the sentence describing where to create the golem are absent from the supplied report.",
+    "preconditions": [
+      "Use exactly Minecraft: Java Edition 1.20 Pre-release 1, the first and only version listed as affected. Do not use the fix version, 1.20 Pre-release 3, for reproduction.",
+      "Use a separate test installation and test world so an old pre-release does not open or modify an important world.",
+      "Use the vanilla client without mods, shaders, or resource packs that replace or suppress block particles.",
+      "Create the world in Creative mode with Allow Cheats enabled. A Superflat world is preferred only to provide an unobstructed construction area; no seed is specified by the report.",
+      "Set particle rendering to All before spawning the iron golem.",
+      "The supplied report refers to an attached image for the precise setup, but the image content is unavailable. The specified runway, contrasting side blocks, and invisible containment walls are a practical reconstruction intended to keep the golem from colliding with the contrasting blocks while it walks near them."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, open Installations, enable access to snapshot/pre-release installations if necessary, create an installation using exactly Java Edition 1.20 Pre-release 1, and launch it. Keep this installation in a separate game directory if the launcher exposes that option.",
+        "exact_input": null,
+        "success_cue": "The game reaches the title screen and identifies the running version as 1.20 Pre-release 1.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new disposable world in Creative mode, enable Allow Cheats, and preferably select the Superflat world type. Enter the world and wait until terrain is rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded Creative-mode world and can fly and execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press Esc and navigate to Options -> Video Settings -> Particles. Cycle the Particles option until it reads All, then select Done until gameplay resumes.",
+        "exact_input": null,
+        "success_cue": "Gameplay has resumed with the Particles setting on All.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the command exactly as shown including the leading slash, and press Enter to move to the construction coordinates.",
+        "exact_input": "/tp @s 0 66 0",
+        "success_cue": "The player is near X=0, Y=66, Z=0 and the surrounding chunks have finished rendering.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open chat, execute the following command including the leading slash, and wait for command feedback. This clears the volume that will contain the reconstructed test arena.",
+        "exact_input": "/fill -4 63 -10 4 68 10 minecraft:air",
+        "success_cue": "Chat reports that the fill command completed, and the test volume around the player is unobstructed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Open chat and execute the following command to create a three-block-wide, seventeen-block-long stone runway. Its top walking surface will be at Y=65.",
+        "exact_input": "/fill -1 64 -8 1 64 8 minecraft:stone",
+        "success_cue": "A stone runway extends from Z=-8 through Z=8, spanning X=-1 through X=1 at Y=64.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open chat and execute the following command to place a red concrete strip immediately beside the negative-X side of the runway.",
+        "exact_input": "/fill -2 64 -8 -2 64 8 minecraft:red_concrete",
+        "success_cue": "A red concrete strip runs parallel to the runway at X=-2 and Y=64.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Open chat and execute the following command to place a blue concrete strip immediately beside the positive-X side of the runway.",
+        "exact_input": "/fill 2 64 -8 2 64 8 minecraft:blue_concrete",
+        "success_cue": "A blue concrete strip runs parallel to the runway at X=2 and Y=64.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open chat and execute the following command to create an invisible barrier wall directly above the red concrete strip. The wall is intended to stop the golem from entering the red strip's horizontal space or standing on it.",
+        "exact_input": "/fill -2 65 -8 -2 67 8 minecraft:barrier",
+        "success_cue": "Chat reports that 51 barrier blocks were placed along the negative-X side of the runway.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Open chat and execute the following command to create an invisible barrier wall directly above the blue concrete strip. The wall is intended to stop the golem from entering the blue strip's horizontal space or standing on it.",
+        "exact_input": "/fill 2 65 -8 2 67 8 minecraft:barrier",
+        "success_cue": "Chat reports that 51 barrier blocks were placed along the positive-X side of the runway.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Open chat and execute the following command to close the Z=-9 end of the arena with an invisible barrier wall.",
+        "exact_input": "/fill -2 65 -9 2 67 -9 minecraft:barrier",
+        "success_cue": "Chat reports that 15 barrier blocks were placed across the Z=-9 end.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Open chat and execute the following command to close the Z=9 end of the arena with an invisible barrier wall.",
+        "exact_input": "/fill -2 65 9 2 67 9 minecraft:barrier",
+        "success_cue": "Chat reports that 15 barrier blocks were placed across the Z=9 end; the runway is now enclosed by invisible walls while the red and blue concrete remain outside the walkable interior.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Open chat and execute the following command to create one iron golem at the center of the stone runway. Do not add NoAI or other entity data, because the golem must be able to walk naturally.",
+        "exact_input": "/summon minecraft:iron_golem 0 65 0",
+        "success_cue": "One iron golem is standing upright near the center of the enclosed runway and is not embedded in a wall or block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Open chat and switch the player to Spectator mode so the player can take a clear viewing position without physically obstructing the golem.",
+        "exact_input": "/gamemode spectator",
+        "success_cue": "The player is in Spectator mode and can fly through blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Open chat and teleport to an elevated viewing position near one end of the arena, then aim the camera at the golem's feet and the edges of the stone runway. Do not left-click the golem, because that would enter its spectator view.",
+        "exact_input": "/tp @s 0 69 -11",
+        "success_cue": "The complete runway and the area immediately around the iron golem's feet are visible, with the camera outside the enclosed walking space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Do not interact with the golem. Wait for its normal wandering AI to move it horizontally along the runway. Continue only when its position changes and its legs perform at least one clear walking stride; if it merely turns its head or rotates in place, keep waiting. Once walking begins, immediately hand control to the observation subsystem without repeatedly spawning more golems or forcing excessive movement.",
+        "exact_input": null,
+        "success_cue": "The iron golem has begun a clear horizontal walking stride while remaining inside the barrier-bounded runway, and its feet and the nearby red, blue, and stone blocks are in view.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The iron golem has just begun walking horizontally inside the reconstructed runway, cannot enter the red or blue side strips because of the barrier walls above them, particle rendering remains set to All, and the camera is aimed at the golem's feet. Begin particle observation now.",
+    "uncertainties": [
+      "The report's exact setup is conveyed through an unavailable image attachment after the text \"Build a setup like this:\". The supplied text does not preserve the blocks, dimensions, orientation, or spatial arrangement shown in that image.",
+      "The sentence \"Create an iron golem within\" is truncated in the supplied report, apparently because another attachment or inline element is missing. It is assumed to mean creating the golem within the pictured setup.",
+      "The command-built stone runway with red and blue side strips under barrier walls is a practical reconstruction, not a claim that these were the blocks or geometry shown by the reporter. It provides visually distinct nearby blocks that the golem is prevented from occupying or colliding with.",
+      "No game mode, world seed, coordinates, world type, or entity-creation method is specified. Creative mode, a disposable Superflat world, coordinates near the origin, and the summon command are execution choices made to minimize unrelated setup.",
+      "Natural iron-golem wandering has nondeterministic timing. The report only says to observe as it walks and does not provide a method for inducing movement. The plan therefore waits for an unforced walking stride rather than adding a hostile target, lead, or movement command that could change the test conditions.",
+      "Web verification using permitted Mojang/Minecraft domains confirmed the historical pre-release context but did not expose the five attachment images or restore the truncated reproduction text."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_05b6819b9cfcf81e016aa8a22ff7cc87d08f3ca79bc8940f31",
+    "elapsed_seconds": 111.69,
+    "usage": {
+      "input_tokens": 28302,
+      "output_tokens": 6480,
+      "reasoning_tokens": 5367,
+      "total_tokens": 34782
+    },
+    "timestamp": "2026-09-15T01:42:55.538102+00:00"
+  }
+}

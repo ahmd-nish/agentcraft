@@ -1,0 +1,197 @@
+{
+  "bug_id": "MC-179845",
+  "category": "Particles",
+  "source_md": "[Particles] - MC-179845.md",
+  "source_meta": {
+    "mojira categories": "Particles",
+    "project": "MC",
+    "issue key": "MC-179845",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2020-04-22T08:12:23.065-0700",
+    "updated": "2025-05-29T09:18:41.921-0700",
+    "resolution date": "2022-02-24T06:27:18.140-0800",
+    "affects versions": "20w17a",
+    "fix versions": "20w18a",
+    "watchers": "2",
+    "attachments": "8",
+    "attachment filenames": "2020-04-22_11.11.18.png; 2020-04-22_11.18.28.png; 2020-04-22_11.27.35.png; 2020-04-22_17.31.30.png; 2020-04-22_20.33.41.png; 2020-04-22_22.26.24.png; 2020-05-12_00.53.07.png; image-2020-05-15-17-26-18-726.png",
+    "issue links": "Duplicate:inward:MC-13842:When you ride a horse tied to a block the rope breaks, but the rope on the block doesn't | Cloners:inward:MC-239902:Weather effects appear in caves and structures in 1.17.1 worlds loaded in 21w43a | Duplicate:inward:MCL-13842:Maps show stone pattern despite it not being there and rain under solid blocks | Duplicate:inward:MCL-13881:Rain/weather",
+    "_title": "Rain falls through any blocks in some spots"
+  },
+  "stor": {
+    "bug_id": "MC-179845",
+    "affected_versions": [
+      "20w17a"
+    ],
+    "recommended_version": "20w17a",
+    "environment": "Vanilla Minecraft Java Edition dedicated server reproduction. Create and save the test world using a matching 1.15.2 server/client first, and then open that same unoptimized world using a matching 20w17a server/client. Use one operator test player in a normal Overworld. Do not use --forceUpgrade, --eraseCache, Optimize World, Erase cached data, or any third-party server software, mods, shaders, or optimization tools.",
+    "preconditions": [
+      "Have separate, working vanilla Minecraft Java Edition server executables for 1.15.2 and snapshot 20w17a.",
+      "Have matching vanilla client installations for 1.15.2 and 20w17a. Snapshot versions must be enabled in the Minecraft Launcher to make 20w17a available.",
+      "Use a dedicated-server world folder that can be preserved unchanged when switching the server executable from 1.15.2 to 20w17a.",
+      "The test player's account name must be known so it can be granted operator permission for /gamemode, /fill, and /weather.",
+      "Use a normal Overworld and locate a rain-capable biome such as plains or forest; do not perform the test in a desert, savanna, badlands, or a cold biome where visible precipitation is absent or becomes snow.",
+      "Back up the complete world folder after the 1.15.2 preparation phase and before opening it in 20w17a.",
+      "Do not optimize the world or erase its cached data before or during reproduction, because the report identifies cache erasure as a remediation procedure rather than part of the original triggering setup."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Configure a clean vanilla Minecraft Java Edition 1.15.2 dedicated server to create a normal Overworld. Start the server and wait for initial world generation to finish.",
+        "exact_input": null,
+        "success_cue": "The server console reports that startup is complete, normally with a message beginning with \"Done\", and the server is accepting connections.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "In the dedicated-server console, grant operator permission to the test player. Enter the command without a leading slash, replacing the placeholder with the exact Minecraft account name.",
+        "exact_input": "op <test-player-name>",
+        "success_cue": "The server console confirms that the named player is now an operator.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Launch vanilla Minecraft Java Edition 1.15.2 and connect the test player to the 1.15.2 dedicated server.",
+        "exact_input": null,
+        "success_cue": "The player has joined the Overworld, surrounding terrain is rendered, and movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Switch the test player to Creative mode. Press T to open chat, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/gamemode creative",
+        "success_cue": "The command is accepted and the player has the Creative-mode inventory and can fly by double-tapping Space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press F3 to display the debug screen. Travel through the Overworld until the biome entry reports a rain-capable biome, preferably minecraft:plains or minecraft:forest. Choose a reasonably flat location with enough open space around it for a 64-by-64-block test roof.",
+        "exact_input": null,
+        "success_cue": "The debug screen identifies the current biome as minecraft:plains or minecraft:forest, and the surrounding chunks have finished rendering.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Stand at the intended center of the covered test area. Use the F3 debug screen to record the player's current X, Y, and Z coordinates so the same position can be recovered after the version change. Remain stationary after recording them.",
+        "exact_input": null,
+        "success_cue": "The center X, Y, and Z coordinates have been recorded and the player is stationary at that position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Create a large solid stone roof in the old-version world. While still at the recorded center, press T, enter the exact /fill command including the leading slash, and press Enter. The command creates a one-block-thick 64-by-64 roof eight blocks above the player and spans several chunks to provide many covered test positions.",
+        "exact_input": "/fill ~-32 ~8 ~-32 ~31 ~8 ~31 minecraft:stone",
+        "success_cue": "The command succeeds, a continuous stone ceiling is visible overhead, and the server reports that the fill operation completed. No opening should be present directly above the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Look upward and move only enough to confirm that the roof consists of solid stone and extends at least 32 blocks in each horizontal direction from the recorded center. Return to the recorded center coordinates and remain underneath the roof.",
+        "exact_input": null,
+        "success_cue": "The player is back at the recorded center with the solid stone roof eight blocks overhead and with old-version chunks containing the roof loaded around the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Cleanly stop the 1.15.2 dedicated server so that the generated chunks, placed roof blocks, weather data, and player position are written to disk. Enter the command in the server console without a leading slash.",
+        "exact_input": "stop",
+        "success_cue": "All players are disconnected and the server process exits normally after saving the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Make a complete backup copy of the stopped 1.15.2 world folder. Keep the original active world folder available for the version upgrade.",
+        "exact_input": null,
+        "success_cue": "A separate backup exists, while the active server folder still contains the same level.dat, region data, player data, and other world files created by 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Configure the dedicated server to run vanilla snapshot 20w17a while retaining the exact same active world folder and level-name. Do not generate a replacement world, and do not add --forceUpgrade or --eraseCache to the server startup command.",
+        "exact_input": null,
+        "success_cue": "The 20w17a server is configured to load the world previously saved by 1.15.2, with no cache-erasure or forced-upgrade arguments enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Start the 20w17a dedicated server and allow it to open or convert the existing world. Do not interrupt the process.",
+        "exact_input": null,
+        "success_cue": "The server reaches its normal startup-complete state and accepts connections using the same world rather than creating a new one.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Launch vanilla Minecraft Java Edition 20w17a and connect the same test player to the 20w17a server.",
+        "exact_input": null,
+        "success_cue": "The player joins the upgraded world and the previously created stone roof is present.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Do not run any weather command immediately after joining. Wait until the roof and surrounding chunks have rendered completely and player movement, chat commands, and server responses are normal.",
+        "exact_input": null,
+        "success_cue": "The player can move and use commands without chunk-loading pauses, and the old-version stone roof is fully rendered overhead.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Confirm that the player is at the recorded center underneath the stone roof. If the saved login position differs, use the recorded X, Y, and Z values to return there before continuing. Keep the player's head below the roof and do not break or replace any roof blocks in 20w17a.",
+        "exact_input": "/tp @s <recorded-X> <recorded-Y> <recorded-Z>",
+        "success_cue": "The player is stationary at the old-version test area's recorded center, with an uninterrupted solid stone roof overhead.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Establish a controlled clear-weather starting state. Press T, enter the command including the leading slash, and press Enter.",
+        "exact_input": "/weather clear",
+        "success_cue": "The server accepts the command and confirms that the weather has been changed to clear while the player remains beneath the roof.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Wait briefly without moving or editing the roof so the clear-weather state is applied and the server remains responsive.",
+        "exact_input": null,
+        "success_cue": "The server is responsive, the player remains beneath the center of the unchanged roof, and no world-conversion or chunk-loading activity is still occurring.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Trigger rainy weather while the player is stationary under the stone roof. Press T, enter the exact command including the leading slash, and press Enter. Hand control to the observation subsystem immediately after the server accepts the command; do not optimize the world, replace roof blocks, or change dimensions.",
+        "exact_input": "/weather rain",
+        "success_cue": "The server accepts the rain command while the player remains beneath the center of the 1.15.2-created stone roof in the upgraded 20w17a world.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 18,
+    "handoff_condition": "The 20w17a server has just accepted /weather rain while the player is stationary beneath the center of the unchanged 64-by-64 stone roof created and saved in 1.15.2. The same unoptimized world is loaded, surrounding chunks are fully rendered, and the server is responsive. The observation subsystem should now take control and inspect the covered area, including positions across the roof's multi-chunk footprint.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce, world seed, coordinates, downloadable world, or exact affected location. The plan reconstructs a minimal cross-version procedure from the description and comments.",
+      "The original description only says that the problem occurred on a snapshot server after an update; it does not identify the exact version that originally created the world. Version 1.15.2 is used for world creation because a moderator explicitly discussed testing worlds upgraded from 1.15.2, and comments describe the issue in worlds originating in previous versions.",
+      "The 64-by-64 stone roof is a practical test fixture rather than a structure specified by the reporter. It is intentionally created before upgrading so that several covered, previously saved chunks are available for inspection in 20w17a.",
+      "The report characterizes affected positions as random and provides no deterministic coordinates. Consequently, this prepared roof may not intersect an affected position in every newly generated world; reproducing may require another pre-20w17a world or another previously generated area, but the report does not provide evidence for selecting a specific alternative location.",
+      "The description mentions both a Y-level 30 cave and a house but does not provide enough spatial information to reconstruct either original location. The broad solid roof is used as the simplest supported covered-area substitute.",
+      "No external web verification was used; historical commands in this plan are operational additions and were not copied from the report."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_021f646fd84ee305016aa8a15a5eb887d0837b8f386ad54e71",
+    "elapsed_seconds": 126.64,
+    "usage": {
+      "input_tokens": 10379,
+      "output_tokens": 9588,
+      "reasoning_tokens": 7242,
+      "total_tokens": 19967
+    },
+    "timestamp": "2026-09-15T01:39:36.852110+00:00"
+  }
+}

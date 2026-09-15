@@ -1,0 +1,231 @@
+{
+  "bug_id": "MC-160001",
+  "category": "Particles",
+  "source_md": "[Particles] - MC-160001.md",
+  "source_meta": {
+    "mojira categories": "Particles",
+    "project": "MC",
+    "issue key": "MC-160001",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2019-08-28T16:29:47.257-0700",
+    "updated": "2026-05-23T09:57:32.303-0700",
+    "resolution date": "2024-12-10T05:37:40.969-0800",
+    "affects versions": "1.14.4; 19w35a; 19w36a; 19w37a; 19w38b; 19w39a; 19w40a; 19w41a; 19w42a; 19w44a; 19w45a; 1.15 Pre-release 1; 1.15 Pre-Release 2; 1.15 Pre-release 3; 1.15 Pre-release 4; 1.15 Pre-release 6; 1.15 Pre-release 7; 1.15.1 Pre-release 1; 1.15.2 Pre-Release 1; 1.15.2 Pre-release 2; 20w06a; 20w07a; 20w08a; 20w09a; 20w10a; 20w11a; 20w12a; 20w13a; 20w21a; 1.16 Pre-release 2; 1.16 Pre-release 3; 1.16 Pre-release 5; 20w28a; 20w29a; 20w30a; 1.16.2 Pre-release 1; 1.16.3; 1.16.4; 20w49a; 20w51a; 21w03a; 21w05b; 21w06a; 21w20a; 1.17 Pre-release 1; 1.17; 1.17.1; 1.18.1; 1.18.2; 22w17a; 1.19; 1.19.2; 1.19.3; 23w05a; 1.20; 1.20.1; 1.21",
+    "fix versions": "24w46a",
+    "area": "Gameplay",
+    "labels": "missing-particle",
+    "watchers": "1",
+    "attachments": "7",
+    "attachment filenames": "2019-08-29_00.20.15.png; 2019-08-29_00.25.40.png; 2019-08-29_00.25.51.png; 2019-08-29_00.26.03.png; 2019-08-29_00.29.12.png; 2019-08-29_00.29.24.png; MC-160001.mp4",
+    "issue links": "Duplicate:inward:MC-58127:No particles are produced while breaking signs or hanging signs | Relates:outward:MC-278286:Standing banners have breaking/sprinting particles but wall banners do not | Relates:inward:MC-166355:Item frames and paintings do not produce particles when broken",
+    "_title": "Skulls, signs, hanging signs, banners and decorated pots have no breaking/sprinting particles"
+  },
+  "stor": {
+    "bug_id": "MC-160001",
+    "affected_versions": [
+      "1.14.4",
+      "19w35a",
+      "19w36a",
+      "19w37a",
+      "19w38b",
+      "19w39a",
+      "19w40a",
+      "19w41a",
+      "19w42a",
+      "19w44a",
+      "19w45a",
+      "1.15 Pre-release 1",
+      "1.15 Pre-Release 2",
+      "1.15 Pre-release 3",
+      "1.15 Pre-release 4",
+      "1.15 Pre-release 6",
+      "1.15 Pre-release 7",
+      "1.15.1 Pre-release 1",
+      "1.15.2 Pre-Release 1",
+      "1.15.2 Pre-release 2",
+      "20w06a",
+      "20w07a",
+      "20w08a",
+      "20w09a",
+      "20w10a",
+      "20w11a",
+      "20w12a",
+      "20w13a",
+      "20w21a",
+      "1.16 Pre-release 2",
+      "1.16 Pre-release 3",
+      "1.16 Pre-release 5",
+      "20w28a",
+      "20w29a",
+      "20w30a",
+      "1.16.2 Pre-release 1",
+      "1.16.3",
+      "1.16.4",
+      "20w49a",
+      "20w51a",
+      "21w03a",
+      "21w05b",
+      "21w06a",
+      "21w20a",
+      "1.17 Pre-release 1",
+      "1.17",
+      "1.17.1",
+      "1.18.1",
+      "1.18.2",
+      "22w17a",
+      "1.19",
+      "1.19.2",
+      "1.19.3",
+      "23w05a",
+      "1.20",
+      "1.20.1",
+      "1.21"
+    ],
+    "recommended_version": "1.14.4",
+    "environment": "Minecraft Java Edition 1.14.4 in a new single-player Creative-mode Superflat world, using the unmodified vanilla client. Cheats are enabled for switching to Survival mode. The particle setting is set to All. The reproduction target is a top-placed Skeleton Skull, which is available in the first listed affected version.",
+    "preconditions": [
+      "Install or create a Minecraft Launcher installation for Java Edition 1.14.4; do not use the fix version 24w46a.",
+      "Use an unmodified vanilla client without mods, shaders, or resource packs that alter block or particle rendering.",
+      "Use default controls unless rebound: E opens the inventory, T opens chat, right-click uses or places a block, and left-click performs the Attack/Destroy action.",
+      "The executor must be able to see the game view clearly enough to monitor the area immediately around the target block during a short punching action.",
+      "Use a disposable test world so that changing game mode and placing test blocks cannot affect an important world."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation configured for Java Edition 1.14.4 and start the game. Do not select 24w46a or another fix version.",
+        "exact_input": "Minecraft Java Edition 1.14.4",
+        "success_cue": "The title screen displays Minecraft Java Edition 1.14.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer and then Create New World. Set Game Mode to Creative. Open More World Options, ensure Allow Cheats is ON, and cycle World Type until Superflat is selected. Confirm the options and create the world.",
+        "exact_input": null,
+        "success_cue": "A new Creative-mode Superflat world opens, with a level grass surface visible around the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until the nearby terrain has rendered and normal movement and camera controls respond without loading pauses.",
+        "exact_input": null,
+        "success_cue": "The nearby Superflat terrain is rendered, and the player can move and turn normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Open the pause menu and navigate to Options, then Video Settings. Find the Particles setting and cycle it until it reads All. Return to the game.",
+        "exact_input": "Esc -> Options... -> Video Settings... -> Particles: All -> Done -> Done -> Back to Game",
+        "success_cue": "Gameplay has resumed and the Video Settings menu was left with Particles set to All.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Creative inventory. Select the Search Items tab, identified by the compass icon, click the search field, and enter \"stone\". Locate the ordinary Stone block and place one stack into hotbar slot 1 by clicking or dragging it there.",
+        "exact_input": "stone",
+        "success_cue": "Stone is present in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "While the Creative inventory remains open, replace the search text with \"skeleton skull\". Locate the item named Skeleton Skull and place one into hotbar slot 2.",
+        "exact_input": "skeleton skull",
+        "success_cue": "A Skeleton Skull is present in hotbar slot 2, while Stone remains in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Close the inventory and return to the world.",
+        "exact_input": "E",
+        "success_cue": "The world view is visible and the hotbar contains Stone in slot 1 and a Skeleton Skull in slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select hotbar slot 1, point at a nearby grass block, and right-click its top face once to place one Stone block above the ground.",
+        "exact_input": "1, then Right Mouse Button",
+        "success_cue": "One full Stone block is standing directly above the grass surface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Select hotbar slot 2. Aim at the top face of the newly placed Stone block and right-click once to place the Skeleton Skull on top of it.",
+        "exact_input": "2, then Right Mouse Button",
+        "success_cue": "A Skeleton Skull is visibly placed on the top face of the Stone block rather than on its side.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Stand on the grass next to the test block and adjust the camera so the placed Skeleton Skull is clearly visible and can be reached without moving. Do not stand directly on the skull.",
+        "exact_input": null,
+        "success_cue": "The skull is within normal interaction range and remains fully visible in the game view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press T to open the in-game chat input. The command must be run in the client chat, not in an external console.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Enter the game-mode command exactly as shown, including the leading slash, and press Enter to execute it.",
+        "exact_input": "/gamemode survival",
+        "success_cue": "The command completes, and opening the inventory would now show the Survival inventory and crafting layout instead of the Creative item-selection interface.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Select an empty hotbar slot so the player is using an empty hand. Because only slots 1 and 2 were used during setup, select slot 3 unless another item is already there.",
+        "exact_input": "3",
+        "success_cue": "No held item is visible in the player's hand, while the Stone and Skeleton Skull remain in other hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Center the crosshair directly on the placed Skeleton Skull. Confirm that the outline or targeting response corresponds to the skull and not the supporting Stone block.",
+        "exact_input": null,
+        "success_cue": "The crosshair is held steadily on the Skeleton Skull, the skull is within reach, and the supporting Stone block is not the intended target.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "With the crosshair kept on the Skeleton Skull, press and hold the Attack/Destroy control, which is the left mouse button by default, for approximately 0.5 seconds. Release the button before the skull is completely broken. Perform only this one short partial-breaking attempt, and do not continue until the block disappears.",
+        "exact_input": "Left Mouse Button (hold for approximately 0.5 seconds, then release before the skull breaks)",
+        "success_cue": "One short Survival-mode punching/partial-breaking action has been applied directly to the skull, and the Skeleton Skull remains placed on the Stone block.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player has just completed one short empty-hand Survival-mode punch against the targeted Skeleton Skull, the attack was released before the skull broke, and the skull remains placed and visible. Hand control to the observation subsystem to inspect the visual output recorded during that partial-breaking action.",
+    "uncertainties": [
+      "The report does not provide a formal numbered Steps to Reproduce section. This minimum path is reconstructed from the description stating that punching affected blocks is a trigger.",
+      "The first affected version, 1.14.4, predates hanging signs and decorated pots. To comply with affected-version selection requirements, this plan uses a Skeleton Skull, which is explicitly identified as affected and exists in 1.14.4.",
+      "The issue covers several block families, but a Skeleton Skull was selected as the simplest deterministic representative target. Signs and banners can be substituted in separate breaking-particle variants, but those variants are not required by this single execution path.",
+      "A report comment states that banner and sign sprinting-particle variants are impossible to test in unmodified vanilla 1.14.4 because those blocks have no collision box. This plan therefore uses the punching/partial-breaking trigger rather than attempting those sprinting variants.",
+      "The exact safe hold duration before the skull breaks can vary slightly with input timing. The executor must prioritize releasing the Attack/Destroy control while the skull is still present."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0b15dd2a165ce669016aa8a10e02dc87d0831b86862d1676d9",
+    "elapsed_seconds": 76.53,
+    "usage": {
+      "input_tokens": 9356,
+      "output_tokens": 5955,
+      "reasoning_tokens": 3893,
+      "total_tokens": 15311
+    },
+    "timestamp": "2026-09-15T01:37:30.207013+00:00"
+  }
+}
