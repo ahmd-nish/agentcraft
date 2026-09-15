@@ -1,0 +1,203 @@
+{
+  "bug_id": "MC-170659",
+  "category": "Loot tables",
+  "reproduction_method": "commands",
+  "source_md": "[Loot tables] - MC-170659.md",
+  "source_meta": {
+    "mojira categories": "Loot tables",
+    "project": "MC",
+    "issue key": "MC-170659",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "created": "2020-02-01T08:25:43.126-0800",
+    "updated": "2025-04-30T07:25:56.787-0700",
+    "resolution date": "2022-07-19T12:57:25.211-0700",
+    "affects versions": "1.15.2; 20w06a; 20w07a; 20w08a; 20w09a; 20w10a; 20w11a; 20w12a; 20w14a; 20w16a; 20w17a; 20w18a; 20w20b; 1.16 Pre-release 5; 1.16.1; 1.16.2 Pre-release 1; 1.16.2 Release Candidate 1; 1.16.2; 1.16.3; 1.16.4 Pre-release 1; 1.16.4; 20w45a; 20w46a",
+    "fix versions": "20w46a",
+    "labels": "entity_scores",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "MC-170659 data pack.zip",
+    "issue links": "Relates:inward:MC-254370:Loot condition \"entity_scores\" cannot check all possible scores | Relates:inward:MC-138426:Not all CustomModelData values can be checked by predicate, due to floating point imprecision",
+    "_title": "Loss of precision in entity_scores conditions"
+  },
+  "stor": {
+    "bug_id": "MC-170659",
+    "affected_versions": [
+      "1.15.2",
+      "20w06a",
+      "20w07a",
+      "20w08a",
+      "20w09a",
+      "20w10a",
+      "20w11a",
+      "20w12a",
+      "20w14a",
+      "20w16a",
+      "20w17a",
+      "20w18a",
+      "20w20b",
+      "1.16 Pre-release 5",
+      "1.16.1",
+      "1.16.2 Pre-release 1",
+      "1.16.2 Release Candidate 1",
+      "1.16.2",
+      "1.16.3",
+      "1.16.4 Pre-release 1",
+      "1.16.4",
+      "20w45a"
+    ],
+    "recommended_version": "1.15.2",
+    "environment": "Unmodified Minecraft: Java Edition 1.15.2 client; fresh singleplayer world; any game mode; cheats enabled; command feedback visible; manually created data pack using data pack format 5.",
+    "preconditions": [
+      "The Minecraft Launcher can start the exact historical Java Edition version 1.15.2 rather than the latest release.",
+      "The executor has filesystem access to the test world's save directory and can create extension-sensitive plain-text files. In particular, the predicate file must be named _.json, not _.json.txt.",
+      "Use a fresh world so that no existing scoreboard objective named _ and no existing data pack predicate named minecraft:_ can conflict with the report's identifiers.",
+      "Enable cheats when creating the world so that /reload, /datapack, /scoreboard, and /execute can be run by the player.",
+      "Keep command feedback enabled. A newly created singleplayer world uses command feedback by default; do not disable it before the test.",
+      "The attached automatic-test data pack is not required for this manual path; the report's supplied predicate JSON is installed directly."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact version 1.15.2, launch it, and wait for the title screen.",
+        "exact_input": "1.15.2",
+        "success_cue": "The title screen is fully responsive and identifies the running game as Minecraft 1.15.2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, and give the world a recognizable name. Any game mode is acceptable; leaving the default Survival mode selected is sufficient. Open More World Options, change Allow Cheats to ON, return to the main creation screen, and select Create New World.",
+        "exact_input": "World name: MC-170659-Repro; Allow Cheats: ON",
+        "success_cue": "World generation begins for a new singleplayer world with commands permitted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait without entering commands until initial generation has completed, surrounding terrain has rendered, and normal movement and camera input respond without loading pauses.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly generated world, nearby chunks are visible, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press Esc to open the pause menu, then select Save and Quit to Title so the new world's save directory is finalized before installing the data pack.",
+        "exact_input": null,
+        "success_cue": "The game has returned to the title screen after saving the world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select Singleplayer, highlight MC-170659-Repro without opening it, select Edit, and then select Open World Folder. In the opened save directory, open the existing datapacks directory.",
+        "exact_input": "<MC-170659-Repro world folder>/datapacks/",
+        "success_cue": "The filesystem view is open inside the datapacks directory belonging to MC-170659-Repro.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Inside the world's datapacks directory, create a data pack root directory named mc-170659_precision.",
+        "exact_input": "mc-170659_precision",
+        "success_cue": "The directory <world>/datapacks/mc-170659_precision/ exists.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Inside mc-170659_precision, create a plain-text file named pack.mcmeta. Enter the exact JSON shown, save the file using UTF-8 text encoding, and ensure the filename does not acquire a hidden .txt extension.",
+        "exact_input": "{\"pack\":{\"pack_format\":5,\"description\":\"MC-170659 precision reproduction\"}}",
+        "success_cue": "The file <world>/datapacks/mc-170659_precision/pack.mcmeta exists, is named exactly pack.mcmeta, and contains valid JSON with pack_format set to 5.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Inside mc-170659_precision, create the nested directories data, then minecraft, then predicates. In the predicates directory, create a plain-text file named _.json containing the report's predicate exactly as shown. Save it using UTF-8 text encoding and ensure it is not named _.json.txt.",
+        "exact_input": "Path: data/minecraft/predicates/_.json\nContent:\n{\n  \"condition\": \"minecraft:entity_scores\",\n  \"scores\": {\n    \"_\": 16777216\n  },\n  \"entity\": \"this\"\n}",
+        "success_cue": "The complete file path is <world>/datapacks/mc-170659_precision/data/minecraft/predicates/_.json, and the JSON compares scoreboard objective _ against the integer 16777216 for entity this.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Return to Minecraft's world-selection screen and open MC-170659-Repro. Wait until the player appears, surrounding chunks render, and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The same test world is open and fully responsive after the data pack files were installed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T, or the rebound Open Chat control, type the reload command with its leading slash, and press Enter. Do not proceed while the game is still reloading data packs.",
+        "exact_input": "/reload",
+        "success_cue": "Reloading completes and chat does not show a red data-pack or JSON parsing error.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Press T, enter the enabled-data-pack listing command with its leading slash, and press Enter.",
+        "exact_input": "/datapack list enabled",
+        "success_cue": "The enabled data-pack list includes an entry for file/mc-170659_precision. If it is absent, stop and correct the directory structure or pack.mcmeta before continuing.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Press T, enter the report's scoreboard-objective command exactly with its leading slash, and press Enter.",
+        "exact_input": "/scoreboard objectives add _ dummy",
+        "success_cue": "Chat confirms that the dummy scoreboard objective named _ was created. There is no message saying that the objective already exists.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press T, enter the report's first score-setting command exactly with its leading slash, and press Enter. Here @s targets the player executing the chat command.",
+        "exact_input": "/scoreboard players set @s _ 16777216",
+        "success_cue": "Command feedback confirms that the executing player's score in objective _ is now 16777216.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Run the report's predicate command as a control: press T, enter the command exactly with its leading slash, and press Enter. The command is executed by the player, so the predicate's entity value this refers to that player.",
+        "exact_input": "/execute if predicate _",
+        "success_cue": "The command completes with the player's _ score still set to 16777216, and chat reports Test passed, confirming that minecraft:_ loaded and can evaluate the executing player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press T, enter the report's second score-setting command exactly with its leading slash, and press Enter.",
+        "exact_input": "/scoreboard players set @s _ 16777217",
+        "success_cue": "Command feedback confirms that the same player's score in objective _ is now 16777217; the predicate file itself still contains 16777216.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Immediately perform the second predicate check: press T, enter the report's predicate command exactly with its leading slash, and press Enter. Do not run another command or alter the score after submitting it.",
+        "exact_input": "/execute if predicate _",
+        "success_cue": "The second predicate-check command has just been executed while the player's _ score is 16777217 and minecraft:_ still compares against 16777216; leave the resulting chat feedback visible for the observation subsystem.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has just executed /execute if predicate _ after changing their _ score from 16777216 to 16777217, while data/minecraft/predicates/_.json still specifies 16777216. The command's resulting feedback is visible and no subsequent command has been run.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, multiplayer requirement, or dedicated-server requirement. A fresh singleplayer world with cheats enabled is therefore used as the minimal deterministic environment.",
+      "The attachment MC-170659 data pack.zip is described as automatically testing the issue after loading, but its contents were not supplied. This plan reconstructs the report's manual test using the predicate JSON printed in the description rather than inferring the attachment's functions or load behavior.",
+      "The report metadata lists 20w46a both as an affected version and as the fix version. Because fix versions must not be selected as affected reproduction targets, 20w46a is excluded from affected_versions; the report comments also state that behavior changed in 20w46a and that the later behavior was moved to a separate ticket.",
+      "The report's table discusses predicates containing both 16777216 and 16777217, but its explicit manual reproduction supplies only a predicate containing 16777216. This plan preserves that explicit reproduction and does not create an additional 16777217 predicate."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_03609c97a69f66ba016aa7bcacd65087d09278f0ff8660069f",
+    "elapsed_seconds": 93.32,
+    "usage": {
+      "input_tokens": 25253,
+      "output_tokens": 6148,
+      "reasoning_tokens": 4030,
+      "total_tokens": 31401
+    },
+    "timestamp": "2026-09-14T09:23:21.971176+00:00"
+  },
+  "reused_from": "low-interaction-54"
+}

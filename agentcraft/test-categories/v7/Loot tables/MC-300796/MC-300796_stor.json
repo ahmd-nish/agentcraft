@@ -1,0 +1,131 @@
+{
+  "bug_id": "MC-300796",
+  "category": "Loot tables",
+  "source_md": "[Loot tables] - MC-300796.md",
+  "source_meta": {
+    "mojira categories": "Loot tables",
+    "project": "MC",
+    "issue key": "MC-300796",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-08-06T20:46:15.661-0700",
+    "updated": "2026-03-11T03:47:51.884-0700",
+    "resolution date": "2025-08-15T02:05:21.740-0700",
+    "affects versions": "25w32a; 25w33a",
+    "fix versions": "25w34a",
+    "area": "Platform HC",
+    "votes": "1",
+    "watchers": "0",
+    "attachments": "0",
+    "_title": "Harvesting from sweet berry bushes can drop more sweet berries than before"
+  },
+  "stor": {
+    "bug_id": "MC-300796",
+    "affected_versions": [
+      "25w32a",
+      "25w33a"
+    ],
+    "recommended_version": "25w32a",
+    "environment": "Minecraft Java Edition snapshot 25w32a in an unmodified single-player world using the integrated server. Use Creative mode with commands/cheats enabled. A flat, open area with solid ground is recommended so the relative /fill command can place and retain all 100 sweet berry bushes. Keyboard and mouse instructions refer to the default controls.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 25w32a, not the fixed snapshot 25w34a.",
+      "Use a world in which commands are permitted; Creative mode with cheats enabled is the simplest practical configuration.",
+      "Use an unmodified vanilla world with no datapack or mod that replaces the sweet berry bush harvesting loot table.",
+      "Stand on level, solid ground with at least a 10-by-10-block unobstructed area around the player.",
+      "Ensure the player's inventory contains no sweet berries before the first harvest so the quantity produced by one interaction can be isolated.",
+      "Have at least one empty hotbar slot and sufficient empty inventory space to collect the harvested berries."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start the Java Edition installation for snapshot 25w32a. If snapshots are hidden, enable snapshot versions in the launcher's installation/version controls before selecting it.",
+        "exact_input": "25w32a",
+        "success_cue": "The title screen identifies the running game version as 25w32a.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new disposable single-player world, selecting Creative mode and enabling commands/cheats in the world-creation settings. A flat world is preferred, but any world with a sufficiently large, level, solid surface is usable.",
+        "exact_input": null,
+        "success_cue": "The player has entered a 25w32a world in Creative mode and commands are available.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to a level area and stand normally on a solid ground block. Confirm that the player's feet occupy air directly above the ground and that a 10-by-10 area beginning at the player's position and extending toward increasing X and increasing Z is unobstructed. In a flat world, any open location away from placed structures is sufficient.",
+        "exact_input": null,
+        "success_cue": "There is solid ground directly below the intended bush layer and enough open space for a 10-by-10 square of bushes.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Check that the inventory contains no sweet berries. Press E to open the inventory, inspect both the hotbar and main inventory, and select an empty hotbar slot. Close the inventory with E. If the inventory is not empty because this is not a fresh world, store existing sweet berries away from the test area before continuing.",
+        "exact_input": "E",
+        "success_cue": "No sweet berries are present in the player's inventory, and the active hotbar slot is empty so the player is not holding an item that could alter the interaction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open the in-game chat and command entry field.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's /fill command exactly as written, including the leading slash, and press Enter. The command places one horizontal 10-by-10 layer of sweet berry bushes at age 3, with the player's current block position as one corner.",
+        "exact_input": "/fill ~ ~ ~ ~9 ~ ~9 minecraft:sweet_berry_bush[age=3]",
+        "success_cue": "The command succeeds and a 10-by-10 square containing 100 fully grown sweet berry bushes is visible at the player's feet level.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Move out of the bush square without right-clicking any bush. In Creative mode, double-tap Space to begin flying, rise above the bushes with Space, move laterally beyond one edge using the movement controls, and descend beside the square using the Sneak control, Left Shift by default. Do not left-click or break any bushes.",
+        "exact_input": "Space twice; movement keys as needed; Left Shift to descend",
+        "success_cue": "The player is positioned on or immediately above unobstructed ground beside the square, and all bushes remain at age 3 and unharvested.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Keep the empty hotbar slot selected. Aim the crosshair at one age-3 bush on the outside edge of the square so it can be reached without walking through other bushes. Do not hold bone meal, sweet berries, or any other item.",
+        "exact_input": null,
+        "success_cue": "A single fully grown edge bush is under the crosshair and within interaction range, while the player's inventory still contains no sweet berries.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Use the bush exactly once by pressing and immediately releasing the Use Item/Place Block control, which is the right mouse button by default. Do not hold the button down, and do not interact with a second bush before the observation subsystem inspects this harvest.",
+        "exact_input": "Right-click once and release",
+        "success_cue": "The selected bush has changed from its fully grown age-3 state to its post-harvest growth state, and no other bush has been harvested.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 9,
+    "handoff_condition": "One age-3 sweet berry bush has just been right-clicked exactly once while the player started with no sweet berries in the inventory. The clicked bush is now in its post-harvest state, all other bushes remain untouched, and no second interaction has occurred. Transfer control immediately so the observation subsystem can inspect and record the items produced by this individual harvest before another bush is used.",
+    "uncertainties": [
+      "The report does not specify a game mode, world type, or whether the reproduction must occur on a dedicated server. A fresh Creative-mode single-player world with cheats enabled is selected as the simplest environment that preserves the reported command and harvesting interaction.",
+      "The harvest quantity is randomized, so one individual interaction may not demonstrate every possible quantity. The 10-by-10 command supplies 100 separate bushes so additional trials can be performed on untouched bushes, one at a time, after each prior trial has been recorded and the player's sweet berry inventory has been reset.",
+      "The report does not prescribe how to isolate the quantity from one harvest. Beginning with no sweet berries and prohibiting a second interaction until the first is inspected is a practical measurement choice rather than an explicit report requirement."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_06bfeb1b8e200af9016aa8ad9b644887d0ae89f7e7210cc8e5",
+    "elapsed_seconds": 86.22,
+    "usage": {
+      "input_tokens": 8680,
+      "output_tokens": 5620,
+      "reasoning_tokens": 4217,
+      "total_tokens": 14300
+    },
+    "timestamp": "2026-09-15T02:31:13.324496+00:00"
+  }
+}

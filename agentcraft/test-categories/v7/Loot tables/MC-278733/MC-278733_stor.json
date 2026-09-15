@@ -1,0 +1,150 @@
+{
+  "bug_id": "MC-278733",
+  "category": "Loot tables",
+  "source_md": "[Loot tables] - MC-278733.md",
+  "source_meta": {
+    "mojira categories": "Items; Loot tables",
+    "project": "MC",
+    "issue key": "MC-278733",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2024-12-06T12:27:18.622-0800",
+    "updated": "2025-04-26T17:41:44.938-0700",
+    "resolution date": "2024-12-11T02:13:23.486-0800",
+    "affects versions": "1.21.4",
+    "fix versions": "25w02a",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "Breaking a double resin brick slab block only returns a single slab"
+  },
+  "stor": {
+    "bug_id": "MC-278733",
+    "affected_versions": [
+      "1.21.4"
+    ],
+    "recommended_version": "1.21.4",
+    "environment": "Minecraft Java Edition 1.21.4 in an unmodified single-player Survival world with commands allowed. Use the default doTileDrops gamerule and an unenchanted wooden pickaxe. No particular seed, coordinates, biome, difficulty, or world type is required by the report.",
+    "preconditions": [
+      "Minecraft Java Edition 1.21.4 is installed and selectable in the Minecraft Launcher.",
+      "Use a vanilla world without gameplay-modifying mods or datapacks so that the version's standard resin brick slab loot table is tested.",
+      "Create the test world in Survival mode with Allow Commands enabled; commands are used only to obtain the exact setup items without adding crafting or exploration.",
+      "Leave the doTileDrops gamerule at its default value of true so broken blocks can produce item drops.",
+      "Ensure there is room in the inventory for dropped items, and do not use a pickaxe enchanted with Silk Touch."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select the installation for Minecraft Java Edition 1.21.4 and start the game.",
+        "exact_input": "Select Java Edition 1.21.4, then select Play.",
+        "success_cue": "The Minecraft Java Edition title screen is open and displays version 1.21.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Survival mode. In the world-creation settings, turn Allow Commands on, then create the world. No specific seed or other world-generation setting is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Survival -> Allow Commands: On -> Create New World",
+        "success_cue": "The player has entered a Survival world and the health, hunger, and hotbar HUD are visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before continuing until the initial terrain has rendered and normal player movement and input respond without world-loading pauses.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, chunks are no longer visibly appearing around the player, and movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Obtain exactly two resin brick slabs. Press T to open in-game chat, enter the command exactly as shown with the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:resin_brick_slab 2",
+        "success_cue": "The command succeeds and two Resin Brick Slab items are present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Obtain one ordinary, unenchanted wooden pickaxe. Press T, enter the command exactly as shown with the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:wooden_pickaxe 1",
+        "success_cue": "The command succeeds and an unenchanted Wooden Pickaxe is present in the player's inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press E to open the inventory. Place the stack of two Resin Brick Slabs in hotbar slot 1, which is the far-left hotbar slot. Place the Wooden Pickaxe in hotbar slot 2. Close the inventory by pressing E again.",
+        "exact_input": "E; move 2 Resin Brick Slabs to hotbar slot 1; move the Wooden Pickaxe to hotbar slot 2; E",
+        "success_cue": "Hotbar slot 1 contains exactly two Resin Brick Slabs, hotbar slot 2 contains the Wooden Pickaxe, and the inventory screen is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Find the upward-facing surface of any solid full block, such as a grass block or stone block, with an empty block space immediately above it. Stand within placement reach, press 1 to select the Resin Brick Slabs, and aim the crosshair at the top face of the supporting block.",
+        "exact_input": "1",
+        "success_cue": "The Resin Brick Slabs are selected in the active hotbar slot, and the crosshair points at a clear top surface where the test slab can be placed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Right-click once on the top face of the supporting block to place the first resin brick slab as a lower slab in the empty space above the support.",
+        "exact_input": "Right-click once",
+        "success_cue": "One lower Resin Brick Slab occupies the bottom half of the block space above the support, and one Resin Brick Slab remains in hotbar slot 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Keep the crosshair aimed at the upward-facing top surface of the placed resin brick slab. Right-click once more so the second slab merges with the first slab in the same block space. Do not aim at the side of the slab or at an adjacent block.",
+        "exact_input": "Right-click once",
+        "success_cue": "The two slabs have combined into a full-height double resin brick slab occupying one block space, rather than forming separate slabs in adjacent or vertically separate spaces. No Resin Brick Slab items remain in hotbar slot 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press 2 to select the unenchanted Wooden Pickaxe in the active hotbar slot.",
+        "exact_input": "2",
+        "success_cue": "The Wooden Pickaxe is visible in the player's hand and hotbar slot 2 is highlighted.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Position the player far enough from the double slab that any resulting item entities are less likely to be collected immediately, while remaining within Survival-mode breaking reach. Aim the crosshair directly at the double resin brick slab, not at the supporting block.",
+        "exact_input": "Use normal movement controls, then center the crosshair on the double resin brick slab.",
+        "success_cue": "The double resin brick slab is targeted and outlined, the wooden pickaxe remains selected, and the player is within breaking reach without standing directly against the block.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Hold left-click continuously until the targeted double resin brick slab finishes breaking. Release left-click immediately when the block disappears, and do not move toward or manually collect any resulting item entities.",
+        "exact_input": "Hold left-click until the double resin brick slab breaks, then release.",
+        "success_cue": "The double resin brick slab has just been removed from its block position, the breaking action is complete, and the player has not intentionally moved into the drop location.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The unenchanted wooden pickaxe has just finished breaking the double resin brick slab in Survival mode. The player has released left-click and has not moved toward or intentionally collected the resulting drops. Hand control to the observation subsystem immediately, before performing any additional action.",
+    "uncertainties": [
+      "The report does not specify a game mode or item-acquisition method. This plan uses Survival mode because normal block drops must be produced, with commands enabled solely to obtain the setup items deterministically.",
+      "The report states that any pickaxe level can be used but does not name a material. An unenchanted wooden pickaxe is selected as the simplest representative of the stated condition.",
+      "The report provides no seed, coordinates, biome, support block, or world type. The plan therefore uses any accessible solid block with clear space above it.",
+      "The item-acquisition commands are operational additions and were not supplied by the report; they preserve the reported test state of placing exactly two resin brick slabs and breaking the resulting double slab with a pickaxe."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_09270d247263f5ad016aa8ad148ea087d0ac26698dde151891",
+    "elapsed_seconds": 62.99,
+    "usage": {
+      "input_tokens": 8347,
+      "output_tokens": 4352,
+      "reasoning_tokens": 2780,
+      "total_tokens": 12699
+    },
+    "timestamp": "2026-09-15T02:28:35.049296+00:00"
+  }
+}
