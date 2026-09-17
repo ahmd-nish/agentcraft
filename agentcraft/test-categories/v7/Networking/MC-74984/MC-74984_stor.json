@@ -1,6 +1,8 @@
 {
   "bug_id": "MC-74984",
   "category": "Networking",
+  "source_category": "Networking",
+  "source_panel": "networking_five_bug_reports",
   "source_md": "[Networking] - MC-74984.md",
   "source_meta": {
     "mojira categories": "Networking",
@@ -58,119 +60,111 @@
       "1.19"
     ],
     "recommended_version": "Minecraft 1.8",
-    "environment": "A clean, unmodified Minecraft Java Edition 1.8 client using one authenticated account, plus two distinct multiplayer servers designated Server A and Server B. Both servers must accept 1.8 clients and the account must be permitted to join both. Server A must be reachable but its connection must remain on the client’s \"Connecting to server\" screen long enough to press Cancel; a delayed DNS lookup, proxy, network shaper, or naturally slow connection may be used to create that window. Server B should be normally reachable. Keep both server entries prepared in the Multiplayer server list so Server B can be selected immediately after canceling Server A. Use a newly started client process and do not restart Minecraft between the two connection attempts.",
+    "environment": "Use an unmodified Minecraft Java Edition 1.8 client in a fresh game session. Provide two distinct, simultaneously reachable multiplayer server endpoints, Server A and Server B, which both accept connections from the same 1.8 test account. Prefer controlled vanilla-compatible test servers rather than public servers. Server A's connection establishment must be slow enough that the client remains on the 'Connecting to server' screen long enough to press its Cancel button; the report suggests inducing this with delayed DNS/IP lookup through a proxy. Server B should connect normally. Do not use the listed fix version, 1.20 Pre-release 5.",
     "preconditions": [
-      "Install or select the exact affected release Minecraft 1.8; do not use the fixed version 1.20 Pre-release 5.",
-      "Use a vanilla client without client mods, because the report was confirmed on vanilla.",
-      "Obtain the addresses of two different servers, Server A and Server B, that are compatible with Minecraft 1.8 and can be joined by the same account.",
-      "Configure Server A or its network path so that selecting it leaves the client on the \"Connecting to server\" screen for long enough to click Cancel, while still allowing the connection attempt to continue toward a real, reachable server.",
-      "Ensure Server B is online and normally reachable before beginning the timed portion of the reproduction.",
-      "Fully close any previous Minecraft client process before the attempt, then launch a fresh client to avoid carrying over state from an earlier attempt.",
-      "Do not disconnect normally from Server A, restart the client, or intentionally pause between canceling Server A and starting the connection to Server B.",
-      "The timing is important: if Server A displays its world before Cancel is clicked, that attempt is invalid and must be repeated with a longer connection delay."
+      "A valid Minecraft account is available and can use multiplayer in Minecraft Java Edition 1.8.",
+      "Two different server addresses are available: <SERVER_A_ADDRESS> and <SERVER_B_ADDRESS>. They must lead to separate servers, not aliases for the same server.",
+      "Both servers are running, accept the Minecraft 1.8 client protocol, and permit the same test account to join.",
+      "The executor is authorized to test against both servers. Controlled test servers are strongly preferred because the report describes connection-state and item-transfer side effects.",
+      "Server A is configured, directly or through a test proxy/DNS mechanism, so connection establishment remains incomplete long enough for the client to display and accept the Cancel button. Server B is not subject to that delay.",
+      "The Minecraft client has been completely closed before beginning, so no connection left over from an earlier test can affect this reproduction.",
+      "The affected version selected in the launcher is exactly Minecraft 1.8, the first entry in the report's affected-version list."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "In the Minecraft Launcher, select an installation configured for the exact release Minecraft 1.8 and start the game.",
-        "exact_input": "Minecraft 1.8",
-        "success_cue": "The Minecraft title screen is open and identifies the running game version as Minecraft 1.8.",
-        "source_basis": "report"
+        "action": "Start or verify both multiplayer servers. Wait until each server has completed startup and is ready to accept connections. Use the server consoles or another out-of-band readiness check; do not join either server from the test client yet.",
+        "exact_input": null,
+        "success_cue": "Server A and Server B are both online under different addresses and are ready to accept the Minecraft 1.8 test account.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 2,
-        "action": "From the title screen, left-click Multiplayer to open the multiplayer server list.",
-        "exact_input": "Multiplayer",
-        "success_cue": "The Play Multiplayer screen is visible and no world or server is currently open.",
-        "source_basis": "practical_inference"
+        "action": "Apply a connection-establishment delay to Server A. Use the test environment's proxy or DNS controls to delay Server A's DNS lookup or connection sufficiently for the Minecraft client to remain on the connection screen. Do not delay Server B. The report does not prescribe a specific proxy product or configuration.",
+        "exact_input": "<SERVER_A_ADDRESS>",
+        "success_cue": "Server A remains reachable but is expected to leave enough time to click Cancel before world loading completes; Server B remains normally reachable.",
+        "source_basis": "report"
       },
       {
         "step": 3,
-        "action": "If Server A is not already listed, left-click Add Server, enter a recognizable name and the delayed Server A address supplied by the test environment, and then left-click Done.",
-        "exact_input": "Server Name: Server A; Server Address: <delayed Server A address>",
-        "success_cue": "A row named Server A is visible in the multiplayer server list.",
-        "source_basis": "practical_inference"
+        "action": "In the Minecraft Launcher, select the installation/profile for exactly Minecraft 1.8 and start the game. Do not select 1.20 Pre-release 5, which is listed as a fix version.",
+        "exact_input": "Minecraft 1.8",
+        "success_cue": "The Minecraft 1.8 main menu is displayed in a newly started client session.",
+        "source_basis": "report"
       },
       {
         "step": 4,
-        "action": "If Server B is not already listed, left-click Add Server, enter a recognizable name and the Server B address supplied by the test environment, and then left-click Done.",
-        "exact_input": "Server Name: Server B; Server Address: <Server B address>",
-        "success_cue": "Separate rows named Server A and Server B are visible in the multiplayer server list.",
+        "action": "From the main menu, left-click Multiplayer.",
+        "exact_input": "Multiplayer",
+        "success_cue": "The Play Multiplayer server-list screen is open.",
         "source_basis": "practical_inference"
       },
       {
         "step": 5,
-        "action": "Allow the server list to update only long enough to confirm that Server B is online. Do not begin the timed connection sequence until Server A's delay mechanism is active.",
-        "exact_input": null,
-        "success_cue": "Server B is available for joining, Server A's delayed connection path is active, and both rows remain visible.",
+        "action": "If Server A is not already present, left-click Add server, enter a recognizable name such as Server A and enter <SERVER_A_ADDRESS> in the Server Address field, then left-click Done. If it is already present with the correct address, leave it unchanged.",
+        "exact_input": "Server Name: Server A; Server Address: <SERVER_A_ADDRESS>",
+        "success_cue": "A server-list entry labeled Server A is visible and points to <SERVER_A_ADDRESS>.",
         "source_basis": "practical_inference"
       },
       {
         "step": 6,
-        "action": "Left-click the Server A row once so that Server A is the selected server.",
-        "exact_input": "Server A",
-        "success_cue": "Server A is highlighted in the server list and Server B is not selected.",
+        "action": "If Server B is not already present, left-click Add server, enter a recognizable name such as Server B and enter <SERVER_B_ADDRESS> in the Server Address field, then left-click Done. If it is already present with the correct address, leave it unchanged.",
+        "exact_input": "Server Name: Server B; Server Address: <SERVER_B_ADDRESS>",
+        "success_cue": "Separate Server A and Server B entries are visible in the multiplayer server list.",
         "source_basis": "practical_inference"
       },
       {
         "step": 7,
-        "action": "Start joining Server A by left-clicking Join Server or by double-clicking the Server A row.",
-        "exact_input": "Join Server",
-        "success_cue": "The server list is replaced by a connection-status screen.",
+        "action": "Select the Server A entry and begin connecting by left-clicking Join Server. Double-clicking the Server A entry is also acceptable, but issue only one join action.",
+        "exact_input": "Select Server A; left-click Join Server",
+        "success_cue": "The server list is replaced by a connection-progress screen for Server A.",
         "source_basis": "report"
       },
       {
         "step": 8,
-        "action": "Wait only until the status screen visibly says \"Connecting to server\" and its Cancel button is available. Do not wait for terrain, a loading world, or Server A's in-game view. If Server A's world appears before this state can be acted on, disconnect normally, return to the server list, increase Server A's connection delay, and restart the attempt from a fresh client process.",
-        "exact_input": "Connecting to server",
-        "success_cue": "The client is still on the \"Connecting to server\" screen, the Cancel button is clickable, and Server A's world has not appeared.",
+        "action": "Wait only until the connection-progress screen displays 'Connecting to server' and presents an enabled Cancel button. Do not wait for Server A's terrain, HUD, or in-world play screen to appear.",
+        "exact_input": null,
+        "success_cue": "The client is still connecting to Server A, the in-world play screen has not loaded, and the Cancel button is available.",
         "source_basis": "report"
       },
       {
         "step": 9,
-        "action": "While the screen still says \"Connecting to server\", immediately left-click Cancel once.",
+        "action": "While the client is still on the Server A connection-progress screen, immediately left-click Cancel once. Do not allow Server A to finish loading before this input.",
         "exact_input": "Cancel",
-        "success_cue": "The connection-status screen closes without ever displaying Server A's world, and the client returns to either the multiplayer server list or the title screen.",
+        "success_cue": "The connection-progress screen closes and the client returns to either the multiplayer server list or the main menu.",
         "source_basis": "report"
       },
       {
         "step": 10,
-        "action": "If Cancel returned the client to the title screen, immediately left-click Multiplayer. If the multiplayer server list is already visible, perform no extra navigation. Do not restart or close the game.",
-        "exact_input": "Multiplayer",
-        "success_cue": "The multiplayer server list containing Server A and Server B is visible in the same client process used for the canceled connection.",
+        "action": "Proceed back to the multiplayer server list without intentionally waiting. If cancellation returned directly to the server list, perform no navigation action. If it returned to the main menu, immediately left-click Multiplayer.",
+        "exact_input": "Multiplayer, only if the main menu is displayed",
+        "success_cue": "The multiplayer server list containing Server A and Server B is displayed again, with no client restart or deliberate delay since Cancel was pressed.",
         "source_basis": "practical_inference"
       },
       {
         "step": 11,
-        "action": "Without an intentional delay, left-click the Server B row once.",
-        "exact_input": "Server B",
-        "success_cue": "Server B is highlighted in the server list.",
+        "action": "As soon as the server list is usable, select Server B and begin connecting by left-clicking Join Server. Do not reconnect to Server A, restart the client, or enter another world between the cancellation and this action.",
+        "exact_input": "Select Server B; left-click Join Server",
+        "success_cue": "The server list is replaced by the connection-progress screen for Server B.",
         "source_basis": "report"
       },
       {
         "step": 12,
-        "action": "Immediately start joining Server B by left-clicking Join Server or by double-clicking the Server B row.",
-        "exact_input": "Join Server",
-        "success_cue": "The client leaves the server list and begins the connection to Server B without Minecraft having been restarted.",
-        "source_basis": "report"
-      },
-      {
-        "step": 13,
-        "action": "Wait for Server B's world to finish loading. Continue only after terrain is rendered, the in-game HUD is visible, and ordinary movement input responds. Do not disconnect, restart, or join another world before handing control to the observation subsystem.",
+        "action": "Allow the Server B connection to complete. Wait until the client transitions to an in-world play screen and enough initial terrain has rendered to identify that Server B was entered. Do not disconnect, return to the menu, or restart the game after reaching this state.",
         "exact_input": null,
-        "success_cue": "The player is in Server B's loaded world in the same client process, immediately following the canceled Server A attempt, and normal in-game input can be issued.",
+        "success_cue": "An in-world play screen reached through Server B is displayed after the canceled Server A attempt, and the client session remains open for immediate observation.",
         "source_basis": "report"
       }
     ],
     "trigger_step": 9,
-    "handoff_condition": "The client has just completed entry into Server B in the same Minecraft 1.8 process used to press Cancel on Server A's \"Connecting to server\" screen. Server A was canceled before its world appeared, Server B was joined immediately afterward, and no client restart or normal Server A disconnect occurred. Begin observing the client's connection and world state now.",
+    "handoff_condition": "The client has just completed entry into Server B in the same uninterrupted Minecraft 1.8 session in which Server A was canceled at the 'Connecting to server' screen. The in-world play screen is visible. Do not disconnect, reconnect, change worlds, or restart the client; hand control to the observation subsystem now.",
     "uncertainties": [
-      "The report supplies no server addresses, so the executor must provide two distinct Minecraft 1.8-compatible servers.",
-      "The reproduction is timing-sensitive, and the report does not define a maximum delay between pressing Cancel and joining Server B. The plan therefore requires joining Server B as quickly as the UI allows, with no intentional pause.",
-      "A comment recommends increasing Server A's DNS/IP lookup time using a proxy that forces DNS lookups through the proxy, but the report does not provide an exact proxy product or configuration procedure.",
-      "The original report reproduces the issue in Minecraft 1.8, while some more detailed reproduction comments refer to later affected versions such as 1.8.7 and 1.16.4. This plan uses the original Minecraft 1.8 cancel-then-join sequence to preserve recommended-version fidelity.",
-      "Server A must be delayed but still reachable. A completely offline address or a connection that immediately fails may not preserve the in-progress connection condition described by the report.",
-      "The report does not establish a precise success rate; multiple fresh-client attempts may be necessary if the connection to Server A completes too quickly or is fully terminated before Server B is joined."
+      "The report does not provide the addresses or configurations of the two original servers. <SERVER_A_ADDRESS> and <SERVER_B_ADDRESS> must be supplied by the test environment.",
+      "The reproduction is timing-sensitive. The report does not state an exact maximum interval between pressing Cancel and starting the Server B connection; perform the second connection as soon as the interface permits and introduce no intentional pause.",
+      "The report suggests increasing Server A's DNS/IP lookup time with a proxy that forces DNS lookups, but it does not name a proxy product or provide exact proxy configuration commands.",
+      "The original description used CubeKrowd as Server A and an unnamed second server. This plan substitutes authorized controlled servers because later report comments state that the issue was confirmed on vanilla and could be reproduced with other servers.",
+      "A separate F5/ESC reproduction variant in the comments was specifically documented for Minecraft 1.8.7. It is not used here because the required recommended version is Minecraft 1.8, the first affected version listed in the report.",
+      "If Server A connects too quickly for the Cancel input to occur before world loading, that attempt does not satisfy the report's timing precondition. Increase the Server A lookup/connection delay, completely restart the client to clear the session, and begin again."
     ],
     "web_verification_used": false
   },
@@ -180,14 +174,14 @@
     "verbosity": "high",
     "web_used": false,
     "web_call_count": 0,
-    "response_id": "resp_06c69fdbed430d9f016aa8a5cf343887d08606566412b2193f",
-    "elapsed_seconds": 68.07,
+    "response_id": "resp_0e15ecfcd90a2243016aac757d56a087d18130ff7e30acc125",
+    "elapsed_seconds": 90.63,
     "usage": {
       "input_tokens": 17789,
-      "output_tokens": 4978,
-      "reasoning_tokens": 3077,
-      "total_tokens": 22767
+      "output_tokens": 5578,
+      "reasoning_tokens": 3624,
+      "total_tokens": 23367
     },
-    "timestamp": "2026-09-15T01:57:38.972577+00:00"
+    "timestamp": "2026-09-17T23:20:55.764980+00:00"
   }
 }

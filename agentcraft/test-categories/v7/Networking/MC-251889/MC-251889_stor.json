@@ -1,7 +1,8 @@
 {
   "bug_id": "MC-251889",
   "category": "Networking",
-  "reproduction_method": "commands",
+  "source_category": "Networking",
+  "source_panel": "networking_five_bug_reports",
   "source_md": "[Networking] - MC-251889.md",
   "source_meta": {
     "mojira categories": "Networking",
@@ -27,139 +28,124 @@
       "1.19 Pre-release 1"
     ],
     "recommended_version": "1.19 Pre-release 1",
-    "environment": "A vanilla Minecraft: Java Edition dedicated server and client both running exactly 1.19 Pre-release 1, using an isolated fresh normal world. Run the server with Java 17, enable server-side chat preview with previews-chat=true, enable the client's Chat Preview option, and grant the test player permission to use /say. Do not use 1.19 Pre-release 2, the listed fix version.",
+    "environment": "Vanilla Minecraft: Java Edition dedicated server and one matching Java Edition client, both running 1.19 Pre-release 1 (launcher version ID 1.19-pre1). Run the server with Java 17 in a new, isolated server directory, use its ordinary newly generated Overworld, and keep the dedicated-server console visible for the observation agent. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19_Pre-release_1))",
     "preconditions": [
-      "The client and dedicated-server binaries must both be for exactly 1.19 Pre-release 1; do not substitute the final 1.19 release or 1.19 Pre-release 2.",
-      "Use an unmodified vanilla dedicated server, not a proxy, modded server, plugin server, Realm, or single-player world.",
-      "Java 17 must be available from the server host's command line; Java Edition 1.19 requires Java 17. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
-      "Create the server in a new writable directory so its generated server.properties, eula.txt, world, and logs are isolated from other tests.",
-      "Use the default normal world type. The report supplies no seed, coordinates, game mode, or required structure.",
-      "The client must be able to reach the server. If both run on one machine, use localhost; otherwise use the server host's reachable address.",
-      "Know the joining player's exact Minecraft profile name so the player can be made a server operator from the server console.",
-      "Keep the server console visible so the observation subsystem can later inspect the server's immediate post-trigger state and logs."
+      "Use exactly Minecraft: Java Edition 1.19 Pre-release 1 for both the dedicated server and client; do not use the fixed version, 1.19 Pre-release 2.",
+      "Use a vanilla dedicated server rather than single-player. Do not install plugins, mods, datapacks, or proxy software that could replace command parsing or chat preview handling.",
+      "The client must be able to connect to the dedicated server. If both run on the same computer, the client can use localhost; otherwise, use the server's reachable address and configure networking as needed.",
+      "The server must have chat preview enabled with previews-chat=true in server.properties. Chat preview was available for /say in this affected version. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
+      "The reproducing player must have operator permission so that /say and its entity selectors can be parsed as a usable command. Grant operator status from the dedicated-server console after the player joins. ([minecraft.wiki](https://minecraft.wiki/w/Commands/op))",
+      "Keep the client connection view and dedicated-server console available for immediate handoff to the separate observation subsystem.",
+      "Do not press Enter to send the reproduction command. The trigger is evaluation of the unsent command by chat preview while its text is being prepared."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "Configure the Minecraft Launcher or test harness to launch a Java Edition client for exactly 1.19 Pre-release 1. In the official Launcher, historical pre-releases are normally selected by enabling snapshots under Installations, creating a new installation, and choosing the 1.19-pre1 version entry. Keep this installation separate from current releases.",
-        "exact_input": "1.19-pre1",
-        "success_cue": "The selected client installation identifies itself as 1.19 Pre-release 1, not 1.19 Pre-release 2 or the final 1.19 release.",
-        "source_basis": "practical_inference"
+        "action": "Create a new empty directory dedicated to this reproduction. Obtain the vanilla dedicated-server JAR for Minecraft Java Edition 1.19 Pre-release 1, place it in that directory, and rename it to server.jar for the commands below. This version is identified as 1.19-pre1 by the launcher and requires Java 17. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19_Pre-release_1))",
+        "exact_input": null,
+        "success_cue": "The isolated directory contains the 1.19 Pre-release 1 server file named server.jar.",
+        "source_basis": "verified_external"
       },
       {
         "step": 2,
-        "action": "Place the dedicated-server jar for exactly 1.19 Pre-release 1 in the isolated server directory. For the commands below, name the file server-1.19-pre1.jar; if retaining another filename, substitute that filename only in the server launch commands.",
-        "exact_input": "server-1.19-pre1.jar",
-        "success_cue": "The isolated directory contains the 1.19 Pre-release 1 server jar and no world has been generated there yet.",
+        "action": "Open a terminal or command prompt in the server directory and perform the server's initial launch. Do not enter this command in Minecraft chat.",
+        "exact_input": "java -jar server.jar nogui",
+        "success_cue": "The server creates its initial configuration files, including eula.txt, and reports that the EULA must be accepted before normal startup.",
         "source_basis": "practical_inference"
       },
       {
         "step": 3,
-        "action": "Open a terminal or command prompt in the isolated server directory and verify that the java command resolves to Java 17. Do not continue with an older Java runtime.",
-        "exact_input": "java -version",
-        "success_cue": "The version output identifies Java 17.x.",
-        "source_basis": "verified_external"
-      },
-      {
-        "step": 4,
-        "action": "From that terminal, start the server once to generate its initial configuration files. The command is entered in the operating-system terminal, not Minecraft chat or the server console. Wait for the process to stop after reporting that the EULA has not been accepted.",
-        "exact_input": "java -jar server-1.19-pre1.jar nogui",
-        "success_cue": "The server directory now contains eula.txt and server.properties, and the initial server process has exited.",
+        "action": "After the initial server process has stopped, open eula.txt in a plain-text editor and change its EULA setting to true. Save the file without changing its filename.",
+        "exact_input": "eula=true",
+        "success_cue": "The saved eula.txt file contains eula=true.",
         "source_basis": "practical_inference"
       },
       {
+        "step": 4,
+        "action": "Open server.properties in a plain-text editor. Find the previews-chat property and set it to true. If the property is absent, add the exact line as a new property. Save the file. Chat preview for commands such as /say is part of the affected version's behavior. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
+        "exact_input": "previews-chat=true",
+        "success_cue": "The saved server.properties file contains exactly one active previews-chat=true setting.",
+        "source_basis": "verified_external"
+      },
+      {
         "step": 5,
-        "action": "If the Minecraft EULA is accepted for this test, open eula.txt in a plain-text editor, change its eula setting from false to true, save the file, and close the editor. Do not change unrelated lines.",
-        "exact_input": "eula=true",
-        "success_cue": "The saved eula.txt contains eula=true.",
+        "action": "Start the dedicated server again from its directory. Leave this terminal open throughout reproduction so the observation agent can inspect server output.",
+        "exact_input": "java -jar server.jar nogui",
+        "success_cue": "The console reports that server startup is complete and presents a usable server-console input prompt; the ordinary server world has been generated or loaded.",
         "source_basis": "practical_inference"
       },
       {
         "step": 6,
-        "action": "Open server.properties in a plain-text editor. Find the previews-chat property and set it to true. If the generated file does not contain that line, add the exact line on its own line. Save and close the file. Chat preview is disabled by default and is enabled by this property. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
-        "exact_input": "previews-chat=true",
-        "success_cue": "The saved server.properties contains exactly one active previews-chat=true entry.",
+        "action": "In the Minecraft Launcher, create or select an installation for 1.19-pre1, use a separate game directory if available, and launch it. On the main menu, confirm the displayed client version is 1.19 Pre-release 1 rather than 1.19 Pre-release 2 or a release version. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19_Pre-release_1))",
+        "exact_input": null,
+        "success_cue": "The Minecraft client is at the main menu and identifies itself as 1.19 Pre-release 1.",
         "source_basis": "verified_external"
       },
       {
         "step": 7,
-        "action": "Start the dedicated server again from the operating-system terminal using the same 1.19 Pre-release 1 jar. Leave this process running for the rest of the reproduction.",
-        "exact_input": "java -jar server-1.19-pre1.jar nogui",
-        "success_cue": "The server console reaches its normal ready message ending with Done and accepts console input.",
-        "source_basis": "practical_inference"
+        "action": "Before joining, navigate from the main menu to Options, then Chat Settings. Set the Chat Preview option to ON if it is disabled, then return to the main menu. This client option existed because chat preview could be globally disabled by the client. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
+        "exact_input": null,
+        "success_cue": "The client-side Chat Preview setting is ON.",
+        "source_basis": "verified_external"
       },
       {
         "step": 8,
-        "action": "Launch the prepared Minecraft: Java Edition 1.19 Pre-release 1 client installation. On the title screen, verify the displayed version before opening Multiplayer.",
-        "exact_input": null,
-        "success_cue": "The client is at the title screen and visibly identifies the running version as 1.19 Pre-release 1.",
+        "action": "Select Multiplayer, use Direct Connection or add the server, enter its address, and join. Use localhost when the client and server are running on the same computer; otherwise use the actual server address. Acknowledge or continue past any chat-preview warning shown while connecting.",
+        "exact_input": "localhost",
+        "success_cue": "The player is present in the dedicated server's generated Overworld, surrounding terrain has rendered, and movement responds normally.",
         "source_basis": "report"
       },
       {
         "step": 9,
-        "action": "Select Multiplayer. Add or directly connect to the dedicated server: enter localhost when the client and server are on the same computer, or enter the server's reachable address otherwise. Join the server and allow login and terrain loading to finish.",
-        "exact_input": "localhost",
-        "success_cue": "The player is standing in the server's fresh normal world; surrounding terrain is rendered and movement responds normally.",
-        "source_basis": "practical_inference"
+        "action": "In the dedicated-server console, grant operator status to the connected player. Replace <player_name> with the player's exact Java account name. Because this is the server console, enter the command without a leading slash. ([minecraft.wiki](https://minecraft.wiki/w/Commands/op))",
+        "exact_input": "op <player_name>",
+        "success_cue": "The server console confirms that the named player was made a server operator, or otherwise confirms that the player is already an operator.",
+        "source_basis": "verified_external"
       },
       {
         "step": 10,
-        "action": "If the client displays a warning or notification that the server uses Chat Preview, acknowledge it if acknowledgement is required. Do not disable chat preview from that warning.",
+        "action": "Return focus to the connected client. Wait until the nearby chunks are fully rendered and player controls respond normally. Remain in the ordinary Overworld and do not remove naturally loaded entities.",
         "exact_input": null,
-        "success_cue": "No warning dialog blocks normal gameplay or access to the chat screen.",
-        "source_basis": "verified_external"
+        "success_cue": "The player remains connected in the normal generated world, terrain is loaded, and the server console remains accessible for monitoring.",
+        "source_basis": "report"
       },
       {
         "step": 11,
-        "action": "Press Esc, open Options, then Chat Settings, and locate the Chat Preview option. Cycle it until it is ON. Chat Preview existed as a client option in this version and was normally enabled by default, but set it explicitly to avoid using a previously saved disabled setting. Return to the game with Done or Esc. ([minecraft.wiki](https://minecraft.wiki/w/Java_Edition_1.19?utm_source=openai))",
-        "exact_input": "Esc -> Options -> Chat Settings -> Chat Preview: ON",
-        "success_cue": "The Chat Preview option reads ON, and the player has returned to the joined server world.",
-        "source_basis": "verified_external"
+        "action": "Verify that command chat preview is active before using the oversized selector input. Press T, type the harmless unsent test command exactly as shown, and do not press Enter. Wait for the preview area above the chat input to respond.",
+        "exact_input": "/say preview_check",
+        "success_cue": "The command is accepted as valid input and a server-controlled preview is shown or updated above the chat edit box.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 12,
-        "action": "In the dedicated server console, grant operator status to the joined test player so the client can parse and preview the /say command. Replace <player_name> with the exact profile name shown in the server's join message. Because this is the server console, enter the command without a leading slash.",
-        "exact_input": "op <player_name>",
-        "success_cue": "The server console confirms that the named player was made a server operator.",
+        "action": "Clear the harmless test without sending it. With the chat field focused, press Ctrl+A to select all text and then press Backspace. Keep the chat screen open.",
+        "exact_input": null,
+        "success_cue": "The chat input field is empty, chat remains open, and no command has been sent.",
         "source_basis": "practical_inference"
       },
       {
         "step": 13,
-        "action": "On the client, wait until the fresh normal world and its nearby entities have had time to load. Do not replace the world with an empty, void, or otherwise non-normal world, and do not intentionally create extreme entity counts. Continue when terrain is stable and controls respond normally.",
-        "exact_input": null,
-        "success_cue": "The player remains connected in a responsive, normally generated world with the nearby chunks loaded.",
-        "source_basis": "report"
-      },
-      {
-        "step": 14,
-        "action": "Press T, the default Open Chat control, to open the chat input. If controls were rebound, use the control assigned to Open Chat.",
-        "exact_input": "T",
-        "success_cue": "The chat screen is open and its text input field is active.",
+        "action": "Prepare the high-selector command in the operating-system clipboard so it can be inserted in one input action. Generate exactly the four characters /say followed by exactly 80 repetitions of a space and @e. The resulting text must be 244 characters long, contain 80 @e selectors, have one space before every selector, and contain no line break.",
+        "exact_input": "\"/say\" + (\" @e\" repeated exactly 80 times)",
+        "success_cue": "The clipboard contains a single 244-character line beginning with /say @e and containing exactly 80 occurrences of @e.",
         "source_basis": "practical_inference"
       },
       {
-        "step": 15,
-        "action": "Type the exact command prefix, including the leading slash and one trailing space. Do not press Enter: this reproduction is triggered while editing the command, not by executing it. If /say is shown as unavailable or invalid, stop and recheck that the player was made an operator.",
-        "exact_input": "/say ",
-        "success_cue": "The chat input contains /say followed by a space, the command is recognized by the client, and the chat screen remains open.",
-        "source_basis": "report"
-      },
-      {
-        "step": 16,
-        "action": "Append entity selectors one at a time. For the first selector, type @e. For every later selector, type one space followed by @e. After completing each individual @e token, stop typing and allow the chat preview response to update or settle before adding another. Do not press Enter, do not execute the command, and do not paste all selectors as one batch. Use the report's ten-selector example as the initial target: /say @e @e @e @e @e @e @e @e @e @e. Because the report does not define a fixed threshold, if the observation subsystem requests continuation after the tenth selector, append exactly one additional space-plus-@e token per attempt and hand control back after every token. Stop making further trigger attempts as soon as the observation subsystem signals that it has captured a terminal state.",
-        "exact_input": "First selector: @e; each additional selector:  @e; ten-selector line: /say @e @e @e @e @e @e @e @e @e @e",
-        "success_cue": "A newly completed @e token is present at the end of the still-unsubmitted /say command, no Enter key has been pressed, and the client is in the immediate post-keystroke state for observation.",
-        "source_basis": "report"
+        "step": 14,
+        "action": "With the empty chat field still focused, press Ctrl+V once to paste the complete 244-character command. Do not press Enter, do not close chat, and do not interact with any screen that appears after the paste. Pasting is used to make the large selector-bearing text change a single deterministic chat-preview request.",
+        "exact_input": "\"/say\" + (\" @e\" repeated exactly 80 times); paste with Ctrl+V and do not press Enter",
+        "success_cue": "The paste action has been issued while chat preview is enabled; no command-send action has been performed.",
+        "source_basis": "practical_inference"
       }
     ],
-    "trigger_step": 16,
-    "handoff_condition": "Immediately after each complete @e token is added in step 16—especially after completing the ten-selector report example—stop all client input and hand control to the observation subsystem while the chat screen and unsubmitted /say command remain in their immediate post-keystroke state. If the observer explicitly requests another attempt, append only one more ` @e` token and hand control back again; never press Enter.",
+    "trigger_step": 14,
+    "handoff_condition": "The 244-character unsent /say command containing 80 @e selectors has just been inserted into the chat input while server and client chat preview are enabled. Enter has not been pressed, the client must receive no further input, and the dedicated-server console remains visible. Begin observing the client connection state and server output immediately.",
     "uncertainties": [
-      "The report does not specify an exact selector count at which the terminal condition occurs. Ten @e selectors are supplied as an example, while the instructions say to continue adding selectors until the condition is reached. The threshold can depend on how many entities the selector resolves in the loaded world.",
-      "No world seed, coordinates, exact entity count, wait duration, game mode, difficulty, or entity-spawning procedure is supplied. This plan therefore preserves the report's instruction to use a normal world rather than inventing a mass-summoning setup.",
-      "The report does not explicitly say that the player must be an operator. Operator status is added as a practical execution requirement so the client has permission to recognize and preview /say on a dedicated server.",
-      "The report says to type the command. The plan therefore enters selectors incrementally and does not press Enter or paste the full test string as a single batch.",
-      "If no preview appears after a small number of selectors, that indicates an incomplete setup rather than permission to alter the reproduction: recheck previews-chat=true, the client Chat Preview option, matching 1.19 Pre-release 1 versions, and /say permission first."
+      "The report does not specify an exact selector count at which the oversized preview occurs. It gives ten selectors as an example and states that continuing to add @e eventually reaches the trigger. The plan uses 80 selectors as a deterministic high-count input while retaining the reported /say and @e syntax.",
+      "The amount of preview data generated by each @e depends on the entities currently loaded in the ordinary server world. The report provides no seed, coordinates, entity count, or explicit entity-spawning setup, so the plan preserves its stated normal-world condition rather than inventing a custom population.",
+      "Pasting the full selector sequence in one action is a practical execution choice intended to produce one clearly bounded trigger and immediate observation handoff. The report describes continuing to type @e but does not explicitly discuss clipboard input.",
+      "The report does not specify an operating system, server memory allocation, world seed, game mode, coordinates, or a requirement for multiple players. The plan therefore uses one operator player, the server's default world settings, and no special seed or coordinates.",
+      "The external sources were used only to verify version-sensitive operational details: the launcher identifier 1.19-pre1, Java 17, the previews-chat server property, command chat preview availability, the client Chat Preview option, and dedicated-server operator handling."
     ],
     "web_verification_used": true
   },
@@ -168,16 +154,15 @@
     "reasoning_effort": "high",
     "verbosity": "high",
     "web_used": true,
-    "web_call_count": 3,
-    "response_id": "resp_04f383935b844818016aa7bd48f4fc87d09e7edf145826780d",
-    "elapsed_seconds": 126.15,
+    "web_call_count": 5,
+    "response_id": "resp_00e83a6ddcfbd736016aac73fb6b9487d18746abadb793509d",
+    "elapsed_seconds": 164.66,
     "usage": {
-      "input_tokens": 30986,
-      "output_tokens": 7547,
-      "reasoning_tokens": 5166,
-      "total_tokens": 38533
+      "input_tokens": 37626,
+      "output_tokens": 9867,
+      "reasoning_tokens": 7732,
+      "total_tokens": 47493
     },
-    "timestamp": "2026-09-14T09:26:30.357284+00:00"
-  },
-  "reused_from": "low-interaction-54"
+    "timestamp": "2026-09-17T23:15:43.904796+00:00"
+  }
 }

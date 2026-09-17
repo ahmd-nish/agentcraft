@@ -1,0 +1,151 @@
+{
+  "bug_id": "MC-268431",
+  "category": "Networking",
+  "source_category": "Inventory",
+  "source_panel": "networking_five_bug_reports",
+  "source_md": "[Inventory] - MC-268431.md",
+  "source_meta": {
+    "mojira categories": "Inventory; Networking",
+    "project": "MC",
+    "issue key": "MC-268431",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2024-02-09T08:26:05.236-0800",
+    "updated": "2025-04-26T15:19:05.175-0700",
+    "resolution date": "2024-12-12T15:19:27.215-0800",
+    "affects versions": "1.20.4; 24w06a; 1.21; 24w33a",
+    "fix versions": "24w38a",
+    "area": "Platform",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "image-2024-07-19-18-31-08-177.png; image-2024-07-19-18-31-56-719.png",
+    "issue links": "Relates:inward:MC-86455:Pick-block creates ghost items in Creative when hotbar is full | Relates:inward:MC-265640:Moving items before and after switching to the Survival inventory tab desyncs the hotbar",
+    "_title": "External inventory changes except for the hotbar are not registered in a creative mode item selection screen"
+  },
+  "stor": {
+    "bug_id": "MC-268431",
+    "affected_versions": [
+      "1.20.4",
+      "24w06a",
+      "1.21",
+      "24w33a"
+    ],
+    "recommended_version": "1.20.4",
+    "environment": "Minecraft: Java Edition 1.20.4 in a new single-player Creative-mode world using the integrated server. Use the normal Creative inventory interface; no seed, coordinates, dedicated server, additional players, commands, or datapacks are required.",
+    "preconditions": [
+      "Launch the first listed affected version, Java Edition 1.20.4; do not use the listed fix version 24w38a.",
+      "Use a newly created Creative-mode world so the player's 27-slot main inventory and nine-slot hotbar begin empty.",
+      "Perform the trigger while the Creative inventory remains open on a tab other than Survival Inventory; this plan uses the Search Items tab.",
+      "Use two different item types: Stone to occupy every hotbar slot and Red Wool as the item that will be dropped and picked up. The target item must not match the hotbar item, so it cannot merge into a hotbar stack.",
+      "Default mouse controls and the default E key for Open Inventory are assumed. If controls are rebound, use the corresponding Open Inventory, left-click, and pointer actions."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, select and start a Java Edition installation for exactly version 1.20.4. Wait for the game to reach its main menu.",
+        "exact_input": "Minecraft: Java Edition 1.20.4",
+        "success_cue": "The main menu is open and the displayed game version is 1.20.4.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Choose Singleplayer, create a new world, set Game Mode to Creative, and create the world. Do not reuse a world whose player inventory may already contain items.",
+        "exact_input": "Game Mode: Creative",
+        "success_cue": "The player has spawned in a new world in Creative mode, with an empty visible hotbar and Creative-mode capabilities such as unrestricted flight.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the nearby terrain has rendered and player input responds normally. Stand still on solid ground and aim the view down at the block directly beneath or immediately in front of the player; this helps the subsequently dropped item remain within automatic pickup range.",
+        "exact_input": null,
+        "success_cue": "The player is stationary on solid ground, nearby chunks are rendered, and the view is aimed almost straight down at nearby ground.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E, the default Open Inventory key, to open the Creative inventory interface. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ABeginner%27s_guide?utm_source=openai))",
+        "exact_input": "E",
+        "success_cue": "The Creative item-selection screen is visible, including category tabs, the item catalog, and the nine hotbar slots along its bottom edge.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "For an initial-state check, select the tab whose hover tooltip reads “Survival Inventory.” Confirm that all 27 main-inventory slots and all nine hotbar slots are empty. If they are not empty, discard this world and repeat from step 2 with a new world rather than clearing items during the trigger sequence.",
+        "exact_input": "left-click the “Survival Inventory” tab",
+        "success_cue": "The Survival Inventory tab is selected and the player's main inventory and hotbar contain no items.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the Creative tab whose hover tooltip reads “Search Items.” Click inside its search field and enter “stone.” Do not return to the Survival Inventory tab after this point.",
+        "exact_input": "stone",
+        "success_cue": "The Search Items tab is active and the item results include the ordinary Stone block item.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Fill only the hotbar with Stone. For hotbar slot 1, left-click the Stone result to take a stack onto the mouse cursor, then left-click hotbar slot 1 to place it. Repeat the same two-click cycle for hotbar slots 2 through 9. Inventory left-clicking picks up or places an entire stack. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ABeginner%27s_guide?utm_source=openai))",
+        "exact_input": "left-click Stone; left-click hotbar slots 1 through 9, one slot at a time",
+        "success_cue": "Every one of the nine hotbar slots contains Stone, no hotbar slot is empty, and the mouse cursor is not carrying an item.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "While remaining on the Search Items tab, click the search field, select its existing contents, and replace them with “red wool.”",
+        "exact_input": "Ctrl+A; red wool",
+        "success_cue": "The Search Items tab remains active and the search results include the Red Wool item.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Left-click the Red Wool result once to take a Red Wool stack onto the mouse cursor. Do not place it into any inventory or hotbar slot.",
+        "exact_input": "left-click Red Wool",
+        "success_cue": "A Red Wool stack is attached to the mouse cursor, while all nine hotbar slots remain occupied by Stone.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Move the mouse pointer completely outside the rectangular Creative inventory panel and over the shaded world background, then left-click once. This drops the cursor-held stack into the world. Keep the Creative inventory open on the Search Items tab; do not press E, Escape, or select another tab. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Indonesian_translation/Persediaan?utm_source=openai))",
+        "exact_input": "left-click outside the inventory panel",
+        "success_cue": "The Red Wool stack is no longer attached to the cursor, all hotbar slots remain full of Stone, and the Search Items screen is still open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 11,
+        "action": "Without closing the Creative inventory or changing tabs, wait for the dropped Red Wool to pass its pickup delay and be collected automatically. Continue only when the item-pickup sound is heard; if visible around the edge of the interface, the dropped item entity should also disappear. Do not perform any inventory interaction after the pickup cue.",
+        "exact_input": null,
+        "success_cue": "The Red Wool pickup event has just occurred while the Creative inventory is still open on Search Items and the hotbar is still full of Stone.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The externally dropped Red Wool has just been picked up while the player's nine hotbar slots remain filled with Stone and the Creative inventory remains open on the non-Survival Search Items tab. Hand control to the observation subsystem immediately, before closing the screen, switching tabs, clicking slots, or otherwise forcing an inventory refresh.",
+    "uncertainties": [
+      "The report does not specify a seed, coordinates, server type, hotbar filler item, or exact target item. A new single-player Creative world, Stone filler stacks, and Red Wool are deterministic practical choices; the report permits any items as long as the hotbar is full and the dropped item is a different type.",
+      "The report does not state the exact GUI action used to throw the item. This plan uses the standard inventory action of carrying an item on the cursor and left-clicking outside the inventory panel, which was externally verified.",
+      "Looking down before opening the inventory is not a reported requirement; it is a practical measure intended to keep the dropped item close enough to be picked up without closing the Creative inventory or moving the player.",
+      "The comment mentions reproduction in 1.21.1, but 1.21.1 is not included in the report's formal Affects versions field, so it was not added to affected_versions.",
+      "The attachment images were not required to execute the supplied textual reproduction and were not used."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0463cf9a4b980e39016aac74a03d7087d197568139c50d13f0",
+    "elapsed_seconds": 162.11,
+    "usage": {
+      "input_tokens": 17882,
+      "output_tokens": 9034,
+      "reasoning_tokens": 7403,
+      "total_tokens": 26916
+    },
+    "timestamp": "2026-09-17T23:18:26.026579+00:00"
+  }
+}
