@@ -1,0 +1,170 @@
+{
+  "bug_id": "MC-306860",
+  "category": "Networking",
+  "source_category": "Networking",
+  "source_panel": "networking-five-bug-reports-updated",
+  "source_md": "[Networking] - MC-306860.md",
+  "source_meta": {
+    "mojira categories": "Networking",
+    "project": "MC",
+    "issue key": "MC-306860",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Community Consensus",
+    "mojang priority": "Important",
+    "created": "2026-03-14T10:15:21.211-0700",
+    "updated": "2026-03-16T03:03:02.385-0700",
+    "resolution date": "2026-03-16T03:03:02.330-0700",
+    "affects versions": "26.1 Pre-Release 2",
+    "fix versions": "26.1 Pre-Release 3",
+    "area": "Platform HC",
+    "watchers": "2",
+    "attachments": "2",
+    "attachment filenames": "example.png; Minecraft Screenshot 2026.03.15 - 18.44.44.17.png",
+    "_title": "Player object text components in server status messages (MotD) are no longer replaced by fallback text"
+  },
+  "stor": {
+    "bug_id": "MC-306860",
+    "affected_versions": [
+      "26.1 Pre-Release 2"
+    ],
+    "recommended_version": "26.1 Pre-Release 2",
+    "environment": "Minecraft Java Edition 26.1 Pre-Release 2 client and a Python 3 mock Minecraft status server running on the same computer. The mock server listens on TCP port 25565 and is accessed through the loopback address 127.0.0.1. A vanilla or dedicated Minecraft server is not required, and the client must not join the mock server; the reproduction occurs in the Multiplayer server list.",
+    "preconditions": [
+      "Minecraft Java Edition 26.1 Pre-Release 2 is installed and selectable in the Minecraft Launcher.",
+      "Python 3 is installed, and the `python` command invokes it from Command Prompt or PowerShell.",
+      "TCP port 25565 is available; stop any Minecraft server or other program already using that port before starting the mock server.",
+      "The Minecraft client and Python script will run on the same computer so that the exact address 127.0.0.1 reaches the mock server.",
+      "The executor can create and save a plain-text `.py` file.",
+      "If the operating system displays a firewall prompt for Python, permit the local connection needed for the test.",
+      "Keep the terminal running after starting the script. Closing it stops the mock server."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open Command Prompt or PowerShell and verify that the Python command is available.",
+        "exact_input": "python --version",
+        "success_cue": "The terminal prints a Python 3 version instead of reporting that `python` is unknown or unavailable.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 2,
+        "action": "Open a plain-text editor and create a new file named `mc306860_mock_status.py`. Ensure the file is saved with the `.py` extension rather than `.py.txt`.",
+        "exact_input": "mc306860_mock_status.py",
+        "success_cue": "A writable plain-text file named `mc306860_mock_status.py` exists.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Paste the report's mock status-server script into `mc306860_mock_status.py` exactly as supplied, then save the file.",
+        "exact_input": "import socket\nimport json\n\ndef encode_varint(value):\n    result = bytearray()\n    while True:\n        byte = value & 0x7F\n        value >>= 7\n        if value != 0:\n            byte |= 0x80\n        result.append(byte)\n        if value == 0:\n            break\n    return bytes(result)\n\ndef decode_varint(data, pos=0):\n    result = 0\n    shift = 0\n    while pos < len(data):\n        byte = data[pos]\n        pos += 1\n        result |= (byte & 0x7F) << shift\n        shift += 7\n        if not (byte & 0x80):\n            return result, pos\n    raise ValueError(\"Ran out of data reading VarInt\")\n\ndef encode_string(text):\n    encoded = text.encode('utf-8')\n    return encode_varint(len(encoded)) + encoded\n\ndef build_packet(packet_id, data=b''):\n    id_bytes = encode_varint(packet_id)\n    content = id_bytes + data\n    return encode_varint(len(content)) + content\n\ndef recv_exact(sock, n):\n    data = b''\n    while len(data) < n:\n        chunk = sock.recv(n - len(data))\n        if not chunk:\n            raise ConnectionError(\"Client disconnected early\")\n        data += chunk\n    return data\n\ndef recv_packet(sock):\n    length_bytes = bytearray()\n    while True:\n        byte = recv_exact(sock, 1)[0]\n        length_bytes.append(byte)\n        if not (byte & 0x80):\n            break\n        if len(length_bytes) >= 5:\n            raise ValueError(\"VarInt too long\")\n    length, _ = decode_varint(bytes(length_bytes))\n    content = recv_exact(sock, length)\n    packet_id, offset = decode_varint(content)\n    payload = content[offset:]\n    return packet_id, payload\n\nSTATUS_JSON = {\n    \"description\": [\n        {\"player\": {\"name\": \"alex\"}},\n        {\"sprite\": \"block/stone\"}\n    ],\n    \"players\": {\"max\": 20, \"online\": 0},\n    \"version\": {\"name\": \"26.1 Pre-Release 2\", \"protocol\": 1073742123},\n    \"enforcesSecureChat\": True\n}\n\ndef handle_client(conn, addr):\n    print(f\"\\n[+] Client connected from {addr}\")\n    try:\n        packet_id, payload = recv_packet(conn)\n        if packet_id != 0x00:\n            return\n        pos = 0\n        protocol_ver, pos = decode_varint(payload, pos)\n        addr_len, pos = decode_varint(payload, pos)\n        server_addr = payload[pos:pos + addr_len].decode('utf-8')\n        pos += addr_len\n        server_port = int.from_bytes(payload[pos:pos+2], 'big')\n        pos += 2\n        next_state, pos = decode_varint(payload, pos)\n        if next_state != 1:\n            return\n        packet_id, _ = recv_packet(conn)\n        json_str = json.dumps(STATUS_JSON)\n        response_packet = build_packet(0x00, encode_string(json_str))\n        conn.sendall(response_packet)\n        print(f\"    Payload sent: {json_str}\")\n        try:\n            packet_id, ping_payload = recv_packet(conn)\n            if packet_id == 0x01:\n                conn.sendall(build_packet(0x01, ping_payload))\n        except Exception:\n            pass\n    except Exception as e:\n        print(f\"    Error: {e}\")\n    finally:\n        conn.close()\n        print(f\"[-] Client disconnected.\")\n\ndef main():\n    server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)\n    server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)\n    server.bind(('0.0.0.0', 25565))\n    server.listen(5)\n    print(\"Mock server running on port 25565. Add 127.0.0.1 in Minecraft.\")\n    print(\"Press Ctrl+C to stop.\")\n    try:\n        while True:\n            conn, addr = server.accept()\n            handle_client(conn, addr)\n    except KeyboardInterrupt:\n        print(\"\\nStopped.\")\n    finally:\n        server.close()\n\nif __name__ == '__main__':\n    main()",
+        "success_cue": "The file is saved, begins with `import socket`, and ends with the call to `main()`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Open Command Prompt or PowerShell in the directory containing `mc306860_mock_status.py`. One way to do this on Windows is to open that folder in File Explorer, click the address bar, type `powershell`, and press Enter.",
+        "exact_input": "powershell",
+        "success_cue": "The terminal's current directory is the folder containing `mc306860_mock_status.py`.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Start the mock status server by executing the saved Python file. Do not close this terminal after the command starts.",
+        "exact_input": "python mc306860_mock_status.py",
+        "success_cue": "The terminal displays `Mock server running on port 25565. Add 127.0.0.1 in Minecraft.` followed by `Press Ctrl+C to stop.` and does not return to the command prompt.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "If the operating system displays a firewall prompt for Python, allow the connection. Leave the mock-server terminal open and running in the background.",
+        "exact_input": null,
+        "success_cue": "The Python process remains active without a traceback or an error stating that port 25565 could not be bound.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Open the Minecraft Launcher, select the installation for Minecraft Java Edition `26.1 Pre-Release 2`, and launch it. Do not substitute the fixed version `26.1 Pre-Release 3`.",
+        "exact_input": "26.1 Pre-Release 2",
+        "success_cue": "The Minecraft Java Edition main menu is open and identifies the running version as 26.1 Pre-Release 2.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "From the Minecraft main menu, click `Multiplayer`. If a standard pre-release or multiplayer warning screen appears, acknowledge it to continue to the Multiplayer server list.",
+        "exact_input": null,
+        "success_cue": "The Multiplayer server-list screen is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Click `Add Server` at the bottom of the Multiplayer screen.",
+        "exact_input": null,
+        "success_cue": "The Edit Server Info screen is open and contains fields for `Server Name` and `Server Address`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "In the `Server Name` field, enter a recognizable label for the mock server. This label is only for identifying the entry and is not part of the network payload.",
+        "exact_input": "MC-306860 Mock Server",
+        "success_cue": "The Server Name field contains `MC-306860 Mock Server`.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Click the `Server Address` field, remove any existing contents, and enter the loopback address exactly as supplied in the report. Do not add `http://`, a path, or spaces. Because the script uses the default Minecraft port 25565, no explicit port suffix is required.",
+        "exact_input": "127.0.0.1",
+        "success_cue": "The Server Address field contains exactly `127.0.0.1`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Click `Done` once to save the server entry and return to the Multiplayer server list. This causes the client to request status information from the Python mock server.",
+        "exact_input": null,
+        "success_cue": "The Multiplayer list is visible and contains the saved entry named `MC-306860 Mock Server`.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Do not double-click the server or press `Join Server`. Wait for the server-list status request to complete. Use the terminal as the readiness signal: wait until it prints a client connection line and a `Payload sent:` line for the status JSON.",
+        "exact_input": null,
+        "success_cue": "The Python terminal has printed `[+] Client connected from ...`, followed by `Payload sent: ...`, and the saved server entry has finished its status poll in the Multiplayer list.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Keep the Multiplayer list open with the completed mock-server entry visible. Do not refresh the list, join the server, stop the Python process, or navigate away before handing control to the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "The mock server's status description has just been received and rendered beneath the saved server name, and the entry remains visible for inspection.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The client has returned to the Multiplayer server list after `Done` was clicked, the Python terminal has logged that it sent the supplied status payload, and the resulting status description is currently rendered beneath the `MC-306860 Mock Server` entry. Begin observation without joining the server or refreshing the list.",
+    "uncertainties": [
+      "The report specifies that Python must be installed and uses the command form `python _.py`, but it does not specify an operating system or Python installation method. This plan uses Windows-oriented Command Prompt or PowerShell instructions because those are explicitly named in the report.",
+      "Some Windows Python installations expose Python 3 through `py` rather than `python`. The report specifically instructs use of `python`, so that command is retained; if it is unavailable, the environment must be corrected or the equivalent launcher selected before continuing.",
+      "The report does not specify a server-list display name. `MC-306860 Mock Server` is an arbitrary practical label and does not affect the status payload.",
+      "The report does not explicitly discuss firewall prompts or port conflicts. Allowing local Python networking and keeping TCP port 25565 free are practical requirements for executing the supplied script.",
+      "No vanilla Minecraft server is used. The supplied Python program only implements enough of the status protocol to answer the Multiplayer server-list query."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0e1077eb4f2bd122016aadf8a1214087d0bd7bf51a4cb1395b",
+    "elapsed_seconds": 73.4,
+    "usage": {
+      "input_tokens": 9524,
+      "output_tokens": 4172,
+      "reasoning_tokens": 1445,
+      "total_tokens": 13696
+    },
+    "timestamp": "2026-09-19T02:52:26.377791+00:00"
+  }
+}

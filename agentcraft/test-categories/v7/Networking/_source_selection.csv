@@ -1,0 +1,6 @@
+selection_rank,selection_type,key,summary,created,resolution,resolutiondate,category,issue_url,attachment_count
+1,retained,MC-251889,io.netty.handler.codec.EncoderException when evaluating too many entity selectors in chat preview,2022-05-18T20:11:34.354-0700,Fixed,2022-05-19T08:56:58.585-0700,Networking,https://bugs.mojang.com/browse/MC-251889,1
+2,retained,MC-74984,Client continues to connect to server after canceling on 'Connecting to server' screen,2014-12-01T12:42:26.527-0800,Fixed,2024-12-08T13:52:42.297-0800,Networking,https://bugs.mojang.com/browse/MC-74984,16
+3,replacement,MC-307272,Servers can no longer detect left clicks from players in Spectator mode,2026-04-06T12:22:57.014-0700,Fixed,2026-05-11T02:15:01.833-0700,Networking,https://bugs.mojang.com/browse/MC-307272,2
+4,replacement,MC-306860,Player object text components in server status messages (MotD) are no longer replaced by fallback text,2026-03-14T10:15:21.211-0700,Fixed,2026-03-16T03:03:02.330-0700,Networking,https://bugs.mojang.com/browse/MC-306860,2
+5,replacement,MC-306502,Uploading a world to a snapshot Realm wipes it,2026-02-18T08:47:00.086-0800,Fixed,2026-03-12T01:27:33.125-0700,Networking,https://bugs.mojang.com/browse/MC-306502,1

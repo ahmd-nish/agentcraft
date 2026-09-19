@@ -1,0 +1,30 @@
+{
+  "output_folder": "/Users/nish/Documents/Research - Minecraft/data_collection/networking-five-bug-reports-updated",
+  "category": "Networking",
+  "retained_report_ids": [
+    "MC-251889",
+    "MC-74984"
+  ],
+  "removed_report_ids": [
+    "MC-10025",
+    "MC-26678",
+    "MC-4"
+  ],
+  "replacement_report_ids": [
+    "MC-307272",
+    "MC-306860",
+    "MC-306502"
+  ],
+  "replacement_criteria": {
+    "project": "MC",
+    "resolution": "Fixed",
+    "native_category_includes": "Networking",
+    "creation_date_on_or_after": "2022-01-01",
+    "excluded_category": "Crash",
+    "ordering": "newest creation date first"
+  },
+  "reports": 5,
+  "attachments_declared": 22,
+  "attachments_downloaded": 22,
+  "attachments_failed": 0
+}

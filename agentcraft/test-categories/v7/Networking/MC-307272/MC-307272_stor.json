@@ -1,0 +1,157 @@
+{
+  "bug_id": "MC-307272",
+  "category": "Networking",
+  "source_category": "Networking",
+  "source_panel": "networking-five-bug-reports-updated",
+  "source_md": "[Networking] - MC-307272.md",
+  "source_meta": {
+    "mojira categories": "Networking",
+    "project": "MC",
+    "issue key": "MC-307272",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Plausible",
+    "mojang priority": "Normal",
+    "created": "2026-04-06T12:22:57.014-0700",
+    "updated": "2026-05-11T02:15:01.908-0700",
+    "resolution date": "2026-05-11T02:15:01.833-0700",
+    "affects versions": "26.1.1",
+    "fix versions": "26.2 Snapshot 7",
+    "area": "Platform HC",
+    "votes": "5",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "1.21.11.mp4; 26.1.2.mp4",
+    "_title": "Servers can no longer detect left clicks from players in Spectator mode"
+  },
+  "stor": {
+    "bug_id": "MC-307272",
+    "affected_versions": [
+      "26.1.1"
+    ],
+    "recommended_version": "26.1.1",
+    "environment": "Minecraft: Java Edition 26.1.1, using one authenticated multiplayer-capable account and an internet connection to the third-party dedicated minigame server mc.hypixel.net. The reproduction uses a SkyWars Solo Normal match and Hypixel's post-death spectator flow.",
+    "preconditions": [
+      "Install or create a launcher installation for Minecraft: Java Edition 26.1.1; do not use the listed fix version 26.2 Snapshot 7.",
+      "Sign in to a Minecraft account that owns Java Edition and is permitted to join online multiplayer servers.",
+      "Ensure the client can connect to mc.hypixel.net and that Hypixel currently accepts connections from version 26.1.1.",
+      "Use the report-provided public-server reproduction path. No local world, cheats, operator permission, or server console access is involved.",
+      "Know the configured controls corresponding to Chat, Attack/Destroy, Use Item/Place Block, movement, jump/fly upward, and sneak/fly downward. The steps name the common defaults: T, left mouse button, right mouse button, W, Space, and Left Shift.",
+      "A SkyWars Solo Normal match must be available, and at least one other player must remain alive long enough to be targeted after the test player dies."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, select or create an installation that launches Minecraft: Java Edition 26.1.1, and start the game. Wait for the main menu to finish loading.",
+        "exact_input": "26.1.1",
+        "success_cue": "The Minecraft: Java Edition main menu is visible and the selected client version is 26.1.1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Multiplayer. If the multiplayer safety warning appears, read it and select Proceed to reach the server list.",
+        "exact_input": "Multiplayer -> Proceed, if prompted",
+        "success_cue": "The Java Edition multiplayer server-list screen is visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 3,
+        "action": "Select Direct Connection. If Direct Connection is unavailable, select Add Server instead and use any descriptive server name.",
+        "exact_input": "Direct Connection",
+        "success_cue": "A screen containing a Server Address field is open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 4,
+        "action": "Enter the report-supplied server address exactly as shown and select Join Server. If using Add Server, enter the address in Server Address, save the entry, select it in the server list, and then select Join Server.",
+        "exact_input": "mc.hypixel.net",
+        "success_cue": "The client begins connecting to mc.hypixel.net without an invalid-address error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "Wait until the Hypixel lobby has fully loaded. Do not continue while a loading screen is displayed or while movement and chat are unresponsive.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a rendered Hypixel lobby and normal player movement responds to input.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press the Chat control, T by default, to open in-game chat. Type the report-supplied command with the leading slash and press Enter once.",
+        "exact_input": "/play solo_normal",
+        "success_cue": "Hypixel accepts the command and transfers or queues the player for a SkyWars Solo Normal match rather than displaying an unknown-command error.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Wait through matchmaking and the pre-game countdown. Do not leave the starting area before the match begins. After the countdown, wait until the starting restraint or cage is released and player movement is enabled.",
+        "exact_input": null,
+        "success_cue": "The SkyWars match is active, nearby islands and the void have rendered, and the player can move normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Immediately turn toward the nearest edge leading into empty space above the void. Move forward with W and, if needed to clear the edge, press Space to jump. Continue moving until the player has left the island and is falling into the void. Do not engage another player or perform unrelated actions first.",
+        "exact_input": "W; Space if needed",
+        "success_cue": "The player is visibly falling below the starting island with no blocks beneath them.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Allow the void to kill the player. Wait for Hypixel's death transition and post-death spectator state to finish loading; dismiss only any ordinary death overlay or prompt that prevents movement, if one appears.",
+        "exact_input": null,
+        "success_cue": "The player is no longer an active SkyWars combatant and can move around using Hypixel's post-death spectator mode.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Locate a living SkyWars player. Fly toward that player using the normal movement controls; use Space to rise and the Sneak control, Left Shift by default, to descend if necessary. Approach until the living player's body is within interaction range, then center the crosshair directly on that player.",
+        "exact_input": "W; Space to rise; Left Shift to descend",
+        "success_cue": "A living SkyWars player is nearby and centered under the crosshair.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "With the crosshair still on the nearby living player, press the Use Item/Place Block control, the right mouse button by default, once. This is the report's Hypixel-specific interaction for entering the target player's vanilla-style first-person spectator view.",
+        "exact_input": "Right mouse button once",
+        "success_cue": "The camera is attached to the living player in first-person spectator view and follows that player's position and view rather than moving independently.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "While the camera remains attached to the living player in first-person spectator view, press the Attack/Destroy control, the left mouse button by default, exactly once. Do not change targets, exit the view, or click repeatedly before handing control to the observation subsystem.",
+        "exact_input": "Left mouse button once",
+        "success_cue": "One left-click input has just been issued while the client remains attached to the living player's first-person spectator view.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The Minecraft 26.1.1 client remains in first-person spectator view of a living SkyWars player, and the player has just pressed the left mouse button once. Hand control to the observation subsystem immediately, without issuing another click or leaving spectator view.",
+    "uncertainties": [
+      "The report's formal Steps to Reproduce section says N/A. This plan reconstructs the execution path from Comment 2, which the commenter stated was tested with Minecraft 26.1.2.",
+      "The structured Affects versions field lists only 26.1.1, so 26.1.1 is retained as the recommended reproduction version. Although the comment mentions testing 26.1.2 and the description also discusses the broader 26.1 release line, those versions were not added to affected_versions.",
+      "Hypixel is a live third-party service. Its supported client versions, /play solo_normal command, SkyWars availability, death flow, and right-click spectator interaction may have changed since the report was written. If version 26.1.1 is rejected or the described interaction is no longer available, this report-provided public-server path cannot be completed without an alternative server-side packet monitor or archived server implementation not supplied in the report.",
+      "The report calls Hypixel's initial post-death state its version of spectator mode and distinguishes it from the vanilla-style first-person spectator view entered by right-clicking a nearby player. The plan preserves that distinction.",
+      "If the targeted player dies, disconnects, or the match ends before step 12, return to the lobby if necessary and restart from the /play solo_normal command rather than triggering the test in a different state.",
+      "Control keys may have been rebound. The named keys and mouse buttons are defaults; the executor must use the controls currently bound to the corresponding Minecraft actions."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_04d7777c15c9e4db016aadf8eab02087d0a3b0fdee40d29a13",
+    "elapsed_seconds": 80.64,
+    "usage": {
+      "input_tokens": 17421,
+      "output_tokens": 3815,
+      "reasoning_tokens": 2141,
+      "total_tokens": 21236
+    },
+    "timestamp": "2026-09-19T02:53:47.028020+00:00"
+  }
+}

@@ -1,0 +1,249 @@
+{
+  "bug_id": "MC-306502",
+  "category": "Networking",
+  "source_category": "Networking",
+  "source_panel": "networking-five-bug-reports-updated",
+  "source_md": "[Networking] - MC-306502.md",
+  "source_meta": {
+    "mojira categories": "Networking",
+    "project": "MC",
+    "issue key": "MC-306502",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Community Consensus",
+    "mojang priority": "Very Important",
+    "created": "2026-02-18T08:47:00.086-0800",
+    "updated": "2026-03-12T01:27:33.259-0700",
+    "resolution date": "2026-03-12T01:27:33.125-0700",
+    "affects versions": "26.1 Snapshot 9",
+    "fix versions": "26.1 Pre-Release 2",
+    "area": "Platform EC",
+    "votes": "2",
+    "watchers": "1",
+    "attachments": "1",
+    "attachment filenames": "IMG_0169.mov",
+    "_title": "Uploading a world to a snapshot Realm wipes it"
+  },
+  "stor": {
+    "bug_id": "MC-306502",
+    "affected_versions": [
+      "26.1 Snapshot 9"
+    ],
+    "recommended_version": "26.1 Snapshot 9",
+    "environment": "Minecraft: Java Edition client running exactly 26.1 Snapshot 9, first in singleplayer and then through a Mojang-hosted Snapshot Realm associated with the same authenticated account. The account must own or otherwise have configuration access to the Snapshot Realm; ordinary invited-member access is insufficient for uploading a world. Use a disposable Realm world slot over a stable internet connection.",
+    "preconditions": [
+      "Install and launch exactly 26.1 Snapshot 9, not 26.1 Pre-Release 2 or any newer version.",
+      "Sign in through the Minecraft Launcher with the Microsoft account that owns or can configure the Snapshot Realm.",
+      "Ensure the Snapshot Realm is active and accessible from 26.1 Snapshot 9.",
+      "Reserve a disposable Realm world slot. If that slot contains anything important, download or otherwise back it up before beginning because uploading replaces the slot's current world.",
+      "Use a newly created, disposable singleplayer world for this reproduction. Do not use an important existing world.",
+      "Use an unmodified client without third-party mods. No custom resource pack, data pack, seed, or experiment is required by the report.",
+      "Keep the newly created world small so that its upload can complete without unrelated world-size or network complications."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Open the Minecraft Launcher, go to the Installations tab, enable the option that makes snapshot versions available if it is disabled, and create or select an installation whose version is exactly 26.1 Snapshot 9.",
+        "exact_input": "26.1 Snapshot 9",
+        "success_cue": "The selected launcher installation explicitly lists 26.1 Snapshot 9 as its game version.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Start that installation and wait for the Minecraft: Java Edition main menu to finish loading. Check the version text displayed on the menu before continuing.",
+        "exact_input": null,
+        "success_cue": "The main menu is responsive and its version text identifies the running client as 26.1 Snapshot 9.",
+        "source_basis": "report"
+      },
+      {
+        "step": 3,
+        "action": "Select Singleplayer, then select Create New World to begin making the local world that will later be uploaded.",
+        "exact_input": null,
+        "success_cue": "The Create New World configuration screen is open.",
+        "source_basis": "report"
+      },
+      {
+        "step": 4,
+        "action": "Set the world name to a unique, easily identifiable value and select Creative as the game mode. Leave the seed unspecified and leave experiments and data packs at their defaults.",
+        "exact_input": "MC-306502 local source",
+        "success_cue": "The configured world is named \"MC-306502 local source\" and Creative mode is selected.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select Create New World and wait for world generation to finish.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the newly generated singleplayer world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Do not modify the world immediately. Wait until nearby terrain is rendered and ordinary movement responds without initial chunk-loading pauses.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is visible, the player can move normally, and the initial loading overlay is gone.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press E, or the rebound Inventory control, to open the Creative inventory. Use the Search Items tab to find a Block of Gold and move a stack into any hotbar slot. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "Block of Gold",
+        "success_cue": "A stack of Blocks of Gold is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Close the inventory with E or Esc, select the hotbar slot containing the Blocks of Gold, and use the Place/Use Item control, right-click by default, to construct a vertical pillar three gold blocks tall immediately beside the player's initial area. Place the first block on the ground, then place the next two on top of it.",
+        "exact_input": null,
+        "success_cue": "A conspicuous three-block-tall gold pillar is standing near the local world's starting location.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Open the Creative inventory again. Search for Chest and Diamond, then move both items to separate hotbar slots.",
+        "exact_input": "Chest; Diamond",
+        "success_cue": "A Chest and a stack of Diamonds are both available in the hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Close the inventory, select the Chest, and right-click an empty ground block directly beside the gold pillar to place the chest.",
+        "exact_input": null,
+        "success_cue": "A chest is placed adjacent to the gold pillar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Right-click the placed chest to open its container interface. Move the Diamond stack from the player inventory into a chest slot, then close the chest interface with E or Esc.",
+        "exact_input": null,
+        "success_cue": "The chest has been closed after a Diamond stack was placed inside it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Open the Creative inventory once more, obtain another Diamond stack, and leave it in one of the player's hotbar slots. Close the inventory without putting this second stack in the chest.",
+        "exact_input": "Diamond",
+        "success_cue": "The world contains the gold pillar and diamond-filled chest, while a separate Diamond stack remains in the player's hotbar as a player-data marker.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Press F3 to open the debug overlay and record or capture the player's displayed X, Y, and Z coordinates while standing beside the pillar and chest. Press F3 again to close the overlay. If the keyboard assigns media functions to the F-keys, use Fn+F3.",
+        "exact_input": null,
+        "success_cue": "The coordinates of the pillar-and-chest test location have been retained for later comparison and the debug overlay is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Press Esc and select Save and Quit to Title. Wait until the main menu has fully returned before taking another action.",
+        "exact_input": null,
+        "success_cue": "The main menu is displayed and the singleplayer session has closed normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Select Singleplayer, select \"MC-306502 local source\", and select Play Selected World. Wait until its terrain finishes loading and movement responds normally.",
+        "exact_input": "MC-306502 local source",
+        "success_cue": "The player has re-entered the saved local source world and can move normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "At the recorded location, confirm only that the source save is prepared correctly: the three-block gold pillar and adjacent chest are present, the chest still contains the Diamond stack when opened, and the separate Diamond stack remains in the player's hotbar. Close the chest after this setup check.",
+        "exact_input": null,
+        "success_cue": "The local source save demonstrably contains persisted block, container, and player-inventory progress before upload.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Press Esc, select Save and Quit to Title again, and wait for the main menu.",
+        "exact_input": null,
+        "success_cue": "The source world has been saved and the Minecraft main menu is displayed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 18,
+        "action": "From the main menu, select Minecraft Realms and wait for the owned and invited Realms list to load from the service.",
+        "exact_input": null,
+        "success_cue": "The Realms screen is responsive and the account's Snapshot Realm is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "Select the Snapshot Realm owned by the logged-in account, then select Configure. Do not select an ordinary invited Realm for which the account lacks configuration rights.",
+        "exact_input": null,
+        "success_cue": "The configuration interface for the intended Snapshot Realm is open.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 20,
+        "action": "Open the Realm's world-management screen and select the disposable world slot intended for the test. Use the Edit World control for that slot if the interface requires it.",
+        "exact_input": null,
+        "success_cue": "The disposable slot's management screen is open and presents the control for uploading or replacing its world.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 21,
+        "action": "Select Upload World. If this build labels the equivalent world-replacement control as Replace World, use that control instead. Wait for the list of locally saved singleplayer worlds to appear.",
+        "exact_input": null,
+        "success_cue": "A selection screen containing local singleplayer saves is visible.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 22,
+        "action": "Select the local world named \"MC-306502 local source\" and activate the final confirmation control that starts uploading it to the selected Snapshot Realm slot. Accept the warning that the slot's existing world will be replaced.",
+        "exact_input": "MC-306502 local source",
+        "success_cue": "The upload has started and an upload progress screen or progress indicator is visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 23,
+        "action": "Wait without canceling, closing Minecraft, changing installations, or interrupting the network connection. Continue only when the interface reports that the upload/replacement has completed and returns control through a Done, Let's Go, or equivalent completion control.",
+        "exact_input": null,
+        "success_cue": "The upload process has completed without an error message and the Realm slot is available for play.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 24,
+        "action": "Return to the Realm's main screen if necessary, select the same Snapshot Realm and uploaded slot, and select Play. If the successful-upload screen offers to enter the Realm directly, use that option instead.",
+        "exact_input": null,
+        "success_cue": "The client begins connecting to the selected Snapshot Realm rather than reopening the local singleplayer world.",
+        "source_basis": "report"
+      },
+      {
+        "step": 25,
+        "action": "Wait until the Realm connection and dimension loading finish. Do not begin evaluating transferred blocks, chest contents, or player data until surrounding chunks have rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is inside the uploaded Snapshot Realm world, nearby terrain is rendered, and movement is responsive.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 22,
+    "handoff_condition": "The upload of \"MC-306502 local source\" to the disposable Snapshot Realm slot has completed, and the player has subsequently entered that Realm world with nearby chunks fully rendered and movement responsive. Hand off now so the observation subsystem can compare the loaded Realm state with the recorded local source state.",
+    "uncertainties": [
+      "The report does not specify a game mode, seed, coordinates, or exact pre-upload progress. This plan uses a new Creative-mode world, a gold pillar, a diamond-filled chest, and a Diamond stack in the player hotbar as deterministic practical markers; Creative mode is not asserted as a requirement of the bug.",
+      "The report says the problem was reproduced both with old worlds and with worlds newly created in the current snapshot. This plan chooses the simpler new-world-in-26.1-Snapshot-9 variant.",
+      "The report does not provide the exact 26.1 Snapshot 9 Realms button layout. The standard Java Realms path uses Realm configuration, world management/Edit World, and Upload World; some interface revisions may label the equivalent replacement action Replace World.",
+      "The report does not explicitly state the Realm subscription, ownership, or permission setup, but uploading a local world operationally requires access to the Realm's configuration controls.",
+      "The report mentions media attachments, but their contents were not supplied. The plan therefore relies only on the written description and comments.",
+      "No exact seed is supplied. The seed must remain whatever the newly created source world generates; the executor must not recreate a second local world from that seed as a substitute for uploading the prepared save."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_062fdb5ef025c7a5016aadf81fdfa487d0ac3ff35577836c9f",
+    "elapsed_seconds": 129.44,
+    "usage": {
+      "input_tokens": 33727,
+      "output_tokens": 5978,
+      "reasoning_tokens": 3512,
+      "total_tokens": 39705
+    },
+    "timestamp": "2026-09-19T02:51:12.970889+00:00"
+  }
+}
