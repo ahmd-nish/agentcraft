@@ -1,0 +1,157 @@
+{
+  "bug_id": "MC-303036",
+  "category": "Hitboxes",
+  "source_category": "Hitboxes",
+  "source_panel": "hitboxes-latest-created-after-2021",
+  "source_md": "[Hitboxes] - MC-303036.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes",
+    "project": "MC",
+    "issue key": "MC-303036",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Low",
+    "created": "2025-10-11T22:59:59.186-0700",
+    "updated": "2025-11-25T05:16:55.360-0800",
+    "resolution date": "2025-11-25T05:16:55.298-0800",
+    "affects versions": "25w41a; 25w42a; 25w45a; 1.21.11 Pre-Release 2",
+    "fix versions": "1.21.11 Pre-Release 3",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2025-10-12_13.42.38.png; 2025-10-12_13.42.50.png",
+    "_title": "Zombie nautiluses with a negative age possess a hitbox the size of a baby nautilus"
+  },
+  "stor": {
+    "bug_id": "MC-303036",
+    "affected_versions": [
+      "25w41a",
+      "25w42a",
+      "25w45a",
+      "1.21.11 Pre-Release 2"
+    ],
+    "recommended_version": "25w41a",
+    "environment": "Vanilla Minecraft: Java Edition Snapshot 25w41a; single-player integrated-server world; Creative mode; commands/cheats enabled; non-Peaceful difficulty; Overworld; open, well-lit test area; entity hitbox rendering enabled.",
+    "preconditions": [
+      "Use the exact recommended affected version, Snapshot 25w41a, rather than the listed fix version.",
+      "Run an unmodified vanilla client without mods, plugins, or datapacks that alter entities, rendering, or commands.",
+      "Use a disposable test world because snapshots can damage or permanently convert worlds.",
+      "The player must have permission to execute commands; in single-player, create the world with commands/cheats enabled.",
+      "Keep the difficulty set to Easy, Normal, or Hard rather than Peaceful so the undead entity is not immediately removed.",
+      "Ensure the keyboard can issue the Java Edition F3+B debug shortcut; on some keyboards the Fn key must also be held."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, enable snapshot installations if they are hidden, create or select an installation for the exact Java Edition version 25w41a, and launch it. Do not select 1.21.11 Pre-Release 3 because that is listed as a fix version, not an affected version.",
+        "exact_input": "25w41a",
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 25w41a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Open the Singleplayer menu and create a new disposable world. Set the game mode to Creative and ensure commands/cheats are enabled. Leave the difficulty at Normal, or select another non-Peaceful difficulty. No particular world seed is required by the report.",
+        "exact_input": null,
+        "success_cue": "The world begins loading with the player configured for Creative mode and command access.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for the world to finish loading. Do not continue until nearby terrain is rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in the Overworld, surrounding chunks are visible, and movement is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Verify Creative mode by checking that the health and hunger bars are absent and the Creative inventory is available. If the world did not start in Creative mode, press T, enter the supplied mode-setting command, and press Enter.",
+        "exact_input": "/gamemode creative",
+        "success_cue": "The player is in Creative mode and can fly by double-tapping the Jump control, whose default key is Space.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Move to a clear, well-lit, level location with several blocks of unobstructed space around the player. Avoid standing against a wall, inside foliage, or beside another entity, because the supplied relative coordinates summon the zombie nautilus at the player's current position.",
+        "exact_input": null,
+        "success_cue": "At least several blocks around the player are unobstructed, and there is room to back away and view the summoned entity.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enable Java Edition's entity hitbox display by holding F3 and pressing B once. On a keyboard whose function keys require it, hold Fn as well. Do not repeat the shortcut after the confirmation appears, because repeating it would hide the hitboxes.",
+        "exact_input": "F3+B",
+        "success_cue": "The game displays a confirmation that hitboxes are shown; visible entities, if any, have white bounding-box outlines.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Stand on the clear surface and stop moving. The report's summon command uses ~ ~ ~, so the zombie nautilus will be created at this exact current X, Y, and Z position.",
+        "exact_input": null,
+        "success_cue": "The player is stationary in the prepared open area with hitbox rendering still enabled.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Press T to open the in-game chat and command input. Execute the command in-game rather than from an external dedicated-server console.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a slash-prefixed command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Type the report's command exactly as supplied, including the leading slash, entity identifier, relative coordinates, braces, capitalization, comma, and negative Age value. Do not modernize, shorten, or add other NBT such as NoAI.",
+        "exact_input": "/summon minecraft:zombie_nautilus ~ ~ ~ {Invulnerable:1b,Age:-999999}",
+        "success_cue": "The complete command is present in the chat input field and has not yet been executed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press Enter once to execute the summon command. This is the trigger action for the reproduction.",
+        "exact_input": "Enter",
+        "success_cue": "Chat reports a successful summon and a zombie nautilus is present at or immediately beside the player's former position.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Without attacking, mounting, feeding, or otherwise interacting with the zombie nautilus, move approximately three to five blocks away so that the entity is no longer overlapping the camera. If necessary, use Creative flight to obtain an unobstructed side view, but remain close enough for the entity and its debug outline to render clearly.",
+        "exact_input": "S or another movement control; optionally double-tap Space for Creative flight",
+        "success_cue": "The complete zombie nautilus model is visible from a short distance and is not obscured by the player camera or nearby blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Center the camera on the summoned zombie nautilus and confirm that hitbox rendering is still active. Stop issuing commands or interactions as soon as both the entity model and its white bounding-box outline are simultaneously visible.",
+        "exact_input": null,
+        "success_cue": "The zombie nautilus created with Age:-999999 and its white debug hitbox outline are simultaneously visible and ready for inspection.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The exact report command has been executed in Snapshot 25w41a, and the resulting zombie nautilus is visible from an unobstructed short-distance view with F3+B entity hitboxes enabled. Begin observation without interacting with or modifying the entity.",
+    "uncertainties": [
+      "The report supplies only the summon command and does not specify a world seed, coordinates, dimension, game mode, difficulty, or server type. A disposable single-player Creative Overworld world with cheats enabled and a non-Peaceful difficulty is therefore used as the minimum deterministic setup.",
+      "The report does not explicitly instruct the executor to enable debug hitbox rendering. F3+B is added because the report concerns hitbox dimensions and the outline must be visible for the separate observation subsystem.",
+      "The report does not require the zombie nautilus to be summoned in water. The plan preserves the exact ~ ~ ~ coordinates and uses a clear land-based viewing area rather than adding an unsupported water requirement.",
+      "No adult or ordinary-age comparison entity is added because the supplied report requests only the negative-age summon command. Adding a comparison summon would extend the reproduction beyond the reported instructions."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_0728fb7ea88e029b016aadd6c93da087d09dd2f5880ef7e936",
+    "elapsed_seconds": 70.93,
+    "usage": {
+      "input_tokens": 16683,
+      "output_tokens": 3749,
+      "reasoning_tokens": 2180,
+      "total_tokens": 20432
+    },
+    "timestamp": "2026-09-19T00:27:59.824424+00:00"
+  }
+}

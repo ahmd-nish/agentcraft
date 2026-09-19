@@ -1,0 +1,6 @@
+selection_rank,key,summary,created,resolution,resolutiondate,category,issue_url,attachment_count
+1,MC-306195,"Camel husks with the ""Age"" tag set below -24000 use their removed baby variant's hitbox size and animation speed",2026-02-03T13:05:27.523-0800,Fixed,2026-02-10T01:19:15.950-0800,Hitboxes; Mob behaviour,https://bugs.mojang.com/browse/MC-306195,2
+2,MC-306179,The hitbox of baby foxes is offset from their model when sleeping,2026-02-03T08:14:06.136-0800,Fixed,2026-02-19T13:47:03.877-0800,Hitboxes; Mob behaviour,https://bugs.mojang.com/browse/MC-306179,2
+3,MC-303036,Zombie nautiluses with a negative age possess a hitbox the size of a baby nautilus,2025-10-11T22:59:59.186-0700,Fixed,2025-11-25T05:16:55.298-0800,Hitboxes,https://bugs.mojang.com/browse/MC-303036,2
+4,MC-302383,Rooms with carpet on the floor cannot have maps in item frames placed on walls touching the floor,2025-09-29T19:17:54.313-0700,Fixed,2025-10-02T03:09:13.754-0700,Hitboxes,https://bugs.mojang.com/browse/MC-302383,0
+5,MC-302112,Posed mannequins don't use the correct hitbox,2025-09-16T07:18:57.327-0700,Fixed,2025-09-18T01:11:58.058-0700,Hitboxes,https://bugs.mojang.com/browse/MC-302112,3

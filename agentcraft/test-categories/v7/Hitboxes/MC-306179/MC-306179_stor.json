@@ -1,0 +1,118 @@
+{
+  "bug_id": "MC-306179",
+  "category": "Hitboxes",
+  "source_category": "Hitboxes",
+  "source_panel": "hitboxes-latest-created-after-2021",
+  "source_md": "[Hitboxes] - MC-306179.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes; Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-306179",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2026-02-03T08:14:06.136-0800",
+    "updated": "2026-04-11T10:03:25.838-0700",
+    "resolution date": "2026-02-19T13:47:03.877-0800",
+    "affects versions": "26.1 Snapshot 6",
+    "fix versions": "26.1 Snapshot 8",
+    "area": "Expansion A",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2026-02-03_14.29.43-20260203-192943.png; 2026-02-04_00.13.06.png",
+    "_title": "The hitbox of baby foxes is offset from their model when sleeping"
+  },
+  "stor": {
+    "bug_id": "MC-306179",
+    "affected_versions": [
+      "26.1 Snapshot 6",
+      "26.1-snapshot-7"
+    ],
+    "recommended_version": "26.1 Snapshot 6",
+    "environment": "Unmodified Minecraft Java Edition 26.1 Snapshot 6 in a single-player world where commands are permitted. Creative mode is a practical choice but is not stated as a bug requirement. Entity hitbox rendering must be enabled before summoning the fox.",
+    "preconditions": [
+      "Install or create a Minecraft Launcher installation for Java Edition version 26.1 Snapshot 6.",
+      "Use an unmodified client without gameplay-changing mods or datapacks.",
+      "Create or load a world in which the player can execute commands; for a new single-player world, enable commands by setting Allow Cheats to ON during world creation.",
+      "Ensure the keyboard can send the F3+B debug shortcut; on keyboards where function keys control hardware features, Fn may also need to be held.",
+      "Allow the world and surrounding chunks to finish loading before beginning the reproduction."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the installation configured for version 26.1 Snapshot 6, then enter a command-enabled single-player world.",
+        "exact_input": null,
+        "success_cue": "The world is open in Java Edition 26.1 Snapshot 6, terrain has rendered, and player movement responds normally.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Move to a level, unobstructed area where the ground at the player's feet is visible. Stop moving and avoid standing inside tall grass or other blocks that could obscure a small entity.",
+        "exact_input": null,
+        "success_cue": "There is open ground at and immediately around the player's current position, with enough room to see a baby fox.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Enable entity hitbox rendering by holding F3 and pressing B once. If the keyboard reserves function keys for hardware controls, hold Fn while pressing F3+B.",
+        "exact_input": "F3+B",
+        "success_cue": "A debug notification indicates that hitboxes are shown. Keep hitbox rendering enabled for the rest of the reproduction.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Aim the camera generally toward the ground at the player's feet, because the supplied relative summon coordinates place the fox at the player's current X, Y, and Z position.",
+        "exact_input": null,
+        "success_cue": "The ground directly at and immediately in front of the player is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T, or the currently bound Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Enter the report's summon command exactly as supplied, including the leading slash, and press Enter once. Do not change the entity identifier, relative coordinates, Age value, Sleeping value, capitalization, or NBT syntax.",
+        "exact_input": "/summon minecraft:fox ~ ~ ~ {Age:-24000,Sleeping:1b}",
+        "success_cue": "The command is accepted, chat closes, and a baby fox in a sleeping pose is summoned at or immediately beside the player's feet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "Without attacking, using an item on, or moving away from the fox, adjust the camera downward only as much as necessary to keep the sleeping baby fox and its enabled hitbox overlay in view.",
+        "exact_input": null,
+        "success_cue": "The sleeping baby fox is visible, hitbox rendering remains enabled, and no interaction has been performed that could wake or move the fox.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 6,
+    "handoff_condition": "The supplied command has just summoned the sleeping baby fox, and both the fox model and enabled hitbox overlay are in view. Hand control to the observation subsystem before interacting with or moving the fox.",
+    "uncertainties": [
+      "The structured Affects versions field lists 26.1 Snapshot 6. A report comment also explicitly states that the issue was reproduced in 26.1-snapshot-7, so that exact comment version string is included as an additional affected version.",
+      "The report does not specify single-player versus dedicated server, game mode, world seed, coordinates, or terrain. A command-enabled single-player Creative world and an open viewing area are practical execution choices rather than reported bug requirements.",
+      "The report supplies the summon command but does not explicitly instruct the executor to enable hitbox rendering. F3+B is added because the reported condition concerns the spatial relationship between an entity model and its hitbox."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0fcf5d1c649fe4a3016aadd710325887d0bbd070fc8f2ef74d",
+    "elapsed_seconds": 61.56,
+    "usage": {
+      "input_tokens": 8349,
+      "output_tokens": 3420,
+      "reasoning_tokens": 2450,
+      "total_tokens": 11769
+    },
+    "timestamp": "2026-09-19T00:29:01.396577+00:00"
+  }
+}

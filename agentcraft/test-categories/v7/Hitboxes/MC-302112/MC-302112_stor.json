@@ -1,0 +1,126 @@
+{
+  "bug_id": "MC-302112",
+  "category": "Hitboxes",
+  "source_category": "Hitboxes",
+  "source_panel": "hitboxes-latest-created-after-2021",
+  "source_md": "[Hitboxes] - MC-302112.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes",
+    "project": "MC",
+    "issue key": "MC-302112",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2025-09-16T07:18:57.327-0700",
+    "updated": "2026-03-11T03:43:41.818-0700",
+    "resolution date": "2025-09-18T01:11:58.058-0700",
+    "affects versions": "1.21.9 Pre-Release 1",
+    "fix versions": "1.21.9 Pre-Release 2",
+    "area": "Platform HC",
+    "votes": "7",
+    "watchers": "0",
+    "attachments": "3",
+    "attachment filenames": "2025-09-16_16.16.53-20250916-141653.png; 2025-09-16_16.17.01-20250916-141701.png; 2025-09-16_16.17.36-20250916-141736.png",
+    "_title": "Posed mannequins don't use the correct hitbox"
+  },
+  "stor": {
+    "bug_id": "MC-302112",
+    "affected_versions": [
+      "1.21.9 Pre-Release 1"
+    ],
+    "recommended_version": "1.21.9 Pre-Release 1",
+    "environment": "Minecraft: Java Edition 1.21.9 Pre-Release 1 in a fresh single-player Creative-mode world with commands enabled, using keyboard and mouse controls.",
+    "preconditions": [
+      "Install and launch the exact affected version, 1.21.9 Pre-Release 1. Do not use the listed fix version, 1.21.9 Pre-Release 2.",
+      "Use a world in which the player can execute commands. A fresh Creative-mode single-player world is recommended because the report does not specify a game mode or server requirement.",
+      "Use a fresh world or otherwise ensure there are no pre-existing minecraft:mannequin entities near the player; the supplied @n selector must resolve to the mannequin created during this procedure.",
+      "The client must be able to display Java Edition entity hitboxes with the F3+B debug shortcut. On keyboards that assign media functions to the function-key row, Fn may also need to be held.",
+      "No world seed, coordinates, dimension, difficulty, graphics setting, datapack, resource pack, or multiplayer configuration is specified by the report."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the launcher installation configured for 1.21.9 Pre-Release 1. At the main menu, verify that the displayed version is exactly 1.21.9 Pre-Release 1 before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft main menu is open and identifies the running version as 1.21.9 Pre-Release 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "From the main menu, select Singleplayer, then Create New World. Set Game Mode to Creative, ensure commands are allowed, and create the world. Creative mode is an execution convenience rather than a report-stated requirement.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Commands: ON -> Create New World",
+        "success_cue": "The player has spawned in a newly created Creative-mode world and can open chat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Do not execute the reproduction commands while the world is still loading. Wait until the terrain around the player has rendered and movement and camera controls respond normally.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading overlay is gone, and the player can move and look around without waiting for chunks to appear.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a clear, well-lit area with enough open space to see a human-sized entity from several blocks away. Confirm that no other mannequins are present nearby so the later nearest-entity selector is unambiguous.",
+        "exact_input": "W/A/S/D as needed",
+        "success_cue": "The player is standing in an open viewing area and there are no pre-existing mannequins nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open in-game chat. Enter the report's mannequin summon command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/summon minecraft:mannequin",
+        "success_cue": "The command succeeds and one mannequin appears at the command execution position near or overlapping the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Move approximately three blocks away from the summoned mannequin, then turn the camera toward it. Position the camera so the mannequin's entire body is visible from head to feet; do not summon any additional mannequins.",
+        "exact_input": "Hold S or another movement key until approximately 3 blocks away, then aim the crosshair toward the mannequin",
+        "success_cue": "Exactly one mannequin is visible, its whole body fits on screen, and the player is no longer occupying the same position as it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enable entity-hitbox rendering by holding F3 and pressing B once. If the keyboard uses the function-key row for media controls, hold Fn together with F3 while pressing B. Release the keys after the toggle occurs.",
+        "exact_input": "F3+B (or Fn+F3+B when required by the keyboard)",
+        "success_cue": "A debug confirmation such as \"Entity hitboxes: shown\" appears, and a white hitbox outline is rendered around the mannequin.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "With the mannequin still visible and hitbox rendering enabled, press T to open chat. Enter the report's pose-modification command exactly as written, including the leading slash, and press Enter. Because this is the only nearby mannequin, @n[type=minecraft:mannequin] should select it.",
+        "exact_input": "/data modify entity @n[type=minecraft:mannequin] pose set value crouching",
+        "success_cue": "The command reports successful modification of the selected entity's data, the mannequin model has adopted the crouching pose, and hitbox rendering remains enabled.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "The only nearby mannequin has just been changed to the crouching pose with the report's exact /data command. The mannequin's full model is in view, entity-hitbox rendering is enabled, and no additional action has been taken since the command completed. Begin hitbox observation now.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, dimension, or server configuration. This plan uses a fresh Creative-mode single-player world as the simplest way to provide command permission without adding unrelated setup.",
+      "The description also identifies swimming and fall_flying as affected poses, but the report supplies an exact pose-modification command only for crouching. Following the simplest deterministic reproduction path, this plan uses the explicitly supplied crouching case as the trigger rather than requiring all three variants in one run.",
+      "The report does not explicitly instruct the executor to enable the debug hitbox overlay. F3+B was added as a verified operational step because the reported property is an entity hitbox and the overlay allows the separate observation subsystem to inspect it directly.",
+      "The @n selector is only deterministic here if no other mannequin is nearer to the command source. The fresh-world and single-mannequin conditions are practical safeguards for preserving the supplied command without altering it."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0f14fc09062e179b016aadd5ff010887d0a26b8ac5195e7847",
+    "elapsed_seconds": 87.08,
+    "usage": {
+      "input_tokens": 22544,
+      "output_tokens": 4106,
+      "reasoning_tokens": 2784,
+      "total_tokens": 26650
+    },
+    "timestamp": "2026-09-19T00:24:52.795106+00:00"
+  }
+}

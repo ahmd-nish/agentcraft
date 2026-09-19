@@ -1,0 +1,16 @@
+{
+  "output_folder": "/Users/nish/Documents/Research - Minecraft/data_collection/hitboxes-latest-created-after-2021",
+  "selection": "five newest fixed MC reports carrying the native Hitboxes category",
+  "creation_date_cutoff": "2022-01-01",
+  "reports": 5,
+  "attachments_declared": 9,
+  "attachments_downloaded": 9,
+  "attachments_failed": 0,
+  "report_ids": [
+    "MC-306195",
+    "MC-306179",
+    "MC-303036",
+    "MC-302383",
+    "MC-302112"
+  ]
+}

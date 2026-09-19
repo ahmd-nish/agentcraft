@@ -1,0 +1,147 @@
+{
+  "bug_id": "MC-306195",
+  "category": "Hitboxes",
+  "source_category": "Hitboxes",
+  "source_panel": "hitboxes-latest-created-after-2021",
+  "source_md": "[Hitboxes] - MC-306195.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes; Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-306195",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2026-02-03T13:05:27.523-0800",
+    "updated": "2026-02-10T01:19:16.052-0800",
+    "resolution date": "2026-02-10T01:19:15.950-0800",
+    "affects versions": "26.1 Snapshot 6",
+    "fix versions": "26.1 Snapshot 7",
+    "area": "Expansion A",
+    "votes": "1",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2026-02-03_16.34.16-20260203-213416.png; 2026-02-03_21.56.26.png",
+    "issue links": "Duplicate:inward:MC-306267:Hardcoded forced adult behavior is inconsistent between Wandering Traders and Camel Husks",
+    "_title": "Camel husks with the \"Age\" tag set below -24000 use their removed baby variant's hitbox size and animation speed"
+  },
+  "stor": {
+    "bug_id": "MC-306195",
+    "affected_versions": [
+      "26.1 Snapshot 6"
+    ],
+    "recommended_version": "26.1 Snapshot 6",
+    "environment": "Minecraft Java Edition 26.1 Snapshot 6. Use a single-player Creative-mode world with commands enabled, a clear flat area large enough to place two camel husks several blocks apart, and client-side debug hitbox rendering. A dedicated server and additional players are not specified or required by the report.",
+    "preconditions": [
+      "The Minecraft Launcher can install and start the exact affected version, 26.1 Snapshot 6.",
+      "The test world permits in-game commands. The plan uses Creative mode with commands enabled as the simplest practical setup; the report does not prescribe a game mode.",
+      "Use an open, well-lit, approximately level area where two camel husks can be viewed simultaneously without nearby blocks or entities obstructing their outlines.",
+      "Use the commands exactly as supplied in the report, including the leading slash, entity identifier, capitalization of NBT tags, and numeric values."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the affected version \"26.1 Snapshot 6\", then launch the game with that installation.",
+        "exact_input": null,
+        "success_cue": "The Java Edition title screen is open and identifies the running version as 26.1 Snapshot 6.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a single-player Creative-mode test world with commands enabled. A flat world may be used to provide an unobstructed comparison area, but no particular seed or world type is required by the report.",
+        "exact_input": null,
+        "success_cue": "The player has entered a Creative-mode world in which commands can be executed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish, then move to a clear, level area with at least six blocks of unobstructed horizontal space. Do not continue until nearby terrain is rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is standing in a loaded, unobstructed area suitable for spawning two large entities separately.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Enable the client debug display for entity hitboxes by holding F3 and pressing B. If the keyboard assigns media functions to the function-key row, also hold Fn as required. If hitboxes were already enabled, do not toggle them off.",
+        "exact_input": "F3+B",
+        "success_cue": "The game displays the confirmation message that hitboxes are shown; subsequently spawned entities will have visible debug outlines.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Choose the current position as the first spawn point. Ensure the player is on or immediately above solid, level ground so the summoned camel husk can settle normally.",
+        "exact_input": null,
+        "success_cue": "There is open ground at the player's current position and another open location at least six blocks away.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press the Open Chat control, which is T by default, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the report's first command exactly, including the leading slash, and press Enter. This summons the camel husk carrying Age:-24000 and NoAI:1 at the player's current coordinates.",
+        "exact_input": "/summon minecraft:camel_husk ~ ~ ~ {NoAI:1,Age:-24000}",
+        "success_cue": "The command completes without a syntax or permission error, and one motionless camel husk is present at the first spawn point with its debug hitbox visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Move horizontally at least six blocks away from the first camel husk while remaining in the same clear area. Do not attack, remove, or push the first camel husk. The separation is only to prevent the two hitboxes from overlapping when the second command uses relative coordinates.",
+        "exact_input": "W, A, S, or D as appropriate",
+        "success_cue": "The player is at a second open position at least six blocks from the first camel husk, and the first camel husk remains loaded and visible nearby.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Press the Open Chat control again to prepare the second summon command.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open at the second spawn position.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's second command exactly, including the leading slash, and press Enter. This summons the NoAI control camel husk without an explicit Age tag at the player's current coordinates.",
+        "exact_input": "/summon minecraft:camel_husk ~ ~ ~ {NoAI:1}",
+        "success_cue": "The command completes without a syntax or permission error, and a second motionless camel husk is present at the second spawn point with its debug hitbox visible.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Move far enough away that the player is not inside either entity, then position the camera so both camel husks and both debug hitbox outlines are simultaneously visible. Keep track of their identities by position: the first-spawned camel husk has Age:-24000, and the second-spawned camel husk is the control without an explicit Age tag.",
+        "exact_input": null,
+        "success_cue": "Two separate camel husks are visible at distinct positions, both hitbox outlines are unobstructed, and the executor can identify which entity came from each command.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 7,
+    "handoff_condition": "The Age:-24000 camel husk and the control camel husk have both been summoned several blocks apart in 26.1 Snapshot 6, debug hitboxes are enabled, and both entities and their outlines are simultaneously visible. Hand control to the observation subsystem for comparison.",
+    "uncertainties": [
+      "The title describes Age values \"below -24000\", but the report's exact reproduction command uses Age:-24000. This plan preserves the exact supplied command rather than changing the value.",
+      "The report does not specify a world seed, coordinates, world type, game mode, or server environment. Single-player Creative mode with commands enabled and an open flat area are practical execution choices, not reported requirements.",
+      "The report's formal reproduction steps directly cover the hitbox comparison. A comment additionally mentions faster animation and following an adult, but the supplied commands set NoAI:1 and no separate movement or animation procedure is provided; this plan therefore does not invent an additional animation-speed test.",
+      "F3+B hitbox rendering and spatially separating the two relative-coordinate summons are operational additions needed to make the requested comparison executable; they are not stated verbatim in the report."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0eceda4cdcfeb710016aadd74db6f887d08e9fed7130493ba5",
+    "elapsed_seconds": 75.98,
+    "usage": {
+      "input_tokens": 8535,
+      "output_tokens": 4023,
+      "reasoning_tokens": 2588,
+      "total_tokens": 12558
+    },
+    "timestamp": "2026-09-19T00:30:17.384917+00:00"
+  }
+}

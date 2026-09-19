@@ -1,0 +1,147 @@
+{
+  "bug_id": "MC-302383",
+  "category": "Hitboxes",
+  "source_category": "Hitboxes",
+  "source_panel": "hitboxes-latest-created-after-2021",
+  "source_md": "[Hitboxes] - MC-302383.md",
+  "source_meta": {
+    "mojira categories": "Hitboxes",
+    "project": "MC",
+    "issue key": "MC-302383",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2025-09-29T19:17:54.313-0700",
+    "updated": "2026-03-11T03:57:19.148-0700",
+    "resolution date": "2025-10-02T03:09:13.754-0700",
+    "affects versions": "1.21.9 Release Candidate 1; 1.21.9",
+    "fix versions": "1.21.10 Release Candidate 1",
+    "area": "Platform EC",
+    "votes": "1",
+    "watchers": "1",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-302466:Maps can no longer be placed in the same block as carpet | Duplicate:inward:MC-302566:Maps and item frames will break and drop if in contact with a carpet",
+    "_title": "Rooms with carpet on the floor cannot have maps in item frames placed on walls touching the floor"
+  },
+  "stor": {
+    "bug_id": "MC-302383",
+    "affected_versions": [
+      "1.21.9 Release Candidate 1",
+      "1.21.9"
+    ],
+    "recommended_version": "1.21.9 Release Candidate 1",
+    "environment": "Minecraft: Java Edition 1.21.9 Release Candidate 1, vanilla single-player Creative mode, using a new disposable world and default controls. A Superflat world is recommended only to provide a simple, level construction surface.",
+    "preconditions": [
+      "Install and launch exactly Minecraft: Java Edition 1.21.9 Release Candidate 1, not the listed fix version.",
+      "Use a new disposable world so testing the release candidate cannot affect an important save.",
+      "Use Creative mode so the required blocks and items can be obtained without crafting or exploration.",
+      "Have a mouse or control binding capable of performing Use Item/Place Block; its default mouse input is right-click.",
+      "Do not use mods, plugins, or datapacks that alter item frames, maps, entity hitboxes, or block placement."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start an installation configured for Minecraft: Java Edition 1.21.9 Release Candidate 1. Wait for the game to reach the main menu.",
+        "exact_input": "1.21.9 Release Candidate 1",
+        "success_cue": "The Java Edition main menu is visible and its version text identifies 1.21.9 Release Candidate 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, and create the world. A Superflat world may be selected to make the floor geometry easier to construct, but no particular seed is required.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
+        "success_cue": "The player has entered a Creative-mode world.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before building until nearby terrain has rendered and normal movement and camera input respond without world-loading pauses.",
+        "exact_input": null,
+        "success_cue": "The surrounding terrain is visible and the player can move and turn normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E to open the Creative inventory. Use the Search Items tab and place the following into separate hotbar slots: Stone, White Carpet, Item Frame, and Empty Map. The hotbar is the row of nine item slots at the bottom of the screen.",
+        "exact_input": "Search terms: stone; white carpet; item frame; empty map",
+        "success_cue": "Stone, White Carpet, Item Frame, and Empty Map are each visible in the player's hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Close the inventory with E. Select the Empty Map hotbar slot using its number key or the mouse wheel. Aim into open space rather than at an interactable block, then use the Empty Map once with Use Item, which is right-click by default, to create a filled map for the current area.",
+        "exact_input": "Use Item/Place Block (default: right-click)",
+        "success_cue": "The selected Empty Map has become a filled Map and the map sheet can be displayed in the player's hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Find a flat ground tile with an adjacent open ground tile. Select Stone and use Place Block, right-click by default, on the top of the first ground tile to place one stone block. Treat the vertical side facing the adjacent open tile as the front of the wall.",
+        "exact_input": "Place Block (default: right-click)",
+        "success_cue": "One stone block stands on the ground, with an unobstructed vertical front face and a ground tile immediately in front of that face.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Place a second stone block directly on top of the first stone block. This makes the wall two blocks high and clearly identifies the lower wall block that touches the floor level.",
+        "exact_input": "Place Block (default: right-click)",
+        "success_cue": "A two-block-high stone wall column is present; the lower stone block is directly beside the floor tile in front of it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select White Carpet. Place one carpet on top of the ground tile immediately in front of the lower stone block's front face. Do not leave a gap between the carpet tile and the wall.",
+        "exact_input": "Place Block (default: right-click)",
+        "success_cue": "White carpet covers the floor tile directly against the front of the lower wall block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select Item Frame. Stand on the carpet side of the wall and aim at the vertical front face of the lower stone block, not the upper stone block. Use Place Block once to attach an empty item frame to that lower face.",
+        "exact_input": "Place Block (default: right-click)",
+        "success_cue": "An empty item frame is attached to the lower wall block, and the carpet occupies the floor-level block space directly in front of and below that frame.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Select the filled Map created earlier. Confirm that the filled Map, rather than Empty Map, Stone, Carpet, or Item Frame, is in the active hotbar slot. The active slot is the hotbar slot surrounded by the selection outline.",
+        "exact_input": "Select the hotbar slot containing Map",
+        "success_cue": "A filled Map is held in the player's hand and the crosshair can be aimed at the center of the empty item frame.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Aim directly at the center of the empty item frame attached to the lower wall block and press Use Item once, right-click by default, to attempt to put the filled Map into the frame. Do not click again, rotate an inserted item, remove any dropped items, or change the carpet or wall after this interaction.",
+        "exact_input": "Use Item/Place Block (default: right-click)",
+        "success_cue": "The single map-insertion interaction has just been issued against the item frame sharing its floor-level space with the carpet; the scene has not been altered afterward.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The player has just used a filled Map on the empty item frame mounted to the lower wall block directly above the carpeted floor tile. Begin observation immediately, before any additional interaction or cleanup.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce, world seed, game mode, wall material, carpet color, or map-creation method. Creative mode, a disposable flat world, Stone, White Carpet, and a locally created filled Map are practical choices intended to preserve the reported wall/carpet/item-frame geometry without adding exploration or crafting.",
+      "The report does not explicitly state whether the failure occurs while attaching the empty frame, inserting the map, or maintaining the resulting map frame. The issue description and linked duplicate titles most strongly support using insertion of the map as the final trigger. Official Minecraft information confirms that using a map on an item frame places it in the frame and enlarges its display to a full block, while the 25w34a notes identify a map-dependent item-frame hitbox change. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-snapshot-25w34a?utm_source=openai))",
+      "A Superflat world is not asserted as required by the report; it is recommended only to simplify construction of the required floor-and-wall arrangement."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_0449d423554a4933016aadd65529b087d0aa63de79bb8c8dc7",
+    "elapsed_seconds": 116.09,
+    "usage": {
+      "input_tokens": 29922,
+      "output_tokens": 5939,
+      "reasoning_tokens": 4388,
+      "total_tokens": 35861
+    },
+    "timestamp": "2026-09-19T00:26:48.888916+00:00"
+  }
+}
