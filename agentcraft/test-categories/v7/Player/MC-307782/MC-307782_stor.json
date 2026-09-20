@@ -1,0 +1,139 @@
+{
+  "bug_id": "MC-307782",
+  "category": "Player",
+  "source_category": "Player",
+  "source_panel": "player-five-bug-reports-updated",
+  "source_md": "[Player] - MC-307782.md",
+  "source_meta": {
+    "mojira categories": "Player",
+    "project": "MC",
+    "issue key": "MC-307782",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2026-04-28T07:33:47.911-0700",
+    "updated": "2026-05-04T03:42:56.364-0700",
+    "resolution date": "2026-05-04T03:42:56.317-0700",
+    "affects versions": "26.2 Snapshot 5",
+    "fix versions": "26.2 Snapshot 6",
+    "area": "Expansion A",
+    "votes": "2",
+    "watchers": "3",
+    "attachments": "0",
+    "issue links": "Duplicate:inward:MC-307807:Geysers affect flying through them in creative | Relates:outward:MC-170028:The ravager's roar can knockback players in spectator mode and Creative mode players that are flying | Relates:outward:MC-271938:Mace smash attack can push players in creative mode that are flying | Relates:outward:MC-275410:Flying in Creative Mode no longer resists the thrust of the bubble column | Relates:outward:MC-175348:Respawn anchor explosion knocks back flying creative players",
+    "_title": "Sulfur spring geysers can push players in Creative mode who are flying"
+  },
+  "stor": {
+    "bug_id": "MC-307782",
+    "affected_versions": [
+      "26.2 Snapshot 5"
+    ],
+    "recommended_version": "26.2 Snapshot 5",
+    "environment": "Minecraft: Java Edition 26.2 Snapshot 5 in a single-player Creative-mode world. Use default controls unless the corresponding actions have been rebound. No specific seed, coordinates, difficulty, graphics setting, server, or additional player is specified by the report.",
+    "preconditions": [
+      "Enable snapshots in the Minecraft Launcher installation settings and create or select an installation for exactly 26.2 Snapshot 5.",
+      "Use a world in Creative mode so that the player can obtain the required blocks and activate Creative flight.",
+      "Allow the world and nearby chunks to finish loading before constructing the geyser.",
+      "The reproduction uses a constructed geyser consisting, from bottom to top, of a Magma Block, a Potent Sulfur block, and one Water source block. The official 26.2 Snapshot 5 description confirms that Potent Sulfur forms a geyser when placed above a Magma Block and below one to four Water source blocks. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-26-2-snapshot-5?utm_source=openai))"
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start Minecraft: Java Edition using the launcher installation for exactly 26.2 Snapshot 5. Do not use the listed fix version, 26.2 Snapshot 6.",
+        "exact_input": null,
+        "success_cue": "The game reaches the title screen and identifies the running version as 26.2 Snapshot 5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer and create a new world, or load an existing disposable test world, with the game mode set to Creative. If creating a world, choose Creative on the world-creation screen, create the world, and wait until terrain has rendered and player movement responds normally.",
+        "exact_input": null,
+        "success_cue": "The player is in a loaded world in Creative mode and can access the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Move to an open build location with solid ground and unobstructed vertical space. Use a location where the player can clearly see the top of the geyser and hover directly above it.",
+        "exact_input": null,
+        "success_cue": "There is a visible ground block on which to build, with open space above the intended geyser column.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press E, or the rebound Inventory control, to open the Creative inventory. Use the Search Items tab to locate a Magma Block, Potent Sulfur, and a Water Bucket. Move one of each into separate hotbar slots at the bottom of the inventory, then close the inventory with E or Esc.",
+        "exact_input": "Magma Block; Potent Sulfur; Water Bucket",
+        "success_cue": "The hotbar contains a Magma Block, Potent Sulfur, and a Water Bucket, and the normal world view is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Select the hotbar slot containing the Magma Block. Aim at the top face of the chosen ground block and use the Place/Use action, right-click by default, once to place the Magma Block.",
+        "exact_input": "right-click",
+        "success_cue": "One Magma Block is visible at the base of the intended geyser column.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Select Potent Sulfur in the hotbar. Aim at the top face of the placed Magma Block and right-click once, placing the Potent Sulfur directly on top of the Magma Block. This bottom-to-top relationship is required for the periodic geyser configuration in 26.2 Snapshot 5. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-26-2-snapshot-5?utm_source=openai))",
+        "exact_input": "right-click",
+        "success_cue": "The Potent Sulfur occupies the block position immediately above the Magma Block, with no intervening block or gap.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 7,
+        "action": "Select the Water Bucket. Aim at the top face of the Potent Sulfur and right-click once to place water in the block directly above it. The water may flow outward; do not remove the stationary source block located directly over the Potent Sulfur. One Water source block is sufficient for the Snapshot 5 geyser arrangement. ([minecraft.net](https://www.minecraft.net/en-us/article/minecraft-26-2-snapshot-5?utm_source=openai))",
+        "exact_input": "right-click",
+        "success_cue": "A Water source block occupies the position directly above the Potent Sulfur, producing a vertical stack of Magma Block, Potent Sulfur, and Water source from bottom to top.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 8,
+        "action": "Move clear of the water and quickly press the Jump control twice; the default key is Space. Once Creative flight engages, hold Space briefly to ascend above the water, then release it to hover.",
+        "exact_input": "Space, Space; then hold Space briefly",
+        "success_cue": "The player remains suspended when movement keys are released instead of falling, confirming that Creative flight is active.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "While remaining in Creative flight, use the movement controls to center the player horizontally over the Water source and Potent Sulfur column. Hover close above the water surface—approximately one block above it—so the player is in the unobstructed vertical path of the geyser plume. Release the movement controls after aligning.",
+        "exact_input": "W/A/S/D as needed; Space to rise; Left Shift to descend",
+        "success_cue": "The player is stationary in Creative flight directly above the center of the geyser column, with the water and Potent Sulfur beneath them.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Remain hovering over the same column and wait for a periodic eruption. Do not land, disable flight, or move away. If the geyser erupted before the player was positioned, continue hovering until a later eruption. Proceed the instant the water-particle plume and eruption sound begin beneath the flying player.",
+        "exact_input": null,
+        "success_cue": "A geyser eruption has just begun directly beneath the player while the player remains airborne in Creative flight.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The player is hovering in Creative flight directly above the constructed Magma Block–Potent Sulfur–Water geyser, and a periodic geyser eruption has just begun beneath the player. Hand control to the observation subsystem immediately, before changing position or flight state.",
+    "uncertainties": [
+      "The report specifies no world seed, coordinates, naturally generated sulfur spring, or required geyser size. The plan therefore uses the simplest officially documented Snapshot 5 construction with one Water source block.",
+      "The report does not state that multiplayer or a dedicated server is required, so a single-player Creative world is selected as the minimum deterministic environment.",
+      "Magma-powered geyser activation occurs at random intervals in 26.2 Snapshot 5, so the exact waiting time cannot be prescribed; readiness is determined by the eruption particles and sound.",
+      "The report does not specify an exact hover height. Approximately one block above the water surface is used as a practical position intended to keep the flying player in the geyser's vertical plume."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_08dff40c4375ab44016aaf477aeb2c87d0b683cab5e2fe07d0",
+    "elapsed_seconds": 55.06,
+    "usage": {
+      "input_tokens": 16447,
+      "output_tokens": 3724,
+      "reasoning_tokens": 2227,
+      "total_tokens": 20171
+    },
+    "timestamp": "2026-09-20T02:40:49.672563+00:00"
+  }
+}

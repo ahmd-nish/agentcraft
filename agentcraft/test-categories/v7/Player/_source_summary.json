@@ -1,0 +1,30 @@
+{
+  "output_folder": "/Users/nish/Documents/Research - Minecraft/data_collection/player-five-bug-reports-updated",
+  "category": "Player",
+  "retained_report_ids": [
+    "MC-184530",
+    "MC-65931"
+  ],
+  "removed_report_ids": [
+    "MC-19690",
+    "MC-2791",
+    "MC-697"
+  ],
+  "replacement_report_ids": [
+    "MC-307782",
+    "MC-307407",
+    "MC-307339"
+  ],
+  "replacement_criteria": {
+    "project": "MC",
+    "resolution": "Fixed",
+    "native_category_includes": "Player",
+    "creation_date_on_or_after": "2022-01-01",
+    "excluded_category": "Crash",
+    "ordering": "newest creation date first"
+  },
+  "reports": 5,
+  "attachments_declared": 13,
+  "attachments_downloaded": 13,
+  "attachments_failed": 0
+}

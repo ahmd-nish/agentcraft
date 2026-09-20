@@ -1,6 +1,8 @@
 {
   "bug_id": "MC-65931",
   "category": "Player",
+  "source_category": "Player",
+  "source_panel": "player-five-bug-reports-updated",
   "source_md": "[Player] - MC-65931.md",
   "source_meta": {
     "mojira categories": "Player",
@@ -169,157 +171,124 @@
       "1.21",
       "1.21.1",
       "24w33a",
-      "24w44a",
       "1.21.3"
     ],
     "recommended_version": "Minecraft 1.7.10",
-    "environment": "Minecraft: Java Edition Minecraft 1.7.10 in an unmodified singleplayer world using keyboard and mouse. Use Creative mode with commands enabled only to obtain the setup items, then change the player to Survival mode before placing and targeting the item frame.",
+    "environment": "Unmodified Minecraft Java Edition 1.7.10 client in a new singleplayer world. Use Creative mode with cheats enabled only to prepare the deterministic test area and inventory, then enter Survival mode before placing and targeting the item frame. No particular seed, coordinates, difficulty, server, resource pack, or graphics setting is required by the report.",
     "preconditions": [
-      "A Minecraft: Java Edition launcher installation capable of starting the exact profile Minecraft 1.7.10 is available.",
-      "Use a singleplayer world; the report does not require a dedicated server, multiple players, a particular seed, or particular coordinates.",
-      "Commands must be enabled so the setup can change the player from Creative mode to Survival mode.",
-      "The Pick Block control must be bound to an available input. Its default keyboard-and-mouse binding is the middle mouse button, shown as Button 3 in controls.",
-      "The player must have at least two item frames before entering Survival mode so that one can be placed while another remains in the inventory.",
-      "A non-item-frame item must remain available for selection after the item frame is placed."
+      "Use the exact recommended version, Minecraft Java Edition 1.7.10; do not open the test world in a newer version.",
+      "The client must have an input assigned to the Pick Block action. The default input is pressing the mouse wheel/middle mouse button, but the configured binding must be used if controls have been changed.",
+      "Cheats must be enabled so the historical 1.7.10 /give and /gamemode commands can be executed in chat.",
+      "Before triggering Pick Block, one placed item frame must be visible, one additional Item Frame item must remain in the player's hotbar or inventory, and the selected hotbar slot must contain an item other than an item frame."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "In the Minecraft Launcher, create or select an installation that uses the exact version Minecraft 1.7.10, start the game, and wait for the main menu to appear. Do not use a later fix version for this reproduction.",
-        "exact_input": null,
-        "success_cue": "The Minecraft main menu is visible and the displayed game version is 1.7.10.",
+        "action": "Start the Minecraft Launcher, select or create an installation for the exact Java Edition version Minecraft 1.7.10, and launch it without gameplay-altering mods.",
+        "exact_input": "Minecraft 1.7.10",
+        "success_cue": "The Minecraft 1.7.10 main menu is displayed.",
         "source_basis": "report"
       },
       {
         "step": 2,
-        "action": "From the main menu, open Options, then Controls. Locate the action named Pick Block. Leave it bound to Button 3, the default middle mouse button, or record the alternate bound input if the controls were previously changed. Return to the main menu after checking the binding.",
-        "exact_input": "Button 3 / middle mouse button",
-        "success_cue": "The executor knows which physical input activates Pick Block; by default, it is the middle mouse button.",
+        "action": "Open Options -> Controls and locate the Pick Block action. Confirm that it has an assigned input; its default is the middle mouse button, also described as pressing the mouse wheel. Do not change the binding unless no input is assigned. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Indonesian_translation/Persediaan?utm_source=openai))",
+        "exact_input": "Esc -> Options -> Controls -> Pick Block",
+        "success_cue": "The executor knows the exact configured input that will issue Pick Block later in the procedure.",
         "source_basis": "verified_external"
       },
       {
         "step": 3,
-        "action": "Select Singleplayer, then select Create New World to open the world-creation screen.",
-        "exact_input": null,
-        "success_cue": "The Create New World screen is open.",
+        "action": "Return to the main menu and select Singleplayer -> Create New World. Set Game Mode to Creative, open More World Options, set Allow Cheats to ON, and optionally select the Superflat world type to provide a simple level test area. Create the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> More World Options -> Allow Cheats: ON -> Create New World",
+        "success_cue": "A new singleplayer world is loading with the player initially in Creative mode and commands available.",
         "source_basis": "practical_inference"
       },
       {
         "step": 4,
-        "action": "Click the Game Mode button until it displays Game Mode: Creative. Creative mode is used only to obtain deterministic setup items without crafting or exploration.",
+        "action": "Wait before continuing until the terrain around the player is rendered and movement and camera controls respond normally.",
         "exact_input": null,
-        "success_cue": "The world-creation screen displays Game Mode: Creative.",
+        "success_cue": "Nearby terrain is visible and the player can move and look around without world-loading interruption.",
         "source_basis": "practical_inference"
       },
       {
         "step": 5,
-        "action": "Open More World Options, ensure Allow Cheats is set to ON, return to the main world-creation screen if necessary, and select Create New World.",
-        "exact_input": null,
-        "success_cue": "World generation begins with Creative mode and commands enabled.",
+        "action": "Press T to open in-game chat, type the exact historical command shown, including the leading slash, and press Enter. This gives the nearest player exactly two Item Frames; item frames used numeric item ID 389 before the Flattening. ([minecraft.wiki](https://minecraft.wiki/w/Talk%3ACommands/Archive_1?utm_source=openai))",
+        "exact_input": "/give @p 389 2",
+        "success_cue": "The player's inventory contains a stack of exactly two Item Frames.",
         "source_basis": "practical_inference"
       },
       {
         "step": 6,
-        "action": "Wait for the world to finish loading. Do not continue until nearby terrain is rendered and movement and inventory input respond normally.",
-        "exact_input": null,
-        "success_cue": "The player can move normally in the loaded world and is currently in Creative mode.",
+        "action": "Press T again, type the exact command shown, including the leading slash, and press Enter. This gives two Stone blocks: one will become the item frame's support and the other will be held during the trigger. Stone used numeric ID 1 in this version. ([minecraft.wiki](https://minecraft.wiki/w/Talk%3ACommands/Archive_1?utm_source=openai))",
+        "exact_input": "/give @p 1 2",
+        "success_cue": "The inventory contains exactly two Stone blocks in addition to the two Item Frames.",
         "source_basis": "practical_inference"
       },
       {
         "step": 7,
-        "action": "Press E to open the Creative inventory. Identify the hotbar as the row of nine slots at the bottom of the screen; hotbar slot 1 is the leftmost slot and slot 2 is immediately to its right.",
-        "exact_input": "E",
-        "success_cue": "The Creative inventory is open and the nine hotbar slots are visible.",
+        "action": "Press E to open the inventory. Move the stack of two Item Frames into hotbar slot 1 and the stack of two Stone blocks into hotbar slot 2. The hotbar is the row of nine item slots at the bottom of the inventory and gameplay screen. Close the inventory with E.",
+        "exact_input": "E; Item Frames -> hotbar slot 1; Stone -> hotbar slot 2; E",
+        "success_cue": "Hotbar slot 1 contains two Item Frames, hotbar slot 2 contains two Stone blocks, and no other item occupies either slot.",
         "source_basis": "practical_inference"
       },
       {
         "step": 8,
-        "action": "Open the Search Items tab, click its search field, and search for Item Frame. Move a stack containing at least two item frames into hotbar slot 1. A larger Creative stack is acceptable, but at least two must be present so one remains after one is placed.",
-        "exact_input": "item frame",
-        "success_cue": "Hotbar slot 1 contains at least two item frames.",
+        "action": "Press 2 to select the Stone in hotbar slot 2. Aim at the top surface of the ground and right-click once to place one Stone block above the ground. Leave at least one vertical side of this block unobstructed and accessible.",
+        "exact_input": "2, then right-click once on the ground",
+        "success_cue": "One Stone block is standing above the surrounding ground with an exposed vertical side, and one Stone item remains in hotbar slot 2.",
         "source_basis": "practical_inference"
       },
       {
         "step": 9,
-        "action": "Clear or replace the search text, search for Stone, and move a stack containing at least two stone blocks into hotbar slot 2. One stone will provide a support surface, and at least one remaining stone will be the non-item-frame item held during the trigger.",
-        "exact_input": "stone",
-        "success_cue": "Hotbar slot 1 contains item frames and hotbar slot 2 contains at least two stone blocks.",
-        "source_basis": "practical_inference"
+        "action": "Press T, enter the exact Minecraft 1.7.10 game-mode command shown, including the leading slash, and press Enter to switch the player to Survival mode. Numeric game-mode value 0 denotes Survival in the historical command syntax. ([minecraft.wiki](https://minecraft.wiki/w/Talk%3ACommands/Archive_1?utm_source=openai))",
+        "exact_input": "/gamemode 0",
+        "success_cue": "The Survival HUD is visible, including health and hunger indicators, and the player is no longer able to use Creative flight.",
+        "source_basis": "verified_external"
       },
       {
         "step": 10,
-        "action": "Press E or Escape to close the inventory and return to first-person world view.",
-        "exact_input": "E or Escape",
-        "success_cue": "The inventory is closed and the hotbar is visible at the bottom of the screen.",
-        "source_basis": "practical_inference"
+        "action": "Press 1 to select the two Item Frames in hotbar slot 1. Face the exposed vertical side of the placed Stone block and position the crosshair over the center of that side from normal interaction distance.",
+        "exact_input": "1",
+        "success_cue": "The Item Frame stack is selected and visible in the player's hand, with a count of two, and the crosshair is on an exposed vertical face of the Stone block.",
+        "source_basis": "report"
       },
       {
         "step": 11,
-        "action": "Press 2 to select hotbar slot 2 containing stone. The active hotbar slot is the slot surrounded by the selection outline.",
-        "exact_input": "2",
-        "success_cue": "Stone is visible in the player's hand and hotbar slot 2 has the active-slot outline.",
-        "source_basis": "practical_inference"
+        "action": "Right-click once on the exposed vertical side of the Stone block to place one item frame while remaining in Survival mode.",
+        "exact_input": "Right-click once",
+        "success_cue": "An empty item frame is visibly attached to the Stone block, and one Item Frame item remains in hotbar slot 1.",
+        "source_basis": "report"
       },
       {
         "step": 12,
-        "action": "Aim at an open top surface of the ground and press the Use Item/Place Block control once, which is right-click by default, to place one stone block. Choose a position with at least one unobstructed vertical side at player eye level or below.",
-        "exact_input": "Right-click",
-        "success_cue": "A stone block has been placed with an exposed vertical side, and at least one stone remains in hotbar slot 2.",
-        "source_basis": "practical_inference"
+        "action": "Press 2 to select the remaining Stone item in hotbar slot 2. Do not move or remove the remaining Item Frame item from hotbar slot 1.",
+        "exact_input": "2",
+        "success_cue": "The player is visibly holding Stone rather than an Item Frame, while one Item Frame item remains available in hotbar slot 1.",
+        "source_basis": "report"
       },
       {
         "step": 13,
-        "action": "Press T to open in-game chat. Type the exact historical command /gamemode 0, including the leading slash, and press Enter. If the command is rejected because commands are unavailable, stop and recreate or reopen the world with commands enabled before continuing.",
-        "exact_input": "/gamemode 0",
-        "success_cue": "The command completes and the Survival HUD, including health and hunger indicators, is visible.",
-        "source_basis": "practical_inference"
+        "action": "Stand within normal interaction distance of the placed item frame and aim the crosshair directly at the center of the item frame entity. Adjust the view if necessary so the crosshair is on the frame itself rather than on an exposed portion of the Stone support block.",
+        "exact_input": null,
+        "success_cue": "The empty placed item frame fills the center of the view, the crosshair is over it, Stone is still selected, and the spare Item Frame remains in hotbar slot 1.",
+        "source_basis": "report"
       },
       {
         "step": 14,
-        "action": "Press 1 to select hotbar slot 1 containing the item frames.",
-        "exact_input": "1",
-        "success_cue": "An item frame is visible in the player's hand and hotbar slot 1 has the active-slot outline.",
+        "action": "While keeping the crosshair on the placed item frame, issue the configured Pick Block action exactly once. With default controls, press the mouse wheel/middle mouse button once. Do not scroll the wheel, press a number key, open the inventory, or perform any additional input afterward. ([minecraft.wiki](https://minecraft.wiki/w/Minecraft_Wiki%3AProjects/Indonesian_translation/Persediaan?utm_source=openai))",
+        "exact_input": "Pick Block once; default input: middle mouse button",
+        "success_cue": "One Pick Block input has just been sent while the player is in Survival mode, Stone was selected, a spare Item Frame was present in hotbar slot 1, and the crosshair targeted the placed item frame entity.",
         "source_basis": "report"
-      },
-      {
-        "step": 15,
-        "action": "Center the crosshair on an exposed vertical side of the placed stone block and press the Use Item control once, which is right-click by default, to place exactly one empty item frame. Do not place an item inside the frame.",
-        "exact_input": "Right-click",
-        "success_cue": "One empty item frame is attached to the vertical face of the stone block, and at least one item frame remains elsewhere in the player's inventory or hotbar.",
-        "source_basis": "report"
-      },
-      {
-        "step": 16,
-        "action": "Press 2 to switch the active hotbar selection from the item frames to the remaining stone. Confirm that the player is holding stone, not an item frame.",
-        "exact_input": "2",
-        "success_cue": "Hotbar slot 2 is active, stone is visible in the player's hand, and at least one item frame is still present in hotbar slot 1.",
-        "source_basis": "report"
-      },
-      {
-        "step": 17,
-        "action": "Stand close enough to interact with the placed item frame, approximately two to four blocks away, and move the view until the crosshair is directly over the empty item frame rather than the supporting stone block or surrounding air. Keep the stone selected.",
-        "exact_input": null,
-        "success_cue": "The crosshair is centered on the item frame entity while Survival mode remains active and stone remains selected.",
-        "source_basis": "report"
-      },
-      {
-        "step": 18,
-        "action": "Activate Pick Block exactly once while continuing to look directly at the item frame. With default controls, press the middle mouse button once; if Pick Block was rebound in step 2, press that configured input instead. Do not manually select another hotbar slot after sending the input.",
-        "exact_input": "Middle mouse button / configured Pick Block input",
-        "success_cue": "One Pick Block input has just been sent while the crosshair targeted the item frame entity; no further inventory or hotbar input has been made.",
-        "source_basis": "verified_external"
       }
     ],
-    "trigger_step": 18,
-    "handoff_condition": "The player is in Survival mode, an empty item frame is attached to the stone support, at least one item frame remains in hotbar slot 1, stone was selected in hotbar slot 2, and Pick Block has just been activated once while the crosshair targeted the item frame. Hand off immediately without changing the selected slot or pressing Pick Block again.",
+    "trigger_step": 14,
+    "handoff_condition": "Immediately after step 14, hand control to the observation subsystem before issuing any further input. The player must remain in Survival mode facing the placed item frame, with the Pick Block input just completed and the hotbar state left untouched for evaluation.",
     "uncertainties": [
-      "The report covers both Survival and Adventure mode, but its concrete reproduction instructions explicitly use Survival mode. This plan therefore uses Survival as the simplest deterministic variant; Adventure can be tested separately if broader mode coverage is required.",
-      "The report does not prescribe a seed, coordinates, multiplayer environment, or dedicated server configuration. A default singleplayer world is used as a practical execution choice.",
-      "The report does not specify how the item frames should be obtained. Creative inventory is used to avoid crafting and exploration while preserving the required order: obtain the frames, change to Survival, and then place one.",
-      "The report asks for two item frames. The Creative inventory may provide a larger stack; this plan treats at least two as sufficient because the reproduction-relevant state is one placed item frame plus at least one matching item frame remaining in inventory.",
-      "The report lists 24w44a in both Affects versions and Fix versions. It has been retained in affected_versions because every supplied affected-version entry must be copied exactly, but it is not selected as the recommended reproduction version.",
-      "The historical command /gamemode 0 is used for Minecraft 1.7.10 rather than modernizing the procedure to a newer command or game-mode-switching UI.",
-      "External verification was limited to operational control and item-frame placement details from permitted Minecraft Wiki sources; the supplied Mojira report remains the primary source of reproduction requirements."
+      "The report lists 24w44a in both Affects versions and Fix versions. It was omitted from affected_versions because the report and comments identify 24w44a as the fixing version, and fix versions must not be selected for reproduction.",
+      "The formal reproduction steps use Survival mode even though the title and description also mention Adventure mode. This plan follows the simplest deterministic formal path and tests Survival mode only.",
+      "The command-based item acquisition, Stone support block, Creative setup phase, and optional Superflat world are practical execution choices; the report requires only two item frames, Survival mode, a placed frame, a non-frame item selected, and Pick Block targeted at the frame.",
+      "No seed, coordinates, difficulty, multiplayer server, or exact camera distance was supplied by the report.",
+      "A rebound Pick Block control must be used instead of the default middle mouse button if the local control configuration differs."
     ],
     "web_verification_used": true
   },
@@ -328,15 +297,15 @@
     "reasoning_effort": "high",
     "verbosity": "high",
     "web_used": true,
-    "web_call_count": 5,
-    "response_id": "resp_0041454835c225d4016aa89341e4cc87d086993db08e4d78a1",
-    "elapsed_seconds": 136.27,
+    "web_call_count": 3,
+    "response_id": "resp_00d0ca8810be147b016aaf47b1d0a487d0af752c5a1d41dc48",
+    "elapsed_seconds": 101.55,
     "usage": {
-      "input_tokens": 42868,
-      "output_tokens": 8766,
-      "reasoning_tokens": 6210,
-      "total_tokens": 51634
+      "input_tokens": 36551,
+      "output_tokens": 8130,
+      "reasoning_tokens": 5161,
+      "total_tokens": 44681
     },
-    "timestamp": "2026-09-15T00:39:37.724111+00:00"
+    "timestamp": "2026-09-20T02:42:31.227718+00:00"
   }
 }

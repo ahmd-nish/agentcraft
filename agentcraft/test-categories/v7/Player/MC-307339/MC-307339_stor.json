@@ -1,0 +1,176 @@
+{
+  "bug_id": "MC-307339",
+  "category": "Player",
+  "source_category": "Player",
+  "source_panel": "player-five-bug-reports-updated",
+  "source_md": "[Player] - MC-307339.md",
+  "source_meta": {
+    "mojira categories": "Player",
+    "project": "MC",
+    "issue key": "MC-307339",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2026-04-07T15:35:32.182-0700",
+    "updated": "2026-05-11T06:58:32.244-0700",
+    "resolution date": "2026-05-11T06:58:32.182-0700",
+    "affects versions": "26.2 Snapshot 1",
+    "fix versions": "26.2 Snapshot 7",
+    "area": "Platform HC",
+    "watchers": "1",
+    "attachments": "0",
+    "_title": "The player's vertical motion is reset when moving on the ground"
+  },
+  "stor": {
+    "bug_id": "MC-307339",
+    "affected_versions": [
+      "26.2 Snapshot 1"
+    ],
+    "recommended_version": "26.2 Snapshot 1",
+    "environment": "Vanilla Minecraft Java Edition 26.2 Snapshot 1 in a disposable single-player Overworld. Use Creative mode with commands enabled for deterministic command-block setup. Use one player, remain grounded without Creative flight, and perform the test with keyboard-and-mouse movement controls.",
+    "preconditions": [
+      "The Minecraft Launcher can start the exact affected version \"26.2 Snapshot 1\".",
+      "The test world is vanilla, with no mods, data packs, or server plugins that alter player movement or commands.",
+      "Only one player is present so every use of @p in the supplied command resolves unambiguously to the test player.",
+      "Commands are enabled and the player can place and configure a command block.",
+      "Chat messages are visible rather than hidden.",
+      "An open, level area of full solid blocks is available, with several unobstructed blocks in front of the player for grounded walking.",
+      "The player is not flying, jumping, swimming, climbing, riding an entity, standing in a portal, or affected by anything that independently changes vertical movement."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for the exact affected version \"26.2 Snapshot 1\", launch it, and wait for the main menu to finish loading.",
+        "exact_input": "Minecraft Java Edition 26.2 Snapshot 1",
+        "success_cue": "The main menu identifies the running game as 26.2 Snapshot 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Open Singleplayer and create a disposable test world in Creative mode. Enable commands if the world-creation screen exposes a separate command or cheats option, then enter the world.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Commands: On, if shown -> Create New World",
+        "success_cue": "The player has spawned in the Overworld in Creative mode and can use commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until the nearby terrain has rendered and movement responds normally. Locate an open, approximately level area made from full solid blocks. Stand on it while not flying, and face a direction with at least several clear blocks available for later forward movement.",
+        "exact_input": null,
+        "success_cue": "The player is standing motionless on a full solid block, is not flying, and has an unobstructed walking path ahead.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Ensure in-game chat is visible. If chat is hidden, open the pause menu and change the chat visibility to Shown before returning to the world.",
+        "exact_input": "Esc -> Options -> Chat Settings -> Chat: Shown",
+        "success_cue": "Ordinary chat and tellraw messages can appear in the on-screen chat area.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press T to open chat, enter the command that gives the executing player a command block, and press Enter.",
+        "exact_input": "/give @s minecraft:command_block",
+        "success_cue": "A Command Block item is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Make the Command Block the selected item. If it is not already in the nine-slot hotbar at the bottom of the screen, press E, move it into a hotbar slot, close the inventory, and select that slot using its number key or the mouse wheel.",
+        "exact_input": "E if inventory rearrangement is needed; then select the Command Block's hotbar slot",
+        "success_cue": "The Command Block is visibly held in the player's hand and its hotbar slot is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Without obstructing the clear walking path, aim at the top or side of a nearby solid block and right-click once to place the Command Block. Place it to the side of or behind the intended walking line so the player will not collide with it during the final movement.",
+        "exact_input": "right-click",
+        "success_cue": "A Command Block is placed near the player, and the level walking path in front of the player remains unobstructed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Aim at the placed Command Block and right-click it to open its configuration screen.",
+        "exact_input": "right-click the placed Command Block",
+        "success_cue": "The command-block configuration screen is open and shows a command input field plus block-mode controls.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Set the command block's block type to Repeating, its condition to Unconditional, and its redstone mode to Always Active. A Repeating command block configured as Always Active executes continuously without a redstone clock. ([minecraft.wiki](https://minecraft.wiki/w/Tutorial%3ACommand_blocks_and_functions?utm_source=openai))",
+        "exact_input": "Repeating; Unconditional; Always Active",
+        "success_cue": "The configuration screen displays Repeating, Unconditional, and Always Active.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Enter the report's command exactly in the command input field, including the leading slash and all punctuation, capitalization, brackets, quotation marks, and selector arguments. Click Done to save and activate the repeating command block.",
+        "exact_input": "/tellraw @p {\"nbt\":\"Motion[1]\", \"entity\":\"@p\"}",
+        "success_cue": "The command-block screen closes and a continuing stream of numeric Motion[1] messages begins appearing in chat. Do not evaluate the numeric values yet.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "If opening or closing the command block changed the view direction, use only the mouse to face the previously selected clear path. Do not press a movement key, Space, or the Creative-flight control. Keep the player near the command block so its chunk remains loaded.",
+        "exact_input": "Move mouse only if necessary; do not use W, A, S, D, or Space",
+        "success_cue": "The player remains grounded and stationary beside the active command block, faces an unobstructed path, and numeric chat messages continue.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Release all movement and camera input and leave the player completely still for approximately 3 real-time seconds while the repeating command continues running.",
+        "exact_input": "No keyboard or mouse movement for approximately 3 seconds",
+        "success_cue": "The player has remained grounded without translating or rotating, and the numeric chat stream has continued throughout the interval.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "While continuing to avoid W, A, S, D, Space, and other movement controls, move the mouse left and right and then slightly up and down for approximately 2 seconds. This changes only the camera direction; do not click or move the player's position.",
+        "exact_input": "Move mouse left/right and up/down for approximately 2 seconds; press no movement keys",
+        "success_cue": "The view direction has changed while the player's feet remain on the same ground position and the numeric chat stream continues.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Stop moving the mouse and again provide no keyboard or mouse input for approximately 2 seconds.",
+        "exact_input": "No keyboard or mouse movement for approximately 2 seconds",
+        "success_cue": "The player is once again completely stationary and grounded, with the repeating command still producing numeric messages.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press and hold W to begin walking forward along the clear, level ground. Do not press Space, do not start flying, and do not move into water, climbable blocks, or the command block. As soon as grounded forward movement begins, keep W held and hand control to the observation subsystem.",
+        "exact_input": "Press and hold W; do not press Space",
+        "success_cue": "The player has begun translating forward across level solid ground while remaining grounded, and the repeating tellraw command is still outputting Motion[1].",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 15,
+    "handoff_condition": "The player has just begun grounded forward movement with W held after the required still-camera-still sequence. The Repeating, Unconditional, Always Active command block is continuing to output the player's Motion[1] value; begin observing the command output without changing the movement state.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, coordinates, dimension, world type, or multiplayer requirement. A disposable single-player Creative-mode Overworld is selected as the minimum deterministic setup because it permits command-block placement and configuration.",
+      "The report does not state exact durations for either stationary period or the camera movement. Three seconds, two seconds, and two seconds are practical intervals chosen to make each phase distinct while preserving the reported order.",
+      "The supplied tellraw command is preserved exactly as written in the report. No attempt was made to modernize its selector, NBT path, or text-component syntax.",
+      "The report does not state how the repeating command block should be powered. Always Active is used as the standard deterministic configuration for continuous execution.",
+      "Remaining in Creative mode is not asserted to be required by the report. The player must remain grounded and must not enter Creative flight during the movement test."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 1,
+    "response_id": "resp_05995d1fd3d6744e016aaf468faefc87d08990f5dc50a28fdc",
+    "elapsed_seconds": 102.45,
+    "usage": {
+      "input_tokens": 16850,
+      "output_tokens": 7322,
+      "reasoning_tokens": 5414,
+      "total_tokens": 24172
+    },
+    "timestamp": "2026-09-20T02:37:41.818755+00:00"
+  }
+}

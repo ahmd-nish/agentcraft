@@ -1,0 +1,6 @@
+selection_rank,selection_type,key,summary,created,resolution,resolutiondate,category,issue_url,attachment_count
+1,retained,MC-184530,Player movement at low speeds is biased towards cardinal directions,2020-05-19T12:10:16.090-0700,Fixed,2025-01-13T23:12:40.155-0800,Player,https://bugs.mojang.com/browse/MC-184530,6
+2,retained,MC-65931,The pick block function doesn't work with entities while in survival or adventure mode,2014-08-07T09:53:16.837-0700,Fixed,2024-10-31T07:17:51.593-0700,Player,https://bugs.mojang.com/browse/MC-65931,6
+3,replacement,MC-307782,Sulfur spring geysers can push players in Creative mode who are flying,2026-04-28T07:33:47.911-0700,Fixed,2026-05-04T03:42:56.317-0700,Player,https://bugs.mojang.com/browse/MC-307782,0
+4,replacement,MC-307407,Vertical velocity after bouncing does not take drag into consideration,2026-04-09T04:23:21.643-0700,Fixed,2026-05-05T02:59:06.520-0700,Player,https://bugs.mojang.com/browse/MC-307407,1
+5,replacement,MC-307339,The player's vertical motion is reset when moving on the ground,2026-04-07T15:35:32.182-0700,Fixed,2026-05-11T06:58:32.182-0700,Player,https://bugs.mojang.com/browse/MC-307339,0

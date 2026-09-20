@@ -1,0 +1,189 @@
+{
+  "bug_id": "MC-307407",
+  "category": "Player",
+  "source_category": "Player",
+  "source_panel": "player-five-bug-reports-updated",
+  "source_md": "[Player] - MC-307407.md",
+  "source_meta": {
+    "mojira categories": "Player",
+    "project": "MC",
+    "issue key": "MC-307407",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Community Consensus",
+    "mojang priority": "Normal",
+    "created": "2026-04-09T04:23:21.643-0700",
+    "updated": "2026-05-05T02:59:06.588-0700",
+    "resolution date": "2026-05-05T02:59:06.520-0700",
+    "affects versions": "26.2 Snapshot 1; 26.2 Snapshot 2; 26.2 Snapshot 3",
+    "fix versions": "26.2 Snapshot 6",
+    "area": "Expansion A",
+    "votes": "11",
+    "watchers": "3",
+    "attachments": "1",
+    "attachment filenames": "bounce (64646c88-0ad1-42e8-a995-e60d8d5ce28f).mp4",
+    "_title": "Vertical velocity after bouncing does not take drag into consideration"
+  },
+  "stor": {
+    "bug_id": "MC-307407",
+    "affected_versions": [
+      "26.2 Snapshot 1",
+      "26.2 Snapshot 2",
+      "26.2 Snapshot 3"
+    ],
+    "recommended_version": "26.2 Snapshot 1",
+    "environment": "Minecraft Java Edition 26.2 Snapshot 1 in a new single-player Creative-mode world with commands enabled. Use an open, level area; a Superflat world is a practical choice but is not required by the report. Creative flight may be used while constructing and resetting the test, but it must be disabled during each bounce trial.",
+    "preconditions": [
+      "Launch exactly 26.2 Snapshot 1, the first version listed as affected; do not use the fix version 26.2 Snapshot 6.",
+      "Use a player with permission to run commands. In single-player, create the world with commands/cheats enabled.",
+      "Use default player attributes until the report's air_drag_modifier command is executed. Avoid unrelated status effects or equipment that changes movement, gravity, or jumping.",
+      "Have at least 16 ordinary full solid blocks for the tower bodies, such as Stone, plus 1 Chest, 4 Slime Blocks, and 2 Enchanting Tables.",
+      "Build in an area with several blocks of unobstructed space above the structures and beyond the target towers.",
+      "Use the same forward movement input for both comparison trials. Do not use Sprint, Sneak, or Creative flight during either fall and bounce."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select the installation for Java Edition 26.2 Snapshot 1, launch the game, and wait for the main menu to finish loading.",
+        "exact_input": null,
+        "success_cue": "The lower-left or title-screen version text identifies the running game as 26.2 Snapshot 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player world in Creative mode with commands enabled. A Superflat world may be selected to provide a level construction area. Enter the world and wait until the surrounding terrain is rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Commands/Cheats: On -> Create New World",
+        "success_cue": "The player is in a loaded Creative-mode world and can both fly and open the Creative inventory.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press E to open the Creative inventory. Use its search function to obtain one stack of an ordinary full solid block such as Stone, 4 Slime Blocks, 1 Chest, and 2 Enchanting Tables. Place these items in accessible hotbar slots, then close the inventory with E or Esc.",
+        "exact_input": "E; search for Stone, Slime Block, Chest, and Enchanting Table",
+        "success_cue": "The hotbar contains all four required block types, including at least 16 full solid blocks.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Choose a level area and face one consistent forward direction. Define two adjacent one-block-wide lanes: the left lane will use the six-block source tower, and the right lane will use the source tower with a chest on top. The intended top-down arrangement is a source row, two consecutive rows of slime blocks, and then a target row, with no empty horizontal row between them.",
+        "exact_input": null,
+        "success_cue": "There is enough clear space for a structure two blocks wide and four rows long, with at least ten blocks of open air above it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "At the source row, build two adjacent vertical columns from the same ground level. Make each column exactly 6 full blocks tall. Keep the columns aligned side by side so that each forms the starting platform for one lane.",
+        "exact_input": "Place 6 full blocks vertically in the left lane and 6 full blocks vertically in the right lane.",
+        "success_cue": "Two adjacent six-block-high columns stand at the back of the course, and their top full-block surfaces are level with each other.",
+        "source_basis": "report"
+      },
+      {
+        "step": 6,
+        "action": "Place one Chest directly on top of the right source column. Do not place anything on top of the left source column. The left starting surface is therefore the top of the sixth full block, while the right starting surface is the top of the chest above an otherwise identical six-block column.",
+        "exact_input": "Select Chest; right-click the top face of the right six-block column once.",
+        "success_cue": "The right source has a chest on top, while the adjacent left source remains exactly six full blocks tall with an exposed top face.",
+        "source_basis": "report"
+      },
+      {
+        "step": 7,
+        "action": "At ground level directly in front of the two source columns, place 4 Slime Blocks as a two-by-two square. The rear slime row must be adjacent to the source row, and the pad must extend two blocks forward. Each source lane must line up with one block in each slime row.",
+        "exact_input": "Place Slime Blocks in both lanes for two consecutive forward rows.",
+        "success_cue": "A level two-block-wide by two-block-long slime pad is centered directly in front of the two source columns.",
+        "source_basis": "report"
+      },
+      {
+        "step": 8,
+        "action": "Directly beyond the front edge of the slime pad, build two adjacent target towers, one aligned with each lane. For each target tower, stack 2 full solid blocks from the same ground level and place an Enchanting Table as the third and top block. Do not add any block above either Enchanting Table.",
+        "exact_input": "For each lane: place 2 full blocks vertically, then place 1 Enchanting Table on the upper block.",
+        "success_cue": "Two target towers stand directly beyond the slime pad; each consists of two full blocks with an Enchanting Table as its third block.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Inspect the finished course from above while flying. Verify the exact row order: two adjacent source towers; a two-by-two slime pad immediately in front; and two adjacent target towers immediately beyond the slime. Verify that only the right source tower has a chest and that both target towers have Enchanting Tables on top.",
+        "exact_input": null,
+        "success_cue": "Both lanes are straight, equally spaced, unobstructed, and identical except that the right source starting surface is the chest above the six-block column.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Press T to open in-game chat. Enter the report's command exactly as written, including the leading slash, and press Enter. The command must be run by the same player who will perform the jumps.",
+        "exact_input": "/attribute @s air_drag_modifier base set 3",
+        "success_cue": "The command completes without a red syntax or permission error, and command feedback indicates that the executing player's air_drag_modifier base value was set to 3.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Ensure Sneak is not active before either trial. Release the Sneak control, normally Left Shift; if Sneak is configured as a toggle, press it as needed to return to the normal standing state. Sneaking must remain inactive when contacting the slime because it suppresses the slime-block bounce. ([ja.minecraft.wiki](https://ja.minecraft.wiki/w/%E3%82%B9%E3%83%8B%E3%83%BC%E3%82%AF?utm_source=openai))",
+        "exact_input": "Release Sneak (default Left Shift).",
+        "success_cue": "The player is standing at full height and is not in the sneaking/crouching pose.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 12,
+        "action": "Use Creative flight to reach the exposed top face of the left, six-block source tower. Land near the center of that top face, face straight down the left lane toward its two slime blocks and target Enchanting Table, and disable Creative flight. Keep Sneak and Sprint inactive.",
+        "exact_input": "Use movement and Creative flight controls to land; double-tap Jump (default Space) if necessary to turn flight off.",
+        "success_cue": "The player is stationary and centered on the exposed top of the left six-block column, facing straight along the left lane, and is no longer flying, sneaking, or sprinting.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 13,
+        "action": "Perform the lower-source comparison pass. Hold Forward, normally W, and press Jump, normally Space, once to leave the six-block tower. Continue holding Forward without Sprint or Sneak while falling onto the left half of the slime pad and through the resulting rebound. Do not activate Creative flight by double-tapping Jump.",
+        "exact_input": "Hold W; press Space once; continue holding W.",
+        "success_cue": "The player contacts a left-lane Slime Block and begins a rebound while continuing forward along the left lane.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Allow the lower-source pass to finish without changing the structures or the air_drag_modifier value. Release Forward after the player has passed the target-tower area, then wait until the player is no longer airborne or bouncing.",
+        "exact_input": "Release W after passing the target area; wait for motion to settle.",
+        "success_cue": "The first comparison pass is complete and the player is stationary; the course remains unchanged.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 15,
+        "action": "Use Creative flight to return to the right source tower. Land centered on the top surface of the Chest, face straight down the right lane, and disable flight. Confirm that the command has not been rerun with another value, Sneak is inactive, Sprint is inactive, and the planned input matches the lower-source pass.",
+        "exact_input": "Fly to the Chest; land; disable flight; release Left Shift and Sprint.",
+        "success_cue": "The player is stationary and centered on top of the chest, facing directly along the right lane, with Creative flight, Sneak, and Sprint all inactive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Perform the taller-source test pass using the same input as the lower-source pass. Hold Forward, normally W, and press Jump, normally Space, once to leave the chest. Continue holding Forward without Sprint or Sneak while falling onto the right half of the slime pad. Hand control to the observation subsystem as soon as slime contact produces the upward rebound.",
+        "exact_input": "Hold W; press Space once; continue holding W.",
+        "success_cue": "The player has contacted a right-lane Slime Block after jumping from the chest-topped source and has just begun the upward rebound toward the right target tower.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The player has just begun the upward rebound after contacting the right-lane slime block from the chest-topped source tower. The air_drag_modifier base value remains 3, the player is moving forward without sprinting or sneaking, and the right-lane target Enchanting Table is directly ahead. Begin observing the resulting trajectory from this state.",
+    "uncertainties": [
+      "The report does not specify a world seed, coordinates, game mode, tower-body block type, or dedicated-server requirement. A new single-player Creative world and Stone tower bodies are practical execution choices, not report requirements.",
+      "The comment says the slime square and target towers are 'in front of' the source towers but does not give numerical horizontal gaps. This plan uses the simplest contiguous interpretation: source row, two slime rows, then target row, with no empty rows between them.",
+      "The attached bounce video was named in the report but its visual layout was not included in the supplied content and could not be retrieved through the permitted web sources, so any spacing visible only in that video remains unverified.",
+      "The report's 'two 3 block tall towers with the third block being enchantment tables' is interpreted as two full solid blocks with an Enchanting Table placed as the third/top block.",
+      "The report does not state which adjacent tower is on the left or right. This plan assigns the plain six-block source to the left lane and the chest-topped source to the right lane solely to keep the procedure deterministic.",
+      "The exact horizontal input duration is not specified. This plan holds normal Forward movement through each bounce and prohibits Sprint so both trials use repeatable, matching input.",
+      "The lower-source pass is performed first as a comparison trial and the chest-source pass second as the final trigger. The report describes both heights but does not explicitly require this order.",
+      "External verification was limited to confirming that Sneak should be inactive because sneaking suppresses slime-block bouncing; no external source was used to replace the report's command, version list, or structure description."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 2,
+    "response_id": "resp_0aa795b55aabd551016aaf46f5ee5487d0906309dbb4f366d9",
+    "elapsed_seconds": 132.78,
+    "usage": {
+      "input_tokens": 29654,
+      "output_tokens": 8989,
+      "reasoning_tokens": 6419,
+      "total_tokens": 38643
+    },
+    "timestamp": "2026-09-20T02:39:54.607979+00:00"
+  }
+}
