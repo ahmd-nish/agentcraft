@@ -1,0 +1,6 @@
+selection_rank,selection_type,key,summary,created,resolution,resolutiondate,category,issue_url,attachment_count
+1,retained,MC-53602,Projectiles don't collide with the world border,2014-04-25T10:45:14.163-0700,Fixed,2024-08-17T06:37:43.477-0700,Projectiles,https://bugs.mojang.com/browse/MC-53602,3
+2,retained,MC-225365,Pointed dripstone can be destroyed by tridents in adventure mode,2021-05-12T07:55:25.464-0700,Fixed,2023-12-11T02:49:48.994-0800,Player; Projectiles,https://bugs.mojang.com/browse/MC-225365,2
+3,retained,MC-278417,Arrows and tridents on fire and stuck in the ground cannot be extinguished by rain,2024-11-20T03:03:27.176-0800,Fixed,2025-01-28T14:41:10.562-0800,Projectiles,https://bugs.mojang.com/browse/MC-278417,2
+4,retained,MC-225364,Chorus flowers can be destroyed by projectiles in adventure mode,2021-05-12T07:51:37.394-0700,Fixed,2023-12-11T02:50:01.594-0800,Player; Projectiles,https://bugs.mojang.com/browse/MC-225364,2
+5,replacement,MC-302678,Arrows and tridents get stuck on players and mobs,2025-10-09T08:16:53.647-0700,Fixed,2025-10-28T03:23:33.285-0700,Combat; Items; Projectiles,https://bugs.mojang.com/browse/MC-302678,3

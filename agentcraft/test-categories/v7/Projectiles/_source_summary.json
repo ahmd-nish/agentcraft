@@ -1,0 +1,28 @@
+{
+  "output_folder": "/Users/nish/Documents/Research - Minecraft/data_collection/projectiles-five-bug-reports-updated",
+  "category": "Projectiles",
+  "retained_report_ids": [
+    "MC-53602",
+    "MC-225365",
+    "MC-278417",
+    "MC-225364"
+  ],
+  "removed_report_ids": [
+    "MC-7697"
+  ],
+  "replacement_report_ids": [
+    "MC-302678"
+  ],
+  "replacement_criteria": {
+    "project": "MC",
+    "resolution": "Fixed",
+    "native_category_includes": "Projectiles",
+    "creation_date_on_or_after": "2022-01-01",
+    "excluded_category": "Crash",
+    "ordering": "newest creation date first"
+  },
+  "reports": 5,
+  "attachments_declared": 12,
+  "attachments_downloaded": 12,
+  "attachments_failed": 0
+}

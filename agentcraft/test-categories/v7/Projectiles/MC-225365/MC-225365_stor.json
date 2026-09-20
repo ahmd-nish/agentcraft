@@ -1,6 +1,8 @@
 {
   "bug_id": "MC-225365",
   "category": "Projectiles",
+  "source_category": "Projectiles",
+  "source_panel": "projectiles-five-bug-reports-updated",
   "source_md": "[Projectiles] - MC-225365.md",
   "source_meta": {
     "mojira categories": "Player; Projectiles",
@@ -43,129 +45,101 @@
       "23w41a"
     ],
     "recommended_version": "21w19a",
-    "environment": "Minecraft Java Edition snapshot 21w19a in a single-player world using the integrated server. Create the test arrangement in Creative mode with commands available, then change the player to Adventure mode before throwing the trident. Default keyboard and mouse bindings are described; use the bound equivalents if controls have been changed.",
+    "environment": "Minecraft: Java Edition 21w19a in a fresh single-player world running on the integrated server. Use Creative mode with cheats enabled for deterministic item acquisition and target placement, then switch the player to Adventure mode before throwing the trident. Default mouse and keyboard controls are assumed; use the equivalent bound controls if they have been changed.",
     "preconditions": [
-      "Minecraft Java Edition snapshot 21w19a, the first version listed as affected by the report, is installed and launchable.",
-      "The executor can create a single-player Creative-mode world in which commands are available.",
-      "A mouse or equivalent input capable of holding and releasing the Use Item action is available.",
-      "The test area must be inside the world border and outside any condition that prevents normal projectile interaction; an ordinary open area near the single-player spawn is sufficient.",
-      "Allow the surrounding terrain to finish loading before constructing or testing the target."
+      "Install and launch the exact affected version 21w19a rather than the fixed version 23w42a or a newer version.",
+      "The player must have permission to execute the /gamemode command; in a single-player test world, enable cheats during world creation.",
+      "Use an open, level area with enough space to stand several blocks from the target and maintain an unobstructed line of sight.",
+      "The player must be standing on the ground rather than flying before switching from Creative mode to Adventure mode.",
+      "Have one Pointed Dripstone item and one unenchanted Trident available in separate hotbar slots before entering Adventure mode."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "Start Minecraft Java Edition using the 21w19a installation and wait for the main menu to become responsive.",
-        "exact_input": "Launch installation \"21w19a\"",
-        "success_cue": "The main menu displays the snapshot version 21w19a and its buttons respond normally.",
+        "action": "In the Minecraft Launcher, create or select an installation that uses Java Edition snapshot 21w19a, launch it, and wait for the main menu to finish loading.",
+        "exact_input": "Version: 21w19a",
+        "success_cue": "The Minecraft main menu is visible and identifies the running version as 21w19a.",
         "source_basis": "report"
       },
       {
         "step": 2,
-        "action": "Create a new single-player world in Creative mode. From the main menu, open Singleplayer, choose Create New World, set Game Mode to Creative, and create the world. Leave commands available so the later game-mode command can be executed.",
-        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Create New World",
-        "success_cue": "The player enters a new world in Creative mode and can fly or instantly break blocks.",
+        "action": "Select Singleplayer, create a new test world, set Game Mode to Creative, ensure cheats are enabled, and create the world. Wait until surrounding terrain has rendered and movement responds normally.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Allow Cheats: ON -> Create New World",
+        "success_cue": "The player is standing in a loaded world in Creative mode and can use commands.",
         "source_basis": "practical_inference"
       },
       {
         "step": 3,
-        "action": "Wait for the initial world loading to finish. Do not continue while nearby terrain is still appearing or player input is delayed.",
-        "exact_input": null,
-        "success_cue": "Nearby terrain is rendered, player movement responds normally, and there is an open patch of ground available.",
+        "action": "Press E to open the Creative inventory. Open the Search Items tab, select the search field, enter \"pointed dripstone\", and move the Pointed Dripstone item from the search results into an empty hotbar slot. The hotbar is the row of nine item slots at the bottom of the inventory.",
+        "exact_input": "E; search text: pointed dripstone",
+        "success_cue": "A Pointed Dripstone item is present in one of the nine hotbar slots.",
         "source_basis": "practical_inference"
       },
       {
         "step": 4,
-        "action": "Open the Creative inventory, select the Search Items tab, search for \"stone\", and move one plain Stone block—not Stone Bricks or another variant—into hotbar slot 1. The hotbar is the row of nine item slots at the bottom of the screen.",
-        "exact_input": "E -> Search Items -> type \"stone\" -> select Stone -> place in hotbar slot 1",
-        "success_cue": "Hotbar slot 1 contains a plain Stone block.",
+        "action": "While the Creative inventory is open, clear the search field, enter \"trident\", and move a normal unenchanted Trident into a different empty hotbar slot. Press E again to close the inventory.",
+        "exact_input": "Search text: trident; then E",
+        "success_cue": "The inventory is closed, and both Pointed Dripstone and Trident are visible in separate hotbar slots.",
         "source_basis": "practical_inference"
       },
       {
         "step": 5,
-        "action": "While using the Creative inventory's Search Items tab, clear the previous search, search for \"pointed dripstone\", and move Pointed Dripstone into hotbar slot 2.",
-        "exact_input": "Search Items -> type \"pointed dripstone\" -> select Pointed Dripstone -> place in hotbar slot 2",
-        "success_cue": "Hotbar slot 2 contains Pointed Dripstone.",
+        "action": "Stand in an open area and select the Pointed Dripstone hotbar slot by pressing its corresponding number key or scrolling to it. Aim at the top face of a full ground block and press the Use Item/Place Block control, which is right-click by default, once to place the pointed dripstone upright.",
+        "exact_input": "Pointed Dripstone hotbar slot; right-click the top face of a ground block",
+        "success_cue": "One upright pointed dripstone spike is visibly attached to the top of the ground block.",
         "source_basis": "report"
       },
       {
         "step": 6,
-        "action": "Clear the search, search for \"trident\", and move an ordinary unenchanted Trident into hotbar slot 3. No Riptide, Loyalty, or other enchantment is needed.",
-        "exact_input": "Search Items -> type \"trident\" -> select Trident -> place in hotbar slot 3",
-        "success_cue": "Hotbar slot 3 contains an unenchanted Trident.",
+        "action": "Move approximately 5 to 8 horizontal blocks away from the placed pointed dripstone. Face the spike and ensure there are no blocks or entities between the player and the target. Remain standing on the ground.",
+        "exact_input": "W/A/S/D as needed; stop 5-8 blocks from the target",
+        "success_cue": "The complete pointed dripstone target is visible with a clear, unobstructed throwing path from the player.",
         "source_basis": "practical_inference"
       },
       {
         "step": 7,
-        "action": "Close the Creative inventory and return to first-person world control.",
-        "exact_input": "E",
-        "success_cue": "The world view and crosshair are visible, with Stone, Pointed Dripstone, and Trident present in hotbar slots 1, 2, and 3 respectively.",
+        "action": "Press T to open in-game chat, type the command exactly as shown including the leading slash, and press Enter to switch the player to Adventure mode.",
+        "exact_input": "/gamemode adventure",
+        "success_cue": "The command succeeds and the game displays confirmation that the player's game mode was set to Adventure Mode.",
         "source_basis": "practical_inference"
       },
       {
         "step": 8,
-        "action": "Select hotbar slot 1 and place the Stone block on top of an open, level part of the ground. This raised support makes the pointed dripstone easier to strike directly.",
-        "exact_input": "1, then right-click the top face of the ground",
-        "success_cue": "One Stone block stands above the surrounding ground with unobstructed air above and around it.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 9,
-        "action": "Select hotbar slot 2 and place the Pointed Dripstone on the top face of the Stone support block. Target the upper face of the Stone block rather than one of its sides.",
-        "exact_input": "2, then right-click the top face of the Stone block",
-        "success_cue": "An upward-pointing piece of pointed dripstone is attached to the top of the Stone block and is clearly visible.",
+        "action": "Select the hotbar slot containing the Trident by pressing the corresponding number key or scrolling until the trident is the active item. Do not use or drop it yet.",
+        "exact_input": "Number key for the Trident hotbar slot",
+        "success_cue": "The Trident is highlighted in the hotbar and is visible in the player's hand while the player remains in Adventure mode.",
         "source_basis": "report"
       },
       {
+        "step": 9,
+        "action": "Place the crosshair over the thicker body or base section of the pointed dripstone rather than merely beside its narrow tip. Keep the throwing path clear and do not move closer than the prepared throwing position.",
+        "exact_input": "Mouse movement to aim at the pointed dripstone",
+        "success_cue": "The center crosshair is directly over the visible pointed dripstone target.",
+        "source_basis": "practical_inference"
+      },
+      {
         "step": 10,
-        "action": "Move approximately four to six blocks horizontally away from the pointed dripstone. Face the target and ensure there are no blocks, entities, or tall plants between the player and the pointed dripstone.",
-        "exact_input": "Use movement controls, normally W/A/S/D, then move the mouse to face the target",
-        "success_cue": "The pointed dripstone is visible from several blocks away with a clear projectile path to it.",
+        "action": "Press and hold the Use Item control, which is right-click by default, while keeping the crosshair on the pointed dripstone. Hold it for about one second so the trident reaches a fully charged throwing state.",
+        "exact_input": "Hold right-click for approximately 1 second",
+        "success_cue": "The trident is visibly drawn back and ready to be thrown, with the crosshair still aimed at the pointed dripstone.",
         "source_basis": "practical_inference"
       },
       {
         "step": 11,
-        "action": "Change the player from Creative mode to Adventure mode using in-game chat. Press T, enter the command exactly with the leading slash, and press Enter.",
-        "exact_input": "/gamemode adventure",
-        "success_cue": "Chat reports that the player's game mode was set to Adventure Mode, and the Adventure-mode indicator briefly appears on screen.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 12,
-        "action": "Select the Trident in hotbar slot 3 so that it becomes the active held item.",
-        "exact_input": "3",
-        "success_cue": "The trident is visible in the player's hand and hotbar slot 3 is highlighted.",
-        "source_basis": "report"
-      },
-      {
-        "step": 13,
-        "action": "Aim the crosshair directly at the body or upper portion of the pointed dripstone, not at the Stone support block beneath it.",
-        "exact_input": "Move the mouse until the crosshair is centered on the pointed dripstone",
-        "success_cue": "The crosshair rests on the pointed dripstone and the projectile path remains unobstructed.",
-        "source_basis": "report"
-      },
-      {
-        "step": 14,
-        "action": "Press and hold the Use Item control long enough to fully prepare the trident throw. With default controls, hold the right mouse button for approximately one second; do not release immediately after pressing.",
-        "exact_input": "Hold right-click for approximately 1 second",
-        "success_cue": "The trident is held in its charged throwing pose while the crosshair remains directed at the pointed dripstone.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 15,
-        "action": "While continuing to aim at the pointed dripstone, release the Use Item control to throw the charged trident directly at it. Do not perform another action before observation begins.",
+        "action": "Release the Use Item control to throw the fully charged trident directly at the pointed dripstone. Make no additional attacks or interactions; wait only until the projectile reaches and impacts the target position.",
         "exact_input": "Release right-click",
-        "success_cue": "The trident has been released toward the pointed dripstone while the player remains in Adventure mode.",
+        "success_cue": "The thrown trident has just contacted the pointed-dripstone target position.",
         "source_basis": "report"
       }
     ],
-    "trigger_step": 15,
-    "handoff_condition": "The Adventure-mode player has just released a fully charged trident directly toward the unobstructed pointed dripstone target. Begin observation immediately and monitor the trident's impact without performing additional setup actions.",
+    "trigger_step": 11,
+    "handoff_condition": "The Adventure-mode player has just thrown a fully charged trident and the projectile has contacted the position occupied by the placed pointed dripstone. Begin observation immediately, before making another attack or interacting with the target area.",
     "uncertainties": [
-      "The report does not provide a world seed, coordinates, or required terrain, so a fresh world and an ordinary open area are used as practical setup choices.",
-      "The report does not specify how the pointed dripstone and trident are obtained before entering Adventure mode. Creative inventory setup is used to avoid unrelated crafting, exploration, or combat.",
-      "The report does not specify the target's orientation, support block, or throwing distance. An upward-pointing piece on a raised Stone block and a distance of approximately four to six blocks are selected to provide a clear, deterministic projectile target.",
-      "The report says to \"shoot\" the trident but does not state a charge duration. Holding the Use Item control for approximately one second is used to ensure the trident is thrown rather than the input being released too early.",
-      "Default controls are assumed. If bindings are customized, use the controls bound to Open Inventory, Open Chat, Select Hotbar Slot, and Use Item."
+      "The report does not specify a world seed, coordinates, world type, or a dedicated-server requirement. A fresh single-player world and an open target area are therefore used as practical execution choices.",
+      "The report does not state how the items should be obtained. Creative inventory acquisition is used to avoid unrelated crafting, exploration, and combat while preserving the required Adventure-mode state at the time of the throw.",
+      "The report says to place \"some pointed dripstone\" but does not specify a count or arrangement. This plan uses one upright pointed dripstone block because it provides the singular target required by the reported interaction.",
+      "The report does not specify a throwing distance or charge duration. A distance of approximately 5 to 8 blocks and a fully charged throw are chosen to provide an unobstructed, moving trident projectile and avoid an undercharged attempt.",
+      "The report does not specify custom controls. The plan uses the default Java Edition controls and requires equivalent bound actions if controls have been changed."
     ],
     "web_verification_used": false
   },
@@ -175,14 +149,14 @@
     "verbosity": "high",
     "web_used": false,
     "web_call_count": 0,
-    "response_id": "resp_09e4dc5bd507da0a016aa71c71b73887d0aa8b1470a8e391dc",
-    "elapsed_seconds": 55.75,
+    "response_id": "resp_0701adb7ad15e07d016aaf4afd4f9087d0892eb26ae5dae359",
+    "elapsed_seconds": 64.57,
     "usage": {
       "input_tokens": 9256,
-      "output_tokens": 4354,
-      "reasoning_tokens": 2561,
-      "total_tokens": 13610
+      "output_tokens": 4628,
+      "reasoning_tokens": 3041,
+      "total_tokens": 13884
     },
-    "timestamp": "2026-09-13T21:59:05.347046+00:00"
+    "timestamp": "2026-09-20T02:55:57.611932+00:00"
   }
 }

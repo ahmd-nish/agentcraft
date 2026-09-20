@@ -1,6 +1,8 @@
 {
   "bug_id": "MC-53602",
   "category": "Projectiles",
+  "source_category": "Projectiles",
+  "source_panel": "projectiles-five-bug-reports-updated",
   "source_md": "[Projectiles] - MC-53602.md",
   "source_meta": {
     "mojira categories": "Projectiles",
@@ -103,180 +105,153 @@
       "1.21.1"
     ],
     "recommended_version": "Minecraft 14w17a",
-    "environment": "Vanilla Minecraft Java Edition snapshot 14w17a in a singleplayer Creative-mode Superflat world with commands/cheats enabled. Use the normal first-person view. The instructions name the default controls: T for chat, E for inventory, number keys 1–9 for hotbar selection, and right-click for Use Item; use the equivalent bound controls if they have been changed.",
+    "environment": "Vanilla Minecraft Java Edition 14w17a in a new single-player Creative-mode Superflat world with cheats enabled. Use keyboard and mouse controls; where controls have been rebound, use the binding for the named action rather than the listed default key.",
     "preconditions": [
-      "Install and launch the exact Java Edition snapshot listed as the recommended version: Minecraft 14w17a. Do not use fix version 24w33a.",
-      "Use a new disposable world so changing the world-border center and size does not affect an existing save.",
-      "Use Creative mode and enable commands/cheats so the supplied /worldborder commands can be executed and a Snowball can be obtained without random exploration.",
-      "Use a Superflat world as a deterministic execution choice; the report does not specify a seed, coordinates, or terrain, and a flat world provides a clear projectile path.",
-      "Keep at least one empty hotbar slot available for the Snowball."
+      "Install and launch the exact affected snapshot Minecraft 14w17a rather than the fixed snapshot 24w33a or a newer version.",
+      "Use a separate game directory or otherwise protect existing worlds before running the old snapshot.",
+      "Create a new single-player world in Creative mode with Allow Cheats enabled so the supplied /worldborder commands can be executed.",
+      "Use Superflat terrain, or another open and level location, so blocks and terrain do not intercept the projectile before it reaches the border.",
+      "Do not install gameplay-altering mods, plugins, or datapacks.",
+      "One snowball will be used as the report's example projectile; additional projectile types are not required for the minimum reproduction."
     ],
     "steps": [
       {
         "step": 1,
-        "action": "Start Minecraft Java Edition using the Minecraft 14w17a installation/profile and wait for the main menu to load.",
+        "action": "From the Minecraft Launcher, start the Java Edition installation configured for snapshot 14w17a and wait for the title screen to become responsive.",
         "exact_input": null,
-        "success_cue": "The lower-left version label on the main menu identifies the running version as Minecraft 14w17a.",
+        "success_cue": "The title screen for Minecraft 14w17a is visible and its menu buttons respond.",
         "source_basis": "report"
       },
       {
         "step": 2,
-        "action": "Select Singleplayer, then select Create New World.",
+        "action": "Select Singleplayer, choose Create New World, set Game Mode to Creative, open More World Options, set Allow Cheats to ON, select the Superflat world type, and create the world. The Superflat choice is only a deterministic way to provide an unobstructed test area.",
         "exact_input": null,
-        "success_cue": "The Create New World configuration screen is open.",
+        "success_cue": "The player is in a newly created Creative-mode world on level, open terrain, and commands are permitted.",
         "source_basis": "practical_inference"
       },
       {
         "step": 3,
-        "action": "Click the Game Mode button until it displays Game Mode: Creative.",
+        "action": "Wait until the nearby terrain has rendered and normal movement and menu input respond without world-loading pauses.",
         "exact_input": null,
-        "success_cue": "Creative is displayed as the selected game mode.",
+        "success_cue": "The terrain around the player is rendered and movement responds normally.",
         "source_basis": "practical_inference"
       },
       {
         "step": 4,
-        "action": "Select More World Options... to open the additional world-generation settings.",
+        "action": "Stand on an open part of the terrain with enough clear horizontal space in every direction, then remain at that position while setting the border center.",
         "exact_input": null,
-        "success_cue": "The screen containing World Type and Allow Cheats is visible.",
+        "success_cue": "The player is stationary in an open area with no nearby wall or obstacle that would block a horizontally thrown snowball.",
         "source_basis": "practical_inference"
       },
       {
         "step": 5,
-        "action": "Click World Type until it displays World Type: Superflat.",
-        "exact_input": null,
-        "success_cue": "Superflat is displayed as the selected world type.",
+        "action": "Press T, the default Open Chat control, to open the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready to accept a command.",
         "source_basis": "practical_inference"
       },
       {
         "step": 6,
-        "action": "Set Allow Cheats to ON. If it is already ON because Creative mode was selected, leave it unchanged.",
-        "exact_input": null,
-        "success_cue": "The world-creation screen displays Allow Cheats: ON.",
-        "source_basis": "practical_inference"
+        "action": "Enter the report's first command exactly as written, including the leading slash, and press Enter. The two relative coordinates set the border's X and Z center to the command executor's current horizontal position.",
+        "exact_input": "/worldborder center ~ ~",
+        "success_cue": "The command is accepted without a red syntax or permission error, and the world border is centered on the player's current X/Z position.",
+        "source_basis": "report"
       },
       {
         "step": 7,
-        "action": "Return from More World Options if necessary, select Create New World, and wait for world generation to finish. Do not move away from the initial location after control is granted.",
-        "exact_input": null,
-        "success_cue": "The player is standing on the Superflat surface, nearby terrain is rendered, and movement and camera controls respond normally.",
+        "action": "Press T again to reopen the in-game chat input.",
+        "exact_input": "T",
+        "success_cue": "The chat input field is open and ready for the second command.",
         "source_basis": "practical_inference"
       },
       {
         "step": 8,
-        "action": "Press the Chat control, default T, to open in-game chat.",
-        "exact_input": "T",
-        "success_cue": "A chat input line is visible and ready to accept a command.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 9,
-        "action": "Enter the report's world-border center command exactly as shown, including the leading slash, and press Enter. Both tildes refer to the player's current horizontal position: the first is X and the second is Z.",
-        "exact_input": "/worldborder center ~ ~",
-        "success_cue": "The command is accepted without a syntax or permission error, and chat reports that the world-border center was changed.",
+        "action": "Enter the report's second command exactly as written, including the leading slash, and press Enter. Do not add a transition-time argument.",
+        "exact_input": "/worldborder set 20",
+        "success_cue": "The command is accepted without a red syntax or permission error and the border diameter is set to 20 blocks.",
         "source_basis": "report"
       },
       {
+        "step": 9,
+        "action": "Wait for the border to render around the player. Because its diameter is 20 blocks and it is centered on the player's former position, each flat side should be approximately 10 blocks from that center position.",
+        "exact_input": null,
+        "success_cue": "A square world-border wall is visible around the test area at approximately 10 blocks from the configured center on each horizontal axis.",
+        "source_basis": "practical_inference"
+      },
+      {
         "step": 10,
-        "action": "Without moving from the newly established center, press the Chat control, default T, again.",
-        "exact_input": "T",
-        "success_cue": "The chat input line is open again.",
+        "action": "Face one flat side of the world border and walk toward it while staying inside the border. Stop approximately 2 to 4 blocks before the wall, with open air between the player and the border.",
+        "exact_input": "W",
+        "success_cue": "One flat world-border side is directly ahead at short throwing distance, and no terrain block or entity lies between the player and that side.",
         "source_basis": "practical_inference"
       },
       {
         "step": 11,
-        "action": "Enter the report's world-border size command exactly as shown, including the leading slash, and press Enter. The value 20 sets the square border to twenty blocks wide.",
-        "exact_input": "/worldborder set 20",
-        "success_cue": "The command is accepted without an error, chat reports that the world-border width was set to 20 blocks, and the nearby world-border walls become visible around the player.",
-        "source_basis": "report"
+        "action": "Press E, the default Inventory control, to open the Creative inventory.",
+        "exact_input": "E",
+        "success_cue": "The Creative inventory screen is open and shows item categories and the player's hotbar slots.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 12,
-        "action": "Wait until the border has finished resizing, surrounding terrain remains rendered, and movement and camera controls respond normally. Because the player remained at the center of a 20-block-wide border, each nearest side should be approximately 10 blocks away.",
-        "exact_input": null,
-        "success_cue": "A stable square world border surrounds the player, with the player still safely inside it near the center.",
+        "action": "Open the Creative inventory's item-search interface, select its text field, and search for a snowball.",
+        "exact_input": "snowball",
+        "success_cue": "A Snowball item is shown among the filtered Creative inventory results.",
         "source_basis": "practical_inference"
       },
       {
         "step": 13,
-        "action": "Press the Inventory control, default E, to open the Creative inventory.",
-        "exact_input": "E",
-        "success_cue": "The Creative inventory interface is open and the hotbar slots are visible along its bottom edge.",
+        "action": "Pick up a stack of Snowballs from the search result and place it into an empty hotbar slot at the bottom of the inventory screen.",
+        "exact_input": null,
+        "success_cue": "A Snowball stack is present in one of the nine hotbar slots.",
         "source_basis": "practical_inference"
       },
       {
         "step": 14,
-        "action": "Open the Search Items tab, identified by the compass icon, select its search field, and search for Snowball. With an English interface, enter the text shown in exact_input.",
-        "exact_input": "snowball",
-        "success_cue": "A Snowball item appears among the filtered Creative inventory results.",
-        "source_basis": "verified_external"
+        "action": "Press E to close the inventory, then select the hotbar slot containing the Snowballs by pressing its corresponding number key, 1 through 9, or by scrolling to it.",
+        "exact_input": null,
+        "success_cue": "The inventory is closed, the Snowball hotbar slot is highlighted, and a snowball is visible in the player's hand.",
+        "source_basis": "practical_inference"
       },
       {
         "step": 15,
-        "action": "Move a stack of Snowballs from the search result into an empty hotbar slot. One reliable method is to left-click the Snowball result to pick up a stack, then left-click an empty slot in the hotbar row at the bottom of the inventory.",
+        "action": "Without moving outside the border, aim the crosshair horizontally and approximately perpendicular to the nearby flat border side. Keep the trajectory clear of the ground and other blocks so the projectile's first relevant intersection is with the world border.",
         "exact_input": null,
-        "success_cue": "A Snowball stack is visible in a numbered hotbar slot.",
+        "success_cue": "The selected snowball is ready, the world-border wall is directly ahead, and the projected flight path is unobstructed.",
         "source_basis": "practical_inference"
       },
       {
         "step": 16,
-        "action": "Close the Creative inventory by pressing E or Escape.",
-        "exact_input": null,
-        "success_cue": "First-person world view is restored and the hotbar containing the Snowball stack is visible.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 17,
-        "action": "Select the Snowball's hotbar slot by pressing its corresponding number key, 1 through 9, or by scrolling to it.",
-        "exact_input": null,
-        "success_cue": "The Snowball slot has the active-slot highlight and a Snowball is visible in the player's hand.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 18,
-        "action": "Rotate the camera while remaining inside the border until one of the four nearby world-border walls is directly ahead. Do not move through the wall or outside the border.",
-        "exact_input": null,
-        "success_cue": "A world-border wall is centered in the player's forward view approximately 10 blocks away.",
-        "source_basis": "report"
-      },
-      {
-        "step": 19,
-        "action": "Adjust the crosshair so it points toward the world-border wall through unobstructed air at approximately eye level. Do not aim downward at the Superflat ground and do not place any block between the player and the border.",
-        "exact_input": null,
-        "success_cue": "The straight path from the player's hand to the targeted part of the world border is clear of blocks and entities.",
-        "source_basis": "practical_inference"
-      },
-      {
-        "step": 20,
-        "action": "Use the selected Snowball once by pressing the Use Item control, default right-click, while maintaining the aim established in the previous step.",
-        "exact_input": "right-click once",
-        "success_cue": "One Snowball has been launched directly toward the world-border wall on an unobstructed path.",
+        "action": "Use the selected Snowball once by pressing right-click while continuing to face the world border. Do not throw additional snowballs before handing off to observation.",
+        "exact_input": "right-click",
+        "success_cue": "One snowball has left the player's hand and is traveling directly toward the nearby world-border wall.",
         "source_basis": "report"
       }
     ],
-    "trigger_step": 20,
-    "handoff_condition": "The Snowball has just been launched directly toward the nearby world-border wall from inside the border. Hand control immediately to the observation subsystem before changing aim, moving the player, throwing another projectile, or otherwise altering the scene.",
+    "trigger_step": 16,
+    "handoff_condition": "A single snowball has just been thrown from inside the 20-block-wide border directly toward an unobstructed flat side of the world border. Begin observing the snowball's interaction with the border immediately.",
     "uncertainties": [
-      "The report does not specify a world seed, coordinates, terrain type, game mode, or singleplayer versus multiplayer. A new singleplayer Creative Superflat world is selected only as the simplest deterministic environment that supports the supplied commands and provides a clear projectile path.",
-      "The Creative inventory's displayed item names depend on the selected language. The exact search input \"snowball\" assumes an English interface; in another language, use the localized name or visually locate the Snowball item.",
-      "External verification confirms that /worldborder was introduced in Java Edition 14w17a and supports the supplied center and set command forms; therefore the report's commands are preserved without modernization. ([pt.minecraft.wiki](https://pt.minecraft.wiki/w/Barreira_do_mundo?utm_source=openai))",
-      "The report states that all types of projectiles are affected but proposes a Snowball as its example. This plan tests one Snowball once, which is the minimum safe trigger supported by the report; it does not add repeated throws or alternate projectiles."
+      "The report does not specify single-player versus dedicated-server execution, game mode, world seed, or terrain type. This plan uses a new single-player Creative Superflat world with cheats as the simplest deterministic setup that preserves the reported commands and trigger.",
+      "The report states that all projectile types are affected but explicitly offers a snowball as its example. This minimum plan tests one snowball and does not claim that Creative mode or Superflat terrain is required by the bug.",
+      "The report does not prescribe an exact throwing distance, height, or angle. The plan uses a short, approximately horizontal and perpendicular throw so terrain cannot become an alternative collision surface.",
+      "No external web verification was used because the report supplies the exact affected version, commands, border size, projectile example, and trigger action."
     ],
-    "web_verification_used": true
+    "web_verification_used": false
   },
   "call": {
     "model": "gpt-5.6-sol",
     "reasoning_effort": "high",
     "verbosity": "high",
-    "web_used": true,
-    "web_call_count": 2,
-    "response_id": "resp_00e195f8a88eecee016aa71d006d3c87d09ac9750cd0261427",
-    "elapsed_seconds": 81.8,
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_071080da43911625016aaf4bcafaa487d0a9ecd1bf6a272462",
+    "elapsed_seconds": 59.84,
     "usage": {
-      "input_tokens": 28799,
-      "output_tokens": 6600,
-      "reasoning_tokens": 4272,
-      "total_tokens": 35399
+      "input_tokens": 10660,
+      "output_tokens": 4731,
+      "reasoning_tokens": 2628,
+      "total_tokens": 15391
     },
-    "timestamp": "2026-09-13T22:01:53.964870+00:00"
+    "timestamp": "2026-09-20T02:59:18.480391+00:00"
   }
 }

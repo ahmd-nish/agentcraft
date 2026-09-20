@@ -1,0 +1,146 @@
+{
+  "bug_id": "MC-302678",
+  "category": "Projectiles",
+  "source_category": "Projectiles",
+  "source_panel": "projectiles-five-bug-reports-updated",
+  "source_md": "[Projectiles] - MC-302678.md",
+  "source_meta": {
+    "mojira categories": "Combat; Items; Projectiles",
+    "project": "MC",
+    "issue key": "MC-302678",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Very Important",
+    "created": "2025-10-09T08:16:53.647-0700",
+    "updated": "2025-10-28T03:23:33.356-0700",
+    "resolution date": "2025-10-28T03:23:33.285-0700",
+    "affects versions": "25w41a; 25w42a; 25w43a",
+    "fix versions": "25w44a",
+    "area": "Platform",
+    "votes": "14",
+    "watchers": "2",
+    "attachments": "3",
+    "attachment filenames": "Снимок экрана (823).png; Снимок экрана (824).png; Снимок экрана (825).png",
+    "issue links": "Duplicate:inward:MC-302753:25w41a Trident deals multiple times damage with touch of its hitboxs. | Duplicate:inward:MC-302788:Tridents barrage attacks when thrown | Duplicate:inward:MC-302858:Tridents can now deal multiple damage by one throw | Duplicate:inward:MC-302715:Arrows still hit the player if they are deflecte with the shield | Duplicate:inward:MC-302796:Skeleton arrows remain stuck in the shield and do not fall off until the player moves away or lowers the shield | Duplicate:inward:MC-302880:Shields aren't working. | Duplicate:inward:MC-302883:Arrows don't bounce off shields in 25w41a | Duplicate:inward:MC-302885:Arrows stick to shield and still damage player after lowering shield | Duplicate:inward:MC-302889:Arrows stick to shield and still damage player after lowering shield | Duplicate:inward:MC-302908:When deflecting an arrow with a shield, it doesn't bounce away. | Duplicate:inward:MC-302938:Trident hits infinitly | Duplicate:inward:MC-302930:Arrows blocked by shield got stucked and fell causing damage to player if move forward | Duplicate:inward:MC-302961:Projectiles get stuck when hitting shields | Duplicate:inward:MC-302975:Shield bug in latest snapshot | Duplicate:inward:MC-302982:Trident Deals Damage Without Cooldown and Hits Multiple Times | Duplicate:inward:MC-303030:Zombie Horseman will be killed with one strike by the trident | Duplicate:inward:MC-303007:Skeleton arrows are bugged | Duplicate:inward:MC-303068:Arrows and Trident have glitches when thrown at a shield | Duplicate:inward:MC-303075:Projectiles will collide with primed (lit) TNT entities | Duplicate:inward:MC-303084:A bug with projectiles and a shield | Duplicate:inward:MC-303113:Drowned mob on a undead nautilus with a trident hits multiple times | Duplicate:inward:MC-303120:Tridents repeatedly dealing damage | Duplicate:inward:MC-303114:Arrows Bounce on Sheild | Duplicate:inward:MC-303173:shield projectile problem | Duplicate:inward:MC-303261:Arrows do not bounce off of shields. | Duplicate:inward:MC-303200:Skeletons arrows get stuck on shield. | Duplicate:inward:MC-303195:Arrows and tridents bounce on shields working wrong | Duplicate:inward:MC-303145:Arrows freeze in the air when blocked with a shield | Duplicate:inward:MC-303199:Trident gets stuck in mobs and damages them over and over again | Duplicate:inward:MC-303271:shields do not knock back projectiles | Duplicate:inward:MC-303287:Shield can’t block skeleton arrows right | Duplicate:inward:MC-303286: Arrows and glitched Pillager Banner | Duplicate:inward:MC-303305:Projectiles are shot at a shield are bouncing and are constantly hitting the shield over and over breaking the shield super fast and damaging the player. | Duplicate:inward:MC-303319:Shields doesn't block arrows properly | Duplicate:inward:MC-303348:Arrows get stuck on the ender dragon when above the portal | Duplicate:inward:MC-303368:Projectile like arrows bouncing while player using shield blocking them | Duplicate:inward:MC-303414:Los tridentes de los ahogados se se buguean con los escudos hasta romperlos  | Duplicate:inward:MC-303419:Shield blocks arrow permanently instead of deflecting | Duplicate:inward:MC-303442:Shield Won't Block Arrows | Duplicate:inward:MC-303465:Using a shield to block projections such as arrows and tridents suspends the projectile on the shield | Duplicate:inward:MC-303473:Shield does not properly deflect arrows | Duplicate:inward:MC-303528:Shield Bug | Duplicate:inward:MC-303543:Thrown trident sticks onto 2 block tall mobs | Duplicate:inward:MC-303537:When players use shields to block arrows, they will continue to be attacked. | Duplicate:inward:MC-303561:Shield is broken and not working | Duplicate:inward:MC-303582:The shield cannot block arrows. | Duplicate:inward:MC-303584:shield doesnt block trident properly | Duplicate:inward:MC-303603:over powered drowned | Duplicate:inward:MC-303607:Arrows stuck in the shields and that breaks the shields or hit the player | Duplicate:inward:MC-303615:shield not working | Duplicate:inward:MC-303618:Trident unlimited damage | Duplicate:inward:MC-303620:Arrows don't bounce off shields | Duplicate:inward:MC-303622:Projectiles like arrows and tridents hit at a shield bounce on shields onto the player",
+    "_title": "Arrows and tridents get stuck on players and mobs"
+  },
+  "stor": {
+    "bug_id": "MC-302678",
+    "affected_versions": [
+      "25w41a",
+      "25w42a",
+      "25w43a"
+    ],
+    "recommended_version": "25w41a",
+    "environment": "Minecraft: Java Edition snapshot 25w41a, vanilla client, single-player integrated server, one local player, new Creative-mode Superflat world with commands enabled. Use an isolated or disposable snapshot world and do not test in the fix version 25w44a.",
+    "preconditions": [
+      "Install and select the exact Minecraft: Java Edition snapshot 25w41a in the Minecraft Launcher. Enable snapshot versions in the launcher's Installations screen if 25w41a is not available.",
+      "Use a vanilla client without gameplay mods, server plugins, or datapacks that alter entities, projectiles, combat, attributes, or tridents.",
+      "Use a new disposable world rather than upgrading an important existing world.",
+      "Have keyboard-and-mouse controls available. The instructions name default controls; if controls are rebound, use the binding for the same action.",
+      "The reproduction uses a stationary iron golem as the unspecified target mob. NoAI is used only to maintain the report's condition that the mob remains still underneath the trident.",
+      "Use the unenchanted trident supplied by the command. Do not add Loyalty, Riptide, Channeling, Impaling, or other enchantments."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Start the Minecraft Launcher, select or create an installation whose version is exactly snapshot 25w41a, and launch the game. If creating an installation, open Installations, enable the Snapshots version filter, choose New Installation, select snapshot 25w41a as the version, save it, and launch that installation.",
+        "exact_input": "Version: snapshot 25w41a",
+        "success_cue": "The Java Edition title screen is open and the lower-left version text identifies 25w41a.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "From the title screen, select Singleplayer and create a new world. Set Game Mode to Creative, turn Allow Commands on, and select the Superflat world type under the world-generation settings. No particular seed is required. Select Create New World when the settings are complete.",
+        "exact_input": "World name: MC-302678; Game Mode: Creative; Allow Commands: ON; World Type: Superflat",
+        "success_cue": "World generation begins using Creative mode in a flat test environment.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait after entering the world. Do not begin setup while the joining or terrain-loading screen is visible.",
+        "exact_input": null,
+        "success_cue": "The Superflat terrain is rendered around the player, the HUD is visible, and movement and camera rotation respond normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Enter the summon command exactly as written, including the leading slash, and press Enter. The command places an iron golem eight blocks away along the positive Z axis and disables its AI so it remains still for the projectile test.",
+        "exact_input": "/summon minecraft:iron_golem ~ ~ ~8 {NoAI:1b}",
+        "success_cue": "The command succeeds and exactly one stationary iron golem is visible near the player. A successful-command message may also appear in chat.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Locate the summoned iron golem by looking around the nearby flat area. Confirm that it remains in one position without walking. Do not attack, push, leash, ride, or otherwise move it.",
+        "exact_input": null,
+        "success_cue": "A living, motionless iron golem is available as the target and has not taken any test damage yet.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T to open in-game chat again. Enter the give command exactly as written, including the leading slash, and press Enter.",
+        "exact_input": "/give @s minecraft:trident 1",
+        "success_cue": "The command succeeds and one unenchanted trident is present in the player's inventory or hotbar.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "If the trident is not already in the hotbar, press E to open the inventory. Locate the trident, then left-click it and left-click one of the nine slots along the bottom row to place it there. Press E again to close the inventory.",
+        "exact_input": null,
+        "success_cue": "The inventory is closed and the trident icon is visible in one of the nine hotbar slots at the bottom of the screen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the hotbar slot containing the trident by pressing its corresponding number key, 1 through 9, or by scrolling the mouse wheel until that slot is highlighted. Do not put the trident in the offhand.",
+        "exact_input": null,
+        "success_cue": "The trident's hotbar slot has the selection outline and the player visibly holds the trident in the main hand.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Using the movement controls, stand approximately 6 to 10 blocks from the stationary iron golem with no blocks or entities between the player and the golem. Stop moving and place the crosshair over the center of the golem's torso so the thrown trident will strike the body rather than the ground.",
+        "exact_input": "Default movement controls: W, A, S, and D; camera: mouse",
+        "success_cue": "The player is stationary, has a clear line of sight to the stationary iron golem, and the crosshair is centered on its torso.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "While keeping the crosshair centered on the iron golem's torso, press and hold the Use Item control, which is right mouse button by default, for about two seconds so the trident is fully readied. Release the button to throw the trident. Keep the target centered and do not move the iron golem while the projectile travels. Continue only until the trident makes initial contact with the golem; do not retrieve the trident or perform another attack.",
+        "exact_input": "Hold right mouse button for about 2 seconds, then release",
+        "success_cue": "The unenchanted trident has been released as a projectile and has just made initial contact with the stationary iron golem's body.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 10,
+    "handoff_condition": "The unenchanted trident has just struck the stationary iron golem in snapshot 25w41a. The NoAI target remains in its original position, and the player has not retrieved the trident, attacked again, or otherwise disturbed the target. Begin observation immediately from this state.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce and does not specify a game mode, world type, seed, coordinates, target mob species, distance, or exact impact location.",
+      "The stationary iron golem, Creative Superflat world, and setup commands are deterministic practical choices used to implement the report's instruction to throw a trident into a mob that remains still; they are not explicit report requirements.",
+      "The phrase 'if mob is still under the trident' does not define a required projectile angle or contact point. This plan uses a direct horizontal throw into the center of a stationary mob's torso.",
+      "The report title and comments also describe arrows, players, and shield interactions, but the description directly supplies only the trident-versus-mob path. This plan reproduces that primary path and does not add the shield variants.",
+      "The supplied attachment images were not viewable in the report text, so no positioning or setup details were inferred from them.",
+      "The report does not state how long observation must continue after impact. The plan hands control to the observation subsystem immediately after the first contact."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 3,
+    "response_id": "resp_0ff9ff9482b1a0be016aaf4b7f9ee487d088673b06de3d4d8f",
+    "elapsed_seconds": 75.27,
+    "usage": {
+      "input_tokens": 34289,
+      "output_tokens": 5051,
+      "reasoning_tokens": 3420,
+      "total_tokens": 39340
+    },
+    "timestamp": "2026-09-20T02:58:18.627290+00:00"
+  }
+}
