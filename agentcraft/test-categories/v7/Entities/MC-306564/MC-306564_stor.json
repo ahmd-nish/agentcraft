@@ -1,0 +1,188 @@
+{
+  "bug_id": "MC-306564",
+  "category": "Entities",
+  "source_category": "Entities",
+  "source_panel": "entities-five-bug-reports-updated",
+  "source_md": "[Entities] - MC-306564.md",
+  "source_meta": {
+    "mojira categories": "Entities; Items",
+    "project": "MC",
+    "issue key": "MC-306564",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2026-02-22T02:18:40.412-0800",
+    "updated": "2026-03-11T03:45:26.113-0700",
+    "resolution date": "2026-03-11T03:44:49.374-0700",
+    "affects versions": "26.1 Snapshot 9",
+    "fix versions": "26.1 Pre-Release 2",
+    "area": "Platform HC",
+    "watchers": "2",
+    "attachments": "1",
+    "attachment filenames": "2026-02-22 17-53-04 (747f90a5-6e56-47bb-90fe-f342d494d291).mp4",
+    "_title": "Item entities' health does not decrease uniformly when on cacti"
+  },
+  "stor": {
+    "bug_id": "MC-306564",
+    "affected_versions": [
+      "26.1 Snapshot 9"
+    ],
+    "recommended_version": "26.1 Snapshot 9",
+    "environment": "Minecraft Java Edition 26.1 Snapshot 9 in a fresh single-player Superflat world, using Creative mode with commands/cheats enabled. The test uses one item entity, a cactus at X=0, Y=200, Z=0, and an observation platform four blocks away.",
+    "preconditions": [
+      "The exact affected version, 26.1 Snapshot 9, is installed and launchable.",
+      "The executor can create a single-player world with commands/cheats enabled.",
+      "Command feedback is visible in chat so that summon, tick, and entity-data command responses can be recorded.",
+      "Use a fresh world and do not drop or summon any other item entities near the test area; the health selector must resolve only the test item.",
+      "Keep the game frozen except when executing the three explicit five-tick steps. Do not unfreeze the game with /tick unfreeze."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "Launch Minecraft Java Edition using the exact affected version 26.1 Snapshot 9. Do not use the listed fix version, 26.1 Pre-Release 2.",
+        "exact_input": null,
+        "success_cue": "The title screen identifies the running game version as 26.1 Snapshot 9.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, choose Create New World, set the game mode to Creative, enable commands/cheats, select the Superflat world type, and create the world. The Superflat selection is only to provide a predictable empty test area.",
+        "exact_input": null,
+        "success_cue": "The player is in a newly created Creative-mode Superflat world and can open chat and execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait until world loading has finished before starting the test. Do not leave dropped items near the player.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, player movement responds normally, and no item entities are visible near the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat, enter the freeze command with its leading slash, and press Enter.",
+        "exact_input": "/tick freeze",
+        "success_cue": "Chat confirms that the game is frozen. Commands can still be entered, but normal game ticks no longer advance continuously.",
+        "source_basis": "report"
+      },
+      {
+        "step": 5,
+        "action": "While the game remains frozen, press T, enter the teleport command, and press Enter. This moves the player to the center of the block at X=0, Y=200, Z=0, safely above the Superflat terrain.",
+        "exact_input": "/tp @s 0.5 200 0.5",
+        "success_cue": "The player is stationary at approximately X=0.5, Y=200, Z=0.5 and does not fall because ticking is frozen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Press T, place a sand support block directly beneath the planned cactus position by executing the command, and press Enter.",
+        "exact_input": "/setblock 0 199 0 minecraft:sand",
+        "success_cue": "Command feedback confirms that a sand block exists at X=0, Y=199, Z=0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Press T, place the cactus directly at the player's current block position by executing the command, and press Enter. The cactus is therefore directly above the sand support.",
+        "exact_input": "/setblock 0 200 0 minecraft:cactus",
+        "success_cue": "Command feedback confirms that a cactus block exists at X=0, Y=200, Z=0, supported by the sand at Y=199.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press T, place a separate standing platform four blocks east of the cactus by executing the command, and press Enter.",
+        "exact_input": "/setblock 4 199 0 minecraft:stone",
+        "success_cue": "A stone block exists at X=4, Y=199, Z=0, within five blocks of the cactus but not adjacent to it.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "While still positioned inside the cactus block and while the game remains frozen, press T and execute the report's item summon command exactly as shown, including the leading slash and NBT data.",
+        "exact_input": "/summon minecraft:item ~ ~ ~ {Item:{count:1,id:\"minecraft:sand\"},PickupDelay:40}",
+        "success_cue": "Command feedback confirms that an item entity was summoned at the player's position inside the cactus. No game ticks have elapsed since it was summoned.",
+        "source_basis": "report"
+      },
+      {
+        "step": 10,
+        "action": "Press T and teleport to the center of the observation platform. This prevents the player from remaining inside the cactus while keeping the item within the health command's five-block selector range.",
+        "exact_input": "/tp @s 4.5 200 0.5",
+        "success_cue": "The player is standing on the stone platform approximately four blocks from the cactus, and the game is still frozen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Before advancing any ticks, press T and execute the report's health query. Press Enter and record the complete chat response as the cumulative-tick-0 measurement. Do not evaluate whether the value is correct.",
+        "exact_input": "/execute as @e[type=item,distance=..5] run data get entity @s Health",
+        "success_cue": "A health query response for the single nearby item entity is visible and has been recorded as the tick-0 measurement.",
+        "source_basis": "report"
+      },
+      {
+        "step": 12,
+        "action": "Press T and advance the frozen game by exactly five ticks using the report's tick-step command. Press Enter, then wait until all five requested ticks have completed and command input is responsive again. Do not run /tick unfreeze.",
+        "exact_input": "/tick step 5",
+        "success_cue": "Exactly five ticks have been requested and completed; the game has returned to its frozen state at cumulative tick 5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Press T and run the same health query again. Record the complete command response as the cumulative-tick-5 measurement without interpreting it. If the selector reports no matching entity, record that exact response instead of summoning a replacement.",
+        "exact_input": "/execute as @e[type=item,distance=..5] run data get entity @s Health",
+        "success_cue": "The tick-5 query response, whether entity data or no-matching-entity feedback, has been recorded, and no replacement item has been created.",
+        "source_basis": "report"
+      },
+      {
+        "step": 14,
+        "action": "Press T and advance the game by another five ticks. Wait until the requested ticks finish and the game is frozen again.",
+        "exact_input": "/tick step 5",
+        "success_cue": "A second group of exactly five ticks has completed, bringing the cumulative stepped time to 10 ticks.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Press T and run the same health query. Record the complete response as the cumulative-tick-10 measurement without interpreting it. If no entity matches, preserve that command response and continue without summoning another item.",
+        "exact_input": "/execute as @e[type=item,distance=..5] run data get entity @s Health",
+        "success_cue": "The tick-10 query response has been recorded, and the test still refers to the originally summoned item rather than a replacement.",
+        "source_basis": "report"
+      },
+      {
+        "step": 16,
+        "action": "Press T and advance the game by a third and final group of exactly five ticks. Wait until command processing is responsive and the game has returned to its frozen state.",
+        "exact_input": "/tick step 5",
+        "success_cue": "The third five-tick step has completed, bringing the cumulative stepped time to 15 ticks while leaving the game frozen.",
+        "source_basis": "report"
+      },
+      {
+        "step": 17,
+        "action": "Press T and run the health query one final time. Record the complete response as the cumulative-tick-15 measurement. Do not summon another item if the selector no longer finds the original entity, and do not evaluate the collected measurements.",
+        "exact_input": "/execute as @e[type=item,distance=..5] run data get entity @s Health",
+        "success_cue": "The tick-15 command response has been captured alongside the previously recorded tick-0, tick-5, and tick-10 responses.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 16,
+    "handoff_condition": "The originally summoned item has undergone three consecutive five-tick advances while in contact with the cactus, for 15 cumulative stepped ticks. The world is frozen again, and the unaltered command responses from cumulative ticks 0, 5, 10, and 15 have been recorded for the observation subsystem to evaluate.",
+    "uncertainties": [
+      "The report does not specify a game mode, world seed, world type, or single-player versus dedicated-server environment. This plan uses a fresh Creative-mode single-player Superflat world with commands enabled as the simplest deterministic implementation.",
+      "The report does not provide fixed coordinates or a complete cactus layout. The plan uses a sand-supported cactus at X=0, Y=200, Z=0 and summons the item from the center of that cactus block, matching the report's instruction that the item be directly inside or otherwise in contact with the cactus.",
+      "The sand, cactus, observation platform, and teleport commands are practical setup choices and are not commands supplied by the report. The report-supplied summon, health-query, freeze, and tick-step command text is preserved.",
+      "The report describes repeating the health-check and five-tick-step sequence multiple times, with up to 15 total ticks as its example. This plan deterministically performs exactly three five-tick advances for 15 cumulative ticks."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_0abc2b903d995a6e016aaf437a08a087d0818e64f90abca304",
+    "elapsed_seconds": 98.44,
+    "usage": {
+      "input_tokens": 8458,
+      "output_tokens": 6899,
+      "reasoning_tokens": 4848,
+      "total_tokens": 15357
+    },
+    "timestamp": "2026-09-20T02:24:26.815427+00:00"
+  }
+}

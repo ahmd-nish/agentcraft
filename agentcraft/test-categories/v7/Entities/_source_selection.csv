@@ -1,0 +1,6 @@
+selection_rank,key,summary,created,resolution,resolutiondate,category,issue_url,attachment_count
+1,MC-307920,Bucketed sulfur cubes can despawn,2026-05-05T10:00:05.823-0700,Fixed,2026-05-07T02:24:57.317-0700,Entities; Items,https://bugs.mojang.com/browse/MC-307920,0
+2,MC-307864,Small sulfur cubes become large client-side when fed a slimeball after restarting their aging,2026-05-01T20:58:48.303-0700,Fixed,2026-05-04T03:42:59.132-0700,Entities; Mob behaviour,https://bugs.mojang.com/browse/MC-307864,0
+3,MC-307829,Sulfur cubes with TNT absorbed still explode with the game rule `mob_griefing` set to false,2026-04-29T12:27:46.666-0700,Fixed,2026-05-05T02:59:04.603-0700,Entities; Mob behaviour,https://bugs.mojang.com/browse/MC-307829,0
+4,MC-306607,Endermen now display the block-holding pose even when empty-handed,2026-02-24T10:29:44.905-0800,Fixed,2026-02-25T07:09:22.432-0800,Entities; Textures and models,https://bugs.mojang.com/browse/MC-306607,2
+5,MC-306564,Item entities' health does not decrease uniformly when on cacti,2026-02-22T02:18:40.412-0800,Fixed,2026-03-11T03:44:49.374-0700,Entities; Items,https://bugs.mojang.com/browse/MC-306564,1

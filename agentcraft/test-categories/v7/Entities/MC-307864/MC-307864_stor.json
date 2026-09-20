@@ -1,0 +1,220 @@
+{
+  "bug_id": "MC-307864",
+  "category": "Entities",
+  "source_category": "Entities",
+  "source_panel": "entities-five-bug-reports-updated",
+  "source_md": "[Entities] - MC-307864.md",
+  "source_meta": {
+    "mojira categories": "Entities; Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-307864",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Normal",
+    "created": "2026-05-01T20:58:48.303-0700",
+    "updated": "2026-05-04T03:42:59.195-0700",
+    "resolution date": "2026-05-04T03:42:59.132-0700",
+    "affects versions": "26.2 Snapshot 1; 26.2 Snapshot 5",
+    "fix versions": "26.2 Snapshot 6",
+    "area": "Expansion A",
+    "votes": "1",
+    "watchers": "0",
+    "attachments": "0",
+    "_title": "Small sulfur cubes become large client-side when fed a slimeball after restarting their aging"
+  },
+  "stor": {
+    "bug_id": "MC-307864",
+    "affected_versions": [
+      "26.2 Snapshot 1",
+      "26.2 Snapshot 5"
+    ],
+    "recommended_version": "26.2 Snapshot 1",
+    "environment": "Vanilla Minecraft Java Edition 26.2 Snapshot 1 in a new single-player world using the integrated server. Use Creative mode and Normal difficulty, with no mods, resource packs, or datapacks. Default mouse controls are assumed: right-click for Use Item/Interact and left-click for Attack. A dedicated server and additional players are not required.",
+    "preconditions": [
+      "Launch exactly 26.2 Snapshot 1, the first version listed as affected; do not use the fixed 26.2 Snapshot 6.",
+      "Use a disposable test world because snapshots may damage or convert worlds.",
+      "Create the world in Creative mode so the required spawn egg, Golden Dandelions, Slimeball, and weapon can be obtained deterministically.",
+      "Use Normal difficulty rather than Peaceful because sulfur-cube spawning on Peaceful was changed during the 26.2 snapshot cycle.",
+      "Locate a clear patch of solid ground with enough room for the sulfur cubes to hop apart.",
+      "Do not feed or insert any block into the sulfur cube during setup.",
+      "Perform both Golden Dandelion interactions and the Slimeball interaction on the same small sulfur cube."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start the installation whose version is exactly \"26.2 Snapshot 1\".",
+        "exact_input": "Minecraft Launcher -> Installations -> select/create an installation using 26.2 Snapshot 1 -> Play",
+        "success_cue": "The Java Edition title screen finishes loading and displays version 26.2 Snapshot 1.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new single-player Creative-mode test world. Set the difficulty to Normal; the seed and world-generation type may remain at their defaults.",
+        "exact_input": "Singleplayer -> Create New World -> Game Mode: Creative -> Difficulty: Normal -> Create New World",
+        "success_cue": "The player enters a new world in Creative mode.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for initial world loading to finish before preparing the test.",
+        "exact_input": null,
+        "success_cue": "Nearby terrain is rendered, the loading overlay is gone, and player movement responds normally.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a clear area of solid ground with approximately 8 by 8 blocks of open space. If necessary, double-tap the Jump control to begin Creative flight and search nearby, then land before spawning the mob.",
+        "exact_input": "Default controls: W/A/S/D to move; double-tap Space to toggle Creative flight",
+        "success_cue": "The player is standing near a clear, solid area where multiple sulfur cubes can be seen and individually targeted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Open the Creative inventory and select the Search Items tab so items can be found by name.",
+        "exact_input": "Press E, then select Search Items",
+        "success_cue": "The Creative inventory is open with an active item-search field.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Search for \"Sulfur Cube Spawn Egg\" and place one in hotbar slot 1, the leftmost inventory bar slot.",
+        "exact_input": "Search: Sulfur Cube Spawn Egg; place the result in hotbar slot 1",
+        "success_cue": "A Sulfur Cube Spawn Egg is visible in hotbar slot 1.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Search for \"Golden Dandelion\" and place a stack containing at least two in hotbar slot 2. In Creative mode the stack may not decrease, but two separate interactions must still be performed.",
+        "exact_input": "Search: Golden Dandelion; place the result in hotbar slot 2",
+        "success_cue": "Golden Dandelions are visible in hotbar slot 2.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Search for \"Slimeball\" and place one or more Slimeballs in hotbar slot 3.",
+        "exact_input": "Search: Slimeball; place the result in hotbar slot 3",
+        "success_cue": "A Slimeball stack is visible in hotbar slot 3.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 9,
+        "action": "Search for \"Netherite Sword\" and place one in hotbar slot 4. The sword is used only to produce small sulfur cubes from a newly spawned large cube.",
+        "exact_input": "Search: Netherite Sword; place the result in hotbar slot 4",
+        "success_cue": "A Netherite Sword is visible in hotbar slot 4, and all four required hotbar items are prepared.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Close the inventory and return to normal world control.",
+        "exact_input": "Press E",
+        "success_cue": "The inventory closes and the crosshair is visible.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Select hotbar slot 1 so the Sulfur Cube Spawn Egg is held in the active slot.",
+        "exact_input": "Press 1",
+        "success_cue": "The player's hand displays the Sulfur Cube Spawn Egg and hotbar slot 1 is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Aim at the top surface of the clear ground and use the spawn egg once to spawn a sulfur cube.",
+        "exact_input": "Right-click the ground once",
+        "success_cue": "One large sulfur cube without an absorbed block is present near the player.",
+        "source_basis": "report"
+      },
+      {
+        "step": 13,
+        "action": "Select the Netherite Sword in hotbar slot 4.",
+        "exact_input": "Press 4",
+        "success_cue": "The player's hand displays the Netherite Sword and hotbar slot 4 is highlighted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Aim directly at the newly spawned large sulfur cube and attack it until it dies. Do not attack either of the resulting small cubes.",
+        "exact_input": "Left-click the large sulfur cube repeatedly until it dies",
+        "success_cue": "The large sulfur cube is gone and has split into two visibly smaller sulfur cubes.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 15,
+        "action": "Wait only until the two small sulfur cubes hop far enough apart to target one unambiguously. If necessary, reposition so one cube is closer to the crosshair than its sibling; do not wait for either cube to grow naturally.",
+        "exact_input": "Use W/A/S/D as needed; do not use an item yet",
+        "success_cue": "One chosen small sulfur cube can be targeted without the crosshair intersecting the other cube.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 16,
+        "action": "Designate the isolated small sulfur cube as the test target. Keep it in view and use this same cube for every remaining interaction.",
+        "exact_input": "Center the crosshair on one small sulfur cube",
+        "success_cue": "The crosshair is centered on one identifiable small sulfur cube, with the sibling outside the immediate interaction line.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 17,
+        "action": "Select the Golden Dandelion stack in hotbar slot 2 while continuing to track the chosen small sulfur cube.",
+        "exact_input": "Press 2",
+        "success_cue": "A Golden Dandelion is held in the player's hand and the chosen small sulfur cube remains in view.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 18,
+        "action": "Feed the chosen small sulfur cube the first Golden Dandelion to stop its aging. Perform exactly one interaction and do not accidentally interact with its sibling.",
+        "exact_input": "Right-click the chosen small sulfur cube once",
+        "success_cue": "The Golden Dandelion interaction registers on the chosen cube, indicated by the stop-aging particle response around that cube; it remains visibly small.",
+        "source_basis": "report"
+      },
+      {
+        "step": 19,
+        "action": "While still holding the Golden Dandelion, feed the same small sulfur cube a second time to restart its aging. Do not wait for natural growth after this interaction.",
+        "exact_input": "Right-click the same small sulfur cube once more",
+        "success_cue": "A second, restart-aging particle response appears around the same cube, and the target is still small at the end of the interaction.",
+        "source_basis": "report"
+      },
+      {
+        "step": 20,
+        "action": "Immediately select the Slimeball in hotbar slot 3, keeping the same recently restarted sulfur cube under the crosshair.",
+        "exact_input": "Press 3",
+        "success_cue": "A Slimeball is held in the player's hand and the same small sulfur cube is still targeted.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 21,
+        "action": "Immediately feed that same sulfur cube one Slimeball. Perform no further movement, inventory action, feeding, reloading, or interaction after the feed registers.",
+        "exact_input": "Right-click the same small sulfur cube once",
+        "success_cue": "The Slimeball feeding interaction has just registered on the target cube, such as through the use animation or feeding particles; input stops immediately for observation handoff.",
+        "source_basis": "report"
+      }
+    ],
+    "trigger_step": 21,
+    "handoff_condition": "The same small sulfur cube has just been fed one Slimeball immediately after its aging was first stopped and then restarted with two consecutive Golden Dandelion interactions. No world reload or additional interaction has occurred; begin observing the target's client-side appearance and state now.",
+    "uncertainties": [
+      "The report does not specify a game mode, difficulty, world seed, coordinates, or world-generation type. Creative mode, Normal difficulty, and a new default world are practical choices for deterministic setup.",
+      "The report says to summon a small sulfur cube but provides no summon command, NBT, or other direct small-cube creation method. To avoid inventing version-sensitive command data, this plan spawns a normal sulfur cube with its Creative spawn egg and kills it; official information for the affected snapshot states that a killed sulfur cube splits into two smaller sulfur cubes.",
+      "Creative mode may prevent the Golden Dandelion or Slimeball stack count from decreasing. Each feeding instruction therefore depends on a distinct registered right-click interaction and its particles rather than item consumption.",
+      "Two small sulfur cubes result from killing the large cube. Only one must receive the two Golden Dandelion interactions and the final Slimeball; the other cube is not part of the reproduction.",
+      "The report does not provide a required delay between restarting aging and feeding the Slimeball. The plan performs the Slimeball interaction immediately to prevent natural aging from changing the setup."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_091ca46a030c2ca1016aaf44569b6887d08c373f47e72611e3",
+    "elapsed_seconds": 106.6,
+    "usage": {
+      "input_tokens": 42176,
+      "output_tokens": 6628,
+      "reasoning_tokens": 4502,
+      "total_tokens": 48804
+    },
+    "timestamp": "2026-09-20T02:28:16.833161+00:00"
+  }
+}

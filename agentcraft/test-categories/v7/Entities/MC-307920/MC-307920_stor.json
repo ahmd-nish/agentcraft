@@ -1,0 +1,177 @@
+{
+  "bug_id": "MC-307920",
+  "category": "Entities",
+  "source_category": "Entities",
+  "source_panel": "entities-five-bug-reports-updated",
+  "source_md": "[Entities] - MC-307920.md",
+  "source_meta": {
+    "mojira categories": "Entities; Items",
+    "project": "MC",
+    "issue key": "MC-307920",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2026-05-05T10:00:05.823-0700",
+    "updated": "2026-05-11T00:02:43.078-0700",
+    "resolution date": "2026-05-07T02:24:57.317-0700",
+    "affects versions": "26.2 Snapshot 6",
+    "fix versions": "26.2 Snapshot 7",
+    "area": "Expansion A",
+    "votes": "1",
+    "watchers": "2",
+    "attachments": "0",
+    "issue links": "Relates:inward:MC-307684:Named sulfur cubes can despawn after being picked up with a bucket and replaced",
+    "_title": "Bucketed sulfur cubes can despawn"
+  },
+  "stor": {
+    "bug_id": "MC-307920",
+    "affected_versions": [
+      "26.2 Snapshot 6"
+    ],
+    "recommended_version": "26.2 Snapshot 6",
+    "environment": "Vanilla Minecraft: Java Edition 26.2 Snapshot 6 in a new local single-player Creative-mode world, with one player, no third-party mods or data packs, and Simulation Distance set to at least 12 chunks. Use the Creative-inventory sulfur cube bucket rather than Snapshot 7 or any later version.",
+    "preconditions": [
+      "Create a disposable test world because the affected version is a snapshot; do not use an important existing world.",
+      "Confirm that the running game version is exactly 26.2 Snapshot 6. Do not reproduce in fix version 26.2 Snapshot 7.",
+      "Use a single-player world so that no second player remains near the sulfur cube and prevents the required distance condition.",
+      "The player must be in Creative mode so the sulfur cube bucket can be obtained from the Creative inventory and the player can fly.",
+      "Set Simulation Distance to at least 12 chunks before placing the sulfur cube. This permits the player to move more than 128 blocks away while the release area can remain simulated long enough for a despawn check.",
+      "Use a fresh sulfur cube bucket and do not give the released sulfur cube any other persistence condition: do not name it, place it in a vehicle, or interact with it using a block after release.",
+      "Use default controls where stated, or the currently bound equivalent: E for inventory, F3 for debug information, Space twice for Creative flight, W for forward movement, and right-click for Use Item/Place."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, open Minecraft: Java Edition, enable snapshot versions under Installations if necessary, create or select an installation for exactly 26.2 Snapshot 6, and launch it. Do not select 26.2 Snapshot 7.",
+        "exact_input": "26.2 Snapshot 6",
+        "success_cue": "The game reaches the main menu and its displayed version identifies 26.2 Snapshot 6.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, create a new disposable world, set Game Mode to Creative, and enter the world. The seed, difficulty, and world type are not specified by the report and may remain at their defaults.",
+        "exact_input": null,
+        "success_cue": "The player is in a newly loaded Creative-mode world and can begin flying by pressing Space twice.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Press Esc, open Options, open Video Settings, and set Simulation Distance to 12 chunks or higher. Apply the setting and return to the world.",
+        "exact_input": "12 chunks or higher",
+        "success_cue": "The Video Settings screen shows Simulation Distance at 12 chunks or higher, and the player has returned to normal world control.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Move to a level, unobstructed area with enough room to construct a small holding pen. Wait until the nearby terrain has rendered and movement responds normally.",
+        "exact_input": null,
+        "success_cue": "A level test area is loaded, with no immediate hazards or existing mobs occupying the intended release point.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E to open the Creative inventory. Open Search Items, enter \"glass\", and move plain Glass to an empty hotbar slot. Close the inventory with E.",
+        "exact_input": "glass",
+        "success_cue": "Plain Glass is present in a hotbar slot and the inventory is closed.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Select the Glass and construct an open-topped holding pen on the level ground: make a complete 7-by-7-block outer perimeter and stack the perimeter three blocks high, producing an enclosed 5-by-5-block interior with no doorway. Do not place a roof. Creative flight can be used to enter or leave over the wall.",
+        "exact_input": null,
+        "success_cue": "The test area contains an empty open-topped pen with a 5-by-5 interior, three-block-high walls, and no ground-level exits.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Enter the pen from above and stand near its center. Press F3 and record the integer coordinates shown on the debug overlay's Block line as X0, Y0, and Z0. These are the return coordinates. Close the debug overlay by pressing F3 again if it obstructs inventory use.",
+        "exact_input": null,
+        "success_cue": "The center coordinates X0, Y0, and Z0 have been recorded, and the player remains inside the pen.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Press E to open the Creative inventory. Open Search Items and enter \"sulfur cube\". Identify the bucket item containing a sulfur cube, move one copy to an empty hotbar slot, and close the inventory. Do not select a sulfur cube spawn egg or an ordinary empty bucket.",
+        "exact_input": "sulfur cube",
+        "success_cue": "A sulfur cube bucket is present in the hotbar, and the inventory is closed.",
+        "source_basis": "report"
+      },
+      {
+        "step": 9,
+        "action": "Select the hotbar slot containing the sulfur cube bucket. Remain inside the pen and aim the crosshair at the top face of the ground block near the center coordinates recorded in step 7.",
+        "exact_input": null,
+        "success_cue": "The sulfur cube bucket is visibly held in the player's active hand, and the crosshair points at the pen floor near X0, Z0.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 10,
+        "action": "Right-click once, using the sulfur cube bucket on the targeted floor block to place its sulfur cube. Do not right-click the cube again and do not give it a block, name, or vehicle.",
+        "exact_input": "right-click once",
+        "success_cue": "Exactly one sulfur cube is visible inside the closed pen, and the used hotbar slot now contains the resulting empty bucket rather than the filled sulfur cube bucket.",
+        "source_basis": "report"
+      },
+      {
+        "step": 11,
+        "action": "Press Space twice to begin Creative flight, rise over the pen wall, and hover approximately 10 to 20 blocks above the release area. Open the F3 overlay and rotate until its Facing line reports east, toward positive X. Keep the recorded Z0 approximately unchanged during the outbound flight.",
+        "exact_input": "Facing: east (Towards positive X)",
+        "success_cue": "The player is airborne above or beside the pen, the F3 overlay reports an east/positive-X heading, and X0 and Z0 remain recorded for the return trip.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 12,
+        "action": "Hold W to fly east while watching the F3 Block coordinates. Continue until the current X coordinate is at least X0 + 144 blocks, while keeping the current Z coordinate close to Z0. Stop moving once that distance is reached. Do not use Spectator mode or leave the dimension.",
+        "exact_input": "current X >= X0 + 144",
+        "success_cue": "The player's horizontal separation from the sulfur cube release point is at least 144 blocks, exceeding the 128-block Java mob range used for this deterministic fly-away operation.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 13,
+        "action": "Remain at the distant position for approximately five seconds without moving back toward the pen. Wait until terrain around the current position is rendered and player movement responds normally.",
+        "exact_input": "5 seconds",
+        "success_cue": "Five seconds have elapsed at least 144 horizontal blocks from the release coordinates, and the destination area is responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 14,
+        "action": "Turn west, toward negative X, and hold W to fly back along approximately the same path. Use the F3 Block coordinates to return until X and Z are each within five blocks of X0 and Z0.",
+        "exact_input": "X within X0 ± 5; Z within Z0 ± 5",
+        "success_cue": "The player has returned to the recorded release coordinates and the holding pen is again nearby.",
+        "source_basis": "report"
+      },
+      {
+        "step": 15,
+        "action": "Stop above the pen and wait until its walls, floor, and interior have fully rendered. Center the pen interior in view, make no further interactions, and hand control to the observation subsystem.",
+        "exact_input": null,
+        "success_cue": "The original holding pen is fully loaded and visible from above, movement is responsive, and the player has not interacted with the pen or its contents after returning.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 12,
+    "handoff_condition": "The player has completed one fly-away cycle beyond 128 blocks, waited at the distant position, returned to the recorded release coordinates, and is viewing the fully loaded interior of the original holding pen without performing any additional interaction. Begin observation of the pen's state.",
+    "uncertainties": [
+      "The report does not specify a world seed, world type, difficulty, release coordinates, exact travel distance, simulation distance, direction of travel, or time to remain away. The plan uses a new Creative world, Simulation Distance of at least 12 chunks, eastward travel of 144 blocks, and a five-second distant wait as deterministic practical choices.",
+      "The three-block-high holding pen is not required by the report. It is added only to prevent an otherwise present sulfur cube from wandering away from the recorded release point; it must not be treated as a necessary bug condition.",
+      "The localized tooltip wording for the filled bucket may differ from the report's phrase \"sulfur cube bucket\". Searching the Creative inventory for \"sulfur cube\" and selecting the bucket-shaped result avoids relying on one exact English item-name ordering.",
+      "The report permits either obtaining the filled bucket from Creative inventory or picking up a sulfur cube. This plan intentionally uses the Creative-inventory variant because it is the simplest report-supported deterministic path."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 4,
+    "response_id": "resp_05c22f03c30aecad016aaf44c11cb487d0b53ef062b43cb101",
+    "elapsed_seconds": 131.35,
+    "usage": {
+      "input_tokens": 37214,
+      "output_tokens": 8381,
+      "reasoning_tokens": 6347,
+      "total_tokens": 45595
+    },
+    "timestamp": "2026-09-20T02:30:28.202496+00:00"
+  }
+}

@@ -15,6 +15,9 @@ from datetime import datetime, timezone
 
 try:
     from dotenv import load_dotenv
+    # Absolute path: bare load_dotenv() searches upward from the cwd, so the
+    # keys silently vanish when this is launched from anywhere else.
+    load_dotenv("/Users/nish/Documents/minecraft-agents/improveBR/replication_package/.env")
     load_dotenv()
 except ImportError:
     pass
@@ -27,7 +30,7 @@ MODEL = "gpt-5.6-sol"
 # every call, which looks exactly like normal work from the outside: categories
 # complete instantly with zero output. Rotate to the next key instead, and make
 # exhaustion of the whole ring a hard stop rather than a silent no-op run.
-_KEY_ENVS = ["OPENAI_API_KEY_ALT1", "OPENAI_API_KEY_V6",
+_KEY_ENVS = ["OPENAI_API_KEY_NEW", "OPENAI_API_KEY_V6",
              "OPENAI_API_KEY_ALT2", "OPENAI_API_KEY"]
 _KEY_RING = []
 for _n in _KEY_ENVS:

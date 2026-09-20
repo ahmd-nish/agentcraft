@@ -1,0 +1,128 @@
+{
+  "bug_id": "MC-306607",
+  "category": "Entities",
+  "source_category": "Entities",
+  "source_panel": "entities-five-bug-reports-updated",
+  "source_md": "[Entities] - MC-306607.md",
+  "source_meta": {
+    "mojira categories": "Entities; Textures and models",
+    "project": "MC",
+    "issue key": "MC-306607",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2026-02-24T10:29:44.905-0800",
+    "updated": "2026-03-11T03:57:20.960-0700",
+    "resolution date": "2026-02-25T07:09:22.432-0800",
+    "affects versions": "26.1 Snapshot 10",
+    "fix versions": "26.1 Snapshot 11",
+    "area": "Platform EC",
+    "votes": "1",
+    "watchers": "1",
+    "attachments": "2",
+    "attachment filenames": "2026-02-25_02.09.19 (573a2905-5c8c-46c6-ae7b-3814a1ca1521).png; 2026-02-25_02.12.21 (0956a97e-689f-4add-bb35-0bd68649e878).png",
+    "issue links": "Duplicate:inward:MC-306642:almost every Enderman that spawns is holding nothing | Duplicate:inward:MC-306651:All endermen appear to be holding a block, even when not",
+    "_title": "Endermen now display the block-holding pose even when empty-handed"
+  },
+  "stor": {
+    "bug_id": "MC-306607",
+    "affected_versions": [
+      "26.1 Snapshot 10"
+    ],
+    "recommended_version": "26.1 Snapshot 10",
+    "environment": "Minecraft Java Edition 26.1 Snapshot 10 in a single-player Creative-mode world, with commands/cheats enabled, difficulty set to Normal (or another non-Peaceful difficulty), and the test area set to nighttime so the Enderman is not exposed to daylight.",
+    "preconditions": [
+      "Launch exactly Minecraft Java Edition 26.1 Snapshot 10, the first and only version listed as affected in the report. Do not use the fixed version, 26.1 Snapshot 11.",
+      "Use a newly created or otherwise disposable world in Creative mode so an Enderman Spawn Egg can be obtained without exploration or combat.",
+      "Enable commands/cheats for the world so nighttime can be established deterministically.",
+      "Use a non-Peaceful difficulty because hostile mobs, including Endermen, may not remain present on Peaceful difficulty.",
+      "Use the normal game resources for the test; avoid optional resource packs or modifications that intentionally replace the Enderman model or animations.",
+      "After spawning the Enderman, proceed immediately to observation without giving it time to collect a nearby block."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, create or select an installation for Minecraft Java Edition version 26.1 Snapshot 10, then launch it. On the title screen, verify that the displayed version is 26.1 Snapshot 10 before continuing.",
+        "exact_input": "26.1 Snapshot 10",
+        "success_cue": "The Minecraft title screen is open and identifies the running version as 26.1 Snapshot 10.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Select Singleplayer, then Create New World. Set the game mode to Creative, set difficulty to Normal or another non-Peaceful difficulty, and ensure commands/cheats are enabled. No particular seed, world type, or coordinates are required by the report. Create the world.",
+        "exact_input": null,
+        "success_cue": "A new Creative-mode world begins loading with commands available and difficulty not set to Peaceful.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait for the world to finish loading. Do not continue until nearby terrain is rendered, the player can look and move normally, and inventory or chat inputs respond without initial loading delay.",
+        "exact_input": null,
+        "success_cue": "The player is standing in the loaded world and normal movement and input are responsive.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T to open in-game chat. Type the time command exactly as shown, including the leading slash, and press Enter.",
+        "exact_input": "/time set night",
+        "success_cue": "The sky changes to nighttime and the command completes without an error message.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 5,
+        "action": "Press E, or the currently bound Inventory control, to open the Creative inventory. Open the Search Items tab, select the search field, and enter the exact item name shown.",
+        "exact_input": "Enderman Spawn Egg",
+        "success_cue": "The Creative inventory search results include an Enderman Spawn Egg.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 6,
+        "action": "Move one Enderman Spawn Egg from the search results into an empty slot in the hotbar, which is the row of nine item slots at the bottom of the inventory. Close the inventory with E or Esc.",
+        "exact_input": null,
+        "success_cue": "The inventory is closed and an Enderman Spawn Egg is visible in one of the nine hotbar slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the hotbar slot containing the Enderman Spawn Egg, using its number key or the mouse wheel. Stand in an open area and aim the crosshair at a ground block approximately 4 to 6 blocks away so the spawned Enderman's full body can be viewed without the player standing inside it.",
+        "exact_input": null,
+        "success_cue": "The Enderman Spawn Egg is shown in the player's hand and the crosshair points at nearby unobstructed ground during nighttime.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Right-click once, or use the currently bound Use Item/Place Block control once, on the targeted ground block to spawn a fresh Enderman. Do not use the spawn egg a second time, attack the Enderman, place a block in its hands, or wait for it to collect a block.",
+        "exact_input": null,
+        "success_cue": "Exactly one newly spawned Enderman is visible near the player and is unobstructed enough for its complete model and arm position to be inspected.",
+        "source_basis": "practical_inference"
+      }
+    ],
+    "trigger_step": 8,
+    "handoff_condition": "A fresh Enderman has just been spawned from an Enderman Spawn Egg in Minecraft Java Edition 26.1 Snapshot 10 during nighttime. No carried block was assigned as part of the setup, and the player has not attacked or otherwise interacted with it. Begin model-pose observation immediately, before the Enderman can collect a block or leave the viewing area.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce, seed, coordinates, game mode, or required world configuration. The plan therefore reconstructs the minimum deterministic path implied by the description: create a fresh Enderman and inspect it while it has not been given time to collect a block.",
+      "Using Creative mode and an Enderman Spawn Egg is an execution choice, not a requirement stated by the report.",
+      "The plan treats a freshly created Enderman from the standard spawn egg as initially empty-handed. The report does not provide an NBT or data-command check for the carried-block state.",
+      "Nighttime and a non-Peaceful difficulty are used to keep the Enderman available for inspection; the report states that the behavior occurs under any circumstances and does not identify either setting as a required trigger."
+    ],
+    "web_verification_used": false
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": false,
+    "web_call_count": 0,
+    "response_id": "resp_019a0d5ffe675ca1016aaf43db1afc87d0ab9d09f46731c286",
+    "elapsed_seconds": 49.72,
+    "usage": {
+      "input_tokens": 8273,
+      "output_tokens": 3290,
+      "reasoning_tokens": 2070,
+      "total_tokens": 11563
+    },
+    "timestamp": "2026-09-20T02:25:16.539515+00:00"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "output_folder": "/Users/nish/Documents/Research - Minecraft/data_collection/entities-five-bug-reports-updated",
+  "selection": "five newest fixed MC reports carrying the native Entities category",
+  "creation_date_cutoff": "2022-01-01",
+  "reports": 5,
+  "attachments_declared": 3,
+  "attachments_downloaded": 3,
+  "attachments_failed": 0,
+  "report_ids": [
+    "MC-307920",
+    "MC-307864",
+    "MC-307829",
+    "MC-306607",
+    "MC-306564"
+  ]
+}

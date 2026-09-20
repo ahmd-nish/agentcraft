@@ -1,0 +1,148 @@
+{
+  "bug_id": "MC-307829",
+  "category": "Entities",
+  "source_category": "Entities",
+  "source_panel": "entities-five-bug-reports-updated",
+  "source_md": "[Entities] - MC-307829.md",
+  "source_meta": {
+    "mojira categories": "Entities; Mob behaviour",
+    "project": "MC",
+    "issue key": "MC-307829",
+    "issue type": "Bug",
+    "status": "Resolved",
+    "resolution": "Fixed",
+    "confirmation status": "Confirmed",
+    "mojang priority": "Important",
+    "created": "2026-04-29T12:27:46.666-0700",
+    "updated": "2026-05-05T16:48:15.210-0700",
+    "resolution date": "2026-05-05T02:59:04.603-0700",
+    "affects versions": "26.2 Snapshot 5",
+    "fix versions": "26.2 Snapshot 6",
+    "area": "Expansion A",
+    "votes": "1",
+    "watchers": "0",
+    "attachments": "0",
+    "_title": "Sulfur cubes with TNT absorbed still explode with the game rule `mob_griefing` set to false"
+  },
+  "stor": {
+    "bug_id": "MC-307829",
+    "affected_versions": [
+      "26.2 Snapshot 5"
+    ],
+    "recommended_version": "26.2 Snapshot 5",
+    "environment": "Vanilla Minecraft: Java Edition 26.2 Snapshot 5 in a single-player Creative-mode world using the integrated server. Enable commands/cheats when creating the world. Use an isolated snapshot installation and a disposable test world; do not use the listed fix version, 26.2 Snapshot 6. A default or flat world is acceptable because the report supplies no seed, coordinates, structure, biome, graphics setting, or dedicated-server requirement.",
+    "preconditions": [
+      "Minecraft: Java Edition 26.2 Snapshot 5 is installed and selected in the Minecraft Launcher.",
+      "The client is unmodified: no mods, custom datapacks, or server plugins are active.",
+      "A disposable single-player world can be created in Creative mode with commands enabled.",
+      "Use the bound controls for Open Chat, Use Item/Place Block, and Inventory; their default keyboard-and-mouse inputs are T, right-click, and E respectively.",
+      "The test area must contain a solid, open surface where a Sulfur Cube can be spawned and approached without falling into a hazard.",
+      "Do not perform this reproduction in 26.2 Snapshot 6, because the report lists that version as the fix version."
+    ],
+    "steps": [
+      {
+        "step": 1,
+        "action": "In the Minecraft Launcher, start the installation whose version is exactly 26.2 Snapshot 5. At the title screen, confirm that the displayed version is 26.2 Snapshot 5 before continuing.",
+        "exact_input": null,
+        "success_cue": "The Minecraft: Java Edition title screen is open and identifies the running version as 26.2 Snapshot 5.",
+        "source_basis": "report"
+      },
+      {
+        "step": 2,
+        "action": "Create a new disposable single-player world. Set Game Mode to Creative and ensure commands/cheats are enabled. The report does not require a particular seed or world type, so use the default world settings or a flat world for easier testing.",
+        "exact_input": null,
+        "success_cue": "The player has entered a newly created Creative-mode world and is permitted to execute commands.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 3,
+        "action": "Wait before setting up the test. Do not continue until nearby terrain has rendered, the player can move normally, and opening menus or chat responds without world-loading delay. Move to a clear solid surface if the initial position is obstructed or hazardous.",
+        "exact_input": null,
+        "success_cue": "The surrounding chunks are rendered, controls respond normally, and there is a clear solid surface near the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 4,
+        "action": "Press T, or the rebound Open Chat control, to open chat. Enter the game-rule command exactly as supplied in exact_input, including the leading slash, and press Enter. The namespaced snake_case rule name is appropriate for this affected version.",
+        "exact_input": "/gamerule minecraft:mob_griefing false",
+        "success_cue": "The command succeeds and the game reports that the minecraft:mob_griefing game rule is now false.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 5,
+        "action": "Verify the game-rule state immediately before constructing the trigger. Open chat, enter the query command exactly as supplied in exact_input, including the leading slash, and press Enter.",
+        "exact_input": "/gamerule minecraft:mob_griefing",
+        "success_cue": "The command output reports that minecraft:mob_griefing is false. Do not continue if it reports true or if the command fails.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 6,
+        "action": "Press E, or the rebound Inventory control, to open the Creative inventory. Use the inventory search field to locate the Sulfur Cube Spawn Egg, TNT, and Flint and Steel. Place each item into a separate hotbar slot; the hotbar is the row of nine quickly selectable slots at the bottom of the inventory and gameplay screen. Close the inventory when all three items are present.",
+        "exact_input": null,
+        "success_cue": "The hotbar contains a Sulfur Cube Spawn Egg, TNT, and Flint and Steel in separate slots.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 7,
+        "action": "Select the hotbar slot containing the Sulfur Cube Spawn Egg, aim the crosshair at the clear solid surface, and press Use Item/Place Block once; the default input is right-click. Keep the spawned cube in view.",
+        "exact_input": null,
+        "success_cue": "One living Sulfur Cube is visible on the test surface near the player.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 8,
+        "action": "Select the TNT item in the hotbar. Stand within interaction range, aim the crosshair directly at the Sulfur Cube rather than at the ground behind it, and press Use Item once; the default input is right-click. This feeds the TNT block to the cube.",
+        "exact_input": null,
+        "success_cue": "The Sulfur Cube visibly contains the TNT block and has entered its TNT-absorbed explosive archetype.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 9,
+        "action": "Do not ignite the cube yet. Re-query the relevant game rule so that its state is confirmed after the entity setup. Open chat, execute the exact command, and press Enter.",
+        "exact_input": "/gamerule minecraft:mob_griefing",
+        "success_cue": "The command output still reports that minecraft:mob_griefing is false, and the TNT-absorbed Sulfur Cube remains present.",
+        "source_basis": "verified_external"
+      },
+      {
+        "step": 10,
+        "action": "Select Flint and Steel in the hotbar. Approach to normal interaction range and keep the crosshair centered on the body of the TNT-absorbed Sulfur Cube. Make sure the crosshair is not targeting a nearby block, and stop issuing movement or attack inputs.",
+        "exact_input": null,
+        "success_cue": "Flint and Steel is the active hotbar item, the TNT-absorbed Sulfur Cube is directly targeted, and minecraft:mob_griefing remains false.",
+        "source_basis": "practical_inference"
+      },
+      {
+        "step": 11,
+        "action": "Press Use Item exactly once on the targeted TNT-absorbed Sulfur Cube; the default input is right-click. This is the priming action. Immediately stop interacting and hand control to the observation subsystem without attempting to extinguish, shear, damage, pick up, or ignite the cube again.",
+        "exact_input": null,
+        "success_cue": "The Flint and Steel use interaction has just been performed once on the TNT-absorbed Sulfur Cube while minecraft:mob_griefing is false; no further player action has been taken.",
+        "source_basis": "verified_external"
+      }
+    ],
+    "trigger_step": 11,
+    "handoff_condition": "The player has just used Flint and Steel once on the TNT-absorbed Sulfur Cube while the queried value of minecraft:mob_griefing is false. Begin observation immediately and leave the player and cube undisturbed during the subsequent fuse interval.",
+    "uncertainties": [
+      "The report contains no formal Steps to Reproduce section, so the minimum path was reconstructed from the description and affected feature context.",
+      "The report does not specify a game mode, world seed, coordinates, world type, difficulty, or dedicated-server requirement. Creative single-player with commands enabled is used as the simplest deterministic setup and is a practical inference rather than a reported requirement.",
+      "The report names the rule as mob_griefing but does not provide a command. Game rules had already been converted to registry resource locations with snake_case names by this version, so the plan uses the version-compatible form minecraft:mob_griefing.",
+      "The report does not specify how the Sulfur Cube or required items were obtained. Creative inventory acquisition and a Sulfur Cube Spawn Egg are used to avoid unrelated exploration, crafting, and natural-spawn randomness.",
+      "Flint and Steel is selected as the deterministic igniter. Snapshot documentation confirms that absorbed TNT can be primed by fire sources, and related fixes in the following snapshot refer to direct igniter use on TNT-filled Sulfur Cubes."
+    ],
+    "web_verification_used": true
+  },
+  "call": {
+    "model": "gpt-5.6-sol",
+    "reasoning_effort": "high",
+    "verbosity": "high",
+    "web_used": true,
+    "web_call_count": 5,
+    "response_id": "resp_0e48f2c4490a1794016aaf440cb7a487d08ec5e270db375e32",
+    "elapsed_seconds": 73.69,
+    "usage": {
+      "input_tokens": 35609,
+      "output_tokens": 3940,
+      "reasoning_tokens": 2813,
+      "total_tokens": 39549
+    },
+    "timestamp": "2026-09-20T02:26:30.230970+00:00"
+  }
+}
